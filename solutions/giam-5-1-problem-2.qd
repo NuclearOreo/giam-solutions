@@ -1,0 +1,45 @@
+.docname {Solution — GIAM 5.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.1 Problem 2
+
+## Problem
+
+What is wrong with the following inductive proof that "all horses are the same color"?
+
+**Theorem.** Let $ H $ be a set of $ n $ horses. All horses in $ H $ are the same color.
+
+**Proof.** By induction on $ n $.
+
+*Basis.* If $ |H| = 1 $, the single horse is the same color as itself.
+
+*Inductive step.* Given a set of $ k + 1 $ horses
+
+$ H = \{h_1, h_2, \ldots, h_{k+1}\}, $
+
+define
+
+$ H_a = \{h_1, h_2, \ldots, h_k\}, \quad H_b = \{h_2, h_3, \ldots, h_{k+1}\}. $
+
+By the inductive hypothesis, all horses in $ H_a $ are the same color, and all horses in $ H_b $ are the same color. The horses $ h_2, \ldots, h_k $ lie in both sets, so every horse in $ H $ shares this common color.
+
+## Where the Argument Fails
+
+The inductive step silently assumes that $ H_a $ and $ H_b $ **share at least one horse**, so that the two monochromatic groups can be linked into a single color.
+
+Consider the very first non-trivial case, $ k = 1 $ (i.e., going from $ n = 1 $ to $ n = 2 $). Let $ H = \{h_1, h_2\} $. Then
+
+$ H_a = \{h_1\}, \quad H_b = \{h_2\}, \quad H_a \cap H_b = \varnothing. $
+
+There is no horse in both sets, so the argument "horses $ h_2, \ldots, h_k $ lie in both sets" is vacuous — it refers to an empty range of indices. Consequently, nothing forces $ h_1 $ and $ h_2 $ to have the same color, and the implication $ P(1) \Rightarrow P(2) $ does not hold.
+
+## Conclusion
+
+The induction breaks at the step $ k = 1 \to k + 1 = 2 $, because the two $ k $-element subsets used to "bridge" the colors are disjoint. Since this single link in the inductive chain fails, the entire proof is invalid, and indeed the theorem itself is false.

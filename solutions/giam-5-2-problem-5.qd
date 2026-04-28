@@ -1,0 +1,54 @@
+.docname {Solution — GIAM 5.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 5
+
+## Problem
+
+Prove the following formula for a product:
+
+$ \displaystyle \prod_{i=2}^{n}\left(1 - \frac{1}{i}\right) = \frac{1}{n}, \qquad n \geq 2. $
+
+## Direct Proof (Telescoping)
+
+Rewrite each factor as a single fraction:
+
+$ 1 - \frac{1}{i} \;=\; \frac{i - 1}{i}. $
+
+Therefore
+
+$ \displaystyle \prod_{i=2}^{n}\left(1 - \frac{1}{i}\right) \;=\; \prod_{i=2}^{n} \frac{i-1}{i} \;=\; \frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{n-1}{n}. $
+
+Every numerator after the first cancels the denominator of the previous factor (a telescoping product), leaving
+
+$ \displaystyle \prod_{i=2}^{n}\left(1 - \frac{1}{i}\right) = \frac{1}{n}, $
+
+as claimed.
+
+## Proof by Induction
+
+**Basis** ($ n = 2 $):
+
+$ \displaystyle \prod_{i=2}^{2}\left(1 - \frac{1}{i}\right) = 1 - \frac{1}{2} = \frac{1}{2} = \frac{1}{n}. $
+
+**Inductive step.** Assume, for some integer $ k \geq 2 $,
+
+$ \displaystyle \prod_{i=2}^{k}\left(1 - \frac{1}{i}\right) = \frac{1}{k}. $
+
+Then
+
+$$$
+\prod_{i=2}^{k+1}\left(1 - \frac{1}{i}\right)
+= \left[\prod_{i=2}^{k}\left(1 - \frac{1}{i}\right)\right]\cdot\left(1 - \frac{1}{k+1}\right)
+= \frac{1}{k}\cdot\frac{k}{k+1}
+= \frac{1}{k+1}.
+$$$
+
+By the principle of mathematical induction, the identity holds for all integers $ n \geq 2 $.
