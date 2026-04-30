@@ -47,7 +47,7 @@ A few matched pairs, $ (a, b) \in S $ alongside the corresponding $ (b, a) \in S
 
 Swapping coordinates is exactly *reflection across the line $ y = x $*: a point and its swap are mirror images through that diagonal. So $ S^{-1} $ is the reflection of $ S $ in $ y = x $ — the horizontal sine wave $ y = \sin x $ becomes a vertical sine wave $ x = \sin y $.
 
-!(65%)[Graphs of S and its inverse on the same axes](images/giam-6-1-problem-3-graph.svg "S (blue) and the inverse relation S⁻¹ (red) on the same axes; the dashed line y = x is the axis of symmetry.")
+!(65%)[Graphs of S and its inverse on the same axes](problem-3-graph.svg "S (blue) and the inverse relation S⁻¹ (red) on the same axes; the dashed line y = x is the axis of symmetry.")
 
 The blue curve is $ S $; the red curve is $ S^{-1} $. The two are perfect mirror images across the dashed line $ y = x $. Their only point of intersection is the origin, since $ \sin x = x $ has no other real solutions.
 

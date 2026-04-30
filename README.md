@@ -5,16 +5,36 @@ Worked solutions to problems from *Gateway to Abstract Mathematics* (GIAM), auth
 ## Layout
 
 ```
-solutions/*.qd            # one file per problem
+solutions/
+├── chapter-5/
+│   ├── section-1/
+│   │   └── problem-2.qd
+│   └── section-2/
+│       └── problem-5.qd
+├── chapter-6/
+│   └── section-1/
+│       ├── problem-1.qd
+│       ├── problem-2.qd
+│       ├── problem-3.qd
+│       └── problem-4.qd
+└── images/
+    └── chapter-6/
+        └── section-1/
+            ├── problem-2-graph.svg
+            └── problem-3-graph.svg
 references/               # source PDFs (textbook + solutions manual)
 references/legacy-pdfs/   # PDFs from the prior LaTeX/Tectonic flow
+quarkdown-output/         # compiled PDFs
 ```
 
 ## Compile
 
 ```bash
-quarkdown compile solutions/giam-5-2-problem-5.qd --pdf
-quarkdown compile solutions/giam-5-2-problem-5.qd -p -w   # live preview + watch
+# Compile a single problem
+quarkdown compile solutions/chapter-5/section-1/problem-2.qd --pdf
+
+# Live preview + watch
+quarkdown compile solutions/chapter-6/section-1/problem-3.qd -p -w
 ```
 
 ## Install
