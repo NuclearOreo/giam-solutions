@@ -1,0 +1,70 @@
+.docname {Solution — GIAM 6.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.1 Problem 1
+
+## Problem
+
+The *lexicographic order*, $ <_{\text{lex}} $, is a relation on the set of all words, where $ x <_{\text{lex}} y $ means that $ x $ would come before $ y $ in the dictionary. Consider just the three-letter words like "iff", "fig", "the", et cetera. Come up with a usable definition for $ x_1x_2x_3 <_{\text{lex}} y_1y_2y_3 $.
+
+## Setup
+
+Assume the 26 letters of the alphabet carry their familiar total order
+
+$ \texttt{a} < \texttt{b} < \texttt{c} < \cdots < \texttt{z}, $
+
+denoted simply by $ < $. A *three-letter word* is an ordered triple $ x_1x_2x_3 $ with each $ x_i \in \{\texttt{a}, \texttt{b}, \ldots, \texttt{z}\} $.
+
+## Definition
+
+For three-letter words $ x_1x_2x_3 $ and $ y_1y_2y_3 $, define
+
+$$$
+\begin{aligned}
+x_1x_2x_3 <_{\text{lex}} y_1y_2y_3 \;\iff\;
+& x_1 < y_1, \quad \text{or}\\
+& x_1 = y_1 \text{ and } x_2 < y_2, \quad \text{or}\\
+& x_1 = y_1,\ x_2 = y_2 \text{ and } x_3 < y_3.
+\end{aligned}
+$$$
+
+Equivalently, in compact form,
+
+$$$
+x_1x_2x_3 <_{\text{lex}} y_1y_2y_3 \;\iff\; \exists\, k \in \{1, 2, 3\}\ :\ x_k < y_k\ \text{ and }\ x_j = y_j\ \text{ for all }\ j < k.
+$$$
+
+In words: scan the two words from left to right; the *first position at which they differ* decides the order, with the word holding the alphabetically earlier letter at that position coming first. If no such position exists, the two words are equal.
+
+## Why the Definition Is Usable
+
+Given any two three-letter words, the definition is a finite, mechanical check:
+
+1. Compare $ x_1 $ with $ y_1 $. If they differ, the word with the smaller first letter is smaller.
+2. Otherwise, compare $ x_2 $ with $ y_2 $. If they differ, the word with the smaller second letter is smaller.
+3. Otherwise, compare $ x_3 $ with $ y_3 $. If they differ, the word with the smaller third letter is smaller.
+4. If all three positions agree, the two words are equal, so neither is $ <_{\text{lex}} $ the other.
+
+The relation inherits the basic properties of dictionary order:
+
+- **Irreflexivity.** $ x_1x_2x_3 \not<_{\text{lex}} x_1x_2x_3 $, since no $ x_i < x_i $.
+- **Trichotomy.** For any pair of words, exactly one of $ x <_{\text{lex}} y $, $ x = y $, or $ y <_{\text{lex}} x $ holds — singled out by the first index at which they disagree (or by the absence of such an index).
+- **Transitivity.** If $ x <_{\text{lex}} y $ and $ y <_{\text{lex}} z $, then $ x <_{\text{lex}} z $: let $ i $ be the first index where $ x $ and $ y $ differ, and $ j $ the first where $ y $ and $ z $ differ. The first index where $ x $ and $ z $ differ is at most $ \min(i, j) $, and the inequality at that position carries over.
+
+Hence $ <_{\text{lex}} $ is a *strict total order* on the set of three-letter words.
+
+## Examples
+
+Each comparison is decided at the first index where the two words differ.
+
+- $ \text{fig} <_{\text{lex}} \text{iff} $: differ at index $ 1 $, and $ \texttt{f} < \texttt{i} $.
+- $ \text{iff} <_{\text{lex}} \text{the} $: differ at index $ 1 $, and $ \texttt{i} < \texttt{t} $.
+- $ \text{cat} <_{\text{lex}} \text{cow} $: agree at index $ 1 $; differ at index $ 2 $, and $ \texttt{a} < \texttt{o} $.
+- $ \text{run} <_{\text{lex}} \text{rut} $: agree at indices $ 1 $ and $ 2 $; differ at index $ 3 $, and $ \texttt{n} < \texttt{t} $.
