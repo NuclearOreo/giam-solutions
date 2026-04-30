@@ -1,0 +1,47 @@
+.docname {Solution — GIAM 6.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.1 Problem 2
+
+## Problem
+
+What is the graph of "$ = $" in $ \mathbb{R} \times \mathbb{R} $?
+
+## The Graph
+
+The relation "$ = $" on $ \mathbb{R} $ is, by definition, the set of ordered pairs $ (x, y) \in \mathbb{R} \times \mathbb{R} $ whose two coordinates agree:
+
+$$$
+\operatorname{graph}(=) \;=\; \{(x, y) \in \mathbb{R} \times \mathbb{R} \;:\; x = y\} \;=\; \{(x, x) : x \in \mathbb{R}\}.
+$$$
+
+Plotted in the Cartesian plane, this is the line
+
+$ y = x, $
+
+passing through the origin with slope $ 1 $ — the *main diagonal* of $ \mathbb{R}^2 $. It is commonly denoted
+
+$$$
+\Delta_{\mathbb{R}} \;=\; \{(x, x) : x \in \mathbb{R}\},
+$$$
+
+or simply $ \Delta $ when the underlying set is clear.
+
+!(55%)[Graph of the equality relation on the reals](images/giam-6-1-problem-2-graph.svg "The graph of equality on the reals: the line y = x.")
+
+## Remarks
+
+Equality is the prototypical equivalence relation, and the diagonal makes its three defining properties visible at a glance:
+
+- **Reflexivity.** Every point on the diagonal has the form $ (x, x) $, so $ x = x $ for all $ x \in \mathbb{R} $.
+- **Symmetry.** The set is fixed by the swap $ (x, y) \mapsto (y, x) $; the diagonal is its own mirror image across itself.
+- **Transitivity.** If $ (x, y) $ and $ (y, z) $ both lie on $ \Delta $, then $ x = y = z $, so $ (x, z) \in \Delta $ as well.
+
+More generally, the graph of *any* equivalence relation $ \sim $ on $ \mathbb{R} $ contains the diagonal, since reflexivity forces $ (x, x) \in {\sim} $ for every $ x \in \mathbb{R} $.

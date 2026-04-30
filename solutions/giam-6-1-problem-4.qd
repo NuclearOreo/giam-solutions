@@ -1,0 +1,80 @@
+.docname {Solution — GIAM 6.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.1 Problem 4
+
+## Problem
+
+The "socks and shoes" rule is a mnemonic for inverting a composition. To undo "put on socks, then put on shoes" — socks first, then shoes — you must first take off your shoes, then your socks: the order of operations reverses on inversion. The same rule holds for relations. Prove that
+
+$$$
+(S \circ R)^{-1} \;=\; R^{-1} \circ S^{-1}.
+$$$
+
+## Setup
+
+Fix sets $ A $, $ B $, $ C $ and relations
+
+$ R \subseteq A \times B, \qquad S \subseteq B \times C. $
+
+For any relation $ T \subseteq X \times Y $, the **inverse** is
+
+$$$
+T^{-1} \;=\; \{(y, x) \in Y \times X \;:\; (x, y) \in T\}.
+$$$
+
+For relations $ R \subseteq A \times B $ and $ S \subseteq B \times C $, the **composition** $ S \circ R \subseteq A \times C $ is
+
+$$$
+S \circ R \;=\; \{(a, c) \in A \times C \;:\; \exists\, b \in B \text{ such that } (a, b) \in R \text{ and } (b, c) \in S\}.
+$$$
+
+In words, $ S \circ R $ means "apply $ R $ first, then $ S $".
+
+A quick type check shows both sides of the claimed identity live in the same ambient set:
+
+$$$
+\begin{aligned}
+(S \circ R)^{-1} &\;\subseteq\; C \times A, \\
+R^{-1} \circ S^{-1} &\;\subseteq\; C \times A,
+\end{aligned}
+$$$
+
+since $ R^{-1} \subseteq B \times A $ and $ S^{-1} \subseteq C \times B $, so $ R^{-1} \circ S^{-1} $ (i.e. "$ S^{-1} $ first, then $ R^{-1} $") is well-defined.
+
+## Proof
+
+Let $ (c, a) \in C \times A $ be arbitrary. The following chain of equivalences holds.
+
+$$$
+\begin{aligned}
+(c, a) \in (S \circ R)^{-1}
+&\iff (a, c) \in S \circ R
+&& \text{(def. of inverse)} \\
+&\iff \exists\, b \in B \;:\; (a, b) \in R \text{ and } (b, c) \in S
+&& \text{(def. of composition)} \\
+&\iff \exists\, b \in B \;:\; (b, a) \in R^{-1} \text{ and } (c, b) \in S^{-1}
+&& \text{(def. of inverse, twice)} \\
+&\iff \exists\, b \in B \;:\; (c, b) \in S^{-1} \text{ and } (b, a) \in R^{-1}
+&& \text{(reorder the conjunction)} \\
+&\iff (c, a) \in R^{-1} \circ S^{-1}
+&& \text{(def. of composition)}.
+\end{aligned}
+$$$
+
+Each step is a logical equivalence based purely on the definitions of inverse and composition; reordering the conjunction in the fourth step is justified because logical "and" is commutative. Since the equivalence holds for every $ (c, a) \in C \times A $, the two relations contain exactly the same ordered pairs. Therefore
+
+$ (S \circ R)^{-1} \;=\; R^{-1} \circ S^{-1}. \qquad \blacksquare $
+
+## Remark — the Socks-and-Shoes Picture
+
+Reading the proof in the original mnemonic: let $ R $ be "put on socks" (a relation from bare feet to socked feet) and $ S $ be "put on shoes" (a relation from socked feet to socked-and-shoed feet). Then $ S \circ R $ is the morning routine.
+
+The identity above says that to undo $ S \circ R $, one must apply $ S^{-1} $ first (take off shoes), then $ R^{-1} $ (take off socks). Reversing the order is forced by composition itself — a *bridge* element $ b \in B $ (here, "socked feet") sits between $ R $ and $ S $, and any inversion path through that bridge must traverse it the opposite way around. The mnemonic and the relational identity are the same statement at different levels of abstraction.
