@@ -1,6 +1,6 @@
-# math-solutions
+# A Gentle Introduction to the Art of Mathematics
 
-Worked solutions to problems from *Gateway to Abstract Mathematics* (GIAM), authored in [Quarkdown](https://github.com/iamgio/quarkdown).
+Worked solutions to problems from *A Gentle Introduction to the Art of Mathematics* (GIAM), authored in [Quarkdown](https://github.com/iamgio/quarkdown).
 
 ## Layout
 
