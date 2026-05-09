@@ -24,7 +24,7 @@ solutions/
             └── problem-3-graph.svg
 references/               # source PDFs (textbook + solutions manual)
 references/legacy-pdfs/   # PDFs from the prior LaTeX/Tectonic flow
-quarkdown-output/         # compiled PDFs
+pdf-solutions/            # compiled PDFs (mirrors solutions/ tree)
 ```
 
 ## Compile
