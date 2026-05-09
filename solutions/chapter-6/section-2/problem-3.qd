@@ -1,0 +1,71 @@
+.docname {Solution — GIAM 6.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.2 Problem 3
+
+## Problem
+
+Explain why both of the relations just described (in problems 1 and 2) have the transitive property.
+
+## Setup
+
+Recall the relations:
+
+- $ S = \{(x, y) \;:\; x \text{ is smarter than } y\} $, on a population $ P $.
+- $ A = \{(x, y) \;:\; x \text{ has the same astrological sign as } y\} $, on the same $ P $.
+
+A relation $ R $ on a set $ X $ is **transitive** if, for all $ x, y, z \in X $,
+
+$ (x, y) \in R \;\text{and}\; (y, z) \in R \;\Longrightarrow\; (x, z) \in R. $
+
+## $ S $ Is Transitive
+
+Suppose $ (x, y) \in S $ and $ (y, z) \in S $ — that is, $ x $ is smarter than $ y $, and $ y $ is smarter than $ z $. Following the strict reading from Problem 1, "smarter than" behaves like $ > $: people can be compared on a single intelligence scale, and "$ x $ is smarter than $ y $" says $ x $ ranks above $ y $. Two such inequalities chain in the obvious way:
+
+$ x \text{ above } y \;\text{ and }\; y \text{ above } z \;\;\Longrightarrow\;\; x \text{ above } z, $
+
+so $ x $ is smarter than $ z $, i.e. $ (x, z) \in S $.
+
+Formally: let $ \iota : P \to \mathbb{R} $ rank the population by intelligence (or, more cautiously, take any strict order on $ P $ that captures the everyday relation). Then
+
+$ (x, y) \in S \;\iff\; \iota(x) > \iota(y), $
+
+and transitivity of $ > $ on $ \mathbb{R} $ gives transitivity of $ S $ at once.
+
+## $ A $ Is Transitive
+
+Suppose $ (x, y) \in A $ and $ (y, z) \in A $ — that is, $ x $ has the same sign as $ y $, and $ y $ has the same sign as $ z $. Then $ x $ has the same sign as $ z $: anyone matching $ y $ matches anyone else matching $ y $.
+
+Formally: with $ \sigma : P \to Z $ the sign function from Problem 2,
+
+$ (x, y) \in A \;\iff\; \sigma(x) = \sigma(y), $
+
+and equality on $ Z $ is transitive:
+
+$ \sigma(x) = \sigma(y) \;\text{ and }\; \sigma(y) = \sigma(z) \;\Longrightarrow\; \sigma(x) = \sigma(z), $
+
+so $ (x, z) \in A $.
+
+## Remark — Both Pull Back from Transitive Targets
+
+The two arguments are the same proof in different costumes. Given a function $ f : X \to Y $ and a relation $ Q $ on $ Y $, define
+
+$$$
+R \;=\; \{(x, y) \in X \times X \;:\; (f(x), f(y)) \in Q\}.
+$$$
+
+If $ Q $ is transitive on $ Y $, so is $ R $ on $ X $: from $ (f(x), f(y)) \in Q $ and $ (f(y), f(z)) \in Q $, transitivity of $ Q $ gives $ (f(x), f(z)) \in Q $, hence $ (x, z) \in R $.
+
+Our two relations instantiate this recipe:
+
+- **$ S $:** $ f = \iota $ (intelligence rank, $ P \to \mathbb{R} $); $ Q $ is $ > $ on $ \mathbb{R} $ — a strict order, transitive.
+- **$ A $:** $ f = \sigma $ (zodiac sign, $ P \to Z $); $ Q $ is $ = $ on $ Z $ — equality, transitive.
+
+The earlier differences (asymmetry of $ S $, symmetry of $ A $) trace back to analogous differences between $ > $ and $ = $ on the target. Transitivity is shared because both targets are transitive.

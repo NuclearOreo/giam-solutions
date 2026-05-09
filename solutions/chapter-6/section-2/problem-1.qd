@@ -1,0 +1,53 @@
+.docname {Solution — GIAM 6.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.2 Problem 1
+
+## Problem
+
+Consider the relation $ S $ defined by
+
+$ S = \{(x, y) \;:\; x \text{ is smarter than } y\}. $
+
+Is $ S $ symmetric or anti-symmetric? Explain.
+
+## Setup
+
+Take $ S $ to be a relation on some population $ P $ of people, with "smarter than" read as a *strict* comparison — analogous to $ < $ on the integers — so that "$ x $ is smarter than $ y $" rules out "$ y $ is smarter than $ x $" by ordinary usage. (The reading matters; see the remark at the end.)
+
+Recall the two properties at issue, for a relation $ R $ on a set $ X $:
+
+- **Symmetric.** For all $ x, y \in X $, $ (x, y) \in R \;\Longrightarrow\; (y, x) \in R $.
+- **Antisymmetric.** For all $ x, y \in X $, $ \bigl[(x, y) \in R \text{ and } (y, x) \in R\bigr] \;\Longrightarrow\; x = y $.
+
+## $ S $ Is Not Symmetric
+
+Pick any two people $ A, B \in P $ with $ A $ genuinely smarter than $ B $. Then $ (A, B) \in S $, but $ (B, A) \notin S $: the strict reading forbids both directions holding at once. One counterexample defeats the universal statement, so $ S $ is **not symmetric**.
+
+## $ S $ Is Antisymmetric — Vacuously
+
+Antisymmetry asks: whenever $ (x, y) \in S $ and $ (y, x) \in S $, must $ x = y $?
+
+Under the strict reading, the hypothesis is *never satisfied*: $ (x, y) \in S $ already forces $ (y, x) \notin S $, so no pair $ x, y $ has both directions in $ S $. The conditional is vacuously true, and $ S $ is **antisymmetric**.
+
+In fact, $ S $ satisfies the stronger property of **asymmetry**,
+
+$ (x, y) \in S \;\Longrightarrow\; (y, x) \notin S, $
+
+and asymmetric relations are automatically antisymmetric — the antisymmetric implication has an unsatisfiable hypothesis, exactly as above. So the sharper description is "$ S $ is asymmetric, hence antisymmetric, and not symmetric."
+
+## Remark — Reading of "Smarter Than"
+
+The conclusion rests on reading "smarter than" as strict. Two natural alternatives, neither matching the textbook's analogy to $ < $:
+
+- **Reflexive reading**, "at least as smart as." Then $ (x, x) \in S $ for every $ x $; symmetry can still fail, and antisymmetry becomes the substantive claim that mutual at-least-as-smart-ness forces equality — plausible only after identifying people who are equally smart, yielding a partial or total order on equivalence classes.
+- **Equivalence reading**, "equally smart." Then $ S $ is symmetric and *not* antisymmetric, since distinct people can be equally smart.
+
+The natural reading is the strict one, and so the answer stands: $ S $ is **antisymmetric** (vacuously, in fact asymmetric) and **not symmetric**.

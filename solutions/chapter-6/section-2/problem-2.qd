@@ -1,0 +1,74 @@
+.docname {Solution — GIAM 6.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.2 Problem 2
+
+## Problem
+
+Consider the relation $ A $ defined by
+
+$ A = \{(x, y) \;:\; x \text{ has the same astrological sign as } y\}. $
+
+Is $ A $ symmetric or anti-symmetric? Explain.
+
+## Setup
+
+Let $ P $ be a population of people, and let
+
+$ \sigma : P \to Z $
+
+assign to each person their astrological sign, where $ Z $ is the set of twelve zodiac signs (Aries, Taurus, $ \ldots $, Pisces). Then
+
+$$$
+A \;=\; \{(x, y) \in P \times P \;:\; \sigma(x) = \sigma(y)\}.
+$$$
+
+In other words, $ A $ is the relation "shares a sign," *pulled back from equality on $ Z $* by the function $ \sigma $.
+
+The two properties at issue, for a relation $ R $ on a set $ X $:
+
+- **Symmetric.** For all $ x, y \in X $, $ (x, y) \in R \;\Longrightarrow\; (y, x) \in R $.
+- **Antisymmetric.** For all $ x, y \in X $, $ \bigl[(x, y) \in R \text{ and } (y, x) \in R\bigr] \;\Longrightarrow\; x = y $.
+
+## $ A $ Is Symmetric
+
+If $ (x, y) \in A $, then $ \sigma(x) = \sigma(y) $. Equality on $ Z $ is symmetric, so $ \sigma(y) = \sigma(x) $, hence $ (y, x) \in A $. The implication holds for every pair, so $ A $ is **symmetric**.
+
+(A plain-language version: "$ x $ has the same sign as $ y $" and "$ y $ has the same sign as $ x $" express the same fact.)
+
+## $ A $ Is Not Antisymmetric
+
+Pick any two distinct people who share a sign — say two Pisces, Alice and Bob. Then $ \sigma(\text{Alice}) = \sigma(\text{Bob}) $, so
+
+$ (\text{Alice}, \text{Bob}) \in A \quad\text{and}\quad (\text{Bob}, \text{Alice}) \in A, $
+
+yet $ \text{Alice} \neq \text{Bob} $. The implication "$ (x, y) \in A $ and $ (y, x) \in A \;\Longrightarrow\; x = y $" fails, so $ A $ is **not antisymmetric**.
+
+The same argument works under any sign with at least two members in $ P $, which is the rule rather than the exception for any realistic population.
+
+## Remark — $ A $ Is an Equivalence Relation
+
+Same-sign-as inherits all three equivalence properties from equality on $ Z $:
+
+- **Reflexive.** $ \sigma(x) = \sigma(x) $, so $ (x, x) \in A $.
+- **Symmetric.** Shown above.
+- **Transitive.** If $ \sigma(x) = \sigma(y) $ and $ \sigma(y) = \sigma(z) $, then $ \sigma(x) = \sigma(z) $.
+
+The induced partition of $ P $ has at most twelve blocks — one per zodiac sign — given by the fibers $ \sigma^{-1}(s) $ for $ s \in Z $. This is the standard recipe: every function $ f : X \to Y $ defines an equivalence relation on $ X $ via $ x \sim x' \iff f(x) = f(x') $, with equivalence classes equal to the fibers of $ f $.
+
+## Remark — Symmetric and Antisymmetric Together
+
+A relation that is *both* symmetric and antisymmetric must be a subset of the diagonal: for any $ (x, y) \in R $, symmetry gives $ (y, x) \in R $, and antisymmetry then forces $ x = y $. So
+
+$ \text{symmetric and antisymmetric} \;\iff\; R \;\subseteq\; \Delta_X. $
+
+For $ A $ to be antisymmetric, then, every person would have to be the only one with their sign — impossible once $ |P| > 12 $. Symmetry and antisymmetry are nearly opposites: a relation can satisfy *both* only when it is trivial (a sub-relation of equality), so seeing rich symmetry as in $ A $ is already a strong signal that antisymmetry will fail.
+
+This is the structural complement of the previous problem: "smarter than" is *asymmetric* (and so vacuously antisymmetric, not symmetric); "same astrological sign as" is symmetric and definitively not antisymmetric.
