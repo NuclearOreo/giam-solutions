@@ -1,0 +1,81 @@
+.docname {Solution — GIAM 6.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 3
+
+## Problem
+
+Define a relation $ A $ on the set of all words by
+
+$ w_1 \,A\, w_2 \;\iff\; w_1 \text{ is an anagram of } w_2. $
+
+Show that $ A $ is an equivalence relation. (Words are anagrams if the letters of one can be re-arranged to form the other; e.g. "ART" and "RAT".)
+
+## Setup
+
+Let $ \Sigma $ be the alphabet — a fixed finite set of letters — and let $ W $ be the set of all finite **words** over $ \Sigma $, i.e. finite sequences of letters from $ \Sigma $. ("Word" here means any finite string of letters; dictionary status plays no role in the relation's definition.)
+
+To formalize "rearrangement," send each word to its multiset of letters. For $ w \in W $, let
+
+$$$
+\mu(w) \;=\; \text{the multiset of letters appearing in } w \text{, counted with multiplicity.}
+$$$
+
+Equivalently, $ \mu(w) : \Sigma \to \mathbb{Z}_{\ge 0} $ sends each letter to the number of times it occurs in $ w $, so $ \mu : W \to M(\Sigma) $, where $ M(\Sigma) $ denotes the set of finite multisets over $ \Sigma $.
+
+The definition of "anagram" is exactly:
+
+$$$
+w_1 \,A\, w_2 \;\iff\; \mu(w_1) = \mu(w_2).
+$$$
+
+For instance, $ \mu(\texttt{ART}) = \mu(\texttt{RAT}) = \text{"one A, one R, one T,"} $ so $ \texttt{ART}\, A\, \texttt{RAT} $.
+
+This is again "equality pulled back through a function" (cf. 6.2 #2 and 6.3 #2), so the three equivalence properties follow from the corresponding properties of equality on $ M(\Sigma) $.
+
+## $ A $ Is an Equivalence Relation
+
+- **Reflexive.** $ \mu(w) = \mu(w) $, so $ w\, A\, w $. Every word is trivially a rearrangement of itself.
+- **Symmetric.** If $ w_1 \,A\, w_2 $, then $ \mu(w_1) = \mu(w_2) $; equality is symmetric, so $ \mu(w_2) = \mu(w_1) $, hence $ w_2\, A\, w_1 $. (If a permutation rearranges $ w_1 $ into $ w_2 $, the inverse permutation rearranges $ w_2 $ back to $ w_1 $.)
+- **Transitive.** If $ w_1 \,A\, w_2 $ and $ w_2 \,A\, w_3 $, then $ \mu(w_1) = \mu(w_2) $ and $ \mu(w_2) = \mu(w_3) $; equality is transitive, so $ \mu(w_1) = \mu(w_3) $, hence $ w_1 \,A\, w_3 $. (Composing two rearrangements is itself a rearrangement.)
+
+All three hold, so $ A $ is an equivalence relation. $ \qquad \blacksquare $
+
+## Equivalence Classes
+
+For each $ w \in W $,
+
+$$$
+[w]_A \;=\; \{\, v \in W \;:\; \mu(v) = \mu(w) \,\},
+$$$
+
+the set of all words sharing $ w $'s letter-multiset. For example,
+
+$$$
+[\texttt{ART}]_A \;=\; \{\,\texttt{ART},\; \texttt{ATR},\; \texttt{RAT},\; \texttt{RTA},\; \texttt{TAR},\; \texttt{TRA}\,\}
+$$$
+
+— the $ 3! = 6 $ permutations of three distinct letters. When letters repeat, the count drops; for instance $ [\texttt{LOOK}]_A $ has size $ 4!/(1!\cdot 1!\cdot 2!) = 12 $, since the two O's are interchangeable.
+
+In general, if $ w $ has length $ n $ and its distinct letters appear with multiplicities $ k_1, \ldots, k_m $ (so $ k_1 + \cdots + k_m = n $), then
+
+$$$
+|[w]_A| \;=\; \frac{n!}{k_1!\,k_2!\,\cdots\,k_m!},
+$$$
+
+the multinomial coefficient.
+
+## Remark — The Quotient Set
+
+The map $ [w]_A \mapsto \mu(w) $ is a bijection from $ W/A $ onto $ M(\Sigma) $: each anagram class corresponds to exactly one multiset of letters, and every finite multiset of letters arises as $ \mu(w) $ for some word (any arrangement of its elements). So
+
+$ W/A \;\longleftrightarrow\; M(\Sigma), $
+
+and "anagram class" is simply another name for "multiset of letters."

@@ -1,0 +1,93 @@
+.docname {Solution — GIAM 6.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 6
+
+## Problem
+
+The relation $ Q $ from Problem 5 — defined on $ \mathbb{Z} \times \mathbb{Z}^* $ by $ (a, b) \,Q\, (c, d) \iff ad = bc $ — partitions $ \mathbb{Z} \times \mathbb{Z}^* $ into equivalence classes. Explain why this is an "interesting" set.
+
+## Brief Answer
+
+The equivalence classes *are the rational numbers*. There is a natural bijection
+
+$$$
+(\mathbb{Z} \times \mathbb{Z}^*)/Q \;\;\longleftrightarrow\;\; \mathbb{Q}, \qquad [(a, b)]_Q \,\longleftrightarrow\, \tfrac{a}{b},
+$$$
+
+so the quotient *is* $ \mathbb{Q} $ — the rational numbers, constructed entirely from $ \mathbb{Z} $ and the equivalence relation $ Q $.
+
+## What an Equivalence Class Looks Like
+
+For any $ (a, b) \in \mathbb{Z} \times \mathbb{Z}^* $, the class is
+
+$$$
+[(a, b)]_Q \;=\; \{\,(c, d) \in \mathbb{Z} \times \mathbb{Z}^* \;:\; ad = bc\,\}.
+$$$
+
+The condition $ ad = bc $ says exactly "$ a/b = c/d $" — i.e., $ (c, d) $ is some non-zero scalar multiple of $ (a, b) $. If $ \gcd(|a|, |b|) = 1 $ (so $ a/b $ is in lowest terms), the class is
+
+$$$
+[(a, b)]_Q \;=\; \{\,(ka, kb) \;:\; k \in \mathbb{Z}^*\,\}.
+$$$
+
+For example,
+
+$$$
+[(1, 2)]_Q \;=\; \{\,\ldots,\, (-2, -4),\, (-1, -2),\, (1, 2),\, (2, 4),\, (3, 6),\, \ldots\,\}
+$$$
+
+— every (positive or negative) scaling of $ (1, 2) $, all of them representing the same rational $ \tfrac{1}{2} $.
+
+## Identifying Classes with $ \mathbb{Q} $
+
+Define
+
+$$$
+\varphi : (\mathbb{Z} \times \mathbb{Z}^*)/Q \;\longrightarrow\; \mathbb{Q}, \qquad \varphi\bigl([(a, b)]_Q\bigr) \;=\; \frac{a}{b}.
+$$$
+
+This "interpret a pair as a fraction" map is a bijection:
+
+- **Well-defined.** If $ (a, b) \,Q\, (c, d) $, then $ ad = bc $, hence $ a/b = c/d $ in $ \mathbb{Q} $ (divide both sides by $ bd \neq 0 $). So every representative of the class lands on the same rational. $ \checkmark $
+- **Injective.** If $ a/b = c/d $ in $ \mathbb{Q} $, then cross-multiplying gives $ ad = bc $, i.e. $ (a, b) \,Q\, (c, d) $, so $ [(a, b)]_Q = [(c, d)]_Q $. $ \checkmark $
+- **Surjective.** Any $ q \in \mathbb{Q} $ can be written as $ a/b $ with $ a \in \mathbb{Z} $ and $ b \in \mathbb{Z}^* $; that pair lies in $ \varphi^{-1}(q) $. $ \checkmark $
+
+So the quotient set is in one-to-one correspondence with $ \mathbb{Q} $.
+
+## A Few Concrete Classes
+
+| Rational | A representative | The whole class |
+| :---: | :---: | :--- |
+| $ 0 $          | $ (0, 1) $   | $ \{\,(0, d) \;:\; d \in \mathbb{Z}^*\,\} $ |
+| $ 1 $          | $ (1, 1) $   | $ \{\,(k, k) \;:\; k \in \mathbb{Z}^*\,\} $ |
+| $ \tfrac{1}{2} $  | $ (1, 2) $   | $ \{\,(k, 2k) \;:\; k \in \mathbb{Z}^*\,\} $ |
+| $ -\tfrac{2}{3} $ | $ (-2, 3) $  | $ \{\,(-2k, 3k) \;:\; k \in \mathbb{Z}^*\,\} $ |
+
+Each rational has infinitely many representative pairs — one per non-zero scaling — and they all collapse into a single equivalence class.
+
+## Remark — More Than a Bijection of Sets
+
+The identification with $ \mathbb{Q} $ is much more than a set bijection: the quotient inherits all of the arithmetic of $ \mathbb{Q} $. Define
+
+- **Addition:** $ [(a, b)]_Q + [(c, d)]_Q \;:=\; [(ad + bc,\ bd)]_Q $,
+- **Multiplication:** $ [(a, b)]_Q \cdot [(c, d)]_Q \;:=\; [(ac,\ bd)]_Q $.
+
+These are exactly the schoolbook rules
+
+$$$
+\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}, \qquad \frac{a}{b} \cdot \frac{c}{d} = \frac{ac}{bd},
+$$$
+
+now read at the level of equivalence classes. One checks that both operations are well-defined (the result does not depend on the choice of representative), and the quotient becomes a *field* — the field $ \mathbb{Q} $.
+
+So Problems 5 and 6 together carry out the standard construction of the rational numbers from the integers, using nothing beyond equivalence relations and quotient sets. The same recipe with $ \mathbb{Z} $ replaced by any integral domain $ R $ yields the **field of fractions** $ \operatorname{Frac}(R) $ — the smallest field containing $ R $.
+
+That is what makes this set of equivalence classes interesting: it is the bridge from the integers to the rationals, and from any integral domain to its field of fractions.

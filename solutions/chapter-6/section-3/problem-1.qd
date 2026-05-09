@@ -1,0 +1,81 @@
+.docname {Solution — GIAM 6.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 1
+
+## Problem
+
+Consider the relation $ A $ defined by
+
+$ A = \{(x, y) \;:\; x \text{ has the same astrological sign as } y\}. $
+
+Show that $ A $ is an equivalence relation. What equivalence class under $ A $ do you belong to?
+
+## Setup
+
+Let $ P $ be a population of people, and let
+
+$ \sigma : P \to Z $
+
+assign each person their zodiac sign, where $ Z = \{\text{Aries}, \text{Taurus}, \ldots, \text{Pisces}\} $ has twelve elements. Then
+
+$$$
+A \;=\; \{(x, y) \in P \times P \;:\; \sigma(x) = \sigma(y)\}.
+$$$
+
+A relation $ R $ on a set $ X $ is an **equivalence relation** if it is reflexive, symmetric, and transitive.
+
+## $ A $ Is an Equivalence Relation
+
+Each property of $ A $ follows from the corresponding property of equality on $ Z $.
+
+- **Reflexive.** For any $ x \in P $, $ \sigma(x) = \sigma(x) $, so $ (x, x) \in A $.
+- **Symmetric.** If $ (x, y) \in A $, then $ \sigma(x) = \sigma(y) $; equality on $ Z $ is symmetric, so $ \sigma(y) = \sigma(x) $, hence $ (y, x) \in A $.
+- **Transitive.** If $ (x, y), (y, z) \in A $, then $ \sigma(x) = \sigma(y) $ and $ \sigma(y) = \sigma(z) $; equality is transitive, so $ \sigma(x) = \sigma(z) $, hence $ (x, z) \in A $.
+
+All three properties hold, so $ A $ is an equivalence relation. $ \qquad \blacksquare $
+
+This is the "pull back equality through a function" pattern: any relation of the form $ \{(x, y) : f(x) = f(y)\} $ for $ f : X \to Y $ is automatically an equivalence relation, with the three properties inherited from equality on $ Y $.
+
+## Equivalence Classes
+
+For each $ x \in P $, the equivalence class of $ x $ under $ A $ is
+
+$$$
+[x]_A \;=\; \{y \in P \;:\; (x, y) \in A\} \;=\; \{y \in P \;:\; \sigma(y) = \sigma(x)\} \;=\; \sigma^{-1}\bigl(\sigma(x)\bigr).
+$$$
+
+So $ [x]_A $ is the fiber of $ \sigma $ over $ \sigma(x) $ — everyone in $ P $ sharing $ x $'s sign. Distinct signs give disjoint fibers, and the (at most) twelve non-empty fibers partition $ P $:
+
+$$$
+P \;=\; \bigsqcup_{s \,\in\, \sigma(P)} \sigma^{-1}(s).
+$$$
+
+## The Author's Class
+
+The author's sign is **Scorpio**, so the author's equivalence class under $ A $ is
+
+$$$
+[\text{author}]_A \;=\; \sigma^{-1}(\text{Scorpio}) \;=\; \{\, y \in P \;:\; y \text{ is a Scorpio} \,\}.
+$$$
+
+Concretely, this is the set of every person in $ P $ born — in the Western tropical convention — between roughly $ 23 $ October and $ 21 $ November, placing the author alongside roughly $ 1/12 $ of the population.
+
+## Remark — The Quotient Set
+
+The **quotient set** $ P/A $ is the collection of all equivalence classes,
+
+$ P/A \;=\; \bigl\{\, [x]_A \;:\; x \in P \,\bigr\}. $
+
+The map $ x \mapsto [x]_A $ sends $ P $ onto $ P/A $, and matches up with $ \sigma $ via $ [x]_A \mapsto \sigma(x) $: each class corresponds to exactly one sign that actually occurs in $ P $. Hence $ P/A $ is in bijection with the image $ \sigma(P) \subseteq Z $, and
+
+$ |P/A| \;=\; |\sigma(P)| \;\le\; 12, $
+
+with equality whenever every sign appears in $ P $ — true for any reasonably large population.

@@ -1,0 +1,94 @@
+.docname {Solution — GIAM 6.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 5
+
+## Problem
+
+Let $ \mathbb{Z}^* = \mathbb{Z} \setminus \{0\} $. Define a relation $ Q $ on $ \mathbb{Z} \times \mathbb{Z}^* $ by
+
+$$$
+(a, b) \,Q\, (c, d) \;\iff\; ad = bc.
+$$$
+
+Show that $ Q $ is an equivalence relation.
+
+## Setup
+
+The set $ \mathbb{Z} \times \mathbb{Z}^* $ consists of pairs $ (a, b) $ with $ a \in \mathbb{Z} $ and $ b \neq 0 $. Read each pair as a placeholder for the fraction $ a/b $ (with division by zero forbidden); the cross-multiplication test $ ad = bc $ is the familiar rule "$ a/b = c/d $ iff $ ad = bc $." Showing that $ Q $ is an equivalence relation amounts to showing that this cross-multiplication test behaves like equality on the (yet-to-be-constructed) rationals.
+
+We rely only on the basic algebraic properties of $ \mathbb{Z} $:
+
+- Multiplication is **commutative** and **associative**.
+- $ \mathbb{Z} $ has **no zero divisors**: if $ xy = 0 $ with $ x, y \in \mathbb{Z} $, then $ x = 0 $ or $ y = 0 $. Equivalently, **cancellation** holds: $ xz = yz $ and $ z \neq 0 $ together imply $ x = y $.
+
+## Reflexive
+
+For any $ (a, b) \in \mathbb{Z} \times \mathbb{Z}^* $,
+
+$ ab \;=\; ba \quad \text{(commutativity)}, $
+
+so $ (a, b) \,Q\, (a, b) $.
+
+## Symmetric
+
+Suppose $ (a, b) \,Q\, (c, d) $, i.e. $ ad = bc $. Then
+
+$ cb \;=\; bc \;=\; ad \;=\; da, $
+
+so $ cb = da $, which is $ (c, d) \,Q\, (a, b) $. (Cross-multiplication is symmetric on its face — a single equality, read both ways.)
+
+## Transitive
+
+Suppose $ (a, b) \,Q\, (c, d) $ and $ (c, d) \,Q\, (e, f) $, so
+
+$ ad \;=\; bc \qquad \text{and} \qquad cf \;=\; de. $
+
+We aim to prove $ af = be $.
+
+Multiply the first equation by $ f $ and the second by $ b $:
+
+$$$
+adf \;=\; bcf, \qquad bcf \;=\; bde.
+$$$
+
+Chaining gives $ adf = bde $, i.e.,
+
+$ (af)\,d \;=\; (be)\,d. $
+
+Now $ d \in \mathbb{Z}^* $, so $ d \neq 0 $. Cancellation in $ \mathbb{Z} $ (no zero divisors) then yields
+
+$ af \;=\; be, $
+
+which is exactly $ (a, b) \,Q\, (e, f) $.
+
+Therefore $ Q $ is transitive. Combined with reflexivity and symmetry, $ Q $ is an equivalence relation. $ \qquad \blacksquare $
+
+The hypothesis $ d \neq 0 $ is essential: cancelling $ d $ in the last step requires $ d $ to be non-zero. This is why the second coordinate is restricted to $ \mathbb{Z}^* $. Were that restriction lifted, the chain
+
+$ (1, 1) \,Q\, (0, 0) \,Q\, (1, 2) $
+
+would be valid step-by-step ($ 1\cdot 0 = 1 \cdot 0 $ and $ 0 \cdot 2 = 0 \cdot 1 $), yet $ (1, 1) \,Q\, (1, 2) $ would *not* hold (since $ 1 \cdot 2 \neq 1 \cdot 1 $) — and transitivity would fail.
+
+## Remark — The Quotient Is $ \mathbb{Q} $
+
+The quotient set
+
+$$$
+\mathbb{Q} \;:=\; (\mathbb{Z} \times \mathbb{Z}^*) \,/\, Q
+$$$
+
+is the standard construction of the **rational numbers** from the integers. The equivalence class of $ (a, b) $ *is* the fraction $ a/b $, and the cross-multiplication test $ ad = bc $ is precisely the rule "two fractions are equal iff their cross-products agree." For instance, the class of $ (1, 2) $ is
+
+$ [(1, 2)]_Q \;=\; \{\,(c, 2c) \;:\; c \in \mathbb{Z}^*\,\} \;=\; \{\ldots,\, (-2, -4),\, (-1, -2),\, (1, 2),\, (2, 4),\, (3, 6),\, \ldots\} $
+
+— every "$ k / 2k $ with $ k \ne 0 $," all the pairs that represent the rational number $ \tfrac{1}{2} $.
+
+The construction generalizes: replace $ \mathbb{Z} $ by any **integral domain** $ R $ (a commutative ring with no zero divisors) and $ \mathbb{Z}^* $ by $ R \setminus \{0\} $. The resulting quotient is the **field of fractions** $ \operatorname{Frac}(R) $. So this exercise is the entry point to a foundational construction in algebra: every integral domain sits inside a field, built from itself by exactly this equivalence.

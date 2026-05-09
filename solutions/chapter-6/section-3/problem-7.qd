@@ -1,0 +1,69 @@
+.docname {Solution — GIAM 6.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 7
+
+## Problem
+
+Reflect back on the proof in Problem 5. The hypothesis "the second coordinate is non-zero" was carefully maintained throughout — that is the entire reason for restricting to $ \mathbb{Z}^* = \mathbb{Z} \setminus \{0\} $. At what point in the argument did the hypothesis actually get used?
+
+## The Answer in One Line
+
+In the **transitivity** step — specifically, in the closing line where we *cancelled* $ d $ to conclude $ af = be $.
+
+## The Critical Line
+
+Recall the transitivity argument. Given $ (a, b) \,Q\, (c, d) $ and $ (c, d) \,Q\, (e, f) $, so $ ad = bc $ and $ cf = de $, we multiplied the two equations through by $ f $ and $ b $, chained, and reached
+
+$$$
+(af)\,d \;=\; (be)\,d.
+$$$
+
+To conclude $ af = be $ — and hence $ (a, b) \,Q\, (e, f) $ — we cancelled the common factor $ d $:
+
+$$$
+(af)\,d \;=\; (be)\,d \;\;\Longrightarrow\;\; af \;=\; be \qquad \text{(cancellation in } \mathbb{Z}\text{).}
+$$$
+
+This single step is *the* moment at which $ d \neq 0 $ is needed. Cancellation in $ \mathbb{Z} $ — "$ xz = yz $ and $ z \neq 0 $ together imply $ x = y $" — fails outright when $ z = 0 $, because then $ x \cdot 0 = y \cdot 0 = 0 $ for every $ x, y $, and the equation imposes no constraint on $ x $ and $ y $.
+
+**Nowhere else in the proof is the hypothesis used.** Reflexivity ($ ab = ba $) and symmetry ($ ad = bc \Leftrightarrow cb = da $) are pure commutativity manipulations; they hold for any ordered pair in $ \mathbb{Z} \times \mathbb{Z} $, with no constraint on either coordinate. Only the cancellation step in transitivity bites.
+
+## Why the Hypothesis Has to Apply to *Every* Pair
+
+The cancellation only needed $ d $ — the second coordinate of the *middle* pair in the chain $ (a, b) \,Q\, (c, d) \,Q\, (e, f) $ — to be non-zero. So strictly speaking, the proof only requires the second coordinate of whichever pair happens to be the middle.
+
+But $ Q $ is a single relation defined uniformly on the whole set, and *any* pair $ (c, d) $ might play the middle role in some transitivity chain. For transitivity to hold *unconditionally*, *every* pair's second coordinate must be non-zero. That is the cleanest way to package the constraint: restrict the underlying set to $ \mathbb{Z} \times \mathbb{Z}^* $ so the cancellation is always available, no matter where a pair sits in a chain.
+
+## What Goes Wrong Without It
+
+Drop the hypothesis — allow the second coordinate to be zero — and transitivity breaks. Concretely (re-using the example from Problem 5):
+
+$$$
+(1, 1) \,Q\, (0, 0) \quad\text{since}\quad 1 \cdot 0 = 1 \cdot 0 = 0,
+$$$
+
+$$$
+(0, 0) \,Q\, (1, 2) \quad\text{since}\quad 0 \cdot 2 = 0 \cdot 1 = 0,
+$$$
+
+both vacuously true. But
+
+$$$
+(1, 1) \,Q\, (1, 2) \;\iff\; 1 \cdot 2 = 1 \cdot 1 \;\iff\; 2 = 1,
+$$$
+
+which is false. The chain $ (1, 1) \,Q\, (0, 0) \,Q\, (1, 2) $ would force a relation that simply does not hold — and the failure is precisely the spot where we would have to cancel $ 0 $.
+
+## Remark — Cancellation Is the Whole Game
+
+The hypothesis is really about *cancellation*, not about $ \mathbb{Z} $ specifically. In any **integral domain** $ R $ (a commutative ring with no zero divisors), the same cancellation rule holds: $ xz = yz $ with $ z \neq 0 $ implies $ x = y $. Replacing $ \mathbb{Z} $ by $ R $ and $ \mathbb{Z}^* $ by $ R \setminus \{0\} $ throughout, the entire proof of Problem 5 goes through unchanged — and yields the field of fractions $ \operatorname{Frac}(R) $ as the quotient.
+
+So integral domains are *exactly* the rings for which the field-of-fractions construction works, and the reason traces back to this single line: cancellation of the middle-coordinate $ d $ in the transitivity step.

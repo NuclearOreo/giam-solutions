@@ -1,0 +1,150 @@
+.docname {Solution — GIAM 6.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 4
+
+## Problem
+
+The two diagrams both depict the Petersen graph: the left-hand drawing emphasizes a five-fold symmetry (with vertices already labeled $ A $–$ J $); the right-hand drawing emphasizes a three-fold symmetry (unlabeled). Label the right-hand drawing using $ A $ through $ J $ so that the two are exhibited as the same graph.
+
+## Setup — Edges of the Petersen Graph
+
+The five-fold symmetric drawing (left) lays out the Petersen graph as an outer pentagon plus an inner pentagram joined by spokes:
+
+!(60%)[Five-fold symmetric drawing of the Petersen graph with labels A through J](problem-4-pentagonal.svg "The Petersen graph drawn with five-fold symmetry — outer pentagon ABCDE, inner pentagram FGHIJ, and five radial spokes.")
+
+Reading off this drawing, the Petersen graph $ G $ has $ 10 $ vertices and the following $ 15 $ edges:
+
+- **Outer pentagon:** $ AB,\, BC,\, CD,\, DE,\, EA $.
+- **Spokes:** $ AF,\, BG,\, CH,\, DI,\, EJ $.
+- **Inner pentagram:** $ FH,\, FI,\, GI,\, GJ,\, HJ $.
+
+Equivalently, the neighbor lists of all ten vertices:
+
+$$$
+\begin{array}{rl}
+A: & B,\ E,\ F \\
+B: & A,\ C,\ G \\
+C: & B,\ D,\ H \\
+D: & C,\ E,\ I \\
+E: & A,\ D,\ J \\
+F: & A,\ H,\ I \\
+G: & B,\ I,\ J \\
+H: & C,\ F,\ J \\
+I: & D,\ F,\ G \\
+J: & E,\ G,\ H
+\end{array}
+$$$
+
+Every vertex has degree $ 3 $, as expected.
+
+## Strategy — Use the 3-fold Symmetry
+
+The right-hand drawing has 3-fold rotational symmetry. The rotation by $ 120^\circ $ must induce an *automorphism* of $ G $ — otherwise the symmetry would not be a true symmetry of the graph. A non-trivial planar rotation of order $ 3 $ fixes exactly one point (its center), so the induced automorphism fixes exactly one vertex; the other nine split into three orbits of three.
+
+Consequently the right-hand drawing's vertex set partitions as:
+
+- $ 1 $ **center** vertex (the unique fixed point of the rotation),
+- $ 3 $ **inner triangle** vertices (one orbit),
+- $ 6 $ **outer hexagon** vertices (two alternating orbits).
+
+So labeling the right-hand drawing reduces to:
+
+1. Picking a center.
+2. Identifying its three neighbors (the inner triangle).
+3. Determining the cyclic order of the remaining six (the outer hexagon).
+
+## Step 1 — The Center
+
+Take the center to be $ F $. (Any vertex would work by overall symmetry of $ G $; choosing $ F $ keeps the bookkeeping tidy.)
+
+## Step 2 — The Inner Triangle
+
+The inner triangle consists of $ F $'s three neighbors:
+
+$$$
+\{A,\, H,\, I\}.
+$$$
+
+Note these three vertices are *pairwise non-adjacent* — they form an independent set, not a graph-theoretic triangle. The "triangle" is purely geometric (their positions in the drawing).
+
+## Step 3 — The Outer Hexagon
+
+The remaining six vertices, $ \{B, C, D, E, G, J\} $, occupy the outer hexagon. Find the cyclic order by listing each one's two *outer* neighbors — i.e. its neighbors that lie in $ \{B, C, D, E, G, J\} $ (excluding the inner labels $ \{A, H, I\} $ and the center $ F $).
+
+| Vertex | All neighbors | Outer neighbors |
+| :---: | :---: | :---: |
+| $ B $ | $ A,\ C,\ G $ | $ C,\ G $ |
+| $ C $ | $ B,\ D,\ H $ | $ B,\ D $ |
+| $ D $ | $ C,\ E,\ I $ | $ C,\ E $ |
+| $ E $ | $ A,\ D,\ J $ | $ D,\ J $ |
+| $ G $ | $ B,\ I,\ J $ | $ B,\ J $ |
+| $ J $ | $ E,\ G,\ H $ | $ E,\ G $ |
+
+These outer-neighbor pairs trace a single 6-cycle:
+
+$$$
+B \;\text{—}\; C \;\text{—}\; D \;\text{—}\; E \;\text{—}\; J \;\text{—}\; G \;\text{—}\; B.
+$$$
+
+So the outer hexagon (in cyclic order) is $ B,\, C,\, D,\, E,\, J,\, G $.
+
+## Step 4 — Inner-to-Outer Connections
+
+Each inner-triangle vertex is adjacent to $ F $ and to two of the outer-hexagon vertices:
+
+- $ A $ — outer neighbors $ B,\, E $: positions $ 0 $ and $ 3 $ on the hexagon, i.e. *diametrically opposite*.
+- $ H $ — outer neighbors $ C,\, J $: positions $ 1 $ and $ 4 $, opposite.
+- $ I $ — outer neighbors $ D,\, G $: positions $ 2 $ and $ 5 $, opposite.
+
+So each inner vertex sends two "long" edges to opposite hexagon corners — and these are exactly the three crossing curves visible in the right-hand drawing.
+
+## The Labeling
+
+Assemble the pieces into the right-hand drawing:
+
+- **Center:** $ F $.
+- **Inner triangle** (the three vertices closest to $ F $, at $ 120^\circ $ positions): $ A,\, H,\, I $. Place them so that
+  - $ A $'s two long edges meet hexagon corners $ B $ and $ E $,
+  - $ H $'s long edges meet $ C $ and $ J $,
+  - $ I $'s long edges meet $ D $ and $ G $.
+- **Outer hexagon** (clockwise around the boundary): $ B,\, C,\, D,\, E,\, J,\, G $.
+
+!(60%)[Three-fold symmetric drawing of the Petersen graph with the labelling resolved](problem-4-hexagonal.svg "The Petersen graph drawn with three-fold symmetry: F at the centre, inner triangle A H I, outer hexagon B C D E J G in clockwise order. The three colinear radial lines pair each inner-triangle vertex with the closer hexagon corner; the three crossing curves pair each inner-triangle vertex with the diametrically opposite corner.")
+
+In the figure above, the three short radial segments $ FA $–$ AB $, $ FH $–$ HJ $, $ FI $–$ ID $ continue along straight lines through $ F $; the three crossing curves $ AE $, $ HC $, $ IG $ each connect an inner-triangle vertex to the *opposite* hexagon corner.
+
+Any $ 120^\circ $ or $ 240^\circ $ rotation of these labels — that is, cycling $ A \to H \to I \to A $ together with $ B \to J \to D \to B $ and $ C \to G \to E \to C $ — also works, by the 3-fold symmetry of the drawing.
+
+## Verification — All 15 Edges Match
+
+Listing the right-hand drawing's edges with the new labels:
+
+- **Outer hexagon ($ 6 $):** $ BC,\, CD,\, DE,\, EJ,\, JG,\, GB $.
+- **Inner spokes ($ 3 $):** $ FA,\, FH,\, FI $.
+- **Long diagonals ($ 6 $):** $ AB,\, AE,\, HC,\, HJ,\, ID,\, IG $.
+
+Cross-checking against the Petersen graph from the left-hand drawing:
+
+- $ AB,\, BC,\, CD,\, DE,\, AE $ — the outer pentagon. $ \checkmark $
+- $ FA,\, GB,\, HC,\, ID,\, EJ $ — the spokes. $ \checkmark $
+- $ FH,\, FI,\, IG,\, JG,\, HJ $ — the pentagram. $ \checkmark $
+
+All $ 15 $ edges are accounted for exactly once, and no edge appears that isn't in the Petersen graph. The labeling preserves adjacency, so it is a valid graph isomorphism between the two drawings. $ \qquad \blacksquare $
+
+## Remark — Graph Isomorphism Is an Equivalence Relation
+
+Tying the answer back to the chapter's theme: graph isomorphism is itself an equivalence relation on the class of (simple) graphs.
+
+- **Reflexive.** The identity map $ G \to G $ is an isomorphism.
+- **Symmetric.** If $ \varphi : G \to H $ is an isomorphism, then $ \varphi^{-1} : H \to G $ is one as well (a bijection that preserves adjacency in one direction preserves it in the other).
+- **Transitive.** The composition of two isomorphisms is an isomorphism.
+
+The two drawings in this problem are different *representatives* of the same equivalence class — the "Petersen graph" class. The labeling above is an explicit witness to this equivalence: a vertex bijection that preserves adjacency.

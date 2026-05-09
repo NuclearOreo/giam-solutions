@@ -1,0 +1,70 @@
+.docname {Solution — GIAM 6.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.3 Problem 2
+
+## Problem
+
+Define a relation $ \square $ on the integers by
+
+$ x \,\square\, y \;\iff\; x^2 = y^2. $
+
+Show that $ \square $ is an equivalence relation. List the equivalence classes $ x/\square $ for $ 0 \le x \le 5 $.
+
+## Setup
+
+Let $ f : \mathbb{Z} \to \mathbb{Z} $ be the squaring map $ f(n) = n^2 $. Then
+
+$ x \,\square\, y \;\iff\; f(x) = f(y), $
+
+so $ \square $ is exactly equality on $ \mathbb{Z} $ pulled back through $ f $ — the same recipe as the astrological-sign relation in 6.2 Problem 2 — and inherits all three equivalence properties from equality.
+
+## $ \square $ Is an Equivalence Relation
+
+- **Reflexive.** $ x^2 = x^2 $, so $ x \,\square\, x $ for every $ x \in \mathbb{Z} $.
+- **Symmetric.** If $ x \,\square\, y $, then $ x^2 = y^2 $, hence $ y^2 = x^2 $, so $ y \,\square\, x $.
+- **Transitive.** If $ x \,\square\, y $ and $ y \,\square\, z $, then $ x^2 = y^2 $ and $ y^2 = z^2 $, so $ x^2 = z^2 $, hence $ x \,\square\, z $.
+
+All three hold, so $ \square $ is an equivalence relation. $ \qquad \blacksquare $
+
+## Equivalence Classes — General Form
+
+For each $ x \in \mathbb{Z} $,
+
+$$$
+[x]_\square \;=\; \{y \in \mathbb{Z} \;:\; y^2 = x^2\} \;=\; \{y \in \mathbb{Z} \;:\; y = \pm x\} \;=\; \{x,\,-x\}.
+$$$
+
+Equivalently, $ x \,\square\, y \iff |x| = |y| $, so a class is determined by the *absolute value* of any of its members. Each class has exactly two elements except $ [0]_\square = \{0\} $, which has one (since $ -0 = 0 $).
+
+## The Classes for $ 0 \le x \le 5 $
+
+Applying $ [x]_\square = \{x, -x\} $:
+
+- $ 0/\square \;=\; [0]_\square \;=\; \{0\} $
+- $ 1/\square \;=\; [1]_\square \;=\; \{1,\,-1\} $
+- $ 2/\square \;=\; [2]_\square \;=\; \{2,\,-2\} $
+- $ 3/\square \;=\; [3]_\square \;=\; \{3,\,-3\} $
+- $ 4/\square \;=\; [4]_\square \;=\; \{4,\,-4\} $
+- $ 5/\square \;=\; [5]_\square \;=\; \{5,\,-5\} $
+
+These six classes are pairwise distinct because the squares $ 0, 1, 4, 9, 16, 25 $ are six distinct values, so the fibers $ f^{-1}(0), f^{-1}(1), \ldots, f^{-1}(25) $ are pairwise disjoint.
+
+## Remark — The Full Quotient Set
+
+Extending the listing beyond $ x = 5 $ produces no new classes once the absolute value has been seen — for instance $ [-3]_\square = [3]_\square $. So the full quotient is
+
+$ \mathbb{Z}/\square \;=\; \bigl\{ [n]_\square \;:\; n \in \mathbb{Z}_{\ge 0} \bigr\} \;=\; \bigl\{ \{0\},\, \{\pm 1\},\, \{\pm 2\},\, \{\pm 3\},\, \ldots \bigr\}, $
+
+and the map
+
+$ [x]_\square \,\longmapsto\, |x| $
+
+is a bijection $ \mathbb{Z}/\square \to \mathbb{Z}_{\ge 0} $. So $ \square $ is, up to bijection, just the relation "have the same absolute value" — and the six classes listed above are simply the first six entries of this enumeration.
