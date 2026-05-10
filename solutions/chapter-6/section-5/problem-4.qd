@@ -1,0 +1,147 @@
+.docname {Solution — GIAM 6.5 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.5 Problem 4
+
+## Problem
+
+Cantor's Snake builds a bijection $ f : \mathbb{N} \to \mathbb{Q}_{\ge 0} $ by zig-zagging through the table whose cell at row $ r \ge 1 $ and column $ c \ge 0 $ holds $ c/r $, listing each rational the *first* time it appears (i.e. when its representative is in lowest terms). Given $ f(1) = 0/1 $, $ f(2) = 1/1 $, $ f(5) = 1/3 $, compute:
+
+- $ f(26) $
+- $ f(30) $
+- $ f^{-1}(3/4) $
+- $ f^{-1}(6/7) $
+
+## Setup — How the Snake Walks
+
+Cells are indexed $ (r, c) $ with $ r \ge 1 $ and $ c \ge 0 $; the cell holds the rational $ c/r $. The **antidiagonal of sum $ s $** is
+
+$$$
+D_s \;=\; \{\,(1,\, s-1),\, (2,\, s-2),\, \ldots,\, (s,\, 0)\,\}.
+$$$
+
+The snake visits $ D_1, D_2, D_3, \ldots $ in sequence, alternating direction by parity:
+
+- **Odd $ s $** — top to bottom: $ (1, s-1) \to (2, s-2) \to \cdots \to (s, 0) $.
+- **Even $ s $** — bottom to top: $ (s, 0) \to (s-1, 1) \to \cdots \to (1, s-1) $.
+
+A cell $ (r, c) $ is **circled** — i.e. assigned a position by $ f $ — iff $ c/r $ is in lowest terms, equivalently
+
+$ \gcd(c, r) \;=\; 1, $
+
+with the convention $ \gcd(0, r) = r $, so $ 0/r $ is circled only at $ r = 1 $ (the canonical representative of $ 0 $).
+
+The function $ f(n) $ returns the rational at the $ n $-th circled cell along the walk; $ f^{-1}(q) $ returns the position $ n $ at which $ q $ first appears.
+
+## Cumulative Count Through Diagonal $ s $
+
+Walking $ D_1, D_2, \ldots $ and tallying circled cells gives:
+
+| $ s $ | New circled in $ D_s $ | Cumulative |
+| :---: | :---: | :---: |
+| $ 1 $  | $ 1 $  | $ 1 $  |
+| $ 2 $  | $ 1 $  | $ 2 $  |
+| $ 3 $  | $ 2 $  | $ 4 $  |
+| $ 4 $  | $ 2 $  | $ 6 $  |
+| $ 5 $  | $ 4 $  | $ 10 $ |
+| $ 6 $  | $ 2 $  | $ 12 $ |
+| $ 7 $  | $ 6 $  | $ 18 $ |
+| $ 8 $  | $ 4 $  | $ 22 $ |
+| $ 9 $  | $ 6 $  | $ 28 $ |
+| $ 10 $ | $ 4 $  | $ 32 $ |
+| $ 11 $ | $ 10 $ | $ 42 $ |
+| $ 12 $ | $ 4 $  | $ 46 $ |
+| $ 13 $ | $ 12 $ | $ 58 $ |
+
+(Each row's "new circled" count is $ \varphi(s) $, Euler's totient — see the remark at the end.)
+
+## Computing $ f(26) $
+
+Position $ 26 $ falls in $ D_9 $ (cumulative through $ D_8 $ is $ 22 $; $ D_9 $ adds $ 6 $, ending at $ 28 $). $ D_9 $ is odd, so walk top to bottom:
+
+| Cell $ (r, c) $ | Rational | Circled? | Position |
+| :---: | :---: | :---: | :---: |
+| $ (1,\, 8) $ | $ 8/1 $ | yes | $ 23 $ |
+| $ (2,\, 7) $ | $ 7/2 $ | yes | $ 24 $ |
+| $ (3,\, 6) $ | $ 6/3 = 2 $ | no | — |
+| $ (4,\, 5) $ | $ 5/4 $ | yes | $ 25 $ |
+| $ (5,\, 4) $ | $ 4/5 $ | yes | $ \mathbf{26} $ |
+
+$$$
+\boxed{\,f(26) \;=\; \tfrac{4}{5}\,}
+$$$
+
+## Computing $ f(30) $
+
+Position $ 30 $ falls in $ D_{10} $ (cumulative through $ D_9 $ is $ 28 $; $ D_{10} $ adds $ 4 $, ending at $ 32 $). $ D_{10} $ is even, so walk bottom to top:
+
+| Cell $ (r, c) $ | Rational | Circled? | Position |
+| :---: | :---: | :---: | :---: |
+| $ (10,\, 0) $ | $ 0/10 $ | no | — |
+| $ (9,\, 1) $  | $ 1/9 $  | yes | $ 29 $ |
+| $ (8,\, 2) $  | $ 2/8 = 1/4 $ | no | — |
+| $ (7,\, 3) $  | $ 3/7 $  | yes | $ \mathbf{30} $ |
+
+$$$
+\boxed{\,f(30) \;=\; \tfrac{3}{7}\,}
+$$$
+
+## Computing $ f^{-1}(3/4) $
+
+The rational $ 3/4 $ sits at cell $ (r, c) = (4, 3) $, so $ s = 7 $. $ D_7 $ is odd; cumulative through $ D_6 $ is $ 12 $, so $ D_7 $ starts at position $ 13 $.
+
+| Cell $ (r, c) $ | Rational | Circled? | Position |
+| :---: | :---: | :---: | :---: |
+| $ (1,\, 6) $ | $ 6/1 $ | yes | $ 13 $ |
+| $ (2,\, 5) $ | $ 5/2 $ | yes | $ 14 $ |
+| $ (3,\, 4) $ | $ 4/3 $ | yes | $ 15 $ |
+| $ (4,\, 3) $ | $ 3/4 $ | yes | $ \mathbf{16} $ |
+
+$$$
+\boxed{\,f^{-1}(3/4) \;=\; 16\,}
+$$$
+
+## Computing $ f^{-1}(6/7) $
+
+The rational $ 6/7 $ sits at cell $ (r, c) = (7, 6) $, so $ s = 13 $. $ D_{13} $ is odd; cumulative through $ D_{12} $ is $ 46 $, so $ D_{13} $ starts at position $ 47 $.
+
+| Cell $ (r, c) $ | Rational | Circled? | Position |
+| :---: | :---: | :---: | :---: |
+| $ (1,\, 12) $ | $ 12/1 $ | yes | $ 47 $ |
+| $ (2,\, 11) $ | $ 11/2 $ | yes | $ 48 $ |
+| $ (3,\, 10) $ | $ 10/3 $ | yes | $ 49 $ |
+| $ (4,\, 9) $  | $ 9/4 $  | yes | $ 50 $ |
+| $ (5,\, 8) $  | $ 8/5 $  | yes | $ 51 $ |
+| $ (6,\, 7) $  | $ 7/6 $  | yes | $ 52 $ |
+| $ (7,\, 6) $  | $ 6/7 $  | yes | $ \mathbf{53} $ |
+
+$$$
+\boxed{\,f^{-1}(6/7) \;=\; 53\,}
+$$$
+
+## Summary
+
+$$$
+f(26) \;=\; \tfrac{4}{5}, \qquad f(30) \;=\; \tfrac{3}{7}, \qquad f^{-1}(3/4) \;=\; 16, \qquad f^{-1}(6/7) \;=\; 53.
+$$$
+
+## Remark — The Totient Pattern
+
+The "new circled" count for $ D_s $ is exactly $ \varphi(s) $, Euler's totient. Why: cells in $ D_s $ are $ (r, c) $ with $ r + c = s $, and for any such pair,
+
+$ \gcd(c, r) \;=\; \gcd(c,\, s - c) \;=\; \gcd(c,\, s) \;=\; \gcd(s,\, r), $
+
+using the Euclidean property $ \gcd(a, b) = \gcd(a,\, b + ka) $ for any integer $ k $. So the circled cells of $ D_s $ correspond to indices $ r \in \{1, 2, \ldots, s\} $ with $ \gcd(r, s) = 1 $ — precisely $ \varphi(s) $ of them.
+
+Cumulating,
+
+$ \text{cumulative through }\, D_s \;=\; \sum_{k=1}^{s} \varphi(k) \;=\; 1,\, 2,\, 4,\, 6,\, 10,\, 12,\, 18,\, 22,\, 28,\, 32,\, 42,\, 46,\, 58,\, \ldots $
+
+This is the *totient summatory function* $ \Phi(s) $, closely related to counting fractions in the Farey sequence. Every non-negative rational appears exactly once along the snake — and that, packaged as $ f : \mathbb{N} \to \mathbb{Q}_{\ge 0} $, is the bijection witnessing that $ \mathbb{Q}_{\ge 0} $ (and hence $ \mathbb{Q} $) is countably infinite.

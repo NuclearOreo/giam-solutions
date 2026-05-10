@@ -1,0 +1,85 @@
+.docname {Solution — GIAM 6.5 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.5 Problem 3
+
+## Problem
+
+The natural logarithm function $ \ln(x) $ is defined by the definite integral
+
+$$$
+\ln(x) \;=\; \int_{t=1}^{x} \frac{1}{t}\, dt, \qquad x > 0.
+$$$
+
+Show that $ \ln(x) $ is strictly increasing on its entire domain $ (0, \infty) $.
+
+## Setup
+
+A function $ f $ defined on a set $ D $ is **strictly increasing** if
+
+$$$
+a, b \in D, \;\; a < b \;\Longrightarrow\; f(a) < f(b).
+$$$
+
+So we must show: for every pair $ 0 < a < b $, $ \ln(a) < \ln(b) $.
+
+The integrand $ 1/t $ is continuous and strictly positive on all of $ (0, \infty) $. That single fact will drive the entire proof.
+
+## The Argument
+
+Geometrically, $ \ln(b) - \ln(a) $ is the area under the curve $ y = 1/t $ between $ t = a $ and $ t = b $. Since the integrand is strictly positive throughout $ (0, \infty) $, that strip has positive area whenever $ a < b $ — and the algebraic argument below just makes this rigorous.
+
+!(70%)[Area under y = 1/t between t=a and t=b](problem-3-graph.svg "The integrand y = 1/t is positive on (0, ∞); the shaded strip from t = a to t = b has area ln(b) − ln(a) > 0.")
+
+Fix $ 0 < a < b $. By additivity of the integral over adjacent intervals,
+
+$$$
+\int_{1}^{b} \frac{1}{t}\, dt \;=\; \int_{1}^{a} \frac{1}{t}\, dt \;+\; \int_{a}^{b} \frac{1}{t}\, dt,
+$$$
+
+so the difference of the two logarithms is itself a definite integral:
+
+$$$
+\ln(b) - \ln(a) \;=\; \int_{1}^{b} \frac{1}{t}\, dt \;-\; \int_{1}^{a} \frac{1}{t}\, dt \;=\; \int_{a}^{b} \frac{1}{t}\, dt.
+$$$
+
+(The identity holds regardless of whether $ a, b $ lie above or below $ 1 $; the convention $ \int_{p}^{q} = -\int_{q}^{p} $ keeps the bookkeeping consistent.)
+
+Now bound the integrand from below. For every $ t \in [a, b] $,
+
+$ 0 \;<\; a \;\leq\; t \;\leq\; b, $
+
+and reciprocating (which reverses inequalities for positive numbers) gives
+
+$ \frac{1}{t} \;\geq\; \frac{1}{b} \;>\; 0. $
+
+So the integrand exceeds the positive constant $ 1/b $ throughout $ [a, b] $, and the integral is correspondingly bounded:
+
+$$$
+\int_{a}^{b} \frac{1}{t}\, dt \;\geq\; \int_{a}^{b} \frac{1}{b}\, dt \;=\; \frac{b - a}{b} \;>\; 0.
+$$$
+
+Therefore
+
+$ \ln(b) - \ln(a) \;\geq\; \frac{b - a}{b} \;>\; 0, $
+
+i.e., $ \ln(a) < \ln(b) $. Since this holds for every $ 0 < a < b $, $ \ln $ is strictly increasing on $ (0, \infty) $. $ \qquad \blacksquare $
+
+## Remark — The Calculus View
+
+The Fundamental Theorem of Calculus gives an alternative, even shorter proof. Since $ 1/t $ is continuous on $ (0, \infty) $, the FTC says
+
+$$$
+\frac{d}{dx} \ln(x) \;=\; \frac{1}{x}.
+$$$
+
+For every $ x > 0 $, $ 1/x > 0 $, so the derivative of $ \ln $ is strictly positive on its entire domain. Any function with strictly positive derivative on an interval is strictly increasing there — so $ \ln $ is strictly increasing on $ (0, \infty) $.
+
+Both arguments rest on the same underlying fact: $ 1/t > 0 $ for every $ t > 0 $. The integral-difference proof above extracts this directly from the definition of $ \ln $; the FTC proof routes it through differentiation. Either way, the strict positivity of the integrand on $ (0, \infty) $ is the engine behind the strict monotonicity of $ \ln $.

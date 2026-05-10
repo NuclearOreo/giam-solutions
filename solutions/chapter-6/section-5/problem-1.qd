@@ -1,0 +1,93 @@
+.docname {Solution — GIAM 6.5 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.5 Problem 1
+
+## Problem
+
+For each of the following functions, give its domain, range, and a possible codomain.
+
+- **a)** $ f(x) = \sin(x) $
+- **b)** $ g(x) = e^x $
+- **c)** $ h(x) = x^2 $
+- **d)** $ m(x) = \dfrac{x^2 + 1}{x^2 - 1} $
+- **e)** $ n(x) = \lfloor x \rfloor $
+- **f)** $ p(x) = \langle \cos(x),\, \sin(x) \rangle $
+
+## Setup
+
+Recall:
+
+- **Domain.** The set of inputs on which the function is defined.
+- **Range** (or **image**). The set of outputs the function actually attains: $ \{f(x) : x \in \text{domain}\} $.
+- **Codomain.** A target set declared with the function. The codomain must contain the range, but is otherwise a choice — any superset of the range is a valid codomain.
+
+So a "possible codomain" is any set containing the range. Two natural choices stand out for each function below: the range itself (which makes the function surjective by construction), or the broader ambient set ($ \mathbb{R} $, or $ \mathbb{R}^2 $ for vector-valued $ p $).
+
+## a) $ f(x) = \sin(x) $
+
+- **Domain:** $ \mathbb{R} $.
+- **Range:** $ [-1,\, 1] $. The sine function oscillates between $ -1 $ (attained at $ x = -\pi/2 + 2\pi k $) and $ 1 $ (attained at $ x = \pi/2 + 2\pi k $), and takes every value in between by continuity.
+- **Codomain:** $ \mathbb{R} $ (or $ [-1, 1] $).
+
+## b) $ g(x) = e^x $
+
+- **Domain:** $ \mathbb{R} $.
+- **Range:** $ (0,\, \infty) $. We have $ e^x > 0 $ for every real $ x $, with $ e^x \to 0 $ as $ x \to -\infty $ (never reaching $ 0 $) and $ e^x \to \infty $ as $ x \to \infty $.
+- **Codomain:** $ \mathbb{R} $ (or $ (0, \infty) $).
+
+## c) $ h(x) = x^2 $
+
+- **Domain:** $ \mathbb{R} $.
+- **Range:** $ [0,\, \infty) $. The square of a real number is non-negative, and every non-negative real $ y $ is realized as $ x^2 $ via $ x = \sqrt{y} $.
+- **Codomain:** $ \mathbb{R} $ (or $ [0, \infty) $).
+
+## d) $ m(x) = \dfrac{x^2 + 1}{x^2 - 1} $
+
+- **Domain:** $ \mathbb{R} \setminus \{-1,\, 1\} $. The denominator vanishes exactly at $ x = \pm 1 $, so those points are excluded.
+- **Range:** $ (-\infty,\, -1] \cup (1,\, \infty) $.
+
+  Substitute $ t = x^2 $. As $ x $ ranges over $ \mathbb{R} \setminus \{\pm 1\} $, $ t $ ranges over $ [0,\, 1) \cup (1,\, \infty) $, and
+
+  $ m \;=\; \frac{t + 1}{t - 1}. $
+
+  The derivative
+
+  $ \frac{d m}{d t} \;=\; \frac{(t-1) - (t+1)}{(t-1)^2} \;=\; \frac{-2}{(t-1)^2} \;<\; 0 $
+
+  shows $ m $ is strictly decreasing on each piece.
+
+  - On $ t \in [0,\, 1) $: $ m(0) = -1 $, and $ m \to -\infty $ as $ t \to 1^- $. So this piece sweeps out $ (-\infty,\, -1] $.
+  - On $ t \in (1,\, \infty) $: $ m \to +\infty $ as $ t \to 1^+ $, and $ m \to 1 $ from above as $ t \to \infty $ (horizontal asymptote, never attained). So this piece sweeps out $ (1,\, \infty) $.
+
+  Together, the range is $ (-\infty,\, -1] \cup (1,\, \infty) $.
+
+- **Codomain:** $ \mathbb{R} $.
+
+## e) $ n(x) = \lfloor x \rfloor $
+
+- **Domain:** $ \mathbb{R} $.
+- **Range:** $ \mathbb{Z} $. The floor of any real is an integer, and every integer $ k $ is its own floor ($ \lfloor k \rfloor = k $), so the range is exactly $ \mathbb{Z} $.
+- **Codomain:** $ \mathbb{Z} $ (or $ \mathbb{R} $).
+
+## f) $ p(x) = \langle \cos(x),\, \sin(x) \rangle $
+
+- **Domain:** $ \mathbb{R} $.
+- **Range:** the **unit circle** $ S^1 = \{(u, v) \in \mathbb{R}^2 : u^2 + v^2 = 1\} $. Since $ \cos^2(x) + \sin^2(x) = 1 $ for every real $ x $, every output lies on $ S^1 $; conversely, every point of $ S^1 $ is parametrized as $ (\cos x, \sin x) $ for some $ x \in [0, 2\pi) $.
+- **Codomain:** $ \mathbb{R}^2 $ (or $ S^1 $).
+
+## Remark — Codomain Is a Choice
+
+For each function above, two natural codomain choices stand out:
+
+1. **The range itself.** With this choice, the function is automatically *surjective*.
+2. **The ambient space** ($ \mathbb{R} $, or $ \mathbb{R}^2 $ for $ p $). This is the broadest natural target, and the function is then surjective only if its range happens to fill the ambient set — which it usually does not.
+
+Both are valid: codomain is a declared part of a function's definition, subject only to the constraint that it must contain the range. The choice matters precisely when one cares about *surjectivity*, since surjectivity of $ f : X \to Y $ is the statement "$ \mathrm{range}(f) = Y $."
