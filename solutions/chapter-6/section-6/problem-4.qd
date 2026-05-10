@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 6.6 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 4
+
+## Problem
+
+Find a right inverse for $ f(x) = |x| $.
+
+## Setup
+
+A **right inverse** for $ f : X \to Y $ is a function $ g : Y \to X $ satisfying
+
+$$$
+f \circ g \;=\; \mathrm{id}_Y, \qquad \text{i.e.}\qquad f(g(y)) = y \;\text{ for every }\; y \in Y.
+$$$
+
+For $ f(x) = |x| $ on the natural domain $ \mathbb{R} $, the image is
+
+$ f(\mathbb{R}) \;=\; [0,\, \infty), $
+
+so any right inverse $ g $ must take values in $ \mathbb{R} $ and produce outputs whose images cover $ [0, \infty) $. The cleanest setup is to declare the codomain to match the image:
+
+$ f : \mathbb{R} \to [0,\, \infty), \quad f(x) = |x|, $
+
+and look for $ g : [0,\, \infty) \to \mathbb{R} $ with $ |g(y)| = y $ for every $ y \ge 0 $.
+
+## A Right Inverse
+
+The simplest choice is
+
+$$$
+\boxed{\; g : [0, \infty) \to \mathbb{R}, \qquad g(y) = y. \;}
+$$$
+
+i.e. the identity on $ [0, \infty) $, regarded as a function into $ \mathbb{R} $.
+
+**Verification.** For any $ y \ge 0 $,
+
+$ f(g(y)) \;=\; |\,g(y)\,| \;=\; |y| \;=\; y, $
+
+so $ f \circ g = \mathrm{id}_{[0, \infty)} $. $ \qquad \checkmark $
+
+## Why This Is Right but Not Two-Sided
+
+The other composition fails. For an arbitrary $ x \in \mathbb{R} $,
+
+$ g(f(x)) \;=\; g(|x|) \;=\; |x|, $
+
+which equals $ x $ only when $ x \ge 0 $; for $ x < 0 $, $ g(f(x)) = -x \ne x $.
+
+So $ g $ is a right inverse but not a left inverse, and $ f $ is therefore not invertible in the two-sided sense — consistent with the general fact that
+
+- a function has a *right* inverse iff it is **surjective**,
+- a function has a *left* inverse iff it is **injective**,
+- a function has a *two-sided* inverse iff it is bijective.
+
+The map $ f(x) = |x| : \mathbb{R} \to [0, \infty) $ is surjective (every non-negative real is the absolute value of itself) but *not* injective (since $ f(-1) = f(1) = 1 $). Right inverses exist; a left inverse does not.
+
+## Remark — Many Right Inverses
+
+The right inverse is not unique. *Any* function $ g : [0, \infty) \to \mathbb{R} $ satisfying
+
+$ |g(y)| \;=\; y \quad\text{for every}\quad y \ge 0 $
+
+is a right inverse. That condition forces $ g(y) \in \{y,\, -y\} $ for each $ y > 0 $, with $ g(0) = 0 $ (since $ \{0,\, -0\} = \{0\} $). Two extreme choices:
+
+- $ g(y) = y $ — the positive-branch right inverse used above.
+- $ g(y) = -y $ — the negative-branch right inverse; equally valid.
+
+Mixing per point also works: any function $ g $ that picks $ \pm y $ for each $ y > 0 $ — even a "wild" non-measurable selection — gives a valid right inverse. There are uncountably many.
+
+This non-uniqueness is the geometric counterpart of $ f $ being two-to-one off $ 0 $: each $ y > 0 $ has two preimages $ \{-y,\, y\} $, and a right inverse is exactly a *choice* of one preimage per image point. With one image point ($ y = 0 $) having a unique preimage and infinitely many having two, the count of right inverses is $ 2^{(0,\,\infty)} $ — a continuum-sized family.
+
+## Connection to the Section's Theme
+
+A two-sided inverse exists exactly when the function is bijective. For $ f(x) = |x| $, two natural fixes restore some form of inversion:
+
+- **Restrict the domain** to $ [0, \infty) $; on that half $ f $ is the identity and so trivially bijective with itself as inverse. (The "principal branch" approach used for parabolas in Problem 1.)
+- **Pick a right inverse** on the full image; this covers all of $ [0, \infty) $ but is not unique. (This problem.)
+
+Both are useful: the first gives an exact two-sided inverse on a smaller domain; the second covers the full image at the cost of choice and non-uniqueness.

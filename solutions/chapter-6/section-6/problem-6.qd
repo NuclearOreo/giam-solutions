@@ -1,0 +1,58 @@
+.docname {Solution — GIAM 6.6 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 6
+
+## Problem
+
+Let $ U = \{1, 2, 3, \ldots, 10\} $ and $ S = \{1, 2, 3\} \subseteq U $. Express the characteristic function $ \chi_S $ as a set of ordered pairs.
+
+## Setup
+
+The **characteristic function** (or *indicator function*) of a subset $ S $ of a universe $ U $ is
+
+$$$
+\chi_S : U \longrightarrow \{0, 1\}, \qquad \chi_S(x) = \begin{cases} 1 & x \in S, \\ 0 & x \notin S. \end{cases}
+$$$
+
+Any function $ f : A \to B $ can be represented by its **graph** — the set of input-output pairs:
+
+$$$
+\operatorname{graph}(f) \;=\; \{\,(a,\, f(a)) \;:\; a \in A\,\} \;\subseteq\; A \times B.
+$$$
+
+So expressing $ \chi_S $ as a set of ordered pairs means listing the pairs $ (x,\, \chi_S(x)) $ for each $ x \in U $.
+
+## Computing $ \chi_S $
+
+Apply the rule "1 if in $ S $, 0 if not":
+
+- $ 1, 2, 3 \in S $, so $ \chi_S(1) = \chi_S(2) = \chi_S(3) = 1 $.
+- $ 4, 5, 6, 7, 8, 9, 10 \notin S $, so $ \chi_S(x) = 0 $ for each of these.
+
+## $ \chi_S $ as a Set of Ordered Pairs
+
+$$$
+\chi_S \;=\; \bigl\{\,(1, 1),\ (2, 1),\ (3, 1),\ (4, 0),\ (5, 0),\ (6, 0),\ (7, 0),\ (8, 0),\ (9, 0),\ (10, 0)\,\bigr\}.
+$$$
+
+This is a $ 10 $-element subset of $ U \times \{0, 1\} $ — exactly $ |U| $ pairs, one per element of the domain.
+
+## Remark — Subsets $ \leftrightarrow $ Characteristic Functions
+
+The assignment $ S \mapsto \chi_S $ is a *bijection*
+
+$$$
+\mathcal{P}(U) \;\longleftrightarrow\; \{0, 1\}^{U},
+$$$
+
+between the power set of $ U $ and the set of all functions $ U \to \{0, 1\} $. Every subset is captured uniquely by which elements get tagged with $ 1 $; conversely, every $ \{0, 1\} $-valued function on $ U $ designates a unique subset, namely $ \chi^{-1}(1) $.
+
+For $ |U| = 10 $, both sides have size $ 2^{10} = 1024 $. This is the origin of the notation $ 2^U $ for the power set: a subset of $ U $ "is" a function $ U \to 2 $ (with $ 2 = \{0, 1\} $), and the set of such functions has cardinality $ 2^{|U|} $.

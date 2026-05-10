@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 6.6 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 2
+
+## Problem
+
+The usual algebraic procedure for inverting
+
+$ T(x) \;=\; \dfrac{x^2 + x}{2} $
+
+stalls — solving for $ y $ in $ y = T(x) $ is not a chain of inverse operations but a quadratic solve. Use the *geometry* of functions and inverses to find a formula for $ T^{-1} $. (Hint: invert the simpler $ S(x) = x^2/2 $ first; that pins down the right vertical scaling factor.)
+
+## Why the "Usual Algebra" Stalls
+
+The "swap $ x $ and $ y $, then isolate $ y $" recipe gives
+
+$$$
+y = \frac{x^2 + x}{2} \;\xrightarrow{\text{swap}}\; x = \frac{y^2 + y}{2} \;\Longrightarrow\; y^2 + y - 2x = 0.
+$$$
+
+This is quadratic in $ y $, so isolating $ y $ requires the quadratic formula and a $ \pm $ choice — not a clean undo-by-inverse-operations chain. Functional, but unsatisfying.
+
+## Geometric Reframe — $ T $ Is a Translated Copy of $ S $
+
+Complete the square:
+
+$$$
+T(x) \;=\; \frac{x^2 + x}{2} \;=\; \frac{(x + \tfrac{1}{2})^2 - \tfrac{1}{4}}{2} \;=\; \frac{(x + \tfrac{1}{2})^2}{2} - \frac{1}{8}.
+$$$
+
+Defining $ S(x) = x^2/2 $, this reads
+
+$$$
+T(x) \;=\; S\!\bigl(x + \tfrac{1}{2}\bigr) - \tfrac{1}{8}.
+$$$
+
+So **$ T $ is $ S $ translated left by $ \tfrac{1}{2} $ and down by $ \tfrac{1}{8} $.**
+
+## Step 1 — Invert $ S $
+
+For $ S(x) = x^2/2 $ on the restricted domain $ x \ge 0 $,
+
+$ y = \tfrac{x^2}{2} \;\Longrightarrow\; x^2 = 2y \;\Longrightarrow\; x = \sqrt{2y}, $
+
+so
+
+$$$
+S^{-1}(y) \;=\; \sqrt{2y}.
+$$$
+
+The factor of $ 2 $ inside the radical is the *reciprocal* of the $ \tfrac{1}{2} $ scaling outside the square in $ S $. This is the "right vertical scaling factor" the hint pointed at: vertical compression by $ \tfrac{1}{2} $ in $ S $ becomes horizontal stretching by $ 2 $ inside the radical of $ S^{-1} $.
+
+## Step 2 — The Translation-Swap Rule
+
+Reflection across the line $ y = x $ — which is the geometric content of inverting a function — swaps the $ x $- and $ y $-axes. Consequently, **horizontal and vertical translations swap under inversion.**
+
+Concretely, if $ g(x) = f(x + a) + b $, then
+
+$$$
+g^{-1}(y) \;=\; f^{-1}(y - b) - a.
+$$$
+
+The input shift $ +a $ (translate left $ a $) on $ g $ becomes an output shift $ -a $ (translate down $ a $) on $ g^{-1} $; the output shift $ +b $ (translate up $ b $) on $ g $ becomes an input shift $ -b $ (translate right $ b $) on $ g^{-1} $.
+
+## Step 3 — Combine
+
+For $ T = S(x + \tfrac{1}{2}) - \tfrac{1}{8} $: take $ a = \tfrac{1}{2} $ and $ b = -\tfrac{1}{8} $. The translation-swap rule gives
+
+$$$
+T^{-1}(y) \;=\; S^{-1}\!\bigl(y - (-\tfrac{1}{8})\bigr) - \tfrac{1}{2} \;=\; S^{-1}\!\bigl(y + \tfrac{1}{8}\bigr) - \tfrac{1}{2}.
+$$$
+
+Plugging in $ S^{-1}(y) = \sqrt{2y} $,
+
+$$$
+\boxed{\, T^{-1}(y) \;=\; \sqrt{\,2y + \tfrac{1}{4}\,} - \tfrac{1}{2}, \qquad y \ge -\tfrac{1}{8}.\,}
+$$$
+
+## Verification — Same as Problem 1
+
+This must match the quadratic-formula answer from Problem 1, $ T^{-1}(y) = \dfrac{-1 + \sqrt{1 + 8y}}{2} $. A bit of algebra:
+
+$$$
+\sqrt{2y + \tfrac{1}{4}} - \tfrac{1}{2} \;=\; \sqrt{\tfrac{8y + 1}{4}} - \tfrac{1}{2} \;=\; \frac{\sqrt{8y + 1}}{2} - \tfrac{1}{2} \;=\; \frac{-1 + \sqrt{1 + 8y}}{2}. \quad \checkmark
+$$$
+
+The geometric and algebraic routes converge on the same formula — which is reassuring, and shows the geometry was doing real work, not a magic trick.
+
+## Sanity Check
+
+A few values of $ T^{-1} $ at triangular-number inputs:
+
+| $ y $  | $ T^{-1}(y) = \sqrt{2y + \tfrac14} - \tfrac12 $ | check |
+| :---: | :---: | :---: |
+| $ 0 $  | $ \sqrt{\tfrac14} - \tfrac12 = 0 $       | $ T(0) = 0 $   |
+| $ 1 $  | $ \sqrt{\tfrac94} - \tfrac12 = 1 $       | $ T(1) = 1 $   |
+| $ 3 $  | $ \sqrt{\tfrac{25}{4}} - \tfrac12 = 2 $  | $ T(2) = 3 $   |
+| $ 15 $ | $ \sqrt{\tfrac{121}{4}} - \tfrac12 = 5 $ | $ T(5) = 15 $  |
+
+## Remark — Translations Swap Under Inversion
+
+The general pattern, stated cleanly: if you take the graph of $ f $ and translate it by the vector $ (h,\, v) $ in the plane, the graph of the inverse — which is the original graph reflected across $ y = x $ — gets translated by the vector $ (v,\, h) $. The components *swap*.
+
+That is exactly what made this problem clean. $ T $ was the graph of $ S $ translated by $ (-\tfrac{1}{2},\, -\tfrac{1}{8}) $, so $ T^{-1} $ is the graph of $ S^{-1} $ translated by $ (-\tfrac{1}{8},\, -\tfrac{1}{2}) $ — and combined with $ S^{-1}(y) = \sqrt{2y} $, the formula falls out by inspection. The square-root-of-something-plus-stuff structure is no longer mysterious; it is the geometric shadow of "$ S^{-1} $ shifted left by $ \tfrac{1}{8} $ and down by $ \tfrac{1}{2} $."

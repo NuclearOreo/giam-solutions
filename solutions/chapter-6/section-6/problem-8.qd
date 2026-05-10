@@ -1,0 +1,75 @@
+.docname {Solution — GIAM 6.6 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 8
+
+## Problem
+
+Evaluate the sum
+
+$$$
+\sum_{i=1}^{10} \frac{1}{i} \cdot [\,i \text{ is prime}\,].
+$$$
+
+## Setup — The Iverson Bracket
+
+The bracket $ [P] $ is the **Iverson bracket**: a $ \{0,\, 1\} $-valued indicator of the predicate $ P $,
+
+$$$
+[P] \;=\; \begin{cases} 1 & \text{if } P \text{ is true,} \\ 0 & \text{if } P \text{ is false.} \end{cases}
+$$$
+
+In a summand, multiplying by $ [P] $ "filters" the sum: terms where $ P $ is false get multiplied by $ 0 $ and contribute nothing. So the sum reduces to a sum over only those $ i $ for which $ i $ is prime.
+
+## Filtering to Primes
+
+The primes among $ 1, 2, 3, \ldots, 10 $ are
+
+$$$
+\{\,2,\ 3,\ 5,\ 7\,\}.
+$$$
+
+(Recall that $ 1 $ is not prime by convention. The composites $ 4, 6, 8, 9, 10 $ each contribute $ 0 $.)
+
+So
+
+$$$
+\sum_{i=1}^{10} \frac{1}{i} \cdot [\,i \text{ is prime}\,] \;=\; \frac{1}{2} + \frac{1}{3} + \frac{1}{5} + \frac{1}{7}.
+$$$
+
+## Adding the Fractions
+
+The least common denominator is $ 2 \cdot 3 \cdot 5 \cdot 7 = 210 $. Converting each term:
+
+$$$
+\frac{1}{2} = \frac{105}{210}, \qquad \frac{1}{3} = \frac{70}{210}, \qquad \frac{1}{5} = \frac{42}{210}, \qquad \frac{1}{7} = \frac{30}{210}.
+$$$
+
+Summing,
+
+$$$
+\frac{105 + 70 + 42 + 30}{210} \;=\; \frac{247}{210}.
+$$$
+
+Since $ 247 = 13 \cdot 19 $ shares no factor with $ 210 = 2 \cdot 3 \cdot 5 \cdot 7 $, the fraction is already in lowest terms.
+
+$$$
+\boxed{\; \sum_{i=1}^{10} \frac{1}{i} \cdot [\,i \text{ is prime}\,] \;=\; \frac{247}{210} \;\approx\; 1.1762. \;}
+$$$
+
+## Remark — The Iverson Bracket Pattern
+
+The Iverson bracket is a clean way to encode "sum over a subset" as "sum over everything, multiplied by an indicator." For any predicate $ P $ on the index set,
+
+$$$
+\sum_{i \in I} a_i \cdot [\,P(i)\,] \;=\; \sum_{\substack{i \in I \\ P(i)}} a_i.
+$$$
+
+The two notations are equivalent; the Iverson form is often preferred because it keeps the sum's index range fixed and pushes the filtering criterion into the summand, which makes algebraic manipulations (splitting, swapping orders of summation, etc.) more uniform. For this problem, that translates into "sum reciprocals of primes up to $ 10 $," which is what we computed.

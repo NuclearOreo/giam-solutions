@@ -1,0 +1,91 @@
+.docname {Solution — GIAM 6.6 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 5
+
+## Problem
+
+The helix in $ \mathbb{R}^3 $ is
+
+$$$
+H \;=\; \{\,(\cos t,\, \sin t,\, t) \;:\; t \in \mathbb{R}\,\}.
+$$$
+
+Find $ \pi_{12}(H) $, $ \pi_{13}(H) $, and $ \pi_{23}(H) $, where $ \pi_{ij} : \mathbb{R}^3 \to \mathbb{R}^2 $ keeps the $ i $-th and $ j $-th coordinates and drops the third.
+
+## Setup
+
+The three projections strip away one coordinate:
+
+$$$
+\pi_{12}(x, y, z) = (x, y), \qquad \pi_{13}(x, y, z) = (x, z), \qquad \pi_{23}(x, y, z) = (y, z).
+$$$
+
+For each $ t \in \mathbb{R} $, the helix passes through $ (\cos t,\, \sin t,\, t) $: the $ (x, y) $-coordinates trace the unit circle while $ z $ rises linearly with $ t $. The projections turn this 3D motion into three 2D "shadows" — one viewed from each coordinate-axis direction.
+
+## $ \pi_{12}(H) $ — the Unit Circle
+
+Apply $ \pi_{12} $ pointwise to $ H $:
+
+$ \pi_{12}\bigl((\cos t,\, \sin t,\, t)\bigr) \;=\; (\cos t,\, \sin t). $
+
+As $ t $ ranges over $ \mathbb{R} $, the point $ (\cos t, \sin t) $ traces the unit circle (each point hit infinitely often, once per rotation). So
+
+$$$
+\pi_{12}(H) \;=\; \{\,(\cos t,\, \sin t) \;:\; t \in \mathbb{R}\,\} \;=\; \{\,(x, y) \in \mathbb{R}^2 \;:\; x^2 + y^2 = 1\,\} \;=\; S^1.
+$$$
+
+This is the *shadow* of the helix looking straight down the $ z $-axis — the helix's $ xy $-footprint is exactly its underlying circle of revolution.
+
+## $ \pi_{13}(H) $ — the Curve $ x = \cos z $
+
+Apply $ \pi_{13} $:
+
+$ \pi_{13}\bigl((\cos t,\, \sin t,\, t)\bigr) \;=\; (\cos t,\, t). $
+
+Reading the second coordinate as $ z $ (since $ z = t $),
+
+$$$
+\pi_{13}(H) \;=\; \{\,(\cos t,\, t) \;:\; t \in \mathbb{R}\,\} \;=\; \{\,(x, z) \in \mathbb{R}^2 \;:\; x = \cos z\,\}.
+$$$
+
+That is, the graph of $ x = \cos z $ — a cosine curve "lying on its side," with the height $ z $ on the vertical axis and the horizontal coordinate $ x $ oscillating between $ -1 $ and $ 1 $.
+
+This is the shadow viewed from the $ y $-axis direction: the spiraling helix, seen edge-on, traces a sinusoid in the $ xz $-plane.
+
+## $ \pi_{23}(H) $ — the Curve $ y = \sin z $
+
+Apply $ \pi_{23} $:
+
+$ \pi_{23}\bigl((\cos t,\, \sin t,\, t)\bigr) \;=\; (\sin t,\, t). $
+
+Renaming again,
+
+$$$
+\pi_{23}(H) \;=\; \{\,(\sin t,\, t) \;:\; t \in \mathbb{R}\,\} \;=\; \{\,(y, z) \in \mathbb{R}^2 \;:\; y = \sin z\,\}.
+$$$
+
+The graph of $ y = \sin z $ — sine curve on its side. The shadow viewed from the $ x $-axis direction.
+
+## Summary
+
+| Projection | Set | Description |
+| :---: | :---: | :--- |
+| $ \pi_{12}(H) $ | $ \{(\cos t,\, \sin t) : t \in \mathbb{R}\} $ | unit circle $ S^1 $: $ x^2 + y^2 = 1 $ |
+| $ \pi_{13}(H) $ | $ \{(\cos t,\, t) : t \in \mathbb{R}\} $ | curve $ x = \cos z $ in the $ xz $-plane |
+| $ \pi_{23}(H) $ | $ \{(\sin t,\, t) : t \in \mathbb{R}\} $ | curve $ y = \sin z $ in the $ yz $-plane |
+
+The three shadows together encode the full 3D structure of $ H $: the circular projection captures the rotational sweep around the $ z $-axis, and the two sinusoidal projections capture the linear ascent paired with that rotation.
+
+## Remark — Sine vs. Cosine, 90° Apart
+
+The two side projections, $ \pi_{13}(H) $ and $ \pi_{23}(H) $, are *the same curve up to a $ \pi/2 $ shift in $ z $* — because $ \sin(t) = \cos(t - \pi/2) $.
+
+Geometrically: looking at the helix from the $ y $-axis, you see the $ x $-coordinate of the rotating point as a function of height; looking from the $ x $-axis, you see the $ y $-coordinate, but the rotation is now "$ 90^\circ $ behind." The 90° rotation around the $ z $-axis (between the two viewing directions) is exactly the $ \pi/2 $ phase shift between $ \cos $ and $ \sin $. Two views of the same motion, offset in time.

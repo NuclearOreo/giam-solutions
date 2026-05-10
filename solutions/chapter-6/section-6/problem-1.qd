@@ -1,0 +1,97 @@
+.docname {Solution — GIAM 6.6 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 1
+
+## Problem
+
+The $ n $-th triangular number is given by
+
+$ T(n) \;=\; \dfrac{n^2 + n}{2}. $
+
+Regarded as a function $ T : \mathbb{R} \to \mathbb{R} $, this fails the horizontal line test (it is a parabola) and so is not invertible. Find a suitable restriction of the domain on which $ T $ becomes invertible.
+
+## Setup — Why It Fails
+
+Rewrite $ T $ as a parabola opening upward:
+
+$$$
+T(x) \;=\; \tfrac{1}{2}\bigl(x^2 + x\bigr) \;=\; \tfrac{1}{2}\Bigl(\bigl(x + \tfrac{1}{2}\bigr)^2 - \tfrac{1}{4}\Bigr).
+$$$
+
+The vertex is at $ \bigl(x, T(x)\bigr) = \bigl(-\tfrac{1}{2},\, -\tfrac{1}{8}\bigr) $, and $ T $ is symmetric about the vertical line $ x = -\tfrac{1}{2} $:
+
+$ T(a) \;=\; T(b) \;\;\Longleftrightarrow\;\; a = b \;\;\text{or}\;\; a + b = -1. $
+
+So every $ y > -\tfrac{1}{8} $ has *two* distinct preimages — one to the left of the vertex and one to the right — and the function fails the horizontal line test on all of $ \mathbb{R} $.
+
+## A Suitable Restriction
+
+Restrict the domain to the right half-line $ \bigl[-\tfrac{1}{2},\, \infty\bigr) $. On this half:
+
+- The derivative $ T'(x) = x + \tfrac{1}{2} \ge 0 $, with strict inequality for $ x > -\tfrac{1}{2} $. Hence $ T $ is *strictly increasing*.
+- The image is $ \bigl[-\tfrac{1}{8},\, \infty\bigr) $: the minimum $ -\tfrac{1}{8} $ is attained at the endpoint $ x = -\tfrac{1}{2} $, and $ T \to \infty $ as $ x \to \infty $.
+
+So
+
+$$$
+T : \bigl[-\tfrac{1}{2},\, \infty\bigr) \;\longrightarrow\; \bigl[-\tfrac{1}{8},\, \infty\bigr)
+$$$
+
+is a bijection, and therefore invertible.
+
+!(70%)[T(x) parabola with the right branch kept](problem-1-graph.svg "T(x) = (x² + x)/2 as a parabola. The dashed left branch (x < −1/2) is excluded; the solid right branch (x ≥ −1/2) is the kept restriction. The light dashed line at y = 1 illustrates the horizontal-line-test failure on the full domain: it meets the curve at x = −2 (excluded) and x = 1 (kept). Restricting to the right branch leaves only one preimage.")
+
+## The Inverse
+
+Solve $ y = \tfrac{1}{2}(x^2 + x) $ for $ x $. Multiplying through by $ 2 $ and rearranging,
+
+$$$
+x^2 + x - 2y \;=\; 0,
+$$$
+
+a quadratic in $ x $. The quadratic formula gives
+
+$$$
+x \;=\; \frac{-1 \pm \sqrt{1 + 8y}}{2}.
+$$$
+
+On the restricted domain $ x \ge -\tfrac{1}{2} $ we want the larger root, so the $ + $ branch:
+
+$$$
+\boxed{\, T^{-1}(y) \;=\; \frac{-1 + \sqrt{1 + 8y}}{2}, \qquad y \ge -\tfrac{1}{8}.\,}
+$$$
+
+(Choosing the $ - $ branch instead would give the inverse of $ T $ restricted to the *left* half $ \bigl(-\infty,\, -\tfrac{1}{2}\bigr] $.)
+
+## Sanity Check
+
+The recipe should send each non-negative integer triangular number back to its index:
+
+| $ y $  | $ T^{-1}(y) $          | Check                     |
+| :---: | :---:                  | :---:                     |
+| $ 0 $  | $ \tfrac{-1+1}{2} = 0 $ | $ T(0) = 0 $              |
+| $ 1 $  | $ \tfrac{-1+3}{2} = 1 $ | $ T(1) = 1 $              |
+| $ 3 $  | $ \tfrac{-1+5}{2} = 2 $ | $ T(2) = 3 $              |
+| $ 6 $  | $ \tfrac{-1+7}{2} = 3 $ | $ T(3) = 6 $              |
+| $ 10 $ | $ \tfrac{-1+9}{2} = 4 $ | $ T(4) = 10 $             |
+| $ 15 $ | $ \tfrac{-1+11}{2} = 5 $| $ T(5) = 15 $             |
+
+All consistent.
+
+## Remark — Other Valid Restrictions
+
+The restriction $ \bigl[-\tfrac{1}{2},\, \infty\bigr) $ is the *largest* domain on which $ T $ is increasing, but several alternatives also work:
+
+- **Left branch.** Restrict to $ \bigl(-\infty,\, -\tfrac{1}{2}\bigr] $; here $ T $ is strictly decreasing, with the same image $ \bigl[-\tfrac{1}{8},\, \infty\bigr) $. The inverse is the $ - $ branch: $ T^{-1}(y) = (-1 - \sqrt{1 + 8y})/2 $.
+- **Non-negative reals.** Restrict to $ [0, \infty) $; $ T $ is strictly increasing here too (since the vertex sits at $ -\tfrac{1}{2} < 0 $), with image $ [0, \infty) $. The inverse is the same $ + $ branch formula but only valid for $ y \ge 0 $. This is the most natural restriction in the original setting, where the triangular numbers $ T(0), T(1), T(2), \ldots $ are an integer-indexed sequence.
+- **Non-negative integers.** Restrict further to $ \mathbb{Z}^{\text{noneg}} $. This recovers the classical sequence $ 0, 1, 3, 6, 10, 15, \ldots $ as a bijection with its image — the set of triangular numbers — and the inverse is the integer-valued version of the formula above.
+
+Each restriction trades scope for invertibility; the right-branch restriction $ \bigl[-\tfrac{1}{2},\, \infty\bigr) $ is the "largest possible" answer, while $ [0, \infty) $ is the "natural setting" answer.

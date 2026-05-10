@@ -1,0 +1,65 @@
+.docname {Solution — GIAM 6.6 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 6.6 Problem 7
+
+## Problem
+
+If $ S $ and $ T $ are subsets of a set $ D $, what is the product of their characteristic functions $ 1_S \cdot 1_T $?
+
+## Setup
+
+The characteristic function of a subset $ A \subseteq D $ is
+
+$$$
+1_A : D \to \{0, 1\}, \qquad 1_A(x) = \begin{cases} 1 & x \in A, \\ 0 & x \notin A. \end{cases}
+$$$
+
+The pointwise product $ 1_S \cdot 1_T : D \to \{0, 1\} $ is defined by
+
+$ (1_S \cdot 1_T)(x) \;=\; 1_S(x) \cdot 1_T(x). $
+
+## The Product Is the Indicator of the Intersection
+
+For any $ x \in D $, the product $ 1_S(x) \cdot 1_T(x) $ is $ 1 $ iff both factors are $ 1 $:
+
+$$$
+1_S(x) \cdot 1_T(x) \;=\; 1 \;\;\Longleftrightarrow\;\; \bigl(1_S(x) = 1\bigr) \;\text{and}\; \bigl(1_T(x) = 1\bigr) \;\;\Longleftrightarrow\;\; x \in S \;\text{and}\; x \in T \;\;\Longleftrightarrow\;\; x \in S \cap T.
+$$$
+
+Otherwise — when at least one factor is $ 0 $ — the product is $ 0 $. So
+
+$$$
+\boxed{\, 1_S \cdot 1_T \;=\; 1_{S \cap T}. \,}
+$$$
+
+## Verification by Cases
+
+Every $ x \in D $ falls into exactly one of four regions; checking each:
+
+| Where $ x $ lies | $ 1_S(x) $ | $ 1_T(x) $ | $ 1_S(x) \cdot 1_T(x) $ | $ 1_{S \cap T}(x) $ |
+| :---: | :---: | :---: | :---: | :---: |
+| $ S \cap T $              | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ S \setminus T $         | $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ |
+| $ T \setminus S $         | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ |
+| $ D \setminus (S \cup T) $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ |
+
+The fourth and fifth columns agree on every row, so the two functions are equal.
+
+## Remark — Boolean Operations as Pointwise Arithmetic
+
+Characteristic functions translate set-theoretic operations into pointwise arithmetic on $ \{0, 1\} $-valued functions:
+
+- **Intersection.** $ 1_{S \cap T} \;=\; 1_S \cdot 1_T. $ (This problem.)
+- **Union.** $ 1_{S \cup T} \;=\; 1_S + 1_T - 1_S \cdot 1_T $ (inclusion–exclusion).
+- **Complement.** $ 1_{D \setminus S} \;=\; 1 - 1_S. $
+- **Symmetric difference.** $ 1_{S \triangle T} \;=\; 1_S + 1_T - 2\,(1_S \cdot 1_T) $, which mod $ 2 $ is $ 1_S \oplus 1_T $ (XOR).
+
+This is the bridge between set algebra and ordinary arithmetic. Logical "and" on $ x \in S $ and $ x \in T $ becomes multiplication of indicators; "or" becomes inclusion–exclusion; "not" becomes $ 1 - \cdot $. It is the same identification that makes indicator functions central to combinatorics, probability, and measure theory: every Boolean operation on subsets has a clean algebraic counterpart on indicators.
