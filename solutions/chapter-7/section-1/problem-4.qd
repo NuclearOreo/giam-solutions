@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 7.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 4
+
+## Problem
+
+Prove that the binomial coefficients
+
+$$$
+\binom{n+k-1}{k} \qquad \text{and} \qquad \binom{n+k-1}{n-1}
+$$$
+
+are equal.
+
+## Setup
+
+Throughout, $ n $ and $ k $ are non-negative integers with $ n \ge 1 $ (so that $ n - 1 \ge 0 $). Recall that for non-negative integers $ m, r $ with $ 0 \le r \le m $,
+
+$$$
+\binom{m}{r} \;=\; \frac{m!}{r! \, (m-r)!}.
+$$$
+
+Set $ m := n + k - 1 $, and observe the crucial arithmetic fact
+
+$$$
+k + (n - 1) \;=\; n + k - 1 \;=\; m,
+$$$
+
+so that $ n - 1 = m - k $. The claim is therefore the *symmetry identity*
+
+$$$
+\binom{m}{r} \;=\; \binom{m}{m - r}
+$$$
+
+specialized to $ m = n+k-1 $ and $ r = k $. We give two proofs — one by direct computation, one by an explicit bijection.
+
+## Proof 1 — Algebraic
+
+Apply the factorial formula to each side:
+
+$$$
+\binom{n+k-1}{k} \;=\; \frac{(n+k-1)!}{k! \, \bigl((n+k-1) - k\bigr)!} \;=\; \frac{(n+k-1)!}{k! \, (n-1)!},
+$$$
+
+$$$
+\binom{n+k-1}{n-1} \;=\; \frac{(n+k-1)!}{(n-1)! \, \bigl((n+k-1) - (n-1)\bigr)!} \;=\; \frac{(n+k-1)!}{(n-1)! \, k!}.
+$$$
+
+The two right-hand sides differ only by the order of the factors in the denominator. Since multiplication of natural numbers is commutative, $ k! \cdot (n-1)! = (n-1)! \cdot k! $, so
+
+$$$
+\binom{n+k-1}{k} \;=\; \binom{n+k-1}{n-1}. \qquad \blacksquare
+$$$
+
+## Proof 2 — Combinatorial Bijection
+
+Let $ S $ be any set of size $ m = n + k - 1 $. By definition,
+
+$$$
+\binom{m}{k} \;=\; \#\bigl\{ A \subseteq S \,:\, |A| = k \bigr\}, \qquad \binom{m}{n-1} \;=\; \#\bigl\{ B \subseteq S \,:\, |B| = n-1 \bigr\}.
+$$$
+
+Define the *complement* map
+
+$$$
+\varphi \,:\, \bigl\{ k\text{-subsets of } S \bigr\} \;\longrightarrow\; \bigl\{ (n-1)\text{-subsets of } S \bigr\}, \qquad \varphi(A) \;=\; S \setminus A.
+$$$
+
+Two checks:
+
+1. **Well-defined.** For any $ k $-subset $ A \subseteq S $, the complement $ S \setminus A $ has size $ |S| - |A| = m - k = (n+k-1) - k = n - 1 $, so $ \varphi(A) $ really is an $ (n-1) $-subset of $ S $.
+2. **Bijective.** Applying $ \varphi $ twice yields $ \varphi(\varphi(A)) = S \setminus (S \setminus A) = A $. Hence $ \varphi $ is its own inverse, and therefore a bijection.
+
+A bijection between two finite sets equates their cardinalities, so
+
+$$$
+\binom{n+k-1}{k} \;=\; \#\{k\text{-subsets of } S\} \;=\; \#\{(n-1)\text{-subsets of } S\} \;=\; \binom{n+k-1}{n-1}. \qquad \blacksquare
+$$$
+
+## Remark — Stars and Bars
+
+The two expressions $ \binom{n+k-1}{k} $ and $ \binom{n+k-1}{n-1} $ are the two standard forms of the *stars-and-bars* coefficient, which counts the number of multisets of size $ k $ drawn from an $ n $-element set. To see the connection, arrange $ k $ identical "stars" together with $ n - 1 $ identical "bars" in a row of total length $ n + k - 1 $; the bars partition the stars into $ n $ groups, one per underlying element, and the number of stars in each group records that element's multiplicity. The total number of such arrangements can be counted in two equivalent ways:
+
+- **Place the stars.** Choose which $ k $ of the $ n+k-1 $ positions are stars: $ \binom{n+k-1}{k} $ arrangements.
+- **Place the bars.** Choose which $ n-1 $ of the $ n+k-1 $ positions are bars: $ \binom{n+k-1}{n-1} $ arrangements.
+
+These two counts agree precisely because of the identity proved above. Their common value is the *multiset coefficient*, sometimes written
+
+$$$
+\left(\!\!\binom{n}{k}\!\!\right) \;=\; \binom{n+k-1}{k} \;=\; \binom{n+k-1}{n-1}.
+$$$
+
+## Numerical Sanity Check
+
+For $ n = 4 $, $ k = 3 $ — multisets of size $ 3 $ from $ \{1,2,3,4\} $ — both expressions should evaluate to the same number:
+
+$$$
+\binom{4 + 3 - 1}{3} \;=\; \binom{6}{3} \;=\; 20, \qquad \binom{4 + 3 - 1}{4 - 1} \;=\; \binom{6}{3} \;=\; 20.
+$$$
+
+For $ n = 5 $, $ k = 2 $ — multisets of size $ 2 $ from $ \{1, \ldots, 5\} $:
+
+$$$
+\binom{5 + 2 - 1}{2} \;=\; \binom{6}{2} \;=\; 15, \qquad \binom{5 + 2 - 1}{5 - 1} \;=\; \binom{6}{4} \;=\; 15.
+$$$
+
+Both check out — and the value $ 15 $ matches the direct count of size-$ 2 $ multisets from a $ 5 $-set: the $ \binom{5}{2} = 10 $ unordered pairs of distinct elements plus the $ 5 $ "double" multisets $ \{x, x\} $, totalling $ 15 $.

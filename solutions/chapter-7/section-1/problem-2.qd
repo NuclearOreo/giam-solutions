@@ -1,0 +1,65 @@
+.docname {Solution — GIAM 7.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 2
+
+## Problem
+
+How many *full houses* are there in Yahtzee? (A full house is a pair together with a three-of-a-kind.)
+
+## Setup
+
+Yahtzee is played with five standard six-sided dice, so each die shows a face value in $ \{1, 2, 3, 4, 5, 6\} $. Treat the dice as indistinguishable: a *hand* is the multiset of five face values one sees on the table.
+
+A *full house* is then a hand of the form $ \{v, v, v, w, w\} $ — three copies of some value $ v $ together with two copies of a different value $ w $. The two values must differ: $ v \ne w $. (In particular, five-of-a-kind — a *Yahtzee* — is **not** a full house, since only one value appears.)
+
+## Count
+
+A full house is determined by two independent choices:
+
+1. The value $ v $ showing on the triple: $ v \in \{1, 2, 3, 4, 5, 6\} $, giving $ 6 $ possibilities.
+2. The value $ w $ showing on the pair: $ w $ may be any face value *other than* $ v $, giving $ 5 $ possibilities.
+
+By the multiplication principle,
+
+$$$
+\#\text{full houses} \;=\; 6 \cdot 5 \;=\; \boxed{30}.
+$$$
+
+## Enumeration
+
+Each full house corresponds to an off-diagonal cell of a $ 6 \times 6 $ grid indexed by (triple value, pair value):
+
+|             | pair $ 1 $ | pair $ 2 $ | pair $ 3 $ | pair $ 4 $ | pair $ 5 $ | pair $ 6 $ |
+| :---:       | :---:      | :---:      | :---:      | :---:      | :---:      | :---:      |
+| **triple $ 1 $** | —          | $ 11122 $  | $ 11133 $  | $ 11144 $  | $ 11155 $  | $ 11166 $  |
+| **triple $ 2 $** | $ 22211 $  | —          | $ 22233 $  | $ 22244 $  | $ 22255 $  | $ 22266 $  |
+| **triple $ 3 $** | $ 33311 $  | $ 33322 $  | —          | $ 33344 $  | $ 33355 $  | $ 33366 $  |
+| **triple $ 4 $** | $ 44411 $  | $ 44422 $  | $ 44433 $  | —          | $ 44455 $  | $ 44466 $  |
+| **triple $ 5 $** | $ 55511 $  | $ 55522 $  | $ 55533 $  | $ 55544 $  | —          | $ 55566 $  |
+| **triple $ 6 $** | $ 66611 $  | $ 66622 $  | $ 66633 $  | $ 66644 $  | $ 66655 $  | —          |
+
+Of the $ 36 $ cells, the $ 6 $ diagonal cells correspond to $ v = w $ and are excluded, leaving $ 36 - 6 = 30 $ full houses — confirming the count.
+
+## Remark — Counting *Rolls* Instead of Hands
+
+The count above treats the dice as indistinguishable, so it counts distinct *hands*. If instead one counts *rolls* of five labeled dice — the natural sample space for probability — each hand arises from multiple rolls. Given the triple value $ v $ ($ 6 $ choices) and the pair value $ w $ ($ 5 $ choices), one must additionally choose *which* three of the five dice show $ v $ — there are $ \binom{5}{3} = 10 $ such choices, and the remaining two dice automatically show $ w $. Hence
+
+$$$
+\#\text{rolls producing a full house} \;=\; 6 \cdot 5 \cdot \binom{5}{3} \;=\; 6 \cdot 5 \cdot 10 \;=\; 300.
+$$$
+
+Since there are $ 6^5 = 7776 $ equally likely rolls of five dice, the probability of a full house on a single throw is
+
+$$$
+\Pr(\text{full house}) \;=\; \frac{300}{7776} \;=\; \frac{25}{648} \;\approx\; 3.86\%,
+$$$
+
+a figure that matches the commonly cited Yahtzee odds.

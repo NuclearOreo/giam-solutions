@@ -1,0 +1,123 @@
+.docname {Solution — GIAM 7.1 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 10
+
+## Problem
+
+How many functions are there from a set of size $ n $ to a set of size $ m $?
+
+## Setup
+
+Let $ A $ be a set with $ |A| = n $ and $ B $ a set with $ |B| = m $ (both $ n, m \ge 0 $). A *function* $ f : A \to B $ assigns to each $ a \in A $ a single image $ f(a) \in B $; two functions agree iff they take the same value at every $ a \in A $. Denote the set of all such functions by
+
+$$$
+B^A \;:=\; \{\, f \;:\; A \to B \,\}.
+$$$
+
+We wish to compute $ |B^A| $.
+
+## Claim
+
+$$$
+\boxed{\, |B^A| \;=\; m^n. \,}
+$$$
+
+We give two proofs.
+
+## Proof 1 — Element-by-Element Choice
+
+Specifying $ f : A \to B $ amounts to picking, *independently for each $ a \in A $*, a single image $ f(a) \in B $. With $ n $ elements of $ A $ and $ m $ choices per element, the multiplication principle gives
+
+$$$
+|B^A| \;=\; \underbrace{m \cdot m \cdots m}_{n \text{ factors}} \;=\; m^n.
+$$$
+
+More formally, enumerate $ A = \{a_1, a_2, \ldots, a_n\} $ and consider the *tuple* map
+
+$$$
+\Phi \,:\, B^A \;\longrightarrow\; B^n, \qquad \Phi(f) \;=\; \bigl(f(a_1),\, f(a_2),\, \ldots,\, f(a_n)\bigr).
+$$$
+
+This $ \Phi $ is a bijection: any tuple $ (b_1, \ldots, b_n) \in B^n $ pulls back to the unique function defined by $ f(a_i) = b_i $. Hence
+
+$$$
+|B^A| \;=\; |B^n| \;=\; m^n. \qquad \blacksquare
+$$$
+
+## Proof 2 — Induction on $ n $
+
+**Base case** ($ n = 0 $). Then $ A = \emptyset $. There is exactly one function from $ \emptyset $ to $ B $ — the *empty function*, whose graph is the empty set — vacuously satisfying the definition. So $ |B^\emptyset| = 1 = m^0 $. ✓
+
+**Inductive step.** Suppose $ |B^{A'}| = m^n $ for every set $ A' $ with $ |A'| = n $. Let $ |A| = n + 1 $; fix any $ a \in A $ and write $ A' = A \setminus \{a\} $, so $ |A'| = n $. Specifying $ f : A \to B $ is equivalent to specifying the two independent data
+
+- its restriction $ f|_{A'} : A' \to B $, of which there are $ m^n $ by the inductive hypothesis;
+- the value $ f(a) \in B $, of which there are $ m $.
+
+By the multiplication principle, $ |B^A| = m^n \cdot m = m^{n+1} $. ✓
+
+By induction, $ |B^A| = m^{|A|} $ for every finite $ A $. $ \blacksquare $
+
+## Sanity Check on Small $ (n, m) $
+
+| $ n $ | $ m $ | $ m^n $ | Comment                                                                                  |
+| :---: | :---: | :---:   | :---                                                                                     |
+| $ 0 $ | $ 5 $ | $ 1 $   | The empty function $ \emptyset \to B $ is unique.                                       |
+| $ 3 $ | $ 0 $ | $ 0 $   | No function from a nonempty set to $ \emptyset $ (nowhere to send the elements).        |
+| $ 1 $ | $ 3 $ | $ 3 $   | A function $ \{a\} \to \{1,2,3\} $ is determined by $ f(a) $: three choices.            |
+| $ 2 $ | $ 2 $ | $ 4 $   | $ (f(a), f(b)) \in \{0,1\}^2 $ — the four pairs $ (0,0), (0,1), (1,0), (1,1) $.         |
+| $ 3 $ | $ 2 $ | $ 8 $   | Eight binary triples — equivalently, the eight subsets of $ \{a, b, c\} $.              |
+
+Note the corner case $ 0^0 = 1 $: there is one function $ \emptyset \to \emptyset $, namely the empty function. This is the convention required to make the formula uniform.
+
+## Connection — The Special Case $ m = 2 $ Recovers Subsets
+
+Set $ B = \{0, 1\} $. A function $ f : A \to \{0, 1\} $ is the *characteristic function* of the subset
+
+$$$
+A_f \;=\; \{\, a \in A \;:\; f(a) = 1 \,\} \;\subseteq\; A,
+$$$
+
+and conversely every subset $ S \subseteq A $ defines a characteristic function
+
+$$$
+\chi_S(a) \;=\; \begin{cases} 1 & \text{if } a \in S, \\ 0 & \text{otherwise.} \end{cases}
+$$$
+
+The two assignments are mutually inverse bijections between $ \{0,1\}^A $ and $ \mathcal{P}(A) $, so
+
+$$$
+|\mathcal{P}(A)| \;=\; |\{0,1\}^A| \;=\; 2^n,
+$$$
+
+which is exactly Problem $ 8 $. In this light Problem $ 8 $ is the special case $ m = 2 $ of the present problem.
+
+## Remark — Notation $ B^A $
+
+The notation $ B^A $ for the set of functions $ A \to B $ is *chosen* so that
+
+$$$
+|B^A| \;=\; |B|^{|A|}.
+$$$
+
+The exponent style is more than a mnemonic: it is consistent with cardinal arithmetic for infinite sets, where Cantor's theorem (§$ 8.3 $) gives $ 2^{|A|} > |A| $ — the infinite-set generalization of the inequality $ 2^n > n $.
+
+## Remark — Other Standard Counts
+
+For completeness — and as a guide for future problems — the closely related counts of *restricted* functions take different forms. Let $ |A| = n $ and $ |B| = m $.
+
+| Type of function $ f : A \to B $          | Count                                                                                       |
+| :---:                                     | :---:                                                                                       |
+| **All functions**                         | $ m^n $ (this problem)                                                                       |
+| **Injective** ($ f(a) = f(a') \Rightarrow a = a' $) | $ \dfrac{m!}{(m-n)!} = m(m-1)\cdots(m - n + 1) $ (requires $ m \ge n $)                |
+| **Bijective**                             | $ n! $ if $ m = n $, else $ 0 $                                                              |
+| **Surjective**                            | $ \displaystyle\sum_{k = 0}^{m} (-1)^k \binom{m}{k} (m - k)^n $ (inclusion–exclusion)         |
+
+Only the *all-functions* count is asked for here; the others rely on additional ideas (subset choice with order, factorials, inclusion–exclusion) developed later in the chapter.

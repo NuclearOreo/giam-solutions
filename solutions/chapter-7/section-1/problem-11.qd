@@ -1,0 +1,110 @@
+.docname {Solution — GIAM 7.1 Problem 11}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 11
+
+## Problem
+
+How many relations are there from a set of size $ n $ to a set of size $ m $?
+
+## Setup
+
+Let $ A $ be a set with $ |A| = n $ and $ B $ a set with $ |B| = m $ (both $ n, m \ge 0 $). Following the definition introduced in Chapter $ 6.1 $, a *relation from $ A $ to $ B $* is, by definition, a subset of the Cartesian product:
+
+$$$
+R \;\subseteq\; A \times B.
+$$$
+
+So the set of all such relations is the power set $ \mathcal{P}(A \times B) $, and we want
+
+$$$
+\#\text{relations} \;=\; \bigl|\mathcal{P}(A \times B)\bigr|.
+$$$
+
+## Claim
+
+$$$
+\boxed{\, \#\text{relations from } A \text{ to } B \;=\; 2^{nm}. \,}
+$$$
+
+We give two proofs, both two-step.
+
+## Proof 1 — Reduction to Problems 8 and the Multiplication Principle
+
+**Step 1: Count the underlying set.** By the multiplication principle, an ordered pair $ (a, b) \in A \times B $ is specified by $ a \in A $ ($ n $ choices) and $ b \in B $ ($ m $ choices), so
+
+$$$
+|A \times B| \;=\; n \cdot m \;=\; nm.
+$$$
+
+**Step 2: Count its subsets.** By Problem $ 8 $, any finite set with $ k $ elements has $ 2^k $ subsets. Applying this with $ k = nm $,
+
+$$$
+\bigl|\mathcal{P}(A \times B)\bigr| \;=\; 2^{|A \times B|} \;=\; 2^{nm}. \qquad \blacksquare
+$$$
+
+## Proof 2 — Element-by-Element Decision
+
+Building a relation $ R \subseteq A \times B $ from scratch amounts to making, for each pair $ (a, b) \in A \times B $, an *independent* binary decision: "is $ (a, b) \in R $, or not?" With $ nm $ pairs and $ 2 $ choices each, the multiplication principle gives $ 2^{nm} $ relations.
+
+Formally, the characteristic-function bijection
+
+$$$
+\chi \,:\, \mathcal{P}(A \times B) \;\longrightarrow\; \{0, 1\}^{A \times B}, \qquad \chi(R)(a, b) \;=\; \begin{cases} 1 & \text{if } (a, b) \in R, \\ 0 & \text{otherwise,} \end{cases}
+$$$
+
+is the same one used in Problems $ 8 $ and $ 10 $. Its codomain has cardinality $ 2^{|A \times B|} = 2^{nm} $ by Problem $ 10 $ (functions from a set of size $ nm $ into a set of size $ 2 $). Hence $ |\mathcal{P}(A \times B)| = 2^{nm} $. $ \blacksquare $
+
+## Sanity Check on Small $ (n, m) $
+
+| $ n $ | $ m $ | $ nm $ | $ 2^{nm} $ | Comment                                                                                  |
+| :---: | :---: | :---:  | :---:      | :---                                                                                     |
+| $ 0 $ | any   | $ 0 $  | $ 1 $      | $ A \times B = \emptyset $; only the empty relation.                                     |
+| any   | $ 0 $ | $ 0 $  | $ 1 $      | Same — Cartesian product with $ \emptyset $ is $ \emptyset $.                            |
+| $ 1 $ | $ 1 $ | $ 1 $  | $ 2 $      | $ A \times B = \{(a, b)\} $; two relations: $ \emptyset $ and $ \{(a, b)\} $.            |
+| $ 2 $ | $ 2 $ | $ 4 $  | $ 16 $     | $ A \times B $ has $ 4 $ pairs; $ 2^4 = 16 $ subsets.                                    |
+| $ 2 $ | $ 3 $ | $ 6 $  | $ 64 $     | $ A \times B $ has $ 6 $ pairs.                                                          |
+| $ 3 $ | $ 3 $ | $ 9 $  | $ 512 $    | Already over $ 500 $ relations on a $ 3 $-element set!                                    |
+
+The growth is doubly exponential in the dimensions: even modest $ n $ and $ m $ produce huge numbers.
+
+## Connection — Functions Are a Tiny Fraction of Relations
+
+Compare with Problem $ 10 $ (number of functions $ A \to B $ is $ m^n $). A function is precisely a relation $ R \subseteq A \times B $ satisfying both of:
+
+- **Existence.** For every $ a \in A $, there is *some* $ b \in B $ with $ (a, b) \in R $.
+- **Uniqueness.** For every $ a \in A $, this $ b $ is *unique*.
+
+Most relations satisfy *neither*, which is why functions are so much rarer than relations:
+
+| $ (n, m) $ | Relations $ 2^{nm} $ | Functions $ m^n $ | Ratio $ \dfrac{2^{nm}}{m^n} $ |
+| :---:      | :---:                | :---:             | :---:                          |
+| $ (2, 2) $ | $ 16 $               | $ 4 $             | $ 4 $                          |
+| $ (2, 3) $ | $ 64 $               | $ 9 $             | $ \approx 7.1 $                |
+| $ (3, 3) $ | $ 512 $              | $ 27 $            | $ \approx 19.0 $               |
+| $ (4, 4) $ | $ 65{,}536 $         | $ 256 $           | $ 256 $                        |
+
+The ratio $ 2^{nm} / m^n $ grows rapidly. Concretely, $ f : A \to B $ corresponds to its *graph*
+
+$$$
+\Gamma_f \;=\; \{\,(a,\, f(a)) \;:\; a \in A\,\} \;\subseteq\; A \times B,
+$$$
+
+and the map $ f \mapsto \Gamma_f $ realizes the inclusion $ \{\text{functions}\} \hookrightarrow \{\text{relations}\} $.
+
+## Remark — The Special Case $ A = B $
+
+When $ A = B $, the relations counted here are exactly the *relations on $ A $* studied throughout Chapter $ 6 $. Taking $ n = m $ in our formula gives
+
+$$$
+\#\text{relations on an } n\text{-set} \;=\; 2^{n^2}.
+$$$
+
+Most of these have no special structure. The *named* subfamilies — equivalence relations, partial orders, functions, etc. — each impose constraints that knock the count down dramatically. For instance, on a $ 3 $-element set there are $ 2^9 = 512 $ relations in total, but only $ 5 $ equivalence relations (the *Bell number* $ B_3 = 5 $) and only $ 19 $ partial orders. The ambient $ 2^{n^2} $ count is the "background" against which all of Chapter $ 6 $'s special relations live.

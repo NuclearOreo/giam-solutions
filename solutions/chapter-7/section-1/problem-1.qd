@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 7.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 1
+
+## Problem
+
+Determine the number of entries in the following sequences.
+
+- **a)** $ (999,\, 1000,\, 1001,\, \ldots,\, 2006) $
+- **b)** $ (13,\, 15,\, 17,\, \ldots,\, 199) $
+- **c)** $ (13,\, 19,\, 25,\, \ldots,\, 601) $
+- **d)** $ (5,\, 10,\, 17,\, 26,\, 37,\, \ldots,\, 122) $
+- **e)** $ (27,\, 64,\, 125,\, 216,\, \ldots,\, 8000) $
+- **f)** $ (7,\, 11,\, 19,\, 35,\, 67,\, \ldots,\, 131075) $
+
+## General Strategy
+
+For each sequence we identify a closed form $ a_n $ in terms of an integer index $ n $, determine the smallest and largest indices $ m,\, M $ that appear, then count
+
+$$$
+\#\text{entries} \;=\; M - m + 1.
+$$$
+
+For an arithmetic sequence $ (a,\; a+d,\; a+2d,\; \ldots,\; L) $ with common difference $ d > 0 $, this specializes to the *fence-post formula*
+
+$$$
+\#\text{entries} \;=\; \frac{L - a}{d} \;+\; 1.
+$$$
+
+The "$ +1 $" matters: $ (L-a)/d $ counts the *gaps* between consecutive entries, while the "$ +1 $" includes the first post that the gaps alone miss.
+
+## a) $ (999,\, 1000,\, 1001,\, \ldots,\, 2006) $
+
+Arithmetic with $ a = 999 $, $ d = 1 $, $ L = 2006 $:
+
+$$$
+\frac{2006 - 999}{1} + 1 \;=\; 1007 + 1 \;=\; \boxed{1008}.
+$$$
+
+## b) $ (13,\, 15,\, 17,\, \ldots,\, 199) $
+
+Arithmetic with $ a = 13 $, $ d = 2 $, $ L = 199 $:
+
+$$$
+\frac{199 - 13}{2} + 1 \;=\; \frac{186}{2} + 1 \;=\; 93 + 1 \;=\; \boxed{94}.
+$$$
+
+## c) $ (13,\, 19,\, 25,\, \ldots,\, 601) $
+
+Arithmetic with $ a = 13 $, $ d = 6 $, $ L = 601 $:
+
+$$$
+\frac{601 - 13}{6} + 1 \;=\; \frac{588}{6} + 1 \;=\; 98 + 1 \;=\; \boxed{99}.
+$$$
+
+## d) $ (5,\, 10,\, 17,\, 26,\, 37,\, \ldots,\, 122) $
+
+The consecutive differences $ 5,\, 7,\, 9,\, 11,\, \ldots $ are themselves arithmetic, so the original sequence is quadratic. The first few entries reveal the pattern:
+
+$$$
+5 = 2^2 + 1, \quad 10 = 3^2 + 1, \quad 17 = 4^2 + 1, \quad 26 = 5^2 + 1, \quad 37 = 6^2 + 1.
+$$$
+
+Hence
+
+$$$
+a_n \;=\; n^2 + 1, \qquad n = 2,\, 3,\, 4,\, \ldots
+$$$
+
+The terminal entry satisfies $ n^2 + 1 = 122 $, i.e. $ n^2 = 121 $, giving $ n = 11 $. So $ n $ runs over $ \{2, 3, \ldots, 11\} $, and
+
+$$$
+11 - 2 + 1 \;=\; \boxed{10}
+$$$
+
+entries.
+
+## e) $ (27,\, 64,\, 125,\, 216,\, \ldots,\, 8000) $
+
+These are consecutive cubes: $ 27 = 3^3 $, $ 64 = 4^3 $, $ 125 = 5^3 $, $ 216 = 6^3 $, so
+
+$$$
+a_n \;=\; n^3, \qquad n = 3,\, 4,\, 5,\, \ldots
+$$$
+
+The terminal entry satisfies $ n^3 = 8000 = 20^3 $, so $ n = 20 $. Hence $ n $ runs over $ \{3, 4, \ldots, 20\} $, and
+
+$$$
+20 - 3 + 1 \;=\; \boxed{18}
+$$$
+
+entries.
+
+## f) $ (7,\, 11,\, 19,\, 35,\, 67,\, \ldots,\, 131075) $
+
+The consecutive differences are
+
+$$$
+11 - 7 = 4 = 2^2,\quad 19 - 11 = 8 = 2^3,\quad 35 - 19 = 16 = 2^4,\quad 67 - 35 = 32 = 2^5,\quad \ldots
+$$$
+
+— successive powers of two. Indexing from $ n = 1 $ with $ a_1 = 7 $, the recurrence $ a_{n} - a_{n-1} = 2^{n} $ telescopes:
+
+$$$
+a_n \;=\; a_1 + \sum_{k=2}^{n} 2^{k} \;=\; 7 + \bigl(2^{n+1} - 4\bigr) \;=\; 3 + 2^{n+1},
+$$$
+
+using the geometric sum $ \sum_{k=0}^{n} 2^k = 2^{n+1} - 1 $, so $ \sum_{k=2}^{n} 2^k = 2^{n+1} - 4 $.
+
+*Spot check:* $ a_1 = 3 + 4 = 7 $, $ a_2 = 3 + 8 = 11 $, $ a_3 = 3 + 16 = 19 $, $ a_4 = 3 + 32 = 35 $, $ a_5 = 3 + 64 = 67 $. All match.
+
+The terminal entry satisfies
+
+$$$
+3 + 2^{n+1} \;=\; 131075 \;\;\Longrightarrow\;\; 2^{n+1} \;=\; 131072 \;=\; 2^{17} \;\;\Longrightarrow\;\; n = 16.
+$$$
+
+Hence $ n $ runs over $ \{1, 2, \ldots, 16\} $, giving $ \boxed{16} $ entries.
+
+## Summary
+
+| Part  | Type                       | Closed form $ a_n $              | Index range          | Count  |
+| :---: | :---:                      | :---:                            | :---:                | :---:  |
+| a)    | arithmetic, $ d=1 $        | $ 998 + n $                      | $ 1 \le n \le 1008 $ | $ 1008 $|
+| b)    | arithmetic, $ d=2 $        | $ 11 + 2n $                      | $ 1 \le n \le 94 $   | $ 94 $ |
+| c)    | arithmetic, $ d=6 $        | $ 7 + 6n $                       | $ 1 \le n \le 99 $   | $ 99 $ |
+| d)    | quadratic                  | $ n^2 + 1 $                      | $ 2 \le n \le 11 $   | $ 10 $ |
+| e)    | cubic                      | $ n^3 $                          | $ 3 \le n \le 20 $   | $ 18 $ |
+| f)    | exponential, offset        | $ 3 + 2^{n+1} $                  | $ 1 \le n \le 16 $   | $ 16 $ |

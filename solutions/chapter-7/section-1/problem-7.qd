@@ -1,0 +1,130 @@
+.docname {Solution — GIAM 7.1 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 7
+
+## Problem
+
+How many "words" are there of length $ 4 $ from the Cryptographer's alphabet, with *repeated letters allowed*, in which the letters appear in *non-decreasing* order alphabetically?
+
+## Setup
+
+The alphabet is $ \Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $ with its natural total order $ \mathtt{a} < \mathtt{b} < \mathtt{c} < \mathtt{d} < \mathtt{e} < \mathtt{f} $.
+
+A *valid word* is a tuple $ (x_1, x_2, x_3, x_4) \in \Sigma^4 $ satisfying the *weak* inequality
+
+$$$
+x_1 \;\le\; x_2 \;\le\; x_3 \;\le\; x_4.
+$$$
+
+The crucial difference from Problem $ 6 $ is that equality is now permitted: words such as "$ \mathtt{aaaa} $", "$ \mathtt{aabc} $", and "$ \mathtt{eeff} $" are all valid.
+
+## Count — Multisets in Disguise
+
+Define the map
+
+$$$
+\Phi \,:\, \{\text{valid words}\} \;\longrightarrow\; \{\text{size-}4\text{ multisets of } \Sigma\}, \qquad \Phi(x_1, x_2, x_3, x_4) \;=\; \{\!\{ x_1, x_2, x_3, x_4 \}\!\},
+$$$
+
+where $ \{\!\{\, \cdot\, \}\!\} $ denotes a multiset (an unordered collection with multiplicities). Then $ \Phi $ is a *bijection*:
+
+- **Well-defined.** $ \Phi(\cdot) $ is by construction a multiset of size $ 4 $ over $ \Sigma $.
+- **Surjective.** Any size-$ 4 $ multiset of $ \Sigma $ admits *exactly one* non-decreasing arrangement (sort its elements in alphabetical order), and that arrangement is a valid word with the given $ \Phi $-image.
+- **Injective.** Two valid words with the same underlying multiset must each list it in the unique non-decreasing order, hence be equal.
+
+So counting valid words is the same as counting size-$ 4 $ multisets of a $ 6 $-set. This is the canonical *stars and bars* problem.
+
+### Stars and Bars
+
+Encode a size-$ 4 $ multiset of $ \Sigma $ as a row of $ 4 $ identical *stars* and $ 5 $ identical *bars*: the bars carve the row into $ 6 $ bins (one per letter $ \mathtt{a}, \mathtt{b}, \ldots, \mathtt{f} $ in order), and the number of stars in each bin records that letter's multiplicity. For example, the multiset corresponding to the word "$ \mathtt{aabe} $" — namely $ \{\!\{ \mathtt{a}, \mathtt{a}, \mathtt{b}, \mathtt{e} \}\!\} $ with multiplicities $ (2, 1, 0, 0, 1, 0) $ — is encoded by the row
+
+$$$
+\star \star \mid \star \mid \;\; \mid \;\; \mid \star \mid \;\;,
+$$$
+
+a sequence of $ 9 $ tokens.
+
+The number of such sequences is the number of ways to choose the $ 4 $ positions occupied by stars among the $ 9 $ total positions:
+
+$$$
+\#\text{valid words} \;=\; \binom{6 + 4 - 1}{4} \;=\; \binom{9}{4} \;=\; \boxed{126}.
+$$$
+
+By the symmetry identity proved in Problem $ 4 $, this also equals $ \binom{9}{5} = 126 $ — i.e., choosing the $ 5 $ bar positions instead.
+
+A direct arithmetic check:
+
+$$$
+\binom{9}{4} \;=\; \frac{9 \cdot 8 \cdot 7 \cdot 6}{4!} \;=\; \frac{3{,}024}{24} \;=\; 126.
+$$$
+
+## Enumeration — Hockey Stick by First Letter
+
+After fixing $ x_1 $, the tail $ (x_2, x_3, x_4) $ is a non-decreasing length-$ 3 $ word from $ \{ \ell \in \Sigma \,:\, \ell \ge x_1 \} $ — equivalently, a size-$ 3 $ multiset of that smaller alphabet. If $ m $ letters remain (i.e., $ \mathtt{a} $ leaves $ m = 6 $, $ \mathtt{b} $ leaves $ m = 5 $, etc.), the tail count is $ \binom{m + 2}{3} $:
+
+| First letter $ x_1 $ | $ m $ remaining | Tail count $ \binom{m+2}{3} $    |
+| :---:                | :---:           | :---:                            |
+| $ \mathtt{a} $       | $ 6 $           | $ \binom{8}{3} \;=\; 56 $        |
+| $ \mathtt{b} $       | $ 5 $           | $ \binom{7}{3} \;=\; 35 $        |
+| $ \mathtt{c} $       | $ 4 $           | $ \binom{6}{3} \;=\; 20 $        |
+| $ \mathtt{d} $       | $ 3 $           | $ \binom{5}{3} \;=\; 10 $        |
+| $ \mathtt{e} $       | $ 2 $           | $ \binom{4}{3} \;=\; 4 $         |
+| $ \mathtt{f} $       | $ 1 $           | $ \binom{3}{3} \;=\; 1 $         |
+| **Total**            | —               | **$ 56 + 35 + 20 + 10 + 4 + 1 \;=\; 126 $** |
+
+This decomposition is the *hockey-stick identity*
+
+$$$
+\binom{9}{4} \;=\; \sum_{i = 3}^{8} \binom{i}{3} \;=\; 1 + 4 + 10 + 20 + 35 + 56 \;=\; 126,
+$$$
+
+confirming the count.
+
+## Remark — Shift Bijection to Problem 6
+
+A second classical proof relates this problem directly to Problem $ 6 $. Encode $ \mathtt{a} = 1, \mathtt{b} = 2, \ldots, \mathtt{f} = 6 $, so $ x_i \in \{1, 2, \ldots, 6\} $, and define
+
+$$$
+y_i \;:=\; x_i + (i - 1), \qquad i = 1, 2, 3, 4.
+$$$
+
+Then $ y_i \in \{1, 2, \ldots, 6 + 3\} = \{1, \ldots, 9\} $, and the weak inequality $ x_i \le x_{i+1} $ becomes the strict inequality
+
+$$$
+y_{i+1} - y_i \;=\; (x_{i+1} - x_i) + 1 \;\ge\; 1 \;\;\Longrightarrow\;\; y_i \;<\; y_{i+1}.
+$$$
+
+So non-decreasing length-$ 4 $ words from a $ 6 $-alphabet correspond bijectively to *strictly* increasing length-$ 4 $ words from a $ 9 $-alphabet — exactly the setup of Problem $ 6 $ scaled up. The count is therefore
+
+$$$
+\binom{9}{4} \;=\; 126,
+$$$
+
+agreeing with the stars-and-bars answer.
+
+## Remark — Hierarchy of Length-4 Counts
+
+Filling out the table from Problem $ 6 $ with this problem in place:
+
+| Constraint on the length-$ 4 $ word                                  | Count                                  |
+| :---:                                                                | :---:                                  |
+| any letters, any order (Problem $ 5 $)                               | $ 6^4 \;=\; 1{,}296 $                  |
+| *distinct* letters, any order                                        | $ 6 \cdot 5 \cdot 4 \cdot 3 \;=\; 360 $|
+| any letters, *non-decreasing* (this problem)                         | $ \binom{9}{4} \;=\; 126 $             |
+| *distinct* letters, *increasing* (Problem $ 6 $)                     | $ \binom{6}{4} \;=\; 15 $              |
+
+The bottom two rows are *unordered* counts — each represents a single canonical arrangement (sorted) of a multiset or subset respectively. The connection across rows is the standard pair of identities
+
+$$$
+\binom{n}{k} \;=\; \frac{P(n, k)}{k!}, \qquad \binom{n + k - 1}{k} \;=\; \text{number of size-}k\text{ multisets of an }n\text{-set}.
+$$$
+
+The subset coefficient $ \binom{6}{4} = 15 $ counts strict, distinct arrangements; the multiset coefficient $ \binom{9}{4} = 126 $ counts weak, repetition-allowed arrangements. Their ratio $ 126 / 15 = 8.4 $ has no clean combinatorial meaning (since multiset arrangements have varying multiplicities), but the *count* of multisets minus subsets — namely $ 126 - 15 = 111 $ — gives precisely the number of size-$ 4 $ multisets of $ \Sigma $ in which at least one letter repeats.

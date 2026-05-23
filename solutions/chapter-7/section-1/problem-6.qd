@@ -1,0 +1,87 @@
+.docname {Solution — GIAM 7.1 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 6
+
+## Problem
+
+How many "words" are there of length $ 4 $, with distinct letters from the Cryptographer's alphabet, in which the letters appear in *increasing* order alphabetically? ("$ \mathtt{acef} $" would be one such word, but "$ \mathtt{cafe} $" would not.)
+
+## Setup
+
+The alphabet is $ \Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $ carrying its usual total order $ \mathtt{a} < \mathtt{b} < \mathtt{c} < \mathtt{d} < \mathtt{e} < \mathtt{f} $.
+
+A *valid word* (for this problem) is a length-$ 4 $ tuple $ (x_1, x_2, x_3, x_4) \in \Sigma^4 $ satisfying
+
+$$$
+x_1 \;<\; x_2 \;<\; x_3 \;<\; x_4.
+$$$
+
+Note that the strict inequality automatically forces the four letters to be *distinct*: $ x_i = x_j $ is impossible whenever $ x_i < x_j $.
+
+## Count — Subsets in Disguise
+
+Define the map
+
+$$$
+\Phi \,:\, \{\text{valid words}\} \;\longrightarrow\; \{4\text{-element subsets of } \Sigma\}, \qquad \Phi(x_1, x_2, x_3, x_4) \;=\; \{x_1, x_2, x_3, x_4\}.
+$$$
+
+This $ \Phi $ is a *bijection*:
+
+- **Well-defined.** A valid word has four distinct entries, so its image is a $ 4 $-subset.
+- **Surjective.** Every $ 4 $-subset $ A \subseteq \Sigma $ has exactly one increasing-order arrangement — list its elements in alphabetical order — and that arrangement is a valid word with $ \Phi $-image $ A $.
+- **Injective.** Two valid words with the same underlying set must each list its elements in the unique increasing order, hence be equal.
+
+So valid words of length $ 4 $ correspond one-to-one with $ 4 $-element subsets of $ \Sigma $, and
+
+$$$
+\#\text{valid words} \;=\; \binom{6}{4} \;=\; \binom{6}{2} \;=\; \frac{6 \cdot 5}{2} \;=\; \boxed{15}.
+$$$
+
+(The middle equality uses the symmetry $ \binom{n}{k} = \binom{n}{n-k} $ — exactly the identity proved in Problem $ 4 $ of this section.)
+
+## Enumeration
+
+Grouping the $ 15 $ valid words by their first letter $ x_1 $ gives a clean tally. Once $ x_1 $ is fixed, the remaining three letters form a $ 3 $-subset of the alphabet entries strictly greater than $ x_1 $, arranged in alphabetical order:
+
+| First letter $ x_1 $ | $ \{x_2, x_3, x_4\} $ is a $ 3 $-subset of                                  | Count                      | The words                                                                                                            |
+| :---:                | :---:                                                                       | :---:                      | :---                                                                                                                 |
+| $ \mathtt{a} $       | $ \{\mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $           | $ \binom{5}{3} = 10 $      | $ \mathtt{abcd},\, \mathtt{abce},\, \mathtt{abcf},\, \mathtt{abde},\, \mathtt{abdf},\, \mathtt{abef},\, \mathtt{acde},\, \mathtt{acdf},\, \mathtt{acef},\, \mathtt{adef} $ |
+| $ \mathtt{b} $       | $ \{\mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $                       | $ \binom{4}{3} = 4 $       | $ \mathtt{bcde},\, \mathtt{bcdf},\, \mathtt{bcef},\, \mathtt{bdef} $                                                |
+| $ \mathtt{c} $       | $ \{\mathtt{d}, \mathtt{e}, \mathtt{f}\} $                                   | $ \binom{3}{3} = 1 $       | $ \mathtt{cdef} $                                                                                                    |
+| $ \mathtt{d}, \mathtt{e}, \mathtt{f} $ | (fewer than $ 3 $ larger letters remain)                          | $ 0 $                      | —                                                                                                                    |
+| **Total**            | —                                                                           | **$ 10 + 4 + 1 = 15 $**    | —                                                                                                                    |
+
+This first-letter decomposition is an instance of the **hockey-stick identity**,
+
+$$$
+\binom{6}{4} \;=\; \binom{5}{3} + \binom{4}{3} + \binom{3}{3} \;=\; 10 + 4 + 1 \;=\; 15,
+$$$
+
+where each summand $ \binom{m}{3} $ counts the valid words whose first letter is the unique element of $ \Sigma $ with $ m $ strictly-larger neighbors.
+
+## Remark — One Increasing Arrangement Per Subset
+
+It is instructive to relate this count to two neighbors in the problem-design hierarchy:
+
+| Constraint on the length-$ 4 $ word    | Count                                  |
+| :---:                                  | :---:                                  |
+| any letters, any order (Problem $ 5 $) | $ 6^4 \;=\; 1{,}296 $                  |
+| *distinct* letters, *any* order        | $ 6 \cdot 5 \cdot 4 \cdot 3 \;=\; 360 $ |
+| *distinct* letters, *increasing* order (this problem) | $ \binom{6}{4} \;=\; 15 $          |
+
+The third row arises from the second by the observation that each $ 4 $-subset $ A \subseteq \Sigma $ admits $ 4! = 24 $ orderings, exactly one of which is increasing. Hence the $ 360 $ distinct-letter ordered words partition into groups of $ 24 $ by their underlying subset, and
+
+$$$
+\#\text{increasing words} \;=\; \frac{360}{4!} \;=\; \frac{360}{24} \;=\; 15 \;=\; \binom{6}{4},
+$$$
+
+recovering the standard identity $ \binom{n}{k} \;=\; \dfrac{P(n,k)}{k!} $ (the number of $ k $-permutations divided by $ k! $).

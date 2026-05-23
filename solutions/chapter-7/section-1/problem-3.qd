@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 7.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 3
+
+## Problem
+
+In how many ways can you get *"two pairs"* in Yahtzee?
+
+## Setup
+
+Yahtzee is played with five standard six-sided dice, so each die shows a value in $ \{1, 2, 3, 4, 5, 6\} $. Treat the dice as indistinguishable: a *hand* is the multiset of five face values one sees on the table.
+
+A *two-pair* hand has the form
+
+$$$
+\{\, v,\, v,\, w,\, w,\, x \,\},
+$$$
+
+where $ v $, $ w $, $ x $ are three *distinct* values from $ \{1, \ldots, 6\} $. The pairs sit at values $ v $ and $ w $; the lone die (the "kicker") sits at value $ x $. Requiring $ v \ne w $ rules out four-of-a-kind, and requiring $ x \notin \{v, w\} $ rules out full house and five-of-a-kind. So this is the "two pair, nothing better" hand of poker fame.
+
+## Count
+
+A first pass at the multiplication principle picks the data in three steps:
+
+- pick the *first* pair value: $ 6 $ choices,
+- pick the *second* pair value, different from the first: $ 5 $ choices,
+- pick the singleton value, different from both pair values: $ 4 $ choices,
+
+giving $ 6 \cdot 5 \cdot 4 = 120 $. But this **over-counts by a factor of $ 2 $**: the two pair values $ v $ and $ w $ play symmetric roles in the hand $ \{v, v, w, w, x\} $, so labelling them in the order $ (v, w) $ and in the order $ (w, v) $ produces the *same* multiset. Dividing,
+
+$$$
+\#\text{two-pair hands} \;=\; \frac{6 \cdot 5 \cdot 4}{2} \;=\; \boxed{60}.
+$$$
+
+Equivalently, choose the *unordered* set of two pair values out of six — $ \binom{6}{2} = 15 $ ways — then choose the singleton from the remaining four values — $ 4 $ ways:
+
+$$$
+\binom{6}{2} \cdot 4 \;=\; 15 \cdot 4 \;=\; 60.
+$$$
+
+## Contrast with the Full-House Count
+
+It is instructive to see *why* the full-house count (Problem 2) did **not** require dividing by $ 2 $. There the hand has the form $ \{v, v, v, w, w\} $: the triple value $ v $ appears three times and the pair value $ w $ appears twice, so they play *different* roles. The two multisets
+
+$$$
+\{1, 1, 1, 2, 2\} \qquad \text{and} \qquad \{2, 2, 2, 1, 1\} \;=\; \{1, 1, 2, 2, 2\}
+$$$
+
+are *not* equal — they differ in which value appears three times — and so must both be counted. Hence the full-house tally is simply $ 6 \cdot 5 = 30 $, with no over-counting.
+
+For two pair both pairs have multiplicity $ 2 $, so the pair-values are interchangeable in the multiset, and the factor of $ 2 $ correction is necessary.
+
+| Hand type   | Pattern                  | Symmetric values? | Naive count           | Correction | Final |
+| :---:       | :---:                    | :---:             | :---:                 | :---:      | :---: |
+| Full house  | $ \{v,v,v,w,w\} $        | No                | $ 6 \cdot 5 = 30 $    | $ \div 1 $ | $ 30 $|
+| Two pair    | $ \{v,v,w,w,x\} $        | Yes ($ v $ and $ w $) | $ 6 \cdot 5 \cdot 4 = 120 $ | $ \div 2 $ | $ 60 $|
+
+## Enumeration
+
+The $ 60 $ two-pair hands organize as a $ 15 \times 4 $ grid indexed by the *unordered* pair-value set $ \{v, w\} $ and the singleton $ x \notin \{v, w\} $. For example, the row corresponding to pair-values $ \{1, 2\} $ contains the four hands
+
+$$$
+\{1,1,2,2,3\}, \quad \{1,1,2,2,4\}, \quad \{1,1,2,2,5\}, \quad \{1,1,2,2,6\}.
+$$$
+
+Repeating across all $ \binom{6}{2} = 15 $ pair-value sets — namely
+
+$$$
+\{1,2\}, \{1,3\}, \{1,4\}, \{1,5\}, \{1,6\}, \{2,3\}, \{2,4\}, \{2,5\}, \{2,6\}, \{3,4\}, \{3,5\}, \{3,6\}, \{4,5\}, \{4,6\}, \{5,6\}
+$$$
+
+— gives $ 15 \cdot 4 = 60 $ hands, confirming the count.
+
+## Remark — Counting *Rolls* Instead of Hands
+
+If one instead counts *rolls* of five labeled dice — the natural sample space for probability — each multiset $ \{v, v, w, w, x\} $ arises from
+
+$$$
+\frac{5!}{2!\, 2!\, 1!} \;=\; \frac{120}{4} \;=\; 30
+$$$
+
+distinct ordered five-tuples, one per arrangement of the multiset. Hence
+
+$$$
+\#\text{rolls producing two pair} \;=\; 60 \cdot 30 \;=\; 1800.
+$$$
+
+Out of $ 6^5 = 7776 $ equally likely rolls of five dice, $ 1800 $ produce a two-pair hand, giving
+
+$$$
+\Pr(\text{two pair on a single throw}) \;=\; \frac{1800}{7776} \;=\; \frac{25}{108} \;\approx\; 23.15\%.
+$$$
+
+As a cross-check, the seven mutually exclusive single-roll "patterns" must partition the $ 7776 $ outcomes:
+
+| Pattern              | Ordered rolls | Fraction          |
+| :---:                | :---:         | :---:             |
+| All distinct         | $ 720 $       | $ \approx 9.26\% $  |
+| One pair only        | $ 3600 $      | $ \approx 46.30\% $ |
+| Two pair             | $ 1800 $      | $ \approx 23.15\% $ |
+| Three of a kind only | $ 1200 $      | $ \approx 15.43\% $ |
+| Full house           | $ 300 $       | $ \approx 3.86\% $  |
+| Four of a kind       | $ 150 $       | $ \approx 1.93\% $  |
+| Five of a kind       | $ 6 $         | $ \approx 0.08\% $  |
+| **Total**            | **$ 7776 $**  | **$ 100\% $**       |
+
+The totals add up — confirming both that two pair contributes $ 1800 $ rolls and that $ 60 $ is the correct unordered count.

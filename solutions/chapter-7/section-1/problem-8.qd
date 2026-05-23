@@ -1,0 +1,109 @@
+.docname {Solution — GIAM 7.1 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 8
+
+## Problem
+
+How many subsets does a finite set have?
+
+## Setup
+
+Let $ S $ be a finite set with $ |S| = n $ elements, $ n \ge 0 $. Denote by $ \mathcal{P}(S) $ the *power set* of $ S $ — the set of all subsets of $ S $:
+
+$$$
+\mathcal{P}(S) \;=\; \{\, A \;:\; A \subseteq S \,\}.
+$$$
+
+Both the empty set $ \emptyset $ and the set $ S $ itself count as subsets. We want $ |\mathcal{P}(S)| $.
+
+## Claim
+
+$$$
+\boxed{\, |\mathcal{P}(S)| \;=\; 2^n \,}.
+$$$
+
+We give three proofs — by the multiplication principle, by summing over subset sizes, and by induction — each illuminating a different perspective.
+
+## Proof 1 — Element-by-Element Decisions
+
+Specifying a subset $ A \subseteq S $ amounts to making, *independently for each element of $ S $*, a binary decision: "is this element in $ A $, or not?" With $ n $ elements and $ 2 $ choices each, the multiplication principle gives $ 2 \cdot 2 \cdots 2 = 2^n $ subsets in total.
+
+Formally, write $ S = \{s_1, s_2, \ldots, s_n\} $ and define the *characteristic-function* map
+
+$$$
+\chi : \mathcal{P}(S) \;\longrightarrow\; \{0, 1\}^n, \qquad \chi(A) \;=\; (b_1, b_2, \ldots, b_n), \quad b_i \;=\; \begin{cases} 1 & \text{if } s_i \in A,\\ 0 & \text{otherwise}. \end{cases}
+$$$
+
+This $ \chi $ is a bijection — its inverse reads a binary $ n $-tuple as the indicator of which elements to include. Hence
+
+$$$
+|\mathcal{P}(S)| \;=\; \bigl|\{0, 1\}^n\bigr| \;=\; 2^n. \qquad \blacksquare
+$$$
+
+## Proof 2 — Summing Over Subset Sizes
+
+Partition $ \mathcal{P}(S) $ by subset size:
+
+$$$
+\mathcal{P}(S) \;=\; \bigsqcup_{k=0}^{n} \mathcal{P}_k(S), \qquad \mathcal{P}_k(S) \;=\; \{\, A \subseteq S \;:\; |A| = k \,\}.
+$$$
+
+The standard count gives $ |\mathcal{P}_k(S)| = \binom{n}{k} $. Summing and applying the *binomial theorem* with $ x = y = 1 $,
+
+$$$
+|\mathcal{P}(S)| \;=\; \sum_{k=0}^{n} \binom{n}{k} \;=\; \sum_{k=0}^{n} \binom{n}{k} \, 1^k \, 1^{n-k} \;=\; (1 + 1)^n \;=\; 2^n. \qquad \blacksquare
+$$$
+
+## Proof 3 — Induction on $ n $
+
+**Base case** ($ n = 0 $). The only set of size $ 0 $ is the empty set $ \emptyset $, whose only subset is itself: $ |\mathcal{P}(\emptyset)| = 1 = 2^0 $. ✓
+
+**Inductive step.** Suppose $ |\mathcal{P}(T)| = 2^n $ for every set $ T $ with $ |T| = n $. Let $ S $ have $ |S| = n + 1 $, fix any element $ a \in S $, and let $ T = S \setminus \{a\} $, so $ |T| = n $.
+
+Every subset of $ S $ either contains $ a $ or does not, partitioning $ \mathcal{P}(S) $ into two disjoint pieces:
+
+- **Subsets *not* containing $ a $.** These are exactly the subsets of $ T $, so there are $ |\mathcal{P}(T)| = 2^n $ of them by the inductive hypothesis.
+- **Subsets *containing* $ a $.** Each such subset has the form $ A \cup \{a\} $ for a unique $ A \subseteq T $, and the assignment $ A \mapsto A \cup \{a\} $ is a bijection between $ \mathcal{P}(T) $ and the family of subsets of $ S $ containing $ a $. Again $ 2^n $.
+
+Adding,
+
+$$$
+|\mathcal{P}(S)| \;=\; 2^n + 2^n \;=\; 2 \cdot 2^n \;=\; 2^{n+1}.
+$$$
+
+By induction, $ |\mathcal{P}(S)| = 2^{|S|} $ for every finite set $ S $. $ \blacksquare $
+
+## Sanity Check on Small Cases
+
+| $ n $ | $ S $                              | $ \mathcal{P}(S) $                                                   | $ 2^n $ |
+| :---: | :---:                              | :---:                                                                  | :---:   |
+| $ 0 $ | $ \emptyset $                      | $ \{\, \emptyset \,\} $                                                 | $ 1 $   |
+| $ 1 $ | $ \{a\} $                          | $ \{\, \emptyset,\, \{a\} \,\} $                                        | $ 2 $   |
+| $ 2 $ | $ \{a, b\} $                       | $ \{\, \emptyset,\, \{a\},\, \{b\},\, \{a, b\} \,\} $                  | $ 4 $   |
+| $ 3 $ | $ \{a, b, c\} $                    | $ \emptyset,\, \{a\},\, \{b\},\, \{c\},\, \{a,b\},\, \{a,c\},\, \{b,c\},\, \{a,b,c\} $ | $ 8 $   |
+
+All entries agree with $ 2^n $.
+
+## Connection — The Cryptographer's Alphabet
+
+Taking $ S = \Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $ (the alphabet from Problems $ 5 $–$ 7 $), Proof $ 1 $ gives $ |\mathcal{P}(\Sigma)| = 2^6 = 64 $ subsets. Proof $ 2 $ recovers the same total by summing the row of Pascal's triangle for $ n = 6 $:
+
+| $ k $        | $ 0 $ | $ 1 $ | $ 2 $ | $ 3 $ | $ 4 $ | $ 5 $ | $ 6 $ | **Total** |
+| :---:        | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:     |
+| $ \binom{6}{k} $ | $ 1 $ | $ 6 $ | $ 15 $ | $ 20 $ | $ 15 $ | $ 6 $ | $ 1 $ | **$ 64 $** |
+
+The $ \binom{6}{4} = 15 $ entry is precisely the count of $ 4 $-element subsets — i.e., the $ 15 $ increasing-order words found in Problem $ 6 $. The symmetric row reflects the identity $ \binom{6}{k} = \binom{6}{6-k} $ from Problem $ 4 $.
+
+## Remark — Why "Power Set"
+
+The traditional name *power set* is no accident: the cardinality $ |\mathcal{P}(S)| = 2^{|S|} $ is literally a *power of two*. The notation $ 2^S $ is sometimes used in place of $ \mathcal{P}(S) $ for the same reason — both as a mnemonic for the cardinality and because of the bijection $ \chi $ of Proof $ 1 $ between $ \mathcal{P}(S) $ and $ \{0, 1\}^S $ (functions $ S \to \{0, 1\} $, of which there are $ 2^{|S|} $).
+
+For infinite $ S $ the formula $ |\mathcal{P}(S)| = 2^{|S|} $ still holds — and *Cantor's theorem* (§$ 8.3 $) asserts that $ 2^{|S|} > |S| $ even in the infinite case, which is the seed of the theory of higher cardinalities.

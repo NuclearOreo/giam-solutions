@@ -1,0 +1,79 @@
+.docname {Solution — GIAM 7.1 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.1 Problem 5
+
+## Problem
+
+The *"Cryptographer's alphabet"* is used to supply small examples in coding and cryptography. It consists of the first $ 6 $ letters, $ \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $. How many "words" of length up to $ 6 $ can be made with this alphabet? (A word need not actually be a word in English: for example both "$ \mathtt{fed} $" and "$ \mathtt{dfe} $" would be words in the sense we are using the term.)
+
+## Setup
+
+A *word of length $ \ell $* over the alphabet $ \Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}, \mathtt{e}, \mathtt{f}\} $ is an ordered $ \ell $-tuple of letters from $ \Sigma $, *with repetition allowed*. Two consequences flow from this:
+
+- **Order matters.** "$ \mathtt{fed} $" and "$ \mathtt{dfe} $" are distinct length-$ 3 $ words, exactly as the problem statement emphasizes.
+- **Repetition is allowed.** "$ \mathtt{aaa} $" is a valid length-$ 3 $ word, even though only one distinct letter appears.
+
+We interpret *"length up to $ 6 $"* as $ \ell \in \{1, 2, 3, 4, 5, 6\} $ — i.e., the empty word is excluded — and revisit the alternative reading in the remark.
+
+## Count
+
+For each fixed length $ \ell $, the multiplication principle gives $ 6^\ell $ words: each of the $ \ell $ positions in the tuple is filled independently by one of the $ 6 $ letters of $ \Sigma $.
+
+| Length $ \ell $ | Number of words $ 6^\ell $ |
+| :---:           | :---:                       |
+| $ 1 $           | $ 6 $                       |
+| $ 2 $           | $ 36 $                      |
+| $ 3 $           | $ 216 $                     |
+| $ 4 $           | $ 1{,}296 $                 |
+| $ 5 $           | $ 7{,}776 $                 |
+| $ 6 $           | $ 46{,}656 $                |
+
+Words of different lengths are *disjoint* — a single word has exactly one length — so the addition principle applies:
+
+$$$
+\#\text{words of length up to } 6 \;=\; \sum_{\ell=1}^{6} 6^\ell \;=\; 6 + 36 + 216 + 1{,}296 + 7{,}776 + 46{,}656 \;=\; \boxed{55{,}986}.
+$$$
+
+## Closed Form via Geometric Series
+
+The sum is a finite geometric series with first term $ 6 $, common ratio $ 6 $, and $ 6 $ terms. The standard formula $ \sum_{\ell=1}^{N} r^\ell = r \cdot \dfrac{r^N - 1}{r - 1} $ gives
+
+$$$
+\sum_{\ell=1}^{6} 6^\ell \;=\; \frac{6 \cdot (6^6 - 1)}{6 - 1} \;=\; \frac{6 \cdot 46{,}655}{5} \;=\; \frac{279{,}930}{5} \;=\; 55{,}986.
+$$$
+
+Equivalently,
+
+$$$
+\sum_{\ell=1}^{6} 6^\ell \;=\; \frac{6^7 - 6}{5} \;=\; \frac{279{,}936 - 6}{5} \;=\; 55{,}986,
+$$$
+
+using $ 6^7 = 279{,}936 $. Both forms agree with the term-by-term tally.
+
+## Remark — The Empty Word
+
+If one prefers to include the empty word $ \varepsilon $ (the unique word of length $ 0 $) — common in formal language theory and many cryptographic contexts — the count increases by exactly $ 1 $:
+
+$$$
+\sum_{\ell=0}^{6} 6^\ell \;=\; 1 + 55{,}986 \;=\; 55{,}987 \;=\; \frac{6^7 - 1}{5}.
+$$$
+
+This is the standard $ \sum_{\ell = 0}^{N} r^\ell = \dfrac{r^{N+1} - 1}{r - 1} $ form of the geometric sum. The natural English reading of "*words that can be made*" — and the examples "$ \mathtt{fed} $", "$ \mathtt{dfe} $" given in the problem statement — point to nonempty words, so we report $ 55{,}986 $ as the primary answer.
+
+## A Different Decomposition (Cross-Check)
+
+The total $ 55{,}986 $ can also be obtained without invoking the geometric series, by separating the longest length out:
+
+$$$
+\sum_{\ell=1}^{6} 6^\ell \;=\; 6^6 + \sum_{\ell=1}^{5} 6^\ell \;=\; 46{,}656 + 9{,}330 \;=\; 55{,}986,
+$$$
+
+where the sub-sum $ \sum_{\ell=1}^{5} 6^\ell = 6 + 36 + 216 + 1{,}296 + 7{,}776 = 9{,}330 $ counts all shorter words. The length-$ 6 $ stratum alone already accounts for over $ 83\% $ of all words of length up to $ 6 $ — a useful intuition that the count is dominated by the maximum length when the alphabet is bigger than $ 1 $.
