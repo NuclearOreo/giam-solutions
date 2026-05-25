@@ -1,0 +1,105 @@
+.docname {Solution — GIAM 7.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 2
+
+## Problem
+
+Complete the proof of the fact that "Every graph has an even number of odd nodes."
+
+## Setup and Notation
+
+Let $ G = (V, E) $ be a finite (multi-)graph: $ V $ is its vertex set ("nodes") and $ E $ its multiset of edges (parallel edges and self-loops allowed). For each $ v \in V $, the *degree* $ \deg(v) $ is the number of edge–incidences at $ v $, where a self-loop $ \{v, v\} $ counts as $ 2 $ incidences at $ v $ (entering and leaving).
+
+A vertex is called *odd* if $ \deg(v) $ is odd, and *even* otherwise. Write
+
+$$$
+V_{\mathrm{odd}} \;=\; \{\, v \in V \;:\; \deg(v) \text{ is odd} \,\}, \qquad V_{\mathrm{even}} \;=\; V \setminus V_{\mathrm{odd}}.
+$$$
+
+**Claim.** $ |V_{\mathrm{odd}}| $ is even.
+
+The proof has three small steps: a *degree-sum identity*, a *parity decomposition* of that sum, and the *parity of a sum of odd numbers*.
+
+## Step 1 — The Degree-Sum Identity
+
+$$$
+\sum_{v \in V} \deg(v) \;=\; 2 \, |E|.
+$$$
+
+**Why.** Count *incidences* — that is, ordered pairs $ (e, v) $ such that $ v $ is an endpoint of $ e $ — in two ways:
+
+- **By vertex.** Each $ v \in V $ is incident to exactly $ \deg(v) $ edges (counted with multiplicity for self-loops), so summing over vertices gives $ \sum_{v} \deg(v) $.
+- **By edge.** Each edge has exactly $ 2 $ incidences: a non-loop edge $ \{u, w\} $ with $ u \ne w $ contributes one incidence at $ u $ and one at $ w $; a self-loop $ \{v, v\} $ contributes two incidences at $ v $. Summing over edges gives $ 2 \, |E| $.
+
+The two counts equal the same quantity, which proves the identity. $ \square $
+
+This identity already appeared informally in Chapter $ 7.1 $ Problem $ 9 $ (the handshake count $ \binom{n}{2} $), where it was used in the form "$ n(n-1) = 2 \cdot \#\text{handshakes} $".
+
+## Step 2 — Decompose the Sum by Parity
+
+Partition the sum from Step $ 1 $ along the partition $ V = V_{\mathrm{even}} \sqcup V_{\mathrm{odd}} $:
+
+$$$
+\underbrace{\sum_{v \in V} \deg(v)}_{= \, 2 |E| \,\text{ (Step 1)}} \;=\; \sum_{v \in V_{\mathrm{even}}} \deg(v) \;+\; \sum_{v \in V_{\mathrm{odd}}} \deg(v).
+$$$
+
+Two observations:
+
+- The left-hand side $ 2 |E| $ is **even** — it is literally twice an integer.
+- The first sum on the right is a sum of *even* numbers, hence also **even**.
+
+Subtracting the second observation from the first, the remaining sum on the right satisfies
+
+$$$
+\sum_{v \in V_{\mathrm{odd}}} \deg(v) \;=\; \underbrace{2|E|}_{\text{even}} \;-\; \underbrace{\sum_{v \in V_{\mathrm{even}}} \deg(v)}_{\text{even}} \;\;\Longrightarrow\;\; \sum_{v \in V_{\mathrm{odd}}} \deg(v) \;\text{ is even.}
+$$$
+
+## Step 3 — Parity of a Sum of Odd Numbers
+
+**Lemma.** A sum of $ k $ odd integers is even iff $ k $ is even.
+
+*Proof.* Every odd integer is $ \equiv 1 \pmod 2 $. Reducing mod $ 2 $, a sum of $ k $ such integers is $ \equiv \underbrace{1 + 1 + \cdots + 1}_{k} = k \pmod 2 $. So the sum is even iff $ k \equiv 0 \pmod 2 $. $ \square $
+
+Applying this lemma to $ \sum_{v \in V_{\mathrm{odd}}} \deg(v) $ — a sum of $ |V_{\mathrm{odd}}| $ odd numbers — and combining with Step $ 2 $:
+
+$$$
+\underbrace{\sum_{v \in V_{\mathrm{odd}}} \deg(v)}_{\text{even, by Step 2}} \;\equiv\; |V_{\mathrm{odd}}| \pmod 2 \;\;\Longrightarrow\;\; |V_{\mathrm{odd}}| \;\text{ is even.}
+$$$
+
+This is exactly the claim. $ \blacksquare $
+
+## Sanity Checks on Small Graphs
+
+| Graph                                    | Degree sequence                          | $ V_{\mathrm{odd}} $       | $ |V_{\mathrm{odd}}| $ |
+| :---:                                    | :---                                     | :---                       | :---:                  |
+| Empty graph on $ n $ vertices            | $ 0, 0, \ldots, 0 $                       | $ \emptyset $              | $ 0 $                  |
+| Path $ P_3 $ (three nodes in a row)      | $ 1, 2, 1 $                              | endpoints                  | $ 2 $                  |
+| Triangle $ K_3 $                         | $ 2, 2, 2 $                              | $ \emptyset $              | $ 0 $                  |
+| Complete graph $ K_4 $                   | $ 3, 3, 3, 3 $                           | all four                   | $ 4 $                  |
+| Complete graph $ K_5 $                   | $ 4, 4, 4, 4, 4 $                        | $ \emptyset $              | $ 0 $                  |
+| Bipartite $ K_{3,3} $                    | $ 3, 3, 3, 3, 3, 3 $                     | all six                    | $ 6 $                  |
+| Königsberg bridge graph                  | $ 3, 3, 3, 5 $                           | all four                   | $ 4 $                  |
+
+Each entry has $ |V_{\mathrm{odd}}| $ even — including Königsberg, which has *four* odd vertices, ruling out both an Eulerian circuit (needs $ 0 $) and an Eulerian path (needs exactly $ 2 $). The lemma is consistent with — and indeed *forces* — the Königsberg impossibility.
+
+## Remark — The "Handshaking" Interpretation
+
+The result is often stated colloquially as the **handshaking lemma**:
+
+> *In any gathering, the number of people who have shaken hands an odd number of times is even.*
+
+The dictionary: people are vertices, handshake events are edges, and the number of handshakes a person has done is their degree. The identity $ \sum \deg(v) = 2|E| $ is the formal statement that "each handshake is felt by exactly two hands."
+
+This is the *structural* counterpart of the *quantitative* handshake count from Chapter $ 7.1 $ Problem $ 9 $ (which computed $ \binom{n}{2} $ total handshakes in a full meet-and-greet). Both follow from the same degree-sum identity — used here for its parity, there for its magnitude.
+
+## Remark — Why "Complete the Proof"
+
+The textbook poses this exercise as *completing* the proof, presumably because the heart of the argument is the degree-sum identity (Step $ 1 $), which the section establishes as motivation. Steps $ 2 $ and $ 3 $ — partitioning by parity and noting that a sum of $ k $ odd numbers has parity $ k $ — are what remains to be written down explicitly. The argument's elegance is in how a quantitative identity ($ \sum \deg(v) = 2|E| $) is parlayed into a qualitative parity result ($ |V_{\mathrm{odd}}| $ is even) via a simple counting-mod-$ 2 $ observation.

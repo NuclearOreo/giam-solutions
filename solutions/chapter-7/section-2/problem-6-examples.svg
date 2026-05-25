@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="620" height="320" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="620" height="320" fill="white"/>
+
+  <!-- Left panel: Bowtie (Eulerian) -->
+  <g transform="translate(60, 50)">
+    <text x="100" y="-20" text-anchor="middle" font-size="15" font-style="italic" fill="#222">Eulerian: bowtie graph</text>
+
+    <!-- Edges -->
+    <g stroke="#222" stroke-width="2" fill="none">
+      <line x1="30" y1="20" x2="170" y2="20"/>
+      <line x1="30" y1="20" x2="100" y2="110"/>
+      <line x1="170" y1="20" x2="100" y2="110"/>
+      <line x1="100" y1="110" x2="30" y2="200"/>
+      <line x1="100" y1="110" x2="170" y2="200"/>
+      <line x1="30" y1="200" x2="170" y2="200"/>
+    </g>
+
+    <!-- Vertices -->
+    <g fill="#222">
+      <circle cx="30" cy="20" r="7"/>
+      <circle cx="170" cy="20" r="7"/>
+      <circle cx="100" cy="110" r="7"/>
+      <circle cx="30" cy="200" r="7"/>
+      <circle cx="170" cy="200" r="7"/>
+    </g>
+
+    <!-- Labels -->
+    <g font-size="14" font-style="italic" fill="#222">
+      <text x="13" y="15">A</text>
+      <text x="180" y="15">B</text>
+      <text x="113" y="118">C</text>
+      <text x="13" y="220">D</text>
+      <text x="180" y="220">E</text>
+    </g>
+
+    <text x="100" y="245" text-anchor="middle" font-size="12" fill="#222">degrees: 2, 2, 4, 2, 2 — all even ✓</text>
+  </g>
+
+  <!-- Right panel: K_4 (not Eulerian) -->
+  <g transform="translate(370, 50)">
+    <text x="100" y="-20" text-anchor="middle" font-size="15" font-style="italic" fill="#222">Not Eulerian: K₄</text>
+
+    <!-- Edges -->
+    <g stroke="#222" stroke-width="2" fill="none">
+      <line x1="100" y1="20" x2="180" y2="110"/>
+      <line x1="100" y1="20" x2="100" y2="200"/>
+      <line x1="100" y1="20" x2="20" y2="110"/>
+      <line x1="180" y1="110" x2="100" y2="200"/>
+      <line x1="180" y1="110" x2="20" y2="110"/>
+      <line x1="100" y1="200" x2="20" y2="110"/>
+    </g>
+
+    <!-- Vertices -->
+    <g fill="#222">
+      <circle cx="100" cy="20" r="7"/>
+      <circle cx="180" cy="110" r="7"/>
+      <circle cx="100" cy="200" r="7"/>
+      <circle cx="20" cy="110" r="7"/>
+    </g>
+
+    <!-- Labels -->
+    <g font-size="14" font-style="italic" fill="#222">
+      <text x="93" y="14">P</text>
+      <text x="190" y="115">Q</text>
+      <text x="93" y="220">R</text>
+      <text x="0" y="115">S</text>
+    </g>
+
+    <text x="100" y="245" text-anchor="middle" font-size="12" fill="#cc0000">degrees: 3, 3, 3, 3 — all odd ✗</text>
+  </g>
+</svg>

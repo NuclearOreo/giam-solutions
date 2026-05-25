@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 380" width="380" height="380" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="380" height="380" fill="white"/>
+
+  <g transform="translate(40, 40)">
+    <!-- Light background -->
+    <rect width="300" height="300" fill="#f0d9b5"/>
+
+    <!-- Dark squares: where (i+j) even, 1-indexed (or (i+j) even, 0-indexed; same set) -->
+    <g fill="#b58863">
+      <rect x="0" y="0" width="60" height="60"/>
+      <rect x="120" y="0" width="60" height="60"/>
+      <rect x="240" y="0" width="60" height="60"/>
+      <rect x="60" y="60" width="60" height="60"/>
+      <rect x="180" y="60" width="60" height="60"/>
+      <rect x="0" y="120" width="60" height="60"/>
+      <rect x="120" y="120" width="60" height="60"/>
+      <rect x="240" y="120" width="60" height="60"/>
+      <rect x="60" y="180" width="60" height="60"/>
+      <rect x="180" y="180" width="60" height="60"/>
+      <rect x="0" y="240" width="60" height="60"/>
+      <rect x="120" y="240" width="60" height="60"/>
+      <rect x="240" y="240" width="60" height="60"/>
+    </g>
+
+    <!-- Corner highlights: red circles around all four corners -->
+    <g stroke="#cc0000" stroke-width="4" fill="none">
+      <circle cx="30" cy="30" r="22"/>
+      <circle cx="270" cy="30" r="22"/>
+      <circle cx="30" cy="270" r="22"/>
+      <circle cx="270" cy="270" r="22"/>
+    </g>
+
+    <!-- Outer border -->
+    <rect x="0" y="0" width="300" height="300" fill="none" stroke="#222" stroke-width="2.5"/>
+  </g>
+</svg>

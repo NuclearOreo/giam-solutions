@@ -1,0 +1,152 @@
+.docname {Solution — GIAM 7.2 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 9
+
+## Problem
+
+A *magic hexagon of order 2* would consist of filling-in the numbers from $ 1 $ to $ 7 $ in a hexagonal array of $ 7 $ cells. The magic condition means that each of the $ 9 $ "lines" of adjacent hexagons would have the same sum. **Is this possible?**
+
+## Setup
+
+Label the seven cells $ A, B, C, D, E, F, G $ as in the figure, with $ D $ at the center and the other six cells surrounding it.
+
+!(40%)[The seven cells of an order-2 hexagonal array, labeled A–G with D at center](problem-9-layout.svg "The hexagonal array of order 2: seven cells arranged as 2-3-2 rows, with D at the center surrounded by the six outer cells A, B, C, E, F, G.")
+
+## Cataloguing the 9 Lines
+
+A "line" is a maximal straight row of adjacent hexagons along one of the three hexagonal axes. Each axis contains $ 3 $ lines: a *long* line of $ 3 $ cells through the center, plus two flanking *short* lines of $ 2 $ cells each.
+
+| Axis              | Short line  | Long line (through $ D $) | Short line  |
+| :---              | :---:       | :---:                     | :---:       |
+| Horizontal        | $ \{A, B\} $ | $ \{C, D, E\} $          | $ \{F, G\} $ |
+| First diagonal    | $ \{C, F\} $ | $ \{A, D, G\} $          | $ \{B, E\} $ |
+| Second diagonal   | $ \{A, C\} $ | $ \{B, D, F\} $          | $ \{E, G\} $ |
+
+That gives $ 3 + 6 = 9 $ lines:
+
+- **Three length-3 lines** all pass through the center $ D $.
+- **Six length-2 lines** sit on the perimeter and avoid $ D $.
+
+## A Useful Cell-Incidence Count
+
+Each cell lies in exactly $ 3 $ lines:
+
+| Cell  | Lines containing it                                       | Count |
+| :---: | :---                                                      | :---: |
+| $ A $ | $ \{A, B\},\, \{A, D, G\},\, \{A, C\} $                    | $ 3 $ |
+| $ B $ | $ \{A, B\},\, \{B, E\},\, \{B, D, F\} $                    | $ 3 $ |
+| $ C $ | $ \{C, D, E\},\, \{C, F\},\, \{A, C\} $                    | $ 3 $ |
+| $ D $ | $ \{C, D, E\},\, \{A, D, G\},\, \{B, D, F\} $              | $ 3 $ |
+| $ E $ | $ \{C, D, E\},\, \{B, E\},\, \{E, G\} $                    | $ 3 $ |
+| $ F $ | $ \{F, G\},\, \{C, F\},\, \{B, D, F\} $                    | $ 3 $ |
+| $ G $ | $ \{F, G\},\, \{A, D, G\},\, \{E, G\} $                    | $ 3 $ |
+
+The center $ D $ sits on all three long lines (and no short lines). Every outer cell sits on $ 1 $ long line and $ 2 $ short lines. Either way, each cell is on exactly $ 3 $ lines.
+
+## Main Argument — A Single Counting Identity
+
+Suppose, for contradiction, that a magic hexagon of order $ 2 $ exists, and let $ S $ be the common line-sum. Compute the total
+
+$$$
+T \;=\; \sum_{\text{line } \ell} \;\sum_{x \in \ell} (\text{value at cell } x)
+$$$
+
+in two ways.
+
+**By lines.** There are $ 9 $ lines, each summing to $ S $, so
+
+$$$
+T \;=\; 9 S.
+$$$
+
+**By cells.** Each cell's value is counted once for every line containing it, i.e., exactly $ 3 $ times (by the table above). The sum of cell values is $ 1 + 2 + \cdots + 7 = 28 $. So
+
+$$$
+T \;=\; 3 \cdot 28 \;=\; 84.
+$$$
+
+Equating the two expressions for $ T $:
+
+$$$
+9 S \;=\; 84 \;\;\Longrightarrow\;\; S \;=\; \frac{84}{9} \;=\; \frac{28}{3}.
+$$$
+
+But $ S $ is a sum of integers (each entry is a positive integer from $ \{1, 2, \ldots, 7\} $), so $ S $ must itself be an integer. Since $ 28/3 \notin \mathbb{Z} $, this is a contradiction.
+
+**Therefore no magic hexagon of order $ 2 $ exists.** $ \blacksquare $
+
+## Alternative Proof — Long Versus Short Lines
+
+The conclusion can also be reached by analyzing the long and short lines separately. Sum over the $ 3 $ long lines: every long line passes through $ D $, so $ D $ is counted $ 3 $ times and each outer cell once.
+
+$$$
+3 S \;=\; 3 D + \sum_{\text{outer}} \text{value} \;=\; 3 D + (28 - D) \;=\; 28 + 2 D.
+$$$
+
+Sum over the $ 6 $ short lines: no short line touches $ D $, and each outer cell sits on exactly $ 2 $ short lines.
+
+$$$
+6 S \;=\; 2 \sum_{\text{outer}} \text{value} \;=\; 2 (28 - D).
+$$$
+
+Dividing the second by $ 2 $:
+
+$$$
+3 S \;=\; 28 - D.
+$$$
+
+Both expressions equal $ 3S $, so $ 28 + 2D = 28 - D $, hence $ 3D = 0 $, hence $ D = 0 $. Impossible, since $ D \in \{1, 2, \ldots, 7\} $. $ \blacksquare $
+
+(The first proof's $ S = 28/3 $ comes out as the *average* of these two expressions: $ S = (28 + 2D)/3 $ at $ D = 0 $ gives $ 28/3 $, and indeed $ 9 \cdot 28/3 = 84 = 3 \cdot 28 $.)
+
+## Why the Obstruction Is Robust
+
+The argument hinges on three numerical facts:
+
+1. The sum of all entries is $ 28 $.
+2. Each cell sits on exactly $ 3 $ lines.
+3. There are exactly $ 9 $ lines.
+
+The contradiction comes from $ 9 \nmid 3 \cdot 28 $. Equivalently, $ 28 \not\equiv 0 \pmod 3 $ (since $ 9 = 3 \cdot 3 $ and the factor of $ 3 $ in the numerator from cell-incidence is absorbed). Any alternative set of $ 7 $ distinct integers with the same property "fills in" would face the same divisibility obstruction unless its sum is divisible by $ 3 $.
+
+For the set $ \{1, \ldots, 7\} $: $ 28 \equiv 1 \pmod 3 $, and $ 28 \ne 0 \pmod 3 $. So no magic hexagon.
+
+## Remarks — Magic Hexagons of Other Orders
+
+A magic hexagon of order $ n $ has $ N = 3 n^2 - 3 n + 1 $ cells arranged in $ 2 n - 1 $ horizontal rows, with line-lengths varying from $ n $ (at the edges) to $ 2 n - 1 $ (through the center) and back to $ n $. There are $ 3 (2n - 1) $ lines in total, and each cell still sits on exactly $ 3 $ lines (one per axis).
+
+By the same cell-incidence argument as above:
+
+$$$
+3 (2n-1) \cdot S \;=\; 3 \cdot \frac{N (N + 1)}{2}, \qquad \text{so} \qquad S \;=\; \frac{N (N + 1)}{2 (2n - 1)}.
+$$$
+
+For $ S $ to be an integer is a *necessary* condition. The table for small $ n $:
+
+| $ n $ | $ N $        | $ N(N+1) $ | $ 2(2n-1) $ | $ S $ (if integer)        | Magic hexagon exists?                  |
+| :---: | :---:        | :---:      | :---:       | :---:                     | :---:                                  |
+| $ 1 $ | $ 1 $        | $ 2 $      | $ 2 $       | $ 1 $                     | trivially (1 cell)                     |
+| $ 2 $ | $ 7 $        | $ 56 $     | $ 6 $       | $ 28/3 $ (not integer)    | **No** — this problem                  |
+| $ 3 $ | $ 19 $       | $ 380 $    | $ 10 $      | $ 38 $                    | **Yes, and unique** (Adams, $ 1910 $)  |
+| $ 4 $ | $ 37 $       | $ 1406 $   | $ 14 $      | $ 1406/14 $ (not integer) | No                                     |
+| $ 5 $ | $ 61 $       | $ 3782 $   | $ 18 $      | not integer               | No                                     |
+
+So integer-arithmetic alone rules out $ n = 2, 4, 5, 6, \ldots $ for most cases (one has to chase the divisibility carefully). The order-$ 3 $ magic hexagon, discovered by C. W. Adams in $ 1910 $, is the *unique* nontrivial magic hexagon up to rotation and reflection — each of its $ 15 $ lines sums to $ 38 $.
+
+## A Curious Fact
+
+The arithmetic identity $ 9 S = 3 \cdot 28 $ in our proof can be read as: *if* a magic hexagon of order $ 2 $ existed, the magic constant would be three times the average cell value $ \bar{c} = 28/7 = 4 $:
+
+$$$
+S \;=\; \frac{3 \cdot \text{sum}}{9} \;=\; \frac{\text{sum}}{3} \;=\; 3 \bar{c} \cdot \frac{7}{9}.
+$$$
+
+This is the natural prediction since each line is a length-$ 2 $ or length-$ 3 $ "sample" of the cells. The trouble is that the *integer count* doesn't quite cooperate: $ 9 \nmid 3 \cdot 28 $. By contrast, for the order-$ 3 $ case, $ 45 \mid 3 \cdot 190 = 570 $, giving $ S = 570/45 = 38 $ neatly.

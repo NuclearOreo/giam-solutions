@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="620" height="320" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="620" height="320" fill="white"/>
+
+  <!-- Left panel: K_4 - one edge (has Eulerian path) -->
+  <g transform="translate(60, 50)">
+    <text x="100" y="-20" text-anchor="middle" font-size="15" font-style="italic" fill="#222">Has Eulerian path: K₄ minus edge RS</text>
+
+    <!-- 5 edges -->
+    <g stroke="#222" stroke-width="2" fill="none">
+      <line x1="100" y1="20" x2="180" y2="110"/>
+      <line x1="100" y1="20" x2="100" y2="200"/>
+      <line x1="100" y1="20" x2="20" y2="110"/>
+      <line x1="180" y1="110" x2="100" y2="200"/>
+      <line x1="180" y1="110" x2="20" y2="110"/>
+    </g>
+
+    <!-- Dashed line indicating the removed edge -->
+    <line x1="100" y1="200" x2="20" y2="110" stroke="#bbb" stroke-width="1.5" stroke-dasharray="5,5"/>
+
+    <!-- Vertices -->
+    <g fill="#222">
+      <circle cx="100" cy="20" r="7"/>
+      <circle cx="180" cy="110" r="7"/>
+      <circle cx="100" cy="200" r="7"/>
+      <circle cx="20" cy="110" r="7"/>
+    </g>
+
+    <!-- Labels -->
+    <g font-size="14" font-style="italic" fill="#222">
+      <text x="93" y="14">P</text>
+      <text x="190" y="115">Q</text>
+      <text x="93" y="220">R</text>
+      <text x="0" y="115">S</text>
+    </g>
+
+    <text x="100" y="245" text-anchor="middle" font-size="12" fill="#222">degrees: P=3, Q=3, R=2, S=2 — exactly 2 odd ✓</text>
+  </g>
+
+  <!-- Right panel: K_4 (no Eulerian feature) -->
+  <g transform="translate(370, 50)">
+    <text x="100" y="-20" text-anchor="middle" font-size="15" font-style="italic" fill="#222">No Eulerian path: K₄</text>
+
+    <g stroke="#222" stroke-width="2" fill="none">
+      <line x1="100" y1="20" x2="180" y2="110"/>
+      <line x1="100" y1="20" x2="100" y2="200"/>
+      <line x1="100" y1="20" x2="20" y2="110"/>
+      <line x1="180" y1="110" x2="100" y2="200"/>
+      <line x1="180" y1="110" x2="20" y2="110"/>
+      <line x1="100" y1="200" x2="20" y2="110"/>
+    </g>
+
+    <g fill="#222">
+      <circle cx="100" cy="20" r="7"/>
+      <circle cx="180" cy="110" r="7"/>
+      <circle cx="100" cy="200" r="7"/>
+      <circle cx="20" cy="110" r="7"/>
+    </g>
+
+    <g font-size="14" font-style="italic" fill="#222">
+      <text x="93" y="14">P</text>
+      <text x="190" y="115">Q</text>
+      <text x="93" y="220">R</text>
+      <text x="0" y="115">S</text>
+    </g>
+
+    <text x="100" y="245" text-anchor="middle" font-size="12" fill="#cc0000">degrees: 3, 3, 3, 3 — four odd vertices ✗</text>
+  </g>
+</svg>

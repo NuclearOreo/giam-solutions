@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="280" height="280" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="280" height="280" fill="white"/>
+
+  <!-- 7 hexagons in 2-3-2 flower layout -->
+  <g stroke="#222" stroke-width="2" fill="white">
+    <!-- A (top-left) -->
+    <polygon points="114,65 140,80 140,110 114,125 88,110 88,80"/>
+    <!-- B (top-right) -->
+    <polygon points="166,65 192,80 192,110 166,125 140,110 140,80"/>
+    <!-- C (mid-left) -->
+    <polygon points="88,110 114,125 114,155 88,170 62,155 62,125"/>
+    <!-- D (center) -->
+    <polygon points="140,110 166,125 166,155 140,170 114,155 114,125"/>
+    <!-- E (mid-right) -->
+    <polygon points="192,110 218,125 218,155 192,170 166,155 166,125"/>
+    <!-- F (bot-left) -->
+    <polygon points="114,155 140,170 140,200 114,215 88,200 88,170"/>
+    <!-- G (bot-right) -->
+    <polygon points="166,155 192,170 192,200 166,215 140,200 140,170"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-size="22" text-anchor="middle" fill="#222" font-style="italic">
+    <text x="114" y="103">A</text>
+    <text x="166" y="103">B</text>
+    <text x="88" y="148">C</text>
+    <text x="140" y="148">D</text>
+    <text x="192" y="148">E</text>
+    <text x="114" y="193">F</text>
+    <text x="166" y="193">G</text>
+  </g>
+</svg>

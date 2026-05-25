@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 540" width="540" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="540" height="540" fill="white"/>
+
+  <defs>
+    <pattern id="checker" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="60" height="60" fill="#f0d9b5"/>
+      <rect x="60" y="0" width="60" height="60" fill="#b58863"/>
+      <rect x="0" y="60" width="60" height="60" fill="#b58863"/>
+      <rect x="60" y="60" width="60" height="60" fill="#f0d9b5"/>
+    </pattern>
+  </defs>
+
+  <g transform="translate(30, 30)">
+    <!-- Checkered chessboard background -->
+    <rect x="0" y="0" width="480" height="480" fill="url(#checker)"/>
+
+    <!-- Removed corners: top-left (1,1) and bottom-right (8,8), both light -->
+    <g>
+      <rect x="0" y="0" width="60" height="60" fill="white" stroke="#222" stroke-width="2.5"/>
+      <line x1="10" y1="10" x2="50" y2="50" stroke="#cc0000" stroke-width="3.5"/>
+      <line x1="50" y1="10" x2="10" y2="50" stroke="#cc0000" stroke-width="3.5"/>
+
+      <rect x="420" y="420" width="60" height="60" fill="white" stroke="#222" stroke-width="2.5"/>
+      <line x1="430" y1="430" x2="470" y2="470" stroke="#cc0000" stroke-width="3.5"/>
+      <line x1="470" y1="430" x2="430" y2="470" stroke="#cc0000" stroke-width="3.5"/>
+    </g>
+
+    <!-- Outer border -->
+    <rect x="0" y="0" width="480" height="480" fill="none" stroke="#222" stroke-width="2.5"/>
+
+    <!-- Column labels (a-h) at the bottom -->
+    <g font-size="13" fill="#222" text-anchor="middle">
+      <text x="30" y="500">a</text>
+      <text x="90" y="500">b</text>
+      <text x="150" y="500">c</text>
+      <text x="210" y="500">d</text>
+      <text x="270" y="500">e</text>
+      <text x="330" y="500">f</text>
+      <text x="390" y="500">g</text>
+      <text x="450" y="500">h</text>
+    </g>
+
+    <!-- Row labels (8-1) on the left -->
+    <g font-size="13" fill="#222" text-anchor="middle">
+      <text x="-15" y="35">8</text>
+      <text x="-15" y="95">7</text>
+      <text x="-15" y="155">6</text>
+      <text x="-15" y="215">5</text>
+      <text x="-15" y="275">4</text>
+      <text x="-15" y="335">3</text>
+      <text x="-15" y="395">2</text>
+      <text x="-15" y="455">1</text>
+    </g>
+  </g>
+</svg>

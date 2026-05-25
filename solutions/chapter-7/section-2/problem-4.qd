@@ -1,0 +1,117 @@
+.docname {Solution — GIAM 7.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 4
+
+## Problem
+
+Prove that, if $ n $ is odd, any $ n \times n $ chessboard with a square the same color as one of its corners pruned can be tiled by dominoes.
+
+## Setup
+
+Index the squares by $ (i, j) $, $ i, j \in \{1, 2, \ldots, n\} $, and color each square according to the parity of $ i + j $:
+
+$$$
+\mathrm{color}(i, j) \;=\; \begin{cases} \text{dark}  & \text{if } i + j \text{ is even,}\\ \text{light} & \text{if } i + j \text{ is odd.} \end{cases}
+$$$
+
+The four corners are at $ (1, 1),\, (1, n),\, (n, 1),\, (n, n) $; their $ i + j $ values are $ 2,\, n+1,\, n+1,\, 2n $. For **odd $ n $**, *all four* of these are even, so **every corner is dark.** (For even $ n $, only the two diagonally-opposite pairs share a color — the situation of Problem $ 3 $.)
+
+!(45%)[All four corners of an odd-side chessboard are the same color](problem-4-setup.svg "A 5×5 chessboard with all four corners circled in red. When n is odd, every corner has i+j even, so all corners share the 'dark' color.")
+
+## Counts
+
+For odd $ n $, the dark squares sit at the $ (i, j) $ with $ i+j $ even — equivalently, $ i $ and $ j $ have the same parity. The numbers of odd and even values in $ \{1, \ldots, n\} $ are $ (n+1)/2 $ and $ (n-1)/2 $ respectively, so
+
+$$$
+|\text{dark}| \;=\; \left(\tfrac{n+1}{2}\right)^2 + \left(\tfrac{n-1}{2}\right)^2 \;=\; \frac{n^2 + 1}{2}, \qquad |\text{light}| \;=\; n^2 - |\text{dark}| \;=\; \frac{n^2 - 1}{2}.
+$$$
+
+So the full board has *one extra dark square*. Removing one dark square $ S = (r, c) $ — the "same color as a corner" — leaves
+
+$$$
+|\text{dark after}| \;=\; \frac{n^2 - 1}{2}, \qquad |\text{light after}| \;=\; \frac{n^2 - 1}{2}.
+$$$
+
+The counts are balanced, which is necessary (Problem $ 3 $) but not by itself sufficient for a tiling. We need an *explicit construction*.
+
+## Construction
+
+Write $ S = (r, c) $ with $ r + c $ even. Since the sum is even, $ r $ and $ c $ have the *same parity*. Two cases.
+
+### Case I — $ r $ and $ c $ both odd
+
+Decompose the board into three horizontal strips meeting along the row of $ S $:
+
+1. **Top strip** — rows $ 1, 2, \ldots, r-1 $. There are $ r - 1 $ rows (*even*, since $ r $ is odd). Pair adjacent rows: $ \{1, 2\}, \{3, 4\}, \ldots, \{r-2, r-1\} $. Each pair is a $ 2 \times n $ rectangle, tileable with $ n $ vertical dominoes.
+
+2. **Row $ r $ minus $ S $** — this row splits at column $ c $ into two pieces:
+   - left piece (columns $ 1, \ldots, c - 1 $): length $ c - 1 $, *even* since $ c $ is odd;
+   - right piece (columns $ c+1, \ldots, n $): length $ n - c $, *even* since $ n, c $ both odd.
+   Tile each piece with horizontal dominoes — $ (c-1)/2 $ on the left, $ (n-c)/2 $ on the right.
+
+3. **Bottom strip** — rows $ r+1, \ldots, n $. There are $ n - r $ rows (*even*, since $ n, r $ both odd). Pair adjacent rows as in step $ 1 $.
+
+Every cell of the board (except $ S $) is covered exactly once. ✓
+
+### Case II — $ r $ and $ c $ both even
+
+For Case II the row decomposition fails ($ r - 1 $ is now *odd*, so rows above $ r $ cannot be paired into $ 2 \times n $ strips). Instead, use a *small block* trick:
+
+1. **Central $ 3 \times 3 $ block** — at rows $ r-1, r, r+1 $ and columns $ c-1, c, c+1 $, with $ S = (r, c) $ as its center. Since $ r $ is even and $ 2 \le r \le n-1 $ (any even index $ r \in \{2, 4, \ldots, n-1\} $ satisfies $ 2 \le r \le n-1 $ automatically, since $ n - 1 $ is even for $ n $ odd), and similarly for $ c $, this block fits inside the board. Tile the block-minus-$ S $ as follows:
+
+   - $ (r-1, c-1) \text{-} (r-1, c) $ horizontal,
+   - $ (r-1, c+1) \text{-} (r,\,c+1) $ vertical,
+   - $ (r, c-1) \text{-} (r+1, c-1) $ vertical,
+   - $ (r+1, c) \text{-} (r+1, c+1) $ horizontal.
+
+   Four dominoes covering all eight cells of the block other than $ S $.
+
+2. **Top strip** — rows $ 1, \ldots, r-2 $, all $ n $ columns. This is an $ (r - 2) \times n $ rectangle. Since $ r $ is even, $ r - 2 $ is *even*; tile each column with $ (r-2)/2 $ vertical dominoes.
+
+3. **Bottom strip** — rows $ r+2, \ldots, n $, all $ n $ columns. Size $ (n - r - 1) \times n $. Since $ n $ is odd and $ r $ is even, $ n - r - 1 $ is *even*; tile each column with vertical dominoes.
+
+4. **Left strip** — rows $ r-1, r, r+1 $, columns $ 1, \ldots, c-2 $. Size $ 3 \times (c - 2) $. Since $ c $ is even, $ c - 2 $ is *even*; tile each row with $ (c-2)/2 $ horizontal dominoes.
+
+5. **Right strip** — rows $ r-1, r, r+1 $, columns $ c+2, \ldots, n $. Size $ 3 \times (n - c - 1) $. Since $ n - c - 1 $ is *even*, tile each row with horizontal dominoes.
+
+The five pieces partition the board minus $ S $:
+
+$$$
+\text{cells covered} \;=\; \underbrace{8}_{\text{block} - S} + \underbrace{(r-2)n}_{\text{top}} + \underbrace{(n-r-1)n}_{\text{bottom}} + \underbrace{3(c-2)}_{\text{left}} + \underbrace{3(n-c-1)}_{\text{right}} \;=\; n^2 - 1,
+$$$
+
+after simplification. ✓
+
+### Why The Two Cases Suffice
+
+Because $ r + c $ is even, $ r $ and $ c $ must have the same parity. Case I (both odd) and Case II (both even) together exhaust the possibilities. Therefore an explicit tiling exists for *every* allowed $ S $. $ \blacksquare $
+
+## Two Worked Examples on a 5×5 Board
+
+!(80%)[Worked tilings for both cases on a 5×5 board](problem-4-tilings.svg "Left (Case I): n=5, S=(3,3); top and bottom row-pairs are tiled vertically, and row 3 splits into two horizontal-domino segments around the removed center. Right (Case II): n=5, S=(2,2); the 3×3 block at rows 1-3, cols 1-3 (minus S) carries four dominoes, with the right 3×2 strip and the bottom 2×5 strip filling the remaining cells.")
+
+For $ n = 5 $:
+
+- **Case I** ($ S = (3, 3) $, the center): $ 5 + 2 + 5 = 12 $ dominoes. The two top rows are five vertical dominoes, row $ 3 $ is two horizontal dominoes spanning columns $ 1 \text{-} 2 $ and $ 4 \text{-} 5 $, and the bottom two rows are again five vertical dominoes.
+
+- **Case II** ($ S = (2, 2) $): $ 4 + 3 + 5 = 12 $ dominoes. The $ 3 \times 3 $ block in the top-left supplies four dominoes around the removed center, the right $ 3 \times 2 $ strip supplies three horizontal dominoes, and the bottom $ 2 \times 5 $ strip supplies five vertical dominoes.
+
+## Edge Case — $ n = 1 $
+
+A $ 1 \times 1 $ board has a single square — necessarily a corner — and that square is dark. "Removing the same color as a corner" *removes* the only square, leaving the empty board. The empty board is vacuously tiled by $ 0 $ dominoes. So the claim holds trivially at $ n = 1 $. (The construction above assumes $ n \ge 3 $ implicitly.)
+
+## Remarks
+
+- **Why the parity of $ n $ matters.** When $ n $ is *even*, the diagonally-opposite corners share a color but the *adjacent* corners do not, so the four corners come in two color pairs. This is exactly Problem $ 3 $ — and removing *one* corner-color square leaves an unbalanced count, just like the mutilated chessboard. The odd-$ n $ case is opposite in flavor: the imbalance is built into the board itself (one extra dark square), and removing a dark square *restores* balance.
+
+- **Gomory's theorem.** For an *even*-side $ n \times n $ board with the natural coloring, removing any *one* dark and any *one* light square leaves a tileable region. The proof uses a Hamiltonian cycle through the cells; in fact, the result of this problem can also be proved via a Hamiltonian-cycle / Hamiltonian-path argument on a suitably modified board, although the explicit "row + small block" construction above is much more elementary.
+
+- **Two cases, one symmetry.** The split into Case I (odd-odd) and Case II (even-even) is not arbitrary: the $ n \times n $ grid graph has a $ \mathbb{Z}/2 \times \mathbb{Z}/2 $-action by row/column parity, and the row-based decomposition is invariant only under the diagonal subgroup. The $ 3 \times 3 $ block in Case II is a small piece of *off-diagonal* symmetry that handles the remaining cases.

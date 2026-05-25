@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 7.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 3
+
+## Problem
+
+Provide an argument as to why an $ 8 \times 8 $ chessboard with two squares pruned from diagonally opposite corners cannot be tiled with dominoes.
+
+## Setup
+
+A standard chessboard is an $ 8 \times 8 $ grid of unit squares, alternately colored *light* and *dark*. Remove two squares at diagonally opposite corners — say the corners $ a 1 $ (bottom-left) and $ h 8 $ (top-right), or equivalently $ a 8 $ (top-left) and $ h 1 $ (bottom-right). We ask whether the remaining $ 62 $-square region can be tiled by $ 1 \times 2 $ *dominoes*, each placed horizontally or vertically, covering two adjacent squares.
+
+!(60%)[Mutilated 8×8 chessboard with two opposite corners removed](problem-3-chessboard.svg "An 8×8 chessboard with two diagonally opposite light squares (top-left a8 and bottom-right h1) removed. The remaining 62 squares contain 32 dark squares and 30 light squares — an imbalance of 2 that obstructs any domino tiling.")
+
+## Two Key Observations
+
+Index each square by its position $ (i, j) $, $ i, j \in \{1, 2, \ldots, 8\} $, and color it according to the parity of $ i + j $:
+
+$$$
+\mathrm{color}(i, j) \;=\; \begin{cases} \text{dark}  & \text{if } i + j \text{ is even,}\\ \text{light} & \text{if } i + j \text{ is odd.} \end{cases}
+$$$
+
+This is the familiar checkerboard coloring; the full $ 8 \times 8 $ board has $ 32 $ dark and $ 32 $ light squares.
+
+### Observation 1 — The Two Removed Corners Share a Color
+
+The four corner squares of the chessboard sit at $ (1,1), (1,8), (8,1), (8,8) $, and the sums $ i + j $ are
+
+$$$
+1 + 1 = 2, \qquad 1 + 8 = 9, \qquad 8 + 1 = 9, \qquad 8 + 8 = 16.
+$$$
+
+So the *diagonally* opposite pairs $ \{(1,1), (8,8)\} $ and $ \{(1,8), (8,1)\} $ each have *matching* $ i+j $ parity — both even or both odd. The pairs across the *anti*-diagonal $ \{(1,1), (8,8)\} $ are both dark; the pairs across the other diagonal $ \{(1,8), (8,1)\} $ are both light.
+
+Either way, **the two corners we remove are the same color.** After removal, one color loses *two* squares while the other loses none. The new counts are
+
+$$$
+30 \text{ squares of the removed-corner color}, \qquad 32 \text{ squares of the other color}.
+$$$
+
+### Observation 2 — Every Domino Covers One Dark and One Light Square
+
+A domino occupies a pair of *adjacent* squares — either $ (i, j) $ and $ (i + 1, j) $ (vertical) or $ (i, j) $ and $ (i, j + 1) $ (horizontal). In either case, the two cells' values of $ i + j $ differ by exactly $ 1 $, so they have opposite parity, hence opposite color.
+
+!(55%)[A domino in either orientation covers one light and one dark square](problem-3-domino.svg "A horizontal or vertical domino on the chessboard always covers exactly one light square and one dark square, because two adjacent cells differ in (i+j) by exactly 1.")
+
+So a tiling of any region by $ N $ dominoes covers exactly $ N $ dark squares and $ N $ light squares — *equal* counts.
+
+## The Argument
+
+Suppose, for contradiction, that the mutilated $ 62 $-square board *could* be tiled by dominoes. Each domino covers $ 2 $ squares, so the tiling uses
+
+$$$
+N \;=\; \frac{62}{2} \;=\; 31
+$$$
+
+dominoes. By Observation $ 2 $, the tiling then covers $ 31 $ dark and $ 31 $ light squares.
+
+But by Observation $ 1 $, the mutilated board contains $ 30 $ squares of one color and $ 32 $ of the other — neither of which equals $ 31 $.
+
+Contradiction. Hence **no domino tiling of the mutilated board exists.** $ \blacksquare $
+
+## Remark — A Parity Argument in Disguise
+
+The proof is a parity argument at its core: it converts a *quantitative* fact (light–dark imbalance of size $ 2 $) into a *structural* impossibility (no tiling). What looks like a geometric question is really a counting question once the right invariant — the colors of the squares — is identified.
+
+This is also the simplest case of a general principle: in a bipartite graph $ G $ with parts of unequal size, no *perfect matching* exists. Encode the mutilated board as a graph $ G $ whose vertices are the $ 62 $ remaining squares and whose edges connect horizontally or vertically adjacent squares. The dark and light squares form the two parts of a bipartition; a domino tiling is exactly a perfect matching of $ G $. Since the two parts have sizes $ 30 $ and $ 32 $, no perfect matching exists.
+
+## Remark — The Classical Problem
+
+This is the **mutilated chessboard problem**, popularized by Max Black in *Critical Thinking* (1946) and later by Martin Gardner, John McCarthy, and others. It is a touchstone example of how a clever coloring can render an apparently combinatorial-explosive search problem trivial: rather than enumerate possible tilings — there are astronomically many to check or rule out — the coloring argument settles the question in a single line of counting.
+
+The same coloring trick generalizes broadly:
+
+- **Removing two squares of *opposite* colors** *can* sometimes leave a tileable region — and in fact, by *Gomory's theorem*, the result *can always* be tiled provided the two removed squares are of opposite colors.
+- **Other shaped pieces** require richer invariants — e.g., tilings by $ L $-trominoes or $ T $-tetrominoes need finer colorings (sometimes with $ 3 $ or $ 4 $ colors), and the same parity-style impossibility proofs apply.
+
+## A Sharper Restatement
+
+Putting the argument as a one-line lemma: *for any region $ R \subseteq $ chessboard, if $ R $ admits a domino tiling, then $ R $ contains equal numbers of dark and light squares.* The mutilated board fails this necessary condition with strict inequality $ 30 \ne 32 $, so it cannot be tiled.
+
+(The converse — "equal counts imply tileable" — is *false* in general: there are regions with equal dark/light counts that still cannot be tiled. Our problem only needs the necessary direction.)

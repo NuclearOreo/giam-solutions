@@ -1,0 +1,131 @@
+.docname {Solution — GIAM 7.2 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 7
+
+## Problem
+
+State necessary and sufficient conditions for the existence of an *Eulerian path* in a graph.
+
+## Definitions
+
+A finite (multi-)graph $ G = (V, E) $ has an *Eulerian path* if there is an *open* walk — one with distinct endpoints — that traverses every edge of $ G $ exactly once. The contrast with the Eulerian *circuit* of Problem $ 6 $ is the openness: here we demand the walk's start and end be different vertices.
+
+## Theorem (Eulerian Path)
+
+**A finite (multi-)graph $ G $ with at least one edge has an Eulerian path from $ u $ to $ v $ (with $ u \ne v $) if and only if both of the following hold:**
+
+$$$
+\begin{aligned}
+\textbf{(C1)} & \quad \text{$ G $ has \textit{exactly two} vertices of odd degree, namely $ u $ and $ v $.}\\
+\textbf{(C2)} & \quad \text{All edges of $ G $ lie in a single connected component.}
+\end{aligned}
+$$$
+
+When $ G $ is connected (so (C2) is automatic) and we ask merely whether *some* Eulerian path exists, the criterion collapses to:
+
+> *A connected graph has an Eulerian path iff exactly two of its vertices have odd degree; the path must run between them.*
+
+Combined with Problem $ 6 $, the full picture for a connected graph with $ \ge 1 $ edge is:
+
+| # odd-degree vertices | Eulerian feature                          |
+| :---:                 | :---                                      |
+| $ 0 $                 | Eulerian circuit (closed walk)            |
+| $ 2 $                 | Eulerian path (open, between the two odd) |
+| $ 4, 6, 8, \ldots $   | Neither                                   |
+
+(Counts other than $ 0, 2, 4, \ldots $ are impossible by Problem $ 2 $ — the number of odd-degree vertices is always even.)
+
+## Proof of Necessity ($ \Rightarrow $)
+
+Suppose $ G $ has an Eulerian path $ P $ from $ u $ to $ v $ with $ u \ne v $.
+
+**Even degrees at interior vertices.** Fix any vertex $ w \notin \{u, v\} $. Each visit by $ P $ to $ w $ uses two distinct edges — one to enter and one to leave — and these incidences are paired up by the visits. Since $ P $ uses every edge of $ G $ exactly once, the edges at $ w $ are exactly the paired-up ones from the visits, so $ \deg(w) $ is even.
+
+**Odd degrees at the endpoints.** Now consider $ u $ (the start). The path leaves $ u $ once at the outset, then makes some number $ k \ge 0 $ of "visits" to $ u $ in the interior (each a pair: enter + leave). The total edges used at $ u $ is
+
+$$$
+1 \;+\; 2k,
+$$$
+
+which is *odd*. The same argument for $ v $ (using the *terminal* arrival as the unpaired incidence) gives $ \deg(v) $ odd.
+
+So the odd-degree vertices of $ G $ are *exactly* $ \{u, v\} $ — establishing (C1).
+
+**Edge-connectivity (C2).** A walk cannot jump between components: every two consecutive edges of $ P $ share a vertex, so all edges of $ P $ lie in a single connected component. Since $ P $ uses every edge, all edges of $ G $ share one component. $ \square $
+
+## Proof of Sufficiency ($ \Leftarrow $) — The Phantom-Edge Trick
+
+Suppose (C1) and (C2) hold, with $ u, v $ the two odd-degree vertices of $ G $. We reduce to the Eulerian-circuit theorem of Problem $ 6 $.
+
+**Step 1 — Augment $ G $ by a phantom edge.** Build a new graph $ G' = G + e_{uv} $ by adjoining a single new edge $ e_{uv} $ between $ u $ and $ v $. (Even if $ G $ already has edges between $ u $ and $ v $, simply add one more, parallel to the others.) In $ G' $:
+
+- $ \deg_{G'}(u) = \deg_G(u) + 1 $: was odd, now even.
+- $ \deg_{G'}(v) = \deg_G(v) + 1 $: was odd, now even.
+- All other vertices have unchanged degree, still even.
+- Connectivity carries over: adding an edge to a connected graph keeps it connected.
+
+So $ G' $ satisfies the hypotheses of Problem $ 6 $'s theorem (all even degrees, edge-connected).
+
+**Step 2 — Get an Eulerian circuit of $ G' $.** By Euler's theorem (Problem $ 6 $), $ G' $ has an Eulerian circuit $ C $. The circuit traverses every edge of $ G' $ exactly once — including the phantom edge $ e_{uv} $.
+
+**Step 3 — Rotate so $ e_{uv} $ is last.** A circuit can be re-parameterized to start at any of its edges; in particular, choose the parametrization so that $ e_{uv} $ is the *last* edge traversed. The circuit now looks like
+
+$$$
+v_0 \;\xrightarrow{e_1}\; v_1 \;\xrightarrow{e_2}\; v_2 \;\to\; \cdots \;\to\; v_{k-1} \;\xrightarrow{e_{uv}}\; v_0,
+$$$
+
+where the final edge $ e_k = e_{uv} $ connects $ v_{k-1} $ and $ v_0 $. By definition of $ e_{uv} $, we must have $ \{v_{k-1}, v_0\} = \{u, v\} $ — say WLOG $ v_0 = v $ and $ v_{k-1} = u $.
+
+**Step 4 — Remove the phantom edge.** Delete the last edge $ e_{uv} $ from the circuit. What remains is the open walk
+
+$$$
+v \;\xrightarrow{e_1}\; v_1 \;\xrightarrow{e_2}\; \cdots \;\to\; v_{k-1} \;=\; u
+$$$
+
+— starting at $ v $, ending at $ u $, distinct endpoints — and using every edge of $ G' \setminus \{e_{uv}\} = G $ exactly once.
+
+This is an Eulerian path from $ v $ to $ u $ in $ G $. $ \blacksquare $
+
+## Examples
+
+!(90%)[Eulerian path example (K_4 minus an edge) versus non-example (K_4)](problem-7-examples.svg "Left: K₄ with edge RS removed has degrees (3, 3, 2, 2) — exactly two odd vertices P and Q — so an Eulerian path exists from P to Q. Right: K₄ has degrees (3, 3, 3, 3) — four odd vertices — so no Eulerian path (and no circuit).")
+
+**$ K_4 $ minus one edge** (left). Removing the edge $ RS $ from $ K_4 $ yields a graph on $ \{P, Q, R, S\} $ with five edges $ PQ, PR, PS, QR, QS $ and degree sequence $ (3, 3, 2, 2) $. The two odd-degree vertices are $ P $ and $ Q $, so by the theorem there is an Eulerian path from $ P $ to $ Q $. One such path:
+
+$$$
+P \;\to\; R \;\to\; Q \;\to\; S \;\to\; P \;\to\; Q.
+$$$
+
+Edge check: $ PR, RQ, QS, SP, PQ $ — five edges, all distinct, starting at $ P $ and ending at $ Q $. $ \checkmark $
+
+**$ K_4 $** (right). All four vertices have degree $ 3 $, so there are *four* odd-degree vertices. Since this is more than two, neither an Eulerian path nor an Eulerian circuit exists.
+
+## Königsberg Revisited
+
+Euler's $ 1736 $ analysis of the Königsberg bridge problem actually proved this very theorem (and its circuit-version companion). The Königsberg graph has four vertices (riverbanks plus two islands) of degrees $ 3, 3, 3, 5 $ — *four* odd-degree vertices — so by Problem $ 7 $'s theorem **no Eulerian path exists, even allowing distinct start and end points**. There is therefore no walking tour of Königsberg that crosses every bridge exactly once. This is the precise sense in which Euler "settled" the problem in the negative.
+
+## Remarks
+
+- **Companion to Problem $ 6 $.** The two theorems share a single underlying parity argument:
+
+  $$$
+  \#\text{odd vertices} \;=\; \begin{cases} 0 & \Longleftrightarrow \text{Eulerian circuit} \\ 2 & \Longleftrightarrow \text{Eulerian path (open)} \\ \text{else} & \Longleftrightarrow \text{neither} \end{cases}
+  $$$
+
+  Both proofs of necessity reduce to the visit-pairing observation: interior visits use two edges each; the two endpoints of an open path each contribute one *unpaired* incidence.
+
+- **Phantom-edge construction is algorithmic.** Sufficiency is constructive: given (C1) and (C2), one can compute the Eulerian path in $ O(|E|) $ time via the recipe above — add a phantom edge, run Hierholzer's algorithm on the augmented graph, then delete the phantom edge from the circuit. (Implementation detail: rotate the circuit so the phantom edge sits at one end.)
+
+- **Strict vs. loose convention.** Some authors use "Eulerian path" to mean *any* edge-once walk (circuit or open path). Under that convention, a graph has an Eulerian path iff it has $ 0 $ *or* $ 2 $ odd-degree vertices. The problem here (and the GIAM textbook) reserves "path" for the open case with distinct endpoints.
+
+- **Generalization to digraphs.** For a directed graph, an Eulerian *directed* path from $ u $ to $ v $ exists iff the underlying graph is connected, $ \deg^+(u) - \deg^-(u) = +1 $, $ \deg^+(v) - \deg^-(v) = -1 $, and $ \deg^+(w) = \deg^-(w) $ for every other vertex $ w $.
+
+- **Connection to Problem $ 1 $.** This is exactly the criterion applied to the four graphs in Problem $ 1 $: count the odd-degree vertices, then declare circuit / path / neither accordingly. The theorems of Problems $ 6 $ and $ 7 $ are the *justification* for that procedure.

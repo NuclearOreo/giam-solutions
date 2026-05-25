@@ -1,0 +1,133 @@
+.docname {Solution — GIAM 7.2 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 10
+
+## Problem
+
+Is there a magic hexagon of order $ 3 $?
+
+## Setup
+
+An *order-$ 3 $ magic hexagon* fills the $ 19 $ cells of a hexagonal array (rows of length $ 3, 4, 5, 4, 3 $) with the integers $ 1, 2, \ldots, 19 $, requiring each of the $ 15 $ lines — five in each of the three hexagonal axes, with lengths $ 3, 4, 5, 4, 3 $ within each axis — to sum to the same magic constant $ S $.
+
+**Magic constant.** As in Problem $ 9 $, each cell lies on exactly $ 3 $ lines (one per axis), so
+
+$$$
+3 \cdot \underbrace{\sum_{k=1}^{19} k}_{= 190} \;=\; 15 \cdot S \;\;\Longrightarrow\;\; S \;=\; \frac{3 \cdot 190}{15} \;=\; \frac{190}{5} \;=\; 38.
+$$$
+
+Crucially, $ 5 \mid 190 $, so $ S = 38 $ is an *integer* — the divisibility obstruction that killed order $ 2 $ (where $ 3 \nmid 28 $) is dodged in order $ 3 $.
+
+That's just a *necessary* condition though. Whether an actual arrangement exists is a separate question — and the answer is *yes*.
+
+## Answer: Yes
+
+The magic hexagon of order $ 3 $ exists. The following arrangement, discovered by Clifford W. Adams (early 20th century, refined over many decades), realizes it:
+
+!(45%)[The Adams magic hexagon of order 3](problem-10-hexagon.svg "The Adams magic hexagon of order 3, with values 1 through 19 filling the 19 cells. All 15 lines — five horizontal, five along each diagonal axis — sum to the magic constant 38.")
+
+In row form:
+
+```
+        3   17   18
+     19    7    1   11
+  16    2    5    6    9
+    12    4    8   14
+       10   13   15
+```
+
+## Verification — All 15 Lines Sum to 38
+
+The $ 15 $ lines partition into three groups of five — one group per hexagonal axis. We list every line and its sum.
+
+**Horizontal axis (rows):**
+
+| Line                       | Sum                                    |
+| :---                       | :---:                                  |
+| $ 3, 17, 18 $              | $ 3 + 17 + 18 = 38 $                  |
+| $ 19, 7, 1, 11 $           | $ 19 + 7 + 1 + 11 = 38 $              |
+| $ 16, 2, 5, 6, 9 $         | $ 16 + 2 + 5 + 6 + 9 = 38 $           |
+| $ 12, 4, 8, 14 $           | $ 12 + 4 + 8 + 14 = 38 $              |
+| $ 10, 13, 15 $             | $ 10 + 13 + 15 = 38 $                 |
+
+**NW–SE diagonal axis (constant column-index):**
+
+| Line                       | Sum                                    |
+| :---                       | :---:                                  |
+| $ 16, 12, 10 $             | $ 16 + 12 + 10 = 38 $                 |
+| $ 19, 2, 4, 13 $           | $ 19 + 2 + 4 + 13 = 38 $              |
+| $ 3, 7, 5, 8, 15 $         | $ 3 + 7 + 5 + 8 + 15 = 38 $           |
+| $ 17, 1, 6, 14 $           | $ 17 + 1 + 6 + 14 = 38 $              |
+| $ 18, 11, 9 $              | $ 18 + 11 + 9 = 38 $                  |
+
+**NE–SW diagonal axis (the other diagonal):**
+
+| Line                       | Sum                                    |
+| :---                       | :---:                                  |
+| $ 3, 19, 16 $              | $ 3 + 19 + 16 = 38 $                  |
+| $ 17, 7, 2, 12 $           | $ 17 + 7 + 2 + 12 = 38 $              |
+| $ 18, 1, 5, 4, 10 $        | $ 18 + 1 + 5 + 4 + 10 = 38 $          |
+| $ 11, 6, 8, 13 $           | $ 11 + 6 + 8 + 13 = 38 $              |
+| $ 9, 14, 15 $              | $ 9 + 14 + 15 = 38 $                  |
+
+All fifteen lines sum to $ 38 $. $ \checkmark $
+
+## Remarks — A Marathon Discovery
+
+The order-$ 3 $ magic hexagon has a wonderful provenance:
+
+- **Clifford W. Adams** ($ 1888 \text{–} 1959 $), a retired railroad worker, began toying with hexagonal arrangements as a teenager around $ 1910 $.
+- He worked on the problem on and off for *forty-seven years*, eventually discovering the magic arrangement in $ 1957 $ — and then misplaced his notes.
+- He reconstructed it in $ 1962 $ shortly before his death and mailed it to Martin Gardner.
+- Gardner published it in his *Mathematical Games* column in *Scientific American* in $ 1963 $, popularizing it widely.
+- **C. W. Trigg** proved ($ 1964 $) that Adams' arrangement is *essentially unique*: every magic hexagon of order $ 3 $ is a rotation or reflection of this one (the dihedral group $ D_6 $ of order $ 12 $ acts on the hexagon's symmetries).
+
+## Remarks — The Only Magic Hexagon
+
+It is a celebrated theorem that **orders $ 1 $ and $ 3 $ are the *only* orders for which a magic hexagon exists**. For all other orders $ n \in \{2, 4, 5, 6, 7, \ldots\} $, there is no magic hexagon at all.
+
+For order $ 2 $, Problem $ 9 $ ruled this out by an integer-arithmetic obstruction ($ S = 28/3 $). For $ n \ge 4 $, the magic-constant formula
+
+$$$
+S \;=\; \frac{N(N+1)}{2(2n-1)}, \qquad N = 3n^2 - 3n + 1,
+$$$
+
+fails to be an integer for nearly all $ n $ (one checks: $ S \notin \mathbb{Z} $ for $ n = 2, 4, 5, 6, 7, 8, \ldots $ in a thick range), and even when $ S $ happens to be an integer, no realization exists. Among low $ n $:
+
+| $ n $ | $ N $        | $ S $                    | Magic hexagon exists?            |
+| :---: | :---:        | :---:                    | :---:                            |
+| $ 1 $ | $ 1 $        | $ 1 $                    | trivially (one cell)             |
+| $ 2 $ | $ 7 $        | $ 28/3 $ (not integer)   | **No** (Problem $ 9 $)            |
+| $ 3 $ | $ 19 $       | $ 38 $                   | **Yes — uniquely** (Adams)       |
+| $ 4 $ | $ 37 $       | $ 1406/14 $ (not integer)| No                               |
+| $ 5 $ | $ 61 $       | $ 1891/9 $ (not integer) | No                               |
+| $ 6 $ | $ 91 $       | $ 4186/11 $ (not integer)| No                               |
+| $ 7 $ | $ 127 $      | $ 16256/26 $ (not integer)| No                              |
+
+So Adams' magic hexagon is a singular curiosity: the *only* nontrivial example in an infinite family of would-be magic hexagons.
+
+## Remarks — A Reading of the Magic Constant
+
+The magic constant $ 38 $ enjoys a few neat coincidences:
+
+- $ 38 = 2 \cdot 19 = 2 \cdot (\text{largest cell value}) $. So every line, regardless of length $ 3, 4 $, or $ 5 $, sums to twice the maximum entry.
+- $ 38 = $ average cell value $ \times $ line length in the "average" sense: avg cell value is $ 190 / 19 = 10 $, and "average" line length (weighted by cell membership) is $ (3 \cdot 3 + 4 \cdot 4 + 5 \cdot 5 + 4 \cdot 4 + 3 \cdot 3) / 15 = 76 / 15 \approx 5.07 $. The product matches up to a factor reflecting that "average" line length isn't the same as "line length the cell sits in."
+- The center cell value $ 5 $ and the corner values $ 3, 9, 15, 18, 11 \ldots $ (six corner cells) satisfy specific relationships dictated by the magic constraints — these were the constraints Adams patiently chased for half a century.
+
+## Remarks — Connection to Earlier Sections
+
+The hexagonal magic problem sits in a small but rich family alongside:
+
+- **Magic squares** (Problem $ 8 $): infinitely many orders.
+- **Magic hexagons** (Problems $ 9 $-$ 10 $): exactly *two* orders (trivial $ n=1 $ and Adams' $ n=3 $).
+- The contrast — squares everywhere, hexagons only once — reflects subtle differences in the geometry of the underlying grid. In an $ n \times n $ grid, the number of lines is $ 2n + 2 $ (rows + columns + 2 diagonals), and the divisibility requirement $ 2n+2 \mid 2 \cdot n^2(n^2+1)/2 = n^2(n^2+1) $ is easy to satisfy. The hexagonal grid is far more constrained, and only one nontrivial order works out.
+
+This explains why even though hexagonal magic arrangements *feel* like they should be a natural extension of magic squares, they are dramatically rarer — really, the order-$ 3 $ case is a singular coincidence.

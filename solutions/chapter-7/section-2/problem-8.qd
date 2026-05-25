@@ -1,0 +1,177 @@
+.docname {Solution — GIAM 7.2 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 8
+
+## Problem
+
+Construct magic squares of order $ 4 $ and $ 5 $.
+
+## Definitions and the Magic Constant
+
+A *magic square of order $ n $* is an $ n \times n $ array filled with the integers $ 1, 2, \ldots, n^2 $ such that the sum along every row, every column, and both main diagonals equals the same value $ M_n $, called the *magic constant*.
+
+The value of $ M_n $ is forced by a counting argument. The grand total of all entries is
+
+$$$
+1 + 2 + \cdots + n^2 \;=\; \frac{n^2(n^2 + 1)}{2}.
+$$$
+
+This total is also $ n $ times the row sum (since the $ n $ rows partition the entries), so
+
+$$$
+M_n \;=\; \frac{1}{n} \cdot \frac{n^2(n^2 + 1)}{2} \;=\; \frac{n(n^2 + 1)}{2}.
+$$$
+
+For $ n = 4 $: $ M_4 = 4 \cdot 17 / 2 = 34 $.
+For $ n = 5 $: $ M_5 = 5 \cdot 26 / 2 = 65 $.
+
+We construct each magic square by a *systematic method* rather than ad-hoc trial.
+
+## Order 4 — The Doubly-Even (Diagonal-Swap) Method
+
+When $ n $ is divisible by $ 4 $ (i.e., *doubly even*), the following procedure produces a magic square. We illustrate for $ n = 4 $.
+
+**Step 1 — Fill in row-major order.** Place $ 1 $ through $ 16 $ left-to-right, top-to-bottom:
+
+```
+ 1   2   3   4
+ 5   6   7   8
+ 9  10  11  12
+13  14  15  16
+```
+
+**Step 2 — Mark cells on the two main diagonals.** The main diagonal is $ (1,1), (2,2), (3,3), (4,4) $ and the anti-diagonal is $ (1,4), (2,3), (3,2), (4,1) $; together these are $ 8 $ cells (no overlaps for $ n = 4 $). Marked values: $ 1, 6, 11, 16, 4, 7, 10, 13 $.
+
+**Step 3 — Complement the unmarked cells.** Replace every *unmarked* value $ v $ by its "complement" $ n^2 + 1 - v = 17 - v $:
+
+$$$
+2 \to 15, \quad 3 \to 14, \quad 5 \to 12, \quad 8 \to 9, \quad 9 \to 8, \quad 12 \to 5, \quad 14 \to 3, \quad 15 \to 2.
+$$$
+
+Marked cells keep their original values. The resulting grid is
+
+```
+ 1  15  14   4
+12   6   7   9
+ 8  10  11   5
+13   3   2  16
+```
+
+!(50%)[Order 4 magic square with row and column sums verified equal to 34](problem-8-order4.svg "The constructed order-4 magic square. Every row, every column, and both diagonals sum to the magic constant M₄ = 34.")
+
+**Verification** ($ M_4 = 34 $):
+
+| Line                  | Entries            | Sum                                       |
+| :---                  | :---:              | :---:                                     |
+| Row $ 1 $             | $ 1, 15, 14, 4 $   | $ 34 $                                    |
+| Row $ 2 $             | $ 12, 6, 7, 9 $    | $ 34 $                                    |
+| Row $ 3 $             | $ 8, 10, 11, 5 $   | $ 34 $                                    |
+| Row $ 4 $             | $ 13, 3, 2, 16 $   | $ 34 $                                    |
+| Col $ 1 $             | $ 1, 12, 8, 13 $   | $ 34 $                                    |
+| Col $ 2 $             | $ 15, 6, 10, 3 $   | $ 34 $                                    |
+| Col $ 3 $             | $ 14, 7, 11, 2 $   | $ 34 $                                    |
+| Col $ 4 $             | $ 4, 9, 5, 16 $    | $ 34 $                                    |
+| Main diagonal $ ↘ $   | $ 1, 6, 11, 16 $   | $ 34 $                                    |
+| Anti-diagonal $ ↙ $   | $ 4, 7, 10, 13 $   | $ 34 $                                    |
+
+All ten lines sum to $ 34 $. $ \checkmark $
+
+**Why does the method work?** In the initial $ 1, 2, \ldots, 16 $ grid, every row $ i $ sums to $ 4(4i-3) + 6 = 16i - 6 $, which varies from row to row. The complementation trick balances the imbalance: in each row, the two marked cells (on the diagonals) have *exactly* the same sum as the two unmarked cells (a non-trivial coincidence of the natural numbering pattern). Replacing the unmarked values $ v $ by $ 17 - v $ then makes each row sum to (marked sum) $ + (34 - $ unmarked sum$ ) = (marked sum) - ($ unmarked sum$ ) + 34 = 0 + 34 = 34 $. The same balance holds along columns and diagonals.
+
+## Order 5 — The Siamese Method (de la Loubère)
+
+For *odd* $ n $, the *Siamese method* — published by Simon de la Loubère in $ 1693 $ after his diplomatic mission to Siam — produces a magic square by walking the integers $ 1, 2, \ldots, n^2 $ through the grid by a fixed rule.
+
+**Algorithm.**
+1. Place $ 1 $ in the middle of the top row, position $ (1, \lceil n/2 \rceil) $. For $ n = 5 $, that's $ (1, 3) $.
+2. To place $ k + 1 $: from the current cell, try moving *one row up and one column right*. Wrap around (row $ 0 $ becomes row $ n $; column $ n+1 $ becomes column $ 1 $).
+3. *If the target cell is already filled,* instead move *one row down* from the current cell.
+4. Repeat for $ k = 1, 2, \ldots, n^2 - 1 $.
+
+**Trace for $ n = 5 $.** Selected key steps (a "blocked" step occurs every $ n $ steps):
+
+| $ k $ | Current     | Up-right candidate    | Action      | Place           |
+| :---: | :---:       | :---:                 | :---        | :---            |
+| $ 1 $ | —           | —                     | start       | $ 1 $ at $ (1, 3) $ |
+| $ 2 $ | $ (1, 3) $  | $ (0, 4) → (5, 4) $    | wrap row    | $ 2 $ at $ (5, 4) $ |
+| $ 3 $ | $ (5, 4) $  | $ (4, 5) $             | place       | $ 3 $ at $ (4, 5) $ |
+| $ 4 $ | $ (4, 5) $  | $ (3, 6) → (3, 1) $    | wrap col    | $ 4 $ at $ (3, 1) $ |
+| $ 5 $ | $ (3, 1) $  | $ (2, 2) $             | place       | $ 5 $ at $ (2, 2) $ |
+| $ 6 $ | $ (2, 2) $  | $ (1, 3) $ filled       | **go down** | $ 6 $ at $ (3, 2) $ |
+| $ 7 $–$ 10 $ |  |                       |             | continue diagonal |
+| $ 11 $ | $ (4, 1) $ | $ (3, 2) $ filled       | **go down** | $ 11 $ at $ (5, 1) $ |
+| $ \vdots $ |       |                       |             |                 |
+| $ 25 $ | $ (1, 2) $ | $ (0, 3) → (5, 3) $    | wrap row    | $ 25 $ at $ (5, 3) $ |
+
+Filling out all $ 25 $ steps yields
+
+```
+17  24   1   8  15
+23   5   7  14  16
+ 4   6  13  20  22
+10  12  19  21   3
+11  18  25   2   9
+```
+
+!(55%)[Order 5 magic square with row and column sums verified equal to 65](problem-8-order5.svg "The Siamese construction yields this order-5 magic square. Every row, every column, and both diagonals sum to M₅ = 65.")
+
+**Verification** ($ M_5 = 65 $):
+
+| Line                  | Entries                 | Sum   |
+| :---                  | :---:                   | :---: |
+| Row $ 1 $             | $ 17, 24, 1, 8, 15 $    | $ 65 $ |
+| Row $ 2 $             | $ 23, 5, 7, 14, 16 $    | $ 65 $ |
+| Row $ 3 $             | $ 4, 6, 13, 20, 22 $    | $ 65 $ |
+| Row $ 4 $             | $ 10, 12, 19, 21, 3 $   | $ 65 $ |
+| Row $ 5 $             | $ 11, 18, 25, 2, 9 $    | $ 65 $ |
+| Col $ 1 $             | $ 17, 23, 4, 10, 11 $   | $ 65 $ |
+| Col $ 2 $             | $ 24, 5, 6, 12, 18 $    | $ 65 $ |
+| Col $ 3 $             | $ 1, 7, 13, 19, 25 $    | $ 65 $ |
+| Col $ 4 $             | $ 8, 14, 20, 21, 2 $    | $ 65 $ |
+| Col $ 5 $             | $ 15, 16, 22, 3, 9 $    | $ 65 $ |
+| Main diagonal $ ↘ $   | $ 17, 5, 13, 21, 9 $    | $ 65 $ |
+| Anti-diagonal $ ↙ $   | $ 15, 14, 13, 12, 11 $  | $ 65 $ |
+
+All twelve lines sum to $ 65 $. $ \checkmark $
+
+(The anti-diagonal is particularly satisfying: $ 11, 12, 13, 14, 15 $ — five consecutive integers centered on the middle value $ 13 $, which is itself the median of $ \{1, \ldots, 25\} $.)
+
+**Why does the Siamese method work?** Each entry $ k $ can be written $ k = n \cdot a_k + b_k + 1 $ where $ a_k \in \{0, 1, \ldots, n-1\} $ encodes the "block" and $ b_k \in \{0, 1, \ldots, n-1\} $ encodes the "offset" within the block. The Siamese walk arranges the values so that both the $ a $-coordinates and the $ b $-coordinates form a *Latin square* — that is, each row and each column contains each digit $ \{0, 1, \ldots, n-1\} $ exactly once. The row sum is therefore $ n \cdot (0+1+\cdots+(n-1)) + (0+1+\cdots+(n-1)) + n = n \cdot \frac{n(n-1)}{2} + \frac{n(n-1)}{2} + n = \frac{n(n^2+1)}{2} = M_n $, independent of the row. Columns and diagonals follow the same logic.
+
+## Remark — Dürer's Magic Square
+
+A famous order-$ 4 $ magic square appears in Albrecht Dürer's $ 1514 $ engraving *Melencolia I*:
+
+```
+16   3   2  13
+ 5  10  11   8
+ 9   6   7  12
+ 4  15  14   1
+```
+
+This is not the square produced by the doubly-even method above, but a *different* order-$ 4 $ magic square (there are $ 880 $ essentially distinct order-$ 4 $ magic squares). Dürer's has additional symmetries: every $ 2 \times 2 $ block sums to $ 34 $, opposite cells across the center sum to $ 17 $, and crucially the two middle cells of the bottom row read "$ 15\;14 $" — the year of the engraving.
+
+## Remark — When Do Magic Squares of a Given Order Exist?
+
+Magic squares of every order $ n \ge 3 $ exist:
+
+- $ n = 3 $: a unique magic square (up to rotation and reflection), the *Lo Shu* square attributed to ancient Chinese mathematics. $ M_3 = 15 $.
+- $ n = 4 $: $ 880 $ essentially distinct magic squares; construct via doubly-even method or by hand.
+- $ n = 5 $: many; Siamese method gives one canonical example. $ M_5 = 65 $.
+- $ n = 6 $: the *singly-even* case ($ n \equiv 2 \pmod 4 $); construction is the trickiest, often via *LUX method* or *Conway's method*.
+- $ n \ge 7 $ odd: Siamese method always works.
+- $ n \ge 8 $ doubly-even: doubly-even method generalizes.
+
+The case $ n = 2 $ is the unique impossible case (a $ 2 \times 2 $ magic square would need all four entries equal, which contradicts using each of $ 1, 2, 3, 4 $ exactly once).
+
+## Remark — A Counting Cross-Check
+
+The magic constant formula $ M_n = n(n^2+1)/2 $ can be re-derived from Problem $ 1 $-style counting. The total of all entries is the sum $ \sum_{k=1}^{n^2} k = \binom{n^2 + 1}{2} $ — a fact that also appeared in Chapter $ 7.1 $ Problem $ 9 $ (handshake count). Dividing by $ n $ rows gives $ M_n $. So magic squares are a place where the elementary counting of the previous section reappears in a striking visual form.

@@ -1,0 +1,105 @@
+.docname {Solution — GIAM 7.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.2 Problem 5
+
+## Problem
+
+The five tetrominoes (familiar to players of the video game *Tetris*) are relatives of dominoes made up of four small squares. All together these five tetrominoes contain $ 20 $ squares, so it is conceivable that they could be used to tile a $ 4 \times 5 $ chessboard. Prove that this is actually impossible.
+
+## Setup
+
+A *tiling* uses each of the five tetrominoes exactly once (rotations and reflections allowed), with no overlap and no uncovered cells. The five tetrominoes are shown below — by convention I label them $ \mathbf{I, T, S, L, J} $ — and total $ 4 + 4 + 4 + 4 + 4 = 20 $ cells, the same as the $ 4 \times 5 $ board. So a tiling is at least *numerically* plausible. The argument below shows that no tiling exists, by way of a coloring (parity) invariant.
+
+## The Coloring Argument
+
+Color the $ 4 \times 5 $ board with the standard chess pattern: cell $ (i, j) $ is **dark** if $ i + j $ is even, **light** if $ i + j $ is odd. (Either choice of which parity is dark works the same way — we just need *some* fixed two-coloring.)
+
+!(45%)[The 4×5 chessboard with 10 dark and 10 light cells](problem-5-board.svg "The 4×5 board under the standard chess coloring contains exactly 10 dark squares and 10 light squares.")
+
+The board has $ 4 \cdot 5 = 20 $ cells split evenly: **$ 10 $ dark, $ 10 $ light**. Any tiling must cover *exactly* this many of each color, just as in the mutilated-chessboard argument (Problem $ 3 $).
+
+### Each Tetromino's Dark/Light Signature
+
+The key observation is that the five tetrominoes do *not* all behave the same way under the chess coloring.
+
+!(80%)[Each tetromino chess-colored; I, S, L, J each split 2+2 but T splits 1+3](problem-5-tetrominoes.svg "Chess-colored views of the five tetrominoes I, T, S, L, J. The I, S, L, J tetrominoes always cover 2 dark + 2 light cells (in any orientation); the T tetromino is the unique offender — it always covers 3 of one color and 1 of the other.")
+
+**Claim.** In *any* placement (translation, rotation, reflection) on the chess-colored grid:
+
+- **$ I, S, L, J $** each cover exactly $ 2 $ dark + $ 2 $ light cells.
+- **$ T $** covers either $ 3 $ dark + $ 1 $ light, *or* $ 1 $ dark + $ 3 $ light — never $ 2 + 2 $.
+
+*Why for $ I, S, L, J $.* Each of these four tetrominoes admits a *partition into two dominoes*. (E.g., the $ I $-tetromino is a $ 1 \times 4 $ bar, splittable into two $ 1 \times 2 $ dominoes; the $ L $-tetromino splits as $ (0,0)\text{-}(1,0) $ plus $ (1,1)\text{-}(1,2) $; analogously for $ S $ and $ J $.) Each domino, by adjacency, covers one cell of each color, so two dominoes cover $ 2 + 2 $.
+
+*Why for $ T $.* The $ T $-tetromino has a distinguished "center" cell with three neighbors inside the piece (the cell where the stem meets the bar). All three neighbors of this center sit at chess-coloring parity *opposite* to the center. So the four cells of $ T $ split as
+
+$$$
+\underbrace{1}_{\text{center}} \;+\; \underbrace{3}_{\text{three neighbors of opposite color}}.
+$$$
+
+Equivalently, $ T $ is *not* tileable by two dominoes — any attempted split leaves one pair non-adjacent — which is precisely the obstruction to having a $ 2 + 2 $ chess signature.
+
+## Adding Up the Signatures
+
+A complete tiling of the $ 4 \times 5 $ board with all five tetrominoes must cover *exactly* $ 10 $ dark cells in total. Let $ d_X $ denote the number of dark cells covered by tetromino $ X $ in a hypothetical tiling. Then
+
+$$$
+d_I + d_T + d_S + d_L + d_J \;=\; 10.
+$$$
+
+The claim tells us:
+
+$$$
+d_I \;=\; 2, \qquad d_S \;=\; 2, \qquad d_L \;=\; 2, \qquad d_J \;=\; 2, \qquad d_T \in \{1,\, 3\}.
+$$$
+
+Substituting,
+
+$$$
+2 + d_T + 2 + 2 + 2 \;=\; 10 \;\;\Longleftrightarrow\;\; d_T \;=\; 2.
+$$$
+
+But $ d_T \in \{1, 3\} $, so $ d_T \ne 2 $. Contradiction.
+
+**Hence no tiling of the $ 4 \times 5 $ board by the five tetrominoes exists.** $ \blacksquare $
+
+## Concrete Arithmetic
+
+To restate without unknowns: any tiling would cover
+
+$$$
+\underbrace{4 \cdot (2 + 2)}_{\text{from } I, S, L, J} \;+\; \underbrace{(3 + 1) \text{ or } (1 + 3)}_{\text{from } T} \;=\; (11 + 9) \;\;\text{or}\;\; (9 + 11)
+$$$
+
+dark + light cells. Neither matches the board's $ 10 + 10 $ — the $ T $'s unavoidable imbalance shifts the total by $ \pm 1 $ off the required $ 10 + 10 $, regardless of how $ T $ is oriented.
+
+## Remark — Why the T Is Special
+
+Among the seven *one-sided* tetrominoes ($ I, O, T, L, J, S, Z $), the $ T $ is the **unique** one with a $ 3 + 1 $ chess-coloring signature; all others have $ 2 + 2 $. The reason is structural: a tetromino has a $ 2 + 2 $ signature iff it admits a perfect domino tiling, and only the $ T $ fails this test.
+
+## Remark — A Family of Parity Arguments
+
+This is the third coloring/parity proof in this section's exercises:
+
+- **Problem $ 3 $** (mutilated chessboard): removing two same-color corners breaks the dark/light balance, foiling any domino tiling.
+- **Problem $ 4 $** (odd-side board, corner-color removed): removing the *unique extra* dark square restores balance and a tiling exists (constructed explicitly).
+- **Problem $ 5 $** (this one): the five tetrominoes' combined signature is $ 11 + 9 $ rather than $ 10 + 10 $, so a $ 4 \times 5 $ tiling fails.
+
+In each case, a clever two-coloring of cells turns a geometric question (does a tiling exist?) into an arithmetic one (do the color counts match?). The $ T $-tetromino's $ 3 + 1 $ signature is the smallest, most elegant example of an "obstruction tetromino" — a piece whose color signature alone rules out certain placements.
+
+## Remark — The Result Is Sharp
+
+The result depends on having *exactly one* $ T $-tetromino among the five. If instead we used:
+
+- *Two* $ T $-tetrominoes (with appropriate orientations giving $ 3 + 1 $ and $ 1 + 3 $), the imbalances cancel: $ 2 \cdot (3 + 1) + 3 \cdot (2 + 2) $ as $ (3+1) + (1+3) + 3 \cdot (2+2) = 10 + 10 $. The arithmetic works, so the obstruction vanishes; whether such tilings *actually* exist becomes a separate geometric question.
+- *Zero* $ T $-tetrominoes (e.g., the $ I, O, L, J, S $ set — substituting $ O $ for $ T $): $ 5 \cdot (2+2) = 10 + 10 $. Arithmetic again checks out, and in fact this set *does* admit several tilings of the $ 4 \times 5 $ board.
+
+So this argument exactly identifies the parity obstruction; tilings beyond this obstruction are governed by finer constraints (corner geometry, edge contacts, etc.).
