@@ -1,0 +1,124 @@
+.docname {Solution — GIAM 7.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 2
+
+## Problem
+
+A mathematician, who always rises earlier than her spouse, has developed a scheme — using the pigeonhole principle — to ensure that she always has a matching pair of socks. She keeps only blue socks, green socks and black socks in her sock drawer — $ 10 $ of each. So as not to wake her husband she must select some number of socks from her drawer in the early morning dark and take them with her to the adjacent bathroom where she dresses. What number of socks does she choose?
+
+## Pigeonhole Framing
+
+The mathematician selects $ n $ socks from a drawer holding socks of $ 3 $ colors — blue, green, black, with $ 10 $ of each. She wants the smallest $ n $ such that *no matter which $ n $ socks she grabs*, she is **guaranteed** a matching pair (two socks of the same color).
+
+Encode this as pigeonhole:
+
+- **Pigeons.** The $ n $ socks she selects.
+- **Pigeonholes.** The $ 3 $ colors $ \{\text{blue},\, \text{green},\, \text{black}\} $.
+- **Function.** $ c \colon \{1, 2, \ldots, n\} \to \{\text{blue}, \text{green}, \text{black}\} $, assigning each selected sock to its color.
+
+A *matching pair* is exactly a pair $ i \ne j $ with $ c(i) = c(j) $ — i.e., a failure of injectivity of $ c $. So the question becomes:
+
+> What is the smallest $ n $ such that any function $ c \colon \{1, \ldots, n\} \to \{\text{blue}, \text{green}, \text{black}\} $ is necessarily non-injective?
+
+The pigeonhole principle (Theorem $ 7.3.1 $) answers this in two steps:
+
+1. **Sufficiency.** If $ n > 3 $, then $ |\mathrm{Dom}(c)| > |\mathrm{Rng}(c)| $, so $ c $ cannot be injective — a matching pair exists.
+2. **Necessity.** If $ n \le 3 $, then $ c $ *can* be injective — one sock per color, no match.
+
+These together pin the answer at $ n = 4 $.
+
+## Step 1 — $ n = 4 $ Suffices
+
+Suppose she selects $ 4 $ socks. Consider the color function
+
+$$$
+c \colon \{1, 2, 3, 4\} \;\longrightarrow\; \{\text{blue},\, \text{green},\, \text{black}\}.
+$$$
+
+The domain has size $ 4 $; the codomain has size $ 3 $. Since $ 4 > 3 $, Theorem $ 7.3.1 $ applies: $ c $ is not injective. So there exist distinct $ i, j \in \{1, 2, 3, 4\} $ with $ c(i) = c(j) $ — two socks sharing a color. That is a matching pair. $ \checkmark $
+
+## Step 2 — $ n = 3 $ Does Not Suffice
+
+We need to exhibit a way of drawing $ 3 $ socks with no matching pair. Since the drawer contains $ 10 $ of each color, in particular at least one of each, the mathematician *could* draw
+
+$$$
+\{\text{one blue},\;\text{one green},\;\text{one black}\}
+$$$
+
+— three socks, all distinct colors, no matching pair. So drawing $ 3 $ socks does not *guarantee* a match. $ \checkmark $
+
+## Conclusion
+
+Combining Steps $ 1 $ and $ 2 $:
+
+$$$
+\boxed{\;n \;=\; 4\;}
+$$$
+
+is the smallest number of socks the mathematician must take to guarantee a matching pair. Her scheme is: *grab four socks in the dark.* No inspection, no inference, no waking her husband.
+
+## Remark — Why "$ 10 $ of Each" is a Red Herring
+
+The number "$ 10 $" plays no role in the answer. What matters is only:
+
+- the number of *colors* ($ 3 $), and
+- that there is at least one of each color (so the bad case "one-of-each" with $ 3 $ socks is realizable).
+
+If the drawer held $ 2 $ of each color, the answer would still be $ 4 $. If it held $ 1000 $ of each, the answer would still be $ 4 $. The "$ 10 $ of each" is window dressing — likely there to make the story plausible (a real sock drawer holds many socks), not to be used in the count.
+
+## Remark — A Different Question Where $ 10 $ Matters
+
+If the mathematician instead wanted to guarantee a matching pair of a *specific* color — say a **blue** pair — then the magnitude is essential. In the worst case, she could draw every non-blue sock before reaching a single blue:
+
+$$$
+\underbrace{10}_{\text{green}} \;+\; \underbrace{10}_{\text{black}} \;=\; 20 \;\text{non-blue socks},
+$$$
+
+and only after that does she begin drawing blues. To then *guarantee* a blue pair, she needs $ 2 $ more draws (both must be blue, since only blues remain):
+
+$$$
+n_{\text{specific color}} \;=\; 20 \;+\; 2 \;=\; 22.
+$$$
+
+Here every factor of "$ 10 $" matters — the worst-case bound is $ (\text{count of all non-target colors}) + 2 $. With only $ 22 $ socks in the dark, she is guaranteed two blue socks; with $ 21 $, she could be left with one blue and many non-blues.
+
+## Remark — Generalizations
+
+**More colors.** For a drawer with $ k $ distinct colors (and $ \ge 1 $ of each), the minimum to guarantee a matching pair is $ k + 1 $.
+
+| Drawer composition                            | $ k $ | Socks needed for a pair |
+| :---                                          | :---: | :---:                   |
+| Blue/green only                               | $ 2 $ | $ 3 $                   |
+| Blue/green/black (this problem)               | $ 3 $ | $ 4 $                   |
+| Adds white                                    | $ 4 $ | $ 5 $                   |
+| Full rainbow                                  | $ 7 $ | $ 8 $                   |
+
+**Bigger collections than pairs.** For an $ m $-of-a-kind (e.g., a *triple*, $ m = 3 $), the **strong** form of the pigeonhole principle (Theorem $ 7.3.2 $) gives
+
+$$$
+n_{m\text{-of-a-kind}} \;=\; k \cdot (m - 1) \;+\; 1.
+$$$
+
+For this problem ($ k = 3 $, $ m = 3 $): $ 3 \cdot 2 + 1 = 7 $ socks guarantee a matching *triple*. Verification: with $ 6 $ socks, the distribution $ 2 + 2 + 2 $ across colors has no triple; with $ 7 $ socks, the pigeonhole forces $ \lceil 7/3 \rceil = 3 $ of some color.
+
+The original problem is the $ m = 2 $ case: $ k(m-1) + 1 = k + 1 = 4 $. $ \checkmark $
+
+**Matching pair sharing both color and side (left/right).** A different — and more realistic — version of the problem distinguishes left socks from right socks. The drawer then has $ 2k = 6 $ "types" (blue-left, blue-right, …), and a *wearable* pair needs one left and one right of the same color. The worst case for $ n $ socks is $ n $ all of the same hand (e.g., all left), so even drawing all $ 30 $ socks could in principle yield zero wearable pairs — unless we *know* the lefts and rights are balanced. With balanced lefts/rights ($ 5 $ of each, of each color), a different counting applies, and the answer is not simply $ k + 1 $. The textbook problem deliberately abstracts away this complication by treating each sock as colored-only.
+
+## Remark — The Pigeonhole's Value Here
+
+The pigeonhole principle is sometimes dismissed as "obvious." In problems like this, its value is not depth but *sharpness*:
+
+- It gives the **exact** threshold (not "a few" but $ 4 $).
+- It tells us *why* that threshold is right ($ 3 $ colors, $ 4 $ socks, no escape).
+- It tells us *exactly what goes wrong* just below the threshold (one-of-each).
+
+The whole proof fits in a single sentence — *"$ 4 $ socks across $ 3 $ colors forces a repeat"* — and the mathematician's scheme reduces to the same sentence stripped of the proof: *grab four.* That is what makes the pigeonhole principle so useful in practice: it produces *minimal* sufficient conditions with almost no algebra.

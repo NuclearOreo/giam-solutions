@@ -1,0 +1,165 @@
+.docname {Solution — GIAM 7.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 6
+
+## Problem
+
+Prove that if $ 10 $ points are placed inside an equilateral triangle of side length $ 3 $, there will be $ 2 $ points within $ 1 $ of one another.
+
+## Pigeonhole Framing
+
+The structural template of Problem $ 5 $ (the $ 3 \times 3 $ square version) carries over: partition the ambient region into pieces of diameter $ \le 1 $, then arrange to have *fewer* pieces than points.
+
+**Pigeons.** The $ 10 $ given points.
+**Pigeonholes.** The $ 9 $ unit-side equilateral sub-triangles obtained by the standard triangular subdivision of the side-$ 3 $ triangle.
+
+Since $ 10 > 9 $, Theorem $ 7.3.1 $ forces two of the points into the same sub-triangle. The *diameter* of a unit equilateral triangle — the maximum distance between two of its points — is $ 1 $ (the side length). So two of the given points are within $ 1 $ of each other.
+
+The rest of the writeup makes each step precise. The key non-trivial step is the diameter computation; the partition itself is the geometric heart of the argument.
+
+!(70%)[A side-3 equilateral triangle partitioned into 9 unit equilateral sub-triangles; 10 points force two into the same cell](problem-6-grid.svg "An equilateral triangle of side 3, subdivided into 9 unit equilateral sub-triangles (6 upward, 3 downward). Ten points distributed across the cells force one cell — here the shaded center cell — to contain at least two points. The dashed segment connects two such points; the argument shows their distance is at most 1.")
+
+## Step 1 — The Triangular Subdivision
+
+Place the side-$ 3 $ equilateral triangle in the plane as $ T $, with vertices
+
+$$$
+A \;=\; (0,\, 0), \qquad B \;=\; (3,\, 0), \qquad C \;=\; \bigl(\tfrac{3}{2},\, \tfrac{3 \sqrt{3}}{2}\bigr).
+$$$
+
+Divide each side into $ 3 $ equal segments of length $ 1 $. Through each division point, draw the line *parallel* to the opposite side. The resulting $ 6 $ lines (two parallel to each side) carve $ T $ into $ 9 $ smaller triangles, each *congruent* to a unit equilateral triangle:
+
+- **Upward-pointing sub-triangles:** $ 1 + 2 + 3 = 6 $.
+- **Downward-pointing sub-triangles:** $ 0 + 1 + 2 = 3 $.
+
+Total: $ 9 $ sub-triangles, each of side length $ 1 $.
+
+(The general identity for a side-$ n $ subdivision is *upward* $ = \binom{n+1}{2} = \tfrac{n(n+1)}{2} $, *downward* $ = \binom{n}{2} = \tfrac{n(n-1)}{2} $, total $ n^2 $. For $ n = 3 $: $ 6 + 3 = 9 $. $ \checkmark $)
+
+As in Problem $ 5 $, the cells are taken to be half-open so that every point of $ T $ lies in exactly one cell; the diameter we will bound depends only on each cell's closure (a *closed* unit equilateral triangle), so the boundary convention does not affect the conclusion.
+
+## Step 2 — Apply the Pigeonhole Principle
+
+Let $ P = \{p_1, p_2, \ldots, p_{10}\} \subseteq T $ be the $ 10 $ given points and define the cell-assignment
+
+$$$
+\phi \;\colon\; P \;\longrightarrow\; \{\, \text{the } 9 \text{ sub-triangles} \,\}, \qquad \phi(p) \;=\; \text{the unique cell containing } p.
+$$$
+
+The domain has size $ 10 $, the codomain has size $ 9 $. Since $ 10 > 9 $, Theorem $ 7.3.1 $ tells us $ \phi $ is not injective: there exist distinct $ p, q \in P $ with $ \phi(p) = \phi(q) $. That is, *two of the $ 10 $ points lie inside the same closed unit equilateral sub-triangle.*
+
+## Step 3 — Diameter of a Unit Equilateral Triangle is $ 1 $
+
+It remains to bound the distance between two points in the same unit equilateral triangle. Let $ \Delta $ denote any such closed unit triangle, with vertices $ V_1, V_2, V_3 $ at pairwise distance $ 1 $:
+
+$$$
+\| V_i - V_j \| \;=\; 1 \quad \text{for all } i \ne j.
+$$$
+
+!(40%)[A unit equilateral triangle has diameter 1, attained on each of its three sides](problem-6-diameter.svg "Inside any unit equilateral triangle, the maximum distance between two points is 1 — the side length. The bound is attained at any two vertices; the base (highlighted) is one such extremal chord.")
+
+**Claim.** $ \mathrm{diam}(\Delta) \;:=\; \max_{p,\, q \,\in\, \Delta} \|p - q\| \;=\; 1 $.
+
+*Proof.* The closed triangle $ \Delta $ is the *convex hull* of $ \{V_1, V_2, V_3\} $. Any point $ p \in \Delta $ can be written as a convex combination
+
+$$$
+p \;=\; \alpha_1 V_1 + \alpha_2 V_2 + \alpha_3 V_3, \qquad \alpha_i \ge 0, \quad \alpha_1 + \alpha_2 + \alpha_3 = 1.
+$$$
+
+For any $ q \in \Delta $, the triangle inequality and convexity of the norm give
+
+$$$
+\| p - q \| \;=\; \Bigl\| \sum_{i} \alpha_i (V_i - q) \Bigr\| \;\le\; \sum_{i} \alpha_i \|V_i - q\| \;\le\; \max_{i} \|V_i - q\|.
+$$$
+
+Applying the same argument now to $ q $:
+
+$$$
+\|V_i - q\| \;\le\; \max_{j} \|V_i - V_j\| \;=\; 1.
+$$$
+
+Combining, $ \|p - q\| \le 1 $. The bound is *attained* when $ p, q $ are two distinct vertices — e.g., $ \|V_1 - V_2\| = 1 $. So $ \mathrm{diam}(\Delta) = 1 $. $ \square $
+
+> **A subtlety worth flagging.** The *circumradius* of a unit equilateral triangle is $ R = \tfrac{1}{\sqrt{3}} $, giving a circumscribed-circle *diameter* of $ \tfrac{2}{\sqrt{3}} \approx 1.155 $. One might therefore wonder whether two points in the triangle could be that far apart — but they cannot, because the triangle is a *proper* subset of its circumscribed disk. The triangle's diameter is $ 1 $; only the *circumscribing circle* has diameter $ \approx 1.155 $. The diameter of a convex polytope is realized between vertices, not between general boundary points.
+
+## Putting It Together
+
+From Step $ 2 $: two of the $ 10 $ points lie in the same closed unit sub-triangle $ \Delta $.
+From Step $ 3 $: any two points of $ \Delta $ satisfy
+
+$$$
+\| p - q \| \;\le\; 1.
+$$$
+
+So those two points are within $ 1 $ of one another. $ \blacksquare $
+
+## Remark — The Triangular Subdivision in Detail
+
+The subdivision lines are determined by trisecting each side of $ T $ and drawing three families of parallel lines:
+
+- **Two lines parallel to $ AB $** (the bottom) at heights $ \tfrac{\sqrt{3}}{2} $ and $ \sqrt{3} $.
+- **Two lines parallel to $ AC $** (the left side), through the trisection points of $ AB $.
+- **Two lines parallel to $ BC $** (the right side), through the trisection points of $ AB $.
+
+The $ 6 $ lines have a total of $ 4 $ interior intersection points... wait — actually for side $ 3 $, the subdivision has $ 10 $ vertices total: $ 3 $ corners of $ T $, $ 6 $ trisection points (two per side), and $ 1 $ interior point. Counting edges and faces gives the Euler-formula check
+
+$$$
+V - E + F \;=\; 10 - 18 + 9 \;=\; 1 \;\;(\text{the planar Euler formula minus the outer face}).
+$$$
+
+The vertex count generalizes: for a side-$ n $ triangular subdivision,
+
+$$$
+V_n \;=\; \binom{n+2}{2} \;=\; \tfrac{(n+1)(n+2)}{2}, \qquad F_n \;=\; n^2 \text{ (sub-triangles)}.
+$$$
+
+For $ n = 3 $: $ V_3 = 10 $, $ F_3 = 9 $. The threshold "$ 10 $ points force a collision in $ 9 $ cells" is exactly *one more* than the cell count — the minimum that pigeonhole can use.
+
+## Remark — Why the Side Length is the Right Distance Bound
+
+The proof's distance bound comes out to $ 1 $ because the unit equilateral triangle has *diameter* $ 1 $. This is the *side* length, not the height $ \tfrac{\sqrt{3}}{2} \approx 0.866 $ or the circumdiameter $ \tfrac{2}{\sqrt{3}} \approx 1.155 $.
+
+Three numbers to keep distinct for the unit equilateral triangle:
+
+| Quantity                 | Value                          | Geometric meaning                                                |
+| :---                     | :---:                          | :---                                                             |
+| Side length              | $ 1 $                          | length of each of the three sides                                |
+| Height                   | $ \tfrac{\sqrt{3}}{2} \approx 0.866 $ | distance from a vertex perpendicularly to the opposite side    |
+| Inradius                 | $ \tfrac{1}{2 \sqrt{3}} \approx 0.289 $ | radius of largest inscribed circle (centered at the centroid) |
+| Circumradius             | $ \tfrac{1}{\sqrt{3}} \approx 0.577 $ | radius of the circumscribed circle                             |
+| Circumdiameter           | $ \tfrac{2}{\sqrt{3}} \approx 1.155 $ | diameter of the circumscribed circle                           |
+| **Diameter of $ \Delta $** | $ \mathbf{1} $              | **max pairwise distance among points of $ \Delta $ — what we need** |
+
+The diameter is the side length because the *farthest* points in a convex polytope are extreme points (vertices), and any two vertices of the unit equilateral triangle are at distance $ 1 $.
+
+## Remark — Parallels with Problem $ 5 $ (The Square Version)
+
+Both problems follow the same recipe:
+
+| Aspect                          | Problem 5 (square)                        | Problem 6 (equilateral triangle)               |
+| :---                            | :---                                      | :---                                           |
+| Ambient region                  | $ 3 \times 3 $ square                     | equilateral triangle, side $ 3 $               |
+| Partition into                  | $ 9 $ unit squares ($ 3 \times 3 $ grid)  | $ 9 $ unit equilateral sub-triangles            |
+| Cell diameter                   | $ \sqrt{2} $ (diagonal of unit square)    | $ 1 $ (side of unit equilateral triangle)       |
+| Pigeonhole threshold            | $ 10 $ points                             | $ 10 $ points                                  |
+| Conclusion                      | two within $ \sqrt{2} $                   | two within $ 1 $                               |
+
+The only thing that changes is the *shape* of the unit cell — and with it, the cell's diameter, which becomes the distance bound in the conclusion. The number of cells ($ 9 $) and the point threshold ($ 10 $) are identical, since both regions are partitioned into $ 9 $ congruent unit-side pieces.
+
+The triangle gives the *tighter* distance bound ($ 1 < \sqrt{2} $) because an equilateral triangle is "more compact" than a square of the same side length: its diameter equals its side, whereas the square's diameter is $ \sqrt{2} $ times its side.
+
+## Remark — The Recipe, Stated Generally
+
+The argument's *pattern* is the partition-lemma for geometric pigeonhole:
+
+> *If a region $ R $ partitions into $ n $ pieces each of diameter $ \le d $, and $ n + 1 $ points are placed in $ R $, then two of them are within $ d $ of one another.*
+
+Choosing the partition is the creative step. For an equilateral triangle of integer side $ n $, the standard subdivision into $ n^2 $ unit triangles is *natural*: it uses congruent equilateral pieces, exploits the symmetry of the region, and matches the integer geometry exactly. No more economical partition exists when one wants the cell diameter to equal the side length.

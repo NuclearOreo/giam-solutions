@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" width="320" height="280" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="320" height="280" fill="white"/>
+
+  <g transform="translate(70, 50)">
+    <!-- Unit equilateral triangle -->
+    <polygon points="0,180 180,180 90,24.12" fill="#fff3cd" stroke="#222" stroke-width="2"/>
+
+    <!-- The "diameter" chord (the base, length 1) drawn in red -->
+    <line x1="0" y1="180" x2="180" y2="180" stroke="#cc0000" stroke-width="3"/>
+
+    <!-- Endpoints of the diameter (two extreme points realizing max distance) -->
+    <circle cx="0" cy="180" r="5.5" fill="#cc0000"/>
+    <circle cx="180" cy="180" r="5.5" fill="#cc0000"/>
+
+    <!-- Side labels: all three sides have length 1; the diameter side is in red -->
+    <text x="90" y="200" text-anchor="middle" font-size="16" fill="#cc0000" font-style="italic">1</text>
+    <text x="35" y="105" text-anchor="middle" font-size="14" fill="#222" font-style="italic">1</text>
+    <text x="145" y="105" text-anchor="middle" font-size="14" fill="#222" font-style="italic">1</text>
+  </g>
+</svg>

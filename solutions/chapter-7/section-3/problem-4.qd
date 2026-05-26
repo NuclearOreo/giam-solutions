@@ -1,0 +1,187 @@
+.docname {Solution — GIAM 7.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 4
+
+## Problem
+
+Given any set of $ 53 $ integers, show that there are two of them having the property that either their sum or their difference is evenly divisible by $ 103 $.
+
+## Pigeonhole Framing
+
+Working modulo $ 103 $, recall:
+
+$$$
+103 \,\big|\, (a - b) \iff a \equiv b \pmod{103}, \qquad 103 \,\big|\, (a + b) \iff a \equiv -b \pmod{103}.
+$$$
+
+So the question is whether, among $ 53 $ integers, *some* pair has residues that are either *equal* or *negatives* of each other modulo $ 103 $. This suggests grouping residues by the equivalence relation
+
+$$$
+r \;\sim\; s \iff r \equiv \pm s \pmod{103}.
+$$$
+
+**Pigeonholes.** The equivalence classes of $ \sim $ on $ \mathbb{Z}/103\mathbb{Z} $.
+**Pigeons.** The $ 53 $ given integers, each assigned to the class of its residue mod $ 103 $.
+
+If we can count the classes and find their number to be less than $ 53 $, the pigeonhole principle hands us two integers in the same class — and unpacking $ \sim $ will give the desired sum-or-difference divisibility.
+
+## Step 1 — Count the Equivalence Classes
+
+The set of residues is $ \mathbb{Z}/103\mathbb{Z} = \{0, 1, 2, \ldots, 102\} $. Under $ \sim $:
+
+- **Singleton class:** $ \{0\} $. Reason: $ -0 \equiv 0 \pmod{103} $, so $ 0 $ pairs with itself.
+- **Pair classes:** $ \{r,\, 103 - r\} $ for $ r \in \{1, 2, \ldots, 51\} $. Each is a *genuine* pair (size $ 2 $) since $ r = 103 - r $ would force $ 2r = 103 $ — impossible, as $ 103 $ is odd.
+
+For $ r = 52, 53, \ldots, 102 $, the class $ \{r, 103 - r\} $ has already been listed (with the roles of $ r $ and $ 103 - r $ swapped). So the *distinct* classes are exactly
+
+$$$
+\{0\},\quad \{1, 102\},\quad \{2, 101\},\quad \{3, 100\},\quad \ldots,\quad \{51, 52\}.
+$$$
+
+Counting:
+
+$$$
+\#\text{classes} \;=\; 1 + 51 \;=\; 52,
+$$$
+
+and covering $ 1 + 51 \cdot 2 = 103 $ residues, as required. $ \checkmark $
+
+> **Why oddness matters.** The proof's count came out to $ 52 $ because $ 103 $ is *odd*: there is no residue $ r $ with $ 103 - r = r $, so every nonzero class is a genuine pair. For even $ N $, the residue $ N/2 $ is its own negative and forms an extra singleton — see the table at the end.
+
+## Step 2 — A Folded-Residue Map
+
+Concretely, define the *folded residue*
+
+$$$
+g \;\colon\; \mathbb{Z} \;\longrightarrow\; \{0, 1, 2, \ldots, 51\}, \qquad g(n) \;=\; \min\bigl(\,n \bmod 103,\; 103 - (n \bmod 103)\,\bigr),
+$$$
+
+which sends each integer to the *smaller* of its residue and its negative residue. By construction,
+
+$$$
+g(a) = g(b) \iff a \equiv \pm b \pmod{103},
+$$$
+
+so the level sets of $ g $ are precisely the $ 52 $ equivalence classes from Step $ 1 $.
+
+## Step 3 — Apply the Pigeonhole
+
+Let $ S = \{n_1, n_2, \ldots, n_{53}\} $ be the $ 53 $ given integers, and restrict $ g $ to $ S $:
+
+$$$
+g|_S \;\colon\; S \;\longrightarrow\; \{0, 1, 2, \ldots, 51\}.
+$$$
+
+Since
+
+$$$
+|S| \;=\; 53 \;>\; 52 \;=\; |\mathrm{Rng}(g)|,
+$$$
+
+Theorem $ 7.3.1 $ tells us $ g|_S $ is not injective: there exist distinct $ n_i, n_j \in S $ with
+
+$$$
+g(n_i) \;=\; g(n_j),
+$$$
+
+i.e.,
+
+$$$
+n_i \;\equiv\; \pm \, n_j \pmod{103}.
+$$$
+
+## Step 4 — Translate to "Sum or Difference Divisible by $ 103 $"
+
+Two cases, depending on the sign:
+
+**Case A — same sign.** $ n_i \equiv n_j \pmod{103} $. Then
+
+$$$
+n_i - n_j \;\equiv\; 0 \pmod{103} \;\Longrightarrow\; 103 \,\big|\, (n_i - n_j).
+$$$
+
+**Case B — opposite sign.** $ n_i \equiv -n_j \pmod{103} $. Then
+
+$$$
+n_i + n_j \;\equiv\; 0 \pmod{103} \;\Longrightarrow\; 103 \,\big|\, (n_i + n_j).
+$$$
+
+In either case, $ 103 $ divides *either* the sum or the difference of two of the given integers. $ \blacksquare $
+
+> **Degenerate sub-case.** If $ g(n_i) = g(n_j) = 0 $, then both $ n_i, n_j \equiv 0 \pmod{103} $, and the two cases overlap — $ 103 $ divides both the sum and the difference.
+
+## Sharpness — $ 52 $ Integers Need Not Suffice
+
+The threshold $ 53 $ is *tight*: there is a $ 52 $-element set of integers in which **no** two have a sum or difference divisible by $ 103 $.
+
+Take
+
+$$$
+S_{\text{bad}} \;=\; \{0,\, 1,\, 2,\, \ldots,\, 51\}, \qquad |S_{\text{bad}}| = 52
+$$$
+
+— one representative from each of the $ 52 $ equivalence classes, namely the *smaller* element of each class. For distinct $ a, b \in S_{\text{bad}} $ with $ a < b $:
+
+- **Difference:** $ 1 \le b - a \le 51 < 103 $, so $ 103 \nmid (b - a) $.
+- **Sum:** $ 1 \le a + b \le 50 + 51 = 101 < 103 $, so $ 103 \nmid (a + b) $.
+
+So $ S_{\text{bad}} $ avoids the desired property entirely — confirming that the pigeonhole threshold of $ 53 $ cannot be lowered.
+
+## Remark — The General Form
+
+The argument used only one fact about $ 103 $: that it is odd. For an arbitrary integer $ N \ge 2 $, the *fold-by-negation* equivalence
+
+$$$
+r \sim s \iff r \equiv \pm s \pmod{N}
+$$$
+
+partitions $ \mathbb{Z}/N\mathbb{Z} $ into:
+
+- The singleton $ \{0\} $.
+- (If $ N $ is even) the singleton $ \{N/2\} $, since $ N/2 \equiv -N/2 \pmod{N} $.
+- Pair classes $ \{r, N - r\} $ for $ r $ in the appropriate range.
+
+This gives
+
+$$$
+\#\text{classes} \;=\; \begin{cases} \dfrac{N + 1}{2}, & N \text{ odd}, \\[6pt] \dfrac{N + 2}{2}, & N \text{ even}. \end{cases}
+$$$
+
+Pigeonhole then yields:
+
+> *Any collection of $ \#\text{classes} + 1 $ integers contains two whose sum or difference is divisible by $ N $.*
+
+| $ N $    | Parity | # classes | Pigeonhole threshold |
+| :---:    | :---:  | :---:     | :---:                |
+| $ 3 $    | odd    | $ 2 $     | $ 3 $                |
+| $ 4 $    | even   | $ 3 $     | $ 4 $                |
+| $ 5 $    | odd    | $ 3 $     | $ 4 $                |
+| $ 10 $   | even   | $ 6 $     | $ 7 $                |
+| $ 103 $  | odd    | $ 52 $    | $ 53 $               |
+| general odd $ N $  | —    | $ (N+1)/2 $ | $ (N+3)/2 $          |
+| general even $ N $ | —    | $ (N+2)/2 $ | $ (N+4)/2 $          |
+
+Each threshold is tight, witnessed by taking one representative from each class (e.g., $ \{0, 1, 2, \ldots, \lfloor N/2 \rfloor\} $).
+
+## Remark — A Small Verification
+
+Take $ N = 5 $, threshold $ 4 $. Classes: $ \{0\},\ \{1, 4\},\ \{2, 3\} $ — three of them.
+
+- **Bad set of size $ 3 $:** $ \{0, 1, 2\} $. Sums: $ 1, 2, 3 $; differences: $ 1, 2 $. None divisible by $ 5 $. $ \checkmark $
+- **Any set of size $ 4 $:** by pigeonhole, two must share a class. E.g., $ \{0, 1, 2, 3\} $: residues $ 2, 3 $ are in class $ \{2, 3\} $, and $ 2 + 3 = 5 $. $ \checkmark $ (Or $ \{0, 1, 2, 4\} $: residues $ 1, 4 $ in class $ \{1, 4\} $, and $ 1 + 4 = 5 $. $ \checkmark $)
+
+The $ N = 103 $ instance follows the same template — just at a larger scale.
+
+## Remark — The Whole Idea is the Right Equivalence
+
+As with the previous problem in this section, the heart of the proof is *choosing the equivalence relation*. Once we group residues by $ r \sim -r $, the pigeonhole count comes out to $ 52 $, the threshold $ 53 $ is one above that, and translating "same class" back into "sum or difference $ \equiv 0 $" is immediate.
+
+A direct attack — checking all $ \binom{53}{2} = 1378 $ pairs — gives no useful structure. The folded residue $ g $ is the *minimal* invariant such that "$ g(a) = g(b) $" is equivalent to "$ 103 \mid (a \pm b) $." Naming that invariant *is* the proof.

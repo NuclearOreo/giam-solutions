@@ -1,0 +1,145 @@
+.docname {Solution — GIAM 7.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 7
+
+## Problem
+
+Prove that in a simple graph (an undirected graph with no loops or parallel edges) having $ n $ nodes, there must be two nodes having the same degree.
+
+(Implicit: $ n \ge 2 $, since "two nodes" requires at least two vertices. We return to the $ n = 1 $ edge case below.)
+
+## Pigeonhole Framing — and Why the Naive Version Fails
+
+Let $ G = (V, E) $ be a simple graph with $ |V| = n \ge 2 $. For each $ v \in V $, the *degree* $ \deg(v) $ is the number of edges of $ G $ incident to $ v $. Since $ G $ has no loops and no parallel edges, $ v $ is adjacent to at most one of each of the other $ n - 1 $ vertices, so
+
+$$$
+\deg(v) \;\in\; \{0,\, 1,\, 2,\, \ldots,\, n - 1\}.
+$$$
+
+The degree map is then a function
+
+$$$
+d \;\colon\; V \;\longrightarrow\; \{0,\, 1,\, \ldots,\, n - 1\}.
+$$$
+
+**A naive attempt.** The domain $ V $ has size $ n $; the codomain $ \{0, 1, \ldots, n-1\} $ also has size $ n $. So Theorem $ 7.3.1 $ does **not** apply directly — $ n > n $ is false. We need a sharper observation to shrink the effective codomain.
+
+## Step 1 — The Endpoints $ 0 $ and $ n - 1 $ Cannot Both Occur
+
+**Claim.** In any simple graph on $ n \ge 2 $ vertices, the image $ d(V) $ contains *at most one* of the values $ 0 $ and $ n - 1 $.
+
+*Proof.* Suppose both $ 0 \in d(V) $ and $ n - 1 \in d(V) $. Pick $ u, v \in V $ with $ d(u) = 0 $ and $ d(v) = n - 1 $. Note $ u \ne v $ since $ d(u) \ne d(v) $.
+
+Since $ d(v) = n - 1 $, vertex $ v $ is adjacent to *every* other vertex of $ G $ — in particular, $ v $ is adjacent to $ u $. But then the edge $ \{u, v\} $ is incident to $ u $, so $ d(u) \ge 1 $, contradicting $ d(u) = 0 $.
+
+Hence $ \{0, n - 1\} \not\subseteq d(V) $. $ \square $
+
+!(85%)[A vertex of degree n-1 forces every other vertex to have degree ≥ 1, ruling out degree 0](problem-7-contradiction.svg "A deg-(n-1) vertex is adjacent to every other vertex. If a deg-0 (isolated) vertex existed, the edge between them would have to exist (forced from the deg-(n-1) side) and cannot exist (forbidden from the deg-0 side) — a contradiction.")
+
+## Step 2 — The Effective Codomain Has Size $ \le n - 1 $
+
+By Step $ 1 $, $ d(V) $ misses at least one of $ \{0, n - 1\} $, so
+
+$$$
+d(V) \;\subseteq\; \begin{cases} \{0,\, 1,\, \ldots,\, n - 2\} & \text{if } n - 1 \notin d(V), \\ \{1,\, 2,\, \ldots,\, n - 1\} & \text{if } 0 \notin d(V). \end{cases}
+$$$
+
+Both sets have size $ n - 1 $. So $ |d(V)| \le n - 1 $.
+
+## Step 3 — Apply the Pigeonhole Principle
+
+Replace the codomain of $ d $ by the image to get the surjection
+
+$$$
+d \;\colon\; V \;\twoheadrightarrow\; d(V), \qquad |V| = n, \quad |d(V)| \le n - 1.
+$$$
+
+Since $ n > n - 1 $, Theorem $ 7.3.1 $ tells us $ d $ is not injective: there exist distinct $ u, v \in V $ with
+
+$$$
+\deg(u) \;=\; \deg(v).
+$$$
+
+That is, *two vertices of $ G $ share a degree.* $ \blacksquare $
+
+## A Worked Example — $ n = 4 $
+
+The picture below shows a simple graph on $ V = \{A, B, C, D\} $ with edges
+
+$$$
+E \;=\; \{\, AB,\; AC,\; AD,\; BC \,\}.
+$$$
+
+Computing degrees:
+
+| Vertex | Incident edges     | Degree |
+| :---:  | :---:              | :---:  |
+| $ A $  | $ AB, AC, AD $     | $ 3 $  |
+| $ B $  | $ AB, BC $         | $ 2 $  |
+| $ C $  | $ AC, BC $         | $ 2 $  |
+| $ D $  | $ AD $             | $ 1 $  |
+
+Degree multiset: $ \{1, 2, 2, 3\} $. Possible degrees in $ \{0, 1, 2, 3\} $ ($ = \{0, 1, \ldots, n - 1\} $ for $ n = 4 $) — but $ 0 \notin d(V) $ since $ A $ has degree $ n - 1 = 3 $, forcing every other vertex to have degree $ \ge 1 $. The image $ d(V) = \{1, 2, 3\} $ has size $ 3 = n - 1 $, and the four vertices map into it — pigeonhole forces a collision. Here $ B $ and $ C $ both have degree $ 2 $.
+
+!(60%)[A simple graph on 4 vertices with degrees 1, 2, 2, 3; the two degree-2 vertices are highlighted](problem-7-example.svg "A 4-vertex simple graph with edge set {AB, AC, AD, BC}. Vertices are labeled by name (A, B, C, D) with degree numbers inside the circles. Vertices B and C share degree 2 (highlighted in red); A has degree 3 and D has degree 1.")
+
+## The Edge Case $ n = 1 $
+
+For $ n = 1 $, the graph has a single vertex of degree $ 0 $. The statement "two nodes have the same degree" is vacuously *false* (there are not even two nodes). The original claim is implicitly about $ n \ge 2 $, and the proof above operates in that regime.
+
+(For $ n = 2 $, the proof goes through: possible degrees in $ \{0, 1\} $, but both cannot coexist — a degree-$ 1 $ vertex needs an edge to *some* other vertex, which would not be isolated. So either both vertices have degree $ 0 $ or both have degree $ 1 $, and they share. $ \checkmark $)
+
+## Remark — Why "Simple" is Essential
+
+The proof uses the hypothesis "no loops, no parallel edges" via the upper bound $ \deg(v) \le n - 1 $. Dropping either assumption breaks the argument — and the conclusion.
+
+**With parallel edges (multigraph).** Take $ n = 3 $ with vertices $ \{A, B, C\} $, one edge $ AB $, and two edges $ BC $. Degrees: $ A: 1, B: 3, C: 2 $. All distinct. ✗
+
+**With loops.** Take $ n = 3 $ with $ \{A, B, C\} $, a loop on $ A $, and an edge $ AC $. Each loop contributes $ 2 $ to its vertex's degree. Degrees: $ A: 2 + 1 = 3, B: 0, C: 1 $. All distinct. ✗
+
+So both restrictions are *individually* necessary for the conclusion to hold.
+
+## Remark — Tightness
+
+The bound "*at least two* vertices share a degree" cannot be sharpened to "*at least three* share a degree" in general. There exist simple graphs on $ n \ge 2 $ vertices where the degree multiset has exactly one repeated value (occurring twice) and all other degrees are distinct.
+
+Example for $ n = 4 $: the graph above has degree multiset $ \{1, 2, 2, 3\} $ — only the value $ 2 $ is repeated (twice).
+
+Example for $ n = 5 $: take the graph with edges $ \{AB, AC, AD, AE, BC, CE\} $. Degrees: $ A: 4, B: 2, C: 3, D: 1, E: 2 $. Multiset $ \{1, 2, 2, 3, 4\} $ — only $ 2 $ repeated, exactly twice.
+
+In each case the pigeonhole bound is *exactly* met: $ n $ vertices into $ n - 1 $ possible degree values, with exactly one collision.
+
+## Remark — Alternative Framing via Pairing
+
+The argument can be restated more symmetrically. Pair the possible degree values
+
+$$$
+0 \;\longleftrightarrow\; n - 1, \qquad 1 \;\longleftrightarrow\; n - 2, \qquad \ldots
+$$$
+
+into pairs $ \{k, n - 1 - k\} $. Each pair represents a "vertex and its non-neighbors": if $ \deg(v) = k $ then $ v $ is *non*-adjacent to $ n - 1 - k $ other vertices.
+
+In a simple graph $ G $, the *complement graph* $ \bar G $ has $ \deg_{\bar G}(v) = n - 1 - \deg_G(v) $. So the pairing above swaps the degree functions $ d_G $ and $ d_{\bar G} $. The non-coexistence of $ 0 $ and $ n - 1 $ becomes: $ G $ cannot have a "universal" vertex and an "isolated" vertex simultaneously — equivalently, $ \bar G $ cannot have the same.
+
+This complement perspective also gives a strengthening: *both* the graph $ G $ and its complement $ \bar G $ must have two vertices of the same degree, but the *pairs* of equal-degree vertices may differ between $ G $ and $ \bar G $.
+
+## Remark — A Stronger Statement
+
+A counting-mod-$ 2 $ argument (Problem $ 2 $ in Section $ 7.2 $) gives:
+
+> *In any simple graph, the number of odd-degree vertices is even.*
+
+This is *not* the statement we proved here (which is about repeated degree *values*), but it shows the same theme: degree sequences in simple graphs are *constrained* in non-obvious ways. Other classical constraints:
+
+- **Erdős–Gallai theorem.** Characterizes which sequences $ (d_1, \ldots, d_n) $ arise as degree sequences of *some* simple graph.
+- **Havel–Hakimi algorithm.** Constructive realization test for proposed degree sequences.
+
+Our pigeonhole observation is the simplest such constraint: *no simple graph realizes the degree sequence* $ (0, 1, 2, \ldots, n - 1) $. Equivalently, the all-distinct degree sequence is impossible.

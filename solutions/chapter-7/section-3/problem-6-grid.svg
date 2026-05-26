@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 420" width="460" height="420" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="460" height="420" fill="white"/>
+
+  <g transform="translate(50, 50)">
+    <!-- Outer filled triangle -->
+    <polygon points="0,311.77 360,311.77 180,0" fill="#fafafa"/>
+
+    <!-- Highlighted sub-triangle (Row 2 center, upward) -->
+    <polygon points="180,207.85 120,311.77 240,311.77" fill="#fff3cd"/>
+
+    <!-- Subdivision lines -->
+    <g stroke="#666" stroke-width="1.5">
+      <line x1="60" y1="207.85" x2="300" y2="207.85"/>
+      <line x1="120" y1="103.92" x2="240" y2="103.92"/>
+      <line x1="120" y1="311.77" x2="240" y2="103.92"/>
+      <line x1="240" y1="311.77" x2="300" y2="207.85"/>
+      <line x1="240" y1="311.77" x2="120" y2="103.92"/>
+      <line x1="120" y1="311.77" x2="60" y2="207.85"/>
+    </g>
+
+    <!-- Outer triangle border -->
+    <polygon points="0,311.77 360,311.77 180,0" fill="none" stroke="#222" stroke-width="2.5"/>
+
+    <!-- 8 single black points (one per non-highlighted sub-triangle) -->
+    <g fill="#222">
+      <circle cx="180" cy="69" r="5"/>
+      <circle cx="120" cy="173" r="5"/>
+      <circle cx="180" cy="138" r="5"/>
+      <circle cx="240" cy="173" r="5"/>
+      <circle cx="60" cy="277" r="5"/>
+      <circle cx="120" cy="242" r="5"/>
+      <circle cx="240" cy="242" r="5"/>
+      <circle cx="300" cy="277" r="5"/>
+    </g>
+
+    <!-- 2 red points in highlighted cell with dashed connector -->
+    <line x1="160" y1="270" x2="210" y2="290" stroke="#cc0000" stroke-width="2" stroke-dasharray="5,4"/>
+    <circle cx="160" cy="270" r="5.5" fill="#cc0000"/>
+    <circle cx="210" cy="290" r="5.5" fill="#cc0000"/>
+
+    <!-- Unit segment labels along the bottom edge -->
+    <text x="60" y="328" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+    <text x="180" y="328" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+    <text x="300" y="328" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+
+    <!-- Overall side length label -->
+    <text x="180" y="358" text-anchor="middle" font-size="15" fill="#222" font-style="italic">3</text>
+  </g>
+</svg>

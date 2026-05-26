@@ -1,0 +1,154 @@
+.docname {Solution — GIAM 7.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 5
+
+## Problem
+
+Prove that if $ 10 $ points are placed inside a square of side length $ 3 $, there will be $ 2 $ points within $ \sqrt{2} $ of one another.
+
+## Pigeonhole Framing
+
+The problem hands us $ 10 $ "things" and asks for a collision under a *geometric* relation (distance $ \le \sqrt{2} $). The standard pigeonhole move here is to partition the $ 3 \times 3 $ square into smaller regions of *diameter* at most $ \sqrt{2} $, and to have *fewer* regions than points.
+
+**Pigeons.** The $ 10 $ points.
+**Pigeonholes.** The $ 9 $ unit-side cells of a $ 3 \times 3 $ grid that tiles the big square.
+
+Since $ 10 > 9 $, Theorem $ 7.3.1 $ forces two of the points to lie in the *same* unit cell. The diameter of a unit cell — the maximum distance between two of its points — is $ \sqrt{2} $ (its diagonal). Thus those two points are within $ \sqrt{2} $ of each other.
+
+The remainder of the writeup makes each step precise and checks tightness.
+
+!(75%)[A 3×3 square partitioned into 9 unit cells; 10 points placed inside force two into the same cell](problem-5-grid.svg "The big square has side length 3 and is partitioned into a 3×3 grid of 9 unit cells (each of side 1). With 10 points distributed across the cells, the pigeonhole principle forces some cell — here the shaded center cell — to contain at least two points. The dashed segment connects two such points; the argument shows their distance is at most √2.")
+
+## Step 1 — Partition the Big Square
+
+Place the $ 3 \times 3 $ square in the plane as
+
+$$$
+Q \;=\; [0, 3] \times [0, 3].
+$$$
+
+For $ i, j \in \{0, 1, 2\} $, define the unit cells
+
+$$$
+R_{ij} \;=\; [i,\, i+1) \times [j,\, j+1)
+$$$
+
+with the convention that the right- and top-boundary cells $ R_{2,j}, R_{i,2} $ include the boundary $ x = 3 $ resp. $ y = 3 $ (so that every point of $ Q $ lies in exactly one $ R_{ij} $). The $ 9 $ cells partition $ Q $:
+
+$$$
+Q \;=\; \bigsqcup_{i, j \,\in\, \{0, 1, 2\}} R_{ij}, \qquad |\{(i, j)\}| \;=\; 9.
+$$$
+
+(The half-open convention is a technical nicety to make every point lie in exactly one cell; the geometry — in particular, each cell's diameter — depends only on the *closure* $ \overline{R_{ij}} = [i, i+1] \times [j, j+1] $, which is a closed unit square.)
+
+## Step 2 — Apply the Pigeonhole Principle
+
+Let $ P = \{p_1, p_2, \ldots, p_{10}\} \subseteq Q $ be the $ 10 $ given points, and define the *cell-assignment* function
+
+$$$
+\phi \;\colon\; P \;\longrightarrow\; \{R_{ij}\}_{i,j \in \{0,1,2\}}, \qquad \phi(p) \;=\; \text{the unique } R_{ij} \text{ containing } p.
+$$$
+
+Then
+
+$$$
+|\mathrm{Dom}(\phi)| \;=\; 10 \;>\; 9 \;=\; |\mathrm{Rng}(\phi)|,
+$$$
+
+so by Theorem $ 7.3.1 $, $ \phi $ is not injective: there exist distinct $ p, q \in P $ with $ \phi(p) = \phi(q) $. That is, *two of the points lie in the same unit cell* $ R_{ij} $.
+
+## Step 3 — Diameter of a Unit Cell is $ \sqrt{2} $
+
+It remains to bound the distance between two points lying in the same unit cell. The cell's closure is the closed unit square $ \overline{R_{ij}} = [i, i+1] \times [j, j+1] $.
+
+For any two points $ p = (x_1, y_1) $ and $ q = (x_2, y_2) $ in this closed unit square,
+
+$$$
+|x_1 - x_2| \;\le\; 1, \qquad |y_1 - y_2| \;\le\; 1,
+$$$
+
+so by the Pythagorean theorem,
+
+$$$
+\| p - q \| \;=\; \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2} \;\le\; \sqrt{1^2 + 1^2} \;=\; \sqrt{2}.
+$$$
+
+The bound is *attained* exactly when $ p $ and $ q $ are at opposite corners — i.e., $ \{(i, j),\, (i+1, j+1)\} $ or $ \{(i, j+1),\, (i+1, j)\} $.
+
+!(40%)[A unit cell has diameter √2, attained on the diagonal](problem-5-diagonal.svg "Inside any unit cell, the maximum distance between two points is the length of the diagonal, √2 ≈ 1.414, attained when the two points sit at opposite corners.")
+
+## Putting It Together
+
+From Steps $ 2 $ and $ 3 $: the pigeonhole principle gives two of the $ 10 $ points in the same unit cell $ R_{ij} $, and any two points in a unit cell satisfy
+
+$$$
+\| p - q \| \;\le\; \sqrt{2}.
+$$$
+
+So two of the $ 10 $ points are within $ \sqrt{2} $ of one another. $ \blacksquare $
+
+## Sharpness — $ 9 $ Points Need Not Suffice
+
+The bound is *tight*: there exists a placement of $ 9 $ points in $ Q $ with *every* pairwise distance strictly greater than $ \sqrt{2} $.
+
+Take the $ 3 \times 3 $ lattice
+
+$$$
+L \;=\; \{0,\, 1.5,\, 3\} \times \{0,\, 1.5,\, 3\}, \qquad |L| = 9.
+$$$
+
+For any two distinct points $ p, q \in L $, the coordinate differences are multiples of $ 1.5 $; in particular, at least one coordinate differs by $ \ge 1.5 $. Hence
+
+$$$
+\| p - q \| \;\ge\; 1.5 \;>\; \sqrt{2} \;\approx\; 1.414.
+$$$
+
+So $ L $ is a $ 9 $-element configuration in $ Q $ with no two points within $ \sqrt{2} $ — confirming the threshold of $ 10 $ in the original statement cannot be improved.
+
+(*Minor point:* $ L $ uses points on the boundary of $ Q $. If "inside" is read strictly as "open interior," perturb each lattice point inward by $ \varepsilon $ for any $ \varepsilon \in (0,\, (1.5 - \sqrt{2})/2) $ — every pairwise distance remains $ > \sqrt{2} $.)
+
+## Remark — The General Pattern
+
+The argument is a special case of the *partition lemma* for pigeonhole-style geometric claims:
+
+> *If a region $ Q $ can be partitioned into $ n $ subregions each of diameter $ \le d $, and one places $ n + 1 $ points in $ Q $, then two of the points are within $ d $ of one another.*
+
+For an $ n \times n $ square partitioned into $ n^2 $ unit cells, the lemma gives: $ n^2 + 1 $ points in $ [0, n]^2 $ force two within $ \sqrt{2} $.
+
+| Square side | # unit cells | Forcing threshold | Distance bound |
+| :---:       | :---:        | :---:             | :---:          |
+| $ 2 $       | $ 4 $        | $ 5 $             | $ \sqrt{2} $   |
+| $ 3 $       | $ 9 $        | $ 10 $            | $ \sqrt{2} $   |
+| $ 4 $       | $ 16 $       | $ 17 $            | $ \sqrt{2} $   |
+| $ n $       | $ n^2 $      | $ n^2 + 1 $       | $ \sqrt{2} $   |
+
+The distance bound is *always* $ \sqrt{2} $ (the unit-cell diagonal); only the threshold scales with the area.
+
+## Remark — Why $ \sqrt{2} $? And What Would It Take to Improve It?
+
+The bound $ \sqrt{2} $ is *exactly* the diameter of the cells we used to partition. To force a *smaller* distance, one needs a finer partition — and that requires *more* points.
+
+For example, if we partition the $ 3 \times 3 $ square into $ 36 $ cells of side $ \tfrac{1}{2} $ (each of diameter $ \tfrac{\sqrt{2}}{2} \approx 0.707 $), pigeonhole would require $ 37 $ points (not $ 10 $) to force two within $ \tfrac{\sqrt{2}}{2} $. The trade-off is universal: finer cells $ \to $ tighter distance bound $ \to $ more points needed.
+
+The choice "$ 9 $ cells, $ 10 $ points, $ \sqrt{2} $" hits the *minimum* point count for which a unit-cell partition gives any forcing. Any smaller partition gives no useful forcing; any larger gives a worse-than-$ \sqrt{2} $ bound.
+
+## Remark — The Pigeonhole "Move" in Geometric Problems
+
+This problem (and Problem $ 6 $ in the same exercise set — the equilateral-triangle version) follow a recipe:
+
+1. **Geometric goal.** "There exist two points within $ d $ of each other."
+2. **Choose a partition.** Of the ambient region into pieces of diameter $ \le d $.
+3. **Apply pigeonhole.** $ n + 1 $ points in $ n $ pieces force a co-piece pair.
+4. **Read off the distance bound.** Co-piece points are within $ d $.
+
+The creative step is *step 2* — *which* partition? For squares, a grid of smaller squares. For triangles, a grid of smaller triangles (Problem $ 6 $). For disks, a partition into pie slices or annular wedges. The diameter of each piece must equal the desired distance bound; the count of pieces must equal one less than the count of points.
+
+The remaining steps are mechanical — the principle handles them once the partition is named.

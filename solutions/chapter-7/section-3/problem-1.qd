@@ -1,0 +1,173 @@
+.docname {Solution — GIAM 7.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 1
+
+## Problem
+
+The statement that there are two non-bald New Yorkers with the same number of hairs on their heads requires some careful estimates to justify it. Please justify it.
+
+## Pigeonhole Framing
+
+Let $ N $ denote the set of *non-bald* New Yorkers — residents of New York City whose head bears at least one hair. For each $ p \in N $, write $ h(p) \in \mathbb{Z}_{\ge 1} $ for the (positive) number of hairs on $ p $'s scalp. The function
+
+$$$
+h \colon N \;\longrightarrow\; \{1,\, 2,\, 3,\, \ldots,\, H\}
+$$$
+
+is then well-defined for any integer $ H $ that exceeds the hair count of every human alive.
+
+The pigeonhole principle (Theorem $ 7.3.1 $) says: *if $ |\mathrm{Dom}(h)| > |\mathrm{Rng}(h)| $, then $ h $ is not injective*. Concretely, if we can show
+
+$$$
+|N| \;>\; H,
+$$$
+
+then two distinct non-bald New Yorkers $ p \ne q $ must satisfy $ h(p) = h(q) $ — exactly the claim.
+
+The task therefore reduces to producing two numerical estimates with the right inequality:
+
+- a *generous upper bound* $ H $ on the number of hairs on any human head, and
+- a *conservative lower bound* on $ |N| $, the count of non-bald New Yorkers,
+
+and then checking $ |N| > H $.
+
+> *Why "non-bald" matters.* Without restricting to non-bald people, every fully bald New Yorker shares the hair count $ 0 $ with every other fully bald New Yorker, and the claim collapses to a triviality. The non-bald restriction makes the problem honest: we have to find a collision among *positive* hair counts.
+
+## Step 1 — Upper Bound $ H $ on Hair Count
+
+Two independent factors bound the number of hairs on a human scalp: the area of the scalp, and the density of follicles upon it.
+
+**Scalp area.** A typical adult scalp covers roughly $ 600 \text{–} 700 \ \mathrm{cm}^2 $. As a *very* generous upper bound — covering even the largest heads — take
+
+$$$
+A_{\max} \;=\; 1000 \ \mathrm{cm}^2.
+$$$
+
+(For comparison: a hemisphere of radius $ 12.6 \ \mathrm{cm} $, larger than the human skull, has surface area $ 2 \pi r^2 \approx 998 \ \mathrm{cm}^2 $.)
+
+**Hair density.** Dermatological references put average scalp hair density around $ 200 \ \mathrm{hairs}/\mathrm{cm}^2 $, with the highest measured densities (typically among light blonds) reaching about $ 300 \text{–} 400 \ \mathrm{hairs}/\mathrm{cm}^2 $. As an inflated upper bound, take
+
+$$$
+\rho_{\max} \;=\; 1000 \ \mathrm{hairs}/\mathrm{cm}^2,
+$$$
+
+— a factor of $ 2.5\text{–}5 \times $ over the densest measured scalps.
+
+Multiplying the two generous bounds:
+
+$$$
+\#\text{hairs on any head} \;\le\; A_{\max} \cdot \rho_{\max} \;=\; 1000 \ \mathrm{cm}^2 \cdot 1000 \ \frac{\mathrm{hairs}}{\mathrm{cm}^2} \;=\; 10^6.
+$$$
+
+We take
+
+$$$
+\boxed{\,H \;=\; 10^6 \;=\; 1{,}000{,}000\,}
+$$$
+
+as our pigeonhole count, with substantial slack: realistic counts run $ 10^5 \text{–} 1.5 \times 10^5 $, so $ H $ is inflated by roughly an order of magnitude over biological reality.
+
+## Step 2 — Lower Bound on $ |N| $
+
+**Population of NYC.** Per recent U.S. Census Bureau estimates, the population of New York City exceeds $ 8 \times 10^6 $. As a conservative lower bound, take
+
+$$$
+|\text{NYC}| \;\ge\; 7 \times 10^6.
+$$$
+
+**Fraction bald.** "Bald" here means *zero hairs on the scalp* — a strict criterion. Children are essentially never bald, female-pattern baldness rarely produces zero hairs, and even severe male-pattern baldness usually leaves a fringe of follicles intact. A reasonable upper estimate on the fraction of New Yorkers with literally no scalp hair is well under $ 0.20 $.
+
+Even taking the *absurdly* loose upper estimate that **half** of New Yorkers are completely bald:
+
+$$$
+|N| \;\ge\; \tfrac{1}{2} \cdot 7 \times 10^6 \;=\; 3.5 \times 10^6.
+$$$
+
+With a realistic fraction-bald of $ 0.10 $, the lower bound is much larger:
+
+$$$
+|N| \;\ge\; 0.9 \cdot 7 \times 10^6 \;=\; 6.3 \times 10^6.
+$$$
+
+Either way,
+
+$$$
+\boxed{\,|N| \;\ge\; 3.5 \times 10^6\,}
+$$$
+
+is safe.
+
+## Step 3 — Apply the Pigeonhole Principle
+
+Combining the bounds:
+
+$$$
+|N| \;\ge\; 3.5 \times 10^6 \;>\; 10^6 \;=\; H.
+$$$
+
+So $ h \colon N \to \{1, 2, \ldots, H\} $ has $ |\mathrm{Dom}(h)| > |\mathrm{Rng}(h)| $. By Theorem $ 7.3.1 $, $ h $ is not injective: there exist distinct $ p, q \in N $ with
+
+$$$
+h(p) \;=\; h(q).
+$$$
+
+That is, **two non-bald New Yorkers have exactly the same number of hairs on their heads.** $ \blacksquare $
+
+## Robustness of the Estimates
+
+The pigeonhole inequality $ |N| > H $ holds by a factor of at least $ 3.5\times $ — comfortable enough to survive much sloppier bounds. Below, "realistic" is the typical biological/demographic value; "used here" is the inflated bound that still gives the argument.
+
+| Quantity                       | Realistic value                          | Bound used here                          | Slack            |
+| :---                           | :---:                                    | :---:                                    | :---:            |
+| NYC population                 | $ \approx 8.3 \times 10^6 $              | $ \ge 7 \times 10^6 $                    | $ \sim 1.2\times $|
+| Fraction bald                  | $ \lesssim 0.10 $                        | $ \le 0.50 $                             | $ \sim 5\times $ |
+| Max scalp area                 | $ \lesssim 700 \ \mathrm{cm}^2 $         | $ \le 1000 \ \mathrm{cm}^2 $             | $ \sim 1.4\times $|
+| Max hair density               | $ \lesssim 400 / \mathrm{cm}^2 $         | $ \le 1000 / \mathrm{cm}^2 $             | $ \sim 2.5\times $|
+| Realistic max hair count       | $ \lesssim 2 \times 10^5 $               | $ H = 10^6 $                             | $ \sim 5\times $ |
+| Non-bald NYC ($ |N| $)         | $ \approx 7.5 \times 10^6 $              | $ \ge 3.5 \times 10^6 $                  | $ \sim 2\times $ |
+| Pigeonhole margin $ |N|/H $    | $ \approx 37 $                           | $ \ge 3.5 $                              | $ \sim 10\times $|
+
+Every individual factor could be off by $ 2\times $ or more and the conclusion would survive. The argument is not merely "true under the stated bounds" — it is *robustly* true.
+
+## A Sharper Conclusion via the Strong Pigeonhole
+
+The *strong* form of the pigeonhole principle (Theorem $ 7.3.2 $) says: if $ |N| $ objects are distributed among $ H $ pigeonholes of equal capacity $ m $, and $ |N| > H (m - 1) $, then some pigeonhole contains at least $ m $ objects. Equivalently, *some* hair count is shared by at least
+
+$$$
+m \;=\; \left\lceil \frac{|N|}{H} \right\rceil
+$$$
+
+different non-bald New Yorkers.
+
+- **Inflated bounds** ($ |N| \ge 3.5 \times 10^6 $, $ H = 10^6 $): some hair count is shared by at least $ \lceil 3.5 \rceil = 4 $ non-bald New Yorkers.
+- **Realistic bounds** ($ |N| \approx 7.5 \times 10^6 $, $ H \approx 2 \times 10^5 $): some hair count is shared by at least $ \lceil 37.5 \rceil = 38 $ non-bald New Yorkers — and by averaging, the *typical* hair count is shared by roughly $ 37 $.
+
+So the conclusion is not just "a coincidence exists somewhere" — *every* hair count in the natural range is shared by dozens of New Yorkers.
+
+## Remark — The Structure of the Argument
+
+The proof has a familiar shape for pigeonhole problems:
+
+1. **Identify the function.** Map *pigeons* (non-bald New Yorkers) to *pigeonholes* (positive integers up to $ H $) via the natural counting map.
+2. **Bound the domain from below.** A lower bound on $ |N| $ — from population data and a generous bald-fraction.
+3. **Bound the codomain from above.** An upper bound on $ H $ — from scalp anatomy.
+4. **Verify $ |\mathrm{Dom}| > |\mathrm{Rng}| $.** A single arithmetic comparison.
+
+What makes this particular instance worth examining is *Step 3*: it requires biological knowledge external to combinatorics, and one has to argue that the bound is finite *at all* before bounding it. (A priori, one could imagine humans with arbitrarily many hairs — the pigeonhole then has no codomain bound, and the argument fails.) The argument's substance lies in convincing the reader that hair counts are bounded by *some* number much smaller than the population of NYC.
+
+## Remark — Why "Careful Estimates"
+
+The book asks for *careful* estimates because the argument has two failure modes:
+
+- **Codomain bound too loose.** If one allows, say, $ H = 10^{10} $ ("who knows how many hairs?"), the inequality $ |N| > H $ fails and the proof breaks. Care is needed to *defend* the upper bound on hair count — i.e., to explain *why* a human head cannot harbor $ 10^7 $ hairs.
+- **Domain bound too tight.** If one underestimates $ |N| $ — e.g., by claiming "$ 95\% $ of people are bald" — the inequality again fails. Care is needed in defining "bald" strictly (literally zero hairs) and recognizing that this is rare.
+
+A careless treatment fails on either flank. The estimates above are *careful* in that each side is inflated/deflated *away* from the desired inequality, so the inequality holds even under hostile reinterpretation of the numbers.

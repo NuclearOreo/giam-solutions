@@ -1,0 +1,195 @@
+.docname {Solution — GIAM 7.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.3 Problem 3
+
+## Problem
+
+If we select $ 1001 $ numbers from the set $ \{1, 2, 3, \ldots, 2000\} $ it is certain that there will be two numbers selected such that one divides the other. We can prove this fact by noting that every number in the given set can be expressed in the form $ 2^k \cdot m $ where $ m $ is an odd number, and using the pigeonhole principle. Write up this proof.
+
+## Pigeonhole Framing
+
+The textbook's hint gives us both the pigeonholes and the function.
+
+**Odd-part decomposition.** Every positive integer $ n $ admits a *unique* factorization
+
+$$$
+n \;=\; 2^k \cdot m, \qquad k \ge 0,\quad m \text{ odd}.
+$$$
+
+We call $ m $ the *odd part* of $ n $. *Existence* follows by factoring out the highest power of $ 2 $ dividing $ n $; *uniqueness* follows because $ m $ is determined as the largest odd divisor of $ n $.
+
+**Pigeonholes.** Let
+
+$$$
+M \;:=\; \{1,\, 3,\, 5,\, \ldots,\, 1999\}
+$$$
+
+be the set of odd numbers in $ \{1, \ldots, 2000\} $. For $ n \le 2000 $, the odd part $ m $ satisfies $ m \le n \le 2000 $; since $ m $ is odd, $ m \in M $. So the *odd-part map*
+
+$$$
+f \;\colon\; \{1, 2, \ldots, 2000\} \;\longrightarrow\; M, \qquad f(n) \;=\; \text{odd part of } n,
+$$$
+
+is well-defined.
+
+**Pigeons.** The $ 1001 $ selected numbers — a subset $ S \subseteq \{1, \ldots, 2000\} $ with $ |S| = 1001 $.
+
+**Plan.** Show $ |M| = 1000 $, so $ |S| > |M| $; apply Theorem $ 7.3.1 $ to conclude $ f|_S $ is not injective; then convert "same odd part" into "one divides the other."
+
+## Step 1 — Counting Odd Parts
+
+$ M $ is the arithmetic sequence $ 1, 3, 5, \ldots, 1999 $ with first term $ a = 1 $, common difference $ d = 2 $, last term $ L = 1999 $. The fence-post formula (Chapter $ 7.1 $ Problem $ 1 $) gives
+
+$$$
+|M| \;=\; \frac{L - a}{d} + 1 \;=\; \frac{1999 - 1}{2} + 1 \;=\; 999 + 1 \;=\; 1000.
+$$$
+
+## Step 2 — The Odd-Part Map on Small Examples
+
+A quick sanity check, just to nail down the map $ f $:
+
+| $ n $   | $ 2^k \cdot m $    | $ f(n) = m $ |
+| :---:  | :---:              | :---:        |
+| $ 1 $   | $ 2^0 \cdot 1 $    | $ 1 $        |
+| $ 6 $   | $ 2^1 \cdot 3 $    | $ 3 $        |
+| $ 8 $   | $ 2^3 \cdot 1 $    | $ 1 $        |
+| $ 100 $ | $ 2^2 \cdot 25 $   | $ 25 $       |
+| $ 1024 $ | $ 2^{10} \cdot 1 $ | $ 1 $        |
+| $ 1535 $ | $ 2^0 \cdot 1535 $ | $ 1535 $     |
+| $ 2000 $ | $ 2^4 \cdot 125 $  | $ 125 $      |
+
+Notice that *different* values of $ n $ can share the same odd part (e.g., $ 1, 8, 1024 $ all have odd part $ 1 $). This non-injectivity of $ f $ is exactly what the pigeonhole principle will exploit.
+
+## Step 3 — Apply the Pigeonhole Principle
+
+Restrict $ f $ to the selected set $ S $:
+
+$$$
+f|_S \;\colon\; S \;\longrightarrow\; M.
+$$$
+
+The domain has size
+
+$$$
+|\mathrm{Dom}(f|_S)| \;=\; |S| \;=\; 1001,
+$$$
+
+while the codomain has size
+
+$$$
+|\mathrm{Rng}(f|_S)| \;\le\; |M| \;=\; 1000.
+$$$
+
+Since $ 1001 > 1000 $, Theorem $ 7.3.1 $ tells us $ f|_S $ is not injective: there exist *distinct* $ n_1, n_2 \in S $ with
+
+$$$
+f(n_1) \;=\; f(n_2) \;=\; m
+$$$
+
+for some common odd value $ m \in M $.
+
+## Step 4 — Same Odd Part Forces a Divisibility
+
+Write the two selected numbers via the odd-part decomposition:
+
+$$$
+n_1 \;=\; 2^{k_1} \cdot m, \qquad n_2 \;=\; 2^{k_2} \cdot m, \qquad k_1, k_2 \ge 0.
+$$$
+
+Since $ n_1 \ne n_2 $ and they share $ m $, we must have $ k_1 \ne k_2 $. Relabel so that $ k_1 < k_2 $. Then
+
+$$$
+n_2 \;=\; 2^{k_2} \cdot m \;=\; 2^{k_2 - k_1} \cdot (2^{k_1} \cdot m) \;=\; 2^{k_2 - k_1} \cdot n_1,
+$$$
+
+with $ k_2 - k_1 \ge 1 $ a positive integer. So
+
+$$$
+n_1 \;\mid\; n_2
+$$$
+
+— *one of the selected numbers divides the other.* $ \blacksquare $
+
+## Sharpness — Why $ 1001 $ is Tight
+
+The pigeonhole bound is *exact*: there exists a $ 1000 $-element subset of $ \{1, \ldots, 2000\} $ with **no** divisibility relation, so the threshold cannot be lowered to $ 1000 $.
+
+Take
+
+$$$
+T \;=\; \{1001,\, 1002,\, \ldots,\, 2000\}, \qquad |T| = 1000.
+$$$
+
+For any $ a, b \in T $ with $ a < b $,
+
+$$$
+\frac{b}{a} \;\le\; \frac{2000}{1001} \;<\; 2.
+$$$
+
+So $ b < 2a $; in particular, the next multiple of $ a $ after $ a $ itself is $ 2a $, which exceeds $ b $. Hence $ a \nmid b $.
+
+Thus $ T $ is an *antichain* (no two elements comparable under divisibility) of size $ 1000 $, showing the threshold $ 1001 $ cannot be improved.
+
+## Remark — A Chain Decomposition
+
+Step $ 4 $ exploits the fact that elements sharing an odd part are *automatically* divisibility-comparable. This is most cleanly stated by partitioning $ \{1, \ldots, 2000\} $ into chains.
+
+For each $ m \in M $, define
+
+$$$
+C_m \;=\; \{\, m,\; 2m,\; 4m,\; \ldots,\; 2^{k_m} m \,\} \;\cap\; \{1, \ldots, 2000\}, \qquad k_m = \lfloor \log_2(2000/m) \rfloor.
+$$$
+
+Then:
+
+- Each $ C_m $ is *totally* ordered by divisibility — every two elements satisfy a divides-relation.
+- The chains $ \{C_m\}_{m \in M} $ *partition* $ \{1, \ldots, 2000\} $ (each $ n $ lies in exactly one $ C_m $, indexed by its odd part).
+- There are $ |M| = 1000 $ chains.
+
+Distributing $ 1001 $ elements among $ 1000 $ chains forces two elements into the *same* chain, hence into a divisibility relation. Step $ 3 $'s pigeonhole and Step $ 4 $'s "same odd part divides" collapse into the single statement: *two pigeons in the same chain are comparable*.
+
+## Remark — Dilworth's Theorem in Miniature
+
+The numbers $ 1000 $ appear twice — once as the largest antichain size (from Sharpness), once as the chain decomposition size (from the Remark above). This is no accident.
+
+| Object                              | Value | Source            |
+| :---                                | :---: | :---              |
+| Size of largest antichain in $ (\{1,\ldots,2000\}, \mid) $ | $ 1000 $ | $ T = \{1001, \ldots, 2000\} $ |
+| Minimum number of chains needed to cover the set | $ 1000 $ | chains $ C_m $ by odd part        |
+
+**Dilworth's theorem** says: for any finite poset, the *largest antichain size* equals the *minimum number of chains in a chain decomposition*. Here both equal $ 1000 $, and our explicit constructions saturate both sides — the antichain witnesses the lower bound on chain-decomposition size, and the odd-part decomposition witnesses the upper bound.
+
+The pigeonhole proof we wrote is, structurally, "any $ |S| > (\text{largest antichain size}) $ forces two elements into the same chain." For this poset, that threshold is $ 1001 $.
+
+## Sanity Check — Smaller Analogues
+
+The same argument scales down. For $ \{1, 2, \ldots, 2N\} $, the odd parts are $ \{1, 3, 5, \ldots, 2N - 1\} $ — a set of size $ N $ — so any $ N + 1 $-element subset contains a divisibility pair.
+
+| Universe                  | $ N $ | # odd parts | Largest antichain          | Min size forcing a divisibility |
+| :---:                     | :---: | :---:       | :---                       | :---:                            |
+| $ \{1, \ldots, 4\} $       | $ 2 $ | $ 2 $       | $ \{3, 4\} $               | $ 3 $                            |
+| $ \{1, \ldots, 10\} $      | $ 5 $ | $ 5 $       | $ \{6, 7, 8, 9, 10\} $      | $ 6 $                            |
+| $ \{1, \ldots, 20\} $      | $ 10 $ | $ 10 $     | $ \{11, 12, \ldots, 20\} $  | $ 11 $                           |
+| $ \{1, \ldots, 2000\} $    | $ 1000 $ | $ 1000 $ | $ \{1001, \ldots, 2000\} $  | $ 1001 $                         |
+
+The pattern $ N + 1 $ is the pigeonhole threshold; the antichain $ \{N+1, N+2, \ldots, 2N\} $ is the matching extremal example.
+
+## Remark — Why the Hint Says "$ 2^k \cdot m $"
+
+The exercise hint *names* the right pigeonholes — the odd parts — which is the entire creative step. Once one knows to bin numbers by odd part, the rest is mechanical:
+
+1. Count the odd parts ($ 1000 $).
+2. Note $ 1001 > 1000 $ — pigeonhole forces a collision.
+3. Translate "same odd part" into "one divides the other" via $ 2^k $ factors.
+
+The hint short-circuits step (i): it tells the reader *which* equivalence relation to group by, namely *"$ n_1 \sim n_2 $ iff they have the same odd part"*. The equivalence classes are the chains $ C_m $, and the count of classes equals $ |M| = 1000 $.
+
+Without the hint, the searcher might try grouping by, say, the *largest* divisor of $ n $ at most $ \sqrt{n} $, or by residue modulo something, or by digit count — none of which give a clean count or a clean divisibility consequence. The hint makes a hard creative leap (which equivalence relation to use) trivial.

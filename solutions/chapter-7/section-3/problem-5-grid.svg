@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 460" width="460" height="460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="460" height="460" fill="white"/>
+
+  <g transform="translate(50, 50)">
+    <!-- Grid background -->
+    <rect x="0" y="0" width="360" height="360" fill="#fafafa"/>
+
+    <!-- Highlighted center cell (the cell that pigeonhole forces to hold 2+ points) -->
+    <rect x="120" y="120" width="120" height="120" fill="#fff3cd"/>
+
+    <!-- Interior grid lines -->
+    <line x1="120" y1="0" x2="120" y2="360" stroke="#666" stroke-width="1.5"/>
+    <line x1="240" y1="0" x2="240" y2="360" stroke="#666" stroke-width="1.5"/>
+    <line x1="0" y1="120" x2="360" y2="120" stroke="#666" stroke-width="1.5"/>
+    <line x1="0" y1="240" x2="360" y2="240" stroke="#666" stroke-width="1.5"/>
+
+    <!-- Outer border -->
+    <rect x="0" y="0" width="360" height="360" fill="none" stroke="#222" stroke-width="2.5"/>
+
+    <!-- 8 single black points, one per non-highlighted cell -->
+    <g fill="#222">
+      <circle cx="50" cy="55" r="5"/>
+      <circle cx="175" cy="40" r="5"/>
+      <circle cx="290" cy="80" r="5"/>
+      <circle cx="35" cy="195" r="5"/>
+      <circle cx="320" cy="160" r="5"/>
+      <circle cx="60" cy="320" r="5"/>
+      <circle cx="200" cy="290" r="5"/>
+      <circle cx="305" cy="320" r="5"/>
+    </g>
+
+    <!-- 2 red points in the highlighted center cell, plus a dashed connector -->
+    <line x1="145" y1="205" x2="220" y2="140" stroke="#cc0000" stroke-width="2" stroke-dasharray="5,4"/>
+    <circle cx="145" cy="205" r="5.5" fill="#cc0000"/>
+    <circle cx="220" cy="140" r="5.5" fill="#cc0000"/>
+
+    <!-- Outer dimension labels: side length 3 -->
+    <text x="180" y="-22" text-anchor="middle" font-size="15" fill="#222" font-style="italic">3</text>
+    <text x="-22" y="185" text-anchor="middle" font-size="15" fill="#222" font-style="italic">3</text>
+
+    <!-- Unit cell side labels along the bottom -->
+    <text x="60" y="382" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+    <text x="180" y="382" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+    <text x="300" y="382" text-anchor="middle" font-size="12" fill="#888" font-style="italic">1</text>
+  </g>
+</svg>
