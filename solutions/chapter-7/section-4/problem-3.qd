@@ -1,0 +1,114 @@
+.docname {Solution — GIAM 7.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 3
+
+## Problem
+
+Find $ (x^2 + y^2)^6 $.
+
+## Setup — Binomial Theorem with a Substitution
+
+The binomial theorem states
+
+$$$
+(u + v)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, u^{n - k} \, v^{k}.
+$$$
+
+Take $ u = x^2 $, $ v = y^2 $, $ n = 6 $:
+
+$$$
+(x^2 + y^2)^6 \;=\; \sum_{k = 0}^{6} \binom{6}{k} \, (x^2)^{6 - k} \, (y^2)^{k} \;=\; \sum_{k = 0}^{6} \binom{6}{k} \, x^{2(6-k)} \, y^{2k}.
+$$$
+
+The substitution $ u = x^2, v = y^2 $ has two consequences worth noting upfront:
+
+- Every exponent of $ x $ and $ y $ in the answer is **even** — specifically, $ 2(6-k) $ on $ x $ and $ 2k $ on $ y $.
+- Every term has *total* degree $ 2(6-k) + 2k = 12 $. The answer is a *homogeneous* polynomial of degree $ 12 $.
+
+## Step 1 — Pascal's Row $ 6 $
+
+$$$
+\binom{6}{0} = 1,\quad \binom{6}{1} = 6,\quad \binom{6}{2} = 15,\quad \binom{6}{3} = 20,\quad \binom{6}{4} = 15,\quad \binom{6}{5} = 6,\quad \binom{6}{6} = 1.
+$$$
+
+(Same coefficients as in Problem $ 1 $ — $ 1001^6 $ used row $ 6 $ of Pascal as well.)
+
+## Step 2 — Compute Each Term
+
+| $ k $ | $ \binom{6}{k} $ | $ x $-exponent $ = 2(6-k) $ | $ y $-exponent $ = 2k $ | Term                  |
+| :---: | :---:            | :---:                       | :---:                   | :---                  |
+| $ 0 $ | $ 1 $            | $ 12 $                      | $ 0 $                   | $ x^{12} $            |
+| $ 1 $ | $ 6 $            | $ 10 $                      | $ 2 $                   | $ 6 x^{10} y^{2} $    |
+| $ 2 $ | $ 15 $           | $ 8 $                       | $ 4 $                   | $ 15 x^{8} y^{4} $    |
+| $ 3 $ | $ 20 $           | $ 6 $                       | $ 6 $                   | $ 20 x^{6} y^{6} $    |
+| $ 4 $ | $ 15 $           | $ 4 $                       | $ 8 $                   | $ 15 x^{4} y^{8} $    |
+| $ 5 $ | $ 6 $            | $ 2 $                       | $ 10 $                  | $ 6 x^{2} y^{10} $    |
+| $ 6 $ | $ 1 $            | $ 0 $                       | $ 12 $                  | $ y^{12} $            |
+
+## Step 3 — Assemble
+
+$$$
+\boxed{\;(x^2 + y^2)^6 \;=\; x^{12} \;+\; 6 x^{10} y^{2} \;+\; 15 x^{8} y^{4} \;+\; 20 x^{6} y^{6} \;+\; 15 x^{4} y^{8} \;+\; 6 x^{2} y^{10} \;+\; y^{12}.\;}
+$$$
+
+## Sanity Checks
+
+**$ y = 0 $.** $ (x^2 + 0)^6 = x^{12} $. Polynomial reduces to $ x^{12} $. $ \checkmark $
+
+**$ x = 0 $.** $ (0 + y^2)^6 = y^{12} $. Polynomial reduces to $ y^{12} $. $ \checkmark $
+
+**$ x = y = 1 $.** $ (1 + 1)^6 = 64 $. Polynomial at $ (1, 1) $:
+
+$$$
+1 + 6 + 15 + 20 + 15 + 6 + 1 \;=\; 64. \;\checkmark
+$$$
+
+**$ x \leftrightarrow y $ symmetry.** Swapping $ x $ and $ y $ leaves $ x^2 + y^2 $ unchanged, so it must leave the expansion unchanged. Reading the answer's monomials in order — $ x^{12},\, 6 x^{10} y^2,\, 15 x^8 y^4,\, 20 x^6 y^6,\, 15 x^4 y^8,\, 6 x^2 y^{10},\, y^{12} $ — the pairs swap into each other:
+
+$$$
+x^{12} \;\leftrightarrow\; y^{12}, \qquad 6 x^{10} y^{2} \;\leftrightarrow\; 6 x^{2} y^{10}, \qquad 15 x^{8} y^{4} \;\leftrightarrow\; 15 x^{4} y^{8},
+$$$
+
+and the middle term $ 20 x^6 y^6 $ is fixed. The expansion is *invariant* under $ x \leftrightarrow y $, as required. $ \checkmark $
+
+## Remark — Re-grouping the Answer by Symmetry
+
+Pairing terms that are swapped by $ x \leftrightarrow y $:
+
+$$$
+(x^2 + y^2)^6 \;=\; \bigl(x^{12} + y^{12}\bigr) \;+\; 6\bigl(x^{10} y^{2} + x^{2} y^{10}\bigr) \;+\; 15\bigl(x^{8} y^{4} + x^{4} y^{8}\bigr) \;+\; 20\, x^{6} y^{6}.
+$$$
+
+Each parenthesized group is itself a symmetric polynomial in $ x, y $ — a *power-sum* of the form $ p_{a,b}(x, y) := x^a y^b + x^b y^a $ (with the middle term $ 20 x^6 y^6 $ being the $ a = b $ case, where the two summands coincide). The Pascal coefficients $ 1, 6, 15, 20 $ — *half* of row $ 6 $ — index the distinct pairs $ \{12, 0\}, \{10, 2\}, \{8, 4\}, \{6, 6\} $.
+
+## Remark — A Polynomial Expression for $ r^{12} $
+
+In polar coordinates, $ x = r \cos\theta $, $ y = r \sin\theta $, and so
+
+$$$
+x^2 + y^2 \;=\; r^2 \;\;\Longrightarrow\;\; (x^2 + y^2)^6 \;=\; r^{12}.
+$$$
+
+Thus the expansion gives a *polynomial in $ (x, y) $* equal to $ r^{12} $:
+
+$$$
+r^{12} \;=\; x^{12} + 6 x^{10} y^2 + 15 x^8 y^4 + 20 x^6 y^6 + 15 x^4 y^8 + 6 x^2 y^{10} + y^{12}.
+$$$
+
+This is possible because $ 12 $ is even. For *odd* powers of $ r $ (e.g., $ r^3 = (x^2 + y^2)^{3/2} $), no polynomial expression in $ (x, y) $ exists — $ r $ is not algebraic over $ \mathbb{R}[x, y] $ once one moves outside even integer exponents.
+
+The general fact: $ r^{2m} = (x^2 + y^2)^m $ is a homogeneous polynomial of degree $ 2m $ in $ (x, y) $ for every non-negative integer $ m $. Its coefficients are Pascal's row $ m $, applied to the pairs $ \{x^{2(m-k)}, y^{2k}\} $.
+
+## Remark — Why the Substitution Trick Works
+
+Setting $ u = x^2, v = y^2 $ turns the problem into a *plain* binomial expansion $ (u + v)^6 $ — which we already know how to do. The trick is general: any binomial $ (A + B)^n $ where $ A $ and $ B $ are themselves nicely-shaped expressions (powers, products, polynomials) can be expanded by Pascal's rule first, then expanded in the inner variables only if needed.
+
+For *this* problem the inner expansions are trivial — $ (x^2)^j = x^{2j} $ is one term, not many. So no second pass is required. For more involved problems like $ (x^2 + y^3)^6 $, one would also expand each $ (x^2)^{6-k}(y^3)^k = x^{2(6-k)} y^{3k} $ in the same step. The general rule: *every* binomial-theorem expansion is one pass of Pascal's row, applied to *whatever* the two summands happen to be.

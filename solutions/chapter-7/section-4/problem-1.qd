@@ -1,0 +1,123 @@
+.docname {Solution — GIAM 7.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 1
+
+## Problem
+
+Use the binomial theorem (with $ x = 1000 $ and $ y = 1 $) to calculate $ 1001^6 $.
+
+## Setup — Binomial Theorem
+
+The binomial theorem states
+
+$$$
+(x + y)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k}.
+$$$
+
+The hint sets $ x = 1000 $, $ y = 1 $, and $ n = 6 $, so
+
+$$$
+1001^6 \;=\; (1000 + 1)^6 \;=\; \sum_{k = 0}^{6} \binom{6}{k} \, 1000^{6 - k} \, 1^{k} \;=\; \sum_{k = 0}^{6} \binom{6}{k} \, 1000^{6 - k}.
+$$$
+
+Since $ 1^k = 1 $ for every $ k $, each term reduces to $ \binom{6}{k} \cdot 1000^{6-k} $.
+
+## Step 1 — Read the Binomial Coefficients
+
+Row $ 6 $ of Pascal's triangle gives the seven coefficients $ \binom{6}{k} $:
+
+$$$
+\binom{6}{0} = 1, \quad \binom{6}{1} = 6, \quad \binom{6}{2} = 15, \quad \binom{6}{3} = 20, \quad \binom{6}{4} = 15, \quad \binom{6}{5} = 6, \quad \binom{6}{6} = 1.
+$$$
+
+(*Spot check:* the sum $ 1 + 6 + 15 + 20 + 15 + 6 + 1 = 64 = 2^6 $, consistent with $ \sum_{k} \binom{6}{k} = 2^6 $ — i.e., $ (1+1)^6 = 64 $.)
+
+## Step 2 — Compute Each Term
+
+The powers of $ 1000 $ are clean: $ 1000^{m} = 10^{3m} $.
+
+| $ k $ | $ \binom{6}{k} $ | $ 1000^{6-k} $    | Term $ \binom{6}{k} \cdot 1000^{6-k} $          |
+| :---: | :---:            | :---:             | :---                                            |
+| $ 0 $ | $ 1 $            | $ 10^{18} $       | $ 1{,}000{,}000{,}000{,}000{,}000{,}000 $       |
+| $ 1 $ | $ 6 $            | $ 10^{15} $       | $ 6{,}000{,}000{,}000{,}000{,}000 $             |
+| $ 2 $ | $ 15 $           | $ 10^{12} $       | $ 15{,}000{,}000{,}000{,}000 $                  |
+| $ 3 $ | $ 20 $           | $ 10^{9} $        | $ 20{,}000{,}000{,}000 $                        |
+| $ 4 $ | $ 15 $           | $ 10^{6} $        | $ 15{,}000{,}000 $                              |
+| $ 5 $ | $ 6 $            | $ 10^{3} $        | $ 6{,}000 $                                     |
+| $ 6 $ | $ 1 $            | $ 1 $             | $ 1 $                                           |
+
+## Step 3 — Add the Terms
+
+Each term contributes a different range of digits, since the coefficients $ \binom{6}{k} $ are all *less than $ 1000 $* and each $ 1000^{6-k} $ shifts by exactly $ 3 $ decimal places. No carrying occurs across the boundaries. Column-stack the addition:
+
+$$$
+\begin{aligned}
+&\phantom{+\ }1{,}000{,}000{,}000{,}000{,}000{,}000 \\
+&+\phantom{0,}\,\,\, 6{,}000{,}000{,}000{,}000{,}000 \\
+&+\phantom{0,000,}\,\,\, 15{,}000{,}000{,}000{,}000 \\
+&+\phantom{0,000,000,}\,\,\, 20{,}000{,}000{,}000 \\
+&+\phantom{0,000,000,000,}\,\,\, 15{,}000{,}000 \\
+&+\phantom{0,000,000,000,000,000,}\,\,\, 6{,}000 \\
+&+\phantom{0,000,000,000,000,000,000,000,}\,\,\, 1 \\
+\hline
+&\phantom{+\ }1{,}006{,}015{,}020{,}015{,}006{,}001
+\end{aligned}
+$$$
+
+## Conclusion
+
+$$$
+\boxed{\;1001^6 \;=\; 1{,}006{,}015{,}020{,}015{,}006{,}001\;}
+$$$
+
+## Remark — Reading Pascal's Triangle Off the Decimal Expansion
+
+Note the digit groups of the answer, separated by commas:
+
+$$$
+\underbrace{1}_{=\binom{6}{0}}\,,\;\underbrace{006}_{=\binom{6}{1}}\,,\;\underbrace{015}_{=\binom{6}{2}}\,,\;\underbrace{020}_{=\binom{6}{3}}\,,\;\underbrace{015}_{=\binom{6}{4}}\,,\;\underbrace{006}_{=\binom{6}{5}}\,,\;\underbrace{001}_{=\binom{6}{6}}.
+$$$
+
+Reading the digit blocks in order, we recover *Pascal's row $ 6 $*: $ 1, 6, 15, 20, 15, 6, 1 $.
+
+This is no coincidence. Multiplying $ \binom{6}{k} $ by $ 1000^{6-k} = 10^{3(6-k)} $ shifts the coefficient $ 3(6-k) $ places to the left. Since each coefficient $ \binom{6}{k} $ has at most $ 3 $ decimal digits (the maximum, $ 20 $, has $ 2 $), the shifted coefficients land in disjoint $ 3 $-digit slots — no carrying across slot boundaries. The decimal expansion of $ 1001^6 $ is therefore *literally* the coefficients of $ (x+y)^6 $ laid down at intervals of three digits.
+
+## Remark — When Does This Trick Stop Working?
+
+The "Pascal-in-base-$ 1000 $" trick works whenever every coefficient $ \binom{n}{k} $ fits in $ 3 $ digits, i.e., $ \binom{n}{k} < 1000 $ for all $ k $.
+
+| $ n $   | $ \max_k \binom{n}{k} $   | Fits in $ 3 $ digits? | Pascal-pattern in $ 1001^n $? |
+| :---:   | :---:                     | :---:                 | :---:                         |
+| $ 6 $   | $ 20 $                    | yes                   | yes                           |
+| $ 9 $   | $ 126 $                   | yes                   | yes                           |
+| $ 12 $  | $ 924 $                   | yes (barely)          | yes                           |
+| $ 13 $  | $ 1716 $                  | **no**                | broken by carries             |
+| $ 20 $  | $ 184{,}756 $             | no                    | no                            |
+
+So $ 1001^n $ reads off Pascal's row $ n $ for $ n \le 12 $, and the visualization breaks at $ n = 13 $ where $ \binom{13}{6} = 1716 $ overflows the $ 3 $-digit block and carries into the next.
+
+The same trick generalizes by changing the base. Working in base $ 10^d $ — i.e., using $ x = 10^d $ — keeps the pattern alive as long as $ \binom{n}{k} < 10^d $. For example, using $ x = 10^6 $ (i.e., computing $ (10^6 + 1)^n $) extends the Pascal-readable range to $ n \approx 23 $ (since $ \binom{23}{11} = 1{,}352{,}078 < 10^7 $... actually that needs $ d \ge 7 $).
+
+## Remark — Why the Binomial Theorem is the Right Tool Here
+
+A direct computation of $ 1001^6 $ by repeated multiplication requires manipulating $ 19 $-digit intermediate numbers. The binomial expansion, by contrast, decomposes the answer into $ 7 $ small, *non-overlapping* contributions — one per term, each easy to compute and trivial to assemble (because no carrying occurs).
+
+The technique generalizes: any *near*-power-of-ten can be raised to small powers by binomial expansion, with the digits of the answer essentially "written down" rather than computed.
+
+| Quantity         | Useful split                 | Why it's clean                                                 |
+| :---             | :---                         | :---                                                           |
+| $ 1001^n $       | $ (10^3 + 1)^n $             | Pascal's row $ n $ at $ 3 $-digit intervals (for $ n \le 12 $) |
+| $ 999^n $        | $ (10^3 - 1)^n $             | alternating signs of Pascal's row — sometimes overlap          |
+| $ 101^n $        | $ (10^2 + 1)^n $             | Pascal's row at $ 2 $-digit intervals (for $ n \le 4 $)        |
+| $ 99^n $         | $ (10^2 - 1)^n $             | alternating-sign Pascal — needs care                           |
+| $ 10001^n $      | $ (10^4 + 1)^n $             | Pascal's row at $ 4 $-digit intervals (for $ n \le 16 $)       |
+
+For this problem, $ 1001^6 $ is the *sweet spot*: $ 6 $ is small enough that the coefficients are small ($ \le 20 $), and $ 1000 $ is a clean enough base that the shifts are by an integer number of digits.

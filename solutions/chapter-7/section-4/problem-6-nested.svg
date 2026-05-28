@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" width="500" height="320" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="500" height="320" fill="white"/>
+
+  <!-- Universe rectangle, n elements total -->
+  <rect x="30" y="30" width="440" height="260" fill="#fafafa" stroke="#222" stroke-width="2"/>
+
+  <!-- A ellipse, k elements -->
+  <ellipse cx="250" cy="180" rx="170" ry="85" fill="#e8f4fc" stroke="#222" stroke-width="1.5"/>
+
+  <!-- B ellipse, r elements -->
+  <ellipse cx="250" cy="180" rx="75" ry="48" fill="#fff3cd" stroke="#222" stroke-width="1.5"/>
+
+  <!-- Inner B label -->
+  <g text-anchor="middle">
+    <text x="250" y="178" font-style="italic" font-size="17" font-weight="bold" fill="#222">B</text>
+    <text x="250" y="197" font-size="12" fill="#444">size r</text>
+  </g>
+
+  <!-- Middle ring (A minus B), to the right -->
+  <g text-anchor="middle">
+    <text x="380" y="178" font-style="italic" font-size="15" font-weight="bold" fill="#222">A ∖ B</text>
+    <text x="380" y="197" font-size="12" fill="#444">size k − r</text>
+  </g>
+
+  <!-- Outer (universe minus A), top-left -->
+  <g text-anchor="start">
+    <text x="50" y="62" font-style="italic" font-size="15" font-weight="bold" fill="#222">Universe ∖ A</text>
+    <text x="50" y="80" font-size="12" fill="#444">size n − k</text>
+  </g>
+
+  <!-- Top labels (size annotations on the boundaries) -->
+  <text x="250" y="108" text-anchor="middle" font-style="italic" font-size="13" fill="#666">— A (size k) —</text>
+
+  <!-- Universe full-set annotation -->
+  <text x="465" y="282" text-anchor="end" font-style="italic" font-size="12" fill="#666">Universe = {1, 2, …, n}</text>
+</svg>

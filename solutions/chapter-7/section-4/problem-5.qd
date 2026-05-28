@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 7.4 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 5
+
+## Problem
+
+The student government at Lagrange High consists of $ 24 $ members chosen from amongst the general student body of $ 210 $. Additionally, there is a steering committee of $ 5 $ members chosen from amongst those in student government. Use the multiplication rule to determine two different formulas for the total number of possible governance structures.
+
+## Setup
+
+A *governance structure* consists of two pieces of data:
+
+- $ G $: a $ 24 $-element subset of the $ 210 $-student body — the student government.
+- $ S $: a $ 5 $-element subset of $ G $ — the steering committee.
+
+Equivalently, a governance structure is a *nested pair* $ S \subseteq G \subseteq \text{Student Body} $ with $ |S| = 5 $, $ |G| = 24 $, $ |\text{Student Body}| = 210 $.
+
+We want to count the number of such pairs $ (G, S) $ — call this number $ N $ — using the multiplication rule in two different orders.
+
+## Formula 1 — Outer-Then-Inner
+
+Build the structure in two stages, choosing $ G $ first and then $ S $:
+
+- **Stage A.** Choose the $ 24 $-member student government from $ 210 $ students: $ \binom{210}{24} $ ways.
+- **Stage B.** Choose the $ 5 $-member steering committee from those $ 24 $: $ \binom{24}{5} $ ways.
+
+By the multiplication rule,
+
+$$$
+\boxed{\;N \;=\; \binom{210}{24} \cdot \binom{24}{5}.\;}
+$$$
+
+## Formula 2 — Inner-Then-Outer
+
+Build the structure in two stages, choosing $ S $ first and then $ G $:
+
+- **Stage A′.** Choose the $ 5 $-member steering committee directly from the $ 210 $-student body: $ \binom{210}{5} $ ways. (Implicitly, these $ 5 $ are *also* in student government, since $ S \subseteq G $.)
+- **Stage B′.** Complete the student government by choosing the remaining $ 24 - 5 = 19 $ members from the remaining $ 210 - 5 = 205 $ students: $ \binom{205}{19} $ ways.
+
+By the multiplication rule,
+
+$$$
+\boxed{\;N \;=\; \binom{210}{5} \cdot \binom{205}{19}.\;}
+$$$
+
+## Verification — Both Formulas Equal
+
+Expand each in factorial form:
+
+$$$
+\binom{210}{24} \cdot \binom{24}{5} \;=\; \frac{210!}{24! \cdot 186!} \cdot \frac{24!}{5! \cdot 19!} \;=\; \frac{210!}{5! \cdot 19! \cdot 186!}.
+$$$
+
+$$$
+\binom{210}{5} \cdot \binom{205}{19} \;=\; \frac{210!}{5! \cdot 205!} \cdot \frac{205!}{19! \cdot 186!} \;=\; \frac{210!}{5! \cdot 19! \cdot 186!}.
+$$$
+
+Both expressions collapse to the *same* compact form
+
+$$$
+N \;=\; \frac{210!}{5! \cdot 19! \cdot 186!}.
+$$$
+
+The $ 24! $ in Formula $ 1 $ cancels between the two factors; the $ 205! $ in Formula $ 2 $ likewise cancels. The denominators $ 5! \cdot 19! \cdot 186! $ that survive correspond to *partitioning* the $ 210 $ students into three groups — the $ 5 $ steering members, the $ 19 $ non-steering student-government members, and the $ 186 $ non-government students.
+
+## Remark — Why the Two Formulas Must Agree
+
+The agreement of the two formulas is *not* an algebraic accident: both count the *same set* of governance structures. The multiplication rule says nothing about *which* order to use — only that the count factors. Different orders of building lead to different intermediate expressions, but the total must coincide.
+
+This is the standard *double-counting* technique:
+
+> *If a set $ X $ can be counted in two natural ways, then the two formulas are equal.*
+
+Here, $ X $ is the set of governance structures, and the two ways are "$ G $ then $ S $" versus "$ S $ then $ G $". Equating the two formulas yields the binomial identity
+
+$$$
+\binom{210}{24} \binom{24}{5} \;=\; \binom{210}{5} \binom{205}{19}.
+$$$
+
+This is a special case of the general identity
+
+$$$
+\binom{n}{a} \binom{a}{b} \;=\; \binom{n}{b} \binom{n - b}{a - b}
+$$$
+
+(here $ n = 210, a = 24, b = 5, a - b = 19, n - b = 205 $) — the **subset-of-a-subset identity**.
+
+## A Third Perspective — The Multinomial
+
+The common value $ N = \tfrac{210!}{5! \cdot 19! \cdot 186!} $ is the *trinomial coefficient*
+
+$$$
+N \;=\; \binom{210}{5,\; 19,\; 186},
+$$$
+
+counting the number of ways to partition $ 210 $ students into three *labeled* groups of sizes $ 5 $, $ 19 $, and $ 186 $:
+
+| Group                                  | Size  |
+| :---                                   | :---: |
+| Steering committee                     | $ 5 $    |
+| Student government but **not** steering | $ 19 $  |
+| Not in student government              | $ 186 $  |
+
+This is a single application of the multinomial coefficient, not a sequence of two binomial choices — yet it counts the same governance structures. The three formulas — Formula $ 1 $, Formula $ 2 $, and the multinomial — all evaluate to the same integer:
+
+$$$
+\binom{210}{24} \binom{24}{5} \;=\; \binom{210}{5} \binom{205}{19} \;=\; \binom{210}{5,\; 19,\; 186}.
+$$$
+
+## Remark — A Sanity Check on Sizes
+
+The smaller factor $ \binom{24}{5} = 42{,}504 $ is easy to verify:
+
+$$$
+\binom{24}{5} \;=\; \frac{24 \cdot 23 \cdot 22 \cdot 21 \cdot 20}{5!} \;=\; \frac{5{,}100{,}480}{120} \;=\; 42{,}504.
+$$$
+
+And $ \binom{210}{5} = \tfrac{210 \cdot 209 \cdot 208 \cdot 207 \cdot 206}{120} = 3{,}244{,}032{,}787 \approx 3.24 \times 10^9 $.
+
+The total $ N $ itself is *astronomically* large — $ \binom{210}{24} $ alone is approximately $ 10^{30} $, and multiplied by $ \binom{24}{5} \approx 4 \times 10^4 $ gives $ N \approx 10^{34} $ or so. The point of the exercise is *not* to compute $ N $ numerically but to demonstrate that *two natural counting orders give the same answer* — yielding a non-trivial binomial identity along the way.
+
+## Remark — The General Counting Principle
+
+The "build in stages" technique used in both formulas is the multiplication rule applied to *sequential* choices, where the number of options at stage $ k $ may depend on earlier choices but not on *which* earlier choices were made. Here:
+
+- In Formula $ 1 $, the choice at stage B (steering committee) has $ \binom{24}{5} $ options regardless of *which* $ 24 $ students were chosen in stage A.
+- In Formula $ 2 $, the choice at stage B′ (rest of government) has $ \binom{205}{19} $ options regardless of *which* $ 5 $ students were chosen in stage A′.
+
+Whenever a problem admits two such "build orders," the resulting formulas must be equal, and the equality is often a useful identity in its own right.

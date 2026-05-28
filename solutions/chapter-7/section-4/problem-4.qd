@@ -1,0 +1,177 @@
+.docname {Solution — GIAM 7.4 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 4
+
+## Problem
+
+The textbook displays a $ 3 $-dimensional analog of Pascal's triangle — *Pascal's tetrahedron* — through layer $ n = 3 $. What would the next layer (layer $ n = 4 $) look like?
+
+## What Pascal's Tetrahedron Encodes
+
+Just as Pascal's triangle holds the binomial coefficients $ \binom{n}{k} $ — the coefficients of $ (x + y)^n $ — Pascal's tetrahedron holds the **trinomial coefficients**
+
+$$$
+\binom{n}{i,\, j,\, k} \;:=\; \frac{n!}{i! \, j! \, k!}, \qquad i, j, k \ge 0, \quad i + j + k = n
+$$$
+
+— the coefficients of
+
+$$$
+(x + y + z)^n \;=\; \sum_{i + j + k \,=\, n} \binom{n}{i,\, j,\, k} \, x^{i} \, y^{j} \, z^{k}.
+$$$
+
+The layer-$ n $ slice is a triangular array of $ \binom{n+2}{2} = \tfrac{(n+1)(n+2)}{2} $ entries, one for each non-negative triple $ (i, j, k) $ summing to $ n $. The three corners of the triangle correspond to the "pure" triples $ (n, 0, 0), (0, n, 0), (0, 0, n) $ — each carrying the entry $ \binom{n}{n, 0, 0} = 1 $.
+
+Per-layer entry counts match the diagram in the problem:
+
+| Layer $ n $ | # entries $ = \binom{n+2}{2} $ | Entries                                   |
+| :---:       | :---:                          | :---                                      |
+| $ 0 $       | $ 1 $                          | $ 1 $                                     |
+| $ 1 $       | $ 3 $                          | $ 1, 1, 1 $                               |
+| $ 2 $       | $ 6 $                          | $ 1, 2, 1, 2, 2, 1 $ (three $ 1 $s on corners, three $ 2 $s on edges) |
+| $ 3 $       | $ 10 $                         | three $ 1 $s, six $ 3 $s, one $ 6 $       |
+| $ 4 $       | $ 15 $                         | three $ 1 $s, six $ 4 $s, three $ 6 $s, three $ 12 $s |
+
+## The 3D Pascal Recursion
+
+Pascal's familiar 2D rule "*every entry is the sum of the two entries above it*" generalizes to *three* parents per entry in the tetrahedron:
+
+$$$
+\binom{n}{i,\, j,\, k} \;=\; \binom{n-1}{i-1,\, j,\, k} \;+\; \binom{n-1}{i,\, j-1,\, k} \;+\; \binom{n-1}{i,\, j,\, k-1},
+$$$
+
+with the convention that a coefficient with any negative index is $ 0 $. This is the trinomial analog of Pascal's identity, and it follows from a direct calculation on factorials (or, more conceptually, from the recurrence $ (x + y + z)^n = (x + y + z) \cdot (x + y + z)^{n - 1} $, distributed by which of $ x, y, z $ is chosen as the new factor).
+
+## Layer 4 — The Answer
+
+Applying the recursion to every triple $ (i, j, k) $ with $ i + j + k = 4 $ yields the $ 15 $ trinomial coefficients of layer $ 4 $:
+
+!(75%)[Layer 4 of Pascal's tetrahedron: 15 trinomial coefficients arranged in a triangular grid](problem-4-layer4.svg "The next layer of Pascal's tetrahedron is a triangular array with 15 entries. The three corner entries are 1; each of the three edges carries the values 1, 4, 6, 4, 1 (Pascal's row 4); and the three interior entries (highlighted) are all 12.")
+
+Explicitly:
+
+$$$
+\begin{array}{c}
+                       1 \\
+                    4 \quad 4 \\
+                 6 \quad 12 \quad 6 \\
+            4 \quad 12 \quad 12 \quad 4 \\
+       1 \quad 4 \quad 6 \quad 4 \quad 1
+\end{array}
+$$$
+
+## Verification — Recursion-by-Recursion
+
+Sample checks of the 3D Pascal rule applied to layer $ 3 \to $ layer $ 4 $:
+
+**Corner $ (4, 0, 0) = 1 $.** Parents: $ \binom{3}{3, 0, 0} + \binom{3}{4, -1, 0} + \binom{3}{4, 0, -1} = 1 + 0 + 0 = 1 $. $ \checkmark $
+
+**Edge near-corner $ (3, 1, 0) = 4 $.** Parents: $ \binom{3}{2, 1, 0} + \binom{3}{3, 0, 0} + \binom{3}{3, 1, -1} = 3 + 1 + 0 = 4 $. $ \checkmark $
+
+**Edge midpoint $ (2, 2, 0) = 6 $.** Parents: $ \binom{3}{1, 2, 0} + \binom{3}{2, 1, 0} + \binom{3}{2, 2, -1} = 3 + 3 + 0 = 6 $. $ \checkmark $
+
+**Interior $ (2, 1, 1) = 12 $.** Parents: $ \binom{3}{1, 1, 1} + \binom{3}{2, 0, 1} + \binom{3}{2, 1, 0} = 6 + 3 + 3 = 12 $. $ \checkmark $
+
+The same recipe yields every entry; symmetry under permutations of $ (i, j, k) $ reduces the work to four distinct cases (corner, near-corner edge, edge midpoint, interior).
+
+## Verification — Sum of Entries
+
+By the binomial-like identity
+
+$$$
+3^n \;=\; (1 + 1 + 1)^n \;=\; \sum_{i+j+k = n} \binom{n}{i, j, k},
+$$$
+
+the sum of all entries in layer $ n $ must equal $ 3^n $. For layer $ 4 $:
+
+$$$
+3 \cdot 1 \;+\; 6 \cdot 4 \;+\; 3 \cdot 6 \;+\; 3 \cdot 12 \;=\; 3 + 24 + 18 + 36 \;=\; 81 \;=\; 3^4. \;\checkmark
+$$$
+
+## Structure of Layer 4
+
+Three observations about how the $ 15 $ entries of layer $ 4 $ organize themselves:
+
+### 1. The Three Edges Carry Pascal's Row $ 4 $
+
+Each edge of the triangle consists of $ 5 $ entries where one of the three indices is $ 0 $. For the edge with $ k = 0 $:
+
+$$$
+\binom{4}{4, 0, 0},\ \binom{4}{3, 1, 0},\ \binom{4}{2, 2, 0},\ \binom{4}{1, 3, 0},\ \binom{4}{0, 4, 0} \;=\; 1, 4, 6, 4, 1.
+$$$
+
+But $ \binom{4}{i, j, 0} = \binom{4}{i,\,4-i,\,0} = \tfrac{4!}{i! \, (4-i)! \, 0!} = \binom{4}{i} $, the ordinary binomial coefficient. So each edge of layer $ 4 $ is *literally* row $ 4 $ of (ordinary) Pascal's triangle, $ 1, 4, 6, 4, 1 $. By symmetry, the same holds for the other two edges (with $ i = 0 $ or $ j = 0 $).
+
+### 2. The Three Corners Are Always $ 1 $
+
+The corner entries correspond to $ \binom{n}{n, 0, 0} = \binom{n}{0, n, 0} = \binom{n}{0, 0, n} = 1 $ — these are the coefficients of $ x^n, y^n, z^n $ in $ (x + y + z)^n $, each appearing exactly once.
+
+### 3. The Three Interior Entries Are All $ 12 $
+
+Layer $ 4 $ has three positions where *all three* of $ i, j, k $ are positive:
+
+$$$
+(2, 1, 1), \quad (1, 2, 1), \quad (1, 1, 2).
+$$$
+
+The trinomial coefficients are invariant under permutations of $ (i, j, k) $, so all three carry the same value $ \binom{4}{2, 1, 1} = \tfrac{4!}{2! \, 1! \, 1!} = 12 $. Together they form a small inner triangle of $ 12 $s — the "interior" of layer $ 4 $.
+
+## Remark — Permutation Symmetry ($ D_3 $)
+
+Because $ \binom{n}{i, j, k} $ depends only on the *multiset* $ \{i, j, k\} $ (not the order), every layer of Pascal's tetrahedron has *dihedral $ D_3 $ symmetry*: it is invariant under the $ 6 $ permutations of $ \{x, y, z\} $ (three rotations by $ 120^\circ $ around the triangle's center, and three reflections across the medians).
+
+Equivalence classes under $ D_3 $:
+
+| Class                              | Triples (up to permutation)         | Coefficient    | Multiplicity in layer $ 4 $ |
+| :---                               | :---:                               | :---:          | :---:                       |
+| All identical (singleton)          | —                                   | —              | $ 0 $ (no $ (a, a, a) $ with $ 3a = 4 $) |
+| Two equal, one different (pair)    | $ \{4, 0, 0\} $                     | $ 1 $          | $ 3 $                       |
+| "                                  | $ \{2, 2, 0\} $                     | $ 6 $          | $ 3 $                       |
+| "                                  | $ \{2, 1, 1\} $                     | $ 12 $         | $ 3 $                       |
+| All distinct                       | $ \{3, 1, 0\} $                     | $ 4 $          | $ 6 $                       |
+
+Total: $ 3 + 3 + 3 + 6 = 15 $. $ \checkmark $
+
+This explains the entry count for free: each *unordered* triple contributes $ 3 $ entries (if exactly two are equal) or $ 6 $ entries (if all distinct) or $ 1 $ entry (if all three are equal, which doesn't happen for $ n = 4 $).
+
+## Remark — Counting Layers in a Tetrahedron
+
+Stacking layers $ 0, 1, 2, \ldots, N $ gives the *first* $ N + 1 $ layers of Pascal's tetrahedron, which together hold
+
+$$$
+\sum_{n=0}^{N} \binom{n+2}{2} \;=\; \binom{N+3}{3}
+$$$
+
+entries — a *tetrahedral number*. For $ N = 4 $, the total is $ \binom{7}{3} = 35 $ entries across all layers $ 0 $ through $ 4 $.
+
+| Through layer $ n $ | Total entries (tetrahedral number) |
+| :---:               | :---:                              |
+| $ 0 $               | $ 1 $                              |
+| $ 1 $               | $ 4 $                              |
+| $ 2 $               | $ 10 $                             |
+| $ 3 $               | $ 20 $                             |
+| $ 4 $               | $ 35 $                             |
+
+So adding layer $ 4 $ contributes $ 35 - 20 = 15 $ new entries, consistent with our count.
+
+## Remark — Higher Dimensions
+
+The pattern continues: Pascal's *simplex* in $ d $ dimensions holds the *multinomial* coefficients of $ (x_1 + x_2 + \cdots + x_d)^n $. The recursion has $ d $ parents per entry:
+
+$$$
+\binom{n}{i_1, \ldots, i_d} \;=\; \sum_{r=1}^{d} \binom{n-1}{i_1, \ldots, i_r - 1, \ldots, i_d}.
+$$$
+
+For $ d = 2 $: ordinary Pascal's triangle ($ 2 $ parents per entry).
+For $ d = 3 $: Pascal's tetrahedron ($ 3 $ parents per entry) — this problem.
+For $ d = 4 $: Pascal's *pentatope* ($ 4 $ parents per entry).
+
+Each layer of the $ d $-simplex has $ \binom{n + d - 1}{d - 1} $ entries, generalizing the $ \binom{n+2}{2} $ count for the tetrahedron.

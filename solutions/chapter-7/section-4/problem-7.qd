@@ -1,0 +1,192 @@
+.docname {Solution — GIAM 7.4 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 7
+
+## Problem
+
+Prove the binomial theorem:
+
+$$$
+\forall n \in \mathbb{N}, \;\; \forall x, y \in \mathbb{R}, \;\; (x + y)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k}.
+$$$
+
+(Convention: $ \mathbb{N} = \{0, 1, 2, \ldots\} $, and $ 0^0 = 1 $ where it appears. Both interpretations are standard for this theorem.)
+
+## Proof I — Combinatorial
+
+Write $ (x + y)^n $ as the product of $ n $ identical factors
+
+$$$
+(x + y)^n \;=\; \underbrace{(x + y)\,(x + y)\,\cdots\,(x + y)}_{n \text{ factors}}.
+$$$
+
+Expand by *distributivity*: a term in the expansion is obtained by picking exactly one of the two summands ($ x $ or $ y $) from each factor, then multiplying the picks together. Each pick is a sequence $ (t_1, t_2, \ldots, t_n) $ with each $ t_i \in \{x, y\} $. There are $ 2^n $ such sequences, and the expanded sum is
+
+$$$
+(x + y)^n \;=\; \sum_{(t_1, \ldots, t_n) \,\in\, \{x, y\}^n} t_1 \, t_2 \cdots t_n.
+$$$
+
+Each product $ t_1 \cdots t_n $ collapses to a monomial $ x^{n - k} y^{k} $, where $ k $ is the number of factors that picked $ y $. Group the $ 2^n $ terms by their value of $ k $:
+
+$$$
+(x + y)^n \;=\; \sum_{k = 0}^{n} \;\Bigl(\,\#\{\text{sequences with exactly } k \text{ y's}\}\,\Bigr) \cdot x^{n - k} \, y^{k}.
+$$$
+
+The number of binary sequences of length $ n $ with exactly $ k $ y's is the number of ways to choose *which* $ k $ of the $ n $ positions hold $ y $ — a $ k $-element subset of $ \{1, \ldots, n\} $. That is, $ \binom{n}{k} $. Substituting,
+
+$$$
+(x + y)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k}. \quad \blacksquare
+$$$
+
+## Demonstration — Combinatorial Proof for $ n = 3 $
+
+For $ n = 3 $, there are $ 2^3 = 8 $ sequences, grouped below by their number of $ y $'s:
+
+| $ k $ | Sequences (each is a product $ t_1 t_2 t_3 $) | Count | Monomial   |
+| :---: | :---                                          | :---: | :---:      |
+| $ 0 $ | $ xxx $                                        | $ 1 $ | $ x^3 $    |
+| $ 1 $ | $ xxy, \; xyx, \; yxx $                        | $ 3 $ | $ x^2 y $  |
+| $ 2 $ | $ xyy, \; yxy, \; yyx $                        | $ 3 $ | $ x y^2 $  |
+| $ 3 $ | $ yyy $                                        | $ 1 $ | $ y^3 $    |
+
+Summing: $ (x + y)^3 = 1 \cdot x^3 + 3 \cdot x^2 y + 3 \cdot x y^2 + 1 \cdot y^3 $, with coefficients $ 1, 3, 3, 1 = \binom{3}{0}, \binom{3}{1}, \binom{3}{2}, \binom{3}{3} $. $ \checkmark $
+
+## Proof II — Induction on $ n $
+
+Induction on $ n $, with Pascal's identity as the key step.
+
+### Base Case ($ n = 0 $)
+
+$ (x + y)^0 = 1 $. The right-hand side is
+
+$$$
+\sum_{k = 0}^{0} \binom{0}{k} x^{0 - k} y^{k} \;=\; \binom{0}{0} x^{0} y^{0} \;=\; 1 \cdot 1 \cdot 1 \;=\; 1.
+$$$
+
+Both sides equal $ 1 $. $ \checkmark $
+
+### Inductive Step
+
+Suppose the binomial theorem holds for some $ n \ge 0 $:
+
+$$$
+(x + y)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k}. \tag{IH}
+$$$
+
+We show it also holds for $ n + 1 $. Starting from $ (x + y)^{n+1} = (x + y) \cdot (x + y)^n $, apply (IH):
+
+$$$
+(x + y)^{n + 1} \;=\; (x + y) \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k}.
+$$$
+
+Distribute $ (x + y) $ across the sum:
+
+$$$
+(x + y)^{n + 1} \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{(n + 1) - k} \, y^{k} \;+\; \sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k + 1}.
+$$$
+
+In the second sum, *reindex* via $ j = k + 1 $ (so $ k = j - 1 $ and $ j $ runs from $ 1 $ to $ n + 1 $):
+
+$$$
+\sum_{k = 0}^{n} \binom{n}{k} \, x^{n - k} \, y^{k + 1} \;=\; \sum_{j = 1}^{n + 1} \binom{n}{j - 1} \, x^{(n + 1) - j} \, y^{j}.
+$$$
+
+Rename $ j \to k $ to align indices, then combine the two sums by *splitting off* the boundary terms ($ k = 0 $ from the first, $ k = n + 1 $ from the second):
+
+$$$
+(x + y)^{n + 1} \;=\; \underbrace{\binom{n}{0}}_{=\, 1} x^{n + 1} \;+\; \sum_{k = 1}^{n} \biggl[\binom{n}{k} + \binom{n}{k - 1}\biggr] x^{(n + 1) - k} y^{k} \;+\; \underbrace{\binom{n}{n}}_{=\, 1} y^{n + 1}.
+$$$
+
+Apply **Pascal's identity** $ \binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k} $ (proven below) to the middle terms, and use $ \binom{n}{0} = \binom{n + 1}{0} = 1 $ and $ \binom{n}{n} = \binom{n + 1}{n + 1} = 1 $ on the boundary terms:
+
+$$$
+(x + y)^{n + 1} \;=\; \binom{n + 1}{0} x^{n + 1} \;+\; \sum_{k = 1}^{n} \binom{n + 1}{k} x^{(n + 1) - k} y^{k} \;+\; \binom{n + 1}{n + 1} y^{n + 1}.
+$$$
+
+This is exactly $ \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^{(n + 1) - k} y^{k} $ — the binomial theorem for $ n + 1 $.
+
+By induction, the binomial theorem holds for all $ n \in \mathbb{N} $. $ \blacksquare $
+
+## Lemma — Pascal's Identity
+
+For $ n \ge 1 $ and $ 1 \le k \le n $,
+
+$$$
+\binom{n}{k} \;=\; \binom{n - 1}{k - 1} \;+\; \binom{n - 1}{k}.
+$$$
+
+*Combinatorial proof.* Both sides count $ k $-subsets of $ \{1, 2, \ldots, n\} $. Partition the $ k $-subsets by whether they *contain* the element $ n $:
+
+- **Contain $ n $:** $ n $ is locked in; the remaining $ k - 1 $ elements form a $ (k - 1) $-subset of $ \{1, \ldots, n - 1\} $ — there are $ \binom{n - 1}{k - 1} $ such.
+- **Do not contain $ n $:** all $ k $ elements are chosen from $ \{1, \ldots, n - 1\} $ — there are $ \binom{n - 1}{k} $ such.
+
+Adding the two cases gives Pascal's identity. $ \square $
+
+*Algebraic check.* Direct factorial computation:
+
+$$$
+\binom{n - 1}{k - 1} + \binom{n - 1}{k} \;=\; \frac{(n - 1)!}{(k - 1)! (n - k)!} + \frac{(n - 1)!}{k! (n - 1 - k)!}.
+$$$
+
+Bring to a common denominator $ k! (n - k)! $ and combine:
+
+$$$
+\;=\; \frac{k \cdot (n - 1)!}{k! (n - k)!} + \frac{(n - k) \cdot (n - 1)!}{k! (n - k)!} \;=\; \frac{(k + n - k)(n - 1)!}{k! (n - k)!} \;=\; \frac{n!}{k! (n - k)!} \;=\; \binom{n}{k}. \;\checkmark
+$$$
+
+## Remark — Two Proofs, Two Flavors
+
+The two proofs above illustrate complementary styles:
+
+| Style                  | Strength                                                | Limitation                                               |
+| :---                   | :---                                                    | :---                                                     |
+| **Combinatorial**       | Reveals *what the coefficients count*. One-line idea: pick $ y $ from $ k $ of the $ n $ factors. | Requires comfort with "double counting" arguments.       |
+| **Inductive**           | Mechanical; works in any commutative ring (not just $ \mathbb{R} $). Uses only Pascal's identity. | Hides the combinatorial meaning behind index manipulation. |
+
+The combinatorial proof is widely considered the more *illuminating*; the inductive proof is the more *formal*. Both are correct and instructive.
+
+## Remark — Where the Convention $ 0^0 = 1 $ Bites
+
+The expansion as written includes terms like $ \binom{n}{0} x^n y^0 $. When $ y = 0 $, the convention $ 0^0 = 1 $ makes the $ k = 0 $ term reduce to $ x^n $, recovering $ (x + 0)^n = x^n $.
+
+Without this convention, one would need to *exclude* the $ k = 0 $ and $ k = n $ terms when $ y = 0 $ or $ x = 0 $ respectively, or treat $ y = 0 $ as a special case. The convention is harmless because the unique extension of $ y^k $ to $ y = 0 $ that makes the binomial expansion *continuous* in $ y $ at $ y = 0 $ is the one assigning $ 0^0 := 1 $.
+
+## Remark — Generalizations
+
+**Multinomial theorem.** For $ m $ summands:
+
+$$$
+(x_1 + x_2 + \cdots + x_m)^n \;=\; \sum_{\substack{k_1 + \cdots + k_m = n \\ k_i \ge 0}} \binom{n}{k_1, \, k_2, \, \ldots, \, k_m} \, x_1^{k_1} \, x_2^{k_2} \cdots x_m^{k_m},
+$$$
+
+with $ \binom{n}{k_1, \ldots, k_m} = \tfrac{n!}{k_1! \, k_2! \cdots k_m!} $ the multinomial coefficient. The combinatorial proof generalizes verbatim: pick one of $ x_1, \ldots, x_m $ from each of the $ n $ factors; the number of ways to assign $ k_i $ factors to $ x_i $ (with $ \sum k_i = n $) is the multinomial coefficient.
+
+The $ m = 3 $ case ($ (x + y + z)^n $) gives Pascal's tetrahedron from Problem $ 4 $.
+
+**Newton's binomial series.** For non-integer (or even complex) exponents $ \alpha $ and $ |y| < |x| $:
+
+$$$
+(x + y)^\alpha \;=\; \sum_{k = 0}^{\infty} \binom{\alpha}{k} \, x^{\alpha - k} \, y^{k}, \qquad \binom{\alpha}{k} := \frac{\alpha (\alpha - 1) \cdots (\alpha - k + 1)}{k!}.
+$$$
+
+This generalizes the *finite* binomial expansion of integer $ n $ to an *infinite* series for arbitrary $ \alpha $, and is the foundation of formal power series and Taylor expansions of $ (1 + y)^\alpha $.
+
+**Non-commutative variables.** When $ x $ and $ y $ do *not* commute (e.g., matrices), the binomial expansion fails. The simplest counter-example: $ (x + y)^2 = x^2 + xy + yx + y^2 \ne x^2 + 2xy + y^2 $ in general. The binomial theorem rests crucially on $ xy = yx $ to collect $ x^{n - k} y^k $ from the $ \binom{n}{k} $ sequences with $ k $ y's. The Heisenberg-style generalization (e.g., quantum binomial theorem) replaces $ \binom{n}{k} $ with $ q $-binomial coefficients.
+
+## Remark — Symmetry $ x \leftrightarrow y $
+
+Both sides of the binomial theorem are *symmetric* under swapping $ x $ and $ y $:
+
+$$$
+(x + y)^n \;=\; (y + x)^n.
+$$$
+
+This forces the coefficients on $ x^{n - k} y^k $ and on $ x^k y^{n - k} $ to match — i.e., $ \binom{n}{k} = \binom{n}{n - k} $, the symmetric identity of Pascal's triangle. The binomial theorem doesn't *prove* this symmetry on its own (it's already built into the binomial coefficients), but it's a useful consistency check that the expansion respects the swap.

@@ -1,0 +1,132 @@
+.docname {Solution — GIAM 7.4 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 2
+
+## Problem
+
+Find $ (2x + 3)^5 $.
+
+## Setup — Binomial Theorem
+
+The binomial theorem states
+
+$$$
+(u + v)^n \;=\; \sum_{k = 0}^{n} \binom{n}{k} \, u^{n - k} \, v^{k}.
+$$$
+
+With $ u = 2x $, $ v = 3 $, and $ n = 5 $,
+
+$$$
+(2x + 3)^5 \;=\; \sum_{k = 0}^{5} \binom{5}{k} \, (2x)^{5 - k} \, 3^{k}.
+$$$
+
+Each term factors into three pieces:
+
+1. **Binomial coefficient** $ \binom{5}{k} $ — from Pascal's row $ 5 $.
+2. **Power of $ 2x $:** $ (2x)^{5-k} = 2^{5-k} \, x^{5-k} $.
+3. **Power of $ 3 $:** $ 3^k $.
+
+So the coefficient on $ x^{5-k} $ is $ \binom{5}{k} \cdot 2^{5-k} \cdot 3^k $.
+
+## Step 1 — Pascal's Row $ 5 $
+
+$$$
+\binom{5}{0} = 1, \quad \binom{5}{1} = 5, \quad \binom{5}{2} = 10, \quad \binom{5}{3} = 10, \quad \binom{5}{4} = 5, \quad \binom{5}{5} = 1.
+$$$
+
+(*Spot check:* $ 1 + 5 + 10 + 10 + 5 + 1 = 32 = 2^5 $, consistent with $ (1+1)^5 $.)
+
+## Step 2 — Compute Each Term
+
+Lay out the three factors per term:
+
+| $ k $ | $ \binom{5}{k} $ | $ 2^{5-k} $ | $ 3^{k} $ | Coefficient $ \binom{5}{k} \cdot 2^{5-k} \cdot 3^k $ | Monomial   |
+| :---: | :---:            | :---:       | :---:     | :---:                                                | :---:      |
+| $ 0 $ | $ 1 $            | $ 32 $      | $ 1 $     | $ 1 \cdot 32 \cdot 1 = 32 $                          | $ x^5 $    |
+| $ 1 $ | $ 5 $            | $ 16 $      | $ 3 $     | $ 5 \cdot 16 \cdot 3 = 240 $                         | $ x^4 $    |
+| $ 2 $ | $ 10 $           | $ 8 $       | $ 9 $     | $ 10 \cdot 8 \cdot 9 = 720 $                         | $ x^3 $    |
+| $ 3 $ | $ 10 $           | $ 4 $       | $ 27 $    | $ 10 \cdot 4 \cdot 27 = 1080 $                       | $ x^2 $    |
+| $ 4 $ | $ 5 $            | $ 2 $       | $ 81 $    | $ 5 \cdot 2 \cdot 81 = 810 $                         | $ x $      |
+| $ 5 $ | $ 1 $            | $ 1 $       | $ 243 $   | $ 1 \cdot 1 \cdot 243 = 243 $                        | $ 1 $      |
+
+## Step 3 — Assemble the Polynomial
+
+$$$
+\boxed{\;(2x + 3)^5 \;=\; 32x^5 \;+\; 240x^4 \;+\; 720x^3 \;+\; 1080x^2 \;+\; 810x \;+\; 243.\;}
+$$$
+
+## Sanity Checks
+
+**$ x = 0 $.** $ (0 + 3)^5 = 243 $. Polynomial at $ x = 0 $: $ 243 $. $ \checkmark $
+
+**$ x = 1 $.** $ (2 + 3)^5 = 5^5 = 3125 $. Polynomial at $ x = 1 $:
+
+$$$
+32 + 240 + 720 + 1080 + 810 + 243 \;=\; 3125. \;\checkmark
+$$$
+
+**$ x = -\tfrac{3}{2} $.** $ (2 \cdot (-\tfrac{3}{2}) + 3)^5 = 0^5 = 0 $. So the polynomial must have $ x = -\tfrac{3}{2} $ as a root. Evaluating:
+
+$$$
+32 (-\tfrac{3}{2})^5 + 240 (-\tfrac{3}{2})^4 + 720 (-\tfrac{3}{2})^3 + 1080 (-\tfrac{3}{2})^2 + 810 (-\tfrac{3}{2}) + 243
+$$$
+
+$$$
+\;=\; -243 + 1215 - 2430 + 2430 - 1215 + 243 \;=\; 0. \;\checkmark
+$$$
+
+## Remark — Where the Peak Coefficient Lives
+
+Reading off the table, the coefficients $ 32, 240, 720, 1080, 810, 243 $ rise then fall, peaking at $ 1080 $ (the $ x^2 $ coefficient). For a plain binomial like $ (x + 1)^5 $, the peak sits at the *middle* term (the symmetric peak of Pascal's row). Here the peak has *shifted* toward the lower-degree side because the powers of $ 3 $ grow faster than the powers of $ 2 $.
+
+The shift is captured by the ratio of consecutive coefficients. If $ T_k = \binom{5}{k} \cdot 2^{5-k} \cdot 3^k $ is the coefficient at index $ k $,
+
+$$$
+\frac{T_{k+1}}{T_{k}} \;=\; \frac{\binom{5}{k+1}}{\binom{5}{k}} \cdot \frac{3}{2} \;=\; \frac{5 - k}{k + 1} \cdot \frac{3}{2}.
+$$$
+
+| $ k $ | $ T_k $ | $ T_{k+1}/T_k $          | Direction        |
+| :---: | :---:   | :---:                    | :---:            |
+| $ 0 $ | $ 32 $   | $ 5 \cdot \tfrac{3}{2} = 7.5 $   | rising sharply   |
+| $ 1 $ | $ 240 $  | $ 2 \cdot \tfrac{3}{2} = 3.0 $   | rising           |
+| $ 2 $ | $ 720 $  | $ 1 \cdot \tfrac{3}{2} = 1.5 $   | still rising     |
+| $ 3 $ | $ 1080 $ | $ \tfrac{1}{2} \cdot \tfrac{3}{2} = 0.75 $ | falling   |
+| $ 4 $ | $ 810 $  | $ \tfrac{1}{5} \cdot \tfrac{3}{2} = 0.30 $ | falling sharply |
+| $ 5 $ | $ 243 $  | —                                | (last term)      |
+
+The ratio crosses $ 1 $ between $ k = 2 $ and $ k = 3 $ — solving $ \tfrac{(5-k) \cdot 3}{(k+1) \cdot 2} = 1 $ gives $ k = \tfrac{13}{5} = 2.6 $. So the peak coefficient lives at $ k = 3 $ (the term above the crossing), which is $ T_3 = 1080 $, the $ x^2 $ coefficient. $ \checkmark $
+
+In general, for $ (ax + b)^n $, the peak coefficient is at the value of $ k $ where $ \tfrac{a(n-k)}{b(k+1)} $ transitions from $ > 1 $ to $ < 1 $ — equivalently, $ k \approx \tfrac{an - b}{a + b} $.
+
+## Remark — A Useful Mnemonic
+
+Each row of the binomial-theorem table reads "$ \binom{n}{k} \cdot (\text{first}^{n-k}) \cdot (\text{second}^{k}) $." A common student error is to forget to raise the *coefficient* inside the binomial. For example, writing $ (2x)^{5-k} $ as $ 2 x^{5-k} $ instead of $ 2^{5-k} x^{5-k} $. The columns "$ 2^{5-k} $" and "$ 3^k $" in the table above are there specifically to keep these factors visible and hard to miss.
+
+A second common error is to swap the exponents of the two terms. The rule is: *the first binomial term gets the descending exponent ($ n, n-1, \ldots, 0 $), and the second gets the ascending one*. In $ (2x + 3)^5 $, that means $ 2x $ has exponents $ 5, 4, 3, 2, 1, 0 $ across the six terms, while $ 3 $ has exponents $ 0, 1, 2, 3, 4, 5 $. The total exponent in each term is always $ 5 = n $. $ \checkmark $
+
+## Remark — Decomposing Into "Pure Pascal"
+
+A more compact way to write the answer:
+
+$$$
+(2x + 3)^5 \;=\; \sum_{k=0}^{5} \binom{5}{k} \, 2^{5-k} \, 3^k \, x^{5-k}.
+$$$
+
+The coefficients $ \{32, 240, 720, 1080, 810, 243\} $ are the pointwise product of:
+
+| Row                              | $ k=0 $ | $ k=1 $ | $ k=2 $ | $ k=3 $ | $ k=4 $ | $ k=5 $ |
+| :---                             | :---:   | :---:   | :---:   | :---:   | :---:   | :---:   |
+| Pascal's row $ 5 $ — $ \binom{5}{k} $ | $ 1 $  | $ 5 $   | $ 10 $  | $ 10 $  | $ 5 $   | $ 1 $   |
+| Powers of $ 2 $ — $ 2^{5-k} $         | $ 32 $ | $ 16 $  | $ 8 $   | $ 4 $   | $ 2 $   | $ 1 $   |
+| Powers of $ 3 $ — $ 3^{k} $           | $ 1 $  | $ 3 $   | $ 9 $   | $ 27 $  | $ 81 $  | $ 243 $ |
+| **Product (coefficient on $ x^{5-k} $)** | $ 32 $ | $ 240 $ | $ 720 $ | $ 1080 $ | $ 810 $ | $ 243 $ |
+
+This decomposition makes the structure transparent: Pascal contributes the *symmetric* part, the powers of $ 2 $ favor *high-degree* terms, and the powers of $ 3 $ favor *low-degree* terms.

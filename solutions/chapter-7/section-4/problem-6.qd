@@ -1,0 +1,143 @@
+.docname {Solution — GIAM 7.4 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 7.4 Problem 6
+
+## Problem
+
+Prove the identity
+
+$$$
+\binom{n}{k} \binom{k}{r} \;=\; \binom{n}{r} \binom{n - r}{k - r}
+$$$
+
+combinatorially.
+
+(Implicit: $ 0 \le r \le k \le n $. If $ r > k $ or $ k > n $, both sides are $ 0 $ by the standard convention $ \binom{a}{b} = 0 $ for $ b > a $ or $ b < 0 $, so the identity holds trivially.)
+
+## The Object Being Counted
+
+Both sides will count the same set: the collection of *nested subset pairs*
+
+$$$
+\mathcal{P} \;:=\; \bigl\{\, (A, B) \;:\; B \subseteq A \subseteq \{1, 2, \ldots, n\},\; |A| = k,\; |B| = r \,\bigr\}.
+$$$
+
+An element of $ \mathcal{P} $ is a triple of disjoint regions partitioning the universe $ \{1, \ldots, n\} $:
+
+- $ B $ itself — the *inner* subset of size $ r $.
+- $ A \setminus B $ — the part of $ A $ outside $ B $, of size $ k - r $.
+- $ \{1, \ldots, n\} \setminus A $ — the part of the universe outside $ A $, of size $ n - k $.
+
+!(80%)[A nested pair B ⊆ A inside the universe, partitioning into three regions of sizes r, k-r, n-k](problem-6-nested.svg "The combinatorial object: a pair (A, B) with B ⊆ A ⊆ {1, …, n}. Three regions partition the universe — B (size r), A∖B (size k−r), and Universe∖A (size n−k). Both sides of the identity count the number of such configurations.")
+
+The total sizes work out: $ r + (k - r) + (n - k) = n $. $ \checkmark $
+
+The combinatorial proof shows $ |\mathcal{P}| $ equals each side by *building* a nested pair in two different orders.
+
+## Counting Method 1 — Build $ A $ First, Then $ B $
+
+Construct $ (A, B) \in \mathcal{P} $ in two stages:
+
+- **Stage 1.** Choose the *outer* subset $ A \subseteq \{1, \ldots, n\} $ with $ |A| = k $. Number of choices: $ \binom{n}{k} $.
+- **Stage 2.** Choose the *inner* subset $ B \subseteq A $ with $ |B| = r $. Number of choices: $ \binom{k}{r} $.
+
+Every nested pair $ (A, B) $ arises *exactly once* this way: $ A $ determines what's allowed in stage $ 2 $, and given $ A $, the choice of $ B $ identifies the pair. By the multiplication rule,
+
+$$$
+|\mathcal{P}| \;=\; \binom{n}{k} \binom{k}{r}. \tag{$ \ast $}
+$$$
+
+## Counting Method 2 — Build $ B $ First, Then $ A \setminus B $
+
+Construct $ (A, B) \in \mathcal{P} $ in a *different* two-stage order:
+
+- **Stage 1′.** Choose the *inner* subset $ B \subseteq \{1, \ldots, n\} $ with $ |B| = r $ directly from the full universe. Number of choices: $ \binom{n}{r} $.
+- **Stage 2′.** Complete the *outer* subset $ A $ by choosing the remaining $ k - r $ elements of $ A $ from the elements *not* in $ B $. There are $ n - r $ such elements, and we choose $ k - r $ of them. Number of choices: $ \binom{n - r}{k - r} $. Then $ A := B \cup (\text{the chosen } k - r \text{ elements}) $.
+
+Every nested pair $ (A, B) \in \mathcal{P} $ arises *exactly once* this way: $ B $ is uniquely determined from the pair, and given $ B $, the rest of $ A $ — namely $ A \setminus B $ — is a $ (k-r) $-subset of $ \{1, \ldots, n\} \setminus B $. By the multiplication rule,
+
+$$$
+|\mathcal{P}| \;=\; \binom{n}{r} \binom{n - r}{k - r}. \tag{$ \ast \ast $}
+$$$
+
+## Conclusion
+
+Equations $ (\ast) $ and $ (\ast \ast) $ count the same set $ \mathcal{P} $, so
+
+$$$
+\boxed{\;\binom{n}{k} \binom{k}{r} \;=\; \binom{n}{r} \binom{n - r}{k - r}.\;}
+$$$
+
+$ \blacksquare $
+
+## Algebraic Cross-Check
+
+Both sides equal the same product of factorials:
+
+$$$
+\binom{n}{k} \binom{k}{r} \;=\; \frac{n!}{k! \, (n - k)!} \cdot \frac{k!}{r! \, (k - r)!} \;=\; \frac{n!}{r! \, (k - r)! \, (n - k)!}.
+$$$
+
+$$$
+\binom{n}{r} \binom{n - r}{k - r} \;=\; \frac{n!}{r! \, (n - r)!} \cdot \frac{(n - r)!}{(k - r)! \, (n - k)!} \;=\; \frac{n!}{r! \, (k - r)! \, (n - k)!}.
+$$$
+
+Both reduce to
+
+$$$
+\frac{n!}{r! \, (k - r)! \, (n - k)!} \;=\; \binom{n}{r,\; k - r,\; n - k},
+$$$
+
+the *trinomial coefficient* counting partitions of $ n $ elements into the three labeled groups of sizes $ r $, $ k - r $, and $ n - k $. The combinatorial proof we just gave is *exactly* the statement that this trinomial counts $ \mathcal{P} $.
+
+## Remark — Three-Way Symmetry
+
+The trinomial form $ \binom{n}{r, k - r, n - k} $ makes the symmetry of the identity transparent. The three labeled groups are interchangeable in the following sense: the same trinomial counts *any* partition of $ \{1, \ldots, n\} $ into three parts of the specified sizes. The identity in the problem corresponds to grouping the first two parts ($ B $ and $ A \setminus B $) into $ A $; one could equally well group other pairs, yielding:
+
+$$$
+\binom{n}{r, k - r, n - k} \;=\; \binom{n}{k} \binom{k}{r} \;=\; \binom{n}{r} \binom{n - r}{k - r} \;=\; \binom{n}{n - k} \binom{k}{r}.
+$$$
+
+(The last form just uses $ \binom{n}{n - k} = \binom{n}{k} $ — the standard complementary identity — and is the same as Method 1.) The two "essentially different" two-stage decompositions are the ones in the problem statement.
+
+## Remark — Special Cases
+
+| $ r $    | Identity simplifies to                                                | Interpretation                                       |
+| :---:    | :---                                                                  | :---                                                 |
+| $ 0 $    | $ \binom{n}{k} \cdot 1 = \binom{n}{0} \binom{n}{k} = 1 \cdot \binom{n}{k} $ | Both sides equal $ \binom{n}{k} $; trivial.   |
+| $ 1 $    | $ k \binom{n}{k} = n \binom{n - 1}{k - 1} $                           | *Absorption identity* — "every $ k $-subset of $ \{1, \ldots, n\} $ has $ k $ distinguished elements, and there are $ n $ ways to pick a distinguished element together with $ \binom{n-1}{k-1} $ ways to complete the rest." |
+| $ k $    | $ \binom{n}{k} \cdot 1 = \binom{n}{k} \cdot 1 $                       | Both sides equal $ \binom{n}{k} $; identity collapses since $ B = A $. |
+| $ k - 1 $ | $ k \binom{n}{k} = \binom{n}{k-1} \binom{n-k+1}{1} = (n-k+1) \binom{n}{k-1} $ | A variant of the absorption identity. |
+
+The $ r = 1 $ case is especially common in proofs of derivative-like identities in combinatorics.
+
+## Remark — The Concrete Instance (Problem $ 5 $)
+
+Problem $ 5 $ of this section is the *concrete* version of this identity with $ n = 210 $, $ k = 24 $, $ r = 5 $:
+
+$$$
+\underbrace{\binom{210}{24} \binom{24}{5}}_{\text{Outer-then-Inner}} \;=\; \underbrace{\binom{210}{5} \binom{205}{19}}_{\text{Inner-then-Outer}}.
+$$$
+
+Two formulas for *governance structures* — pairs $ (G, S) $ with $ S \subseteq G \subseteq \text{Student Body} $ — built in two different orders. The general identity above is what *forces* the two formulas to agree.
+
+## Remark — On the Phrase "Combinatorially"
+
+A "combinatorial proof" of an identity $ \text{LHS} = \text{RHS} $ exhibits a *single* finite set whose size is counted by LHS *and* by RHS — typically by *two different orderings* of the same choice process. The advantage over an algebraic proof is conceptual: the formula's *meaning* (what it counts) is laid bare, often with no factorials in sight.
+
+The technique is sometimes called **double counting**, and is one of the most reliable methods for finding and proving combinatorial identities. The general schema:
+
+1. Identify (or invent) a set $ \mathcal{S} $ that the identity could count.
+2. Find one way to build elements of $ \mathcal{S} $ that yields LHS.
+3. Find a *different* way to build elements of $ \mathcal{S} $ that yields RHS.
+4. Conclude LHS $ = |\mathcal{S}| = $ RHS.
+
+For this problem, the set was $ \mathcal{P} $ (nested pairs), and the two build orders were "outer then inner" and "inner then outer."
