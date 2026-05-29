@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" width="720" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="520" fill="white"/>
+
+  <!-- Universe rectangle -->
+  <rect x="30" y="60" width="660" height="420" fill="#fafafa" stroke="#222" stroke-width="2.5"/>
+
+  <!-- Universe label (top-left corner of rectangle) -->
+  <text x="45" y="82" font-size="14" font-style="italic" fill="#555">universe = all sets</text>
+
+  <!-- Countable ellipse (left) -->
+  <ellipse cx="270" cy="280" rx="200" ry="155" fill="#cce5ff" fill-opacity="0.55" stroke="#1a4d99" stroke-width="2.5"/>
+
+  <!-- Infinite ellipse (right), overlapping countable -->
+  <ellipse cx="470" cy="280" rx="200" ry="155" fill="#ffd6cc" fill-opacity="0.55" stroke="#992020" stroke-width="2.5"/>
+
+  <!-- Ellipse outer labels -->
+  <text x="115" y="140" font-size="22" font-weight="bold" fill="#1a4d99">countable</text>
+  <text x="540" y="140" font-size="22" font-weight="bold" fill="#992020">infinite</text>
+
+  <!-- Left-only region: finite -->
+  <text x="160" y="275" font-size="20" font-weight="bold" text-anchor="middle" fill="#0d3366">finite</text>
+  <text x="160" y="300" font-size="12" text-anchor="middle" fill="#333">e.g. &#8709;, {1,2,3}</text>
+  <text x="160" y="318" font-size="12" text-anchor="middle" fill="#333">&#8469;&#8323;, &#8469;&#8327;</text>
+
+  <!-- Intersection: denumerable -->
+  <text x="370" y="270" font-size="20" font-weight="bold" text-anchor="middle" fill="#222">denumerable</text>
+  <text x="370" y="290" font-size="12" text-anchor="middle" fill="#444">(= countably</text>
+  <text x="370" y="306" font-size="12" text-anchor="middle" fill="#444">infinite)</text>
+  <text x="370" y="328" font-size="12" text-anchor="middle" fill="#333">&#8469;, &#8484;, &#8474;, &#8469;&#215;&#8469;</text>
+
+  <!-- Right-only region: uncountable -->
+  <text x="580" y="275" font-size="20" font-weight="bold" text-anchor="middle" fill="#661414">uncountable</text>
+  <text x="580" y="300" font-size="12" text-anchor="middle" fill="#333">e.g. &#8477;, &#8450;,</text>
+  <text x="580" y="318" font-size="12" text-anchor="middle" fill="#333">&#119979;(&#8469;), [0,1]</text>
+
+  <!-- Note: region outside both ellipses is empty -->
+  <text x="360" y="460" font-size="13" font-style="italic" text-anchor="middle" fill="#666">(the region outside both ellipses is empty: no set is both finite and uncountable)</text>
+</svg>

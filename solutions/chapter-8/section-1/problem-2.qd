@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 8.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.1 Problem 2
+
+## Problem
+
+Prove that set equivalence is an equivalence relation.
+
+## Setup — Definitions
+
+Section 8.1 defines, for any two sets $ A $ and $ B $,
+
+$$$
+A \equiv B \quad\Longleftrightarrow\quad \text{there exists a bijection } f : A \to B.
+$$$
+
+Recall that $ f : A \to B $ is a *bijection* iff it is both
+
+- *injective* (one-to-one): for all $ x_1, x_2 \in A $, $ f(x_1) = f(x_2) \;\Longrightarrow\; x_1 = x_2 $; and
+- *surjective* (onto): for every $ b \in B $, there exists $ a \in A $ with $ f(a) = b $.
+
+To show $ \equiv $ is an equivalence relation on (the class of) sets, we must verify three properties:
+
+- **Reflexive:** $ A \equiv A $ for every set $ A $.
+- **Symmetric:** $ A \equiv B \;\Longrightarrow\; B \equiv A $.
+- **Transitive:** $ A \equiv B $ and $ B \equiv C \;\Longrightarrow\; A \equiv C $.
+
+We prove each in turn.
+
+## Reflexivity
+
+*Claim.* For every set $ A $, $ A \equiv A $.
+
+*Proof.* Consider the **identity function** $ \mathrm{id}_A : A \to A $ defined by $ \mathrm{id}_A(x) = x $ for all $ x \in A $.
+
+- *Injective:* Suppose $ \mathrm{id}_A(x_1) = \mathrm{id}_A(x_2) $. Then $ x_1 = x_2 $ directly from the definition. So $ \mathrm{id}_A $ is injective.
+- *Surjective:* For any $ a \in A $ (in the codomain), take $ a \in A $ (in the domain). Then $ \mathrm{id}_A(a) = a $. So $ \mathrm{id}_A $ is surjective.
+
+Hence $ \mathrm{id}_A $ is a bijection from $ A $ to $ A $, witnessing $ A \equiv A $. $ \blacksquare $
+
+## Symmetry
+
+*Claim.* For all sets $ A, B $, if $ A \equiv B $ then $ B \equiv A $.
+
+*Proof.* Assume $ A \equiv B $. By definition, there is a bijection $ f : A \to B $. We must produce a bijection $ g : B \to A $.
+
+Consider the **inverse relation** $ f^{-1} \subseteq B \times A $ defined by
+
+$$$
+(b, a) \in f^{-1} \quad\Longleftrightarrow\quad (a, b) \in f \quad\Longleftrightarrow\quad f(a) = b.
+$$$
+
+We show $ f^{-1} $ is a function from $ B $ to $ A $, and that it is bijective.
+
+- *$ f^{-1} $ is total* (every $ b \in B $ has at least one image): since $ f $ is *surjective*, for each $ b \in B $ there is some $ a \in A $ with $ f(a) = b $, hence $ (b, a) \in f^{-1} $.
+- *$ f^{-1} $ is well-defined* (each $ b $ has at most one image): suppose $ (b, a_1) \in f^{-1} $ and $ (b, a_2) \in f^{-1} $. Then $ f(a_1) = b = f(a_2) $, and since $ f $ is *injective*, $ a_1 = a_2 $.
+
+So $ f^{-1} $ is a function from $ B $ to $ A $. Write $ g = f^{-1} $.
+
+Now verify $ g $ is itself a bijection.
+
+- *$ g $ is injective:* suppose $ g(b_1) = g(b_2) = a $. By definition of $ g $, this means $ f(a) = b_1 $ and $ f(a) = b_2 $. Since $ f $ is a function, $ b_1 = b_2 $.
+- *$ g $ is surjective:* given $ a \in A $, let $ b = f(a) \in B $. Then $ g(b) = a $ by definition of $ g $.
+
+Hence $ g : B \to A $ is a bijection, witnessing $ B \equiv A $. $ \blacksquare $
+
+> *Remark.* The textbook's outline observed that "$ f^{-1} $ is a function" follows from $ f $ being injective, and "$ f^{-1} $ is one-to-one" follows from $ f $ being a function. We split this a bit differently for clarity, but the content is the same: each property of $ f $ gives one of the two halves needed for the other property of $ f^{-1} $.
+
+## Transitivity
+
+*Claim.* For all sets $ A, B, C $, if $ A \equiv B $ and $ B \equiv C $, then $ A \equiv C $.
+
+*Proof.* Assume $ A \equiv B $ and $ B \equiv C $. So there exist bijections $ f : A \to B $ and $ g : B \to C $.
+
+Consider the **composition** $ h = g \circ f : A \to C $ defined by
+
+$$$
+h(a) \;=\; (g \circ f)(a) \;=\; g\bigl(f(a)\bigr) \qquad \text{for all } a \in A.
+$$$
+
+We verify $ h $ is a bijection.
+
+- *$ h $ is injective:* suppose $ h(a_1) = h(a_2) $, i.e., $ g(f(a_1)) = g(f(a_2)) $. Since $ g $ is injective, $ f(a_1) = f(a_2) $. Since $ f $ is injective, $ a_1 = a_2 $.
+- *$ h $ is surjective:* let $ c \in C $. Since $ g $ is surjective, there is $ b \in B $ with $ g(b) = c $. Since $ f $ is surjective, there is $ a \in A $ with $ f(a) = b $. Then $ h(a) = g(f(a)) = g(b) = c $.
+
+Hence $ h : A \to C $ is a bijection, witnessing $ A \equiv C $. $ \blacksquare $
+
+## Conclusion
+
+The relation $ \equiv $ is reflexive, symmetric, and transitive, so $ \equiv $ is an equivalence relation on the class of sets. $ \blacksquare $
+
+## Summary Table — Which Property of $ f $ Does What
+
+It is illuminating to track *which* property of $ f $ (or $ g $) is used at each step:
+
+| Property of $ \equiv $   | Witness               | Property of $ f $ used                                              |
+| :---                     | :---                  | :---                                                                |
+| reflexive                | $ \mathrm{id}_A $     | (none — identity is automatically bijective)                        |
+| symmetric                | $ f^{-1} $            | $ f $ surjective $ \Rightarrow $ $ f^{-1} $ total                   |
+|                          |                       | $ f $ injective $ \Rightarrow $ $ f^{-1} $ well-defined             |
+| transitive               | $ g \circ f $         | $ f, g $ injective $ \Rightarrow $ $ g \circ f $ injective          |
+|                          |                       | $ f, g $ surjective $ \Rightarrow $ $ g \circ f $ surjective        |
+
+In short:
+
+- **Reflexivity** is free, because every set comes with the identity map.
+- **Symmetry** is the statement *"bijections can be inverted."*
+- **Transitivity** is the statement *"bijections compose."*
+
+These three facts about bijections are precisely what make "there is a bijection" a sensible notion of *sameness* between sets.
+
+## Remark — Why Not Just Define $ A \equiv B $ by $ |A| = |B| $?
+
+The textbook flags the circularity of the would-be definition $ A \equiv B \Leftrightarrow |A| = |B| $: we are trying to *define* the cardinalities $ |A| $ as the equivalence classes of $ \equiv $, so we cannot use $ |A| $ to set up $ \equiv $ in the first place.
+
+The bijection-based definition sidesteps this entirely. A bijection $ f : A \to B $ is a well-defined object — a set of ordered pairs $ (a, b) \in A \times B $ satisfying functional and bijective conditions — that we can talk about *without ever mentioning cardinality*. Once $ \equiv $ is an equivalence relation (which is what this problem establishes), we are *then* entitled to *define* "$ |A| $" as the equivalence class of $ A $ under $ \equiv $. This is what Section 8.1 quietly does when it identifies the finite cardinalities with the classes of $ \emptyset, \mathbb{N}_1, \mathbb{N}_2, \ldots $.
+
+## Remark — A Subtle Foundational Point
+
+Strictly speaking, $ \equiv $ is not a relation on a *set* (there is no "set of all sets" in standard ZFC set theory — that would lead to Russell's paradox). Rather, $ \equiv $ is a relation on the *proper class* of all sets. The three properties we verified (reflexive, symmetric, transitive) all make sense at the class level — the definitions involve only quantification over the sets being compared — so the proof above goes through unchanged. The textbook elides this distinction, which is fine for the purposes of Chapter 8; the formal treatment lives in axiomatic set theory and is not needed here.

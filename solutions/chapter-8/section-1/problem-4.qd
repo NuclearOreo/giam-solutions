@@ -1,0 +1,91 @@
+.docname {Solution — GIAM 8.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.1 Problem 4
+
+## Problem
+
+Place the sets $ \mathbb{N} $, $ \mathbb{R} $, $ \mathbb{Q} $, $ \mathbb{Z} $, $ \mathbb{Z} \times \mathbb{Z} $, $ \mathbb{C} $, $ \mathbb{N}_{2007} $, and $ \emptyset $ somewhere on the Venn diagram from Problem 3.
+
+The textbook notes that "there are no wrong answers — the point is to see what your intuition says at this point." Below we *do* place each set definitively (with one-line justifications), since the actual classifications are not difficult to argue, but all of them rest on the bijection / diagonal-argument machinery of Sections 8.2 onward, which is fair to defer.
+
+## Placement Diagram
+
+!(80%)[The Venn diagram from Problem 3 with the eight named sets placed in the appropriate regions. ∅ and ℕ_2007 sit in the finite (left-only) region; ℕ, ℤ, ℚ, and ℤ×ℤ sit in the denumerable (intersection) region; ℝ and ℂ sit in the uncountable (right-only) region.](problem-4-placement.svg "Placement of the eight sets onto the two-ellipse Venn diagram of Problem 3. Left ellipse = countable, right ellipse = infinite. Each set is dropped into one of the three non-empty atomic regions.")
+
+## Justifications
+
+| Set                          | Region        | One-line justification                                                                            |
+| :---                         | :---          | :---                                                                                              |
+| $ \emptyset $                | finite        | The empty set has $ 0 $ elements; it is the unique set of cardinality $ 0 $.                      |
+| $ \mathbb{N}_{2007} $        | finite        | By definition $ \mathbb{N}_{2007} = \{1, 2, \ldots, 2007\} $ has exactly $ 2007 $ elements.        |
+| $ \mathbb{N} $               | denumerable   | $ \mathbb{N} $ is the canonical denumerable set — the identity map $ \mathbb{N} \to \mathbb{N} $ is the witnessing bijection. |
+| $ \mathbb{Z} $               | denumerable   | The interleaving $ 0, 1, -1, 2, -2, 3, -3, \ldots $ gives a bijection $ \mathbb{N} \to \mathbb{Z} $.|
+| $ \mathbb{Q} $               | denumerable   | Cantor's enumeration of $ \mathbb{Q} $ as a list (skipping repeats) gives a bijection with $ \mathbb{N} $. *(Proved in Section 8.2.)* |
+| $ \mathbb{Z} \times \mathbb{Z} $ | denumerable | Cantor's snake / pairing function enumerates $ \mathbb{Z} \times \mathbb{Z} $ as a single list, hence a bijection with $ \mathbb{N} $. *(Proved in Section 8.2.)* |
+| $ \mathbb{R} $               | uncountable   | Cantor's diagonal argument shows no list of reals can be exhaustive. *(Proved in Section 8.2.)*  |
+| $ \mathbb{C} $               | uncountable   | $ \mathbb{R} \subseteq \mathbb{C} $, and any superset of an uncountable set is uncountable (else a sublist would enumerate $ \mathbb{R} $). |
+
+## Region Summary
+
+Reading off the three atomic regions of the diagram:
+
+$$$
+\text{finite}: \quad \{\, \emptyset,\; \mathbb{N}_{2007} \,\}
+$$$
+
+$$$
+\text{denumerable}: \quad \{\, \mathbb{N},\; \mathbb{Z},\; \mathbb{Q},\; \mathbb{Z} \times \mathbb{Z} \,\}
+$$$
+
+$$$
+\text{uncountable}: \quad \{\, \mathbb{R},\; \mathbb{C} \,\}
+$$$
+
+In the language of cardinalities:
+
+$$$
+|\emptyset| = 0, \qquad |\mathbb{N}_{2007}| = 2007,
+$$$
+
+$$$
+|\mathbb{N}| = |\mathbb{Z}| = |\mathbb{Q}| = |\mathbb{Z} \times \mathbb{Z}| = \aleph_0,
+$$$
+
+$$$
+|\mathbb{R}| = |\mathbb{C}| = \mathfrak{c} = 2^{\aleph_0}.
+$$$
+
+## Remark — Surprises Worth Noting
+
+Two placements above are likely *counterintuitive* on first encounter, even though the diagram makes them look unsurprising:
+
+- *$ \mathbb{Q} $ is denumerable.* The rationals are dense in $ \mathbb{R} $ — between any two reals there are infinitely many rationals — yet $ |\mathbb{Q}| = |\mathbb{N}| $. Density of a set in $ \mathbb{R} $ has *no bearing* on cardinality.
+
+- *$ \mathbb{Z} \times \mathbb{Z} $ is denumerable.* Pairs of integers feel "two-dimensional" — like a grid — yet the grid can be enumerated by snaking through diagonals, putting it in bijection with the $ 1 $-dimensional $ \mathbb{N} $. More generally, $ A \times B $ is denumerable whenever $ A, B $ are denumerable; iterating gives $ \mathbb{Z}^k $ denumerable for *any* finite $ k $.
+
+The reason the diagram makes them look unsurprising is precisely the point of the equivalence relation $ \equiv $: it forgets every structural feature of a set (density, dimension, algebraic structure, …) and remembers *only* the bijection class. From that lens, "rationals" and "natural numbers" really are the same object.
+
+## Remark — Why $ \mathbb{C} $ Goes With $ \mathbb{R} $, Not Above It
+
+A naive guess is that $ \mathbb{C} $, being "two-dimensional" over $ \mathbb{R} $, ought to be *strictly larger* than $ \mathbb{R} $ — analogous to how $ \mathbb{R} $ is strictly larger than $ \mathbb{N} $. But the bijection $ \mathbb{R}^2 \to \mathbb{R} $ (e.g., interleaving digits of two decimals into one decimal) shows $ |\mathbb{R}^2| = |\mathbb{R}| $, and hence $ |\mathbb{C}| = |\mathbb{R}^2| = |\mathbb{R}| = \mathfrak{c} $. So $ \mathbb{R} $ and $ \mathbb{C} $ live in the *same* uncountable region — not stacked above one another. The next "level up" in cardinality would be $ \mathcal{P}(\mathbb{R}) $, with $ |\mathcal{P}(\mathbb{R})| = 2^\mathfrak{c} > \mathfrak{c} $.
+
+## Remark — The Hierarchy of Sizes Visible Here
+
+Among the eight sets, exactly three distinct cardinalities appear:
+
+| Cardinality            | Sets in this slot                                                                  |
+| :---                   | :---                                                                               |
+| $ 0 $                  | $ \emptyset $                                                                      |
+| $ 2007 $               | $ \mathbb{N}_{2007} $                                                              |
+| $ \aleph_0 $           | $ \mathbb{N},\; \mathbb{Z},\; \mathbb{Q},\; \mathbb{Z} \times \mathbb{Z} $          |
+| $ \mathfrak{c} $       | $ \mathbb{R},\; \mathbb{C} $                                                       |
+
+So we see four cardinalities total ($ 0, 2007, \aleph_0, \mathfrak{c} $), but only three *region-classes* in the Venn diagram (finite, denumerable, uncountable). The Venn diagram collapses all finite cardinalities ($ 0, 1, 2, \ldots $) into one region, and *might* collapse multiple uncountable cardinalities into one region if larger uncountables were present (e.g., $ \mathcal{P}(\mathbb{R}) $) — but the eight sets here all land in $ \mathfrak{c} $ or below.

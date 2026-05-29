@@ -1,0 +1,70 @@
+.docname {Solution — GIAM 8.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.1 Problem 1
+
+## Problem
+
+Name four sets in the equivalence class of $ \{1,\, 2,\, 3\} $.
+
+## Setup — What is the Equivalence Class?
+
+Section 8.1 defines two sets to be *equivalent*, written $ A \equiv B $, iff there is a bijection $ f : A \to B $. For *finite* sets this is the same as having the same number of elements: any bijection pairs the elements of $ A $ off with the elements of $ B $ one-to-one, so $ |A| = |B| $; conversely, if $ |A| = |B| = k $ we can list the elements as $ A = \{a_1, \ldots, a_k\} $ and $ B = \{b_1, \ldots, b_k\} $ and define $ f(a_i) = b_i $.
+
+The *equivalence class* of $ \{1, 2, 3\} $ — written $ \overline{\{1,2,3\}} $ or $ \{1,2,3\}/\!\equiv $ — is
+
+$$$
+\overline{\{1,2,3\}} \;=\; \{\, S \;:\; S \equiv \{1,2,3\} \,\} \;=\; \{\, S \;:\; |S| = 3 \,\}.
+$$$
+
+In words: it is the collection of *all* $ 3 $-element sets. Naming four members just means naming four three-element sets.
+
+## Four Sets in the Class
+
+Any of the following work (and many more — see the remark below):
+
+$$$
+\{a,\, b,\, c\}, \qquad \{\square,\, \triangle,\, \circ\}, \qquad \{\text{red},\, \text{green},\, \text{blue}\}, \qquad \{\pi,\, e,\, \sqrt{2}\}.
+$$$
+
+Each has exactly three elements, hence each is in bijection with $ \{1, 2, 3\} $ via the obvious "list-and-match" pairing.
+
+## Bijections to $ \{1, 2, 3\} $
+
+To make explicit why each set is in the equivalence class, here is an exhibited bijection from $ \{1, 2, 3\} $ to each one:
+
+| Set $ S $                                          | Bijection $ f : \{1,2,3\} \to S $                                    |
+| :---                                               | :---                                                                 |
+| $ \{a,\, b,\, c\} $                                | $ 1 \mapsto a, \;\; 2 \mapsto b, \;\; 3 \mapsto c $                  |
+| $ \{\square,\, \triangle,\, \circ\} $              | $ 1 \mapsto \square, \;\; 2 \mapsto \triangle, \;\; 3 \mapsto \circ $|
+| $ \{\text{red},\, \text{green},\, \text{blue}\} $  | $ 1 \mapsto \text{red}, \;\; 2 \mapsto \text{green}, \;\; 3 \mapsto \text{blue} $ |
+| $ \{\pi,\, e,\, \sqrt{2}\} $                       | $ 1 \mapsto \pi, \;\; 2 \mapsto e, \;\; 3 \mapsto \sqrt{2} $         |
+
+Each map is one-to-one (distinct inputs go to distinct outputs) and onto (every element of $ S $ is hit). So all four sets are in $ \overline{\{1,2,3\}} $.
+
+## Remark — The Class is Huge
+
+The equivalence class $ \overline{\{1,2,3\}} $ is not just large but *uncountable*: there are at least as many $ 3 $-element sets as there are unordered triples of real numbers, since each triple $ \{x, y, z\} $ with $ x, y, z \in \mathbb{R} $ distinct is itself a $ 3 $-element set. So picking *four* representatives barely scratches the surface — one could pick a different four every day and never repeat.
+
+A useful mental image: the equivalence class of $ \{1, 2, 3\} $ collapses every $ 3 $-element set, regardless of what its elements are, into a single point representing the cardinality "three." This is exactly the point of Section 8.1's setup — the equivalence relation $ \equiv $ throws away every feature of a set *except* its size.
+
+## Remark — Why Not Include $ \{1, 2, 3\} $ Itself?
+
+Strictly, $ \{1, 2, 3\} $ *is* in its own equivalence class — the relation $ \equiv $ is reflexive, so $ \{1, 2, 3\} \equiv \{1, 2, 3\} $ via the identity map. So $ \{1, 2, 3\} $ would be a perfectly valid fifth answer. We avoided it above only because the problem asks for sets *in the class*, and naming the representative back at us feels like a cheat. But it is correct.
+
+## Remark — Connection to $ \mathbb{N}_k $
+
+Section 8.1 singles out the "canonical" $ k $-element set $ \mathbb{N}_k = \{1, 2, 3, \ldots, k\} $ as a representative of the finite cardinality $ k $. The equivalence class of $ \{1, 2, 3\} $ is precisely the class of $ \mathbb{N}_3 $, and is exactly what the textbook will later call the cardinal number $ 3 $:
+
+$$$
+3 \;=\; \overline{\mathbb{N}_3} \;=\; \{\, S \;:\; S \equiv \{1, 2, 3\} \,\}.
+$$$
+
+Under this view, naming four sets in the class is the same as naming four sets of cardinality $ 3 $ — which is what we did.

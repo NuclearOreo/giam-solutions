@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="540" fill="white"/>
+
+  <!-- Universe rectangle -->
+  <rect x="30" y="60" width="660" height="440" fill="#fafafa" stroke="#222" stroke-width="2.5"/>
+
+  <!-- Universe label (top-left corner) -->
+  <text x="45" y="82" font-size="14" font-style="italic" fill="#555">universe = all sets</text>
+
+  <!-- Countable ellipse (left) -->
+  <ellipse cx="270" cy="290" rx="200" ry="165" fill="#cce5ff" fill-opacity="0.55" stroke="#1a4d99" stroke-width="2.5"/>
+
+  <!-- Infinite ellipse (right), overlapping countable -->
+  <ellipse cx="470" cy="290" rx="200" ry="165" fill="#ffd6cc" fill-opacity="0.55" stroke="#992020" stroke-width="2.5"/>
+
+  <!-- Ellipse outer labels -->
+  <text x="115" y="140" font-size="22" font-weight="bold" fill="#1a4d99">countable</text>
+  <text x="540" y="140" font-size="22" font-weight="bold" fill="#992020">infinite</text>
+
+  <!-- Region headings -->
+  <text x="155" y="195" font-size="15" font-weight="bold" text-anchor="middle" fill="#0d3366" font-style="italic">finite</text>
+  <text x="370" y="195" font-size="15" font-weight="bold" text-anchor="middle" fill="#222" font-style="italic">denumerable</text>
+  <text x="585" y="195" font-size="15" font-weight="bold" text-anchor="middle" fill="#661414" font-style="italic">uncountable</text>
+
+  <!-- LEFT REGION (finite): empty set, N_2007 -->
+  <text x="155" y="285" font-size="24" text-anchor="middle" fill="#0d3366">&#8709;</text>
+  <text x="155" y="345" font-size="22" text-anchor="middle" fill="#0d3366">&#8469;<tspan font-size="14" dy="4">2007</tspan></text>
+
+  <!-- CENTER REGION (denumerable): N, Z, Q, ZxZ -->
+  <text x="335" y="260" font-size="24" text-anchor="middle" fill="#222">&#8469;</text>
+  <text x="405" y="260" font-size="24" text-anchor="middle" fill="#222">&#8484;</text>
+  <text x="335" y="335" font-size="24" text-anchor="middle" fill="#222">&#8474;</text>
+  <text x="405" y="335" font-size="22" text-anchor="middle" fill="#222">&#8484; &#215; &#8484;</text>
+
+  <!-- RIGHT REGION (uncountable): R, C -->
+  <text x="585" y="285" font-size="24" text-anchor="middle" fill="#661414">&#8477;</text>
+  <text x="585" y="345" font-size="24" text-anchor="middle" fill="#661414">&#8450;</text>
+
+  <!-- Footer note -->
+  <text x="360" y="478" font-size="13" font-style="italic" text-anchor="middle" fill="#666">(the region outside both ellipses is empty: no set is both finite and uncountable)</text>
+</svg>

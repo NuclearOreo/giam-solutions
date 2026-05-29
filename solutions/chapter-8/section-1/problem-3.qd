@@ -1,0 +1,122 @@
+.docname {Solution — GIAM 8.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.1 Problem 3
+
+## Problem
+
+Construct a Venn diagram showing the relationships between the sets of sets which are **finite**, **infinite**, **countable**, **denumerable**, and **uncountable**.
+
+## Setup — Five Classes of Sets
+
+Section 8.1 defines five overlapping classes. Let $ \mathcal{U} $ denote the (class of) all sets and write each as a sub-class of $ \mathcal{U} $:
+
+| Class                | Definition                                                                                  |
+| :---                 | :---                                                                                        |
+| **finite**           | $ S $ such that $ S \equiv \emptyset $ or $ S \equiv \mathbb{N}_k $ for some $ k \ge 1 $    |
+| **infinite**         | $ S $ not finite                                                                            |
+| **countable**        | $ S $ finite, *or* $ S \equiv \mathbb{N} $                                                  |
+| **denumerable**      | $ S \equiv \mathbb{N} $ (i.e., countably infinite)                                          |
+| **uncountable**      | $ S $ not countable                                                                         |
+
+The textbook explicitly notes that *"countable"* in modern usage covers both finite sets and sets of the same size as $ \mathbb{N} $; **denumerable** picks out *only* the infinite half.
+
+## Identifying the Relationships
+
+From the definitions, the five classes satisfy:
+
+$$$
+\text{finite} \;\cup\; \text{infinite} \;=\; \mathcal{U}, \qquad \text{finite} \;\cap\; \text{infinite} \;=\; \emptyset,
+$$$
+
+$$$
+\text{countable} \;\cup\; \text{uncountable} \;=\; \mathcal{U}, \qquad \text{countable} \;\cap\; \text{uncountable} \;=\; \emptyset,
+$$$
+
+$$$
+\text{finite} \;\subset\; \text{countable}, \qquad \text{uncountable} \;\subset\; \text{infinite},
+$$$
+
+$$$
+\text{denumerable} \;=\; \text{countable} \;\cap\; \text{infinite}.
+$$$
+
+Two key facts collapse the would-be 5-circle Venn diagram into a much simpler picture:
+
+1. *Every uncountable set is infinite.* (If $ S $ is finite, then $ S \equiv \mathbb{N}_k $ for some $ k $, which is a countable set; so $ S $ is countable. Contrapositive: uncountable $ \Rightarrow $ infinite.)
+2. *Every finite set is countable.* (By definition: countable = finite or denumerable.)
+
+Together they give a clean two-region picture: every set lands in exactly one of **finite**, **denumerable**, or **uncountable** — these three are mutually disjoint, and their union is $ \mathcal{U} $.
+
+## The Diagram
+
+Two overlapping ellipses suffice — one for *countable*, one for *infinite*. The three disjoint regions match the three "atomic" classes, and the four named labels of the problem all become unions of these atoms:
+
+!(80%)[Two overlapping ellipses inside the universe rectangle. The left ellipse is labeled "countable" and contains the regions "finite" (left only) and "denumerable" (intersection with the right ellipse). The right ellipse is labeled "infinite" and contains "denumerable" (intersection) and "uncountable" (right only). The region outside both ellipses is empty.](problem-3-venn.svg "Venn diagram for the five classes. Countable = finite ⊔ denumerable. Infinite = denumerable ⊔ uncountable. The overlap of the two ellipses is denumerable. The region outside both ellipses would be 'finite AND uncountable', which is empty.")
+
+## Reading Off the Five Classes
+
+Each named class is a union of the three atomic regions in the diagram:
+
+| Named class    | Region(s) in the diagram                                |
+| :---           | :---                                                    |
+| finite         | left-only (inside *countable*, outside *infinite*)      |
+| denumerable    | intersection (inside both ellipses)                     |
+| uncountable    | right-only (outside *countable*, inside *infinite*)     |
+| countable      | the entire *countable* ellipse  =  finite $ \cup $ denumerable |
+| infinite       | the entire *infinite* ellipse  =  denumerable $ \cup $ uncountable |
+
+## Why the Outside is Empty
+
+The region outside both ellipses would be "not countable AND not infinite", i.e., **uncountable AND finite**. This combination is impossible:
+
+- *uncountable* means $ S \not\equiv \mathbb{N}_k $ for every $ k $ and $ S \not\equiv \mathbb{N} $,
+- *finite* means $ S \equiv \mathbb{N}_k $ for some $ k $ (or $ S = \emptyset $).
+
+These directly contradict each other. So the outside region in the diagram is empty, and every set lives in one of the three atomic regions.
+
+## Examples to Pin Down the Regions
+
+The diagram in the figure already lists examples; here they are again with brief justifications:
+
+| Region          | Examples                                  | Why                                                            |
+| :---            | :---                                      | :---                                                           |
+| finite          | $ \emptyset $, $ \{1,2,3\} $, $ \mathbb{N}_k $ | direct bijection with some $ \mathbb{N}_k $ (or empty)         |
+| denumerable     | $ \mathbb{N} $, $ \mathbb{Z} $, $ \mathbb{Q} $, $ \mathbb{N} \times \mathbb{N} $ | each has an explicit bijection with $ \mathbb{N} $ (proved in Section 8.2) |
+| uncountable     | $ \mathbb{R} $, $ \mathbb{C} $, $ \mathcal{P}(\mathbb{N}) $, $ [0,1] $ | proved uncountable by Cantor's diagonal argument               |
+
+(Section 8.2 of the textbook works out the diagonal argument for $ \mathbb{R} $ and the bijections that put $ \mathbb{Z} $, $ \mathbb{Q} $, $ \mathbb{N} \times \mathbb{N} $ into the denumerable column.)
+
+## Remark — Why Not Five Overlapping Circles?
+
+A "true" Venn diagram with five mutually-overlapping circles has $ 2^5 = 32 $ regions, one for each possible intersection pattern. In our setting, *almost all* of these would be empty, because the five classes are not independent — they are tightly coupled by the inclusions
+
+$$$
+\text{finite} \subset \text{countable}, \qquad \text{uncountable} \subset \text{infinite}, \qquad \text{denumerable} = \text{countable} \cap \text{infinite},
+$$$
+
+and the two partitions $ \mathcal{U} = \text{finite} \cup \text{infinite} $ and $ \mathcal{U} = \text{countable} \cup \text{uncountable} $.
+
+The end result is that only **three** of the 32 possible regions are non-empty: finite, denumerable, uncountable. So two overlapping ellipses — labeled with the two "umbrella" classes *countable* and *infinite* — capture everything, with the three atomic regions and two umbrella names visible at a glance. A five-circle diagram would mostly consist of crossed-out regions, which obscures rather than clarifies.
+
+## Remark — A Linear-Order View
+
+Because of the inclusions, the five classes line up under $ \subset $ on a tiny lattice:
+
+$$$
+\begin{aligned}
+\text{finite} &\;\subset\; \text{countable} \;\subset\; \mathcal{U}, \\
+\text{denumerable} &\;\subset\; \text{countable}, \\
+\text{denumerable} &\;\subset\; \text{infinite}, \\
+\text{uncountable} &\;\subset\; \text{infinite} \;\subset\; \mathcal{U}.
+\end{aligned}
+$$$
+
+The Hasse diagram of this lattice has $ \mathcal{U} $ on top, the two "umbrella" classes *countable* and *infinite* below it, then *finite*, *denumerable*, and *uncountable* as the three "atoms" — exactly mirroring the three atomic regions of the Venn diagram. Either view (lattice or Venn) captures the same combinatorial content.
