@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 450" width="660" height="450" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="660" height="450" fill="white"/>
+
+  <!-- Coordinate axes (this is the x-z plane slice, y = 0) -->
+  <line x1="60" y1="320" x2="620" y2="320" stroke="#888" stroke-width="1"/>
+  <line x1="330" y1="60" x2="330" y2="400" stroke="#888" stroke-width="1"/>
+  <text x="628" y="324" font-size="13" fill="#666" font-style="italic">x</text>
+  <text x="317" y="58" font-size="13" fill="#666" font-style="italic">z</text>
+
+  <!-- Tangent plane z = 1 (highlighted in red) -->
+  <line x1="60" y1="220" x2="620" y2="220" stroke="#992020" stroke-width="2.8"/>
+  <text x="540" y="213" font-size="16" font-style="italic" fill="#992020">plane z = 1</text>
+
+  <!-- Upper hemisphere cross-section (highlighted blue) -->
+  <path d="M 230 320 A 100 100 0 0 1 430 320" fill="none" stroke="#1a4d99" stroke-width="2.5"/>
+  <!-- Lower half cross-section (dashed reference) -->
+  <path d="M 230 320 A 100 100 0 0 0 430 320" fill="none" stroke="#1a4d99" stroke-width="1" stroke-dasharray="3,3" opacity="0.45"/>
+
+  <!-- Tick marks for disk boundary in this slice -->
+  <line x1="230" y1="315" x2="230" y2="325" stroke="#333" stroke-width="1.5"/>
+  <text x="230" y="343" font-size="13" text-anchor="middle">&#8722;1</text>
+  <line x1="430" y1="315" x2="430" y2="325" stroke="#333" stroke-width="1.5"/>
+  <text x="430" y="343" font-size="13" text-anchor="middle">1</text>
+
+  <!-- Disk cross-section: the open interval (-1, 1) on x-axis in this slice -->
+  <line x1="232" y1="320" x2="428" y2="320" stroke="#1a4d99" stroke-width="5"/>
+  <circle cx="230" cy="320" r="3.5" fill="white" stroke="#1a4d99" stroke-width="1.8"/>
+  <circle cx="430" cy="320" r="3.5" fill="white" stroke="#1a4d99" stroke-width="1.8"/>
+
+  <!-- Tangent point (0, 0, 1) at top of hemisphere -->
+  <circle cx="330" cy="220" r="2.5" fill="#444"/>
+  <text x="300" y="213" font-size="11" fill="#444">(0, 0, 1)</text>
+
+  <!-- Origin -->
+  <circle cx="330" cy="320" r="3" fill="#222"/>
+  <text x="312" y="338" font-size="13" font-style="italic">O</text>
+
+  <!-- Worked example: (x, y) = (0.6, 0) in this slice -->
+  <circle cx="390" cy="320" r="4.5" fill="#222"/>
+  <text x="395" y="340" font-size="13" font-style="italic">(x, y, 0)</text>
+
+  <!-- Step 1: Vertical projection -->
+  <line x1="390" y1="316" x2="390" y2="244" stroke="#333" stroke-width="1.7" stroke-dasharray="5,3"/>
+  <circle cx="390" cy="240" r="4.5" fill="#222"/>
+  <text x="398" y="236" font-size="12" font-style="italic">(x, y, &#8730;(1&#8722;x&#178;&#8722;y&#178;))</text>
+
+  <text x="295" y="285" font-size="12" font-style="italic" fill="#1a4d99">Step 1:</text>
+  <text x="290" y="299" font-size="11" font-style="italic" fill="#1a4d99">vertical</text>
+  <text x="290" y="311" font-size="11" font-style="italic" fill="#1a4d99">projection</text>
+
+  <!-- Step 2: Gnomonic projection from O through hemisphere point to plane z = 1 -->
+  <!-- O = (330, 320); P = (390, 240); ray to z = 220 (plane z = 1) -->
+  <!-- Direction (60, -80). Parametrize (330 + 60t, 320 - 80t). At y_SVG = 220: t = 1.25; x = 330 + 75 = 405 -->
+  <line x1="330" y1="320" x2="440" y2="173.33" stroke="#444" stroke-width="1.7"/>
+
+  <!-- f(x, y) image point on the plane z = 1 -->
+  <circle cx="405" cy="220" r="5.5" fill="#992020"/>
+  <text x="413" y="213" font-size="15" font-style="italic" fill="#992020">f(x, y)</text>
+
+  <text x="355" y="263" font-size="12" font-style="italic" fill="#444">Step 2:</text>
+  <text x="355" y="276" font-size="11" font-style="italic" fill="#444">gnomonic</text>
+
+  <!-- Caption -->
+  <text x="330" y="408" font-size="13" text-anchor="middle" font-style="italic" fill="#333">Cross-section view (in the plane y = 0). The full 3D picture is this rotated around the z-axis.</text>
+  <text x="330" y="425" font-size="14" text-anchor="middle" font-style="italic" fill="#222">f(x, y) &#160;=&#160; (x, y) / &#8730;(1 &#8722; x&#178; &#8722; y&#178;)</text>
+</svg>

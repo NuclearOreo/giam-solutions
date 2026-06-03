@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 460" width="720" height="460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="460" fill="white"/>
+
+  <!-- Circle 1: center (180, 230), radius 110 -->
+  <circle cx="180" cy="230" r="110" fill="none" stroke="#1a4d99" stroke-width="2.8"/>
+  <circle cx="180" cy="230" r="3" fill="#1a4d99"/>
+  <text x="187" y="225" font-size="14" font-style="italic" fill="#1a4d99">O&#8321;</text>
+  <text x="55" y="135" font-size="22" font-weight="bold" fill="#1a4d99">C&#8321;</text>
+
+  <!-- Circle 2: center (540, 230), radius 70 -->
+  <circle cx="540" cy="230" r="70" fill="none" stroke="#992020" stroke-width="2.8"/>
+  <circle cx="540" cy="230" r="3" fill="#992020"/>
+  <text x="548" y="225" font-size="14" font-style="italic" fill="#992020">O&#8322;</text>
+  <text x="640" y="170" font-size="22" font-weight="bold" fill="#992020">C&#8322;</text>
+
+  <!-- Reference radius for theta = 60 deg on C1 -->
+  <!-- P1(theta) = (180 + 110*0.5, 230 - 110*0.866) = (235, 134.74) -->
+  <line x1="180" y1="230" x2="235" y2="134.74" stroke="#1a4d99" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <line x1="180" y1="230" x2="290" y2="230" stroke="#1a4d99" stroke-width="1" stroke-dasharray="2,3"/>
+  <path d="M 215 230 A 35 35 0 0 0 197.5 199.7" fill="none" stroke="#1a4d99" stroke-width="1.5"/>
+  <text x="220" y="218" font-size="14" font-style="italic" fill="#1a4d99">&#952;</text>
+  <circle cx="235" cy="134.74" r="4.5" fill="#1a4d99"/>
+  <text x="242" y="128" font-size="13" fill="#1a4d99">P&#8321;(&#952;)</text>
+
+  <!-- Reference radius for theta = 60 deg on C2 -->
+  <!-- P2(theta) = (540 + 70*0.5, 230 - 70*0.866) = (575, 169.38) -->
+  <line x1="540" y1="230" x2="575" y2="169.38" stroke="#992020" stroke-width="1.2" stroke-dasharray="3,3"/>
+  <line x1="540" y1="230" x2="610" y2="230" stroke="#992020" stroke-width="1" stroke-dasharray="2,3"/>
+  <path d="M 562 230 A 22 22 0 0 0 551 210.96" fill="none" stroke="#992020" stroke-width="1.5"/>
+  <text x="565" y="222" font-size="14" font-style="italic" fill="#992020">&#952;</text>
+  <circle cx="575" cy="169.38" r="4.5" fill="#992020"/>
+  <text x="582" y="163" font-size="13" fill="#992020">P&#8322;(&#952;)</text>
+
+  <!-- Main pairing arrow -->
+  <path d="M 243 130 Q 400 55 575 165" fill="none" stroke="#333" stroke-width="1.8" stroke-dasharray="6,4"/>
+  <polygon points="575,165 568,158 568,170" fill="#333"/>
+  <text x="400" y="75" font-size="17" text-anchor="middle" font-style="italic" fill="#222">f</text>
+
+  <!-- A few additional pairings (smaller dots, no labels) -->
+  <!-- theta = 0 -->
+  <circle cx="290" cy="230" r="3" fill="#1a4d99" opacity="0.55"/>
+  <circle cx="610" cy="230" r="3" fill="#992020" opacity="0.55"/>
+  <!-- theta = 120: (180-55, 230-95.26) = (125, 134.74); (540-35, 230-60.62) = (505, 169.38) -->
+  <circle cx="125" cy="134.74" r="3" fill="#1a4d99" opacity="0.55"/>
+  <circle cx="505" cy="169.38" r="3" fill="#992020" opacity="0.55"/>
+  <!-- theta = 180 -->
+  <circle cx="70" cy="230" r="3" fill="#1a4d99" opacity="0.55"/>
+  <circle cx="470" cy="230" r="3" fill="#992020" opacity="0.55"/>
+  <!-- theta = 240: (125, 325.26); (505, 290.62) -->
+  <circle cx="125" cy="325.26" r="3" fill="#1a4d99" opacity="0.55"/>
+  <circle cx="505" cy="290.62" r="3" fill="#992020" opacity="0.55"/>
+  <!-- theta = 300: (235, 325.26); (575, 290.62) -->
+  <circle cx="235" cy="325.26" r="3" fill="#1a4d99" opacity="0.55"/>
+  <circle cx="575" cy="290.62" r="3" fill="#992020" opacity="0.55"/>
+
+  <!-- Caption -->
+  <text x="360" y="425" font-size="14" text-anchor="middle" font-style="italic" fill="#333">Same angle &#952;, different circles: pair P&#8321;(&#952;) on C&#8321; with P&#8322;(&#952;) on C&#8322;.</text>
+</svg>

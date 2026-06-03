@@ -1,0 +1,118 @@
+.docname {Solution — GIAM 8.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.2 Problem 3
+
+## Problem
+
+Prove that any two circles are equinumerous (as sets of points).
+
+## Setup — Circles as Sets of Points
+
+A *circle* in $ \mathbb{R}^2 $ with center $ O = (h, k) $ and radius $ r > 0 $ is the set
+
+$$$
+C \;=\; \{\, (h + r\cos\theta,\; k + r\sin\theta) \;:\; \theta \in [0,\, 2\pi) \,\}.
+$$$
+
+Equivalently, $ C = \{\, (x, y) \in \mathbb{R}^2 \;:\; (x - h)^2 + (y - k)^2 = r^2 \,\} $.
+
+The map $ \theta \mapsto (h + r\cos\theta,\, k + r\sin\theta) $ is a bijection $ [0, 2\pi) \to C $ (distinct angles in $ [0, 2\pi) $ give distinct points, and every point on $ C $ is hit by exactly one such angle). Call this map $ \varphi_C $; it is the "polar coordinate parametrization" of $ C $.
+
+So *every* circle, regardless of its center or radius, comes with a canonical bijection to the half-open interval $ [0, 2\pi) $.
+
+## Strategy — Pair Points by Matching Angle
+
+Given two circles $ C_1 $ (center $ O_1 $, radius $ r_1 $) and $ C_2 $ (center $ O_2 $, radius $ r_2 $), each has its own angle parametrization $ \varphi_{C_1}, \varphi_{C_2} : [0, 2\pi) \to C_i $. Define $ f : C_1 \to C_2 $ as the composite
+
+$$$
+f \;=\; \varphi_{C_2} \circ \varphi_{C_1}^{-1}.
+$$$
+
+Explicitly: given $ P \in C_1 $, find the unique $ \theta \in [0, 2\pi) $ with $ P = O_1 + r_1(\cos\theta, \sin\theta) $, and set
+
+$$$
+f(P) \;=\; O_2 + r_2(\cos\theta,\, \sin\theta).
+$$$
+
+The map $ f $ pairs the point on $ C_1 $ "at angle $ \theta $ from $ O_1 $" with the point on $ C_2 $ "at angle $ \theta $ from $ O_2 $."
+
+!(85%)[Two circles of different sizes and centers, with a single angle θ marked at each center and several pairs of "same-angle" points highlighted across the two circles, connected by an arrow labeled f.](problem-3-angle.svg "Same angle θ, different circles. For each θ ∈ [0, 2π) there is a unique point P₁(θ) on C₁ and a unique point P₂(θ) on C₂; the bijection f sends P₁(θ) ↦ P₂(θ).")
+
+## Verifying $ f $ is a Bijection
+
+$ f $ is a bijection because both $ \varphi_{C_1} $ and $ \varphi_{C_2} $ are bijections from $ [0, 2\pi) $ to their respective circles, and the composite of bijections is a bijection (Section 8.1, Problem 2 — transitivity of $ \equiv $ via composition).
+
+Explicitly, the inverse is
+
+$$$
+f^{-1} : C_2 \to C_1, \qquad f^{-1}\bigl(O_2 + r_2(\cos\theta,\sin\theta)\bigr) \;=\; O_1 + r_1(\cos\theta,\sin\theta),
+$$$
+
+which is $ \varphi_{C_1} \circ \varphi_{C_2}^{-1} $ — the same construction in reverse. Hence $ C_1 \equiv C_2 $. $ \blacksquare $
+
+Since $ C_1 $ and $ C_2 $ were arbitrary circles, this shows *any two circles are equinumerous* — as a corollary, all circles in $ \mathbb{R}^2 $ belong to a single equivalence class under $ \equiv $.
+
+## The Concentric Special Case — Radial Projection
+
+When $ O_1 = O_2 = O $, the bijection $ f $ has a vivid geometric meaning: each ray emanating from the common center $ O $ intersects $ C_1 $ at one point and $ C_2 $ at one point, and $ f $ pairs these two intersection points. Equivalently, $ f $ rescales each radius from length $ r_1 $ to length $ r_2 $:
+
+$$$
+f(P) \;=\; O + \frac{r_2}{r_1}\,(P - O), \qquad P \in C_1.
+$$$
+
+!(60%)[Two concentric circles of different radii, with eight radial rays from the common center. Each ray intersects the inner circle at one point and the outer circle at one point; the radial bijection pairs the inner point with the outer point on the same ray.](problem-3-concentric.svg "Concentric circles share a center O. Each ray from O picks one point of C₁ and one of C₂, so radial projection is the bijection.")
+
+This concentric picture is just the angle-parametric bijection drawn with the two centers coinciding — the "angle from $ O_1 $" and "angle from $ O_2 $" are then literally the same angle along the same ray.
+
+## Remark — General Case as Translate + Scale
+
+The bijection $ f $ between non-concentric circles decomposes into two elementary bijections of $ \mathbb{R}^2 $, restricted to circles:
+
+$$$
+C_1 \;\xrightarrow{\;\text{translate by } O_2 - O_1\;}\; C_1' \;\xrightarrow{\;\text{radial scale by } r_2 / r_1 \text{ about } O_2\;}\; C_2.
+$$$
+
+The first arrow shifts $ C_1 $ rigidly so its center moves from $ O_1 $ to $ O_2 $; this produces an intermediate circle $ C_1' $ concentric with $ C_2 $ but still of radius $ r_1 $. The second arrow rescales radially about $ O_2 $, stretching (or shrinking) $ C_1' $ to a circle of radius $ r_2 $ — namely $ C_2 $. Each arrow is a bijection (translations and central scalings are bijections of $ \mathbb{R}^2 $); the composite is a bijection by transitivity, recovering $ f $.
+
+This decomposition is the "similarity transformation" view: any two circles in the plane are related by a similarity (translation $ + $ scaling), and similarities are bijections of $ \mathbb{R}^2 $.
+
+## Remark — Cardinality is Blind to Radius and Position
+
+The bijection makes vivid the point that *cardinality* is insensitive to *metric* features. The two circles can differ in:
+
+- *radius* — a one-meter circle has the same number of points as a one-kilometer circle, or as a circle the size of the observable universe;
+- *position* — translating a circle anywhere in the plane (or to a different copy of the plane) doesn't change the cardinality;
+- *circumference* — the length of $ C_1 $ is $ 2\pi r_1 $ and of $ C_2 $ is $ 2\pi r_2 $, but $ |C_1| = |C_2| $ regardless.
+
+In fact, every circle has the same cardinality as $ [0, 2\pi) $, hence (by the bijection $ [0, 2\pi) \to [0, 1) $ via $ \theta \mapsto \theta/(2\pi) $) the same cardinality as any non-degenerate interval, hence — chaining through Problem 2 of this section and the half-circle/line projection — the same cardinality as $ \mathbb{R} $. So every circle has cardinality $ \mathfrak{c} = |\mathbb{R}| $.
+
+## Remark — The Same Argument Generalizes
+
+The argument hinges on *one* fact: every circle is in bijection with a fixed reference space ($ [0, 2\pi) $). Many other geometric objects share this property, and the same composition-via-reference trick applies:
+
+| Two objects of the same "type" | Reference parameter space | Bijection witness                |
+| :---                           | :---                      | :---                             |
+| two circles                    | $ [0, 2\pi) $             | $ \varphi_{C_2} \circ \varphi_{C_1}^{-1} $ |
+| two line segments              | $ [0, 1] $                | the affine map of Problem 2      |
+| two spheres in $ \mathbb{R}^3 $ | $ [0, \pi] \times [0, 2\pi) $ | spherical-coord composite       |
+| two regular polygons (boundaries) | $ [0, 1) $              | arclength composite              |
+| two ellipses                   | $ [0, 2\pi) $             | angle-parameter composite        |
+
+The lesson is: *whenever two sets admit a parametrization by the same set, they are equinumerous*. The proof above is the cleanest possible instance of this pattern — circles are the simplest shapes with a one-parameter family of points.
+
+## Remark — Connection to "Same Length, Different Length"
+
+Note a small but important contrast with Problem 2 of this section. Problem 2 showed $ [a, b] \equiv [c, d] $ for any choice of $ a < b $ and $ c < d $ — *line segments* of different lengths are equinumerous. The current problem says *circles* of different radii are equinumerous. Both reduce to the same idea — "rescale the parameter" — but the geometric flavor differs:
+
+- For segments, the bijection $ x \mapsto c + (x-a)(d-c)/(b-a) $ is an affine *stretch* along a single dimension.
+- For circles, the bijection wraps a fixed parameter $ \theta $ around two circles of different sizes — a "rotational rescaling" rather than a linear one.
+
+Both, however, are instances of: pick a common parameter space and pull bijections through it.

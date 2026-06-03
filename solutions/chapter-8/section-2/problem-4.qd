@@ -1,0 +1,155 @@
+.docname {Solution — GIAM 8.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.2 Problem 4
+
+## Problem
+
+Determine a formula for the bijection from $ (-1, 1) $ to the line $ y = 1 $ determined by vertical projection onto the upper half of the unit circle, followed by projection from the point $ (0, 0) $.
+
+## Setup — Parsing the Two-Step Construction
+
+The construction is a *composition* of two geometric projections:
+
+1. **Vertical projection**: each $ x \in (-1, 1) $, regarded as the point $ (x, 0) $ on the $ x $-axis, is sent straight up to the unique point on the upper half of the unit circle $ x^2 + y^2 = 1,\ y > 0 $ directly above it.
+2. **Central projection from the origin**: the resulting point on the half-circle is sent along the ray from $ (0, 0) $ through it, continuing until that ray hits the horizontal line $ y = 1 $.
+
+The bijection $ f $ is the composite. Our job is to write down $ f(x) $ as a formula.
+
+## The Geometric Picture
+
+!(85%)[The unit circle (upper half highlighted) sits with its center at the origin O. The interval (−1, 1) on the x-axis is thickened. The line y = 1 sits tangent to the top of the circle. A specific point x on the interval is shown; a dashed vertical arrow takes it up to the point (x, √(1−x²)) on the upper half-circle; a solid ray from the origin through that point continues up to meet the line y = 1 at the image f(x).](problem-4-projection.svg "The two-step bijection from (−1, 1) to the line y = 1. Step 1 sends x ∈ (−1, 1) straight up to the point (x, √(1−x²)) on the upper unit half-circle. Step 2 follows the ray from the origin through that point until it hits y = 1, landing at the image f(x) = x / √(1 − x²).")
+
+## Step 1 — Vertical Projection to the Upper Half-Circle
+
+For $ x \in (-1, 1) $, the point on the upper unit circle directly above $ (x, 0) $ has $ y $-coordinate $ \sqrt{1 - x^2} $ (the positive root of $ y^2 = 1 - x^2 $). Write this map as
+
+$$$
+g_1 : (-1, 1) \;\longrightarrow\; S^+ , \qquad g_1(x) \;=\; \bigl(\,x,\;\sqrt{1 - x^2}\,\bigr),
+$$$
+
+where $ S^+ = \{\,(x, y) : x^2 + y^2 = 1,\ y > 0\,\} $ is the open upper half-circle. The map $ g_1 $ is a bijection: given any $ (a, b) \in S^+ $, the unique preimage is $ a $, so $ g_1^{-1}(a, b) = a $.
+
+## Step 2 — Central Projection from $ (0, 0) $ onto $ y = 1 $
+
+Given a point $ P = (a, b) \in S^+ $ (so $ b > 0 $), the ray from $ (0, 0) $ through $ P $ is
+
+$$$
+\{\, (ta,\; tb) \;:\; t \ge 0 \,\}.
+$$$
+
+It meets the horizontal line $ y = 1 $ when $ tb = 1 $, i.e., at $ t = 1/b $; the meeting point's $ x $-coordinate is $ ta = a/b $. Identifying the line $ y = 1 $ with $ \mathbb{R} $ via the $ x $-coordinate, this gives
+
+$$$
+g_2 : S^+ \;\longrightarrow\; \mathbb{R}, \qquad g_2(a, b) \;=\; \frac{a}{b}.
+$$$
+
+$ g_2 $ is a bijection: given $ u \in \mathbb{R} $, the unique preimage is the point on $ S^+ $ along the ray from $ (0, 0) $ through $ (u, 1) $, namely $ (u, 1)/\sqrt{u^2 + 1} = \bigl(u/\sqrt{u^2 + 1},\, 1/\sqrt{u^2 + 1}\bigr) $.
+
+## The Composite Formula
+
+Compose the two steps:
+
+$$$
+f(x) \;=\; g_2\bigl(g_1(x)\bigr) \;=\; g_2\bigl(x,\,\sqrt{1 - x^2}\bigr) \;=\; \frac{x}{\sqrt{1 - x^2}}.
+$$$
+
+So the desired bijection is
+
+$$$
+\boxed{\;f \;:\; (-1, 1) \;\longrightarrow\; \mathbb{R}, \qquad f(x) \;=\; \frac{x}{\sqrt{1 - x^2}}\;}
+$$$
+
+(under the identification of the line $ y = 1 $ with $ \mathbb{R} $ by $ x $-coordinate).
+
+## Verifying $ f $ is a Bijection
+
+$ f $ is the composite of two bijections $ g_1, g_2 $, hence is itself a bijection by transitivity of $ \equiv $ (Section 8.1, Problem 2). To make this concrete, exhibit the inverse.
+
+### The Inverse
+
+Solve $ y = x / \sqrt{1 - x^2} $ for $ x $. Squaring both sides,
+
+$$$
+y^2 \;=\; \frac{x^2}{1 - x^2} \quad\Longrightarrow\quad y^2(1 - x^2) \;=\; x^2 \quad\Longrightarrow\quad y^2 \;=\; x^2(1 + y^2) \quad\Longrightarrow\quad x^2 \;=\; \frac{y^2}{1 + y^2}.
+$$$
+
+Taking the positive root and matching signs (since $ x $ and $ y $ have the same sign — the construction sends positive $ x $ to the right and negative $ x $ to the left),
+
+$$$
+f^{-1}(y) \;=\; \frac{y}{\sqrt{1 + y^2}}.
+$$$
+
+A quick check: $ f^{-1} $ is exactly $ g_1^{-1} \circ g_2^{-1} $. Indeed, $ g_2^{-1}(y) = (y, 1)/\sqrt{1 + y^2} $ as computed above; then projecting to the $ x $-axis (taking the first coordinate) gives $ y/\sqrt{1 + y^2} $.
+
+Note $ f^{-1}(y) \in (-1, 1) $ for all $ y \in \mathbb{R} $: since $ |y| < \sqrt{1 + y^2} $, we have $ |f^{-1}(y)| < 1 $. ✓
+
+## Sanity Checks
+
+| $ x $          | $ \sqrt{1 - x^2} $ | $ f(x) = x / \sqrt{1 - x^2} $ |
+| :---:          | :---:              | :---:                          |
+| $ 0 $          | $ 1 $              | $ 0 $                          |
+| $ 1/2 $        | $ \sqrt{3}/2 $     | $ 1/\sqrt{3} \approx 0.577 $   |
+| $ 3/5 $        | $ 4/5 $            | $ 3/4 = 0.75 $                 |
+| $ 4/5 $        | $ 3/5 $            | $ 4/3 \approx 1.333 $          |
+| $ \to 1^- $    | $ \to 0^+ $        | $ \to +\infty $                |
+| $ \to -1^+ $   | $ \to 0^+ $        | $ \to -\infty $                |
+
+The $ x = 3/5 $ row matches the geometric picture above (the highlighted worked example uses $ x = 3/5 = 0.6 $, landing at $ f(x) = 3/4 = 0.75 $).
+
+The endpoint behavior gives the right *qualitative* picture: as $ x $ slides toward $ \pm 1 $, the corresponding circle point approaches $ (\pm 1, 0) $, the ray from the origin through it tilts toward horizontal, and the meeting with $ y = 1 $ races off to $ \pm \infty $. So $ f $ stretches $ (-1, 1) $ onto the whole of $ \mathbb{R} $.
+
+## Remark — A Trigonometric View
+
+Parametrize the upper half-circle by the angle $ \theta \in (0, \pi) $ from the positive $ x $-axis: the half-circle point is $ (\cos\theta, \sin\theta) $. Then:
+
+- $ g_1(x) = (x, \sqrt{1 - x^2}) = (\cos\theta, \sin\theta) $ with $ \theta = \arccos(x) $.
+- $ g_2(\cos\theta, \sin\theta) = \cos\theta / \sin\theta = \cot\theta $.
+
+So $ f $ is the composition $ x \mapsto \arccos(x) \mapsto \cot(\arccos(x)) $, i.e.,
+
+$$$
+f(x) \;=\; \cot(\arccos x) \;=\; \frac{\cos(\arccos x)}{\sin(\arccos x)} \;=\; \frac{x}{\sqrt{1 - x^2}},
+$$$
+
+recovering the same formula. The vertical projection is the *inverse cosine*, and the central projection from the origin is the *cotangent* — together, $ f = \cot \circ \arccos $.
+
+In particular, since $ \cot : (0, \pi) \to \mathbb{R} $ is a known bijection (monotonically decreasing from $ +\infty $ at $ 0 $ to $ -\infty $ at $ \pi $), composing with the bijection $ \arccos : (-1, 1) \to (0, \pi) $ confirms $ f $ is a bijection directly.
+
+## Remark — Why This Construction Matters
+
+This problem completes a chain begun in Problem 2: any non-degenerate open interval is in bijection with the whole real line. Specifically,
+
+$$$
+(-1, 1) \;\equiv\; \mathbb{R} \quad \text{via } f(x) = \frac{x}{\sqrt{1 - x^2}}.
+$$$
+
+Combined with Problem 2 (which gives $ (a, b) \equiv (-1, 1) $ via the affine map $ x \mapsto -1 + 2(x - a)/(b - a) $) and transitivity of $ \equiv $,
+
+$$$
+(a, b) \;\equiv\; (-1, 1) \;\equiv\; \mathbb{R}
+$$$
+
+for every $ a < b $. So a one-millimeter open interval has the same cardinality as the entire real line — exactly the §8.2 punch line the textbook foreshadows ("an infinitely extended line has the same number of points as the interval $ (0, 1) $").
+
+## Remark — Closed Intervals Need an Extra Step
+
+The bijection $ f $ blows up at $ \pm 1 $, so it does *not* extend to a bijection $ [-1, 1] \to (\text{line } y = 1) $: the endpoints $ \pm 1 $ have no image under $ f $, and conversely the line $ y = 1 $ has no "point at infinity" for them to map to. To biject a *closed* interval $ [-1, 1] $ with $ \mathbb{R} $, one needs a more careful construction (e.g., the Cantor–Bernstein–Schröder theorem from §8.4, or an explicit ad-hoc shuffle of countably many points to absorb the two extra endpoints).
+
+The open-interval case in this problem is the clean version: the open ends of $ (-1, 1) $ correspond exactly to "approaching the horizontal" — the only way for the central-projection ray to miss the line $ y = 1 $ — and these directions correspond to $ \pm\infty $, which are not points of $ \mathbb{R} $. The geometry conspires perfectly with the open-interval setup.
+
+## Remark — Why This Specific Combination of Projections?
+
+Two natural alternatives, for comparison:
+
+- *Stereographic projection from $ (0, 1) $ onto the $ x $-axis.* Each point on the (closed) unit circle except $ (0, 1) $ maps to a unique point of the $ x $-axis. Used in complex analysis to add a "point at infinity" to $ \mathbb{C} \cup \{\infty\} $.
+- *Radial projection from $ (0, 0) $ onto the unit circle.* Bijection between rays from the origin and points of the circle, but doesn't directly give a bijection to a line.
+
+The textbook's two-step construction (vertical then central) is the natural composite that "unrolls" the bounded open interval $ (-1, 1) $ onto the unbounded line. The key insight is that the *bounded* interval $ (-1, 1) $ is wrapped around the *bounded* upper half-circle, and then *unbounded* central projection from the origin stretches the half-circle out to the full line. Vertical projection handles the "geometry"; central projection handles the "infinite stretch".

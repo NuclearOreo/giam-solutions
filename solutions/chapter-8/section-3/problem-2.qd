@@ -1,0 +1,148 @@
+.docname {Solution — GIAM 8.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.3 Problem 2
+
+## Problem
+
+Can a diagonalization proof showing that the interval $ (0, 1) $ is uncountable be made workable in base-$ 3 $ (ternary) notation?
+
+## Short Answer
+
+*Yes.* Base $ 3 $ admits a workable diagonalization, but the substitution rule for picking the "complemented" diagonal digit needs more care than in base $ 10 $. The base-$ 10 $ recipe (avoid $ 0 $ and $ 9 $) leaves $ 8 $ candidate digits, more than enough to differ from any single forbidden digit; the naïve base-$ 3 $ analog (avoid $ 0 $ and $ 2 $) leaves only the single digit $ \{1\} $, which is insufficient when the diagonal digit *is* $ 1 $. A small modification — alternating the digit set by parity of the position — fixes the issue.
+
+## The Subtlety — Why the Choice of Rule Matters
+
+The diagonalization proof goes through three steps:
+
+1. *Assume* $ (0,1) $ is countable, so all reals in $ (0,1) $ can be listed as $ r_1, r_2, r_3, \ldots $ with a chosen base-$ b $ expansion $ r_n = 0.d_{n,1} d_{n,2} d_{n,3} \cdots $ for each $ n $.
+2. *Construct* a new base-$ b $ sequence $ 0.e_1 e_2 e_3 \cdots $ with $ e_n \ne d_{n,n} $ for every $ n $.
+3. *Conclude* that the constructed sequence represents a real $ r \in (0,1) $ that is not on the list, contradicting exhaustiveness.
+
+The hidden hazard sits between steps 2 and 3. Some reals have *two* base-$ b $ representations:
+
+$$$
+\tfrac{1}{2} \;=\; 0.5000\cdots \;=\; 0.4999\cdots \quad (\text{base } 10),
+$$$
+
+$$$
+\tfrac{1}{2} \;=\; 0.1000\cdots \;=\; 0.0111\cdots \quad (\text{base } 2),
+$$$
+
+$$$
+\tfrac{1}{3} \;=\; 0.1000\cdots \;=\; 0.0222\cdots \quad (\text{base } 3).
+$$$
+
+The general fact (mentioned but unproven in §8.3): in base $ b $, a real $ r \in (0,1) $ has *two* expansions iff $ r = k / b^m $ for some positive integers $ k, m $; the two expansions then differ by ending in trailing $ 0 $'s vs. trailing $ (b{-}1) $'s. All other reals have a unique base-$ b $ expansion.
+
+Step 2 produces a *string* that differs from each listed *string*, but two different strings can represent the same *number*. If our constructed string happens to be the alternative representation of some $ r_n $, the proof collapses: the strings differ, but the numbers don't.
+
+The remedy is to constrain step 2 so the constructed string is the unique representation of its number — i.e., not a trailing-$ 0 $'s string and not a trailing-$ (b{-}1) $'s string.
+
+## How Base $ 10 $ Handles It
+
+In base $ 10 $, pick each $ e_n $ from $ \{1, 2, 3, 4, 5, 6, 7, 8\} $ — i.e., avoid $ 0 $ and $ 9 $ — and require $ e_n \ne d_{n,n} $. Since the safe pool has $ 8 $ digits and at most one is forbidden by the diagonal constraint, there are always $ \ge 7 $ legal choices.
+
+The constructed real $ r $ has no $ 0 $ and no $ 9 $ anywhere in its expansion, so its expansion is neither a "trailing-$ 0 $'s" nor a "trailing-$ 9 $'s" representation. Hence $ r $'s base-$ 10 $ representation is *unique*, and the constructed string is that unique representation. If $ r $ equalled some $ r_n $, then $ r_n $'s listed representation would have to *be* our constructed string — contradicting $ e_n \ne d_{n,n} $.
+
+## Why the Naïve Analog Fails in Base $ 3 $
+
+Translate the base-$ 10 $ recipe literally: pick $ e_n $ from $ \{1, 2, \ldots, b{-}2\} $ avoiding $ 0 $ and $ b{-}1 $. In base $ 3 $, $ b - 2 = 1 $, so the safe pool is the singleton $ \{1\} $. With only one safe digit available, the rule "pick a safe digit different from $ d_{n,n} $" is impossible whenever $ d_{n,n} = 1 $.
+
+The naïve rule simply doesn't have enough room to maneuver. So we need a smarter rule.
+
+## A Working Rule for Base $ 3 $
+
+Define $ e_n $ position-dependently, alternating which "safe pair" we draw from:
+
+| Parity of $ n $ | If $ d_{n,n} = 0 $ | If $ d_{n,n} = 1 $ | If $ d_{n,n} = 2 $ |
+| :---:           | :---:              | :---:              | :---:              |
+| $ n $ odd       | $ e_n = 1 $        | $ e_n = 2 $        | $ e_n = 1 $        |
+| $ n $ even      | $ e_n = 1 $        | $ e_n = 0 $        | $ e_n = 1 $        |
+
+Equivalently:
+
+$$$
+e_n \;=\; \begin{cases} 1 & \text{if } d_{n,n} \ne 1, \\ 2 & \text{if } d_{n,n} = 1 \text{ and } n \text{ odd}, \\ 0 & \text{if } d_{n,n} = 1 \text{ and } n \text{ even}. \end{cases}
+$$$
+
+By inspection $ e_n \ne d_{n,n} $ for every $ n $. Structurally,
+
+$$$
+\text{odd } n: \;\; e_n \in \{1, 2\}, \qquad \text{even } n: \;\; e_n \in \{0, 1\}.
+$$$
+
+## Verifying $ r \in (0, 1) $ and Has Unique Base-$ 3 $ Representation
+
+Let $ r = 0.e_1 e_2 e_3 \cdots $ in base $ 3 $.
+
+### $ r > 0 $
+
+The first digit $ e_1 $ uses the odd rule, so $ e_1 \in \{1, 2\} $. Hence $ r \ge 0.1_3 = 1/3 > 0 $.
+
+### $ r < 1 $
+
+The second digit $ e_2 $ uses the even rule, so $ e_2 \in \{0, 1\} $, in particular $ e_2 \ne 2 $. Hence the sequence is not all-$ 2 $'s, so $ r < 0.222\cdots_3 = 1 $.
+
+### $ r $'s representation is unique
+
+A real $ r \in (0,1) $ has two base-$ 3 $ representations iff $ r = k/3^m $ for some positive integers $ k, m $. The canonical (non-trailing-$ 2 $'s) representation of such a number terminates, i.e., has only finitely many non-zero digits. Conversely, a real with a non-terminating canonical representation has a unique base-$ 3 $ representation.
+
+The constructed sequence $ 0.e_1 e_2 e_3 \cdots $ has:
+
+- *Infinitely many digits $ \ne 2 $*: every even index $ n $ gives $ e_n \in \{0, 1\} $, and there are infinitely many even indices. So the sequence does *not* end in trailing $ 2 $'s — it *is* the canonical representation of $ r $.
+- *Infinitely many digits $ \ne 0 $*: every odd index $ n $ gives $ e_n \in \{1, 2\} $, and there are infinitely many odd indices. So the canonical representation does not terminate.
+
+Both conditions together rule out $ r $ being a finite fraction $ k/3^m $. Hence $ r $ has a *unique* base-$ 3 $ representation, and that representation is $ 0.e_1 e_2 e_3 \cdots $.
+
+## Concluding the Contradiction
+
+Suppose for contradiction that $ r = r_n $ for some $ n $. Then the listed representation of $ r_n $ is *some* representation of the number $ r $. Since $ r $ has a unique base-$ 3 $ representation, the listed string must equal our constructed string position-by-position. But by construction the listed $ n $-th digit is $ d_{n,n} $, while our constructed $ n $-th digit is $ e_n \ne d_{n,n} $. Contradiction.
+
+So $ r \in (0, 1) $ but $ r \notin \{r_1, r_2, r_3, \ldots\} $, contradicting the assumed exhaustiveness of the listing. Hence $ (0, 1) $ cannot be enumerated by $ \mathbb{N} $, so $ (0, 1) $ is uncountable.  $ \blacksquare $
+
+## Spot Check — A Small Worked Example
+
+Take the (made-up) listing
+
+| $ n $ | $ r_n $ as a base-$ 3 $ string | $ d_{n,n} $ |
+| :---: | :---                          | :---:       |
+| $ 1 $ | $ 0.\mathbf{2}\,1\,0\,1\,2\,\cdots $ | $ 2 $       |
+| $ 2 $ | $ 0.\,0\,\mathbf{1}\,0\,2\,1\,\cdots $ | $ 1 $       |
+| $ 3 $ | $ 0.\,1\,2\,\mathbf{1}\,0\,1\,\cdots $ | $ 1 $       |
+| $ 4 $ | $ 0.\,2\,0\,1\,\mathbf{0}\,2\,2\,\cdots $ | $ 0 $       |
+| $ 5 $ | $ 0.\,1\,1\,2\,2\,\mathbf{2}\,0\,\cdots $ | $ 2 $       |
+| $ 6 $ | $ 0.\,0\,2\,0\,1\,1\,\mathbf{1}\,\cdots $ | $ 1 $       |
+
+Apply the rule: $ e_1 $ (odd, $ d_{1,1} = 2 $) $ = 1 $; $ e_2 $ (even, $ d_{2,2} = 1 $) $ = 0 $; $ e_3 $ (odd, $ d_{3,3} = 1 $) $ = 2 $; $ e_4 $ (even, $ d_{4,4} = 0 $) $ = 1 $; $ e_5 $ (odd, $ d_{5,5} = 2 $) $ = 1 $; $ e_6 $ (even, $ d_{6,6} = 1 $) $ = 0 $. So far
+
+$$$
+0.e_1 e_2 e_3 e_4 e_5 e_6 \cdots \;=\; 0.\,1\,0\,2\,1\,1\,0\,\cdots
+$$$
+
+This string differs from each $ r_n $ at position $ n $, and (extending the rule indefinitely) has infinitely many odd-position digits in $ \{1, 2\} $ and infinitely many even-position digits in $ \{0, 1\} $ — so it is the unique base-$ 3 $ representation of some $ r \in (1/3, 1) $.
+
+## Remark — Alternative: Use Two-Digit Blocks ("Base $ 9 $")
+
+Another clean fix: process the diagonal in *pairs* of base-$ 3 $ digits. Each pair $ (a, b) \in \{0,1,2\}^2 $ takes one of $ 9 $ values, equivalent to a base-$ 9 $ digit $ 3a + b $. The dual-representation pairs are $ (0, 0) $ (the "trailing-$ 0 $'s" block) and $ (2, 2) $ (the "trailing-$ 2 $'s" block) — by avoiding *both*, we ensure neither global trailing-$ 0 $'s nor global trailing-$ 2 $'s.
+
+For each row index $ n $, look at the diagonal pair $ (d_{n,\,2n-1}, d_{n,\,2n}) $ and replace it with any pair other than itself, $ (0,0) $, or $ (2,2) $ — there are at least $ 9 - 3 = 6 $ safe choices, say the lexicographically first one. The resulting global expansion has no $ (0,0) $ block and no $ (2,2) $ block at any chosen position, hence is neither trailing-$ 0 $'s nor trailing-$ 2 $'s, hence is the unique representation of its number. The diagonal argument then proceeds as in the base-$ 9 $ case directly.
+
+This pairing approach is essentially "the base-$ 10 $ argument done in base $ 9 $."
+
+## Remark — Why Base $ 2 $ Genuinely Resists the Single-Digit Approach
+
+In base $ 2 $, the analog "avoid $ 0 $ and $ b - 1 = 1 $" leaves the empty set — *no* safe digits. Worse, the only available rule (flip each diagonal bit) is precisely what fails, because the bit-flipped string can equal an alternate representation of a listed real. This is the obstacle the textbook flags in §8.3: the binary diagonal argument proves something *slightly different* (every listing of *binary strings* is missing some string), which translates to "$ \mathcal{P}(\mathbb{N}) $ is uncountable" rather than "$ \mathbb{R} $ is uncountable" directly.
+
+Even base $ 2 $ is salvageable, however, with the same pairing trick: process pairs as base-$ 4 $ digits, where the safe pool $ \{01, 10\} $ avoids both $ 00 $ and $ 11 $. That gives at most $ 1 $ disallowed pair (the diagonal pair), leaving $ \ge 1 $ choice. So *any* base $ b \ge 2 $ admits a workable diagonal argument — with single digits for $ b \ge 3 $ (using a position-dependent rule for $ b = 3 $, freely for $ b \ge 4 $), and with digit-pairs for $ b = 2 $.
+
+## Remark — Where the Argument Sits Conceptually
+
+The dual-representation issue is *not* a flaw in the diagonal argument; it is a feature of *positional notation*. The same real number has more than one name in any positional system, and a proof that quantifies over "all sequences of digits" needs to distinguish *sequences* from *numbers*. The fix — whether the base-$ 10 $ "avoid $ 0 $ and $ 9 $", the base-$ 3 $ parity rule above, or the base-$ 2 $ pairing — is always the same idea: *constrain the constructed string to land on a number with a unique representation*. Once that constraint is in place, "string differs at position $ n $" upgrades cleanly to "number differs from $ r_n $", and the contradiction goes through.

@@ -1,0 +1,170 @@
+.docname {Solution — GIAM 8.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.2 Problem 5
+
+## Problem
+
+Prove that the *open unit disk*
+
+$$$
+D \;=\; \{\,(x, y) \in \mathbb{R}^2 \;:\; x^2 + y^2 < 1\,\}
+$$$
+
+is equinumerous with the entire plane $ \mathbb{R}^2 = \mathbb{R} \times \mathbb{R} $, by combining
+
+1. *vertical projection* from the unit disk in the $ xy $-plane to the upper half of the unit sphere $ x^2 + y^2 + z^2 = 1 $, and
+2. *gnomonic projection* from the unit sphere (centered at the origin) to the tangent plane $ z = 1 $.
+
+## Setup — The 3D Scene
+
+The construction takes place in $ \mathbb{R}^3 $. We work with three named objects:
+
+- The **open unit disk** $ D = \{(x, y, 0) : x^2 + y^2 < 1\} $, sitting in the $ xy $-plane.
+- The **open upper hemisphere** $ S^+ = \{(x, y, z) : x^2 + y^2 + z^2 = 1,\ z > 0\} $, the upper half of the unit sphere centered at the origin.
+- The **tangent plane** $ z = 1 $, which touches the unit sphere at the north pole $ (0, 0, 1) $. Identify it with $ \mathbb{R}^2 $ via the first two coordinates: $ (u, v, 1) \leftrightarrow (u, v) $.
+
+The bijection $ f : D \to \mathbb{R}^2 $ is the composite $ f = g_2 \circ g_1 $ described below — the *exact* 3D analog of the 1D construction in Problem 4 (which sent the open interval $ (-1, 1) $ to the entire line via upper-half-circle plus central projection).
+
+## Step 1 — Vertical Projection from Disk to Upper Hemisphere
+
+For each $ (x, y) \in D $, project the point $ (x, y, 0) $ straight up to the unique point on $ S^+ $ above it:
+
+$$$
+g_1 \;:\; D \;\longrightarrow\; S^+, \qquad g_1(x, y) \;=\; \bigl(\,x,\;y,\;\sqrt{1 - x^2 - y^2}\,\bigr).
+$$$
+
+The third coordinate $ \sqrt{1 - x^2 - y^2} $ is the positive root of $ z^2 = 1 - x^2 - y^2 $, well-defined and *strictly positive* since $ x^2 + y^2 < 1 $ on $ D $.
+
+$ g_1 $ is a bijection: given $ (a, b, c) \in S^+ $, the preimage is $ (a, b) $, which lies in $ D $ because $ a^2 + b^2 = 1 - c^2 < 1 $.
+
+## Step 2 — Gnomonic Projection from $ O = (0, 0, 0) $ onto $ z = 1 $
+
+Given a point $ P = (a, b, c) \in S^+ $ (so $ c > 0 $), the ray from the origin through $ P $ is parametrized as $ \{(ta, tb, tc) : t \ge 0\} $. It hits the plane $ z = 1 $ when $ tc = 1 $, i.e., $ t = 1/c $, at the point $ (a/c, b/c, 1) $.
+
+Identifying $ z = 1 $ with $ \mathbb{R}^2 $ via the first two coordinates,
+
+$$$
+g_2 \;:\; S^+ \;\longrightarrow\; \mathbb{R}^2, \qquad g_2(a, b, c) \;=\; \Bigl(\,\frac{a}{c},\;\frac{b}{c}\,\Bigr).
+$$$
+
+$ g_2 $ is a bijection: given $ (u, v) \in \mathbb{R}^2 $, the unique preimage in $ S^+ $ is
+
+$$$
+g_2^{-1}(u, v) \;=\; \Bigl(\,\frac{u}{\sqrt{1 + u^2 + v^2}},\;\frac{v}{\sqrt{1 + u^2 + v^2}},\;\frac{1}{\sqrt{1 + u^2 + v^2}}\,\Bigr).
+$$$
+
+(Solve $ tc = 1 $, $ ta = u $, $ tb = v $, $ a^2 + b^2 + c^2 = 1 $, taking the unique positive $ c $.)
+
+## The Composite Formula
+
+Compose the two steps:
+
+$$$
+f(x, y) \;=\; g_2\bigl(g_1(x, y)\bigr) \;=\; g_2\bigl(x,\,y,\,\sqrt{1 - x^2 - y^2}\bigr) \;=\; \Bigl(\,\frac{x}{\sqrt{1 - x^2 - y^2}},\;\frac{y}{\sqrt{1 - x^2 - y^2}}\,\Bigr).
+$$$
+
+So the desired bijection is
+
+$$$
+\boxed{\;f \;:\; D \;\longrightarrow\; \mathbb{R}^2, \qquad f(x, y) \;=\; \frac{(x,\, y)}{\sqrt{1 - x^2 - y^2}}\;}
+$$$
+
+## Cross-Section View
+
+In the plane $ y = 0 $ (the $ xz $-plane), the picture reduces *exactly* to Problem 4's figure, with $ z $ playing the role of $ y $:
+
+!(85%)[A cross-sectional view through the y = 0 plane: the open interval (−1, 1) on the x-axis (representing the equatorial slice of the open unit disk), the upper semicircle (the equatorial slice of the upper unit hemisphere), the line z = 1 (the cross-section of the tangent plane), and a worked example showing a point (x, y, 0) projected vertically up to the hemisphere, then radially out through the origin to the line z = 1.](problem-5-crosssection.svg "Cross-section in the plane y = 0. The disk's equatorial slice is the interval (−1, 1); the hemisphere's slice is the upper semicircle; the tangent plane's slice is the line z = 1. The full 3D picture is this rotated around the z-axis.")
+
+The full 3D picture is this cross-section *rotated around the $ z $-axis*: the interval becomes the disk, the semicircle becomes the hemisphere, the line $ z = 1 $ becomes the entire tangent plane. The same two-step projection applies pointwise.
+
+## Verifying $ f $ is a Bijection (Inverse Formula)
+
+Both $ g_1 $ and $ g_2 $ are bijections, so $ f = g_2 \circ g_1 $ is a bijection by transitivity of $ \equiv $ (Section 8.1, Problem 2). Explicitly, the inverse is
+
+$$$
+f^{-1}(u, v) \;=\; g_1^{-1}\bigl(g_2^{-1}(u, v)\bigr) \;=\; \Bigl(\,\frac{u}{\sqrt{1 + u^2 + v^2}},\;\frac{v}{\sqrt{1 + u^2 + v^2}}\,\Bigr).
+$$$
+
+Check that $ f^{-1}(u, v) \in D $:
+
+$$$
+\bigl|f^{-1}(u, v)\bigr|^2 \;=\; \frac{u^2 + v^2}{1 + u^2 + v^2} \;<\; 1,
+$$$
+
+since the numerator is strictly less than the denominator. So $ f^{-1} $ lands in the open disk for every $ (u, v) \in \mathbb{R}^2 $. ✓
+
+Quick verification that $ f \circ f^{-1} = \mathrm{id}_{\mathbb{R}^2} $: let $ \rho = \sqrt{1 + u^2 + v^2} $, so $ f^{-1}(u, v) = (u, v)/\rho $. Then
+
+$$$
+1 - \frac{u^2 + v^2}{\rho^2} \;=\; \frac{\rho^2 - u^2 - v^2}{\rho^2} \;=\; \frac{1}{\rho^2},
+$$$
+
+so $ \sqrt{1 - |f^{-1}|^2} = 1/\rho $, and
+
+$$$
+f\bigl(f^{-1}(u, v)\bigr) \;=\; \frac{(u, v)/\rho}{1/\rho} \;=\; (u, v). \;\;\checkmark
+$$$
+
+## Sanity Checks
+
+| $ (x, y) $       | $ 1 - x^2 - y^2 $ | $ f(x, y) $                    |
+| :---:            | :---:             | :---:                          |
+| $ (0, 0) $       | $ 1 $             | $ (0, 0) $                     |
+| $ (1/2, 0) $     | $ 3/4 $           | $ (1/\sqrt{3},\, 0) \approx (0.577, 0) $ |
+| $ (3/5, 0) $     | $ 16/25 $         | $ (3/4,\, 0) = (0.75, 0) $     |
+| $ (1/2, 1/2) $   | $ 1/2 $           | $ (1/\sqrt{2},\, 1/\sqrt{2}) \approx (0.707, 0.707) $ |
+| $ (x, y) \to \partial D $ | $ \to 0^+ $ | $ \|f(x,y)\| \to +\infty $ |
+
+The single-axis rows ($ y = 0 $) recover Problem 4's bijection exactly: $ f(x, 0) = (x/\sqrt{1-x^2},\, 0) $.
+
+The last row captures the bijection's essential behavior: as $ (x, y) $ approaches the *boundary circle* $ x^2 + y^2 = 1 $, the image rushes off to infinity. The disk's boundary is "infinitely far away" under $ f $ — exactly the right behavior for stretching a bounded region into an unbounded plane.
+
+## Remark — The Pattern Across Dimensions
+
+The same construction works in every dimension $ n \ge 1 $:
+
+| Dimension | Open ball $ B^n $                          | Target              | Bijection                                         |
+| :---:     | :---                                       | :---                | :---                                              |
+| $ 1 $     | $ (-1, 1) \subset \mathbb{R} $              | $ \mathbb{R} $       | $ x \;\mapsto\; \dfrac{x}{\sqrt{1 - x^2}} $       |
+| $ 2 $     | $ D \subset \mathbb{R}^2 $                  | $ \mathbb{R}^2 $     | $ (x, y) \;\mapsto\; \dfrac{(x, y)}{\sqrt{1 - x^2 - y^2}} $ |
+| $ 3 $     | $ B^3 \subset \mathbb{R}^3 $                | $ \mathbb{R}^3 $     | $ (x, y, z) \;\mapsto\; \dfrac{(x, y, z)}{\sqrt{1 - x^2 - y^2 - z^2}} $ |
+| $ n $     | $ B^n \subset \mathbb{R}^n $                | $ \mathbb{R}^n $     | $ \mathbf{x} \;\mapsto\; \dfrac{\mathbf{x}}{\sqrt{1 - \|\mathbf{x}\|^2}} $ |
+
+In every case, the construction is the same: vertical projection from $ B^n $ to the upper hemisphere of $ S^n \subset \mathbb{R}^{n+1} $, then gnomonic projection from the origin to the tangent plane at the north pole.
+
+Inverse: $ \mathbf{x} \mapsto \mathbf{x}/\sqrt{1 + \|\mathbf{x}\|^2} $, sending $ \mathbb{R}^n $ back into the open unit ball.
+
+Hence $ \mathbb{R}^n \equiv B^n $ for every $ n $ — the cardinality of $ \mathbb{R}^n $ is the same as that of *any* open ball within it, no matter how small.
+
+## Remark — Why the Slice Recovers Problem 4
+
+The 2D construction is invariant under rotations around the $ z $-axis: rotating $ (x, y, z) $ by angle $ \alpha $ leaves the sphere $ x^2 + y^2 + z^2 = 1 $, the disk $ x^2 + y^2 < 1 $, and the plane $ z = 1 $ all setwise fixed, and both projections commute with this rotation. So the picture in the slice $ y = 0 $ already contains everything: any other slice through the $ z $-axis is a rotated copy.
+
+This is why the cross-section in the visual above looks identical to Problem 4's figure. The 1D bijection $ x \mapsto x/\sqrt{1-x^2} $ becomes, in 2D, a radially-symmetric stretching: each ray from the origin in $ D $ is mapped to the same ray extended to infinity in $ \mathbb{R}^2 $, with the radial coordinate $ r = \sqrt{x^2 + y^2} \in [0, 1) $ sent to $ r/\sqrt{1 - r^2} \in [0, \infty) $ by exactly the Problem 4 formula.
+
+## Remark — Why "Gnomonic"
+
+The term *gnomonic projection* is the cartographer's name for "central projection from a sphere onto a tangent plane, with the sphere's center as the projection point." The name comes from the Greek *gnomon* (γνώμων), the rod casting a shadow on a sundial — and a sundial's shadow is exactly a gnomonic projection of the sun's apparent position on the celestial sphere onto the flat dial. Properties:
+
+- *Great circles are mapped to straight lines.* A great circle is the intersection of a sphere with a plane through its center, and the gnomonic image of such a plane is again a (planar) line — useful in navigation, because the shortest path on a sphere (a great-circle arc) appears straight on a gnomonic map.
+- *Only one hemisphere can be mapped at a time.* Points on the "back" hemisphere project through the center to the *opposite* side of the tangent plane, and points on the great circle separating the two hemispheres (the "equator" perpendicular to the projection axis) project to infinity.
+
+The second property is exactly why we used $ S^+ $ rather than the full sphere: the gnomonic projection is only well-defined on the open hemisphere where $ z > 0 $.
+
+## Remark — Connection to §8.3 and Beyond
+
+This problem completes the §8.2 program of building bijections between "bounded" geometric objects and "unbounded" ones via composition of elementary maps. Together with previous problems in §8.2 we now have, with $ \equiv $ standing for set equivalence:
+
+$$$
+\text{any non-degenerate interval} \;\equiv\; \mathbb{R} \;\equiv\; \mathbb{R}^n \;\equiv\; B^n \;\equiv\; \text{any open ball in } \mathbb{R}^n.
+$$$
+
+In particular: a one-millimeter open interval, the entire real line, the entire plane, and three-dimensional space all have the same cardinality $ \mathfrak{c} = |\mathbb{R}| $. Section 8.3 (Cantor's theorem) will then show that $ \mathfrak{c} $ is *strictly larger* than $ \aleph_0 = |\mathbb{N}| $ — establishing genuine hierarchy of infinite sizes. But within the bounded-vs-unbounded distinction, the open-ball-vs-Euclidean-space bijection of this problem is the final word.

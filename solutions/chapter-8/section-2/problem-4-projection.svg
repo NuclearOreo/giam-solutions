@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 430" width="640" height="430" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="640" height="430" fill="white"/>
+
+  <!-- Coordinate axes -->
+  <line x1="60" y1="320" x2="600" y2="320" stroke="#888" stroke-width="1"/>
+  <line x1="320" y1="60" x2="320" y2="400" stroke="#888" stroke-width="1"/>
+  <text x="608" y="324" font-size="13" fill="#666" font-style="italic">x</text>
+  <text x="307" y="58" font-size="13" fill="#666" font-style="italic">y</text>
+
+  <!-- Line y = 1 (highlighted in red) -->
+  <line x1="60" y1="220" x2="600" y2="220" stroke="#992020" stroke-width="2.8"/>
+  <text x="565" y="213" font-size="16" font-style="italic" fill="#992020">y = 1</text>
+
+  <!-- Upper half of unit circle (highlighted), lower half as dashed reference -->
+  <path d="M 220 320 A 100 100 0 0 1 420 320" fill="none" stroke="#1a4d99" stroke-width="2.5"/>
+  <path d="M 220 320 A 100 100 0 0 0 420 320" fill="none" stroke="#1a4d99" stroke-width="1" stroke-dasharray="3,3" opacity="0.45"/>
+
+  <!-- Tick marks -->
+  <line x1="220" y1="315" x2="220" y2="325" stroke="#333" stroke-width="1.5"/>
+  <text x="220" y="343" font-size="13" text-anchor="middle">&#8722;1</text>
+  <line x1="420" y1="315" x2="420" y2="325" stroke="#333" stroke-width="1.5"/>
+  <text x="420" y="343" font-size="13" text-anchor="middle">1</text>
+
+  <!-- Open interval (-1, 1) on x-axis (highlighted blue, with hollow endpoints) -->
+  <line x1="222" y1="320" x2="418" y2="320" stroke="#1a4d99" stroke-width="5"/>
+  <circle cx="220" cy="320" r="3.5" fill="white" stroke="#1a4d99" stroke-width="1.8"/>
+  <circle cx="420" cy="320" r="3.5" fill="white" stroke="#1a4d99" stroke-width="1.8"/>
+
+  <!-- Tangent point (0, 1) -->
+  <circle cx="320" cy="220" r="2.5" fill="#444"/>
+  <text x="295" y="213" font-size="11" fill="#444">(0, 1)</text>
+
+  <!-- Origin -->
+  <circle cx="320" cy="320" r="3" fill="#222"/>
+  <text x="303" y="338" font-size="13" font-style="italic">O</text>
+
+  <!-- Specific worked example: x = 0.6 -->
+  <!-- Point (0.6, 0) at SVG (380, 320) -->
+  <circle cx="380" cy="320" r="4.5" fill="#222"/>
+  <text x="385" y="340" font-size="14" font-style="italic">x</text>
+
+  <!-- Step 1: Vertical projection up to (0.6, 0.8) at SVG (380, 240) -->
+  <line x1="380" y1="316" x2="380" y2="244" stroke="#333" stroke-width="1.7" stroke-dasharray="5,3"/>
+  <circle cx="380" cy="240" r="4.5" fill="#222"/>
+  <text x="388" y="236" font-size="13" font-style="italic">(x, &#8730;(1&#8722;x&#178;))</text>
+
+  <!-- Step 1 label -->
+  <text x="305" y="280" font-size="12" font-style="italic" fill="#1a4d99">Step 1:</text>
+  <text x="300" y="295" font-size="11" font-style="italic" fill="#1a4d99">vertical</text>
+  <text x="300" y="307" font-size="11" font-style="italic" fill="#1a4d99">projection</text>
+
+  <!-- Step 2: Central projection ray from O through (0.6, 0.8) to (0.75, 1) -->
+  <!-- O = (320, 320); P = (380, 240); slope dy/dx in SVG = (240-320)/(380-320) = -80/60 -->
+  <!-- Extended to y = 220: t such that 320 + (-80)t/60·??? Let me parametrize: (320 + 60t, 320 - 80t). At y=220: t = 1.25; x = 320 + 75 = 395 -->
+  <line x1="320" y1="320" x2="430" y2="173.33" stroke="#444" stroke-width="1.7"/>
+
+  <!-- f(x) marker on y = 1 line at (395, 220) -->
+  <circle cx="395" cy="220" r="5.5" fill="#992020"/>
+  <text x="403" y="213" font-size="15" font-style="italic" fill="#992020">f(x)</text>
+
+  <!-- Step 2 label -->
+  <text x="350" y="263" font-size="12" font-style="italic" fill="#444">Step 2:</text>
+  <text x="350" y="276" font-size="11" font-style="italic" fill="#444">ray from O</text>
+
+  <!-- Formula caption -->
+  <text x="320" y="403" font-size="15" text-anchor="middle" font-style="italic" fill="#222">
+    f(x) &#160;=&#160; x / &#8730;(1 &#8722; x&#178;)
+  </text>
+</svg>

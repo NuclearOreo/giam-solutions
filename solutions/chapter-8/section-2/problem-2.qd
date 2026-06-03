@@ -1,0 +1,185 @@
+.docname {Solution — GIAM 8.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.2 Problem 2
+
+## Problem
+
+Prove that
+
+$$$
+f(x) \;=\; c \;+\; \frac{(x - a)(d - c)}{b - a}
+$$$
+
+provides a bijection from the interval $ [a, b] $ to the interval $ [c, d] $.
+
+## Setup — Assumptions and Goal
+
+Throughout, assume $ a < b $ and $ c < d $, so that $ [a, b] $ and $ [c, d] $ are non-degenerate closed intervals and $ b - a > 0 $, $ d - c > 0 $. (If $ a = b $ the formula is undefined; if $ c = d $ the formula collapses to a constant and is not injective.)
+
+To show $ f : [a, b] \to [c, d] $ is a bijection, we verify three things:
+
+1. $ f $ maps $ [a, b] $ *into* $ [c, d] $ (codomain check).
+2. $ f $ is *injective*.
+3. $ f $ is *surjective* onto $ [c, d] $.
+
+The function $ f $ is affine: $ f(x) = mx + k $ where the *slope* is
+
+$$$
+m \;=\; \frac{d - c}{b - a} \;>\; 0,
+$$$
+
+and the *intercept-style constant* is $ k = c - ma $. Affine maps with $ m \ne 0 $ are well-known to be bijections of $ \mathbb{R} \to \mathbb{R} $; the work below is just verifying that, restricted to $ [a, b] $, the image is exactly $ [c, d] $.
+
+## Endpoint Check
+
+Direct evaluation:
+
+$$$
+f(a) \;=\; c + \frac{(a - a)(d - c)}{b - a} \;=\; c + 0 \;=\; c,
+$$$
+
+$$$
+f(b) \;=\; c + \frac{(b - a)(d - c)}{b - a} \;=\; c + (d - c) \;=\; d.
+$$$
+
+So $ f $ sends the left endpoint $ a $ to the left endpoint $ c $, and the right endpoint $ b $ to the right endpoint $ d $. This already tells us the image will fill out $ [c, d] $; the next two steps make it precise.
+
+## Codomain — $ f $ Maps $ [a, b] $ into $ [c, d] $
+
+For $ x \in [a, b] $, we have $ 0 \le x - a \le b - a $. Multiplying through by the positive number $ (d - c)/(b - a) $:
+
+$$$
+0 \;\le\; \frac{(x - a)(d - c)}{b - a} \;\le\; \frac{(b - a)(d - c)}{b - a} \;=\; d - c.
+$$$
+
+Adding $ c $ to all three sides,
+
+$$$
+c \;\le\; c + \frac{(x - a)(d - c)}{b - a} \;\le\; d, \qquad\text{i.e.,}\qquad c \;\le\; f(x) \;\le\; d.
+$$$
+
+So $ f(x) \in [c, d] $.
+
+## Injectivity
+
+Suppose $ f(x_1) = f(x_2) $. Subtracting $ c $ from both sides and clearing the common positive factor $ (d - c)/(b - a) $:
+
+$$$
+\frac{(x_1 - a)(d - c)}{b - a} \;=\; \frac{(x_2 - a)(d - c)}{b - a} \quad\Longrightarrow\quad x_1 - a \;=\; x_2 - a \quad\Longrightarrow\quad x_1 \;=\; x_2.
+$$$
+
+The cancellation is legal because $ d - c \ne 0 $ and $ b - a \ne 0 $. So $ f $ is injective.
+
+## Surjectivity — Constructing the Preimage
+
+Let $ y \in [c, d] $. We need $ x \in [a, b] $ with $ f(x) = y $. Solving $ f(x) = y $ algebraically for $ x $:
+
+$$$
+y \;=\; c + \frac{(x - a)(d - c)}{b - a}
+$$$
+
+$$$
+y - c \;=\; \frac{(x - a)(d - c)}{b - a}
+$$$
+
+$$$
+\frac{(y - c)(b - a)}{d - c} \;=\; x - a
+$$$
+
+$$$
+x \;=\; a + \frac{(y - c)(b - a)}{d - c}.
+$$$
+
+This $ x $ exists as a real number because $ d - c \ne 0 $. We must check that $ x \in [a, b] $.
+
+For $ y \in [c, d] $, we have $ 0 \le y - c \le d - c $. Multiplying by the positive number $ (b - a)/(d - c) $:
+
+$$$
+0 \;\le\; \frac{(y - c)(b - a)}{d - c} \;\le\; b - a.
+$$$
+
+Adding $ a $: $ a \le x \le b $. So $ x \in [a, b] $.
+
+Finally, verify $ f(x) = y $:
+
+$$$
+f(x) \;=\; c + \frac{(x - a)(d - c)}{b - a} \;=\; c + \frac{1}{b - a} \cdot \frac{(y - c)(b - a)}{d - c} \cdot (d - c) \;=\; c + (y - c) \;=\; y. \;\;\checkmark
+$$$
+
+So $ f $ is surjective onto $ [c, d] $.
+
+## Conclusion
+
+$ f : [a, b] \to [c, d] $ is well-defined, injective, and surjective — hence a bijection. The *inverse* bijection is
+
+$$$
+f^{-1} : [c, d] \to [a, b], \qquad f^{-1}(y) \;=\; a + \frac{(y - c)(b - a)}{d - c},
+$$$
+
+which has the same shape as $ f $ with the roles of $ (a, b) $ and $ (c, d) $ swapped — as expected, since "linear interpolation from one interval to another" is its own inverse with roles swapped. $ \blacksquare $
+
+## Remark — Geometric View
+
+The graph of $ y = f(x) $ is the unique straight line through the points $ (a, c) $ and $ (b, d) $:
+
+$$$
+\frac{y - c}{x - a} \;=\; \frac{d - c}{b - a} \quad\Longleftrightarrow\quad y \;=\; c + \frac{(x - a)(d - c)}{b - a}.
+$$$
+
+The slope $ (d - c)/(b - a) $ is the *ratio of the interval lengths*. Restricting this line to $ x \in [a, b] $ traces out the line segment from $ (a, c) $ to $ (b, d) $, and projecting back to the $ y $-axis covers $ [c, d] $ exactly once. The bijection is just "linear interpolation".
+
+## Remark — $ f $ as a Composition of Three Standard Bijections
+
+The formula decomposes naturally as
+
+$$$
+[a, b] \;\xrightarrow{\;x \,\mapsto\, x - a\;} \;[0,\, b - a] \;\xrightarrow{\;u \,\mapsto\, u \cdot (d-c)/(b-a)\;} \;[0,\, d - c] \;\xrightarrow{\;v \,\mapsto\, v + c\;}\; [c, d].
+$$$
+
+Each arrow is an affine bijection (shift by $ -a $, scale by the positive factor $ (d-c)/(b-a) $, shift by $ +c $). The composition is the formula for $ f $, and bijectivity follows from the fact that each step is a bijection between the indicated intervals (and the composition of bijections is a bijection — Section 8.1 Problem 2).
+
+This three-step view is the *reason* the formula has the shape it does: shift so the left endpoint is $ 0 $, rescale so the right endpoint is $ d - c $, shift so the left endpoint is $ c $. The slope $ (d - c)/(b - a) $ is precisely the rescaling factor that aligns the two interval lengths.
+
+## Remark — The Same Formula Bijects All Four Interval Types
+
+Because $ f $ is *strictly increasing* and continuous, it maps each subinterval of $ [a, b] $ onto the correspondingly-typed subinterval of $ [c, d] $:
+
+| Domain restricted to | Image                   |
+| :---                 | :---                    |
+| $ [a, b] $           | $ [c, d] $              |
+| $ (a, b) $           | $ (c, d) $              |
+| $ [a, b) $           | $ [c, d) $              |
+| $ (a, b] $           | $ (c, d] $              |
+
+So the exact same formula provides a bijection $ (a, b) \to (c, d) $ and either half-open analog. The endpoint inclusions are preserved by the bijection precisely because $ f $ sends endpoints to endpoints and is strictly monotone.
+
+## Remark — Why This Matters for Chapter 8
+
+Section 8.2 is in the business of showing that "looking different" sets can have the *same* cardinality. Problem 2 is the workhorse for *all* finite real intervals:
+
+> *Any two non-degenerate intervals of $ \mathbb{R} $ are equinumerous.*
+
+Why? By the formula above, $ [a, b] \equiv [c, d] $ for any choice of $ a < b $ and $ c < d $. Combined with the *projection-from-a-point* bijection in Section 8.2 (which biject the open interval $ (-1, 1) $ with the entire real line $ \mathbb{R} $, via the half-circle), one concludes
+
+$$$
+[a, b] \;\equiv\; [c, d] \;\equiv\; (a, b) \;\equiv\; \mathbb{R}.
+$$$
+
+So a centimeter-long interval has the same cardinality as a kilometer-long one — and either has the same cardinality as the whole real line. The formula in this problem is the first half of that surprising chain.
+
+## Remark — What If $ c > d $? Or $ c = d $?
+
+The formula still makes algebraic sense as long as $ b \ne a $, but:
+
+- *If $ c > d $*: the "interval $ [c, d] $" is empty under the usual convention $ [c, d] = \{x : c \le x \le d\} $. Writing $ [d, c] $ instead, the formula gives a *decreasing* affine bijection $ [a, b] \to [d, c] $; the proof above goes through with all inequality directions reversed.
+- *If $ c = d $*: the slope $ (d - c)/(b - a) = 0 $, so $ f $ is the constant function $ x \mapsto c $. This is *not* a bijection from $ [a, b] $ (a non-degenerate interval) to $ \{c\} $.
+
+The intended hypothesis is therefore $ a < b $ and $ c < d $, which the problem statement leaves implicit.
