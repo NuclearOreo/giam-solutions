@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 8.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.3 Problem 3
+
+## Problem
+
+In the proof of Cantor's theorem we construct a set $ S $ that cannot be in the image of a presumed bijection from $ A $ to $ \mathcal{P}(A) $. Suppose $ A = \{1, 2, 3\} $ and $ f $ determines the following correspondences:
+
+$$$
+1 \;\longleftrightarrow\; \emptyset, \qquad 2 \;\longleftrightarrow\; \{1, 3\}, \qquad 3 \;\longleftrightarrow\; \{1, 2, 3\}.
+$$$
+
+What is $ S $?
+
+## Cantor's Recipe for $ S $
+
+In the proof of Cantor's theorem (Theorem 8.3.1 in the textbook), given any function $ f : A \to \mathcal{P}(A) $, define
+
+$$$
+S \;=\; \{\, x \in A \;:\; x \notin f(x) \,\}.
+$$$
+
+The argument: $ S \subseteq A $, so $ S \in \mathcal{P}(A) $. If $ f $ were surjective, some $ y \in A $ would have $ f(y) = S $, but then "$ y \in S $?" leads to a contradiction either way (see the §8.3 main proof). So $ S $ is necessarily *not* in the image of $ f $ — establishing that no $ f : A \to \mathcal{P}(A) $ can be surjective, i.e., $ |A| < |\mathcal{P}(A)| $.
+
+For the given $ f $, computing $ S $ amounts to checking, for each $ x \in A $, the single yes/no question *"is $ x \in f(x) $?"* and collecting the $ x $'s for which the answer is **no**.
+
+## Computing $ S $ Element-by-Element
+
+- $ x = 1 $: $ f(1) = \emptyset $. Is $ 1 \in \emptyset $? **No**. So $ 1 \in S $.
+- $ x = 2 $: $ f(2) = \{1, 3\} $. Is $ 2 \in \{1, 3\} $? **No**. So $ 2 \in S $.
+- $ x = 3 $: $ f(3) = \{1, 2, 3\} $. Is $ 3 \in \{1, 2, 3\} $? **Yes**. So $ 3 \notin S $.
+
+Therefore
+
+$$$
+\boxed{\;S \;=\; \{\,1,\,2\,\}\;}.
+$$$
+
+## The Diagonal Membership Table
+
+The same computation, laid out as a membership table — exactly the "table whose diagonal we flip" view of Cantor's construction:
+
+!(95%)[A table with three rows, one per element of A. Each row labels f(x) and shows checkmarks/crosses for whether each element 1, 2, 3 is in f(x). The diagonal cells — (1,1), (2,2), (3,3) — are highlighted in yellow. The far-right column lists whether x ∈ S, derived by flipping the diagonal entry. The result S = {1, 2} appears below.](problem-3-table.svg "Cantor diagonal membership table. The diagonal cells (yellow) answer 'is x in f(x)?'; flipping each answer gives 'is x in S?'. Here the diagonal answers are No, No, Yes — so S contains 1 and 2 but not 3.")
+
+The yellow cells form the diagonal. *Flipping* the diagonal — replacing each "yes" with a "no" and vice versa — gives the membership table of $ S $. This is exactly the diagonal-flip trick used in the §8.3 Problem 1 / 2 arguments for $ (0, 1) $, transferred from "decimal digits" to "yes/no membership bits."
+
+## Verifying $ S $ Is Missed by $ f $
+
+The image of $ f $ is
+
+$$$
+\mathrm{image}(f) \;=\; \{\, f(1),\, f(2),\, f(3) \,\} \;=\; \{\, \emptyset,\;\{1, 3\},\;\{1, 2, 3\}\,\}.
+$$$
+
+Is $ S = \{1, 2\} $ in this image? Comparing:
+
+- $ \{1, 2\} \ne \emptyset $ ✓
+- $ \{1, 2\} \ne \{1, 3\} $ (differs at $ 2 $ and $ 3 $) ✓
+- $ \{1, 2\} \ne \{1, 2, 3\} $ (differs at $ 3 $) ✓
+
+So $ S \notin \mathrm{image}(f) $. Cantor's diagonal construction has done its job: it has *exhibited* a subset of $ A $ that $ f $ misses.
+
+## Powerset View
+
+There are $ |\mathcal{P}(A)| = 2^3 = 8 $ subsets of $ A $ in total. The image of $ f $ covers $ 3 $ of them; $ 5 $ are missed. $ S = \{1, 2\} $ is one of those $ 5 $:
+
+!(90%)[Hasse diagram of the powerset of {1, 2, 3}, with 8 subsets arranged from the empty set at the bottom up through singletons, doubletons, and the full set at the top. Edges show subset inclusion. The three subsets in the image of f — ∅, {1,3}, {1,2,3} — are highlighted in green. The diagonal-construction output S = {1,2} is highlighted in blue. The remaining four subsets are uncolored.](problem-3-powerset.svg "All 8 subsets of A = {1, 2, 3}. The image of f covers ∅, {1,3}, and {1,2,3} (green). The diagonal set S = {1, 2} (blue) sits among the four subsets of A that f misses.")
+
+## How the Diagonal Argument Works in General
+
+The set $ S = \{x \in A : x \notin f(x)\} $ is designed to be different from *every* $ f(y) $. For each $ y \in A $, $ S $ disagrees with $ f(y) $ at the element $ y $ itself:
+
+- If $ y \in f(y) $, then $ y \notin S $ (so $ S $ excludes $ y $ while $ f(y) $ includes it).
+- If $ y \notin f(y) $, then $ y \in S $ (so $ S $ includes $ y $ while $ f(y) $ excludes it).
+
+In both cases, $ S $ differs from $ f(y) $ at element $ y $, so $ S \ne f(y) $. Since this holds for every $ y \in A $, $ S \notin \mathrm{image}(f) $.
+
+This is the *exact* structural analog of the decimal/ternary diagonalization arguments (Problems 1 and 2 of this section): there, we built a real $ r $ differing from each $ r_n $ at the $ n $-th *digit*; here, we build a set $ S $ differing from each $ f(y) $ at the element $ y $. The membership-bit version (here) is in fact the cleanest and most general — it works for any set $ A $, finite or infinite, and doesn't have to worry about dual-representation issues.
+
+## Remark — $ f $ Wasn't a Bijection Anyway
+
+The problem says "presumed bijection," but the given $ f $ is *manifestly not* a bijection: it maps $ |A| = 3 $ elements to only $ 3 $ of the $ 2^3 = 8 $ subsets, so it isn't surjective. Cantor's theorem reassures us that this *had* to happen — there is no surjection $ A \to \mathcal{P}(A) $ for any finite set $ A $ (since $ 2^n > n $ for all $ n \ge 0 $), let alone for the deeper case of infinite $ A $.
+
+So the diagonal construction in this finite example is doing two things at once:
+
+1. *Reminding us* of the gap between $ |A| = 3 $ and $ |\mathcal{P}(A)| = 8 $ — there are 5 "spare" subsets that no map from a $ 3 $-element set could possibly cover.
+2. *Picking out one specific* missed subset, $ S = \{1, 2\} $, generated by the diagonal flip.
+
+For an infinite $ A $, claim (1) is non-trivial — finite cardinality counting no longer applies — and Cantor's diagonal argument is the only known way to establish it. For finite $ A $, the argument is just a clever demonstration of the inevitable.
+
+## Remark — Why $ S $ Depends on the Choice of $ f $
+
+Different functions $ f $ produce different sets $ S $. For instance:
+
+- The given $ f $ (with $ f(1) = \emptyset,\, f(2) = \{1, 3\},\, f(3) = \{1, 2, 3\} $) yields $ S = \{1, 2\} $.
+- The "identity-ish" map $ f(x) = \{x\} $ (i.e., $ 1 \mapsto \{1\},\, 2 \mapsto \{2\},\, 3 \mapsto \{3\} $) has $ x \in f(x) $ for every $ x $, so $ S = \emptyset $. ($ S $ is then $ f(\text{nobody}) $, but $ S = \emptyset $ is *also* not in the image of this $ f $, since $ \emptyset \ne \{x\} $ for any $ x $.)
+- The map $ f(x) = A \setminus \{x\} $ (i.e., $ 1 \mapsto \{2, 3\},\, 2 \mapsto \{1, 3\},\, 3 \mapsto \{1, 2\} $) has $ x \notin f(x) $ for every $ x $, so $ S = \{1, 2, 3\} = A $.
+
+In every case, the constructed $ S $ is missed by the corresponding $ f $, but *which* set $ S $ depends on which $ f $ we started from. The diagonal recipe is a uniform procedure — apply it to any $ f $ and you get a guaranteed-missed subset.
+
+## Remark — Could We "Patch" $ f $ to Include $ S $?
+
+Suppose we tried to repair $ f $ by reassigning some element of $ A $ to map to $ S = \{1, 2\} $. E.g., redefine $ f'(2) = \{1, 2\} $. Now $ f' $'s image includes $ S = \{1, 2\} $ — but the *new* function $ f' $ has a *new* diagonal set $ S' $, which we can recompute:
+
+- $ 1 \in f'(1) = \emptyset $? No. So $ 1 \in S' $.
+- $ 2 \in f'(2) = \{1, 2\} $? Yes. So $ 2 \notin S' $.
+- $ 3 \in f'(3) = \{1, 2, 3\} $? Yes. So $ 3 \notin S' $.
+
+So $ S' = \{1\} $, and this *new* $ S' $ is now missed by $ f' $ (check: $ \{1\} \notin \{\emptyset, \{1, 2\}, \{1, 2, 3\}\} $).
+
+The patching shifts the missed subset around but never eliminates it — every function $ A \to \mathcal{P}(A) $ has *some* diagonal subset $ S $ outside its image. This is the structural inevitability that Cantor's theorem captures: $ \mathcal{P}(A) $ is genuinely too big for $ A $ to enumerate.

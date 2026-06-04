@@ -1,0 +1,146 @@
+.docname {Solution — GIAM 8.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.3 Problem 5
+
+## Problem
+
+Cantor's theorem, applied to the set of all sets, leads to an interesting paradox. The power set of the set of all sets is a collection of sets, so it must be contained in the set of all sets. Discuss the paradox and determine a way of resolving it.
+
+## Stating the Paradox
+
+Let
+
+$$$
+V \;=\; \text{"the set of all sets"} \;=\; \{\,x \;:\; x \text{ is a set}\,\}.
+$$$
+
+This $ V $ seems like it should make sense — for every set $ x $, $ x $ has been "collected" into $ V $. From naive intuition, $ V $ is just *the universe of set-theoretic discourse* viewed as a single object.
+
+Two unavoidable facts now collide.
+
+*Fact 1 — Cantor's theorem.* For any set $ X $, $ |X| < |\mathcal{P}(X)| $. Applied to $ V $:
+
+$$$
+|V| \;<\; |\mathcal{P}(V)|.
+$$$
+
+*Fact 2 — Inclusion.* Every element of $ \mathcal{P}(V) $ is a subset of $ V $, and every subset of $ V $ is *itself a set*. So every element of $ \mathcal{P}(V) $ is a set — hence an element of $ V $. This says $ \mathcal{P}(V) \subseteq V $, giving
+
+$$$
+|\mathcal{P}(V)| \;\le\; |V|
+$$$
+
+(via the inclusion function $ \mathcal{P}(V) \hookrightarrow V $, which is injective).
+
+Combining the two facts:
+
+$$$
+|V| \;<\; |\mathcal{P}(V)| \;\le\; |V| \quad\Longrightarrow\quad |V| \;<\; |V|,
+$$$
+
+a flat contradiction. Cardinality is *not* strictly less than itself.
+
+!(95%)[A diagram showing Cantor's paradox. Two ellipses labeled V (blue, "set of all sets") and 𝒫(V) (green, "power set of V") sit side-by-side. Two arrows between them give the conflicting facts: Cantor's theorem says |V| < |𝒫(V)|, and the inclusion 𝒫(V) ⊆ V (every subset of V is itself a set) gives |𝒫(V)| ≤ |V|. A red box at the bottom combines them into |V| < |V|, marked as a contradiction.](problem-5-contradiction.svg "Two unavoidable consequences of assuming V is a set: Cantor's theorem (|V| < |𝒫(V)|) and the inclusion 𝒫(V) ⊆ V (|𝒫(V)| ≤ |V|). Combined, they force |V| < |V| — a contradiction. The assumption that V exists as a set must therefore fail.")
+
+## How Did We Get Here?
+
+The paradox traces back to a single tempting principle: *every property defines a set.* In Gottlob Frege's $ 1893 $ *Grundgesetze der Arithmetik*, this is the **comprehension principle**:
+
+$$$
+\{\,x \;:\; P(x)\,\} \quad \text{is a set, for any property } P.
+$$$
+
+Applied to $ P(x) = $ "$ x $ is a set," this principle directly conjures $ V $ into existence. Russell's paradox ($ 1901 $) is the same principle applied to $ P(x) = $ "$ x \notin x $", and Cantor's paradox (informally known to Cantor by $ 1899 $) is what you get from $ V $ plus Cantor's theorem.
+
+So the issue is not Cantor's theorem itself — that's a perfectly sound result about *any* set. The issue is the *premise* that $ V $ is a set in the first place. Drop that premise and the paradox evaporates.
+
+## The Resolution: $ V $ Is Not a Set
+
+In modern set theory, the paradox is resolved by *axiomatically restricting* which collections count as sets. The naive comprehension principle is too generous; it allows collections "too big" to be sets. The fix is to start with a controlled list of axioms (Zermelo, $ 1908 $; Fraenkel and Skolem, $ 1920 $s) that lets sets exist only under carefully circumscribed conditions.
+
+In **Zermelo–Fraenkel set theory with Choice (ZFC)** — the modern standard — comprehension is replaced by the *Axiom Schema of Separation*:
+
+> Given an *existing set* $ A $ and any property $ P $, the collection $ \{\,x \in A \;:\; P(x)\,\} $ is a set.
+
+The crucial phrase is *"given an existing set $ A $"*: separation does not let you construct sets out of thin air; it only carves subsets out of pre-existing sets. There is no ZFC axiom granting "the collection of all sets exists." So $ V $ simply *isn't a set* in ZFC.
+
+This dissolves Cantor's paradox: we can still *talk about* the collection of all sets (it's a meaningful concept), but we can't apply Cantor's theorem to it, because Cantor's theorem is a statement about *sets* — and $ V $ isn't one.
+
+!(95%)[A nested-region diagram with two concentric boundaries. The outer dashed boundary labels "classes" (any well-defined collection of sets). The inner solid blue oval labels "sets" — the "small" classes allowed by ZFC — containing examples ∅, {1,2,3}, ℕ, ℝ, 𝒫(ℕ). Outside the inner oval but inside the outer dashed boundary sit four proper-class examples: V (all sets), Ord (all ordinals), R = {x : x ∉ x} (Russell's class), and Card (all cardinals). Footer notes: ZFC's Separation axiom restricts which collections are sets; V isn't among them.](problem-5-classes.svg "Modern set theory distinguishes 'sets' (the small classes that ZFC's axioms allow) from 'proper classes' (collections too big to be sets, like V, Ord, Card, or Russell's R). V is a proper class — meaningful as a concept but not an object you can substitute into Cantor's theorem.")
+
+A collection like $ V $ that *isn't* a set but is still well-defined is called a **proper class**. Examples (in addition to $ V $):
+
+- $ \mathrm{Ord} $ — the collection of all ordinal numbers (Burali-Forti's paradox shows this can't be a set).
+- $ \mathrm{Card} $ — the collection of all cardinal numbers.
+- $ R = \{x : x \notin x\} $ — Russell's collection.
+
+These all share the property that *assuming they are sets leads to contradiction* — they live one rung above sets in the type hierarchy.
+
+## The Specific Mechanism — Separation in Detail
+
+To make the resolution concrete, consider why naive comprehension fails but separation does not. Naive comprehension:
+
+$$$
+\{\,x \;:\; x \text{ is a set}\,\} \;\overset{?}{=}\; V \quad (\text{naive: yes; ZFC: not asserted}).
+$$$
+
+ZFC's separation:
+
+$$$
+\{\,x \in A \;:\; x \text{ is a set}\,\} \;=\; A \quad (\text{when } A \text{ is already a set}).
+$$$
+
+To get $ V $ as a set via separation, you would need to start with some set $ A $ that *already contains all sets* — but that's $ V $ itself, so the argument is circular. Without an a priori set "containing all sets," separation cannot bootstrap $ V $ into existence. The other ZFC axioms (Pairing, Union, Power Set, Infinity, Replacement, Foundation, Choice) likewise build new sets from old, but none of them produces $ V $.
+
+So $ V $ is exactly the *unconstructible* collection in ZFC, and Cantor's paradox is *not* the discovery of a contradiction in mathematics — it is the discovery of a contradiction in *one specific axiom* (naive comprehension) that was widely assumed before $ 1900 $.
+
+## Alternative Resolution: Treat Classes as Objects (NBG)
+
+A different fix is **von Neumann–Bernays–Gödel set theory (NBG)**, developed in the $ 1920 $s–$ 1940 $s. NBG accepts classes as legitimate first-class citizens but distinguishes:
+
+- **Sets**: classes that *can* be elements of other classes.
+- **Proper classes**: classes that *cannot* be elements of other classes.
+
+Then $ V $ is a proper class. The phrase "$ \mathcal{P}(V) $" doesn't even type-check, because the power-set operation only applies to sets — and $ V $ isn't one. Cantor's theorem, in NBG, is restricted to sets, so it never applies to $ V $.
+
+NBG and ZFC prove the same theorems about sets; NBG simply has a slightly richer vocabulary (it can quantify over proper classes directly, whereas in ZFC such statements have to be paraphrased into schemas). For everyday mathematics, the two systems are interchangeable.
+
+A still more permissive approach is **Tarski–Grothendieck set theory** (or "ZFC with universes"), which posits an unbounded tower of *inaccessible cardinals* $ U_1 \in U_2 \in \cdots $, each $ U_i $ being a set that "looks like" the universe of sets, but the collection of *all* $ U_i $ is again a proper class. This is the framework used in some category-theoretic contexts where one wants to talk about "the category of all small categories" without circularity.
+
+## Remark — Cantor's Paradox vs. Russell's vs. Burali-Forti's
+
+The three "size paradoxes" of the foundational crisis all share the diagonal-flip engine of Problem 4:
+
+| Paradox      | Discovery | Diagonal collection that can't exist                  | Where Cantor's recipe applies            |
+| :---         | :---:     | :---                                                  | :---                                     |
+| Burali-Forti | $ 1897 $  | $ \mathrm{Ord} $, the set of all ordinals             | implicit                                 |
+| Cantor       | $ 1899 $  | $ V $, the set of all sets                            | $ |V| < |\mathcal{P}(V)| \le |V| $       |
+| Russell      | $ 1901 $  | $ R = \{x : x \notin x\} $                            | Cantor's diagonal applied to $ V $       |
+
+All three are resolved the same way: deny that the offending collection is a set. The historical sequence is also illuminating — by the time Russell publicized his paradox in $ 1901 $, the broader class of "size-of-the-universe" paradoxes was already known to specialists. Russell's was simply the cleanest example, requiring no setup beyond first-order logic and the comprehension principle.
+
+## Remark — Why This Was a Big Deal
+
+Before $ 1900 $, Cantor's theorem, Frege's logicism, and the cumulative hierarchy of sets were all being developed in parallel, each implicitly assuming naive comprehension. The discovery that comprehension was inconsistent — first by Cantor himself (privately), then by Russell (publicly) — sent shockwaves through the foundations of mathematics:
+
+- Frege's $ 1893 $ *Grundgesetze* (volume 1) was already published. After Russell's $ 1902 $ letter pointing out the paradox, Frege famously wrote in volume 2's afterword: *"Hardly anything more unwelcome can befall a scientific writer than that one of the foundations of his edifice be shaken after the work is finished."*
+- Zermelo ($ 1908 $), Fraenkel ($ 1922 $), Skolem ($ 1922 $), and others worked out axiom systems that proved consistent (relative to other accepted foundations) and powerful enough to develop the rest of mathematics.
+- The eventual settled axiom system, ZFC, was in place by the late $ 1920 $s and remains the de facto foundation of mathematics today.
+
+So Cantor's paradox is not a curiosity — it's a load-bearing entry in the historical narrative that produced modern axiomatic set theory.
+
+## Remark — Why You (Probably) Don't Encounter This in Practice
+
+For everyday mathematics — number theory, analysis, algebra, geometry, even most of category theory — you never need to consider whether "all sets" form a set. The collections you actually work with (groups, manifolds, topological spaces, sequences of reals, ...) are always sets by construction, built up from $ \mathbb{N} $, $ \mathbb{R} $, and the standard set-forming operations.
+
+Cantor's paradox surfaces only when you try to take *unrestricted* unions, intersections, or images over "all of mathematics" — and even then, the modern habit is to confine yourself to a fixed *universe* $ U_i $ that is locally large enough for the problem. The paradox is a foundational fact rather than a working tool, and the resolution (ZFC's separation, or NBG's class/set distinction) is structured precisely so that *working mathematics* proceeds without disruption.
+
+The principal upshot: *unrestricted comprehension is unsound; restricted comprehension via Separation is.* Every set you've ever used is built by restricted comprehension or one of the other ZFC operations, and the system as a whole has stood for almost a century with no contradiction discovered. Cantor's paradox marks the moment when set theory grew up.

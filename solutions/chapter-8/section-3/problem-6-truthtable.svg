@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 410" width="720" height="410" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="410" fill="white"/>
+
+  <!-- Title -->
+  <text x="360" y="32" font-size="18" font-weight="bold" text-anchor="middle">Truth Table for (P &#8658; &#172;P) &#8743; (&#172;P &#8658; P)</text>
+  <text x="360" y="56" font-size="13" font-style="italic" text-anchor="middle" fill="#555">Letting P abbreviate the statement "y &#8712; S"</text>
+
+  <!-- Highlight final column with light red background -->
+  <rect x="540" y="80" width="120" height="160" fill="#fdecec"/>
+
+  <!-- Outer table border -->
+  <rect x="60" y="80" width="600" height="160" fill="none" stroke="#333" stroke-width="1.6"/>
+
+  <!-- Header row background -->
+  <rect x="60" y="80" width="600" height="42" fill="#f5f5f5"/>
+
+  <!-- Vertical dividers -->
+  <line x1="180" y1="80" x2="180" y2="240" stroke="#333" stroke-width="1"/>
+  <line x1="300" y1="80" x2="300" y2="240" stroke="#333" stroke-width="1"/>
+  <line x1="420" y1="80" x2="420" y2="240" stroke="#333" stroke-width="1"/>
+  <line x1="540" y1="80" x2="540" y2="240" stroke="#aa2020" stroke-width="2"/>
+
+  <!-- Horizontal dividers -->
+  <line x1="60" y1="122" x2="660" y2="122" stroke="#333" stroke-width="1.2"/>
+  <line x1="60" y1="181" x2="660" y2="181" stroke="#bbb" stroke-width="0.8"/>
+
+  <!-- Headers -->
+  <text x="120" y="108" font-size="17" text-anchor="middle" font-weight="bold">P</text>
+  <text x="240" y="108" font-size="17" text-anchor="middle" font-weight="bold">&#172;P</text>
+  <text x="360" y="108" font-size="15" text-anchor="middle" font-weight="bold">P &#8658; &#172;P</text>
+  <text x="480" y="108" font-size="15" text-anchor="middle" font-weight="bold">&#172;P &#8658; P</text>
+  <text x="600" y="102" font-size="12" text-anchor="middle" font-weight="bold" fill="#aa2020">(P &#8658; &#172;P)</text>
+  <text x="600" y="116" font-size="12" text-anchor="middle" font-weight="bold" fill="#aa2020">&#8743; (&#172;P &#8658; P)</text>
+
+  <!-- Row 1: P = T -->
+  <text x="120" y="158" font-size="20" text-anchor="middle" font-weight="bold" fill="#1a7a1a">T</text>
+  <text x="240" y="158" font-size="20" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+  <text x="360" y="158" font-size="20" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+  <text x="480" y="158" font-size="20" text-anchor="middle" font-weight="bold" fill="#1a7a1a">T</text>
+  <text x="600" y="158" font-size="22" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+
+  <!-- Row 2: P = F -->
+  <text x="120" y="217" font-size="20" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+  <text x="240" y="217" font-size="20" text-anchor="middle" font-weight="bold" fill="#1a7a1a">T</text>
+  <text x="360" y="217" font-size="20" text-anchor="middle" font-weight="bold" fill="#1a7a1a">T</text>
+  <text x="480" y="217" font-size="20" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+  <text x="600" y="217" font-size="22" text-anchor="middle" font-weight="bold" fill="#aa2020">F</text>
+
+  <!-- Verdict caption -->
+  <text x="360" y="280" font-size="14" text-anchor="middle" font-weight="bold" fill="#aa2020">Final column is F in every row.</text>
+  <text x="360" y="300" font-size="13" text-anchor="middle" font-style="italic" fill="#444">A statement that&#8217;s False under every truth assignment is, by definition, a contradiction.</text>
+
+  <!-- Conclusion box -->
+  <rect x="120" y="340" width="480" height="45" fill="#cce5ff" stroke="#1a4d99" stroke-width="2" rx="6"/>
+  <text x="360" y="368" font-size="15" text-anchor="middle" font-weight="bold" fill="#1a4d99">(P &#8658; &#172;P) &#8743; (&#172;P &#8658; P) &#160;&#8801;&#160; &#8869; &#160;(contradiction)</text>
+</svg>

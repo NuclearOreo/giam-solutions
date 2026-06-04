@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" width="720" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="540" fill="white"/>
+
+  <!-- Title -->
+  <text x="360" y="32" font-size="18" font-weight="bold" text-anchor="middle">The Barber&#8217;s Paradox: Either Answer Self-Destructs</text>
+
+  <!-- Top question -->
+  <rect x="225" y="65" width="270" height="65" fill="#fff3b0" stroke="#cc9933" stroke-width="2" rx="6"/>
+  <text x="360" y="94" font-size="15" text-anchor="middle" font-style="italic">"Does the Barber shave</text>
+  <text x="360" y="116" font-size="15" text-anchor="middle" font-style="italic">himself?"</text>
+
+  <!-- Branch lines -->
+  <line x1="275" y1="130" x2="195" y2="175" stroke="#444" stroke-width="2"/>
+  <polygon points="195,175 202,170 199,182" fill="#444"/>
+  <line x1="445" y1="130" x2="525" y2="175" stroke="#444" stroke-width="2"/>
+  <polygon points="525,175 518,170 521,182" fill="#444"/>
+
+  <!-- Branch labels -->
+  <text x="205" y="158" font-size="16" font-weight="bold" fill="#aa2020">Yes</text>
+  <text x="510" y="158" font-size="16" font-weight="bold" fill="#aa2020">No</text>
+
+  <!-- Left case box -->
+  <rect x="40" y="180" width="290" height="140" fill="#fdecec" stroke="#aa2020" stroke-width="2" rx="6"/>
+  <text x="185" y="205" font-size="13" font-weight="bold" text-anchor="middle">Suppose: Barber shaves himself.</text>
+  <line x1="55" y1="213" x2="315" y2="213" stroke="#aa2020" stroke-width="0.5"/>
+  <text x="185" y="232" font-size="12" text-anchor="middle" fill="#555">Then Barber is among the men he shaves.</text>
+  <text x="185" y="252" font-size="12" text-anchor="middle" fill="#555">But the rule: he shaves only men who</text>
+  <text x="185" y="268" font-size="12" text-anchor="middle" fill="#555">do NOT shave themselves.</text>
+  <text x="185" y="290" font-size="13" font-weight="bold" text-anchor="middle" fill="#aa2020">&#8756; Barber does NOT shave himself.</text>
+  <text x="185" y="310" font-size="12" text-anchor="middle" font-style="italic" fill="#aa2020">&#8212; opposite of what we assumed.</text>
+
+  <!-- Right case box -->
+  <rect x="390" y="180" width="290" height="140" fill="#fdecec" stroke="#aa2020" stroke-width="2" rx="6"/>
+  <text x="535" y="205" font-size="13" font-weight="bold" text-anchor="middle">Suppose: Barber does NOT shave himself.</text>
+  <line x1="405" y1="213" x2="665" y2="213" stroke="#aa2020" stroke-width="0.5"/>
+  <text x="535" y="232" font-size="12" text-anchor="middle" fill="#555">Then Barber is among the men who</text>
+  <text x="535" y="248" font-size="12" text-anchor="middle" fill="#555">do not shave themselves.</text>
+  <text x="535" y="270" font-size="12" text-anchor="middle" fill="#555">But the rule: he shaves ALL such men.</text>
+  <text x="535" y="292" font-size="13" font-weight="bold" text-anchor="middle" fill="#aa2020">&#8756; Barber DOES shave himself.</text>
+  <text x="535" y="312" font-size="12" text-anchor="middle" font-style="italic" fill="#aa2020">&#8212; opposite of what we assumed.</text>
+
+  <!-- Arrows to contradiction boxes -->
+  <line x1="185" y1="320" x2="185" y2="355" stroke="#aa2020" stroke-width="2"/>
+  <polygon points="185,358 178,348 192,348" fill="#aa2020"/>
+  <line x1="535" y1="320" x2="535" y2="355" stroke="#aa2020" stroke-width="2"/>
+  <polygon points="535,358 528,348 542,348" fill="#aa2020"/>
+
+  <!-- Contradiction boxes -->
+  <rect x="105" y="360" width="160" height="40" fill="#aa2020" stroke="#660000" stroke-width="2" rx="5"/>
+  <text x="185" y="386" font-size="15" text-anchor="middle" font-weight="bold" fill="white">&#8869; contradiction</text>
+
+  <rect x="455" y="360" width="160" height="40" fill="#aa2020" stroke="#660000" stroke-width="2" rx="5"/>
+  <text x="535" y="386" font-size="15" text-anchor="middle" font-weight="bold" fill="white">&#8869; contradiction</text>
+
+  <!-- Converging arrows to conclusion -->
+  <line x1="185" y1="400" x2="320" y2="450" stroke="#444" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="535" y1="400" x2="400" y2="450" stroke="#444" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- Conclusion -->
+  <rect x="170" y="455" width="380" height="65" fill="#e8f0fc" stroke="#1a4d99" stroke-width="2.5" rx="6"/>
+  <text x="360" y="480" font-size="16" text-anchor="middle" font-weight="bold" fill="#1a4d99">No such Barber can exist.</text>
+  <text x="360" y="503" font-size="12" text-anchor="middle" font-style="italic" fill="#555">The town described in the premise is logically impossible.</text>
+</svg>

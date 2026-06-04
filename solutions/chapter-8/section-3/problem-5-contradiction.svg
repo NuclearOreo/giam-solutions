@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="480" fill="white"/>
+
+  <!-- Title -->
+  <text x="360" y="32" font-size="18" font-weight="bold" text-anchor="middle">Cantor&#8217;s Paradox: V Cannot Be a Set</text>
+  <text x="360" y="55" font-size="13" font-style="italic" text-anchor="middle" fill="#555">Assume the "set of all sets" V exists. Two unavoidable facts collide.</text>
+
+  <!-- Left ellipse: V -->
+  <ellipse cx="190" cy="220" rx="125" ry="95" fill="#cce5ff" stroke="#1a4d99" stroke-width="2.5"/>
+  <text x="190" y="170" font-size="24" text-anchor="middle" font-weight="bold" fill="#1a4d99">V</text>
+  <text x="190" y="195" font-size="12" text-anchor="middle" fill="#1a4d99" font-style="italic">"set of all sets"</text>
+  <text x="190" y="240" font-size="11" text-anchor="middle" fill="#444">contains every set</text>
+  <text x="190" y="256" font-size="11" text-anchor="middle" fill="#444">as an element</text>
+
+  <!-- Right ellipse: P(V) -->
+  <ellipse cx="530" cy="220" rx="140" ry="105" fill="#d4edda" stroke="#1a7a1a" stroke-width="2.5"/>
+  <text x="530" y="170" font-size="22" text-anchor="middle" font-weight="bold" fill="#1a7a1a">&#x1d4ab;(V)</text>
+  <text x="530" y="195" font-size="12" text-anchor="middle" fill="#1a7a1a" font-style="italic">power set of V</text>
+  <text x="530" y="240" font-size="11" text-anchor="middle" fill="#444">every element of &#x1d4ab;(V)</text>
+  <text x="530" y="256" font-size="11" text-anchor="middle" fill="#444">is a subset (hence a set)</text>
+
+  <!-- Fact 1: Cantor's theorem -->
+  <line x1="190" y1="335" x2="530" y2="335" stroke="#1a7a1a" stroke-width="2"/>
+  <polygon points="530,335 518,329 518,341" fill="#1a7a1a"/>
+  <text x="360" y="328" font-size="14" text-anchor="middle" font-weight="bold" fill="#1a7a1a">Cantor&#8217;s theorem: &#160;|V| &lt; |&#x1d4ab;(V)|</text>
+
+  <!-- Fact 2: Inclusion -->
+  <line x1="530" y1="368" x2="190" y2="368" stroke="#1a4d99" stroke-width="2"/>
+  <polygon points="190,368 202,362 202,374" fill="#1a4d99"/>
+  <text x="360" y="361" font-size="14" text-anchor="middle" font-weight="bold" fill="#1a4d99">&#x1d4ab;(V) &#8838; V (since every subset is a set): &#160;|&#x1d4ab;(V)| &#8804; |V|</text>
+
+  <!-- Contradiction box -->
+  <rect x="170" y="395" width="380" height="65" fill="#aa2020" stroke="#660000" stroke-width="2" rx="6"/>
+  <text x="360" y="420" font-size="14" text-anchor="middle" font-weight="bold" fill="white">Combining: |V| &lt; |&#x1d4ab;(V)| &#8804; |V|</text>
+  <text x="360" y="445" font-size="16" text-anchor="middle" font-weight="bold" fill="white">so &#160;|V| &lt; |V| &#160;&#8212;&#160; contradiction &#8869;</text>
+</svg>

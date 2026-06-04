@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 8.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.3 Problem 6
+
+## Problem
+
+Verify that the final deduction in the proof of Cantor's theorem,
+
+$$$
+(y \in S \;\Longrightarrow\; y \notin S) \;\;\wedge\;\; (y \notin S \;\Longrightarrow\; y \in S),
+$$$
+
+is truly a contradiction.
+
+## Setup — What "Contradiction" Means
+
+In propositional logic, a *contradiction* is a statement whose truth value is *False* under every assignment of truth values to its atomic propositions. (Equivalently, the statement is logically equivalent to $ \bot $, and its negation is a *tautology*.)
+
+The statement in the problem involves a single atomic proposition: $ P \equiv $ "$ y \in S $." Then $ y \notin S $ is just $ \neg P $, and the statement becomes
+
+$$$
+\Phi \;:=\; (P \;\Longrightarrow\; \neg P) \;\;\wedge\;\; (\neg P \;\Longrightarrow\; P).
+$$$
+
+We must show $ \Phi $ is False for every truth assignment to $ P $. Since $ P $ takes two values (T or F), there are just two cases to check.
+
+## Approach 1 — Truth Table
+
+The complete truth table:
+
+!(90%)[A truth table with columns for P, ¬P, P ⇒ ¬P, ¬P ⇒ P, and (P ⇒ ¬P) ∧ (¬P ⇒ P), with two rows (P = T and P = F). The final column is highlighted with a light red background, and both entries in that column are F. Below the table, a blue conclusion box reads "(P ⇒ ¬P) ∧ (¬P ⇒ P) ≡ ⊥ (contradiction)."](problem-6-truthtable.svg "Truth table for the statement Φ = (P ⇒ ¬P) ∧ (¬P ⇒ P), where P abbreviates 'y ∈ S'. The final column is F under both truth assignments to P, so Φ is False everywhere — it is a contradiction.")
+
+Reading off:
+
+| $ P $ | $ \neg P $ | $ P \Rightarrow \neg P $ | $ \neg P \Rightarrow P $ | $ \Phi $ |
+| :---: | :---:      | :---:                    | :---:                    | :---:    |
+| T     | F          | F                        | T                        | **F**    |
+| F     | T          | T                        | F                        | **F**    |
+
+The final column is False in every row, so $ \Phi $ is False under every truth assignment. By definition, $ \Phi $ is a contradiction. $ \blacksquare $
+
+(Quick reminder on implications: $ A \Rightarrow B $ is False only when $ A $ is True and $ B $ is False; otherwise it's True. So $ P \Rightarrow \neg P $ is False exactly when $ P $ is True and $ \neg P $ is False — i.e., $ P $ is True. And $ \neg P \Rightarrow P $ is False exactly when $ \neg P $ is True and $ P $ is False — i.e., $ P $ is False.)
+
+## Approach 2 — Direct Case Analysis
+
+A purely deductive argument:
+
+*Case 1: Suppose $ P $.* From $ P \Rightarrow \neg P $ (the left conjunct) and $ P $, modus ponens gives $ \neg P $. So we have both $ P $ and $ \neg P $, the explicit contradiction $ P \wedge \neg P $.
+
+*Case 2: Suppose $ \neg P $.* From $ \neg P \Rightarrow P $ (the right conjunct) and $ \neg P $, modus ponens gives $ P $. So we have both $ \neg P $ and $ P $, the explicit contradiction $ P \wedge \neg P $.
+
+Either $ P $ or $ \neg P $ holds (law of excluded middle), and either way we derive $ P \wedge \neg P $. So $ \Phi $ entails the canonical contradiction $ P \wedge \neg P $, hence is unsatisfiable. $ \blacksquare $
+
+## Approach 3 — Equivalence to $ P \Leftrightarrow \neg P $
+
+The conjunction of $ A \Rightarrow B $ and $ B \Rightarrow A $ is just the biconditional $ A \Leftrightarrow B $. Applied to our statement with $ A = P $ and $ B = \neg P $:
+
+$$$
+\Phi \;=\; (P \;\Longrightarrow\; \neg P) \;\wedge\; (\neg P \;\Longrightarrow\; P) \;\equiv\; (P \;\Longleftrightarrow\; \neg P).
+$$$
+
+A biconditional $ A \Leftrightarrow B $ is True iff $ A $ and $ B $ have the *same* truth value. But $ P $ and $ \neg P $ have *opposite* truth values by the very definition of negation — so $ P \Leftrightarrow \neg P $ is False in every truth assignment.
+
+So $ \Phi \equiv (P \Leftrightarrow \neg P) \equiv \bot $. $ \blacksquare $
+
+This third view is arguably the most illuminating: the "final deduction" in Cantor's proof asserts that $ y \in S $ holds if and only if $ y \in S $ doesn't hold. That's $ P \Leftrightarrow \neg P $ — a textbook impossibility.
+
+## Why Cantor's Proof Arrives at This Specific Form
+
+Recap how the formula arises in Theorem 8.3.1. Suppose $ f : A \to \mathcal{P}(A) $ is given and define $ S = \{x \in A : x \notin f(x)\} $. Suppose toward contradiction that $ S = f(y) $ for some $ y \in A $. Then:
+
+- By the *definition* of $ S $: $ \;\;y \in S \;\Longleftrightarrow\; y \notin f(y) $.
+- By the *hypothesis* $ S = f(y) $: $ \;\;y \in f(y) \;\Longleftrightarrow\; y \in S $.
+
+Chaining these biconditionals: $ y \in S \;\Longleftrightarrow\; y \notin f(y) \;\Longleftrightarrow\; y \notin S $.
+
+The textbook writes the same chain as a pair of *implications* (slightly more explicit for the reader):
+
+$$$
+\begin{aligned}
+y \in S \;&\Longrightarrow\; y \in f(y) \;\Longrightarrow\; y \notin S, \\
+y \notin S \;&\Longrightarrow\; y \notin f(y) \;\Longrightarrow\; y \in S.
+\end{aligned}
+$$$
+
+The conjunction of these two derived implications is $ \Phi $ — exactly the statement we verified is a contradiction. Hence the hypothesis $ S = f(y) $ leads to $ \bot $, so no such $ y $ exists, so $ S \notin \mathrm{image}(f) $, so $ f $ is not surjective. This is the heart of Cantor's theorem.
+
+## Remark — Why Bother Writing Both Implications?
+
+Logically, the two implications $ P \Rightarrow \neg P $ and $ \neg P \Rightarrow P $ are jointly equivalent to the single biconditional $ P \Leftrightarrow \neg P $, which is *visibly* contradictory. So why does the textbook write both directions?
+
+It's a pedagogical choice. Showing the *two* implications mirrors the two halves of Cantor's argument:
+
+- *Left half* (the definition of $ S $ forces something out): if $ y \in S $ then by hypothesis $ y \in f(y) $, but the *defining condition* of $ S $ means $ y \notin f(y) $, so $ y \notin S $.
+- *Right half* (the definition forces something in): if $ y \notin S $ then by hypothesis $ y \notin f(y) $, but the *defining condition* means $ y \in f(y) $, so $ y \in S $.
+
+Each half is constructed differently — one uses the definition to *exclude* $ y $ from $ S $, the other to *include* it — and writing both explicitly makes the symmetry of the diagonal trick visible. The collapse into "$ P \Leftrightarrow \neg P $" happens at the very last step.
+
+## Remark — A Shorter Argument from One Implication
+
+Curiously, *just one* of the two implications already suffices in classical propositional logic. From $ P \Rightarrow \neg P $ alone:
+
+- Suppose $ P $. Then $ \neg P $ by the implication. So $ P \wedge \neg P $. Contradiction.
+- Hence (by reductio) $ \neg P $.
+
+But this gives only $ \neg P $, not a contradiction with the listing assumption. The other implication $ \neg P \Rightarrow P $ is needed to deduce $ P $ as well, producing the full contradiction $ P \wedge \neg P $. So both directions are *individually* "half" of the contradiction; together they pin it down completely.
+
+(In intuitionistic logic — where reductio for $ \neg P $ but not for $ P $ is allowed — the symmetry is more delicate. Cantor's argument as stated remains valid because both implications are used constructively to derive both halves of the contradiction.)
+
+## Remark — A Tautology in Disguise
+
+The negation of $ \Phi $ is the tautology
+
+$$$
+\neg \Phi \;\equiv\; \neg\bigl((P \Rightarrow \neg P) \wedge (\neg P \Rightarrow P)\bigr) \;\equiv\; (P \wedge P) \vee (\neg P \wedge \neg P) \;\equiv\; P \vee \neg P,
+$$$
+
+which is the *law of excluded middle*. This is satisfying: the fact that $ \Phi $ is unsatisfiable is *equivalent* to the assertion that every proposition is either true or false — the most fundamental two-valued principle of classical logic. Cantor's argument is, at root, classical logic doing its most basic job.
+
+So Problem 6 is really verifying that *classical bivalence* and $ \Phi $ are incompatible — which is a fancy way of saying $ \Phi $ has no models. Either statement of the fact, truth-table or excluded-middle, confirms that the final deduction in Cantor's proof is indeed a *bona fide* contradiction.

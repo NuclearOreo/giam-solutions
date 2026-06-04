@@ -1,0 +1,125 @@
+.docname {Solution — GIAM 8.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.3 Problem 4
+
+## Problem
+
+The Barber's paradox: *In a small town there is a Barber who shaves those men (and only those men) who do not shave themselves. Who shaves the Barber?* Explain the similarity to the proof of Cantor's theorem.
+
+## The Barber's Paradox Resolved
+
+The town's premise is *internally contradictory*. Examine the two possible answers:
+
+- **Suppose the Barber shaves himself.** Then he belongs to the set of men he shaves. But the rule says he shaves only men who do *not* shave themselves — so he must *not* shave himself. That contradicts the supposition.
+- **Suppose the Barber does not shave himself.** Then he belongs to the set of men who don't shave themselves. But the rule says he shaves *every* such man — so he *does* shave himself. That also contradicts the supposition.
+
+Both cases collapse. The resolution: *no such Barber can exist.* The premise — "there is a Barber who shaves exactly the men who don't shave themselves" — describes a logically impossible town.
+
+!(90%)[A decision-tree diagram showing the Barber's paradox. The top question 'Does the Barber shave himself?' branches into two cases, Yes and No. Each branch leads to a colored box explaining how the assumption contradicts itself via the rule. Both branches terminate at a red 'contradiction' box, and a dashed arrow then converges on the bottom conclusion: 'No such Barber can exist.'](problem-4-barber.svg "The Barber's paradox shown as a decision tree. Both answers to 'does Barber shave himself?' force the opposite of what was assumed, producing a contradiction in each branch. The only consistent conclusion is that no such Barber can exist.")
+
+## The Cantor Argument Recapped
+
+Cantor's theorem (Theorem 8.3.1) says: for any set $ A $ and any function $ f : A \to \mathcal{P}(A) $, $ f $ cannot be surjective. The proof builds an explicit set $ S \in \mathcal{P}(A) $ that is not in the image of $ f $:
+
+$$$
+S \;=\; \{\, x \in A \;:\; x \notin f(x)\,\}.
+$$$
+
+Suppose for contradiction that $ S \in \mathrm{image}(f) $ — that is, $ S = f(y) $ for some $ y \in A $. Ask: *is $ y \in S $?*
+
+- *If $ y \in S $*: by the definition of $ S $, $ y \notin f(y) = S $. Contradiction.
+- *If $ y \notin S $*: by the definition of $ S $, $ y \in f(y) = S $. Contradiction.
+
+Either branch contradicts itself, so no such $ y $ exists; $ S $ is not in the image of $ f $; $ f $ is not surjective. $ \blacksquare $
+
+## The Structural Parallel
+
+The two arguments are not merely *similar* — they are the *same argument*, applied in two different settings. Both share the same five-step skeleton: (i) ambient universe, (ii) "flipping" diagonal set, (iii) hypothesis that something hits that set, (iv) self-referent question, (v) contradiction in both branches.
+
+!(95%)[A side-by-side comparison table mapping the Barber's paradox to Cantor's theorem row by row. Five rows compare Setup, Diagonal Set, Hypothesis, Self-Referent Question, Outcome (both branches), and Conclusion. Each row shows the structurally matching content in both columns. The diagonal-set rows are highlighted in yellow; the self-referent-question rows in light red; the conclusion rows in colored borders.](problem-4-parallel.svg "Side-by-side mapping of the Barber's paradox to Cantor's theorem. Each row shows a structural element in both arguments: setup, the 'flipping' diagonal set, the hypothesis that some entity hits that set, the self-referent question, the both-branches contradiction, and the conclusion that the hypothesized entity cannot exist.")
+
+In symbols, the dictionary between the two arguments is:
+
+| Barber's Paradox                       | Cantor's Theorem                          |
+| :---                                   | :---                                      |
+| Town $ T $                             | Set $ A $                                 |
+| Barber $ b \in T $                     | Element $ y \in A $                       |
+| For each man $ m \in T $, the set $ \text{shaves}(m) $ of men $ m $ shaves | For each $ x \in A $, the subset $ f(x) \in \mathcal{P}(A) $ |
+| $ b \in \text{shaves}(b) $ ?           | $ y \in f(y) $ ?                          |
+| $ D = \{ m \in T : m \notin \text{shaves}(m) \} $ ("men who don't shave themselves") | $ S = \{ x \in A : x \notin f(x) \} $ |
+| Hypothesis: $ \text{shaves}(b) = D $   | Hypothesis: $ f(y) = S $                  |
+| Self-referent question: $ b \in D $?   | Self-referent question: $ y \in S $?      |
+| Contradiction either way               | Contradiction either way                  |
+| Conclusion: no such $ b $ exists       | Conclusion: no such $ y $ exists; $ f $ is not surjective |
+
+Reading off the dictionary: the Barber's paradox is *exactly* Cantor's argument applied to the function $ \text{shaves} : T \to \mathcal{P}(T) $ that sends each man $ m $ to the set $ \text{shaves}(m) $ of men he shaves. The "Barber" is the element $ y \in T $ that would witness $ S \in \mathrm{image}(\text{shaves}) $; Cantor's theorem says no such witness exists — i.e., the Barber cannot exist.
+
+## The Self-Reference Flip — A Common Recipe
+
+What makes both arguments tick is a single trick: **construct a "diagonal" entity whose defining property *flips* when applied to itself.**
+
+- Barber's diagonal $ D $: "set of men who don't shave themselves." The defining property of $ m \in D $ is *negation* of $ m \in \text{shaves}(m) $.
+- Cantor's diagonal $ S $: "set of elements not in their own image under $ f $." The defining property of $ x \in S $ is *negation* of $ x \in f(x) $.
+
+If a "diagonal-realizing" entity exists ($ b $ with $ \text{shaves}(b) = D $, or $ y $ with $ f(y) = S $), then asking the self-referent question — "does the entity have its own defining property?" — produces
+
+$$$
+\underbrace{b \in D}_{?} \;\Longleftrightarrow\; \underbrace{b \notin \text{shaves}(b)}_{\text{def of } D} \;=\; \underbrace{b \notin D}_{\text{hypothesis}}, \qquad \underbrace{y \in S}_{?} \;\Longleftrightarrow\; \underbrace{y \notin f(y)}_{\text{def of } S} \;=\; \underbrace{y \notin S}_{\text{hypothesis}}.
+$$$
+
+In both cases, the statement and its negation become equivalent. This is a *logical impossibility* — no proposition $ P $ satisfies $ P \Leftrightarrow \neg P $. The way out is to deny the hypothesis that the diagonal-realizing entity exists.
+
+## Remark — Russell's Paradox Is the Same Argument
+
+Russell's paradox is the same construction applied to the "universal" function: in *naive* set theory, consider the would-be set
+
+$$$
+R \;=\; \{\, x \;:\; x \notin x \,\}.
+$$$
+
+Is $ R \in R $?
+
+- If $ R \in R $: by the definition of $ R $, $ R \notin R $. Contradiction.
+- If $ R \notin R $: by the definition of $ R $, $ R \in R $. Contradiction.
+
+The fix: $ R $ cannot be a set. This is Cantor's argument applied to the would-be identity function $ \text{id} : V \to \mathcal{P}(V) $ on the (would-be) class $ V $ of all sets, with $ \text{id}(x) = x $. The diagonal subset $ S = \{x : x \notin \text{id}(x)\} = \{x : x \notin x\} = R $; Cantor's theorem says $ R $ is not in the image of $ \text{id} $, but $ \text{id} $'s image is $ V $ itself, so $ R \notin V $ — i.e., $ R $ is not a set. Modern set theory (ZFC) avoids the paradox by axiomatically restricting which collections count as sets.
+
+So the three arguments — Barber, Cantor, Russell — share a common engine. The difference is what gets concluded:
+
+| Setting                 | Diagonal-realizing entity that can't exist | What we conclude exists less than expected |
+| :---                    | :---                                        | :---                                       |
+| Barber (town gossip)    | a Barber with the stated rule               | the town in the puzzle                     |
+| Cantor (set theory)     | a $ y $ mapped to $ S $                     | a surjection $ A \to \mathcal{P}(A) $      |
+| Russell (foundations)   | the set $ R = \{x : x \notin x\} $          | a set of "all sets that don't contain themselves" |
+
+## Remark — Why the Resolution Differs
+
+The Barber's paradox is *folk* mathematics — the conclusion ("no such Barber") is uncontroversial and uninteresting, because nobody believes that arbitrary verbal descriptions of towns must describe possible towns. The Barber's paradox is a *puzzle* whose value is pedagogical: it makes the self-reference flip palpable.
+
+Cantor's theorem is *deep* mathematics — the conclusion ("$ \mathcal{P}(A) $ is strictly larger than $ A $") is non-obvious and powerful. It gives the first proof that there are *different sizes* of infinity, and underlies the entire transfinite hierarchy $ \aleph_0 < \aleph_1 < \aleph_2 < \cdots $ explored later in the chapter.
+
+Russell's paradox is *foundational* — its discovery in $ 1901 $ forced a rebuild of set theory's axioms (Zermelo–Fraenkel, $ 1908 $), restricting which collections count as sets so that the self-reference flip can no longer construct $ R $. Without Russell's paradox we wouldn't have ZFC — the standard foundation of modern mathematics.
+
+So the same diagonal trick is used at *three different levels of seriousness*: a puzzle (Barber), a theorem (Cantor), and an axiomatic revolution (Russell). The argumentative structure is identical in all three.
+
+## Remark — The Diagonal Trick Beyond Set Theory
+
+The "construct a diagonal entity, ask if it has its own property, contradict either way" recipe shows up in many other fundamental results:
+
+- *The halting problem (Turing, $ 1936 $)*: there is no program $ H $ that, given any program $ p $ and input $ x $, decides whether $ p $ halts on $ x $. Proof: assume $ H $ exists; build $ D(p) $ that runs $ H(p, p) $ and halts iff $ H $ says $ p $ doesn't halt on $ p $. Ask: does $ D(D) $ halt? Both branches contradict.
+
+- *Gödel's incompleteness theorems ($ 1931 $)*: in any sufficiently powerful consistent formal system, there is a statement $ G $ asserting "$ G $ is not provable in the system." Both $ G $ provable and $ \neg G $ provable contradict consistency.
+
+- *The Liar paradox*: the statement "This statement is false" cannot have a truth value — assigning either True or False makes it the other.
+
+- *Tarski's undefinability of truth ($ 1936 $)*: no formal language can define its own truth predicate.
+
+In each case, a *self-referential* construction is set up so that any attempt to evaluate it flips the answer. The Barber's paradox is the most intuitive entry point to this family of arguments; Cantor's theorem is the first major mathematical result in the family; the others extend the trick into computation, formal logic, and the limits of definability.

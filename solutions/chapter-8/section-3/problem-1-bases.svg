@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 360" width="700" height="360" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="360" fill="white"/>
+
+  <!-- Title -->
+  <text x="350" y="32" font-size="17" font-weight="bold" text-anchor="middle">Safe Digits by Base (avoid 0 and b&#8722;1)</text>
+  <text x="350" y="54" font-size="13" text-anchor="middle" font-style="italic" fill="#555">"Safe" = won&#8217;t produce dual representations; need at least 2 to guarantee one differs from d&#8345;&#8345;.</text>
+
+  <!-- Table headers -->
+  <line x1="50" y1="80" x2="650" y2="80" stroke="#333" stroke-width="1.5"/>
+  <text x="80" y="103" font-size="14" font-weight="bold">Base b</text>
+  <text x="195" y="103" font-size="14" font-weight="bold">Digits</text>
+  <text x="355" y="103" font-size="14" font-weight="bold">Safe digits (&#8800; 0, &#8800; b&#8722;1)</text>
+  <text x="555" y="103" font-size="14" font-weight="bold">Status</text>
+  <line x1="50" y1="115" x2="650" y2="115" stroke="#333" stroke-width="1"/>
+
+  <!-- Base 2 -->
+  <text x="80" y="145" font-size="14">2 &#160;(binary)</text>
+  <text x="195" y="145" font-size="14">{0, 1}</text>
+  <text x="355" y="145" font-size="14" fill="#aa2020">{&#160;} &#160;(empty)</text>
+  <text x="555" y="145" font-size="13" fill="#aa2020" font-weight="bold">fails (single digits)</text>
+
+  <!-- Base 3 -->
+  <text x="80" y="175" font-size="14">3 &#160;(ternary)</text>
+  <text x="195" y="175" font-size="14">{0, 1, 2}</text>
+  <text x="355" y="175" font-size="14" fill="#cc7700">{1} &#160;(just one)</text>
+  <text x="555" y="175" font-size="13" fill="#cc7700">needs paired-digits or alternating rule</text>
+
+  <!-- Base 4 -->
+  <text x="80" y="205" font-size="14">4</text>
+  <text x="195" y="205" font-size="14">{0, 1, 2, 3}</text>
+  <text x="355" y="205" font-size="14" fill="#1a7a1a">{1, 2}</text>
+  <text x="555" y="205" font-size="13" fill="#1a7a1a">works (pick the one &#8800; d&#8345;&#8345;)</text>
+
+  <!-- Base 10 -->
+  <text x="80" y="235" font-size="14">10 &#160;(decimal)</text>
+  <text x="195" y="235" font-size="14">{0, 1, &#8230;, 9}</text>
+  <text x="355" y="235" font-size="14" fill="#1a7a1a">{1, 2, 3, 4, 5, 6, 7, 8}</text>
+  <text x="555" y="235" font-size="13" fill="#1a7a1a" font-weight="bold">works easily &#8212; 7+ choices</text>
+
+  <!-- Base b general -->
+  <text x="80" y="265" font-size="14">b &#8805; 4</text>
+  <text x="195" y="265" font-size="14">{0, 1, &#8230;, b&#8722;1}</text>
+  <text x="355" y="265" font-size="14" fill="#1a7a1a">{1, 2, &#8230;, b&#8722;2}</text>
+  <text x="555" y="265" font-size="13" fill="#1a7a1a">works (b&#8722;3 choices &#8805; 1)</text>
+
+  <line x1="50" y1="285" x2="650" y2="285" stroke="#333" stroke-width="1"/>
+
+  <!-- Caption -->
+  <text x="350" y="318" font-size="13" text-anchor="middle" font-style="italic" fill="#333">"Safe" digits avoid 0 (would create trailing&#8722;0&#8217;s rep) and b&#8722;1 (would create trailing&#8722;(b&#8722;1)&#8217;s rep) &#8212;</text>
+  <text x="350" y="338" font-size="13" text-anchor="middle" font-style="italic" fill="#333">both representations of dual-rep reals. Decimal&#8217;s 8 safe digits make Problem 1 trivial; binary&#8217;s 0 makes it impossible (without pairs).</text>
+</svg>
