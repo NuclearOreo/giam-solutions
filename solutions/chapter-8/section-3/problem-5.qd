@@ -64,7 +64,7 @@ So the issue is not Cantor's theorem itself — that's a perfectly sound result 
 
 ## The Resolution: $ V $ Is Not a Set
 
-In modern set theory, the paradox is resolved by *axiomatically restricting* which collections count as sets. The naive comprehension principle is too generous; it allows collections "too big" to be sets. The fix is to start with a controlled list of axioms (Zermelo, $ 1908 $; Fraenkel and Skolem, $ 1920 $s) that lets sets exist only under carefully circumscribed conditions.
+In modern set theory, the paradox is resolved by *axiomatically restricting* which collections count as sets. The naive comprehension principle is too generous; it allows collections "too big" to be sets. The fix is to start with a controlled list of axioms (Zermelo, $ 1908 $; Fraenkel and Skolem, $ 1920\text{s} $) that lets sets exist only under carefully circumscribed conditions.
 
 In **Zermelo–Fraenkel set theory with Choice (ZFC)** — the modern standard — comprehension is replaced by the *Axiom Schema of Separation*:
 
@@ -104,7 +104,7 @@ So $ V $ is exactly the *unconstructible* collection in ZFC, and Cantor's parado
 
 ## Alternative Resolution: Treat Classes as Objects (NBG)
 
-A different fix is **von Neumann–Bernays–Gödel set theory (NBG)**, developed in the $ 1920 $s–$ 1940 $s. NBG accepts classes as legitimate first-class citizens but distinguishes:
+A different fix is **von Neumann–Bernays–Gödel set theory (NBG)**, developed in the $ 1920\text{s–}1940\text{s} $. NBG accepts classes as legitimate first-class citizens but distinguishes:
 
 - **Sets**: classes that *can* be elements of other classes.
 - **Proper classes**: classes that *cannot* be elements of other classes.
@@ -122,7 +122,7 @@ The three "size paradoxes" of the foundational crisis all share the diagonal-fli
 | Paradox      | Discovery | Diagonal collection that can't exist                  | Where Cantor's recipe applies            |
 | :---         | :---:     | :---                                                  | :---                                     |
 | Burali-Forti | $ 1897 $  | $ \mathrm{Ord} $, the set of all ordinals             | implicit                                 |
-| Cantor       | $ 1899 $  | $ V $, the set of all sets                            | $ |V| < |\mathcal{P}(V)| \le |V| $       |
+| Cantor       | $ 1899 $  | $ V $, the set of all sets                            | $ \lvert V \rvert < \lvert \mathcal{P}(V) \rvert \le \lvert V \rvert $ |
 | Russell      | $ 1901 $  | $ R = \{x : x \notin x\} $                            | Cantor's diagonal applied to $ V $       |
 
 All three are resolved the same way: deny that the offending collection is a set. The historical sequence is also illuminating — by the time Russell publicized his paradox in $ 1901 $, the broader class of "size-of-the-universe" paradoxes was already known to specialists. Russell's was simply the cleanest example, requiring no setup beyond first-order logic and the comprehension principle.
@@ -133,7 +133,7 @@ Before $ 1900 $, Cantor's theorem, Frege's logicism, and the cumulative hierarch
 
 - Frege's $ 1893 $ *Grundgesetze* (volume 1) was already published. After Russell's $ 1902 $ letter pointing out the paradox, Frege famously wrote in volume 2's afterword: *"Hardly anything more unwelcome can befall a scientific writer than that one of the foundations of his edifice be shaken after the work is finished."*
 - Zermelo ($ 1908 $), Fraenkel ($ 1922 $), Skolem ($ 1922 $), and others worked out axiom systems that proved consistent (relative to other accepted foundations) and powerful enough to develop the rest of mathematics.
-- The eventual settled axiom system, ZFC, was in place by the late $ 1920 $s and remains the de facto foundation of mathematics today.
+- The eventual settled axiom system, ZFC, was in place by the late $ 1920\text{s} $ and remains the de facto foundation of mathematics today.
 
 So Cantor's paradox is not a curiosity — it's a load-bearing entry in the historical narrative that produced modern axiomatic set theory.
 
