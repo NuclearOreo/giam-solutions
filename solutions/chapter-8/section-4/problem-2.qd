@@ -1,0 +1,172 @@
+.docname {Solution — GIAM 8.4 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.4 Problem 2
+
+## Problem
+
+Let $ F $ be the collection of all real-valued functions defined on the real line. Find an injection from $ \mathbb{R} $ to $ F $. Do you think it is possible to find an injection going the other way? In other words, do you think that $ F $ and $ \mathbb{R} $ are equivalent? Explain.
+
+## Setup
+
+The set $ F $ is
+
+$$$
+F \;=\; \{\, f \;:\; \mathbb{R} \to \mathbb{R} \,\} \;=\; \mathbb{R}^{\mathbb{R}}.
+$$$
+
+Two facts we'll need from earlier in the chapter:
+
+- *Cardinality of $ \mathbb{R} $.* $ \lvert \mathbb{R} \rvert = \mathfrak{c} = 2^{\aleph_0} $, the cardinality of the continuum.
+- *Cantor's theorem.* For every set $ X $, $ \lvert X \rvert < \lvert \mathcal{P}(X) \rvert $. Equivalently, no injection $ \mathcal{P}(X) \to X $ exists.
+
+The problem has two halves: produce one specific injection, and decide whether the reverse injection exists.
+
+## Part 1 — An Injection $ \mathbb{R} \hookrightarrow F $
+
+**Construction.** Define $ \iota : \mathbb{R} \to F $ by sending each $ a \in \mathbb{R} $ to the *constant function* with value $ a $:
+
+$$$
+\iota(a) \;=\; c_a, \qquad \text{where } c_a : \mathbb{R} \to \mathbb{R}, \;\; c_a(x) = a \text{ for all } x \in \mathbb{R}.
+$$$
+
+**Why it's injective.** Suppose $ \iota(a) = \iota(a') $, i.e. $ c_a $ and $ c_{a'} $ agree at every point of $ \mathbb{R} $. Evaluate at any single point — say $ x = 0 $:
+
+$$$
+a \;=\; c_a(0) \;=\; c_{a'}(0) \;=\; a'.
+$$$
+
+So $ a = a' $, and $ \iota $ is injective. $ \blacksquare $
+
+The real line embeds into $ F $ as the family of constant functions. (Many other embeddings work — see the remark at the end.)
+
+## Part 2 — No Injection $ F \to \mathbb{R} $
+
+The reverse injection does *not* exist. The set $ F $ is strictly larger than $ \mathbb{R} $ — far larger, in fact. Here are three independent arguments, each illuminating a different aspect.
+
+### Argument A — $ F $ Contains a Copy of $ \mathcal{P}(\mathbb{R}) $
+
+Restrict attention to the $ \{0, 1\} $-valued functions on $ \mathbb{R} $:
+
+$$$
+F_0 \;=\; \{\, f : \mathbb{R} \to \{0, 1\} \,\} \;\subseteq\; F.
+$$$
+
+Each such $ f $ is determined by — and determines — the subset $ S_f = \{ x \in \mathbb{R} : f(x) = 1 \} $; this is just $ f $'s *characteristic function* read backwards. The correspondence $ f \leftrightarrow S_f $ is a bijection
+
+$$$
+F_0 \;\xleftrightarrow{\;\sim\;}\; \mathcal{P}(\mathbb{R}),
+$$$
+
+so $ \lvert F_0 \rvert = \lvert \mathcal{P}(\mathbb{R}) \rvert $. By Cantor's theorem, $ \lvert \mathcal{P}(\mathbb{R}) \rvert > \lvert \mathbb{R} \rvert $. Since $ F_0 \subseteq F $,
+
+$$$
+\lvert F \rvert \;\ge\; \lvert F_0 \rvert \;=\; \lvert \mathcal{P}(\mathbb{R}) \rvert \;>\; \lvert \mathbb{R} \rvert.
+$$$
+
+In the dominance ordering, $ \lvert F \rvert > \lvert \mathbb{R} \rvert $, so no injection $ F \to \mathbb{R} $ exists. $ \blacksquare $
+
+### Argument B — Direct Diagonal Argument
+
+Suppose, toward contradiction, that $ \phi : F \to \mathbb{R} $ is an injection. Then $ \phi $ has a partial inverse $ \phi^{-1} : \phi(F) \to F $ that is a bijection. Extend it arbitrarily to a function $ \psi : \mathbb{R} \to F $ (e.g., $ \psi(x) = c_0 $ for $ x \notin \phi(F) $). Then $ \psi $ is a *surjection*: every $ f \in F $ equals $ \psi(\phi(f)) $.
+
+Now run Cantor's diagonal trick. Define $ d : \mathbb{R} \to \mathbb{R} $ by
+
+$$$
+d(x) \;=\; \psi(x)(x) + 1.
+$$$
+
+For *any* $ x \in \mathbb{R} $, the function $ d $ disagrees with $ \psi(x) $ at the point $ x $:
+
+$$$
+d(x) \;=\; \psi(x)(x) + 1 \;\ne\; \psi(x)(x).
+$$$
+
+So $ d \ne \psi(x) $ for every $ x $ — i.e., $ d $ is not in the image of $ \psi $. But $ d \in F $ (it's manifestly a function $ \mathbb{R} \to \mathbb{R} $), contradicting surjectivity. Therefore no injection $ \phi : F \to \mathbb{R} $ exists. $ \blacksquare $
+
+### Argument C — Cardinal Arithmetic
+
+Just compute:
+
+$$$
+\begin{aligned}
+\lvert F \rvert \;&=\; \lvert \mathbb{R}^{\mathbb{R}} \rvert \;=\; \lvert \mathbb{R} \rvert^{\lvert \mathbb{R} \rvert} \;=\; \mathfrak{c}^{\mathfrak{c}} \\
+&=\; (2^{\aleph_0})^{\mathfrak{c}} \;=\; 2^{\aleph_0 \cdot \mathfrak{c}} \;=\; 2^{\mathfrak{c}}.
+\end{aligned}
+$$$
+
+The arithmetic move $ \aleph_0 \cdot \mathfrak{c} = \mathfrak{c} $ uses $ \aleph_0 \le \mathfrak{c} $ and the absorbing property of infinite cardinal multiplication ($ \kappa \cdot \lambda = \max(\kappa, \lambda) $ for infinite $ \kappa, \lambda $). Since $ 2^{\mathfrak{c}} > \mathfrak{c} $ by Cantor's theorem applied to $ \mathbb{R} $,
+
+$$$
+\lvert F \rvert \;=\; 2^{\mathfrak{c}} \;>\; \mathfrak{c} \;=\; \lvert \mathbb{R} \rvert. \quad \blacksquare
+$$$
+
+## Conclusion
+
+$ F $ and $ \mathbb{R} $ are *not* equivalent. An injection $ \mathbb{R} \hookrightarrow F $ exists (the constants), but no injection $ F \hookrightarrow \mathbb{R} $ does (Arguments A, B, C — pick your favorite). In the dominance ordering of Section 8.4,
+
+$$$
+\lvert \mathbb{R} \rvert \;<\; \lvert F \rvert,
+$$$
+
+and the "gap" is exactly one application of Cantor's theorem: $ F $ contains a copy of $ \mathcal{P}(\mathbb{R}) $, which sits one cardinality-rung above $ \mathbb{R} $.
+
+## Remark — Other Injections $ \mathbb{R} \hookrightarrow F $
+
+The constant-function embedding is the cleanest, but many other maps work. Each row below is a different injection $ a \mapsto f_a $:
+
+| Map $ a \mapsto f_a $                              | Recovery — why injective                                  |
+| :---                                               | :---                                                      |
+| $ f_a(x) = a $ (constant)                          | $ f_a(0) = a $.                                           |
+| $ f_a(x) = x + a $ (translation)                   | $ f_a(0) = a $.                                           |
+| $ f_a(x) = a \cdot x $ (scaling through origin)    | $ f_a(1) = a $.                                           |
+| $ f_a(x) = e^{a x} $                               | $ f_a(1) = e^a $, so $ \log f_a(1) = a $.                 |
+| $ f_a(x) = \mathbf{1}_{\{a\}}(x) $ (indicator)     | $ f_a $ has a unique nonzero point at $ x = a $.          |
+
+The common pattern: each formula has a *parameter* $ a $ that can be read back off the function — by evaluating at a chosen point, or by inspecting where the function is nonzero. Any such recovery procedure forces injectivity.
+
+## Remark — Continuous Functions Are a Different Story
+
+Restricting to *continuous* real-valued functions on $ \mathbb{R} $ — call this set $ C(\mathbb{R}) $ — the cardinality drops dramatically. A continuous function is determined by its values on the rationals: if $ f, g \in C(\mathbb{R}) $ and $ f(q) = g(q) $ for every $ q \in \mathbb{Q} $, then $ f = g $ on all of $ \mathbb{R} $ (any real is a limit of rationals, and continuity transports the equality). So the restriction map
+
+$$$
+C(\mathbb{R}) \;\hookrightarrow\; \mathbb{R}^{\mathbb{Q}}, \qquad f \;\mapsto\; f|_{\mathbb{Q}}
+$$$
+
+is *injective*. The codomain has cardinality $ \mathfrak{c}^{\aleph_0} = 2^{\aleph_0 \cdot \aleph_0} = 2^{\aleph_0} = \mathfrak{c} $. Combined with the trivial lower bound (constants alone give $ \lvert C(\mathbb{R}) \rvert \ge \mathfrak{c} $):
+
+$$$
+\lvert C(\mathbb{R}) \rvert \;=\; \mathfrak{c} \;=\; \lvert \mathbb{R} \rvert.
+$$$
+
+So $ C(\mathbb{R}) $ *is* equivalent to $ \mathbb{R} $. The "extra" $ 2^{\mathfrak{c}} $ functions in $ F $ that push us up a rung are precisely the *wildly discontinuous* ones — functions whose values at different points are unconstrained by any regularity.
+
+This is a nice illustration of how *regularity hypotheses tame cardinality*: ask for measurable, Lebesgue-integrable, smooth, or even just continuous, and you stay at $ \mathfrak{c} $; drop all regularity and the count immediately jumps to $ 2^{\mathfrak{c}} $.
+
+## Remark — The Cantor Hierarchy
+
+Section 8.4 gives the language of *dominance*, the strict ordering on cardinal numbers. Iterating Cantor's theorem produces an infinite ladder of strict inequalities:
+
+$$$
+\aleph_0 \;<\; \mathfrak{c} \;<\; 2^{\mathfrak{c}} \;<\; 2^{2^{\mathfrak{c}}} \;<\; \cdots
+$$$
+
+Concrete representatives of each rung:
+
+| Rung  | Cardinal                  | Example sets                                                     |
+| :---: | :---:                     | :---                                                             |
+| $ 0 $ | $ \aleph_0 $              | $ \mathbb{N}, \mathbb{Z}, \mathbb{Q} $                           |
+| $ 1 $ | $ \mathfrak{c} $          | $ \mathbb{R}, \mathbb{R}^n, C(\mathbb{R}) $                      |
+| $ 2 $ | $ 2^{\mathfrak{c}} $      | $ \mathcal{P}(\mathbb{R}), \;\; F = \mathbb{R}^{\mathbb{R}} $    |
+| $ 3 $ | $ 2^{2^{\mathfrak{c}}} $  | $ \mathcal{P}(F) $                                               |
+
+This problem places $ F $ on rung $ 2 $ — strictly above $ \mathbb{R} $, strictly below $ \mathcal{P}(F) $. Dominance lets us *talk* about this hierarchy precisely, and Cantor's theorem guarantees the ladder never collapses.
+
+(The *Continuum Hypothesis*, treated in Section 8.5, asks whether any cardinality sits *between* $ \aleph_0 $ and $ \mathfrak{c} $; Gödel and Cohen showed this question is independent of ZFC. The analogous question for cardinalities between $ \mathfrak{c} $ and $ 2^{\mathfrak{c}} $ — the *generalized* continuum hypothesis — is similarly independent.)

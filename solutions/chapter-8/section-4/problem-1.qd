@@ -1,0 +1,120 @@
+.docname {Solution — GIAM 8.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.4 Problem 1
+
+## Problem
+
+How could the clerk at the Hilbert Hotel accommodate a countable number of new guests?
+
+## Setup
+
+Hilbert's Hotel has rooms indexed by the positive integers $ 1, 2, 3, \ldots $ — one room for each $ n \in \mathbb{N}_{> 0} $, so $ \aleph_0 $ rooms in total. The hotel is *full*: every room currently holds exactly one guest, with the bijection
+
+$$$
+g_n \;\longleftrightarrow\; \text{room } n \qquad (n = 1, 2, 3, \ldots).
+$$$
+
+A *countable* set of new guests $ h_1, h_2, h_3, \ldots $ has just arrived. (In this section's vocabulary, "countable" means countably infinite; the *finite* case was already handled by the textbook's $ n \mapsto n + 1 $ trick to make room for one new guest, which trivially iterates for any fixed number.) The clerk must find a room for every existing $ g_n $ *and* every new $ h_k $, with no two guests sharing.
+
+## The Trick — Double Everyone, Halve the New Arrivals
+
+Have every current guest in room $ n $ move to room $ 2n $, then place new guest $ h_k $ in room $ 2k - 1 $.
+
+| Guest              | Old room | New room   |
+| :---               | :---:    | :---:      |
+| $ g_n $ (existing) | $ n $    | $ 2n $     |
+| $ h_k $ (arriving) | —        | $ 2k - 1 $ |
+
+A numerical picture of the first eight rooms:
+
+| Room   | $ 1 $   | $ 2 $   | $ 3 $   | $ 4 $   | $ 5 $   | $ 6 $   | $ 7 $   | $ 8 $   |
+| :---:  | :---:   | :---:   | :---:   | :---:   | :---:   | :---:   | :---:   | :---:   |
+| Before | $ g_1 $ | $ g_2 $ | $ g_3 $ | $ g_4 $ | $ g_5 $ | $ g_6 $ | $ g_7 $ | $ g_8 $ |
+| After  | $ h_1 $ | $ g_1 $ | $ h_2 $ | $ g_2 $ | $ h_3 $ | $ g_3 $ | $ h_4 $ | $ g_4 $ |
+
+The clerk's PA announcement is one sentence: *"Every guest in room $ n $, please move to room $ 2n $."* Once that move completes, every odd-numbered room is empty, and the arrivals can be checked in: $ h_1 $ to room $ 1 $, $ h_2 $ to room $ 3 $, $ h_3 $ to room $ 5 $, and so on.
+
+## Verification
+
+Three things to check, all easy:
+
+*Every existing guest still has a room.* The map $ n \mapsto 2n $ is a function from $ \mathbb{N}_{> 0} $ to $ \mathbb{N}_{> 0} $ — it produces a single, well-defined positive integer for every $ n $.
+
+*Every new guest gets a room.* The map $ k \mapsto 2k - 1 $ is also a function from $ \mathbb{N}_{> 0} $ to $ \mathbb{N}_{> 0} $.
+
+*No collisions.* The two image sets are
+
+$$$
+\begin{aligned}
+\{\, 2n : n \ge 1 \,\} \;&=\; \{ 2, 4, 6, 8, \ldots \} &&\text{(the evens)}, \\
+\{\, 2k - 1 : k \ge 1 \,\} \;&=\; \{ 1, 3, 5, 7, \ldots \} &&\text{(the odds)}.
+\end{aligned}
+$$$
+
+These are disjoint, and together they exhaust $ \mathbb{N}_{> 0} $. Combined with the obvious injectivity within each group (different $ n $'s map to different even rooms; different $ k $'s map to different odd rooms), the assignment is a bijection between the combined guest list and the room list, sending
+
+$$$
+\{\, g_n \,\}_{n \ge 1} \,\cup\, \{\, h_k \,\}_{k \ge 1} \;\longrightarrow\; \mathbb{N}_{> 0},
+$$$
+
+where the union on the left is *disjoint* (the existing and new guests are different people). Every guest, old and new, ends up in exactly one room. $ \blacksquare $
+
+## Remark — Why the "+1" Trick Doesn't Generalize
+
+For *one* new guest, the textbook used $ n \mapsto n + 1 $: everyone shifts up one room, freeing room $ 1 $. For *finitely many*, say $ m $ new guests, the same idea works: $ n \mapsto n + m $ frees rooms $ 1, 2, \ldots, m $.
+
+But you cannot shift everyone up "by infinity." There is no room number "$ n + \aleph_0 $" — the rooms are indexed by natural numbers, not by ordinals. The doubling map $ n \mapsto 2n $ is the move that frees *infinitely many* rooms while every output stays a finite natural number; the image just skips every odd integer.
+
+This exploits a defining feature of $ \aleph_0 $: a proper subset of $ \mathbb{N}_{> 0} $ (the evens) can be in bijection with $ \mathbb{N}_{> 0} $ itself — Galileo's paradox, in essence. Finite sets cannot do this; infinite ones can.
+
+## Remark — Other Bijections That Work
+
+Doubling-and-halving is the cleanest scheme, but it isn't the only choice. *Any* pair of injections $ \alpha, \beta : \mathbb{N}_{> 0} \hookrightarrow \mathbb{N}_{> 0} $ with disjoint images whose union covers $ \mathbb{N}_{> 0} $ will work:
+
+| Existing $ g_n $ goes to $ \alpha(n) $ | New $ h_k $ goes to $ \beta(k) $ | Comment                                                |
+| :---                                   | :---                             | :---                                                   |
+| $ 2n $ (evens)                         | $ 2k - 1 $ (odds)                | The standard move.                                     |
+| $ 2n - 1 $ (odds)                      | $ 2k $ (evens)                   | Symmetric; just swaps the two groups.                  |
+| $ n + k_0 $ for some fixed $ k_0 $     | $ 1, 2, \ldots, k_0 $            | Fails — only $ k_0 $ rooms freed, not infinitely many. |
+
+The last row is the failure mode the previous remark warned about: a finite shift creates only finitely many vacancies, and the $ k_0 + 1 $-st new guest has nowhere to go.
+
+## Remark — Going Further, Countably Many Buses
+
+The next layer of difficulty: a *countable number of countable busloads* arrives — bus $ i $ contains guests $ h_{i, 1}, h_{i, 2}, h_{i, 3}, \ldots $ for each $ i = 1, 2, \ldots $. The clerk now needs to accommodate $ \aleph_0 \cdot \aleph_0 $ new guests.
+
+The same doubling idea scales via a *pairing function*. One clean choice uses prime-power encoding: send $ g_n $ to room $ 2^n $ and bus passenger $ h_{i, j} $ to room $ p_i^j $, where $ p_1, p_2, \ldots $ are the *odd* primes ($ 3, 5, 7, \ldots $). These rooms are all distinct by the fundamental theorem of arithmetic, so the assignment is an injection — every guest gets a unique room, though now a lot of rooms (those whose prime factorization mixes $ 2 $ with an odd prime, like $ 6 $ or $ 12 $) sit empty.
+
+Alternatively, the *Cantor pairing function*
+
+$$$
+\pi(i, j) \;=\; \frac{(i + j)(i + j + 1)}{2} + j
+$$$
+
+gives an explicit *bijection* $ \mathbb{N}_{> 0} \times \mathbb{N}_{> 0} \to \mathbb{N}_{> 0} $, which combined with $ g_n \mapsto 2n $ (still occupying the evens) lets the bus passengers fill the odd rooms with no waste.
+
+The moral: *every countable union of countable sets is countable*, so the hotel can always absorb such crowds. The clerk only runs out of rooms when a genuinely *uncountable* convention arrives — e.g., one guest for each real number — which is the content of Cantor's theorem in this section's language.
+
+## Remark — Reading This Through the Lens of Dominance
+
+This solution is, in Section 8.4 terms, exhibiting an *injection* from "all guests, existing plus new" into $ \mathbb{N}_{> 0} $ (the rooms). That is,
+
+$$$
+\left\lvert \{\, g_n \,\}_{n \ge 1} \,\cup\, \{\, h_k \,\}_{k \ge 1} \right\rvert \;\le\; \lvert \mathbb{N}_{> 0} \rvert \;=\; \aleph_0,
+$$$
+
+with the union disjoint. The reverse direction $ \aleph_0 \le \lvert \text{all guests} \rvert $ is trivial (every existing guest is already in the combined set, so there are at least $ \aleph_0 $ of them). By the Cantor-Bernstein-Schröder theorem,
+
+$$$
+\left\lvert \{\, g_n \,\}_{n \ge 1} \,\cup\, \{\, h_k \,\}_{k \ge 1} \right\rvert \;=\; \aleph_0,
+$$$
+
+i.e. $ \aleph_0 + \aleph_0 = \aleph_0 $. The Hilbert Hotel is a concrete, narrative form of this cardinal-arithmetic identity.

@@ -1,0 +1,133 @@
+.docname {Solution — GIAM 8.4 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.4 Problem 4
+
+## Problem
+
+We can inject $ \mathbb{Q} $ into $ \mathbb{Z} $ by sending $ \pm \tfrac{a}{b} $ to $ \pm 2^a 3^b $. Use this and another obvious injection to (in light of the C-B-S theorem) reaffirm the equivalence of these sets.
+
+## Setup
+
+We want to show $ \lvert \mathbb{Q} \rvert = \lvert \mathbb{Z} \rvert $. The Section 8.4 strategy says: exhibit injections in *both* directions, and let Cantor-Bernstein-Schröder upgrade them to a bijection.
+
+The first injection is supplied by the problem. We just need an "other obvious injection" in the reverse direction.
+
+## Injection $ \mathbb{Q} \hookrightarrow \mathbb{Z} $
+
+**Construction.** Every nonzero $ q \in \mathbb{Q} $ has a unique representation in *lowest terms*
+
+$$$
+q \;=\; \pm \frac{a}{b}, \qquad a, b \in \mathbb{N}_{> 0}, \;\; \gcd(a, b) = 1,
+$$$
+
+with a single chosen sign. Define $ f : \mathbb{Q} \to \mathbb{Z} $ by
+
+$$$
+f(q) \;=\; \begin{cases} \;\;\;\, 2^a 3^b & \text{if } q = +\tfrac{a}{b} > 0, \\ -2^a 3^b & \text{if } q = -\tfrac{a}{b} < 0, \\ \;\;\;\, 0 & \text{if } q = 0. \end{cases}
+$$$
+
+**Injectivity.** Suppose $ f(q_1) = f(q_2) $.
+
+*Sign matches sign.* The sign of $ f(q) $ matches the sign of $ q $ (and $ f(q) = 0 $ iff $ q = 0 $), so $ q_1 $ and $ q_2 $ share a sign — and either both are $ 0 $ (in which case $ q_1 = q_2 $) or both are nonzero.
+
+*Both nonzero.* Write $ \lvert q_1 \rvert = a_1 / b_1 $ and $ \lvert q_2 \rvert = a_2 / b_2 $ in lowest terms. The equality $ f(q_1) = f(q_2) $ reduces to
+
+$$$
+2^{a_1} \, 3^{b_1} \;=\; 2^{a_2} \, 3^{b_2}.
+$$$
+
+By the **fundamental theorem of arithmetic** (unique prime factorization), $ a_1 = a_2 $ and $ b_1 = b_2 $. So $ q_1 = q_2 $.
+
+Therefore $ f $ is injective. $ \blacksquare $
+
+(The map $ f $ is *not* surjective — its image misses every integer divisible by a prime other than $ 2 $ or $ 3 $, e.g. $ 5, 7, 11, \ldots $. But injectivity is all C-B-S requires.)
+
+## The Other Obvious Injection — $ \mathbb{Z} \hookrightarrow \mathbb{Q} $
+
+Every integer *is* a rational. The inclusion map
+
+$$$
+\iota : \mathbb{Z} \to \mathbb{Q}, \qquad n \;\mapsto\; n \;\; (=\; \tfrac{n}{1})
+$$$
+
+is well-defined and *trivially injective*: if $ \iota(m) = \iota(n) $ then $ m = n $ as rationals, hence as integers. $ \blacksquare $
+
+This is the "obvious" injection the problem alludes to.
+
+## Conclusion — Apply C-B-S
+
+We now have:
+
+| Direction                       | Injection                                                       |
+| :---                            | :---                                                            |
+| $ \mathbb{Q} \to \mathbb{Z} $   | $ f $ defined above (via the $ \pm 2^a 3^b $ encoding).         |
+| $ \mathbb{Z} \to \mathbb{Q} $   | $ \iota $, the inclusion $ n \mapsto n $.                       |
+
+The Cantor-Bernstein-Schröder theorem (Section 8.4) says: whenever there are injections $ A \to B $ and $ B \to A $, there is a bijection $ A \to B $. Applied with $ A = \mathbb{Q} $, $ B = \mathbb{Z} $:
+
+$$$
+\lvert \mathbb{Q} \rvert \;=\; \lvert \mathbb{Z} \rvert. \quad \blacksquare
+$$$
+
+Both sets are equinumerous with $ \mathbb{N} $ — both have cardinality $ \aleph_0 $. The rationals are *not* "more numerous" than the integers, despite the dense, fraction-thick appearance of $ \mathbb{Q} $ inside $ \mathbb{R} $.
+
+## Remark — Fine Print of the $ \pm 2^a 3^b $ Encoding
+
+The formula in the problem looks slick but has three places to be careful:
+
+1. *Lowest terms.* The same rational has many fraction representations: $ \tfrac{1}{2} = \tfrac{2}{4} = \tfrac{3}{6} = \cdots $. Without the lowest-terms requirement, $ f $ would not be well-defined — $ \tfrac{1}{2} $ and $ \tfrac{2}{4} $ would map to two *different* integers ($ 2^1 3^2 = 18 $ vs. $ 2^2 3^4 = 324 $). Demanding $ \gcd(a, b) = 1 $ picks out a unique representative.
+
+2. *Sign of zero.* The expression "$ \pm \tfrac{a}{b} $" doesn't naturally cover $ 0 $ — there is no positive $ a $ with $ a / b = 0 $. The cleanest fix is to handle $ 0 $ as an explicit special case, mapping it to $ 0 \in \mathbb{Z} $.
+
+3. *Injectivity rests on $ 2 \ne 3 $.* The reason $ 2^a 3^b $ uniquely determines $ (a, b) $ is the fundamental theorem of arithmetic. Any two *distinct* primes would do — the choice of $ 2 $ and $ 3 $ is just convention.
+
+## Remark — Why This is Easier Than a Direct Bijection
+
+We *could* construct a direct bijection $ \mathbb{Q} \leftrightarrow \mathbb{Z} $ by listing the positive rationals along a *Cantor zigzag* through the integer lattice (the trick mentioned in earlier sections):
+
+$$$
+\tfrac{1}{1}, \;\; \tfrac{1}{2}, \;\; \tfrac{2}{1}, \;\; \tfrac{1}{3}, \;\; \tfrac{2}{2}, \;\; \tfrac{3}{1}, \;\; \tfrac{1}{4}, \;\; \ldots
+$$$
+
+skipping any non-lowest-terms duplicates (like $ \tfrac{2}{2} $), then interleaving with the negatives and $ 0 $ to get a bijection $ \mathbb{Q} \leftrightarrow \mathbb{Z} $. This works but is *notationally annoying*: writing the bijection in closed form requires combining the zigzag index with a duplicate-skipping rule.
+
+C-B-S lets us bypass all that. Two *messy* injections, going opposite ways, are enough to certify equivalence — no explicit bijection required. This is exactly the "useful shortcut" the textbook advertised at the start of Section 8.4.
+
+## Remark — Both Sides Equal $ \aleph_0 $
+
+Independently, both $ \mathbb{Z} $ and $ \mathbb{Q} $ are *countable* (they inject into $ \mathbb{N} $):
+
+- $ \mathbb{Z} \hookrightarrow \mathbb{N} $: send $ 0 \mapsto 1 $, $ n \mapsto 2n $, $ -n \mapsto 2n + 1 $ for $ n \ge 1 $.
+- $ \mathbb{Q} \hookrightarrow \mathbb{N} $: the problem's $ f $ followed by the $ \mathbb{Z} \hookrightarrow \mathbb{N} $ map above.
+
+So $ \lvert \mathbb{Z} \rvert \le \aleph_0 $ and $ \lvert \mathbb{Q} \rvert \le \aleph_0 $. Both contain $ \mathbb{N} $ as a subset (positive integers / positive integers-over-$ 1 $), giving the reverse inequalities $ \aleph_0 \le \lvert \mathbb{Z} \rvert $ and $ \aleph_0 \le \lvert \mathbb{Q} \rvert $. Combined:
+
+$$$
+\lvert \mathbb{Z} \rvert \;=\; \lvert \mathbb{Q} \rvert \;=\; \aleph_0.
+$$$
+
+This is consistent with what the C-B-S argument established — and reaffirms it through the "common rung" $ \aleph_0 $, without invoking C-B-S directly.
+
+## Remark — Same Trick, Bigger Sets
+
+The prime-power encoding scales. The same idea proves countability of much larger-looking sets:
+
+| Set                                       | Injection into $ \mathbb{Z} $ (or $ \mathbb{N} $)                                              |
+| :---                                      | :---                                                                                           |
+| $ \mathbb{Q} $                            | $ \pm \tfrac{a}{b} \mapsto \pm 2^a 3^b $ — the problem's recipe.                               |
+| $ \mathbb{Q}^2 $                          | $ (q_1, q_2) \mapsto 2^{f(q_1)} \cdot 3^{f(q_2)} $.                                            |
+| $ \mathbb{Q}^k $                          | Use the first $ k $ primes $ p_1, \ldots, p_k $: $ (q_1, \ldots, q_k) \mapsto \prod_i p_i^{f(q_i)} $. |
+| Finite tuples of naturals                 | $ (s_1, \ldots, s_k) \mapsto p_1^{s_1} \cdot p_2^{s_2} \cdots p_k^{s_k} $.                     |
+| Finite subsets of $ \mathbb{N} $          | $ \{n_1 < n_2 < \cdots < n_k\} \mapsto p_{n_1} \cdot p_{n_2} \cdots p_{n_k} $.                 |
+
+The general principle: *any set built from countably many countable "pieces" with finite extra data is itself countable.* Prime-power encoding is one concrete way to witness this — a clean alternative to the Cantor zigzag pairing function from Section 8.2.
+
+Cantor's actual breakthrough was showing the *failure* of this kind of trick for $ \mathbb{R} $: no matter how clever the encoding, $ \mathbb{R} $ cannot be injected into $ \mathbb{N} $ (or $ \mathbb{Z} $, or $ \mathbb{Q} $). That's the content of Cantor's diagonal argument — the next rung up in the hierarchy.

@@ -1,0 +1,136 @@
+.docname {Solution — GIAM 8.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 8.4 Problem 3
+
+## Problem
+
+Fill in the details of the proof that dominance is an ordering relation. (You may simply cite the C-B-S theorem in proving anti-symmetry.)
+
+## Setup
+
+Section 8.4 defines:
+
+> If $ A $ and $ B $ are sets, we say "$ A $ dominates $ B $" and write $ \lvert A \rvert \ge \lvert B \rvert $ iff there is an injection $ f : B \to A $.
+
+(The textbook writes "$ \lvert A \rvert > \lvert B \rvert $" for dominance; the relation is *not* strict, so we use "$ \ge $" here to match standard notation.)
+
+For $ \ge $ to be an *ordering relation* on the class of cardinal numbers, three properties need verification:
+
+| Property      | Statement                                                                                                                          |
+| :---          | :---                                                                                                                               |
+| Reflexivity   | $ \lvert A \rvert \ge \lvert A \rvert $ for every set $ A $.                                                                       |
+| Transitivity  | $ \lvert A \rvert \ge \lvert B \rvert $ and $ \lvert B \rvert \ge \lvert C \rvert $ imply $ \lvert A \rvert \ge \lvert C \rvert $.  |
+| Anti-symmetry | $ \lvert A \rvert \ge \lvert B \rvert $ and $ \lvert B \rvert \ge \lvert A \rvert $ imply $ \lvert A \rvert = \lvert B \rvert $.    |
+
+We take each in turn.
+
+## Reflexivity
+
+We must exhibit an injection $ A \to A $ for every set $ A $. The *identity function* $ \mathrm{id}_A : A \to A $, defined by $ \mathrm{id}_A(x) = x $, does the job:
+
+- *Well-defined*: every $ x \in A $ maps to $ x \in A $.
+- *Injective*: if $ \mathrm{id}_A(x) = \mathrm{id}_A(y) $, then by definition $ x = y $.
+
+So $ \lvert A \rvert \ge \lvert A \rvert $. $ \blacksquare $
+
+## Transitivity
+
+Suppose $ \lvert A \rvert \ge \lvert B \rvert $ and $ \lvert B \rvert \ge \lvert C \rvert $. Unpacking:
+
+- There is an injection $ f : B \to A $.
+- There is an injection $ g : C \to B $.
+
+We must produce an injection $ C \to A $. The natural candidate is the *composition* $ f \circ g : C \to A $, defined by $ (f \circ g)(c) = f(g(c)) $.
+
+**Well-defined.** For any $ c \in C $, the chain $ g(c) \in B $ (since $ g $ has codomain $ B $) and $ f(g(c)) \in A $ (since $ f $ has codomain $ A $) puts the output safely in $ A $. So $ f \circ g $ really is a function $ C \to A $.
+
+**Injective.** Suppose $ (f \circ g)(c_1) = (f \circ g)(c_2) $, i.e.
+
+$$$
+f(g(c_1)) \;=\; f(g(c_2)).
+$$$
+
+Apply injectivity of $ f $ to conclude $ g(c_1) = g(c_2) $, then apply injectivity of $ g $ to conclude $ c_1 = c_2 $. So $ f \circ g $ is injective.
+
+Therefore $ \lvert A \rvert \ge \lvert C \rvert $. $ \blacksquare $
+
+## Anti-symmetry
+
+Suppose $ \lvert A \rvert \ge \lvert B \rvert $ and $ \lvert B \rvert \ge \lvert A \rvert $. Unpacking:
+
+- There is an injection $ f : B \to A $.
+- There is an injection $ g : A \to B $.
+
+The **Cantor-Bernstein-Schröder theorem** (Section 8.4) states precisely that, in this situation, there is a *bijection* $ A \to B $. By the definition of set equivalence,
+
+$$$
+\lvert A \rvert \;=\; \lvert B \rvert. \quad \blacksquare
+$$$
+
+## Conclusion
+
+Dominance is *reflexive* (identity), *transitive* (composition of injections), and *anti-symmetric* (C-B-S). It is therefore an ordering relation on the class of cardinal numbers.
+
+## Remark — Set vs. Cardinal
+
+On the underlying class of *sets*, the dominance relation $ \ge $ is reflexive and transitive but *not* anti-symmetric in the strict "$ A = B $" sense — two distinct sets like $ \{1, 2\} $ and $ \{a, b\} $ dominate each other but are not literally equal as sets, only *equivalent*.
+
+So on sets, $ \ge $ is a *preorder*; anti-symmetry only kicks in after we mod out by set equivalence. The quotient — cardinal numbers — is where dominance becomes a genuine partial order.
+
+| Object           | Structure of $ \ge $                                            |
+| :---             | :---                                                            |
+| All sets         | Preorder (reflexive + transitive).                              |
+| Cardinal numbers | Partial order (preorder + anti-symmetry, via C-B-S).            |
+
+This is the standard pattern in mathematics: a *preorder* + an *equivalence relation* whose quotient gives a *partial order*. The textbook's footnote — "the things really being compared are the cardinal numbers of sets" — gestures at exactly this construction.
+
+## Remark — Is It Also a Total Order?
+
+A *total* (or *linear*) order would additionally require *trichotomy*: any two cardinals are comparable,
+
+$$$
+\lvert A \rvert \le \lvert B \rvert \;\;\text{or}\;\; \lvert B \rvert \le \lvert A \rvert.
+$$$
+
+In ZFC, this is true — but the proof requires the Axiom of Choice. The argument: AC implies the *well-ordering theorem*, which lets us put any set in bijection with some ordinal; ordinals are totally ordered; cardinals (initial ordinals) inherit this order, so any two sets are comparable.
+
+In *ZF without choice*, however, there can exist sets whose cardinals are genuinely incomparable — neither dominates the other. So:
+
+- *ZFC*: dominance is a **total order** on cardinals.
+- *ZF alone*: dominance is only a **partial order** on cardinals.
+
+The textbook works inside ZFC throughout, and treats cardinals as totally ordered. Worth knowing that this is a non-trivial assumption.
+
+## Remark — The Strict Version $ \lvert A \rvert < \lvert B \rvert $
+
+The *strict* version of dominance is defined by
+
+$$$
+\lvert A \rvert < \lvert B \rvert \;\;\iff\;\; \lvert A \rvert \le \lvert B \rvert \;\text{ and }\; \lvert A \rvert \ne \lvert B \rvert.
+$$$
+
+This is useful — Cantor's theorem is phrased as $ \lvert A \rvert < \lvert \mathcal{P}(A) \rvert $, and Problem $ 2 $ above placed $ \lvert \mathbb{R} \rvert < \lvert F \rvert $.
+
+The strict version is *irreflexive* and *transitive* — a *strict partial order* — and is interdefinable with the non-strict one:
+
+$$$
+\lvert A \rvert \le \lvert B \rvert \;\;\iff\;\; \lvert A \rvert < \lvert B \rvert \;\text{ or }\; \lvert A \rvert = \lvert B \rvert.
+$$$
+
+So once we have $ \le $ as a partial order, the corresponding facts about $ < $ come for free.
+
+## Remark — Why C-B-S is the Hard Part
+
+Reflexivity and transitivity are essentially trivial — they follow from the basic logic of functions (identity is an injection; composition preserves injectivity). The substantive content of "dominance is an ordering" lives entirely in anti-symmetry, which is the Cantor-Bernstein-Schröder theorem.
+
+That asymmetry of difficulty reflects something genuine: producing two injections $ f : A \to B $ and $ g : B \to A $ is usually *much* easier than producing one explicit bijection $ A \to B $. C-B-S says we don't have to — two injections going opposite ways are *enough* to certify equivalence.
+
+This makes dominance an enormously useful comparison tool in cardinality arguments: to prove $ \lvert A \rvert = \lvert B \rvert $, exhibit two ad-hoc injections rather than wrestle with one explicit bijection. A canonical example, mentioned in Section 8.4 itself: the unit interval $ (0, 1) $ and the set of infinite binary strings $ F_2^\infty $. A direct bijection is fiddly because of dual binary expansions ($ 0.0\overline{1} = 0.1\overline{0} $); two injections (one trivial, one via the "shift down by one position" trick from the Hilbert-Hotel discussion) are easy, and C-B-S finishes the job.
