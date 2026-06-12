@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="480" height="360" fill="white"/>
+
+  <!-- four rays from the interior vertex (math angles 60°, 120°, 210°, 340°) -->
+  <g stroke="#222" stroke-width="1.5" fill="none">
+    <line x1="240" y1="200" x2="305"   y2="87.4"/>
+    <line x1="240" y1="200" x2="175"   y2="87.4"/>
+    <line x1="240" y1="200" x2="127.4" y2="265"/>
+    <line x1="240" y1="200" x2="362.2" y2="244.5"/>
+  </g>
+
+  <!-- vertex dot -->
+  <circle cx="240" cy="200" r="2.5" fill="#222"/>
+
+  <!-- angle labels in each wedge -->
+  <g font-size="22" fill="#222" text-anchor="middle">
+    <text x="240"   y="133">π/3</text>
+    <text x="167.6" y="186">a<tspan font-size="14" dy="-8">⋆</tspan></text>
+    <text x="246.5" y="281">c<tspan font-size="14" dy="-8">⋆⋆</tspan></text>
+    <text x="310.5" y="180">b<tspan font-size="14" dy="-8">⋆</tspan></text>
+  </g>
+
+  <!-- piece-type sublabels -->
+  <g font-size="12" fill="#666" font-style="italic" text-anchor="middle">
+    <text x="240"   y="152">equilateral</text>
+    <text x="167.6" y="202">green</text>
+    <text x="246.5" y="298">purple</text>
+    <text x="310.5" y="196">green</text>
+  </g>
+</svg>

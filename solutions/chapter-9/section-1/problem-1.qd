@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 9.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 9.1 Problem 1
+
+## Problem
+
+What value should we get if we sum all of the angles that appear around one of the interior vertices in the finished diagram? Verify that all three have the correct sum.
+
+## Setup — Conway's Notation
+
+Recall the notation from Section 9.1:
+
+- $ a, b, c $ are the trisected angles of $ \triangle ABC $: $ 3a = A $, $ 3b = B $, $ 3c = C $.
+- Since $ A + B + C = \pi $,
+$$$
+a + b + c \;=\; \tfrac{\pi}{3}.
+$$$
+- A single star adds $ \pi/3 $: $ x^\star = x + \pi/3 $.
+- A double star adds $ 2\pi/3 $: $ x^{\star\star} = x + 2\pi/3 $.
+
+## What Sum to Expect
+
+The "interior vertices" are the three vertices of the central equilateral triangle (the Morley triangle). Each is an *interior point of the plane* — not a corner of the boundary — so the full angle around it must be
+
+$$$
+2\pi.
+$$$
+
+That's the value we're after. The exercise is to confirm that the angles the diagram drops at each interior vertex genuinely sum to $ 2\pi $.
+
+## Anatomy of an Interior Vertex
+
+At every vertex of the central equilateral triangle, exactly *four* of Conway's seven puzzle pieces meet:
+
+1. The **central equilateral** itself — contributing its corner $ \pi/3 $.
+2. The **purple obtuse triangle** sitting opposite the vertex (away from the equilateral) — contributing its double-starred corner.
+3. **Two green acute triangles**, one along each of the equilateral's two sides meeting at the vertex — each contributing a single-starred corner.
+
+In the textbook's labeling (Figure 9.3 / Exercise 1 figure), the three interior vertices are:
+
+| Position in the figure | Double-star carried | Adjacent single-stars |
+| :---                   | :---:               | :---:                 |
+| Top-left of equilateral  | $ b^{\star\star} $ | $ a^\star,\; c^\star $ |
+| Top-right of equilateral | $ a^{\star\star} $ | $ b^\star,\; c^\star $ |
+| Bottom of equilateral    | $ c^{\star\star} $ | $ a^\star,\; b^\star $ |
+
+The figure below shows the four angles meeting at the *bottom* interior vertex.
+
+!(70%)[Four angles meeting at an interior vertex of the Morley triangle](problem-1-vertex.svg "The four wedges at the bottom interior vertex: π/3 from the central equilateral, two single-starred angles from the adjacent green triangles, and one double-starred angle from the opposite purple triangle.")
+
+## Computing the Sum at the Bottom Vertex
+
+At the bottom interior vertex the four angles are
+
+$$$
+\underbrace{\tfrac{\pi}{3}}_{\text{equilateral}} \;+\; \underbrace{a^\star}_{\text{green}} \;+\; \underbrace{b^\star}_{\text{green}} \;+\; \underbrace{c^{\star\star}}_{\text{purple}}.
+$$$
+
+Expanding using $ x^\star = x + \pi/3 $ and $ x^{\star\star} = x + 2\pi/3 $:
+
+$$$
+\tfrac{\pi}{3} \;+\; \bigl(a + \tfrac{\pi}{3}\bigr) \;+\; \bigl(b + \tfrac{\pi}{3}\bigr) \;+\; \bigl(c + \tfrac{2\pi}{3}\bigr) \;=\; (a + b + c) \;+\; \tfrac{5\pi}{3}.
+$$$
+
+Substituting $ a + b + c = \pi/3 $:
+
+$$$
+(a + b + c) + \tfrac{5\pi}{3} \;=\; \tfrac{\pi}{3} + \tfrac{5\pi}{3} \;=\; 2\pi. \;\; \blacksquare
+$$$
+
+## All Three Vertices
+
+At every interior vertex the four angles take the form
+
+$$$
+\tfrac{\pi}{3} \;+\; x^\star \;+\; y^\star \;+\; z^{\star\star} \qquad \text{where } \{x, y, z\} = \{a, b, c\}.
+$$$
+
+The right-hand side simplifies identically:
+
+$$$
+\tfrac{\pi}{3} + (x + \tfrac{\pi}{3}) + (y + \tfrac{\pi}{3}) + (z + \tfrac{2\pi}{3}) \;=\; (x + y + z) + \tfrac{5\pi}{3} \;=\; \tfrac{\pi}{3} + \tfrac{5\pi}{3} \;=\; 2\pi.
+$$$
+
+So all three vertices have the same sum, $ 2\pi $:
+
+| Interior vertex          | Four angles meeting                                  | Sum    |
+| :---                     | :---                                                 | :---:  |
+| Top-left ($ V_b $)       | $ \pi/3,\; a^\star,\; c^\star,\; b^{\star\star} $    | $ 2\pi $ |
+| Top-right ($ V_a $)      | $ \pi/3,\; b^\star,\; c^\star,\; a^{\star\star} $    | $ 2\pi $ |
+| Bottom ($ V_c $)         | $ \pi/3,\; a^\star,\; b^\star,\; c^{\star\star} $    | $ 2\pi $ |
+
+All three check. $ \blacksquare $
+
+## Remark — Why This is a Consistency Check, Not a Coincidence
+
+The whole point of Conway's construction is that the seven puzzle pieces *fit together with no gaps or overlaps*. The angles meeting at any interior vertex of the figure had better sum to exactly $ 2\pi $ — otherwise the figure could not close up.
+
+So this exercise is verifying *necessary* arithmetic: if the angle sums *didn't* come out to $ 2\pi $, Conway's puzzle would have a sliver-shaped crack or overlap at that vertex, and the construction would fail.
+
+What makes the verification non-trivial is the bookkeeping. The three double-starred angles are the *largest* pieces in the puzzle (each exceeds $ 2\pi/3 $); the equilateral's $ \pi/3 $ is the smallest. It is not obvious at a glance that one double-star plus two single-stars plus $ \pi/3 $ lands exactly at $ 2\pi $. That hinges entirely on $ a + b + c = \pi/3 $, which itself just restates the elementary fact $ A + B + C = \pi $.
+
+## Remark — The Boundary Vertices, For Contrast
+
+The diagram has interior vertices, but it also has *boundary* vertices — and the angle sums there are different:
+
+- **The three corners of the original triangle** ($ A $, $ B $, $ C $). At each, *three* trisector wedges meet, summing to $ A = 3a $, $ B = 3b $, or $ C = 3c $ — *not* $ 2\pi $. These are corners on the boundary of the figure, so only the *interior* angle (less than $ \pi $) is filled with puzzle pieces.
+- **The points along the sides of $ \triangle ABC $** where a trisector meets the opposite side. These are not vertices of the puzzle — they lie on a straight edge.
+
+Only the *three vertices of the Morley triangle* are truly interior points of the figure. They are the only places where a full $ 2\pi $ must be accounted for, and the only places where the puzzle's fit is genuinely being tested.
+
+## Remark — What Conway Actually Needs From This
+
+Conway's argument doesn't require us to verify the angle sum at every vertex by hand — the construction is built so that the pieces fit by design. Specifically:
+
+- **Side lengths** are chosen so that adjacent edges match (this is the "appropriately scaled" step in the proof — the unit-edge equilateral and the green/purple scalings are pinned by the unit-length-segment construction inside the obtuse triangle).
+- **Angles** around each interior vertex are *forced* to sum to $ 2\pi $ by $ a + b + c = \pi/3 $.
+
+This problem invites us to *look behind the curtain* and check that the bookkeeping really does work out. It's a "$ 1 + 1 = 2 $" moment for the proof — confirming the puzzle hasn't snuck a contradiction past us, and isolating exactly which elementary identity is doing the closing.
+
+## Remark — Why $ 5\pi/3 $ Shows Up
+
+The combinatorial heart of the calculation is the bookkeeping of the stars. At each interior vertex we have
+
+$$$
+(\text{1 plain corner from equilateral}) + (\text{2 singles}) + (\text{1 double}) = \tfrac{\pi}{3} + 2 \cdot \tfrac{\pi}{3} + 1 \cdot \tfrac{2\pi}{3} \;=\; \tfrac{5\pi}{3}
+$$$
+
+worth of "star contribution" alone. The remaining $ x + y + z = a + b + c = \pi/3 $ — the un-starred letters — pushes the sum the final $ \pi/3 $ up to $ 2\pi $. The two contributions are completely independent: the stars supply the *fixed* offset, and the elementary angle-sum identity of $ \triangle ABC $ supplies the rest.

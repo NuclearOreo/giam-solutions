@@ -1,0 +1,194 @@
+.docname {Solution — GIAM 9.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 9.1 Problem 2
+
+## Problem
+
+In this section we talked about similarity. Two figures in the plane are similar if it is possible to turn one into the other by a sequence of mappings: a translation, a rotation, and a scaling.
+
+Geometric similarity is an equivalence relation. To fix our notation, let $ T(x, y) $ represent a generic translation, $ R(x, y) $ a rotation, and $ S(x, y) $ a scaling — thus a generic similarity is a function from $ \mathbb{R}^2 $ to $ \mathbb{R}^2 $ that can be written in the form $ S(R(T(x, y))) $.
+
+Discuss the three properties of an equivalence relation (reflexivity, symmetry, and transitivity) in terms of geometric similarity.
+
+## Setup — What a Similarity Really Looks Like
+
+Pin down the elementary pieces:
+
+- A *translation* $ T_v $ sends $ p \mapsto p + v $, where $ v \in \mathbb{R}^2 $.
+- A *rotation* $ R_\theta $ about the origin sends $ p \mapsto R_\theta \, p $, where $ R_\theta $ is the linear map "rotate by angle $ \theta $".
+- A *scaling* $ S_k $ about the origin sends $ p \mapsto k \, p $, where $ k > 0 $ is the scale factor.
+
+A generic similarity has the form $ \varphi = S_k \circ R_\theta \circ T_v $, i.e.
+
+$$$
+\varphi(p) \;=\; k \cdot R_\theta(p + v) \;=\; k R_\theta \, p \;+\; k R_\theta \, v.
+$$$
+
+Set $ w := k R_\theta \, v $ — the "effective output translation". Then
+
+$$$
+\varphi(p) \;=\; k R_\theta \, p \;+\; w.
+$$$
+
+As $ v $ varies over $ \mathbb{R}^2 $, so does $ w $ (since $ k > 0 $ and $ R_\theta $ is invertible). So *every* map of this form is a similarity, and conversely.
+
+**Working form.** A similarity is a map $ \varphi : \mathbb{R}^2 \to \mathbb{R}^2 $ of the form
+
+$$$
+\varphi(p) \;=\; k R_\theta \, p \;+\; w, \qquad k > 0,\; \theta \in \mathbb{R},\; w \in \mathbb{R}^2.
+$$$
+
+Two figures $ F_1, F_2 \subseteq \mathbb{R}^2 $ are **similar** (written $ F_1 \sim F_2 $) if there is a similarity $ \varphi $ with $ \varphi(F_1) = F_2 $.
+
+## Reflexivity — $ F \sim F $
+
+We need a similarity that fixes every figure $ F $. The identity map $ p \mapsto p $ does it — and it *is* a similarity: take $ k = 1 $, $ \theta = 0 $, $ w = 0 $:
+
+$$$
+\varphi(p) \;=\; 1 \cdot R_0 \cdot p \;+\; 0 \;=\; p.
+$$$
+
+In the original $ S \circ R \circ T $ form: $ T = T_0 $ (translate by zero), $ R = R_0 $ (rotate by zero), $ S = S_1 $ (scale by one). Composition is the identity.
+
+So $ F \sim F $ for every figure $ F $. $ \blacksquare $
+
+## Symmetry — If $ F_1 \sim F_2 $ Then $ F_2 \sim F_1 $
+
+Suppose $ F_1 \sim F_2 $ via $ \varphi(p) = k R_\theta \, p + w $. We want a similarity $ \psi $ with $ \psi(F_2) = F_1 $. The natural candidate is $ \psi = \varphi^{-1} $.
+
+Solving $ q = k R_\theta \, p + w $ for $ p $:
+
+$$$
+\begin{aligned}
+\varphi^{-1}(q) \;&=\; R_\theta^{-1}\!\left(\tfrac{q - w}{k}\right) \\[2pt]
+&=\; \tfrac{1}{k}\, R_{-\theta}(q - w) \\[2pt]
+&=\; \tfrac{1}{k}\, R_{-\theta} \, q \;-\; \tfrac{1}{k}\, R_{-\theta} \, w.
+\end{aligned}
+$$$
+
+This has the working form $ k' R_{\theta'} q + w' $ with
+
+$$$
+k' \;=\; \tfrac{1}{k} \;>\; 0, \qquad \theta' \;=\; -\theta, \qquad w' \;=\; -\tfrac{1}{k}\, R_{-\theta} \, w \;\in\; \mathbb{R}^2.
+$$$
+
+So $ \varphi^{-1} $ is a similarity, and $ \varphi^{-1}(F_2) = F_1 $. Thus $ F_2 \sim F_1 $. $ \blacksquare $
+
+**In the original $ S \circ R \circ T $ form:** $ \varphi^{-1} $ decomposes as $ S_{1/k} \circ R_{-\theta} \circ T_{-w} $:
+
+$$$
+\bigl(S_{1/k} \circ R_{-\theta} \circ T_{-w}\bigr)(q) \;=\; \tfrac{1}{k}\, R_{-\theta}(q - w) \;=\; \varphi^{-1}(q). \;\;\checkmark
+$$$
+
+## Transitivity — If $ F_1 \sim F_2 $ and $ F_2 \sim F_3 $ Then $ F_1 \sim F_3 $
+
+Suppose $ \varphi_1(p) = k_1 R_{\theta_1} \, p + w_1 $ maps $ F_1 $ to $ F_2 $, and $ \varphi_2(p) = k_2 R_{\theta_2} \, p + w_2 $ maps $ F_2 $ to $ F_3 $. Their composition maps $ F_1 $ to $ F_3 $.
+
+Compute:
+
+$$$
+\begin{aligned}
+(\varphi_2 \circ \varphi_1)(p) \;&=\; \varphi_2\bigl(k_1 R_{\theta_1} \, p + w_1\bigr) \\[2pt]
+&=\; k_2 R_{\theta_2}\bigl(k_1 R_{\theta_1} \, p + w_1\bigr) \;+\; w_2 \\[2pt]
+&=\; (k_1 k_2)\, R_{\theta_2} R_{\theta_1} \, p \;+\; k_2 R_{\theta_2} \, w_1 \;+\; w_2 \\[2pt]
+&=\; (k_1 k_2)\, R_{\theta_1 + \theta_2} \, p \;+\; \bigl(k_2 R_{\theta_2} \, w_1 + w_2\bigr).
+\end{aligned}
+$$$
+
+This has the working form $ k' R_{\theta'} \, p + w' $ with
+
+$$$
+k' \;=\; k_1 k_2 \;>\; 0, \qquad \theta' \;=\; \theta_1 + \theta_2, \qquad w' \;=\; k_2 R_{\theta_2} \, w_1 + w_2 \;\in\; \mathbb{R}^2.
+$$$
+
+So $ \varphi_2 \circ \varphi_1 $ is a similarity, and $ F_1 \sim F_3 $. $ \blacksquare $
+
+**Key fact used.** $ R_{\theta_2} R_{\theta_1} = R_{\theta_1 + \theta_2} $ — composing two rotations about the same center gives a rotation whose angle is the *sum* of the two angles.
+
+## Conclusion — Similarities Form a Group
+
+The three equivalence-relation properties of $ \sim $ are exactly the three group-theoretic facts about similarity maps:
+
+| Equivalence property of $ \sim $ | Underlying fact about similarity maps |
+| :---                              | :---                                  |
+| Reflexivity                       | The identity is a similarity.         |
+| Symmetry                          | The inverse of a similarity is a similarity. |
+| Transitivity                      | The composition of two similarities is a similarity. |
+
+Together these say exactly that **similarities of the plane form a group** under composition. *Equivalence under a group action is always an equivalence relation* — that's the structural reason $ \sim $ behaves as it does, and the calculations above are merely the verification.
+
+## Remark — Why the $ S \circ R \circ T $ Form is Enough
+
+The textbook's $ S(R(T(x, y))) $ form might seem restrictive: it pins down a specific order (translate, then rotate, then scale). Symmetry and transitivity, however, produce expressions like $ T_{-w} \circ R_{-\theta} \circ S_{1/k} $ or $ S \circ R \circ T \circ S \circ R \circ T $ — orderings that don't *look* canonical.
+
+The redemption: rotations, scalings, and translations don't all commute, but they *almost* commute — composition can always be rewritten in the canonical order at the cost of adjusting parameters. The relevant identities:
+
+$$$
+\begin{aligned}
+S_k \circ T_v \;&=\; T_{kv} \circ S_k, \\
+R_\theta \circ T_v \;&=\; T_{R_\theta \, v} \circ R_\theta, \\
+S_k \circ R_\theta \;&=\; R_\theta \circ S_k.
+\end{aligned}
+$$$
+
+The first says scaling-then-translating is the same as translating-by-a-scaled-vector first, then scaling. The second is the analogue for rotation. The third — scalings and rotations *about the origin* — genuinely commute.
+
+These three identities let us shuffle a long composition into the canonical $ S_k \circ R_\theta \circ T_v $ shape one step at a time: push all translations to the right, push all scalings to the left, and you're done.
+
+## Remark — Direct vs Indirect Similarities
+
+The textbook's definition silently excludes **reflections**. A similarity that includes a reflection (e.g. $ (x, y) \mapsto (x, -y) $) reverses *orientation*. Maps of the form $ S \circ R \circ T $ — the textbook's form — are all **direct (orientation-preserving) similarities**.
+
+If we admitted reflections, $ \sim $ would still be an equivalence relation — the three arguments above go through with one extra check (a reflection is its own inverse, $ \text{Refl} \circ \text{Refl} = \text{id} $, so the symmetry property is even simpler). Two figures that are *mirror images* would then be identified — a useful convention in elementary geometry.
+
+For Conway's Morley proof in Section 9.1, only direct similarities matter: the entire construction sits in a single oriented plane, and the similarity from the assembled puzzle back to $ \triangle ABC $ is built out of translation, rotation, and scaling alone — no flip is needed.
+
+## Remark — Algebraic Shortcut via $ \mathbb{C} $
+
+Identify $ \mathbb{R}^2 $ with $ \mathbb{C} $ via $ (x, y) \leftrightarrow x + iy $. Every direct similarity has the *single-variable complex* form
+
+$$$
+\varphi(z) \;=\; c\, z \;+\; w, \qquad c, w \in \mathbb{C},\; c \neq 0.
+$$$
+
+The complex number $ c = k\, e^{i\theta} $ packages the scale factor and rotation angle into one quantity (its modulus is $ k $, its argument is $ \theta $).
+
+In this language the three checks collapse to one-line arithmetic:
+
+| Property      | Witness in $ \mathbb{C} $                                                |
+| :---          | :---                                                                      |
+| Reflexivity   | $ \varphi(z) = z $ with $ c = 1 $, $ w = 0 $.                            |
+| Symmetry      | $ \varphi^{-1}(z) = z/c - w/c $, so $ c' = 1/c $ and $ w' = -w/c $.       |
+| Transitivity  | $ (\varphi_2 \circ \varphi_1)(z) = c_2 c_1 \, z + (c_2 w_1 + w_2) $.     |
+
+Each row is literally the same calculation done above over $ \mathbb{R}^2 $, with rotation-by-$ \theta $ replaced by multiplication by $ e^{i\theta} $.
+
+## Remark — Similarities are Bijections That Scale All Distances Equally
+
+Each similarity $ \varphi(p) = k R_\theta \, p + w $ enjoys three properties that make the term "similar" honest:
+
+- **Bijective**, with inverse $ \varphi^{-1}(q) = \tfrac{1}{k} R_{-\theta}(q - w) $.
+- **Continuous** (in fact Lipschitz with constant $ k $).
+- **Distance-scaling by exactly $ k $**: $ \lVert \varphi(p) - \varphi(q) \rVert = k \, \lVert p - q \rVert $ for all $ p, q $.
+
+It is the third property that justifies the *name*: $ \varphi $ multiplies every length by the same factor $ k $, so shapes are preserved — angles unchanged, ratios of side lengths unchanged.
+
+When $ k = 1 $, a similarity is an **isometry** (a rigid motion), and the induced equivalence relation is *congruence* — a finer equivalence than similarity, since congruent figures must additionally be the same *size*.
+
+## Remark — What "Discuss" Buys You Pedagogically
+
+The three properties of an equivalence relation feel abstract when stated as bare axioms (reflexive, symmetric, transitive). Translating them into geometric similarity gives each property a *picture*:
+
+- **Reflexivity** is the trivial observation that "$ F $ is similar to itself" — the identity transformation is always available.
+- **Symmetry** is "I can undo any similarity by another similarity" — every shape-preserving transformation has a shape-preserving inverse.
+- **Transitivity** is "chaining shape-preserving transformations gives a shape-preserving transformation" — and shape (angles and length-ratios) is preserved under composition.
+
+These three together are what justify lumping all triangles with the same three angles into a single *similarity class* — and ultimately what lets Conway "build a triangle similar to $ \triangle ABC $" in Section 9.1 and conclude that the *original* triangle inherits the equilateral-Morley property.
