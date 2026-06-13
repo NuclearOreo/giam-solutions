@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="600" height="360" fill="white"/>
+
+  <!-- ground plane z = 0 -->
+  <line x1="40" y1="280" x2="560" y2="280" stroke="#666" stroke-width="1.2"/>
+  <text x="565" y="285" font-size="11" font-style="italic" fill="#666">z = 0</text>
+
+  <!-- Sphere 1: center (150, 280), radius 60 -->
+  <path d="M 90 280 A 60 60 0 0 1 210 280" stroke="#222" stroke-width="1.5" fill="#e8eef5"/>
+  <text x="150" y="320" font-size="11" fill="#444" text-anchor="middle" font-style="italic">large sphere 1</text>
+
+  <!-- Sphere 2: center (450, 280), radius 50 -->
+  <path d="M 400 280 A 50 50 0 0 1 500 280" stroke="#222" stroke-width="1.5" fill="#e8eef5"/>
+  <text x="450" y="320" font-size="11" fill="#444" text-anchor="middle" font-style="italic">large sphere 2</text>
+
+  <!-- Sphere 3 (small): center (300, 280), radius 10 -->
+  <path d="M 290 280 A 10 10 0 0 1 310 280" stroke="#222" stroke-width="1.5" fill="#fde0e0"/>
+  <text x="300" y="320" font-size="10" fill="#444" text-anchor="middle" font-style="italic">small sphere</text>
+
+  <!-- Upper tangent plane to spheres 1, 2 (side view: slightly tilted line) -->
+  <line x1="60" y1="218" x2="540" y2="232" stroke="#c33" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+  <!-- Tangent points on the big spheres -->
+  <circle cx="152" cy="222" r="3.5" fill="#c33"/>
+  <circle cx="452" cy="230" r="3.5" fill="#c33"/>
+
+  <!-- Gap indicator: vertical dashed line from sphere 3 top to tangent line -->
+  <line x1="300" y1="270" x2="300" y2="226" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <g font-size="11" font-style="italic" fill="#666">
+    <text x="312" y="236">tangent plane</text>
+    <text x="312" y="248">flies over the</text>
+    <text x="312" y="260">small sphere</text>
+  </g>
+
+  <!-- Label on the tangent line -->
+  <text x="60" y="210" font-size="11" font-style="italic" fill="#c33">plane tangent to the two large spheres from above (side view)</text>
+</svg>

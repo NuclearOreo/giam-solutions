@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 440" width="540" height="440" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="540" height="440" fill="white"/>
+
+  <!-- light grid: x = -4..4, y = -3..5; 32 px/unit; origin at (270, 280) -->
+  <g stroke="#ebebeb" stroke-width="1">
+    <line x1="142" y1="120" x2="142" y2="376"/>
+    <line x1="174" y1="120" x2="174" y2="376"/>
+    <line x1="206" y1="120" x2="206" y2="376"/>
+    <line x1="238" y1="120" x2="238" y2="376"/>
+    <line x1="270" y1="120" x2="270" y2="376"/>
+    <line x1="302" y1="120" x2="302" y2="376"/>
+    <line x1="334" y1="120" x2="334" y2="376"/>
+    <line x1="366" y1="120" x2="366" y2="376"/>
+    <line x1="398" y1="120" x2="398" y2="376"/>
+    <line x1="142" y1="120" x2="398" y2="120"/>
+    <line x1="142" y1="152" x2="398" y2="152"/>
+    <line x1="142" y1="184" x2="398" y2="184"/>
+    <line x1="142" y1="216" x2="398" y2="216"/>
+    <line x1="142" y1="248" x2="398" y2="248"/>
+    <line x1="142" y1="280" x2="398" y2="280"/>
+    <line x1="142" y1="312" x2="398" y2="312"/>
+    <line x1="142" y1="344" x2="398" y2="344"/>
+    <line x1="142" y1="376" x2="398" y2="376"/>
+  </g>
+
+  <!-- army-region shading (y <= 0) -->
+  <rect x="142" y="280" width="256" height="96" fill="#fbf6e6" opacity="0.85"/>
+
+  <!-- thick x-axis (army boundary) -->
+  <line x1="142" y1="280" x2="398" y2="280" stroke="#222" stroke-width="1.8"/>
+
+  <!-- dashed diamond V-lines at constant taxicab distance d = 6, 7, 8 -->
+  <g stroke="#8a8a8a" stroke-width="1" stroke-dasharray="4,3" fill="none">
+    <polyline points="238,280 270,312 302,280"/>
+    <polyline points="206,280 238,312 270,344 302,312 334,280"/>
+    <polyline points="174,280 206,312 238,344 270,376 302,344 334,312 366,280"/>
+  </g>
+
+  <!-- target dot at (0, 5) -->
+  <circle cx="270" cy="120" r="6" fill="#c33"/>
+  <text x="282" y="125" font-size="12" font-style="italic" fill="#222">target (0, 5)</text>
+
+  <!-- army lattice points and distance labels (labels centered above each dot) -->
+  <g fill="#222">
+    <!-- y = 0 row: d = 9, 8, 7, 6, 5, 6, 7, 8, 9 -->
+    <circle cx="142" cy="280" r="2"/>
+    <circle cx="174" cy="280" r="2"/>
+    <circle cx="206" cy="280" r="2"/>
+    <circle cx="238" cy="280" r="2"/>
+    <circle cx="270" cy="280" r="3.5" fill="#c33"/>
+    <circle cx="302" cy="280" r="2"/>
+    <circle cx="334" cy="280" r="2"/>
+    <circle cx="366" cy="280" r="2"/>
+    <circle cx="398" cy="280" r="2"/>
+    <!-- y = -1 row: d = 10, 9, 8, 7, 6, 7, 8, 9, 10 -->
+    <circle cx="142" cy="312" r="2"/>
+    <circle cx="174" cy="312" r="2"/>
+    <circle cx="206" cy="312" r="2"/>
+    <circle cx="238" cy="312" r="2"/>
+    <circle cx="270" cy="312" r="2"/>
+    <circle cx="302" cy="312" r="2"/>
+    <circle cx="334" cy="312" r="2"/>
+    <circle cx="366" cy="312" r="2"/>
+    <circle cx="398" cy="312" r="2"/>
+    <!-- y = -2 row -->
+    <circle cx="142" cy="344" r="2"/>
+    <circle cx="174" cy="344" r="2"/>
+    <circle cx="206" cy="344" r="2"/>
+    <circle cx="238" cy="344" r="2"/>
+    <circle cx="270" cy="344" r="2"/>
+    <circle cx="302" cy="344" r="2"/>
+    <circle cx="334" cy="344" r="2"/>
+    <circle cx="366" cy="344" r="2"/>
+    <circle cx="398" cy="344" r="2"/>
+    <!-- y = -3 row -->
+    <circle cx="142" cy="376" r="2"/>
+    <circle cx="174" cy="376" r="2"/>
+    <circle cx="206" cy="376" r="2"/>
+    <circle cx="238" cy="376" r="2"/>
+    <circle cx="270" cy="376" r="2"/>
+    <circle cx="302" cy="376" r="2"/>
+    <circle cx="334" cy="376" r="2"/>
+    <circle cx="366" cy="376" r="2"/>
+    <circle cx="398" cy="376" r="2"/>
+  </g>
+
+  <g font-size="10" fill="#222" text-anchor="middle">
+    <text x="142" y="275">9</text>
+    <text x="174" y="275">8</text>
+    <text x="206" y="275">7</text>
+    <text x="238" y="275">6</text>
+    <text x="270" y="275" fill="#c33" font-weight="bold">5</text>
+    <text x="302" y="275">6</text>
+    <text x="334" y="275">7</text>
+    <text x="366" y="275">8</text>
+    <text x="398" y="275">9</text>
+
+    <text x="142" y="307">10</text>
+    <text x="174" y="307">9</text>
+    <text x="206" y="307">8</text>
+    <text x="238" y="307">7</text>
+    <text x="270" y="307">6</text>
+    <text x="302" y="307">7</text>
+    <text x="334" y="307">8</text>
+    <text x="366" y="307">9</text>
+    <text x="398" y="307">10</text>
+
+    <text x="142" y="339">11</text>
+    <text x="174" y="339">10</text>
+    <text x="206" y="339">9</text>
+    <text x="238" y="339">8</text>
+    <text x="270" y="339">7</text>
+    <text x="302" y="339">8</text>
+    <text x="334" y="339">9</text>
+    <text x="366" y="339">10</text>
+    <text x="398" y="339">11</text>
+
+    <text x="142" y="371">12</text>
+    <text x="174" y="371">11</text>
+    <text x="206" y="371">10</text>
+    <text x="238" y="371">9</text>
+    <text x="270" y="371">8</text>
+    <text x="302" y="371">9</text>
+    <text x="334" y="371">10</text>
+    <text x="366" y="371">11</text>
+    <text x="398" y="371">12</text>
+  </g>
+
+  <!-- side annotations -->
+  <g font-size="11" font-style="italic" fill="#666">
+    <text x="410" y="284">x-axis (y = 0)</text>
+    <text x="410" y="396">army (y ≤ 0)</text>
+    <text x="270" y="404" text-anchor="middle" font-size="14">⋮</text>
+    <text x="68" y="284">…</text>
+    <text x="68" y="316">…</text>
+    <text x="68" y="348">…</text>
+    <text x="68" y="380">…</text>
+    <text x="412" y="316">…</text>
+    <text x="412" y="348">…</text>
+    <text x="412" y="380">…</text>
+  </g>
+</svg>

@@ -1,0 +1,224 @@
+.docname {Solution — GIAM 9.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 9.2 Problem 1
+
+## Problem
+
+Do the algebra (and show all your work!) to prove that the invariant defined in this section actually has the value $ 1 $ for the set of all the men occupying the $ x $-axis and the lower half-plane.
+
+## Setup — Reminder of the Invariant
+
+Recall the setup from Section 9.2:
+
+- An "army" of checkers occupies every lattice point $ (x, y) \in \mathbb{Z}^2 $ with $ y \le 0 $.
+- The target is the position $ (0, 5) $ — five steps above the $ x $-axis.
+- To each lattice point $ p $ we assign a value $ r^{d(p)} $, where $ d(p) $ is the *taxicab distance* from $ p $ to the target. For an army point $ (x, y) $ with $ y \le 0 $:
+$$$
+d(x, y) \;=\; |x| \;+\; |y - 5| \;=\; |x| \;+\; (5 - y).
+$$$
+- The number $ r $ is chosen as the positive root of $ x^2 + x - 1 = 0 $, so $ r = \tfrac{\sqrt{5} - 1}{2} = 1/\varphi $ and
+$$$
+r^2 + r \;=\; 1 \qquad \Longleftrightarrow \qquad r^2 \;=\; 1 - r.
+$$$
+- The *invariant* $ S $ is the total value of the army:
+$$$
+S \;=\; \sum_{(x, y) :\; y \le 0} r^{\,d(x, y)}.
+$$$
+
+**Goal.** Show $ S = 1 $.
+
+## Counting the Army by Distance Ring
+
+The army points at fixed taxicab distance $ 5 + k $ from $ (0, 5) $ form a "diamond half-ring" — the bottom half of a taxicab diamond centered at the target, intersected with $ y \le 0 $.
+
+!(80%)[Taxicab distance grid for the lower-half-plane army](problem-1-rings.svg "Lattice points in the army labeled with their taxicab distance from the target (0, 5). Dashed V-lines join the points at distance d = 6, 7, 8 — visible counts 3, 5, 7 along the V's confirm the 2k+1 pattern.")
+
+**Claim.** At taxicab distance $ 5 + k $ from $ (0, 5) $ there are exactly $ 2k + 1 $ army points.
+
+*Proof.* A point $ (x, y) $ with $ y \le 0 $ has distance $ 5 + k $ from $ (0, 5) $ iff $ |x| + (5 - y) = 5 + k $, i.e. $ |x| = k - j $ where $ j := -y \in \{0, 1, \ldots, k\} $. For each such $ j $:
+
+- if $ j = k $: $ |x| = 0 $, giving one point $ (0, -k) $;
+- if $ 0 \le j < k $: $ |x| = k - j > 0 $, giving two points $ \bigl(\pm(k - j),\; -j\bigr) $.
+
+Total: $ 1 + 2k \;=\; 2k + 1 $. $ \blacksquare $
+
+The figure makes this visible at small $ k $:
+
+| $ k $ | Distance $ 5+k $ | Army points at that distance                              | Count $ 2k+1 $ |
+| :---: | :---:            | :---                                                      | :---:          |
+| 0     | 5                | $ (0, 0) $                                                | 1              |
+| 1     | 6                | $ (\pm 1, 0),\; (0, -1) $                                 | 3              |
+| 2     | 7                | $ (\pm 2, 0),\; (\pm 1, -1),\; (0, -2) $                  | 5              |
+| 3     | 8                | $ (\pm 3, 0),\; (\pm 2, -1),\; (\pm 1, -2),\; (0, -3) $   | 7              |
+
+## Assembling the Sum
+
+Group the army by distance ring:
+
+$$$
+S \;=\; \sum_{(x, y) :\; y \le 0} r^{\,d(x, y)} \;=\; \sum_{k = 0}^{\infty} (2k + 1)\, r^{\,5 + k} \;=\; r^5 \sum_{k = 0}^{\infty} (2k + 1)\, r^{\,k}.
+$$$
+
+Define
+
+$$$
+T \;:=\; \sum_{k = 0}^{\infty} (2k + 1)\, r^{\,k} \;=\; 1 \;+\; 3r \;+\; 5r^2 \;+\; 7r^3 \;+\; 9r^4 \;+\; \cdots.
+$$$
+
+So $ S = r^5 \, T $. The work is now to compute $ T $.
+
+## Computing $ T $ — Arithmetic-Geometric Trick
+
+The series for $ T $ is *arithmetic-geometric*: coefficients $ 2k+1 $ grow linearly while powers $ r^k $ shrink geometrically. The standard manoeuvre is to multiply by $ r $ and subtract:
+
+$$$
+\begin{aligned}
+T \;&=\; 1 \;+\; 3r \;+\; 5r^2 \;+\; 7r^3 \;+\; 9r^4 \;+\; \cdots \\
+rT \;&=\; \phantom{1 \;+\;\,} r \;+\; 3r^2 \;+\; 5r^3 \;+\; 7r^4 \;+\; \cdots
+\end{aligned}
+$$$
+
+Subtract row 2 from row 1:
+
+$$$
+\begin{aligned}
+T - rT \;&=\; 1 \;+\; (3 - 1) r \;+\; (5 - 3) r^2 \;+\; (7 - 5) r^3 \;+\; (9 - 7) r^4 \;+\; \cdots \\
+&=\; 1 \;+\; 2r \;+\; 2r^2 \;+\; 2r^3 \;+\; 2r^4 \;+\; \cdots \\
+&=\; 1 \;+\; 2\,(r + r^2 + r^3 + \cdots).
+\end{aligned}
+$$$
+
+The tail is a geometric series with ratio $ r $, convergent since $ |r| < 1 $:
+
+$$$
+r + r^2 + r^3 + \cdots \;=\; \frac{r}{1 - r}.
+$$$
+
+Therefore
+
+$$$
+T - rT \;=\; 1 \;+\; \frac{2r}{1 - r} \;=\; \frac{(1 - r) \;+\; 2r}{1 - r} \;=\; \frac{1 + r}{1 - r}.
+$$$
+
+Since $ T - rT = (1 - r) T $:
+
+$$$
+(1 - r)\, T \;=\; \frac{1 + r}{1 - r} \qquad \Longrightarrow \qquad T \;=\; \frac{1 + r}{(1 - r)^2}.
+$$$
+
+## Putting It Together
+
+Substituting back into $ S = r^5 T $:
+
+$$$
+S \;=\; r^5 \cdot \frac{1 + r}{(1 - r)^2} \;=\; \frac{r^5 \,(1 + r)}{(1 - r)^2}.
+$$$
+
+## Simplifying — One Pass of $ r^2 = 1 - r $
+
+The defining identity $ r^2 + r = 1 $ rearranges to $ 1 - r = r^2 $. So
+
+$$$
+(1 - r)^2 \;=\; (r^2)^2 \;=\; r^4.
+$$$
+
+Substituting into the denominator:
+
+$$$
+S \;=\; \frac{r^5 \,(1 + r)}{r^4} \;=\; r\,(1 + r) \;=\; r + r^2.
+$$$
+
+And $ r + r^2 = 1 $ — the defining identity again. Hence
+
+$$$
+S \;=\; 1. \qquad \blacksquare
+$$$
+
+## Remark — A Single Identity Does All the Work
+
+The whole simplification rests on *one* identity:
+
+$$$
+r^2 + r \;=\; 1.
+$$$
+
+It is invoked twice — once as $ 1 - r = r^2 $ to collapse the denominator $ (1 - r)^2 $ to $ r^4 $, and once as $ r + r^2 = 1 $ to finish off the numerator. A single quadratic relation suffices to evaluate the entire two-dimensional sum.
+
+This is precisely why $ r = 1/\varphi $ is the *right* value. The same identity was *engineered* in Section 9.2 so that every legal checker-jump satisfies $ r^{k+2} + r^{k+1} \le r^k $ — i.e. so a jump never *increases* $ S $. The two properties of $ r $ — jump-monotonicity and a clean total mass — are not independent coincidences; they are both consequences of $ r^2 + r = 1 $.
+
+## Remark — Alternative Derivation: Separate the $ x $- and $ y $-Sums
+
+Since the distance splits as $ d(x, y) = |x| + (5 - y) $, the exponential $ r^{d(x, y)} = r^{|x|} \cdot r^{5 - y} $ *factors*, and so does the sum:
+
+$$$
+S \;=\; \sum_{y \le 0} \sum_{x \in \mathbb{Z}} r^{|x|} \cdot r^{5 - y} \;=\; \left(\sum_{x \in \mathbb{Z}} r^{|x|}\right) \cdot \left(\sum_{y \le 0} r^{5 - y}\right).
+$$$
+
+Both pieces are *purely geometric* (no arithmetic-geometric trick needed):
+
+$$$
+\sum_{x \in \mathbb{Z}} r^{|x|} \;=\; 1 \;+\; 2\sum_{x = 1}^{\infty} r^{x} \;=\; 1 \;+\; \frac{2r}{1 - r} \;=\; \frac{1 + r}{1 - r},
+$$$
+
+$$$
+\sum_{y \le 0} r^{5 - y} \;=\; \sum_{j = 0}^{\infty} r^{\,5 + j} \;=\; \frac{r^5}{1 - r} \qquad (\text{setting } j = -y).
+$$$
+
+Multiplying:
+
+$$$
+S \;=\; \frac{1 + r}{1 - r} \cdot \frac{r^5}{1 - r} \;=\; \frac{r^5 \,(1 + r)}{(1 - r)^2}.
+$$$
+
+Same answer, *without* invoking the arithmetic-geometric series. The diamond-ring counting (main proof) is more *geometric* — it makes the 1, 3, 5, 7, $ \ldots $ pattern visible — but the factored form is *algebraically* leaner.
+
+## Remark — Why "Five Steps" is the Punchline
+
+The fact $ S = 1 $ is the entire proof of the five-step impossibility, packaged in a single number. Here is how the punch lands:
+
+- A man at the target $ (0, 5) $ contributes $ r^0 = 1 $ — by itself, *all* of $ S $.
+- Every checker-jumping move *preserves or decreases* $ S $. (Selectability of $ r $ as a root of $ r^2 + r - 1 = 0 $ was forced by this requirement.)
+- The army starts with total value $ 1 $.
+
+So *after any finite sequence of jumps*, the total value of the configuration is $ \le 1 $. To place a man at $ (0, 5) $, the *post-move* configuration must include that single position worth $ 1 $ — and the remaining men (still on finite-distance lattice points) contribute *strictly positive* extra value. The total would then exceed $ 1 $, contradicting monotonicity.
+
+Hence the target $ (0, 5) $ is unreachable in finitely many jumps. The whole proof is just $ S = 1 $ together with the monotonicity inequality — and *both* come from the same root of $ x^2 + x - 1 $.
+
+## Remark — Convergence is Not Free
+
+The sum $ S $ ranges over a countable two-dimensional lattice. Convergence isn't automatic — it works because $ r < 1 $ (in fact $ r = 1/\varphi \approx 0.618 $), which forces both the $ x $- and $ y $-marginals to decay geometrically.
+
+Concretely, each row $ y = -j $ in the army contributes
+
+$$$
+r^{\,5 + j} \cdot \sum_{x \in \mathbb{Z}} r^{|x|} \;=\; r^{\,5 + j} \cdot \frac{1 + r}{1 - r},
+$$$
+
+a single geometric series in $ j $ with ratio $ r $.
+
+If we had picked $ r \ge 1 $, the sum would diverge and the entire "invariant" approach would collapse — there would simply be no finite number to compare against. The choice $ r = 1/\varphi $ is in this sense doubly tight: it is the *largest* value of $ r $ for which (i) the jump-monotonicity inequality $ r^{k+2} + r^{k+1} \le r^k $ holds, and (ii) $ |r| < 1 $ so the sum converges. Any smaller $ r $ also works for (i) and (ii), but yields $ S < 1 $ and is too weak to prove the five-step bound.
+
+## Remark — Why the Numerator Doesn't Collapse to a Power of $ r $
+
+The simplification $ (1 - r)^2 = r^4 $ uses the identity *once*. The numerator $ r^5 (1 + r) = r^5 + r^6 $ does not collapse to a single power of $ r $ — but we don't need it to. Using $ r^2 = 1 - r $:
+
+$$$
+r^5 + r^6 \;=\; r^4 (r + r^2) \;=\; r^4 \cdot 1 \;=\; r^4.
+$$$
+
+So $ S = r^5 (1+r) / (1-r)^2 = r^4 / r^4 = 1 $. This is an equally clean way to land: factor $ r^4 $ out of the numerator and pair it with $ r + r^2 $, which the identity hands you as $ 1 $.
+
+In summary the algebra has *two* good simplifying strategies, both keyed on $ r^2 + r = 1 $:
+
+1. Reduce $ (1 - r)^2 $ to $ r^4 $ (denominator), then use $ r + r^2 = 1 $ (numerator).
+2. Expand the numerator $ r^5 + r^6 $, then use $ r + r^2 = 1 $ inside the factored form $ r^4(r + r^2) $.
+
+Both arrive at $ S = 1 $ in one or two pen-strokes.

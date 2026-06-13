@@ -1,0 +1,159 @@
+.docname {Solution — GIAM 9.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 9.3 Problem 1
+
+## Problem
+
+There is a scenario where the proof we have sketched for Monge's circle theorem doesn't really work. Can you envision it? *Hint: consider two relatively large spheres and one that is quite small.*
+
+## The Sketched Proof — and Its Fragile Step
+
+Recall the lift-to-3D argument:
+
+1. Embed the plane of the three circles as $ z = 0 $ in $ \mathbb{R}^3 $.
+2. Replace each circle by a sphere of the same radius and centre.
+3. For each *pair* of spheres, the tangent **cone** has its apex *exactly* at the external-tangent intersection of the two original circles in $ z = 0 $.
+4. **Key step.** "There is a plane that touches all three spheres tangentially from above."
+5. That upper tangent plane meets $ z = 0 $ in a line.
+6. Each tangent cone is tangent to its two spheres *and* to the upper plane, so the cone's apex lies on the upper plane. Combined with $ z = 0 $, the three apexes lie on the line of intersection. $ \blacksquare $
+
+Steps 1, 2, 3, 5, 6 are routine. **Step 4 is the gamble** — and it is exactly where the proof can collapse.
+
+## When Step 4 Fails — Two Large Spheres, One Small
+
+Picture two beach balls on a table with a small marble between them. The plane resting on top of both beach balls is *high overhead*. The marble's top is barely off the table — the plane sails right over the marble without ever touching it.
+
+There is no single plane tangent to *all three* spheres from above: any plane that touches the two big ones is way above where the small one reaches.
+
+!(85%)[Failure mode: the upper tangent plane misses the small sphere](problem-1-failure.svg "Side view. The dashed red line is the cross-section of the plane tangent to the two large spheres from above. It passes far above the small sphere — there is no plane tangent to all three from above.")
+
+## Concrete Example with Numbers
+
+Place the three spheres on $ z = 0 $ with centres and radii:
+
+| Sphere | Centre              | Radius |
+| :---:  | :---:               | :---:  |
+| 1      | $ (0,\, 0,\, 0) $   | $ 6 $  |
+| 2      | $ (30,\, 0,\, 0) $  | $ 5 $  |
+| 3      | $ (15,\, 4,\, 0) $  | $ 1 $  |
+
+No circle is inside another:
+
+- $ \lvert C_1 - C_3 \rvert = \sqrt{225 + 16} \approx 15.52 \;>\; \lvert R_1 - R_3 \rvert = 5 $. ✓
+- $ \lvert C_2 - C_3 \rvert \approx 15.52 \;>\; 4 $. ✓
+- $ \lvert C_1 - C_2 \rvert = 30 \;>\; 1 $. ✓
+
+Suppose an upper tangent plane existed, with unit normal $ \mathbf{n} = (n_x, n_y, n_z) $, $ n_z > 0 $. Tangency from above to sphere $ i $ means the plane sits at height $ \mathbf{n} \cdot C_i + R_i $; equating across pairs:
+
+$$$
+\mathbf{n} \cdot (C_1 - C_2) \;=\; R_2 - R_1, \qquad \mathbf{n} \cdot (C_1 - C_3) \;=\; R_3 - R_1.
+$$$
+
+Substituting:
+
+$$$
+\mathbf{n} \cdot (-30,\, 0,\, 0) \;=\; -1 \;\;\Longrightarrow\;\; n_x \;=\; \tfrac{1}{30},
+$$$
+
+$$$
+\mathbf{n} \cdot (-15,\, -4,\, 0) \;=\; -5 \;\;\Longrightarrow\;\; -\tfrac{1}{2} \,-\, 4\, n_y \;=\; -5 \;\;\Longrightarrow\;\; n_y \;=\; \tfrac{9}{8} \;=\; 1.125.
+$$$
+
+But $ \mathbf{n} $ must satisfy $ n_x^2 + n_y^2 + n_z^2 = 1 $. Already
+
+$$$
+n_x^2 \,+\, n_y^2 \;=\; \tfrac{1}{900} \,+\, \tfrac{81}{64} \;\approx\; 1.267 \;>\; 1,
+$$$
+
+so no real $ n_z $ exists. **No upper tangent plane to all three spheres exists.** Step 4 of the proof has no leg to stand on.
+
+## Why the *Smallness* of Sphere 3 is the Culprit
+
+The constraint that broke the system was
+
+$$$
+\mathbf{n} \cdot (C_1 - C_3) \;=\; R_3 - R_1.
+$$$
+
+When $ R_3 $ is small and $ R_1 $ is large, the right-hand side is roughly $ -R_1 $ — a *big* number. The left-hand side is bounded by $ \lvert C_1 - C_3 \rvert $ (Cauchy-Schwarz with $ \lvert \mathbf{n} \rvert \le 1 $).
+
+So a plane can exist only if
+
+$$$
+\lvert C_1 - C_3 \rvert \;\ge\; \lvert R_3 - R_1 \rvert \;\approx\; R_1.
+$$$
+
+The non-containment condition only requires $ \lvert C_1 - C_3 \rvert \ge \lvert R_1 - R_3 \rvert $ — *the same lower bound*. So existence of the upper tangent plane is barely compatible with non-containment, and the *combined* constraint from the second pair usually pushes the required $ \mathbf{n} $ over the unit-vector limit.
+
+In the example above, increasing $ R_3 $ from $ 1 $ to about $ 2 $ would push $ n_y $ down to $ 1 $ (the borderline). Below that threshold, no plane.
+
+## The Theorem Still Holds
+
+Monge's theorem itself is *not* in jeopardy. The three external-tangent intersection points are still collinear in the failure scenario — what fails is the *particular proof we sketched*, not the conclusion.
+
+The classical proof uses **similitude**: each external-tangent intersection is the *external centre of similitude* of a pair of circles, i.e. the point that scales one circle into the other by a positive factor. A short composition-of-homotheties argument shows that the three external centres of similitude of any three circles are collinear — regardless of radii or position, no 3D lift needed.
+
+So the textbook's failure is a failure of the *illustration*, not the *theorem*.
+
+## Remark — The "Equal Radii" Degeneracy is a Different Failure
+
+The textbook flagged a separate degeneracy: when *all three* spheres have the same radius, the tangent cones become *cylinders* (apex at infinity) and the upper/lower tangent planes become parallel — meeting in a line "at infinity". The collinearity statement becomes a projective one.
+
+The small-sphere failure is *not* this. There, the radii are genuinely different, all three apexes are finite real points, and Monge's theorem is non-trivial — but the *3D-lift proof* misfires because the would-be upper tangent plane doesn't exist as a real plane.
+
+## Remark — A Quantitative Threshold
+
+Boiling the algebra down, the upper tangent plane to all three spheres exists iff the unique $ (n_x, n_y) $ satisfying
+
+$$$
+\mathbf{n} \cdot (C_1 - C_2) = R_2 - R_1, \qquad \mathbf{n} \cdot (C_1 - C_3) = R_3 - R_1
+$$$
+
+obeys $ n_x^2 + n_y^2 \le 1 $.
+
+Geometrically this is a condition on how the radii relate to the *triangle* formed by the centres. With two large equal-ish radii and a small third radius, the constraint from the small sphere demands a near-horizontal $ \mathbf{n} $ — and combined with the constraint from the large pair, the total horizontal magnitude tips over $ 1 $.
+
+The borderline $ n_x^2 + n_y^2 = 1 $ corresponds to a *vertical* tangent plane (i.e. $ n_z = 0 $), a degenerate case where the "plane above all three" is actually edge-on.
+
+## Remark — Why "Above" Versus "Below" Doesn't Save Us
+
+One might hope that *some* tangent plane to all three spheres exists, even if not the "above all" one — e.g. one that touches the big ones from above and the small one from below. In our concrete example, *all eight* sign-combinations of above/below fail:
+
+| sphere 1 | sphere 2 | sphere 3 | required $ n_x $ from spheres 1-2 | required $ n_y $ from spheres 1-3 |
+| :---:    | :---:    | :---:    | :---:    | :---:    |
+| above    | above    | above    | $ \tfrac{1}{30} $   | $ \tfrac{9}{8} $    |
+| above    | above    | below    | $ \tfrac{1}{30} $   | $ \tfrac{11}{8} $   |
+| above    | below    | above    | $ -\tfrac{11}{30} $ | varies              |
+| above    | below    | below    | $ -\tfrac{11}{30} $ | varies              |
+| below    | above    | above    | $ \tfrac{11}{30} $  | varies              |
+| below    | above    | below    | $ \tfrac{11}{30} $  | varies              |
+| below    | below    | above    | $ -\tfrac{1}{30} $  | $ -\tfrac{11}{8} $  |
+| below    | below    | below    | $ -\tfrac{1}{30} $  | $ -\tfrac{9}{8} $   |
+
+In each row the required $ n_y $ (or $ n_x $ in the asymmetric rows) ends up exceeding $ 1 $ in magnitude. *No* tangent plane to all three spheres exists in this configuration — not even a "mixed-sign" one.
+
+So the 3D-lift proof is genuinely unsalvageable for this configuration: the similitude argument is the way out.
+
+## Remark — A Pithy Description
+
+Two beach balls on a table with a marble between them.
+
+The plane resting on top of both beach balls is high overhead. Lower it — it scrapes the beach balls but flies over the marble. Tilt it — one beach ball pushes back up. *Any* plane that touches all three would have to dip down to scrape the marble *and* climb up to touch the beach balls, which a flat plane cannot do.
+
+In 2D — looking straight down at the table — the three pairs of external tangent lines do still meet at three points, and those three points *are* collinear. Just not because of any beautifully-resting plane above. The collinearity is real; the picture-book proof is not the right intermediary to see it.
+
+## Remark — A Cleaner Way to Frame the Failure
+
+The 3D-lift proof works whenever a *common tangent plane* to all three spheres exists (above or below or mixed). In *most* configurations, at least one such plane does exist. The failure scenario — extreme size disparity, small sphere tucked close to the others — pushes the configuration into a region of "no common tangent plane at all".
+
+A way to see this geometrically: every common tangent plane corresponds to a point on the unit sphere of normals satisfying *two* linear equations (one for each pair of spheres). The intersection of the unit sphere with two planes generically gives two points (or one, or zero). When the two planes pass *outside* the unit sphere, there are no real solutions — and that is precisely what extreme size disparity provokes.
+
+So the proof's "there is a plane" is, more honestly: "there is generically a plane". The hint pushes us into the *non-generic* corner where the generic existence fails.

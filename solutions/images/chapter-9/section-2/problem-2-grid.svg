@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 460" width="480" height="460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="480" height="460" fill="white"/>
+
+  <!-- prison cells shaded (drawn first so grid lines sit on top) -->
+  <g fill="#ffe0e0">
+    <rect x="60"  y="270" width="70" height="70"/>
+    <rect x="130" y="270" width="70" height="70"/>
+    <rect x="60"  y="200" width="70" height="70"/>
+  </g>
+
+  <!-- grid lines -->
+  <g stroke="#b0b0b0" stroke-width="1">
+    <line x1="60"  y1="60"  x2="340" y2="60"/>
+    <line x1="60"  y1="130" x2="340" y2="130"/>
+    <line x1="60"  y1="200" x2="340" y2="200"/>
+    <line x1="60"  y1="270" x2="340" y2="270"/>
+    <line x1="60"  y1="340" x2="340" y2="340"/>
+    <line x1="60"  y1="60"  x2="60"  y2="340"/>
+    <line x1="130" y1="60"  x2="130" y2="340"/>
+    <line x1="200" y1="60"  x2="200" y2="340"/>
+    <line x1="270" y1="60"  x2="270" y2="340"/>
+    <line x1="340" y1="60"  x2="340" y2="340"/>
+  </g>
+
+  <!-- clones (small filled circles) at prison-cell centers -->
+  <g fill="#c33">
+    <circle cx="95"  cy="320" r="4"/>
+    <circle cx="165" cy="320" r="4"/>
+    <circle cx="95"  cy="250" r="4"/>
+  </g>
+
+  <!-- cell value labels (centered, font-size 13) -->
+  <g font-size="13" fill="#222" text-anchor="middle">
+    <text x="95"  y="300">1/4</text>
+    <text x="165" y="300">1/8</text>
+    <text x="235" y="310">1/16</text>
+    <text x="305" y="310">1/32</text>
+    <text x="95"  y="230">1/8</text>
+    <text x="165" y="240">1/16</text>
+    <text x="235" y="240">1/32</text>
+    <text x="305" y="240">1/64</text>
+    <text x="95"  y="170">1/16</text>
+    <text x="165" y="170">1/32</text>
+    <text x="235" y="170">1/64</text>
+    <text x="305" y="170">1/128</text>
+    <text x="95"  y="100">1/32</text>
+    <text x="165" y="100">1/64</text>
+    <text x="235" y="100">1/128</text>
+    <text x="305" y="100">1/256</text>
+  </g>
+
+  <g font-size="13" fill="#444" text-anchor="middle">
+    <text x="95"  y="358">1</text>
+    <text x="165" y="358">2</text>
+    <text x="235" y="358">3</text>
+    <text x="305" y="358">4</text>
+  </g>
+  <g font-size="13" fill="#444" text-anchor="end">
+    <text x="48" y="309">1</text>
+    <text x="48" y="239">2</text>
+    <text x="48" y="169">3</text>
+    <text x="48" y="99">4</text>
+  </g>
+
+  <g font-size="14" font-style="italic" fill="#222">
+    <text x="360" y="345">x</text>
+    <text x="50"  y="50" text-anchor="end">y</text>
+  </g>
+
+  <g font-size="14" fill="#888">
+    <text x="360" y="305" text-anchor="start">…</text>
+    <text x="360" y="235" text-anchor="start">…</text>
+    <text x="360" y="165" text-anchor="start">…</text>
+    <text x="360" y="95"  text-anchor="start">…</text>
+    <text x="95"  y="40" text-anchor="middle">⋮</text>
+    <text x="165" y="40" text-anchor="middle">⋮</text>
+    <text x="235" y="40" text-anchor="middle">⋮</text>
+    <text x="305" y="40" text-anchor="middle">⋮</text>
+  </g>
+
+  <g font-size="12" font-style="italic" fill="#666" text-anchor="middle">
+    <text x="200" y="405">prison: shaded cells (1, 1), (2, 1), (1, 2)</text>
+    <text x="200" y="425">cell value: f(x, y) = 1 / 2ˣ⁺ʸ</text>
+  </g>
+</svg>

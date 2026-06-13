@@ -1,0 +1,197 @@
+.docname {Solution — GIAM 9.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 9.2 Problem 2
+
+## Problem
+
+"Escape of the clones" is a nice puzzle, originally proposed by Maxim Kontsevich. The game is played on an infinite checkerboard restricted to the first quadrant — squares are identified with points $ (x, y) $ with $ x, y \in \mathbb{Z}_{> 0} $. A *clone move* is legal when the cells immediately above and to the right of a clone are *both empty*; the clone then moves one cell up while a copy is placed in the cell to the right.
+
+We begin with three clones occupying $ (1, 1) $, $ (2, 1) $, and $ (1, 2) $ — call those three cells the **prison**. Can the three clones escape the prison?
+
+## Answer
+
+**No — escape is impossible.**
+
+The proof copies the Section 9.2 strategy: invent a quantity (an *invariant*) that the moves preserve, then show that any "escaped" configuration violates the conservation law.
+
+## Setup — A Move Replaces One Clone by Two
+
+A clone move at cell $ (x, y) $ has the effect:
+
+$$$
+\{(x, y)\} \quad \longmapsto \quad \{(x, y + 1),\; (x + 1, y)\},
+$$$
+
+provided both $ (x, y + 1) $ and $ (x + 1, y) $ were empty before the move. The single occupied cell $ (x, y) $ becomes empty; the two cells above and to the right become occupied.
+
+The number of clones grows by exactly $ 1 $ per move. After $ n $ moves, there are $ 3 + n $ clones at $ 3 + n $ *distinct* cells — always a *finite* configuration.
+
+## The Invariant — Weight Each Cell by $ 1/2^{x + y} $
+
+To each first-quadrant cell, assign the weight
+
+$$$
+f(x, y) \;=\; \frac{1}{2^{x + y}} \;=\; \Bigl(\tfrac{1}{2}\Bigr)^{x + y}.
+$$$
+
+The **value of a configuration** is the sum of weights over occupied cells:
+
+$$$
+V \;=\; \sum_{(x, y) \,\in\, \text{occupied}} f(x, y).
+$$$
+
+!(75%)[Cell weights and the prison](problem-2-grid.svg "First-quadrant cells labeled with their weight 1/2ˣ⁺ʸ. The three shaded cells (1, 1), (2, 1), (1, 2) — the prison — are initially occupied by clones.")
+
+## Invariance Under Clone Moves
+
+**Claim.** Every legal clone move preserves $ V $.
+
+*Proof.* The move at $ (x, y) $ removes the contribution $ f(x, y) $ and adds $ f(x, y + 1) + f(x + 1, y) $. So
+
+$$$
+\Delta V \;=\; f(x, y + 1) \;+\; f(x + 1, y) \;-\; f(x, y).
+$$$
+
+Substituting $ f $:
+
+$$$
+\begin{aligned}
+\Delta V \;&=\; \tfrac{1}{2^{x + y + 1}} \;+\; \tfrac{1}{2^{x + y + 1}} \;-\; \tfrac{1}{2^{x + y}} \\
+&=\; \tfrac{2}{2^{x + y + 1}} \;-\; \tfrac{1}{2^{x + y}} \\
+&=\; \tfrac{1}{2^{x + y}} \;-\; \tfrac{1}{2^{x + y}} \;=\; 0. \qquad \blacksquare
+\end{aligned}
+$$$
+
+The choice $ f(x, y) = 1/2^{x + y} $ was *engineered* for this: the recurrence $ f(x, y) = f(x, y + 1) + f(x + 1, y) $ forces $ f $ to halve under each unit step, hence the base $ \tfrac{1}{2} $.
+
+## Initial Value $ V_0 $
+
+The starting configuration has clones at the three prison cells:
+
+$$$
+V_0 \;=\; f(1, 1) \;+\; f(2, 1) \;+\; f(1, 2) \;=\; \tfrac{1}{4} \;+\; \tfrac{1}{8} \;+\; \tfrac{1}{8} \;=\; \tfrac{1}{2}.
+$$$
+
+By the invariance claim, *every reachable configuration also has value* $ \tfrac{1}{2} $.
+
+## The Total Weight of the First Quadrant is $ 1 $
+
+Sum the weights over *all* cells of the first quadrant:
+
+$$$
+\sum_{x \ge 1} \sum_{y \ge 1} \tfrac{1}{2^{x + y}} \;=\; \left(\sum_{x \ge 1} \tfrac{1}{2^x}\right) \cdot \left(\sum_{y \ge 1} \tfrac{1}{2^y}\right) \;=\; 1 \cdot 1 \;=\; 1.
+$$$
+
+Each row-sum and column-sum is the geometric series $ \tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{8} + \cdots = 1 $. The double sum splits since $ 2^{x + y} = 2^x \cdot 2^y $.
+
+Therefore the **non-prison** cells have total weight
+
+$$$
+\sum_{(x, y) \,\notin\, \text{prison}} f(x, y) \;=\; 1 \;-\; V_0 \;=\; 1 \;-\; \tfrac{1}{2} \;=\; \tfrac{1}{2}.
+$$$
+
+## The Contradiction
+
+Suppose, toward contradiction, that the clones can escape — i.e. there is a sequence of legal moves ending in a configuration with *no* clone in the prison.
+
+Let $ E $ be the set of cells occupied at the escape moment. By the setup:
+
+- $ E $ is a **finite** subset of the first quadrant (after finitely many moves, we have finitely many clones).
+- $ E \cap \text{prison} = \emptyset $ (this is what "escape" means).
+- $ V_E = V_0 = \tfrac{1}{2} $ (invariance).
+
+But then
+
+$$$
+\tfrac{1}{2} \;=\; V_E \;=\; \sum_{(x, y) \in E} f(x, y) \;\le\; \sum_{(x, y) \,\notin\, \text{prison}} f(x, y) \;=\; \tfrac{1}{2}.
+$$$
+
+So the inequality is forced to be an *equality* — $ E $ must cover *every* non-prison cell. That is impossible: $ E $ is finite and there are *infinitely many* non-prison cells, each with strictly positive weight. The inequality is therefore *strict*:
+
+$$$
+V_E \;<\; \tfrac{1}{2}.
+$$$
+
+This contradicts $ V_E = \tfrac{1}{2} $. So no escape sequence can exist. $ \blacksquare $
+
+## A Sanity Check — Verifying $ V $ on a Single Move
+
+Start: clones at $ (1, 1), (2, 1), (1, 2) $, total $ V = \tfrac{1}{4} + \tfrac{1}{8} + \tfrac{1}{8} = \tfrac{1}{2} $.
+
+The clone at $ (2, 1) $ has empty neighbours at $ (2, 2) $ and $ (3, 1) $, so its move is legal. After the move:
+
+- Cells occupied: $ (1, 1),\; (1, 2),\; (2, 2),\; (3, 1) $.
+- New value: $ \tfrac{1}{4} + \tfrac{1}{8} + \tfrac{1}{16} + \tfrac{1}{16} = \tfrac{1}{4} + \tfrac{1}{8} + \tfrac{1}{8} = \tfrac{1}{2}. $ ✓
+
+The invariant survives. The clone at $ (1, 2) $ is symmetric and gives the same check. The clone at $ (1, 1) $ *cannot* move from the initial configuration, since its right neighbour $ (2, 1) $ and upper neighbour $ (1, 2) $ are both occupied.
+
+## Remark — How This Compares to the Section 9.2 Invariant
+
+The Section 9.2 argument and this one share a single template:
+
+| step                         | Section 9.2 (checker jumps)               | Kontsevich clones                         |
+| :---                         | :---                                       | :---                                       |
+| Choose a weight $ f $ such that the move equation… | $ f(p) \ge f(p_\text{mid}) + f(p_\text{land}) $ (inequality)  | $ f(p) = f(p_\text{up}) + f(p_\text{right}) $ (equality) |
+| …forces a parameter to satisfy…                    | $ r^2 + r = 1 $ (golden ratio)              | base $ = \tfrac{1}{2} $                    |
+| Compute initial total $ V_0 $                       | $ 1 $ (army on $ y \le 0 $)                 | $ \tfrac{1}{2} $ (prison)                  |
+| Compute total over the "winning" region            | "$ \ge 1 $" required to reach $ (0, 5) $    | $ \tfrac{1}{2} $ (non-prison)              |
+| Contradiction                                      | Reaching $ (0, 5) $ would require strictly more than $ V_0 $ from a finite config | Escape would require occupying *every* non-prison cell — impossible for a finite config |
+
+Two differences worth flagging:
+
+- **Equality vs. inequality.** In 9.2 the move *can* decrease $ V $ (jumps away from the target lose mass); in the clone puzzle every legal move conserves $ V $ exactly. Both versions still produce monotonicity: $ V $ never *increases*.
+- **Where finiteness bites.** In 9.2 the contradiction uses that a finite configuration of checkers cannot cover the entire half-plane needed to keep $ V = 1 $. Here it uses that a finite set of cells cannot exhaust the non-prison weight $ \tfrac{1}{2} $.
+
+The shared trick: an *exponential* weight, geometric series for the totals, finiteness of any reachable configuration.
+
+## Remark — Why $ 1/2 $ and Nothing Else
+
+The move equation $ f(x, y) = f(x, y + 1) + f(x + 1, y) $ is what fixed the choice of $ f $. Trying $ f(x, y) = c^{x + y} $ for some unknown $ c > 0 $:
+
+$$$
+c^{x + y} \;=\; c^{x + y + 1} \;+\; c^{x + y + 1} \;=\; 2\,c^{x + y + 1},
+$$$
+
+so $ 1 = 2c $, forcing $ c = \tfrac{1}{2} $. Any other exponential rate either *fails* the invariance (so $ V $ wouldn't be conserved) or — if $ c \ge 1 $ — fails to give a finite total over the first quadrant.
+
+The same construction generalises: change the move rule, change the recurrence, and the recurrence selects a new base. The clone puzzle has the cleanest possible such selection — a single arithmetic identity $ 1 = 2 \cdot \tfrac{1}{2} $.
+
+## Remark — Why the Strict-Inequality Step is Essential
+
+The conservation law $ V = \tfrac{1}{2} $ and the bound $ V_\text{non-prison} = \tfrac{1}{2} $ together do *not* immediately rule out escape — they only show that the escape configuration would *saturate* the bound. The contradiction comes from the additional fact that the saturation is unachievable by any *finite* configuration:
+
+$$$
+\text{finite } E \subseteq \text{non-prison} \;\Longrightarrow\; \sum_{(x,y) \in E} f(x, y) \;<\; \tfrac{1}{2}.
+$$$
+
+This is true because every non-prison cell has *strictly positive* weight, and the non-prison region has infinitely many cells. Omitting any cell strictly decreases the sum.
+
+If we'd allowed *infinite* configurations the argument would collapse: an infinite army filling the non-prison region would have $ V = \tfrac{1}{2} $ and could in principle have "escaped". The finiteness of the clone count — three to begin with, $ 3 + n $ after $ n $ moves — is what closes the trap.
+
+## Remark — What If We Allowed the Full Plane?
+
+Suppose we *removed* the first-quadrant restriction and let clones move into negative-coordinate cells too. The weight function $ f(x, y) = 1/2^{x + y} $ would still satisfy the move equation, but the total mass
+
+$$$
+\sum_{x, y \in \mathbb{Z}} \tfrac{1}{2^{x + y}}
+$$$
+
+is *infinite* (each term $ 1/2^{x + y} $ becomes arbitrarily large for negative $ x + y $). The bookkeeping that powered our contradiction — "the non-prison region has total weight $ \tfrac{1}{2} $" — evaporates.
+
+So the first-quadrant restriction is doing real work. It isn't a cosmetic constraint; it is the geometric ingredient that makes the geometric-series totals *finite*, hence the invariant argument actually pin something down.
+
+## Remark — The Clones Are "Almost" Reproducing
+
+Each move adds one clone. After $ n $ moves there are $ 3 + n $ clones. Yet $ V $ stays fixed at $ \tfrac{1}{2} $. How can the population grow without the total mass increasing? Because the cells they occupy must drift further from the origin — and weights $ 1/2^{x + y} $ shrink exponentially in $ x + y $.
+
+Intuitively: the clones can spread out to arbitrarily many cells, but only by occupying cells whose individual weights are tiny. The total weight is conserved by the geometric trade: each split replaces one cell of weight $ w $ with two of weight $ w/2 $ each.
+
+This is also why the proof works pessimistically: even if every move spreads clones out into as many cells as possible, the *total* contribution stays the same. There is no "smart" sequence of moves that gains mass.
