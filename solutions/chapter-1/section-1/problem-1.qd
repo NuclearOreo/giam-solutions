@@ -1,0 +1,122 @@
+.docname {Solution — GIAM 1.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 1
+
+## Problem
+
+Each of the quantities indexing the rows of the following table is in one or more of the sets which index the columns. Place a check mark in a table entry if the quantity is in the set.
+
+The quantities are $ 17,\; \pi,\; 22/7,\; -6,\; e^0,\; 1 + i,\; \sqrt{3},\; i^2 $; the sets are $ \mathbb{N},\; \mathbb{Z},\; \mathbb{Q},\; \mathbb{R},\; \mathbb{C} $.
+
+## Convention — What is $ \mathbb{N} $?
+
+Section 1.1 fixes the *traditional* convention:
+
+$$$
+\mathbb{N} \;=\; \{1,\, 2,\, 3,\, 4,\, \ldots\}.
+$$$
+
+So $ \mathbb{N} $ contains the positive integers — **no zero, no negatives**. The other inclusions are the usual
+
+$$$
+\mathbb{N} \;\subset\; \mathbb{Z} \;\subset\; \mathbb{Q} \;\subset\; \mathbb{R} \;\subset\; \mathbb{C}.
+$$$
+
+Every number that lies in a set automatically lies in all of the larger ones — so a check in $ \mathbb{N} $ implies checks in all of $ \mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{C} $.
+
+## Reducing the Two Mystery Entries
+
+Two of the rows are not given in "obviously classifiable" form:
+
+- $ e^0 \;=\; 1 $. (Any nonzero base to the zero power is $ 1 $.)
+- $ i^2 \;=\; -1 $. (By the defining property of $ i $.)
+
+So the row "$ e^0 $" is the integer $ 1 $, and the row "$ i^2 $" is the integer $ -1 $.
+
+## The Filled Table
+
+| Quantity   | $ \mathbb{N} $ | $ \mathbb{Z} $ | $ \mathbb{Q} $ | $ \mathbb{R} $ | $ \mathbb{C} $ |
+| :---:      | :---:          | :---:          | :---:          | :---:          | :---:          |
+| $ 17 $       | ✓ | ✓ | ✓ | ✓ | ✓ |
+| $ \pi $      |   |   |   | ✓ | ✓ |
+| $ 22/7 $     |   |   | ✓ | ✓ | ✓ |
+| $ -6 $       |   | ✓ | ✓ | ✓ | ✓ |
+| $ e^0 $      | ✓ | ✓ | ✓ | ✓ | ✓ |
+| $ 1 + i $    |   |   |   |   | ✓ |
+| $ \sqrt{3} $ |   |   |   | ✓ | ✓ |
+| $ i^2 $      |   | ✓ | ✓ | ✓ | ✓ |
+
+## Row-by-Row Justification
+
+- **$ 17 $.** A positive integer $ \ge 1 $, so in $ \mathbb{N} $ and hence in everything.
+- **$ \pi $.** Irrational (a fact we accept; it'll be proved later). Therefore not in $ \mathbb{Q} $ (and so not in $ \mathbb{Z} $ or $ \mathbb{N} $). It *is* a real number, so it's in $ \mathbb{R} $ and $ \mathbb{C} $.
+- **$ 22/7 $.** A ratio of two integers with nonzero denominator, so in $ \mathbb{Q} $. But $ 22 = 3 \cdot 7 + 1 $, so $ 22/7 = 3 + 1/7 \notin \mathbb{Z} $. Hence in $ \mathbb{Q},\, \mathbb{R},\, \mathbb{C} $ only.
+- **$ -6 $.** A negative integer. In $ \mathbb{Z} $ — but *not* in $ \mathbb{N} $ under the chosen convention. So in $ \mathbb{Z},\, \mathbb{Q},\, \mathbb{R},\, \mathbb{C} $.
+- **$ e^0 = 1 $.** A positive integer $ \ge 1 $. In every set.
+- **$ 1 + i $.** Has imaginary part $ 1 \ne 0 $, so *not* in $ \mathbb{R} $ (and so not in $ \mathbb{Q}, \mathbb{Z}, \mathbb{N} $). It *is* by definition in $ \mathbb{C} $.
+- **$ \sqrt{3} $.** Irrational (since $ 3 $ isn't a perfect square — short proof in the remarks). So in $ \mathbb{R},\, \mathbb{C} $ only.
+- **$ i^2 = -1 $.** A negative integer. Like $ -6 $: in $ \mathbb{Z},\, \mathbb{Q},\, \mathbb{R},\, \mathbb{C} $.
+
+## Visual — Nesting the Eight Quantities
+
+Each number lives in a *smallest* containing set; the bigger sets follow for free. The diagram below places each entry inside the smallest set that contains it (and therefore inside every set surrounding that one).
+
+!(95%)[Nested sets ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ ⊂ ℂ with the eight quantities placed at their level](problem-1-nested.svg "Each quantity is shown in the innermost set containing it. Items inside ℕ are also in ℤ, ℚ, ℝ, ℂ — and so on outward.")
+
+Reading the figure:
+
+- **Innermost (in $ \mathbb{N} $):** $ 17 $ and $ e^0 = 1 $.
+- **In $ \mathbb{Z} \setminus \mathbb{N} $:** $ -6 $ and $ i^2 = -1 $ (the negative integers).
+- **In $ \mathbb{Q} \setminus \mathbb{Z} $:** $ 22/7 $ (a non-integer rational).
+- **In $ \mathbb{R} \setminus \mathbb{Q} $:** $ \pi $ and $ \sqrt{3} $ (irrationals).
+- **In $ \mathbb{C} \setminus \mathbb{R} $:** $ 1 + i $ (genuinely complex).
+
+The number of check marks for each row is just *how many sets surround its level*: 5 for items in $ \mathbb{N} $, 4 for items in $ \mathbb{Z} \setminus \mathbb{N} $, 3 for items in $ \mathbb{Q} \setminus \mathbb{Z} $, 2 for items in $ \mathbb{R} \setminus \mathbb{Q} $, 1 for items in $ \mathbb{C} \setminus \mathbb{R} $.
+
+## Remark — Why $ \pi $ and $ \sqrt{3} $ are Irrational
+
+The textbook accepts these as facts at this point in the book. Both have short proofs:
+
+- **$ \sqrt{3} \notin \mathbb{Q} $.** Suppose $ \sqrt{3} = a/b $ in lowest terms with $ a, b $ integers, $ b > 0 $. Squaring gives $ 3 b^2 = a^2 $. So $ 3 \mid a^2 $, hence $ 3 \mid a $ (since $ 3 $ is prime). Write $ a = 3a' $; then $ 3 b^2 = 9 a'^2 $, i.e. $ b^2 = 3 a'^2 $. By the same argument $ 3 \mid b $. But then $ 3 $ divides both $ a $ and $ b $, contradicting "lowest terms". So no such $ (a, b) $ exists. $ \blacksquare $
+- **$ \pi \notin \mathbb{Q} $.** This is *much* harder; the standard proof (Niven, 1947) uses calculus and definite integrals. Out of scope for Chapter 1, but the result is famous enough to take on faith.
+
+## Remark — $ 22/7 $ is Not $ \pi $
+
+$ 22/7 \approx 3.1428571\ldots $ is a *rational* approximation to $ \pi $, popularised by Archimedes. The two are *different numbers* — $ 22/7 $ sits in $ \mathbb{Q} $, while $ \pi $ does not. In fact $ 22/7 - \pi \approx 0.00126 > 0 $, so $ 22/7 $ is slightly *larger* than $ \pi $.
+
+A common slip: assuming "the rational approximation 22/7" is the same row as "$ \pi $". The exercise tests precisely whether the student keeps them straight.
+
+## Remark — Why $ 1 + i \notin \mathbb{R} $
+
+The real numbers $ \mathbb{R} $ are exactly the complex numbers with zero imaginary part. $ 1 + i $ has imaginary part $ 1 \ne 0 $, so it is *not* real. The cleanest way to see it: if $ 1 + i $ were real, then $ i = (1 + i) - 1 $ would also be real — but $ i^2 = -1 < 0 $, and no real number has a negative square. Contradiction.
+
+## Remark — Compactly: Which Set is "Smallest"?
+
+The cleanest summary of the answer is a single column listing the *smallest* containing set for each quantity. The full row of checks is then determined: tick that set plus every set to its right in the chain $ \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C} $.
+
+| Quantity     | Smallest set | Check count |
+| :---:        | :---:        | :---:       |
+| $ 17 $       | $ \mathbb{N} $ | 5 |
+| $ e^0 = 1 $  | $ \mathbb{N} $ | 5 |
+| $ -6 $       | $ \mathbb{Z} $ | 4 |
+| $ i^2 = -1 $ | $ \mathbb{Z} $ | 4 |
+| $ 22/7 $     | $ \mathbb{Q} $ | 3 |
+| $ \pi $      | $ \mathbb{R} $ | 2 |
+| $ \sqrt{3} $ | $ \mathbb{R} $ | 2 |
+| $ 1 + i $    | $ \mathbb{C} $ | 1 |
+
+This is the structural way to read the answer table — the chain of inclusions does all the bookkeeping for free.
+
+## Remark — Where the Convention $ 0 \notin \mathbb{N} $ Matters Here
+
+It doesn't, for *this* exercise — none of the eight rows is the number $ 0 $. If the row "$ \sin(0) $" or "$ 0! - 1 $" appeared, the convention would decide whether to check the $ \mathbb{N} $ column for it. Under the textbook's $ \mathbb{N} = \{1, 2, 3, \ldots\} $: no. Under the other convention $ \mathbb{N} = \{0, 1, 2, \ldots\} $: yes.
+
+Worth flagging because in many other courses — and in most computer-science contexts — $ 0 \in \mathbb{N} $ is standard. The textbook's choice is just one of two equally common conventions, and it's worth being aware of which one your current setting uses.

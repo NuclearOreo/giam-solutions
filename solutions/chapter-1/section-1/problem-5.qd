@@ -1,0 +1,138 @@
+.docname {Solution — GIAM 1.1 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 5
+
+## Problem
+
+Give a description of the set of rational numbers whose decimal expansions terminate. (Alternatively, you may think of their decimal expansions ending in an infinitely-long string of zeros.)
+
+## The Answer
+
+A rational number $ a/b $ (in lowest terms, $ b > 0 $) has a *terminating* decimal expansion if and only if the only prime factors of $ b $ are $ 2 $ and $ 5 $. Equivalently:
+
+$$$
+\left\{ \tfrac{a}{b} \in \mathbb{Q} \;:\; \gcd(a, b) = 1,\; b = 2^m \cdot 5^n \text{ for some } m, n \in \mathbb{Z}_{\ge 0} \right\}.
+$$$
+
+These rationals can also be characterised in several equivalent ways:
+
+- **As integer-over-power-of-ten:** $ \{\,c \,/\, 10^k \;:\; c \in \mathbb{Z},\; k \in \mathbb{Z}_{\ge 0}\,\} $.
+- **As the ring** $ \mathbb{Z}[1/10] $: the smallest subring of $ \mathbb{Q} $ containing $ \mathbb{Z} $ and $ 1/10 $.
+- **By decimal:** the rationals $ x $ with a finite-digit decimal representation $ x = d_n d_{n-1} \cdots d_1 d_0 . d_{-1} d_{-2} \cdots d_{-k} $.
+
+Call this set the **terminating decimals**, or sometimes the **decadic rationals** (or "dyadic-quintic rationals").
+
+## Why it is True — Both Directions
+
+**$ b = 2^m 5^n \;\Longrightarrow\; a/b $ terminates.**
+
+Let $ k = \max(m, n) $. Multiply both sides of $ a/b $ by $ 10^k / 10^k $:
+
+$$$
+\frac{a}{b} \;=\; \frac{a \cdot (10^k / b)}{10^k}.
+$$$
+
+The ratio $ 10^k / b = 2^k 5^k / (2^m 5^n) = 2^{\,k-m} \cdot 5^{\,k-n} $ is an *integer* (because $ k \ge m $ and $ k \ge n $). So $ a/b = c / 10^k $ with $ c = a \cdot (10^k / b) \in \mathbb{Z} $.
+
+Now $ c / 10^k $ is — by definition of decimal notation — a decimal with the digits of $ c $ placed $ k $ positions after the decimal point. *Finite-digit*. So $ a/b $ terminates. $ \blacksquare $
+
+**$ a/b $ terminates $ \;\Longrightarrow\; b = 2^m 5^n $.**
+
+If $ a/b $ terminates after $ k $ decimal places, then $ a/b $ can be written as $ c / 10^k $ for some integer $ c $ and some $ k \ge 0 $ (just count the digits after the decimal point). So
+
+$$$
+\frac{a}{b} \;=\; \frac{c}{10^k} \;=\; \frac{c}{2^k \cdot 5^k}.
+$$$
+
+Cross-multiplying: $ a \cdot 2^k \cdot 5^k = b \cdot c $, so $ b \;\bigl|\; a \cdot 2^k \cdot 5^k $. Since $ \gcd(a, b) = 1 $ (lowest terms), $ b $ shares no prime factors with $ a $, so $ b \mid 2^k \cdot 5^k $. Hence every prime factor of $ b $ is in $ \{2, 5\} $, i.e. $ b = 2^m 5^n $ for some $ m, n \ge 0 $. $ \blacksquare $
+
+## Visualising the Pattern
+
+!(95%)[Denominators 1–20 colored by termination](problem-5-strip.svg "Each box shows a denominator b along with its prime factorization. Green boxes (b = 1, 2, 4, 5, 8, 10, 16, 20) have only 2s and 5s in their factorization — fractions a/b terminate. Red boxes have at least one other prime — fractions a/b repeat.")
+
+The eight green denominators in this strip are precisely the values of $ 2^m \cdot 5^n $ up to 20, namely $ \{1, 2, 4, 5, 8, 10, 16, 20\} $. The set continues forever: $ 25, 32, 40, 50, 64, 80, 100, 125, \ldots $ — dense in $ \mathbb{Q} $ but countable.
+
+## Examples Side-by-Side
+
+| Terminates       | Decimal     | Doesn't terminate | Decimal                |
+| :---             | :---        | :---              | :---                   |
+| $ 1/2 $          | $ 0.5 $       | $ 1/3 $           | $ 0.\overline{3} $       |
+| $ 1/4 $          | $ 0.25 $      | $ 1/6 $           | $ 0.1\overline{6} $      |
+| $ 1/5 $          | $ 0.2 $       | $ 1/7 $           | $ 0.\overline{142857} $  |
+| $ 1/8 $          | $ 0.125 $     | $ 1/9 $           | $ 0.\overline{1} $       |
+| $ 1/10 $         | $ 0.1 $       | $ 1/11 $          | $ 0.\overline{09} $      |
+| $ 3/16 $         | $ 0.1875 $    | $ 5/12 $          | $ 0.41\overline{6} $     |
+| $ 7/20 $         | $ 0.35 $      | $ 22/7 $          | $ 3.\overline{142857} $  |
+| $ 1/25 $         | $ 0.04 $      | $ 1/14 $          | $ 0.0\overline{714285} $ |
+| $ 1/40 $         | $ 0.025 $     | $ 1/15 $          | $ 0.0\overline{6} $      |
+| $ 17/125 $       | $ 0.136 $     | $ 8/21 $          | $ 0.\overline{380952} $  |
+
+Every denominator on the left side factors as $ 2^m 5^n $; every denominator on the right has a prime factor outside $ \{2, 5\} $.
+
+## Remark — Why the Connection to Base 10
+
+Decimal expansions are *base-10* expansions, and $ 10 = 2 \cdot 5 $. A fraction $ a/b $ has a finite expansion in base $ B $ if and only if (in lowest terms) the prime factors of $ b $ are all factors of $ B $:
+
+| Base | Terminating denominators (in lowest terms)                          |
+| :---:| :---                                                                |
+| $ 10 = 2 \cdot 5 $   | $ b = 2^m 5^n $                                             |
+| $ 2 $   | $ b = 2^m $ (i.e. powers of 2)                                   |
+| $ 3 $   | $ b = 3^m $                                                      |
+| $ 6 = 2 \cdot 3 $   | $ b = 2^m 3^n $                                              |
+| $ 12 = 2^2 \cdot 3 $| $ b = 2^m 3^n $ (same set as base 6 — same prime support)    |
+
+So whether a fraction's expansion terminates is *not* an intrinsic property of the number — it depends on the choice of base. $ 1/3 $ terminates in base 3 ($ = 0.1_3 $), even though it loops forever in base 10.
+
+## Remark — The Dual "$ 0.999\ldots $" Representation
+
+Every terminating decimal has a *second* valid representation ending in repeating 9s. For example:
+
+$$$
+0.5 \;=\; 0.4999\ldots \;=\; 0.4\overline{9},
+$$$
+
+$$$
+0.25 \;=\; 0.24999\ldots \;=\; 0.24\overline{9}.
+$$$
+
+So the "terminating" form is not actually unique — but the underlying *number* is. A more honest characterisation: the set in question is the set of rationals admitting *at least one* terminating decimal expansion. (And those are exactly the rationals admitting at least one $ \overline{9} $-ending expansion too.)
+
+## Remark — Subring Structure
+
+The set $ T $ of terminating decimals is closed under addition, subtraction, and multiplication, and contains $ 1 $. (Try it: $ \tfrac{a}{2^m 5^n} + \tfrac{c}{2^p 5^q} $ has denominator dividing $ 2^{\max(m,p)} 5^{\max(n,q)} $.) Hence $ T $ is a *subring* of $ \mathbb{Q} $, containing $ \mathbb{Z} $:
+
+$$$
+\mathbb{Z} \;\subset\; T \;=\; \mathbb{Z}[1/10] \;\subset\; \mathbb{Q}.
+$$$
+
+It is *not* a field, however — for example $ 1/3 \notin T $, so not every nonzero element of $ T $ has a multiplicative inverse in $ T $. (Only those with denominator a power of 10 actually have inverses also of the same form.)
+
+The ring $ \mathbb{Z}[1/10] $ is the *localisation* of $ \mathbb{Z} $ at the multiplicative set $ \{1, 10, 100, \ldots\} $ — algebraists often write it as $ \mathbb{Z}\bigl[\tfrac{1}{10}\bigr] $ or sometimes $ \mathbb{Z}_{(10)} $ (the latter with a slightly different meaning in number-theory contexts; conventions vary).
+
+## Remark — Connection to Long Division
+
+Here's an algorithmic way to see the same fact. Long-dividing $ a $ by $ b $:
+
+1. At each step you have a remainder $ r \in \{0, 1, \ldots, b - 1\} $.
+2. The next remainder is $ (10 r) \bmod b $, and the next decimal digit is $ \lfloor 10 r / b \rfloor $.
+3. The expansion terminates iff some remainder eventually equals $ 0 $.
+
+The remainder map $ r \mapsto 10 r \bmod b $ is *invertible* on the subgroup $ \langle 10 \rangle $ of $ (\mathbb{Z}/b\mathbb{Z})^\times $ if $ \gcd(10, b) = 1 $. If $ \gcd(10, b) = 1 $, the iterations cycle through invertible residues — *never* hitting $ 0 $. So no terminating expansion.
+
+If $ \gcd(10, b) > 1 $ — i.e. $ b $ shares a prime factor with $ 10 = 2 \cdot 5 $ — the iteration shrinks the "$ 2 $-part and $ 5 $-part" of the remainder until $ b $ contributes no factors beyond $ 2, 5 $. At that point one further iteration kills the remainder.
+
+The clean conclusion: termination is equivalent to $ b $'s prime factors *all* dividing $ 10 $. This recovers our characterisation.
+
+## Remark — Cardinality
+
+The set $ T $ of terminating decimals is **countable** — being a subset of $ \mathbb{Q} $, which is countable. In fact $ T $ is *bijective* with $ \mathbb{Z} \times \mathbb{Z}_{\ge 0} $ via the map $ (c, k) \mapsto c / 10^k $, which gives an explicit enumeration.
+
+Despite being countable, $ T $ is *dense* in $ \mathbb{R} $: between any two real numbers there is a terminating decimal. (Just truncate the decimal expansion of one of them at a sufficiently high place.) So $ T $ is countable + dense — a useful combination that makes terminating decimals an effective *practical* number system, even though they're a small slice of $ \mathbb{Q} $.

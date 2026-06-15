@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" width="720" height="360" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="360" fill="white"/>
+
+  <text x="360" y="22" font-size="13" font-style="italic" fill="#444" text-anchor="middle">First 20 decimal places — repeating blocks shaded, trailing zeros greyed, irrationals neutral</text>
+
+  <text x="95" y="68" font-size="13" text-anchor="end">π = 3.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="50" width="20" height="28" fill="white"/><rect x="120" y="50" width="20" height="28" fill="white"/><rect x="140" y="50" width="20" height="28" fill="white"/><rect x="160" y="50" width="20" height="28" fill="white"/><rect x="180" y="50" width="20" height="28" fill="white"/>
+      <rect x="200" y="50" width="20" height="28" fill="white"/><rect x="220" y="50" width="20" height="28" fill="white"/><rect x="240" y="50" width="20" height="28" fill="white"/><rect x="260" y="50" width="20" height="28" fill="white"/><rect x="280" y="50" width="20" height="28" fill="white"/>
+      <rect x="300" y="50" width="20" height="28" fill="white"/><rect x="320" y="50" width="20" height="28" fill="white"/><rect x="340" y="50" width="20" height="28" fill="white"/><rect x="360" y="50" width="20" height="28" fill="white"/><rect x="380" y="50" width="20" height="28" fill="white"/>
+      <rect x="400" y="50" width="20" height="28" fill="white"/><rect x="420" y="50" width="20" height="28" fill="white"/><rect x="440" y="50" width="20" height="28" fill="white"/><rect x="460" y="50" width="20" height="28" fill="white"/><rect x="480" y="50" width="20" height="28" fill="white"/>
+    </g>
+    <text x="110" y="69">1</text><text x="130" y="69">4</text><text x="150" y="69">1</text><text x="170" y="69">5</text><text x="190" y="69">9</text>
+    <text x="210" y="69">2</text><text x="230" y="69">6</text><text x="250" y="69">5</text><text x="270" y="69">3</text><text x="290" y="69">5</text>
+    <text x="310" y="69">8</text><text x="330" y="69">9</text><text x="350" y="69">7</text><text x="370" y="69">9</text><text x="390" y="69">3</text>
+    <text x="410" y="69">2</text><text x="430" y="69">3</text><text x="450" y="69">8</text><text x="470" y="69">4</text><text x="490" y="69">6</text>
+  </g>
+  <text x="510" y="68" font-size="12" font-style="italic" fill="#666">no pattern (irrational)</text>
+
+  <text x="95" y="104" font-size="13" text-anchor="end">3/7 = 0.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="120" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="140" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="160" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="180" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="200" y="86" width="20" height="28" fill="#ffe8e8"/>
+      <rect x="220" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="240" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="260" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="280" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="300" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="320" y="86" width="20" height="28" fill="#e8e8ff"/>
+      <rect x="340" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="360" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="380" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="400" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="420" y="86" width="20" height="28" fill="#ffe8e8"/><rect x="440" y="86" width="20" height="28" fill="#ffe8e8"/>
+      <rect x="460" y="86" width="20" height="28" fill="#e8e8ff"/><rect x="480" y="86" width="20" height="28" fill="#e8e8ff"/>
+    </g>
+    <text x="110" y="105">4</text><text x="130" y="105">2</text><text x="150" y="105">8</text><text x="170" y="105">5</text><text x="190" y="105">7</text><text x="210" y="105">1</text>
+    <text x="230" y="105">4</text><text x="250" y="105">2</text><text x="270" y="105">8</text><text x="290" y="105">5</text><text x="310" y="105">7</text><text x="330" y="105">1</text>
+    <text x="350" y="105">4</text><text x="370" y="105">2</text><text x="390" y="105">8</text><text x="410" y="105">5</text><text x="430" y="105">7</text><text x="450" y="105">1</text>
+    <text x="470" y="105">4</text><text x="490" y="105">2</text>
+  </g>
+  <text x="510" y="104" font-size="12" font-style="italic" fill="#666">period 6 ("428571")</text>
+
+  <text x="95" y="140" font-size="13" text-anchor="end">√2 = 1.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="122" width="20" height="28" fill="white"/><rect x="120" y="122" width="20" height="28" fill="white"/><rect x="140" y="122" width="20" height="28" fill="white"/><rect x="160" y="122" width="20" height="28" fill="white"/><rect x="180" y="122" width="20" height="28" fill="white"/>
+      <rect x="200" y="122" width="20" height="28" fill="white"/><rect x="220" y="122" width="20" height="28" fill="white"/><rect x="240" y="122" width="20" height="28" fill="white"/><rect x="260" y="122" width="20" height="28" fill="white"/><rect x="280" y="122" width="20" height="28" fill="white"/>
+      <rect x="300" y="122" width="20" height="28" fill="white"/><rect x="320" y="122" width="20" height="28" fill="white"/><rect x="340" y="122" width="20" height="28" fill="white"/><rect x="360" y="122" width="20" height="28" fill="white"/><rect x="380" y="122" width="20" height="28" fill="white"/>
+      <rect x="400" y="122" width="20" height="28" fill="white"/><rect x="420" y="122" width="20" height="28" fill="white"/><rect x="440" y="122" width="20" height="28" fill="white"/><rect x="460" y="122" width="20" height="28" fill="white"/><rect x="480" y="122" width="20" height="28" fill="white"/>
+    </g>
+    <text x="110" y="141">4</text><text x="130" y="141">1</text><text x="150" y="141">4</text><text x="170" y="141">2</text><text x="190" y="141">1</text>
+    <text x="210" y="141">3</text><text x="230" y="141">5</text><text x="250" y="141">6</text><text x="270" y="141">2</text><text x="290" y="141">3</text>
+    <text x="310" y="141">7</text><text x="330" y="141">3</text><text x="350" y="141">0</text><text x="370" y="141">9</text><text x="390" y="141">5</text>
+    <text x="410" y="141">0</text><text x="430" y="141">4</text><text x="450" y="141">8</text><text x="470" y="141">8</text><text x="490" y="141">0</text>
+  </g>
+  <text x="510" y="140" font-size="12" font-style="italic" fill="#666">no pattern (irrational)</text>
+
+  <text x="95" y="176" font-size="13" text-anchor="end">2/5 = 0.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="158" width="20" height="28" fill="#dff5df"/>
+      <rect x="120" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="140" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="160" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="180" y="158" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="200" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="220" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="240" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="260" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="280" y="158" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="300" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="320" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="340" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="360" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="380" y="158" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="400" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="420" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="440" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="460" y="158" width="20" height="28" fill="#f5f5f5"/><rect x="480" y="158" width="20" height="28" fill="#f5f5f5"/>
+    </g>
+    <text x="110" y="177">4</text>
+    <text x="130" y="177" fill="#aaa">0</text><text x="150" y="177" fill="#aaa">0</text><text x="170" y="177" fill="#aaa">0</text><text x="190" y="177" fill="#aaa">0</text>
+    <text x="210" y="177" fill="#aaa">0</text><text x="230" y="177" fill="#aaa">0</text><text x="250" y="177" fill="#aaa">0</text><text x="270" y="177" fill="#aaa">0</text><text x="290" y="177" fill="#aaa">0</text>
+    <text x="310" y="177" fill="#aaa">0</text><text x="330" y="177" fill="#aaa">0</text><text x="350" y="177" fill="#aaa">0</text><text x="370" y="177" fill="#aaa">0</text><text x="390" y="177" fill="#aaa">0</text>
+    <text x="410" y="177" fill="#aaa">0</text><text x="430" y="177" fill="#aaa">0</text><text x="450" y="177" fill="#aaa">0</text><text x="470" y="177" fill="#aaa">0</text><text x="490" y="177" fill="#aaa">0</text>
+  </g>
+  <text x="510" y="176" font-size="12" font-style="italic" fill="#666">terminates (= 0.4)</text>
+
+  <text x="95" y="212" font-size="13" text-anchor="end">16/17 = 0.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="120" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="140" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="160" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="180" y="194" width="20" height="28" fill="#ffe8e8"/>
+      <rect x="200" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="220" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="240" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="260" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="280" y="194" width="20" height="28" fill="#ffe8e8"/>
+      <rect x="300" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="320" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="340" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="360" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="380" y="194" width="20" height="28" fill="#ffe8e8"/><rect x="400" y="194" width="20" height="28" fill="#ffe8e8"/>
+      <rect x="420" y="194" width="20" height="28" fill="#e8e8ff"/><rect x="440" y="194" width="20" height="28" fill="#e8e8ff"/><rect x="460" y="194" width="20" height="28" fill="#e8e8ff"/><rect x="480" y="194" width="20" height="28" fill="#e8e8ff"/>
+    </g>
+    <text x="110" y="213">9</text><text x="130" y="213">4</text><text x="150" y="213">1</text><text x="170" y="213">1</text><text x="190" y="213">7</text>
+    <text x="210" y="213">6</text><text x="230" y="213">4</text><text x="250" y="213">7</text><text x="270" y="213">0</text><text x="290" y="213">5</text>
+    <text x="310" y="213">8</text><text x="330" y="213">8</text><text x="350" y="213">2</text><text x="370" y="213">3</text><text x="390" y="213">5</text><text x="410" y="213">2</text>
+    <text x="430" y="213">9</text><text x="450" y="213">4</text><text x="470" y="213">1</text><text x="490" y="213">1</text>
+  </g>
+  <text x="510" y="212" font-size="12" font-style="italic" fill="#666">period 16</text>
+
+  <text x="95" y="248" font-size="13" text-anchor="end">√3 = 1.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="230" width="20" height="28" fill="white"/><rect x="120" y="230" width="20" height="28" fill="white"/><rect x="140" y="230" width="20" height="28" fill="white"/><rect x="160" y="230" width="20" height="28" fill="white"/><rect x="180" y="230" width="20" height="28" fill="white"/>
+      <rect x="200" y="230" width="20" height="28" fill="white"/><rect x="220" y="230" width="20" height="28" fill="white"/><rect x="240" y="230" width="20" height="28" fill="white"/><rect x="260" y="230" width="20" height="28" fill="white"/><rect x="280" y="230" width="20" height="28" fill="white"/>
+      <rect x="300" y="230" width="20" height="28" fill="white"/><rect x="320" y="230" width="20" height="28" fill="white"/><rect x="340" y="230" width="20" height="28" fill="white"/><rect x="360" y="230" width="20" height="28" fill="white"/><rect x="380" y="230" width="20" height="28" fill="white"/>
+      <rect x="400" y="230" width="20" height="28" fill="white"/><rect x="420" y="230" width="20" height="28" fill="white"/><rect x="440" y="230" width="20" height="28" fill="white"/><rect x="460" y="230" width="20" height="28" fill="white"/><rect x="480" y="230" width="20" height="28" fill="white"/>
+    </g>
+    <text x="110" y="249">7</text><text x="130" y="249">3</text><text x="150" y="249">2</text><text x="170" y="249">0</text><text x="190" y="249">5</text>
+    <text x="210" y="249">0</text><text x="230" y="249">8</text><text x="250" y="249">0</text><text x="270" y="249">7</text><text x="290" y="249">5</text>
+    <text x="310" y="249">6</text><text x="330" y="249">8</text><text x="350" y="249">8</text><text x="370" y="249">7</text><text x="390" y="249">7</text>
+    <text x="410" y="249">2</text><text x="430" y="249">9</text><text x="450" y="249">3</text><text x="470" y="249">5</text><text x="490" y="249">2</text>
+  </g>
+  <text x="510" y="248" font-size="12" font-style="italic" fill="#666">no pattern (irrational)</text>
+
+  <text x="95" y="284" font-size="13" text-anchor="end">1/2 = 0.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="266" width="20" height="28" fill="#dff5df"/>
+      <rect x="120" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="140" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="160" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="180" y="266" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="200" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="220" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="240" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="260" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="280" y="266" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="300" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="320" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="340" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="360" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="380" y="266" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="400" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="420" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="440" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="460" y="266" width="20" height="28" fill="#f5f5f5"/><rect x="480" y="266" width="20" height="28" fill="#f5f5f5"/>
+    </g>
+    <text x="110" y="285">5</text>
+    <text x="130" y="285" fill="#aaa">0</text><text x="150" y="285" fill="#aaa">0</text><text x="170" y="285" fill="#aaa">0</text><text x="190" y="285" fill="#aaa">0</text>
+    <text x="210" y="285" fill="#aaa">0</text><text x="230" y="285" fill="#aaa">0</text><text x="250" y="285" fill="#aaa">0</text><text x="270" y="285" fill="#aaa">0</text><text x="290" y="285" fill="#aaa">0</text>
+    <text x="310" y="285" fill="#aaa">0</text><text x="330" y="285" fill="#aaa">0</text><text x="350" y="285" fill="#aaa">0</text><text x="370" y="285" fill="#aaa">0</text><text x="390" y="285" fill="#aaa">0</text>
+    <text x="410" y="285" fill="#aaa">0</text><text x="430" y="285" fill="#aaa">0</text><text x="450" y="285" fill="#aaa">0</text><text x="470" y="285" fill="#aaa">0</text><text x="490" y="285" fill="#aaa">0</text>
+  </g>
+  <text x="510" y="284" font-size="12" font-style="italic" fill="#666">terminates (= 0.5)</text>
+
+  <text x="95" y="320" font-size="13" text-anchor="end">42/100 = 0.</text>
+  <g font-size="13" text-anchor="middle">
+    <g stroke="#cccccc" stroke-width="0.8">
+      <rect x="100" y="302" width="20" height="28" fill="#dff5df"/><rect x="120" y="302" width="20" height="28" fill="#dff5df"/>
+      <rect x="140" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="160" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="180" y="302" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="200" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="220" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="240" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="260" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="280" y="302" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="300" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="320" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="340" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="360" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="380" y="302" width="20" height="28" fill="#f5f5f5"/>
+      <rect x="400" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="420" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="440" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="460" y="302" width="20" height="28" fill="#f5f5f5"/><rect x="480" y="302" width="20" height="28" fill="#f5f5f5"/>
+    </g>
+    <text x="110" y="321">4</text><text x="130" y="321">2</text>
+    <text x="150" y="321" fill="#aaa">0</text><text x="170" y="321" fill="#aaa">0</text><text x="190" y="321" fill="#aaa">0</text>
+    <text x="210" y="321" fill="#aaa">0</text><text x="230" y="321" fill="#aaa">0</text><text x="250" y="321" fill="#aaa">0</text><text x="270" y="321" fill="#aaa">0</text><text x="290" y="321" fill="#aaa">0</text>
+    <text x="310" y="321" fill="#aaa">0</text><text x="330" y="321" fill="#aaa">0</text><text x="350" y="321" fill="#aaa">0</text><text x="370" y="321" fill="#aaa">0</text><text x="390" y="321" fill="#aaa">0</text>
+    <text x="410" y="321" fill="#aaa">0</text><text x="430" y="321" fill="#aaa">0</text><text x="450" y="321" fill="#aaa">0</text><text x="470" y="321" fill="#aaa">0</text><text x="490" y="321" fill="#aaa">0</text>
+  </g>
+  <text x="510" y="320" font-size="12" font-style="italic" fill="#666">terminates (= 0.42)</text>
+</svg>

@@ -1,0 +1,126 @@
+.docname {Solution — GIAM 1.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 2
+
+## Problem
+
+Write the set $ \mathbb{Z} $ of integers using a singly infinite listing.
+
+## Setup — What "Singly Infinite" Means
+
+The book's earlier display of $ \mathbb{Z} $ as
+
+$$$
+\mathbb{Z} \;=\; \{\ldots,\, -3,\, -2,\, -1,\, 0,\, 1,\, 2,\, 3,\, \ldots\}
+$$$
+
+is *doubly infinite*: the ellipses extend in **both** directions. A *singly infinite* listing has just one ellipsis — it's a sequence indexed by the natural numbers $ 1, 2, 3, \ldots $, with a definite first element and no "left end" to worry about.
+
+## The Listing
+
+Alternate sign, growing in magnitude each round:
+
+$$$
+\mathbb{Z} \;=\; \{\,0,\; 1,\; -1,\; 2,\; -2,\; 3,\; -3,\; 4,\; -4,\; \ldots\,\}.
+$$$
+
+Equivalently, the listing is given by the function $ f : \mathbb{N} \to \mathbb{Z} $
+
+$$$
+f(n) \;=\; \begin{cases} \;\;n / 2 & \text{if } n \text{ is even,} \\ -(n - 1)/2 & \text{if } n \text{ is odd.} \end{cases}
+$$$
+
+(Equivalently in one piece: $ f(n) = (-1)^n \lfloor n / 2 \rfloor $.)
+
+The first few values:
+
+| $ n $   | 1 | 2 | 3  | 4 | 5  | 6 | 7  | 8 | 9  |
+| :---:   | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $ f(n) $ | $ 0 $ | $ 1 $ | $ -1 $ | $ 2 $ | $ -2 $ | $ 3 $ | $ -3 $ | $ 4 $ | $ -4 $ |
+
+## Why It Works — Every Integer Appears Exactly Once
+
+We must check $ f $ is a *bijection* from $ \mathbb{N} $ to $ \mathbb{Z} $: every integer appears at least once (surjectivity) and at most once (injectivity).
+
+**Surjective.** Given any $ k \in \mathbb{Z} $, we can solve for the $ n $ with $ f(n) = k $:
+
+- If $ k > 0 $: take $ n = 2k $. Then $ n $ is even and $ f(n) = n/2 = k $. ✓
+- If $ k \le 0 $: take $ n = 1 - 2k $ (a positive odd integer). Then $ f(n) = -(n - 1)/2 = -(-2k)/2 = k $. ✓
+
+So $ f $ hits every integer.
+
+**Injective.** Even $ n $ map to *positive* integers and odd $ n $ map to *non-positive* integers — disjoint outputs by parity. Within each parity class, $ f $ is strictly monotone in $ n $, hence one-to-one.
+
+So $ f $ is a bijection — the listing visits every integer exactly once. $ \blacksquare $
+
+## Visual — The Zigzag Path
+
+Reading $ f $ off the number line: start at $ 0 $ and alternate right-positive and left-negative, growing in magnitude by one each cycle.
+
+!(95%)[Singly infinite listing of ℤ as a zigzag on the number line](problem-2-zigzag.svg "Each integer carries a red position-number showing when it is visited by the listing. Arrows show the path of visits: 0 → 1 → −1 → 2 → −2 → 3 → −3 → ⋯, with the magnitude of each step growing by one.")
+
+## Remark — Why the "Naïve" Listing Doesn't Count
+
+A first instinct might be to list all non-negative integers, then all negatives:
+
+$$$
+\{\,0,\; 1,\; 2,\; 3,\; 4,\; \ldots,\; -1,\; -2,\; -3,\; -4,\; \ldots\,\}.
+$$$
+
+But this is *not* a singly infinite listing — it contains *two* ellipses, both running to infinity. At what position does $ -1 $ appear? You can't write down any finite $ n $: the non-negatives $ 0, 1, 2, 3, \ldots $ alone already exhaust positions $ 1, 2, 3, \ldots $, leaving no room for the negatives.
+
+This isn't just an aesthetic complaint. The ordering above has *order type* $ \omega + \omega $ — two infinite "rounds" stacked. A singly infinite listing must have order type $ \omega $ — a single infinite "round". You can't slip the negatives in *after* the positives because there is no "after" in $ \omega $.
+
+The zigzag listing $ 0, 1, -1, 2, -2, \ldots $ has order type $ \omega $ precisely because it *interleaves* the positives and negatives so that every integer gets a finite position.
+
+## Remark — Other Valid Orderings
+
+The zigzag is convenient, but not unique. Any *bijection* $ \mathbb{N} \to \mathbb{Z} $ yields a valid singly infinite listing. For instance:
+
+- **Two-up-one-down**: $ \{0, 1, 2, -1, 3, 4, -2, 5, 6, -3, \ldots\} $ — list two non-negatives, then one negative, repeating.
+- **Lexicographic by magnitude, ties broken negatives first**: $ \{0, -1, 1, -2, 2, -3, 3, \ldots\} $ — same as the standard zigzag with the sign convention flipped after $ 0 $.
+- **Spread by prime exponents**: send $ 2^a 3^b \mapsto a - b $ for the obvious bijection $ \mathbb{N} \to \mathbb{Z}^2 $-style construction (overkill but valid).
+
+What makes the textbook's expected answer the *standard* one is symmetry and minimality: it is the listing in which each integer appears at position $ \approx 2 \lvert k \rvert $ — i.e. roughly at the position equal to twice its distance from $ 0 $.
+
+## Remark — This is the First Hint of Countability
+
+The exercise is a sleight of hand: writing $ \mathbb{Z} $ as a singly infinite listing **is exactly the same** as exhibiting a bijection $ \mathbb{N} \to \mathbb{Z} $.
+
+Together these say *$ \mathbb{Z} $ is countable* — i.e. it has the same cardinality as $ \mathbb{N} $. In Chapter 8 the textbook will develop this notion formally and prove that even $ \mathbb{Q} $ (the rationals) is countable, while $ \mathbb{R} $ is not (Cantor's diagonal argument).
+
+The naïve intuition that "there are twice as many integers as natural numbers" (positives, negatives, plus zero) is *wrong* in the technical sense of cardinality. The zigzag listing is the constructive witness against that intuition: it pairs up the integers with the naturals one-for-one, with no integer left behind.
+
+## Remark — Inverting the Listing
+
+It's useful to be able to *read* the listing in either direction. The inverse map $ g : \mathbb{Z} \to \mathbb{N} $ takes an integer $ k $ to its position in the list:
+
+$$$
+g(k) \;=\; \begin{cases} 2k & \text{if } k > 0, \\ 1 - 2k & \text{if } k \le 0. \end{cases}
+$$$
+
+So for example $ g(0) = 1 $, $ g(1) = 2 $, $ g(-1) = 3 $, $ g(5) = 10 $, $ g(-5) = 11 $. *Positive integers occupy the even positions; non-positive integers occupy the odd positions* — exactly the parity structure of the original $ f $.
+
+## Remark — A Compact Pictorial Mnemonic
+
+A one-line way to remember the zigzag is the spiral
+
+$$$
+0 \;\to\; +1 \;\to\; -1 \;\to\; +2 \;\to\; -2 \;\to\; +3 \;\to\; -3 \;\to\; \cdots
+$$$
+
+or pictorially:
+
+$$$
+0 \;\nearrow\; 1 \;\swarrow\; -1 \;\nearrow\; 2 \;\swarrow\; -2 \;\nearrow\; 3 \;\swarrow\; \cdots
+$$$
+
+Both are descriptions of the same listing — alternating up-and-down across the integer line, starting at $ 0 $.

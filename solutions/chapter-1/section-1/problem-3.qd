@@ -1,0 +1,163 @@
+.docname {Solution — GIAM 1.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 3
+
+## Problem
+
+Identify each as rational or irrational.
+
+- **(a)** $ 5021.2121212121\ldots $
+- **(b)** $ 0.2340000000\ldots $
+- **(*c*)** $ 12.31331133311133331111\ldots $
+- **(d)** $ \pi $
+- **(e)** $ 2.987654321987654321987654321\ldots $
+
+## The Key Principle
+
+The textbook hinted at the rule on p.5: *a real number is rational if and only if its decimal expansion is eventually periodic* — i.e. some finite block of digits repeats forever from some point onward. Equivalently, a decimal expansion that *terminates* (ends in all zeros) is rational; an expansion with a repeating block of fixed length is rational; an expansion with *no* eventually-repeating pattern is irrational.
+
+We apply this principle to each item.
+
+## Part (a) — $ 5021.2121212121\ldots $ — Rational
+
+The decimal point splits this into integer part $ 5021 $ and fractional part $ 0.212121\ldots $ — the digits "21" repeating forever. **Eventually periodic ⟹ rational.**
+
+To convert: let $ x = 5021.2121\overline{21} $. Then $ 100 x = 502121.2121\overline{21} $, and subtracting cancels the repeating tail:
+
+$$$
+\begin{aligned}
+100 x - x \;&=\; 502121 - 5021 \;=\; 497100, \\
+99 \, x \;&=\; 497100, \\
+x \;&=\; \frac{497100}{99} \;=\; \frac{165700}{33}.
+\end{aligned}
+$$$
+
+Equivalently, $ x = 5021 + \tfrac{7}{33} $.
+
+## Part (b) — $ 0.234000000\ldots $ — Rational
+
+The decimal terminates after three digits: the rest of the expansion is all zeros. A terminating decimal is rational by inspection:
+
+$$$
+0.234 \;=\; \frac{234}{1000} \;=\; \frac{117}{500}.
+$$$
+
+("Terminating" *is* a kind of eventual periodicity: the repeating block is just the single digit "0".)
+
+## Part (*c*) — $ 12.31331133311133331111\ldots $ — Irrational
+
+Parse the digits after the decimal point:
+
+$$$
+\underbrace{3}_{1}\,\underbrace{1}_{1}\,\underbrace{33}_{2}\,\underbrace{11}_{2}\,\underbrace{333}_{3}\,\underbrace{111}_{3}\,\underbrace{3333}_{4}\,\underbrace{1111}_{4}\,\underbrace{33333}_{5}\,\underbrace{11111}_{5}\,\ldots
+$$$
+
+The pattern: alternating runs of $ 3\text{s} $ and $ 1\text{s} $, where the runs **grow longer by one** every two blocks (sizes $ 1, 1, 2, 2, 3, 3, 4, 4, \ldots $).
+
+!(95%)[Block structure of (c)](problem-3-blocks.svg "Alternating 3-runs (pink) and 1-runs (blue) with sizes 1, 1, 2, 2, 3, 3, 4, 4, … The block sizes grow without bound, so no finite repeating pattern is possible.")
+
+This is *not* eventually periodic. Suppose, toward contradiction, that beyond some position $ N $ the digits repeated with some fixed period $ p $. Beyond position $ N $ the expansion contains 3-runs of every length $ k \ge K $ for some $ K $ — in particular, runs longer than $ p $. But within any single period of length $ p $, there can be at most $ p $ consecutive $ 3\text{s} $ — so a run of $ 3\text{s} $ of length $ > p $ couldn't fit. Contradiction.
+
+So **(*c*) is irrational**.
+
+## Part (d) — $ \pi $ — Irrational
+
+$ \pi $ is the textbook's running example of an irrational number, and its decimal expansion
+
+$$$
+\pi \;=\; 3.14159\,26535\,89793\,23846\,26433\,83279\,\ldots
+$$$
+
+has no observable repeating pattern. The irrationality of $ \pi $ is a classical theorem (first proved by Lambert in 1761; the cleanest modern proof is Niven's 1947 calculus-based argument). The proof is well beyond Chapter 1 — but the result is famous enough to take on faith here. **Irrational.**
+
+## Part (e) — $ 2.987654321987654321987654321\ldots $ — Rational
+
+The digits after the decimal point repeat the nine-digit block "$ 987654321 $" forever. **Eventually periodic ⟹ rational.**
+
+To convert: let $ x = 2.\overline{987654321} $. Then $ 10^9 x = 2987654321.\overline{987654321} $, and subtracting cancels the repeating tail:
+
+$$$
+\begin{aligned}
+10^9 \, x - x \;&=\; 2987654321 - 2 \;=\; 2987654319, \\
+999999999 \, x \;&=\; 2987654319, \\
+x \;&=\; \frac{2987654319}{999999999}.
+\end{aligned}
+$$$
+
+## Summary
+
+| Part | Value                                       | Verdict      | Reason                                                                  |
+| :---:| :---                                        | :---         | :---                                                                    |
+| (a)    | $ 5021.2121\overline{21} $                    | rational     | Pre-period "5021.", repeating block "21".                               |
+| (b)    | $ 0.234000\ldots $                            | rational     | Terminating decimal $ = 117/500 $.                                      |
+| (*c*)  | $ 12.31331133311133331111\ldots $             | irrational   | Block sizes $ 1,1,2,2,3,3,\ldots $ grow without bound; no fixed period. |
+| (d)    | $ \pi $                                       | irrational   | Classical theorem (Lambert 1761).                                       |
+| (e)    | $ 2.\overline{987654321} $                    | rational     | Nine-digit repeating block.                                             |
+
+## Remark — Why "Eventually Periodic ⟺ Rational"
+
+The forward direction is the construction we used above. Given a decimal $ x $ with eventual period $ p $ starting at some point, write $ 10^{a+p} x - 10^a x $ where $ a $ is the length of the pre-period; the two expansions cancel everything past position $ a $, leaving a finite *integer*. So $ x \cdot (10^{a+p} - 10^a) $ is an integer, making $ x $ rational.
+
+The reverse direction comes from the *long division* algorithm. Dividing an integer by another integer $ q $ produces, at each step, a remainder in $ \{0, 1, \ldots, q - 1\} $ — only $ q $ possible values. After at most $ q $ steps the remainders must repeat (pigeonhole), and once a remainder repeats the digits start cycling. Hence the decimal is eventually periodic with period $ \le q $.
+
+So the equivalence
+
+$$$
+x \in \mathbb{Q} \quad\Longleftrightarrow\quad \text{decimal expansion of } x \text{ is eventually periodic}
+$$$
+
+is genuine, two-sided, and provable elementary.
+
+## Remark — Terminating Decimals Are a Special Case
+
+A terminating decimal like $ 0.234 $ can be viewed as $ 0.234000\overline{0} $ — periodic with the trivial repeating block "$ 0 $". This is why part (b) fits seamlessly into the "rational ⟺ eventually periodic" framework.
+
+Some authors write a terminating decimal *two* ways: $ 0.234 = 0.234000\ldots = 0.233999\ldots $ (the latter using "9" as the repeating block). Both representations are legitimate — and both are eventually periodic, hence rational.
+
+## Remark — How to "Cook Up" an Irrational Like (*c*)
+
+Item (*c*) is *engineered* to be irrational by sabotaging periodicity. The recipe:
+
+1. Pick two distinct digits, $ d_1 \ne d_2 $.
+2. Write block-runs of these digits with *increasing* run lengths: $ d_1, d_2, d_1 d_1, d_2 d_2, d_1 d_1 d_1, d_2 d_2 d_2, \ldots $
+3. Since the run lengths grow without bound, no finite period $ p $ can fit *any* sufficiently late long run inside a single period — periodicity fails.
+
+This is a *constructive* way to write down a specific irrational, without invoking $ \sqrt{2} $, $ \pi $, or any other transcendental. Variants include:
+
+- **Champernowne's constant.** $ 0.123456789101112131415\ldots $ — concatenate all positive integers. Irrational (in fact transcendental).
+- **Liouville's constant.** $ 0.110001000000000000000001\ldots $ — a $ 1 $ in positions $ 1!,\, 2!,\, 3!,\, \ldots $ and $ 0 $ elsewhere. The "spacing" grows so fast that the decimal can't be periodic — and in fact it's not even algebraic.
+
+These are all examples of "irrationality by construction" rather than by classical proof.
+
+## Remark — $ \pi $'s Irrationality is Genuinely Hard
+
+The other four parts have *elementary* proofs: just look at the decimal pattern, or run long-division backwards. $ \pi $ is the exception — its decimal expansion looks "patternless" but proving there's no eventual periodicity requires real analysis.
+
+The standard proof goes by way of the integral
+
+$$$
+\int_0^1 x^n (1 - x)^n \cdot \sin(\pi x) \, dx,
+$$$
+
+which — assuming $ \pi = a/b $ rational — turns out to be both a positive integer (for some large $ n $) and strictly less than $ 1 $. Contradiction.
+
+This is *much* harder than the long-division argument that classified (a), (b), (e). The textbook explicitly defers the proof — but the irrationality is so well-known that we accept it as background.
+
+## Remark — A Sneaky Observation about (a) and (e)
+
+Items (a) and (e) are both built from the same *recipe*: pick a non-trivial repeating block, attach an integer part. The size of the repeating block determines the denominator:
+
+- (a) has period 2, so the denominator divides $ 99 = 10^2 - 1 $.
+- (e) has period 9, so the denominator divides $ 999999999 = 10^9 - 1 $.
+
+In general, a *purely* periodic decimal with period $ p $ is rational with denominator dividing $ 10^p - 1 $. This is exactly why long division of any integer by $ 10^p - 1 $ yields the corresponding repeating decimal. (Try $ 1/7 = 0.\overline{142857} $ — period 6, and $ 7 \mid 999999 $.)
+
+Mixed pre-period + period (like (a)) just shifts the integer part. The repeating-block-to-denominator relation still controls the fractional part.

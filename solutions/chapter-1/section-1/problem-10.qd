@@ -1,0 +1,139 @@
+.docname {Solution — GIAM 1.1 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 10
+
+## Problem
+
+The *conjugate* of a complex number is denoted with a superscript star and is formed by negating the imaginary part. Thus if $ z = 3 + 4i $ then $ z^* = 3 - 4i $. Give an argument as to why the product of a complex number and its conjugate is a real quantity. (I.e. the imaginary part of $ z \cdot z^* $ is necessarily $ 0 $, no matter what complex number is used for $ z $.)
+
+## The Proof — Direct FOIL
+
+Let $ z = a + bi $ with $ a, b \in \mathbb{R} $. Then $ z^* = a - bi $.
+
+Multiply via FOIL (or, recognising the **difference-of-squares** pattern with "$ A = a $, $ B = bi $"):
+
+$$$
+z \cdot z^* \;=\; (a + bi)(a - bi) \;=\; a^2 \,-\, (b i)^2 \;=\; a^2 \,-\, b^2 \, i^2 \;=\; a^2 \,+\, b^2.
+$$$
+
+Since $ a, b \in \mathbb{R} $, we have $ a^2, b^2 \in \mathbb{R} $, and so $ a^2 + b^2 \in \mathbb{R} $. In fact $ a^2, b^2 \ge 0 $, so
+
+$$$
+z \cdot z^* \;=\; a^2 + b^2 \;\in\; \mathbb{R}_{\ge 0}.
+$$$
+
+The imaginary part of $ z \cdot z^* $ is $ 0 $ — for *any* choice of $ z \in \mathbb{C} $. $ \blacksquare $
+
+## Worked Example
+
+For the textbook's $ z = 3 + 4i $, $ z^* = 3 - 4i $:
+
+$$$
+z \cdot z^* \;=\; (3 + 4i)(3 - 4i) \;=\; 3^2 + 4^2 \;=\; 9 + 16 \;=\; 25.
+$$$
+
+A real number — and in fact a perfect square, $ 5^2 $. (This is no coincidence: $ \lvert z \rvert = 5 $.)
+
+## Geometric Picture — Reflection Across the Real Axis
+
+$ z = a + bi $ and $ z^* = a - bi $ are **mirror images of each other across the real axis** in the complex plane. Their product sits on the real axis itself, at a distance equal to the squared modulus $ \lvert z \rvert^2 = a^2 + b^2 $.
+
+!(95%)[Complex conjugate as reflection; zz* lies on the real axis](problem-10-conjugate.svg "For z = 2 + i the conjugate z* = 2 − i is the mirror image across the real axis. The two arrows have the same length |z| = √5; their product zz* = 5 sits on the positive real axis at distance |z|² = 4 + 1.")
+
+## Polar-Form Proof
+
+The fastest argument is polar. Write $ z = r \, e^{i\theta} $ with $ r = \lvert z \rvert $ and $ \theta = \arg z $. Then
+
+$$$
+z^* \;=\; r \, e^{-i\theta}.
+$$$
+
+(The conjugate has the same modulus and the opposite argument — reflection across the real axis in polar terms.) So
+
+$$$
+z \cdot z^* \;=\; r \, e^{i\theta} \cdot r \, e^{-i\theta} \;=\; r^2 \, e^{i(\theta - \theta)} \;=\; r^2 \, e^{0} \;=\; r^2 \;=\; \lvert z \rvert^2.
+$$$
+
+The arguments cancel; only the (squared) modulus survives. So $ z z^* $ is real and non-negative. $ \blacksquare $
+
+## The Identity $ z \cdot z^* = \lvert z \rvert^2 $
+
+Both proofs above are special cases of the same identity:
+
+$$$
+z \cdot z^* \;=\; \lvert z \rvert^2 \;\in\; \mathbb{R}_{\ge 0}.
+$$$
+
+This identity is so important that it's often taken as the *definition* of $ \lvert z \rvert $ for $ z $ complex: $ \lvert z \rvert := \sqrt{z \, z^*} $. For real numbers the formula reduces to $ \sqrt{x \cdot x} = \lvert x \rvert $ — the usual real absolute value.
+
+## Remark — Why "Necessarily $ 0 $" — A Symmetry Argument
+
+There is an *even* shorter argument, just from the algebra of conjugation. The conjugation map $ z \mapsto z^* $ satisfies these properties:
+
+- $ (z + w)^* = z^* + w^* $   (additivity)
+- $ (z \cdot w)^* = z^* \cdot w^* $   (multiplicativity)
+- $ (z^*)^* = z $   (involution — conjugate twice and you're back)
+- $ z^* = z $ iff $ z \in \mathbb{R} $   (fixed points of conjugation are exactly the reals)
+
+Apply property 4 backwards: to show $ z z^* \in \mathbb{R} $, it suffices to show $ (z z^*)^* = z z^* $. Compute using properties 2 and 3:
+
+$$$
+(z z^*)^* \;=\; z^* \cdot (z^*)^* \;=\; z^* \cdot z \;=\; z \cdot z^*.
+$$$
+
+So $ z z^* $ is *fixed* by conjugation — i.e. it equals its own conjugate — i.e. it is real. $ \blacksquare $
+
+This argument is *coordinate-free*: it never opens $ z $ as "$ a + b i $". It uses only the four algebraic properties of $ * $, which characterise it abstractly.
+
+## Remark — The Identity Powers Complex Division
+
+The most practical use of $ z z^* = \lvert z \rvert^2 $ is in *dividing* complex numbers. To compute $ w / z $, multiply numerator and denominator by $ z^* $:
+
+$$$
+\frac{w}{z} \;=\; \frac{w \cdot z^*}{z \cdot z^*} \;=\; \frac{w \cdot z^*}{\lvert z \rvert^2}.
+$$$
+
+The denominator becomes a *real* number ($ \lvert z \rvert^2 $), and dividing a complex number by a real is trivial — just divide the real and imaginary parts separately. So:
+
+$$$
+\frac{1}{3 + 4i} \;=\; \frac{3 - 4i}{(3 + 4i)(3 - 4i)} \;=\; \frac{3 - 4i}{25} \;=\; \frac{3}{25} \;-\; \frac{4}{25}\, i.
+$$$
+
+Without the identity $ z z^* \in \mathbb{R} $, complex division would be a much harder construction.
+
+## Remark — The Stronger Conclusion: $ z z^* \ge 0 $, with Equality Iff $ z = 0 $
+
+The proof actually gives more than "$ z z^* $ is real": it gives $ z z^* = a^2 + b^2 \ge 0 $, with **equality iff $ a = b = 0 $** (i.e. iff $ z = 0 $).
+
+This is exactly what's needed to make $ \lvert z \rvert = \sqrt{z z^*} $ a *norm*: a real-valued function on $ \mathbb{C} $ that is positive except at $ 0 $, where it vanishes. It also makes the squared-distance function $ d(z, w) = \lvert z - w \rvert^2 = (z - w)(z^* - w^*) $ behave like a proper metric — non-negative, zero iff $ z = w $, symmetric, triangle inequality.
+
+So the modest observation "$ z z^* $ is real" is what underwrites the *entire metric geometry* of the complex plane.
+
+## Remark — Other "Obvious" Sums via the Same Trick
+
+The identity $ z z^* = a^2 + b^2 $ identifies the *sum of two squares* as the product of two specific factors. This is why **Gaussian integers** $ \mathbb{Z}[i] = \{a + bi : a, b \in \mathbb{Z}\} $ provide a clean factorisation theory for sums of squares:
+
+- $ 5 = (2 + i)(2 - i) $ as a Gaussian-integer product → so $ 5 $ is a sum of two squares: $ 2^2 + 1^2 $.
+- $ 13 = (3 + 2i)(3 - 2i) \to 13 = 3^2 + 2^2 $.
+- $ 25 = (3 + 4i)(3 - 4i) \to 25 = 3^2 + 4^2 $ (and also $ 5^2 + 0^2 $).
+
+This is the start of **Fermat's two-squares theorem**: a prime $ p $ is a sum of two squares iff $ p = 2 $ or $ p \equiv 1 \pmod 4 $. The proof rests on Gaussian-integer arithmetic, which in turn rests on $ z z^* \in \mathbb{R}_{\ge 0} $.
+
+So this "trivial" exercise sits at the doorway of a rich theory.
+
+## Remark — Conjugation Reverses Direction in Polar Form
+
+The polar-form proof revealed the *geometric* essence of conjugation: $ z^* $ has the **same modulus** as $ z $ and the **opposite argument**. Equivalently:
+
+- $ \lvert z^* \rvert \;=\; \lvert z \rvert $
+- $ \arg z^* \;=\; -\arg z $
+
+So conjugation is the geometric operation "reflect through the real axis." Reflecting twice gives back the identity — matching the algebraic involution property $ (z^*)^* = z $. Reflecting through the imaginary axis is a *different* operation (negation: $ z \mapsto -z $), and reflecting through the origin is yet another ($ z \mapsto -z $ again). Conjugation is uniquely tied to the *real axis* — which is exactly why $ z z^* $ lands on it.

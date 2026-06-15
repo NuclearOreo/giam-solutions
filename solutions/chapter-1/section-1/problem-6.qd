@@ -1,0 +1,102 @@
+.docname {Solution — GIAM 1.1 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 6
+
+## Problem
+
+Find the first 20 decimal places of $ \pi $, $ 3/7 $, $ \sqrt{2} $, $ 2/5 $, $ 16/17 $, $ \sqrt{3} $, $ 1/2 $, and $ 42/100 $. Classify each as **terminating**, **having a repeating pattern**, or **showing no discernible pattern**.
+
+## Computation
+
+For the irrationals $ \pi, \sqrt{2}, \sqrt{3} $: use standard high-precision tables (or any calculator that handles 20+ digits). For the rationals: long-divide until either a $ 0 $ remainder appears (terminating) or until a remainder *repeats* (periodic — the period is then the cycle length).
+
+The eight expansions to the first 20 decimal places:
+
+- $ \pi $ &nbsp;&nbsp;$ = \;3.14159\;26535\;89793\;23846\,\ldots $
+- $ 3/7 $ &nbsp;&nbsp;$ = \;0.42857\;14285\;71428\;57142\,\ldots $
+- $ \sqrt{2} $ &nbsp;&nbsp;$ = \;1.41421\;35623\;73095\;04880\,\ldots $
+- $ 2/5 $ &nbsp;&nbsp;$ = \;0.40000\;00000\;00000\;00000\,\ldots $
+- $ 16/17 $ &nbsp;$ = \;0.94117\;64705\;88235\;29411\,\ldots $
+- $ \sqrt{3} $ &nbsp;&nbsp;$ = \;1.73205\;08075\;68877\;29352\,\ldots $
+- $ 1/2 $ &nbsp;&nbsp;$ = \;0.50000\;00000\;00000\;00000\,\ldots $
+- $ 42/100 $ $ = \;0.42000\;00000\;00000\;00000\,\ldots $
+
+## Visualizing the Three Categories
+
+!(100%)[The eight decimal expansions, color-coded by category](problem-6-grid.svg "Each row shows the first 20 decimal digits. Pink/blue shading marks the alternating periods for repeating expansions; grey trailing zeros for terminating ones; plain white for the no-pattern irrationals.")
+
+## Classification
+
+| Quantity        | First 20 decimal places                      | Classification         | Reason                                                                                |
+| :---            | :---                                         | :---                   | :---                                                                                  |
+| $ \pi $         | $ 3.14159\,26535\,89793\,23846\,\ldots $       | no discernible pattern | $ \pi $ is irrational (classical theorem).                                            |
+| $ 3/7 $         | $ 0.42857\,14285\,71428\,57142\,\ldots $       | period 6 ($ \overline{428571} $) | Rational; denominator 7 has prime factor $ \notin \{2, 5\} $.                          |
+| $ \sqrt{2} $    | $ 1.41421\,35623\,73095\,04880\,\ldots $       | no discernible pattern | $ \sqrt{2} $ is irrational.                                                           |
+| $ 2/5 $         | $ 0.40000\,00000\,00000\,00000\,\ldots $       | terminating ($ 0.4 $)    | Rational; denominator $ 5 = 5^1 $ has only prime $ 5 $.                                |
+| $ 16/17 $       | $ 0.94117\,64705\,88235\,29411\,\ldots $       | period 16              | Rational; denominator 17 is prime $ \notin \{2, 5\} $; period $ = \mathrm{ord}_{17}(10) = 16 $. |
+| $ \sqrt{3} $    | $ 1.73205\,08075\,68877\,29352\,\ldots $       | no discernible pattern | $ \sqrt{3} $ is irrational.                                                           |
+| $ 1/2 $         | $ 0.50000\,00000\,00000\,00000\,\ldots $       | terminating ($ 0.5 $)    | Rational; denominator $ 2 = 2^1 $ has only prime $ 2 $.                                |
+| $ 42/100 $      | $ 0.42000\,00000\,00000\,00000\,\ldots $       | terminating ($ 0.42 $)   | $ 42/100 = 21/50 $; denominator $ 50 = 2 \cdot 5^2 $ has only primes $ 2, 5 $.       |
+
+## Reading the Table — Three Categories
+
+- **Terminating** ($ 2/5,\, 1/2,\, 42/100 $) — the denominator (in lowest terms) factors as $ 2^m 5^n $, so the long-division remainder reaches $ 0 $ after finitely many steps. From that point on the expansion is just trailing zeros. This is the Problem 5 characterisation in action.
+- **Repeating** ($ 3/7,\, 16/17 $) — the denominator has at least one prime factor outside $ \{2, 5\} $, so long-division can never zero its remainder. By pigeonhole the remainders must cycle, and once they cycle the digits do too. The period divides $ \varphi(\text{denom}) $.
+- **No pattern** ($ \pi,\, \sqrt{2},\, \sqrt{3} $) — these are *irrational*, so by Problem 3's principle their decimal expansions are not eventually periodic. A finite truncation looks "random."
+
+## Remark — Why the Period Lengths Are What They Are
+
+For a rational $ a/b $ in lowest terms with $ \gcd(b, 10) = 1 $, the period of the repeating decimal equals the **multiplicative order of $ 10 $ modulo $ b $** — that is, the smallest positive integer $ k $ such that $ 10^k \equiv 1 \pmod b $.
+
+- $ b = 7 $: $ 10^1 \equiv 3 $, $ 10^2 \equiv 2 $, $ 10^3 \equiv 6 $, $ 10^4 \equiv 4 $, $ 10^5 \equiv 5 $, $ 10^6 \equiv 1 \pmod 7 $. Period $ = 6 $. ✓
+- $ b = 17 $: working through the powers, $ 10^{16} \equiv 1 \pmod{17} $ is the first time. Period $ = 16 $. ✓ (This is in fact the full multiplicative order — 17 is a "long-period prime" for base 10.)
+
+By Fermat's little theorem, the period always *divides* $ \varphi(b) = b - 1 $ when $ b $ is prime. For $ b = 7 $: divides $ 6 $, equals $ 6 $. For $ b = 17 $: divides $ 16 $, equals $ 16 $.
+
+## Remark — A Trick for $ 16/17 $ Without Long Division
+
+The trick: write $ 1/17 = 0.\overline{0588235294117647} $ (period-16 expansion of the reciprocal), then $ 16/17 = 1 - 1/17 = 0.\overline{9411764705882352} $. Subtracting from $ 1 $ flips each digit "9 → 0, 4 → 5, 1 → 8, ..." — equivalently $ d \mapsto 9 - d $ — and inserts a final "carry" that shifts the periodic block by one position. The result is itself a period-16 expansion, just with digits complemented.
+
+Concretely: $ 1/17 = 0.\overline{0588235294117647} $; flipping each digit gives $ 0.\overline{9411764705882352} $, which is $ 16/17 $. The pattern matches our long-division answer exactly.
+
+## Remark — $ 42/100 $ vs $ 21/50 $: Same Number, Same Classification
+
+Both $ 42/100 $ and $ 21/50 $ are valid representations of the same rational $ 0.42 $. The "lowest-terms" version is $ 21/50 $:
+
+$$$
+42/100 \;=\; \frac{2 \cdot 21}{2 \cdot 50} \;=\; \frac{21}{50}.
+$$$
+
+The denominator-prime-factor rule from Problem 5 looks at the *lowest-terms* denominator: here that's $ 50 = 2 \cdot 5^2 $, whose only primes are $ 2 $ and $ 5 $ — hence terminating. Even if we use the un-reduced form $ 42/100 $, the denominator $ 100 = 2^2 \cdot 5^2 $ has the same primes; same conclusion. The classification doesn't depend on whether the fraction is reduced.
+
+## Remark — The Irrationality of $ \sqrt{2}, \sqrt{3} $ Is Elementary
+
+Unlike $ \pi $, the irrationality of $ \sqrt{n} $ (for $ n $ a positive non-square integer) has a one-line proof. If $ \sqrt{n} = a/b $ in lowest terms with $ b > 1 $, then $ n = a^2 / b^2 $, so $ n b^2 = a^2 $. Considering any prime $ p \mid b $: $ p \mid a^2 $, so $ p \mid a $, contradicting $ \gcd(a, b) = 1 $. Hence $ b = 1 $, and $ n = a^2 $ is a perfect square — contradicting our hypothesis. $ \blacksquare $
+
+Applied to $ n = 2 $ or $ n = 3 $: $ 2 $ and $ 3 $ are not perfect squares, so $ \sqrt{2} $ and $ \sqrt{3} $ are irrational. Their decimal expansions are not eventually periodic.
+
+## Remark — Why $ \pi $ Is the Famous Hard Case
+
+The "no discernible pattern" verdict for $ \pi $ is right, but proving it requires *non-elementary* tools (calculus integrals à la Niven, or complex analysis via Lindemann). For the purposes of Chapter 1 it's an accepted fact, with the understanding that a proper proof comes much later in a typical analysis course.
+
+The visual evidence in the figure — 20 digits with no obvious repetition — is suggestive but not a proof. (After all, $ 16/17 $'s period is also 16 digits, and on a glance of 20 places, you might miss the cycle.) The actual proof has to *guarantee* no cycle ever appears.
+
+## Remark — How to Spot a Long-Period Rational
+
+A common pitfall: with $ 16/17 $'s 16-digit period, the first 20 decimal places contain only *one full period plus a 4-digit start of the next*. The cycle isn't visually obvious until you write out, say, 40 digits:
+
+$$$
+16/17 \;=\; 0.\underbrace{9411764705882352}_{\text{period 1}}\,\underbrace{9411764705882352}_{\text{period 2}}\,9411\,\ldots
+$$$
+
+To distinguish a long-period rational from an irrational with just 20 places of decimal output, you need either (i) more decimal places, or (ii) the knowledge that the denominator is a particular prime and the period theoretically could be that long. Decimal-expansion *inspection alone* is a poor diagnostic for rationality past period 20 or so.
+
+This is one reason mathematicians prefer the prime-factor characterisation (Problem 5) over a "look at the decimals" approach: it's a *finite, decidable* test, even when the period would be impractically long to verify by inspection.

@@ -1,0 +1,169 @@
+.docname {Solution — GIAM 1.1 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 9
+
+## Problem
+
+Perform the following computations with complex numbers:
+
+- **(a)** $ (4 + 3i) - (3 + 2i) $
+- **(b)** $ (1 + i) + (1 - i) $
+- **(*c*)** $ (1 + i) \cdot (1 - i) $
+- **(d)** $ (2 - 3i) \cdot (3 - 2i) $
+
+## Setup — Rules of Complex Arithmetic
+
+For $ z = a + bi $ and $ w = c + di $ with $ a, b, c, d \in \mathbb{R} $:
+
+- **Addition / subtraction** is component-wise:
+$$$
+z \pm w \;=\; (a \pm c) + (b \pm d)\, i.
+$$$
+- **Multiplication** uses FOIL, then collapses $ i^2 = -1 $:
+$$$
+z \cdot w \;=\; (a + bi)(c + di) \;=\; ac + adi + bci + bd \, i^2 \;=\; (ac - bd) + (ad + bc)\, i.
+$$$
+
+That's all that's needed. Now the four computations.
+
+## Part (a) — $ (4 + 3i) - (3 + 2i) $
+
+Component-wise subtraction:
+
+$$$
+(4 + 3i) - (3 + 2i) \;=\; (4 - 3) + (3 - 2)\, i \;=\; \boxed{\,1 + i\,}.
+$$$
+
+## Part (b) — $ (1 + i) + (1 - i) $
+
+Component-wise addition. The imaginary parts $ +i $ and $ -i $ cancel:
+
+$$$
+(1 + i) + (1 - i) \;=\; (1 + 1) + (1 - 1)\, i \;=\; \boxed{\,2\,}.
+$$$
+
+The result is a *real* number — the imaginary part vanished.
+
+## Part (*c*) — $ (1 + i) \cdot (1 - i) $
+
+FOIL:
+
+$$$
+\begin{aligned}
+(1 + i)(1 - i) \;&=\; 1 \cdot 1 + 1 \cdot (-i) + i \cdot 1 + i \cdot (-i) \\
+&=\; 1 \;-\; i \;+\; i \;-\; i^2 \\
+&=\; 1 \;-\; (-1) \\
+&=\; \boxed{\,2\,}.
+\end{aligned}
+$$$
+
+Faster route — recognize the **difference-of-squares** pattern:
+
+$$$
+(1 + i)(1 - i) \;=\; 1^2 \;-\; i^2 \;=\; 1 \;-\; (-1) \;=\; 2.
+$$$
+
+(The pair $ z = 1 + i $ and $ \bar{z} = 1 - i $ are **complex conjugates**; their product is $ \lvert z \rvert^2 = 1^2 + 1^2 = 2 $.)
+
+## Part (d) — $ (2 - 3i) \cdot (3 - 2i) $
+
+FOIL again:
+
+$$$
+\begin{aligned}
+(2 - 3i)(3 - 2i) \;&=\; 2 \cdot 3 + 2 \cdot (-2i) + (-3i) \cdot 3 + (-3i) \cdot (-2i) \\
+&=\; 6 \;-\; 4i \;-\; 9i \;+\; 6 \, i^2 \\
+&=\; 6 \;-\; 13 i \;+\; 6 \cdot (-1) \\
+&=\; (6 - 6) + (-13)\, i \\
+&=\; \boxed{\,-\,13 i\,}.
+\end{aligned}
+$$$
+
+The result is a *purely imaginary* number — the real parts cancelled.
+
+## Visualizing (a) and (b) Geometrically
+
+Complex addition/subtraction is *vector* arithmetic in the plane: $ z = a + bi $ corresponds to the point (or arrow from the origin to the point) $ (a, b) \in \mathbb{R}^2 $.
+
+!(95%)[Geometric view of (a) subtraction and (b) addition on the complex plane](problem-9-plane.svg "Left: (4+3i) − (3+2i) = 1+i is the vector from the tip of 3+2i to the tip of 4+3i, which equals the green result vector from the origin. Right: (1+i) + (1−i) = 2 is the diagonal of the parallelogram with sides 1+i and 1−i; the imaginary parts cancel so the sum lies on the real axis.")
+
+- **(a)**: subtraction $ z - w $ is the *vector from the tip of $ w $ to the tip of $ z $*. In the figure, $ (3 + 2i) \to (4 + 3i) $ is one step right and one step up — exactly the vector $ 1 + i $. Translated to the origin, that's the result vector.
+- **(b)**: addition $ z + w $ obeys the *parallelogram rule*. Here $ z = 1 + i $ and $ w = 1 - i $ are mirror images across the real axis, so the parallelogram is symmetric and the sum lies on the real axis: imaginary parts annihilate, real parts add to $ 2 $.
+
+## Summary
+
+| Part | Computation                       | Result   |
+| :---:| :---                              | :---:    |
+| (a)  | $ (4 + 3i) - (3 + 2i) $             | $ 1 + i $  |
+| (b)  | $ (1 + i) + (1 - i) $               | $ 2 $      |
+| (*c*)  | $ (1 + i)(1 - i) $                  | $ 2 $      |
+| (d)  | $ (2 - 3i)(3 - 2i) $                | $ -13 i $  |
+
+## Remark — Conjugates and the Modulus
+
+Item (*c*) is a special case of a *very* useful identity:
+
+$$$
+z \cdot \bar{z} \;=\; \lvert z \rvert^2 \;\in\; \mathbb{R}_{\ge 0},
+$$$
+
+where $ z = a + bi $ and $ \bar{z} = a - bi $ is the **complex conjugate**. For $ z = 1 + i $: $ \bar{z} = 1 - i $, and $ z \bar{z} = 1^2 + 1^2 = 2 $.
+
+This identity is the engine behind *complex division*: to compute $ z / w $, multiply numerator and denominator by $ \bar{w} $:
+
+$$$
+\frac{z}{w} \;=\; \frac{z \, \bar{w}}{w \, \bar{w}} \;=\; \frac{z \, \bar{w}}{\lvert w \rvert^2}.
+$$$
+
+The denominator becomes a real number; the rest is just FOIL. For instance: $ 1 / (1 + i) = (1 - i) / 2 = \tfrac{1}{2} - \tfrac{1}{2} i $.
+
+## Remark — Why (d) Lands Purely Imaginary
+
+The product in (d) wasn't a coincidence — it was a *near*-conjugate situation in disguise:
+
+$$$
+(2 - 3i) \;=\; -i \cdot (3 + 2i)
+$$$
+
+(check: $ -i \cdot (3 + 2i) = -3i - 2 i^2 = -3i + 2 = 2 - 3i $. ✓)
+
+So
+
+$$$
+(2 - 3i)(3 - 2i) \;=\; -i \cdot (3 + 2i)(3 - 2i) \;=\; -i \cdot \lvert 3 + 2i \rvert^2 \;=\; -i \cdot (9 + 4) \;=\; -13 i.
+$$$
+
+The factor $ (3 + 2i)(3 - 2i) = 13 $ — the squared modulus — and the leading $ -i $ rotates by $ -90° $, landing the answer on the negative imaginary axis.
+
+## Remark — Multiplication as Rotation Plus Scaling
+
+For (*c*) and (d), there's a clean *geometric* interpretation. Writing complex numbers in **polar form** $ z = r e^{i\theta} $ (where $ r = \lvert z \rvert $ and $ \theta = \arg z $), multiplication satisfies
+
+$$$
+z_1 \cdot z_2 \;=\; (r_1 r_2) \, e^{i(\theta_1 + \theta_2)}.
+$$$
+
+*Moduli multiply, arguments add.* Applying this to (*c*) and (d):
+
+| product             | factors' moduli                  | factors' arguments                   | product modulus | product argument | rectangular     |
+| :---:               | :---                              | :---                                  | :---:           | :---:             | :---:           |
+| $ (1+i)(1-i) $        | $ \sqrt{2} \cdot \sqrt{2} = 2 $      | $ +\pi/4 + (-\pi/4) = 0 $              | $ 2 $             | $ 0 $              | $ 2 $             |
+| $ (2-3i)(3-2i) $      | $ \sqrt{13} \cdot \sqrt{13} = 13 $   | $ \approx -56.3° + (-33.7°) = -90° $   | $ 13 $            | $ -\pi/2 $         | $ -13 i $         |
+
+So (*c*)'s factors are at angles $ \pm 45° $, summing to $ 0° $ — the product lies on the positive real axis. And (d)'s factors are at angles roughly $ -56° $ and $ -34° $, summing to exactly $ -90° $ — the product lies on the negative imaginary axis.
+
+This explains the "miraculous" cancellation of imaginary parts in (*c*) and real parts in (d): the geometry is doing the work.
+
+## Remark — All Four Operations Stay Inside $ \mathbb{C} $
+
+The four computations illustrate that $ \mathbb{C} $ is closed under addition, subtraction, and multiplication (and division, when the divisor is nonzero). In each case the result is again of the form $ \text{real} + \text{imag} \cdot i $ with real components — never anything "more exotic" needed. This is the closure property that makes $ \mathbb{C} $ a *field*, extending the field $ \mathbb{R} $.
+
+The price paid for this closure is: $ \mathbb{C} $ has no consistent *order* — $ 1 $ vs. $ i $ has no natural "bigger or smaller" (this is the textbook's "the complex numbers can't really be put into a well-defined order" remark). We trade ordering for algebraic closure and the existence of $ \sqrt{-1} $.

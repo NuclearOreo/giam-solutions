@@ -1,0 +1,158 @@
+.docname {Solution — GIAM 1.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 4
+
+## Problem
+
+The "see and say" sequence is produced by first writing $ 1 $, then iterating the following procedure: *look at the previous entry and say how many entries there are of each integer; write down what you just said.* The first several terms are
+
+$$$
+1,\; 11,\; 21,\; 1112,\; 3112,\; 211213,\; 312213,\; 212223,\; \ldots
+$$$
+
+Comment on the rationality of the number
+
+$$$
+N \;=\; 0.111211123112211213\ldots
+$$$
+
+obtained by concatenating the decimal digits of the sequence.
+
+## Verifying the Rule
+
+The rule is: read the previous term, count how often each digit $ 1, 2, 3, \ldots $ appears in it (ignoring digits that don't appear), and write the result as alternating *(count, digit)* pairs in ascending order of digit.
+
+| Step | Term       | Count of $ 1 $ | of $ 2 $ | of $ 3 $ | of $ 4 $ | New term        |
+| :---:| :---:      | :---:        | :---:  | :---:  | :---:  | :---:           |
+| 1    | $ 1 $        | $ 1 $          | —      | —      | —      | $ 11 $            |
+| 2    | $ 11 $       | $ 2 $          | —      | —      | —      | $ 21 $            |
+| 3    | $ 21 $       | $ 1 $          | $ 1 $    | —      | —      | $ 1112 $          |
+| 4    | $ 1112 $     | $ 3 $          | $ 1 $    | —      | —      | $ 3112 $          |
+| 5    | $ 3112 $     | $ 2 $          | $ 1 $    | $ 1 $    | —      | $ 211213 $        |
+| 6    | $ 211213 $   | $ 3 $          | $ 2 $    | $ 1 $    | —      | $ 312213 $        |
+| 7    | $ 312213 $   | $ 2 $          | $ 2 $    | $ 2 $    | —      | $ 212223 $        |
+
+So the first eight terms match the problem's list. Now extend.
+
+## Extending the Sequence
+
+| Step | Term         | Count of $ 1 $ | of $ 2 $ | of $ 3 $ | of $ 4 $ | New term      |
+| :---:| :---:        | :---:        | :---:  | :---:  | :---:  | :---:         |
+| 8    | $ 212223 $     | $ 1 $          | $ 4 $    | $ 1 $    | —      | $ 114213 $    |
+| 9    | $ 114213 $     | $ 3 $          | $ 1 $    | $ 1 $    | $ 1 $    | $ 31121314 $  |
+| 10   | $ 31121314 $   | $ 4 $          | $ 1 $    | $ 2 $    | $ 1 $    | $ 41122314 $  |
+| 11   | $ 41122314 $   | $ 3 $          | $ 2 $    | $ 1 $    | $ 2 $    | $ 31221324 $  |
+| 12   | $ 31221324 $   | $ 2 $          | $ 3 $    | $ 2 $    | $ 1 $    | $ \boxed{21322314} $ |
+| 13   | $ 21322314 $   | $ 2 $          | $ 3 $    | $ 2 $    | $ 1 $    | $ \boxed{21322314} $ |
+
+The sequence **reaches a fixed point at step 12** — every subsequent term is also $ 21322314 $.
+
+## The Fixed Point — Why $ 21322314 $ Describes Itself
+
+Read $ 21322314 $ as four "count-digit" pairs: $ 21,\, 32,\, 23,\, 14 $. That says: "two 1s, three 2s, two 3s, one 4." Counting the digits in $ 21322314 $ itself confirms each claim:
+
+!(95%)[The self-describing string 21322314](problem-4-selfdesc.svg "Each of the four count-digit pairs labels a true count of the matching digit in the string. The string describes itself — so applying the see-and-say rule returns the same string.")
+
+| digit | count in $ 21322314 $ | claim of the matching pair |
+| :---: | :---:                 | :---:                       |
+| $ 1 $   | 2                     | "two 1s"  (the pair $ 21 $) |
+| $ 2 $   | 3                     | "three 2s" (the pair $ 32 $) |
+| $ 3 $   | 2                     | "two 3s"  (the pair $ 23 $) |
+| $ 4 $   | 1                     | "one 4"   (the pair $ 14 $) |
+
+All four claims hold, so $ 21322314 $ is **its own description**. The see-and-say map fixes it. $ \blacksquare $
+
+## Concatenated Decimal $ N $ — Eventually Periodic
+
+Let $ L $ be the total length, in digits, of the first 12 terms (everything before the sequence stabilises). Summing the lengths:
+
+$$$
+L \;=\; \underbrace{1}_{t_1} \,+\, \underbrace{2}_{t_2} \,+\, \underbrace{2}_{t_3} \,+\, \underbrace{4}_{t_4} \,+\, \underbrace{4}_{t_5} \,+\, \underbrace{6}_{t_6} \,+\, \underbrace{6}_{t_7} \,+\, \underbrace{6}_{t_8} \,+\, \underbrace{6}_{t_9} \,+\, \underbrace{8}_{t_{10}} \,+\, \underbrace{8}_{t_{11}} \,+\, \underbrace{8}_{t_{12}} \;=\; 61.
+$$$
+
+From decimal position $ L + 1 = 62 $ onward, $ N $ consists of the 8-digit block $ 21322314 $ repeated forever:
+
+$$$
+N \;=\; 0.\,\underbrace{111211123112211213312213212223114213311213141112231431221324}_{\text{first 61 digits — the pre-period}} \,\overline{21322314}.
+$$$
+
+The decimal is *eventually periodic* — pre-period of length 61, period of length 8 — so
+
+$$$
+N \;\in\; \mathbb{Q}.
+$$$
+
+The number is **rational**. $ \blacksquare $
+
+## Remark — Comparison to Conway's Standard Look-and-Say
+
+The textbook's variant is *not* John Conway's classical look-and-say sequence. Conway's version describes *consecutive runs*: $ 1 \to 11 \to 21 \to 1211 \to 111221 \to 312211 \to \ldots $, where (for instance) $ 1211 $ reads "one 1, one 2, two 1s" because the two consecutive $ 1\text{s} $ at the end form a single run.
+
+Conway proved a famous result about his sequence: the lengths grow asymptotically like $ \lambda^n $ where $ \lambda \approx 1.30357\ldots $ is "Conway's constant" — the unique real root of a degree-71 polynomial. The standard look-and-say sequence *never* stabilises, and its concatenation is irrational (in fact transcendental).
+
+Our textbook variant is different — it counts each *distinct digit* (not consecutive runs) and orders the pairs by digit value. The resulting dynamics are completely different: instead of exponential growth, the sequence rapidly *collapses to a fixed point*, and the concatenated decimal is rational.
+
+## Remark — Why a Fixed Point Forces Rationality
+
+Once the sequence stabilises at any string $ s $ of length $ \ell $, the concatenated decimal from that point onward is
+
+$$$
+s\,s\,s\,s\,s\,\ldots \;=\; \overline{s}
+$$$
+
+— literally the repeating block $ s $ with period $ \ell $. The earlier (non-stabilised) terms form a finite pre-period. *Any* eventually-stabilising sequence will produce a rational concatenation, regardless of how long the pre-period is.
+
+So the question "is $ N $ rational?" reduces to "does the see-and-say sequence (in this variant, starting from $ 1 $) reach a fixed point?" The trace above answers: yes, at step 12.
+
+## Remark — Other Fixed Points
+
+$ 21322314 $ isn't the only fixed point of this see-and-say map. The simplest other one is
+
+$$$
+22 \;=\; \text{"two 2s"},
+$$$
+
+a 2-digit self-describing string. Any string that already describes its own digit counts will be fixed.
+
+Other examples (using larger digit sets):
+
+- $ 213222314 $ (with a "$ 0 $-count" slot) — *not* a valid fixed point in our convention because we skip absent digits.
+- $ 21322314\underbrace{15}_{\text{counting 5s}} $ would describe "two 1s, three 2s, two 3s, one 4, one 5" — i.e. a 10-digit string $ 2132231415 $. Is it a fixed point? Let me check: digits of $ 2132231415 $ — 1 appears 3 times (positions 2, 7, 9), 2 appears 3 times (positions 1, 4, 5), 3 appears 2 times (positions 3, 6), 4 appears 1 time (position 8), 5 appears 1 time (position 10). So the new term would be "3, 1, 3, 2, 2, 3, 1, 4, 1, 5" = "3132231415" — *not* the same. So $ 2132231415 $ is *not* a fixed point.
+
+Finding all fixed points is an interesting combinatorial puzzle in its own right. For sequences starting from $ 1 $, the dynamics happen to land at $ 21322314 $ — but a different starting string can fix at $ 22 $ or could in principle land in a longer cycle.
+
+## Remark — A Tighter View of $ N $
+
+Since $ N $ has pre-period 61 and period 8, we can write it as a rational number. Let $ A $ be the integer formed by the first 61 digits and $ B = 21322314 $ the period block:
+
+$$$
+N \;=\; \frac{A}{10^{61}} \;+\; \frac{1}{10^{61}} \cdot \frac{B}{10^8 - 1} \;=\; \frac{A \,(10^8 - 1) \,+\, B}{10^{61}(10^8 - 1)}.
+$$$
+
+The denominator is
+
+$$$
+10^{61}(10^8 - 1) \;=\; 10^{61} \cdot 99999999.
+$$$
+
+We won't simplify $ A $ explicitly (it's a 61-digit integer), but this *is* the canonical "fraction in lowest pre-period + period form". The denominator's relevant factor is $ 99999999 = 10^8 - 1 $ — the constant that always shows up for a period-8 repeating decimal.
+
+## Remark — How the Problem Would Read with Conway's Standard Variant
+
+If the textbook had used Conway's classical look-and-say sequence — describing consecutive *runs* of digits — the answer would be **irrational** (and famously, transcendental). The sequence
+
+$$$
+1,\; 11,\; 21,\; 1211,\; 111221,\; 312211,\; 13112221,\; 1113213211,\; \ldots
+$$$
+
+grows without bound (lengths blow up by $ \lambda \approx 1.30357\ldots $ each step), never repeats, and the concatenation $ 0.1112112111221312211\ldots $ has no eventually-periodic structure.
+
+The textbook's choice of the count-each-distinct-digit variant is what makes the answer rational. It's a nice illustration of how sensitive the rationality of "weird" decimals is to the precise rule generating them.

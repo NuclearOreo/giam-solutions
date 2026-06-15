@@ -1,0 +1,180 @@
+.docname {Solution — GIAM 1.1 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 7
+
+## Problem
+
+Consider the process of long division. Does this algorithm give any insight as to why rational numbers have terminating or repeating decimal expansions? Explain.
+
+## The Answer — Yes
+
+Long division *is* the proof. Watching the algorithm run on a rational $ a / b $ exposes the underlying mechanism: the remainder at each step lives in a *finite* set $ \{0, 1, \ldots, b-1\} $, so something must eventually happen — either the remainder hits $ 0 $ (and the expansion terminates) or it revisits a previous value (and the expansion cycles forever). There is no third option.
+
+## The Algorithm — A Quick Recap
+
+To compute the decimal expansion of $ a / b $ (assume $ 0 < a < b $ for simplicity, so the integer part is $ 0 $):
+
+1. Start with remainder $ r_0 = a $.
+2. Multiply by $ 10 $: $ 10\, r_0 $.
+3. The next decimal digit is $ d_1 = \lfloor 10\, r_0 / b \rfloor $.
+4. The next remainder is $ r_1 = 10\, r_0 \bmod b $.
+5. Repeat with $ r_1 $ in place of $ r_0 $: digit $ d_2 = \lfloor 10\, r_1 / b \rfloor $, new remainder $ r_2 = 10\, r_1 \bmod b $, and so on.
+
+So the algorithm is governed by the **remainder iteration**
+
+$$$
+r_{k+1} \;=\; 10\, r_k \bmod b,
+$$$
+
+with the emitted digit being $ d_{k+1} = \lfloor 10\, r_k / b \rfloor $.
+
+## The Key Observation — Finite State Space
+
+At every step the remainder $ r_k $ is an integer with
+
+$$$
+0 \;\le\; r_k \;<\; b.
+$$$
+
+So there are only $ b $ possible values $ r_k $ could take: $ \{0, 1, 2, \ldots, b-1\} $.
+
+This is a *finite* set. As the algorithm produces an infinite sequence $ r_0, r_1, r_2, \ldots $ of remainders, **by the pigeonhole principle some value must repeat** — *or* the value $ 0 $ must eventually appear. There are only two ways for an infinite trajectory through a finite set to behave:
+
+- **Hit $ 0 $**, in which case all subsequent remainders are $ 0 $ and all subsequent digits are $ 0 $: the expansion *terminates*.
+- **Revisit a nonzero remainder**, in which case the trajectory has entered a cycle: from that point on the same sequence of remainders (and thus the same sequence of digits) repeats forever — the expansion is *eventually periodic*.
+
+A *finite-state deterministic system* iterated forever can only terminate at an absorbing state ($ 0 $) or enter a cycle. **There is no third behavior.**
+
+That is the entire content of "every rational has a terminating or repeating decimal." $ \blacksquare $
+
+## Visualisation — Cycle vs. Termination
+
+!(95%)[Remainder dynamics for 1/7 (cycle of length 6) and 1/8 (chain to 0)](problem-7-remainders.svg "1/7's remainders run through the cycle 1 → 3 → 2 → 6 → 4 → 5 → 1, emitting the digits 1, 4, 2, 8, 5, 7 — the period of 1/7. 1/8's remainders chain to 0 in three steps, emitting 1, 2, 5 — the terminating digits of 1/8 = 0.125.")
+
+### 1/7 — The Cycle Case
+
+Long division of $ 1 \div 7 $:
+
+| step | remainder $ r_k $ | $ 10 \, r_k $ | digit $ d_{k+1} $ | next $ r_{k+1} $ |
+| :---:| :---:           | :---:        | :---:             | :---:              |
+| 0    | 1               | 10           | 1                 | 3                  |
+| 1    | 3               | 30           | 4                 | 2                  |
+| 2    | 2               | 20           | 2                 | 6                  |
+| 3    | 6               | 60           | 8                 | 4                  |
+| 4    | 4               | 40           | 5                 | 5                  |
+| 5    | 5               | 50           | 7                 | 1 ← *back to start* |
+
+After 6 steps the remainder returns to $ 1 $. The cycle of remainders is $ 1, 3, 2, 6, 4, 5 $; the cycle of digits is $ 1, 4, 2, 8, 5, 7 $. From step 6 onward everything repeats:
+
+$$$
+1/7 \;=\; 0.\overline{142857}.
+$$$
+
+### 1/8 — The Terminating Case
+
+Long division of $ 1 \div 8 $:
+
+| step | remainder $ r_k $ | $ 10 \, r_k $ | digit $ d_{k+1} $ | next $ r_{k+1} $ |
+| :---:| :---:           | :---:        | :---:             | :---:              |
+| 0    | 1               | 10           | 1                 | 2                  |
+| 1    | 2               | 20           | 2                 | 4                  |
+| 2    | 4               | 40           | 5                 | 0 ← *terminates*    |
+
+Remainder $ 0 $ at step 3. After that every $ r_k = 0 $ and every $ d_k = 0 $. So
+
+$$$
+1/8 \;=\; 0.125 \;=\; 0.125000\ldots
+$$$
+
+## Why the Two Cases Match the Prime-Factor Rule
+
+These two cases are *exactly* the dichotomy from Problem 5:
+
+- The remainder hits $ 0 $ iff the long-division process exhausts the factors of $ 10 $ in $ b $. This happens iff every prime factor of $ b $ (in lowest terms) is in $ \{2, 5\} $.
+- Otherwise, $ b $ has a prime factor coprime to $ 10 $, and multiplying by $ 10 $ never reduces that factor. The remainder iteration is a bijection on the subset of $ \{1, \ldots, b-1\} $ coprime to $ b $, and never hits $ 0 $ — it must cycle.
+
+So **the prime-factor rule and the long-division rule are the same theorem, viewed from two sides:**
+
+| Algebraic side                                              | Algorithmic side                                                  |
+| :---                                                        | :---                                                              |
+| $ b = 2^m 5^n \;\Longleftrightarrow\; $ terminates          | "remainder hits 0" $ \Longleftrightarrow $ terminates             |
+| $ b $ has a prime factor outside $ \{2, 5\} $ $ \Longleftrightarrow $ repeats | "remainders cycle without hitting 0" $ \Longleftrightarrow $ repeats |
+
+Long division *exhibits* the algebraic condition by running it.
+
+## Remark — A Bound on the Period Length
+
+The pigeonhole argument gives a *quantitative* bound: at most $ b $ steps before some remainder repeats. So the period of $ a/b $ is at most $ b - 1 $.
+
+Sharper: when $ \gcd(b, 10) = 1 $, only nonzero remainders coprime to $ b $ can appear (and the iteration is a bijection on this set), so the period divides $ \varphi(b) $ (Euler's totient). For prime $ b $, this gives period dividing $ b - 1 $ — by Fermat's little theorem.
+
+| $ b $ | $ \varphi(b) $ | maximum period | actual period for $ 1/b $       |
+| :---: | :---:          | :---:          | :---:                            |
+| 7     | 6              | 6              | 6 — $ 1/7 = 0.\overline{142857} $ |
+| 11    | 10             | 10             | 2 — $ 1/11 = 0.\overline{09} $    |
+| 13    | 12             | 12             | 6 — $ 1/13 = 0.\overline{076923} $ |
+| 17    | 16             | 16             | 16 — long-period prime           |
+| 19    | 18             | 18             | 18 — long-period prime           |
+
+When the period actually *equals* $ \varphi(b) $ — as for $ b = 7, 17, 19 $ — we call $ b $ a **long-period prime** for base 10. (Equivalently: $ 10 $ is a primitive root modulo $ b $.)
+
+## Remark — Pre-Period from $ 2\text{s} $ and $ 5\text{s} $ in the Denominator
+
+If $ b = 2^m 5^n \cdot b' $ with $ \gcd(b', 10) = 1 $ and $ b' > 1 $, the expansion has *both* a pre-period and a period:
+
+- The first $ \max(m, n) $ digits are the "pre-period" — they don't repeat. They are "consumed" by the $ 2\text{s} $ and $ 5\text{s} $ in the denominator.
+- The remaining digits form the period, of length $ \mathrm{ord}_{b'}(10) $.
+
+Example: $ 1/12 = 1/(2^2 \cdot 3) $. Here $ \max(m, n) = 2 $ and $ b' = 3 $, with $ \mathrm{ord}_3(10) = 1 $. So $ 1/12 $ has a 2-digit pre-period and a 1-digit period:
+
+$$$
+1/12 \;=\; 0.08\overline{3}.
+$$$
+
+Long division confirms it: remainders $ 1 \to 10 \to 4 \to 4 \to 4 \to \ldots $ — the first two steps drain the $ 2\text{s} $ out of the denominator (giving the pre-period digits 0, 8), then the remainder $ 4 $ sticks (a fixed point of the iteration $ r \mapsto 10r \bmod 12 $ for $ r = 4 $: $ 40 \bmod 12 = 4 $).
+
+## Remark — The Converse: Periodic Decimal $ \Longrightarrow $ Rational
+
+Long division proves *one direction* of "rational iff eventually periodic" — namely, that rationals have terminating-or-repeating expansions. The *converse* direction needs a separate argument:
+
+If $ x $ has a decimal expansion with pre-period of length $ a $ and period of length $ p $, then
+
+$$$
+10^{a+p}\, x \,-\, 10^a\, x
+$$$
+
+eliminates the repeating tail (the same infinite suffix appears on both sides). What remains is a *finite* difference of digit-segments — an integer. So
+
+$$$
+x \,(10^{a+p} - 10^a) \;\in\; \mathbb{Z},
+$$$
+
+making $ x = N / (10^{a+p} - 10^a) $ for some integer $ N $ — a rational. $ \blacksquare $
+
+Combined with the long-division direction, this gives the full equivalence
+
+$$$
+x \in \mathbb{Q} \quad\Longleftrightarrow\quad \text{decimal expansion of } x \text{ is eventually periodic}.
+$$$
+
+## Remark — Generalisation to Other Bases
+
+The long-division argument generalises immediately. In *any* base $ B \ge 2 $, the remainder at each step lies in $ \{0, 1, \ldots, b-1\} $, and the iteration is $ r_{k+1} = B \, r_k \bmod b $. By pigeonhole the trajectory cycles or hits $ 0 $. So *every rational has a terminating-or-repeating expansion in every base*. The specific dichotomy "terminates iff $ b = 2^m 5^n $" is base-10-specific; in base $ B $, the condition is "$ b $'s prime factors are all among those of $ B $". (E.g., in base 6, terminates iff $ b = 2^m 3^n $.)
+
+The argument's logical content is base-independent: bounded remainders + deterministic iteration = eventual cycle.
+
+## Remark — Long Division as a Finite-State Machine
+
+A clean way to state the conclusion: long division of $ a/b $ is a **deterministic finite-state automaton** with state set $ \{0, 1, \ldots, b-1\} $ (the possible remainders), output alphabet $ \{0, 1, \ldots, 9\} $ (the digits), and transition rule $ r \mapsto 10r \bmod b $ outputting $ \lfloor 10r / b \rfloor $.
+
+Every deterministic finite-state automaton, when run forever, either reaches a halting state ($ 0 $ in our case) or enters a cycle. The output sequence is therefore either *finite* (the halting case → terminating decimal) or *eventually periodic* (the cycling case → repeating decimal).
+
+This is exactly the dichotomy the problem asks us to explain — and long division is the algorithmic embodiment of the proof.

@@ -1,0 +1,136 @@
+.docname {Solution — GIAM 1.1 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.1 Problem 8
+
+## Problem
+
+Give an argument as to why the product of two rational numbers is again a rational.
+
+## The Proof
+
+Let $ x $ and $ y $ be rational numbers. By the textbook's definition (Section 1.1),
+
+$$$
+\mathbb{Q} \;=\; \Bigl\{ \frac{a}{b} \;:\; a, b \in \mathbb{Z},\;\; b \ne 0 \Bigr\},
+$$$
+
+so each is a quotient of integers with nonzero denominator:
+
+$$$
+x \;=\; \frac{a}{b}, \qquad y \;=\; \frac{c}{d}, \qquad a, b, c, d \in \mathbb{Z}, \quad b \ne 0, \quad d \ne 0.
+$$$
+
+Multiply:
+
+$$$
+x \cdot y \;=\; \frac{a}{b} \cdot \frac{c}{d} \;=\; \frac{a c}{b d}.
+$$$
+
+To conclude $ xy \in \mathbb{Q} $ we must check that $ ac / bd $ is a quotient of integers with nonzero denominator. Three small observations:
+
+- $ ac \in \mathbb{Z} $ — integers are closed under multiplication.
+- $ bd \in \mathbb{Z} $ — same.
+- $ bd \ne 0 $ — because $ b \ne 0 $ and $ d \ne 0 $, and the integers have *no zero divisors*: a product of nonzero integers is nonzero.
+
+Therefore $ xy = \tfrac{ac}{bd} $ is itself a quotient of integers with nonzero denominator, i.e. $ xy \in \mathbb{Q} $. $ \blacksquare $
+
+## Worked Example
+
+To make the abstract proof concrete: take $ x = 4/6 $ and $ y = 15/8 $. Then
+
+$$$
+x \cdot y \;=\; \frac{4}{6} \cdot \frac{15}{8} \;=\; \frac{4 \cdot 15}{6 \cdot 8} \;=\; \frac{60}{48}.
+$$$
+
+The numerator $ 60 \in \mathbb{Z} $ and the denominator $ 48 \in \mathbb{Z}\setminus\{0\} $, so $ 60/48 \in \mathbb{Q} $. (Reducing to lowest terms gives $ 5/4 $, but this reduction isn't needed for the rationality conclusion.)
+
+## Remark — Where the Argument Bottoms Out
+
+The proof rests on *three* properties of $ \mathbb{Z} $:
+
+1. Integers are closed under multiplication (for the numerator).
+2. Integers are closed under multiplication (for the denominator).
+3. Integers have no zero divisors (so $ bd \ne 0 $).
+
+All three are part of saying $ \mathbb{Z} $ is an **integral domain**. The closure of $ \mathbb{Q} $ under multiplication is *inherited* from these properties — there is no extra magic at the rational level.
+
+## Remark — $ \mathbb{Q} $ is a Field
+
+The same kind of argument gives all the other arithmetic operations for free:
+
+| Operation                                   | Formula in lowest-terms-free form              | Result in $ \mathbb{Q} $? |
+| :---                                        | :---                                            | :---:                      |
+| sum: $ \tfrac{a}{b} + \tfrac{c}{d} $          | $ \tfrac{ad + bc}{bd} $                          | yes                        |
+| difference: $ \tfrac{a}{b} - \tfrac{c}{d} $   | $ \tfrac{ad - bc}{bd} $                          | yes                        |
+| product: $ \tfrac{a}{b} \cdot \tfrac{c}{d} $  | $ \tfrac{ac}{bd} $                                | yes (the focus of this problem) |
+| quotient: $ \tfrac{a}{b} \div \tfrac{c}{d} $  | $ \tfrac{ad}{bc} $, defined when $ c \ne 0 $     | yes                        |
+
+Each result is a quotient of integers (closed under $ +, -, \times $) with nonzero denominator (no zero divisors), so the result lies in $ \mathbb{Q} $. **Closure under all four arithmetic operations is exactly what it means to call $ \mathbb{Q} $ a field.**
+
+## Remark — Lowest Terms Is Not Required
+
+The proof works for *any* representation of $ x $ and $ y $ as quotients of integers — lowest-terms or not. The example $ (4/6) \cdot (15/8) = 60/48 $ shows this: neither input is in lowest terms, the output isn't either, but the conclusion "$ \in \mathbb{Q} $" holds regardless.
+
+This robustness is by design: the definition
+
+$$$
+\mathbb{Q} \;=\; \Bigl\{ \tfrac{a}{b} \;:\; a, b \in \mathbb{Z},\; b \ne 0 \Bigr\}
+$$$
+
+is *intentionally* permissive about representation. Two fractions $ a/b $ and $ c/d $ represent the same rational iff $ ad = bc $; but each individual representation lives in $ \mathbb{Q} $ on its own.
+
+## Remark — Comparison with $ \mathbb{N}, \mathbb{Z}, \mathbb{R} $
+
+How do the other "basic sets" fare with respect to the four arithmetic operations?
+
+| Set            | $ + $  | $ - $  | $ \times $ | $ \div $ (nonzero divisor) | name                          |
+| :---           | :---: | :---: | :---:      | :---:                     | :---                          |
+| $ \mathbb{N} $ | yes   | no    | yes        | no                        | commutative monoid (under $ \times $) |
+| $ \mathbb{Z} $ | yes   | yes   | yes        | no                        | integral domain               |
+| $ \mathbb{Q} $ | yes   | yes   | yes        | yes                       | **field**                     |
+| $ \mathbb{R} $ | yes   | yes   | yes        | yes                       | field (and complete)          |
+
+The leap from $ \mathbb{Z} $ to $ \mathbb{Q} $ adds closure under division — which is the key reason rationals exist as a separate concept beyond integers. The product-closure question (Problem 8) is the *easy* one; division-closure is the substantive one that distinguishes $ \mathbb{Q} $ from $ \mathbb{Z} $.
+
+## Remark — Generalization to "Field of Fractions"
+
+The closure-under-multiplication argument *generalizes verbatim* to any integral domain $ R $. The **field of fractions** of $ R $ is
+
+$$$
+\mathrm{Frac}(R) \;=\; \Bigl\{ \tfrac{a}{b} \;:\; a, b \in R,\; b \ne 0 \Bigr\}\, /\, \sim,
+$$$
+
+where $ \sim $ is the equivalence relation $ a/b \sim c/d \iff ad = bc $. Closure under multiplication: $ (a/b)(c/d) = ac/bd $ — the proof is *the same* as ours, using only:
+
+- $ R $ closed under multiplication ($ ac \in R $, $ bd \in R $).
+- $ R $ has no zero divisors ($ bd \ne 0 $ when $ b, d \ne 0 $).
+
+Examples:
+
+- $ \mathrm{Frac}(\mathbb{Z}) = \mathbb{Q} $ — our setting.
+- $ \mathrm{Frac}\bigl(k[x]\bigr) = k(x) $ — the field of *rational functions* over a field $ k $.
+- $ \mathrm{Frac}\bigl(\mathbb{Z}[i]\bigr) = \mathbb{Q}(i) $ — Gaussian rationals.
+
+In every case "product of two fractions over an integral domain is a fraction over the same integral domain" by the *same* one-line proof.
+
+## Remark — Why "No Zero Divisors" is Needed
+
+Skip step 3 of the proof — i.e. weaken "integral domain" to "ring with zero divisors" — and the argument breaks. The classic counterexample is $ R = \mathbb{Z}/6\mathbb{Z} $: here $ 2 \cdot 3 = 0 $ in $ R $, so we can construct "fractions" $ 1/2 $ and $ 1/3 $ whose product would have denominator $ 2 \cdot 3 = 0 $ — undefined.
+
+This is why "field of fractions" is *defined only* for integral domains. For general rings one has the more cumbersome "total ring of fractions," which inverts only the non-zero-divisors. The integers are blessed: every nonzero integer is a non-zero-divisor, so we get the clean construction $ \mathbb{Q} $.
+
+## Remark — A Single-Line "Symmetric" Statement
+
+The whole proof of Problem 8 can be stated in a single symmetric sentence:
+
+> *Multiplication of fractions multiplies numerators and multiplies denominators; both operations live inside $ \mathbb{Z} $, and a product of nonzero integers is nonzero, so $ \mathbb{Q} $ is closed under multiplication.*
+
+That sentence packs four pieces: (i) the definition of $ \mathbb{Q} $ as a set of fractions, (ii) the formula for multiplying fractions, (iii) closure of $ \mathbb{Z} $ under $ \times $, (iv) absence of zero divisors in $ \mathbb{Z} $. Each piece is required; remove any one and the conclusion can fail (as the $ \mathbb{Z}/6\mathbb{Z} $ example shows). But put all four together and the conclusion is automatic.
