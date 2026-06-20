@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" width="760" height="400" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="760" height="400" fill="white"/>
+
+  <text x="380" y="26" font-size="13" font-style="italic" fill="#444" text-anchor="middle">The Goldbach function g(n) = number of ways to write n as a sum of two odd primes, for 6 ≤ n ≤ 20.</text>
+
+  <!-- y-axis -->
+  <line x1="45" y1="118" x2="45" y2="330" stroke="#222" stroke-width="1"/>
+  <g font-size="11" fill="#555" text-anchor="end">
+    <text x="38" y="334">0</text>
+    <text x="38" y="239">1</text>
+    <text x="38" y="144">2</text>
+  </g>
+  <text x="20" y="225" font-size="12" font-style="italic" fill="#444" transform="rotate(-90 20 225)">g(n)</text>
+  <!-- light gridlines -->
+  <g stroke="#ececec" stroke-width="1">
+    <line x1="45" y1="235" x2="725" y2="235"/>
+    <line x1="45" y1="140" x2="725" y2="140"/>
+  </g>
+
+  <!-- x-axis -->
+  <line x1="45" y1="330" x2="730" y2="330" stroke="#222" stroke-width="1"/>
+  <text x="735" y="334" font-size="12" font-style="italic" fill="#444">n</text>
+
+  <!-- bars: even n green; odd n zero (grey dot) -->
+  <!-- x(n) = 60 + (n-6)*46 ; baseline 330 ; unit 95 -->
+
+  <!-- n=6 g=1 -->
+  <rect x="46" y="235" width="28" height="95" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="60" y="258" font-size="13" fill="white" font-weight="bold" text-anchor="middle">1</text>
+  <text x="60" y="225" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+3</text>
+
+  <!-- n=8 g=1 -->
+  <rect x="138" y="235" width="28" height="95" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="152" y="258" font-size="13" fill="white" font-weight="bold" text-anchor="middle">1</text>
+  <text x="152" y="225" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+5</text>
+
+  <!-- n=10 g=2 -->
+  <rect x="230" y="140" width="28" height="190" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="244" y="163" font-size="13" fill="white" font-weight="bold" text-anchor="middle">2</text>
+  <text x="244" y="118" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+7</text>
+  <text x="244" y="130" font-size="9.5" fill="#2e6e2e" text-anchor="middle">5+5</text>
+
+  <!-- n=12 g=1 -->
+  <rect x="322" y="235" width="28" height="95" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="336" y="258" font-size="13" fill="white" font-weight="bold" text-anchor="middle">1</text>
+  <text x="336" y="225" font-size="9.5" fill="#2e6e2e" text-anchor="middle">5+7</text>
+
+  <!-- n=14 g=2 -->
+  <rect x="414" y="140" width="28" height="190" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="428" y="163" font-size="13" fill="white" font-weight="bold" text-anchor="middle">2</text>
+  <text x="428" y="118" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+11</text>
+  <text x="428" y="130" font-size="9.5" fill="#2e6e2e" text-anchor="middle">7+7</text>
+
+  <!-- n=16 g=2 -->
+  <rect x="506" y="140" width="28" height="190" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="520" y="163" font-size="13" fill="white" font-weight="bold" text-anchor="middle">2</text>
+  <text x="520" y="118" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+13</text>
+  <text x="520" y="130" font-size="9.5" fill="#2e6e2e" text-anchor="middle">5+11</text>
+
+  <!-- n=18 g=2 -->
+  <rect x="598" y="140" width="28" height="190" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="612" y="163" font-size="13" fill="white" font-weight="bold" text-anchor="middle">2</text>
+  <text x="612" y="118" font-size="9.5" fill="#2e6e2e" text-anchor="middle">5+13</text>
+  <text x="612" y="130" font-size="9.5" fill="#2e6e2e" text-anchor="middle">7+11</text>
+
+  <!-- n=20 g=2 -->
+  <rect x="690" y="140" width="28" height="190" fill="#7ec77e" stroke="#2e7d32" stroke-width="1"/>
+  <text x="704" y="163" font-size="13" fill="white" font-weight="bold" text-anchor="middle">2</text>
+  <text x="704" y="118" font-size="9.5" fill="#2e6e2e" text-anchor="middle">3+17</text>
+  <text x="704" y="130" font-size="9.5" fill="#2e6e2e" text-anchor="middle">7+13</text>
+
+  <!-- odd n: zero, grey open dots on baseline -->
+  <g fill="white" stroke="#aaa" stroke-width="1.2">
+    <circle cx="106" cy="330" r="3.5"/>
+    <circle cx="198" cy="330" r="3.5"/>
+    <circle cx="290" cy="330" r="3.5"/>
+    <circle cx="382" cy="330" r="3.5"/>
+    <circle cx="474" cy="330" r="3.5"/>
+    <circle cx="566" cy="330" r="3.5"/>
+    <circle cx="658" cy="330" r="3.5"/>
+  </g>
+  <g font-size="9.5" fill="#999" text-anchor="middle">
+    <text x="106" y="320">0</text>
+    <text x="198" y="320">0</text>
+    <text x="290" y="320">0</text>
+    <text x="382" y="320">0</text>
+    <text x="474" y="320">0</text>
+    <text x="566" y="320">0</text>
+    <text x="658" y="320">0</text>
+  </g>
+
+  <!-- x tick labels -->
+  <g font-size="11" fill="#444" text-anchor="middle">
+    <text x="60"  y="346">6</text>
+    <text x="106" y="346">7</text>
+    <text x="152" y="346">8</text>
+    <text x="198" y="346">9</text>
+    <text x="244" y="346">10</text>
+    <text x="290" y="346">11</text>
+    <text x="336" y="346">12</text>
+    <text x="382" y="346">13</text>
+    <text x="428" y="346">14</text>
+    <text x="474" y="346">15</text>
+    <text x="520" y="346">16</text>
+    <text x="566" y="346">17</text>
+    <text x="612" y="346">18</text>
+    <text x="658" y="346">19</text>
+    <text x="704" y="346">20</text>
+  </g>
+
+  <!-- note -->
+  <text x="380" y="378" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">Odd n give g(n) = 0 (two odd primes sum to an even number); every even n &gt; 4 has g(n) ≥ 1 — Goldbach's conjecture.</text>
+</svg>

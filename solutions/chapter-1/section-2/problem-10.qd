@@ -1,0 +1,95 @@
+.docname {Solution — GIAM 1.2 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 10
+
+## Problem
+
+Goldbach's conjecture states that every even number greater than $ 4 $ is the sum of two odd primes. The **Goldbach function** $ g(n) $ gives the number of different ways to write $ n $ as a sum of two odd primes; for example $ g(10) = 2 $ since $ 10 = 5 + 5 = 7 + 3 $. Graph $ g(n) $ for $ 6 \le n \le 20 $.
+
+## Computing $ g(n) $
+
+We count *unordered* pairs $ \{p, q\} $ of odd primes with $ p + q = n $ (so $ 5 + 5 $ and $ 3 + 7 $ are the two ways for $ n = 10 $). Working through $ n = 6 $ to $ 20 $:
+
+| $ n $   | ways to write $ n = p + q $ (odd primes) | $ g(n) $ |
+| :---:   | :---                                      | :---:    |
+| $ 6 $   | $ 3 + 3 $                                  | $ 1 $    |
+| $ 7 $   | —                                          | $ 0 $    |
+| $ 8 $   | $ 3 + 5 $                                  | $ 1 $    |
+| $ 9 $   | —                                          | $ 0 $    |
+| $ 10 $  | $ 3 + 7,\;\; 5 + 5 $                       | $ 2 $    |
+| $ 11 $  | —                                          | $ 0 $    |
+| $ 12 $  | $ 5 + 7 $                                  | $ 1 $    |
+| $ 13 $  | —                                          | $ 0 $    |
+| $ 14 $  | $ 3 + 11,\;\; 7 + 7 $                      | $ 2 $    |
+| $ 15 $  | —                                          | $ 0 $    |
+| $ 16 $  | $ 3 + 13,\;\; 5 + 11 $                     | $ 2 $    |
+| $ 17 $  | —                                          | $ 0 $    |
+| $ 18 $  | $ 5 + 13,\;\; 7 + 11 $                     | $ 2 $    |
+| $ 19 $  | —                                          | $ 0 $    |
+| $ 20 $  | $ 3 + 17,\;\; 7 + 13 $                     | $ 2 $    |
+
+## The Graph
+
+!(100%)[Bar graph of the Goldbach function g(n) for 6 ≤ n ≤ 20](problem-10-graph.svg "Green bars at the even values of n (heights 1, 1, 2, 1, 2, 2, 2, 2 for n = 6, 8, …, 20), each labeled with the prime pairs it counts. Odd values of n all give g(n) = 0, marked by open dots on the axis.")
+
+## Reading the Graph
+
+The graph splits sharply into two cases:
+
+- **Odd $ n $** ($ 7, 9, 11, 13, 15, 17, 19 $): $ g(n) = 0 $ — every one of them sits on the axis.
+- **Even $ n $** ($ 6, 8, 10, \ldots, 20 $): $ g(n) \ge 1 $ — every bar is positive, with values $ 1, 1, 2, 1, 2, 2, 2, 2 $.
+
+The fact that *every even bar in this range is positive* is precisely Goldbach's conjecture holding for $ 6 \le n \le 20 $: each even number greater than $ 4 $ really can be written as a sum of two odd primes.
+
+## Remark — Why Odd $ n $ Give $ 0 $
+
+This is the one part of the graph that is *not* mysterious. An odd prime is an odd number, and the sum of two odd numbers is always **even**:
+
+$$$
+\text{odd} + \text{odd} \;=\; \text{even}.
+$$$
+
+So two odd primes can never sum to an odd number. Hence $ g(n) = 0 $ for *every* odd $ n $ — not just in this range, but always. The Goldbach function is "really" a statement about even numbers; the zeros at odd $ n $ are a triviality of parity, not evidence about the conjecture.
+
+## Remark — What Goldbach's Conjecture Says About This Graph
+
+Restated through $ g $, Goldbach's conjecture is:
+
+$$$
+g(n) \;\ge\; 1 \qquad \text{for every even } n > 4.
+$$$
+
+In other words: *the green bars never drop to zero, no matter how far right you extend the graph.* Our picture verifies this for $ n $ up to $ 20 $; the conjecture is that it continues forever. It has been checked by computer for every even number up to roughly $ 4 \times 10^{18} $ — astronomically far — yet a *proof* that it holds for **all** even $ n $ has eluded mathematicians since Goldbach raised it in a 1742 letter to Euler.
+
+## Remark — The "Goldbach Comet"
+
+If we extended the graph far to the right (over the even numbers only), the values $ g(n) $ would *trend upward* but *scatter* widely — larger even numbers generally have *more* Goldbach partitions, but the exact count jumps around erratically. The resulting cloud of points is so distinctive it has a name: the **Goldbach comet**. Within our small window the upward drift is already faintly visible — $ g $ climbs from $ 1 $ (at $ 6, 8 $) to a steady $ 2 $ by $ n = 14 $–$ 20 $, with the lone dip back to $ 1 $ at $ n = 12 $.
+
+The dip at $ 12 $ is worth noting: $ g $ is not monotonic. $ g(10) = 2 $ but $ g(12) = 1 $, then $ g(14) = 2 $ again. The number of ways genuinely wobbles; what Goldbach claims is only that it never reaches $ 0 $ (for even $ n > 4 $), not that it increases steadily.
+
+## Remark — A Note on Conventions
+
+A few choices were baked into "$ g(10) = 2 $," worth making explicit:
+
+- **Unordered pairs.** We count $ 3 + 7 $ and $ 7 + 3 $ as the *same* way. (Counting ordered pairs would roughly double the values and put a $ 2 $ where we have a $ 1 $, etc.)
+- **Odd primes only.** The number $ 2 $ is excluded. This costs us nothing for even $ n > 4 $: if $ 2 $ were used, the partner $ n - 2 $ would be even and greater than $ 2 $, hence composite. So for even $ n > 4 $, "two odd primes" and "two primes" give the same count — the restriction to odd primes only matters in that it cleanly forces $ g(n) = 0 $ at odd $ n $ (where the sole hope, $ 2 + (n-2) $, would need $ n - 2 $ prime).
+
+With these conventions the graph above is exactly the standard Goldbach-partition count restricted to the requested window.
+
+## Remark — Why Goldbach Is Believed Despite Being Unproved
+
+The reason mathematicians are confident the green bars never vanish is *heuristic*. Among numbers near $ n $, a random one is prime with "probability" about $ 1/\ln n $ (the Prime Number Theorem, glimpsed in Problem 2). Treating the roughly $ n/2 $ candidate pairs $ (p, n - p) $ as independent, the expected number of prime-pair representations of an even $ n $ grows like
+
+$$$
+g(n) \;\approx\; \frac{n}{(\ln n)^2} \cdot (\text{a positive constant}),
+$$$
+
+which tends to infinity. So not only should $ g(n) $ stay positive — it should grow without bound. The heuristic matches the data beautifully (it predicts the comet's upward sweep), but turning "should" into "must" remains one of the most famous open problems in mathematics.

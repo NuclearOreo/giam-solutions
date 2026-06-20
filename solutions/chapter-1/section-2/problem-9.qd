@@ -1,0 +1,101 @@
+.docname {Solution — GIAM 1.2 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 9
+
+## Problem
+
+A famous conjecture thought to be true (but for which no proof is known) is the Twin Prime conjecture: a pair of primes is *twin* if they differ by $ 2 $ (e.g. $ 11 $ and $ 13 $, or $ 431 $ and $ 433 $), and the conjecture asserts there are infinitely many. Try to come up with an argument as to why $ 3, 5, 7 $ are the only prime *triplet*.
+
+## Setup — What a "Prime Triplet" Means Here
+
+By analogy with twin primes, a **prime triplet** here means three primes that each differ by $ 2 $ — i.e. three primes of the form
+
+$$$
+n, \quad n + 2, \quad n + 4,
+$$$
+
+three consecutive odd numbers all prime. The claim is that the *only* such triplet is $ 3, 5, 7 $. Unlike the twin prime conjecture, this one has a short, complete proof.
+
+## The Key Fact — One of $ n, n+2, n+4 $ Is Always Divisible by 3
+
+Look at the three numbers modulo $ 3 $. Since $ 4 \equiv 1 \pmod 3 $,
+
+$$$
+n \;\equiv\; n, \qquad n + 2 \;\equiv\; n + 2, \qquad n + 4 \;\equiv\; n + 1 \pmod 3.
+$$$
+
+So modulo $ 3 $ the three numbers are $ n,\, n+1,\, n+2 $ in some order — *three consecutive residues*, which run through **all** of $ 0, 1, 2 $. Therefore exactly one of $ n, n+2, n+4 $ is $ \equiv 0 \pmod 3 $:
+
+$$$
+\boxed{\;\text{Among any three numbers } n,\, n+2,\, n+4, \text{ exactly one is divisible by } 3.\;}
+$$$
+
+## The Argument
+
+Suppose $ n, n+2, n+4 $ are *all prime*. By the key fact, one of them is divisible by $ 3 $. But a prime divisible by $ 3 $ can only be $ 3 $ itself (any other multiple of $ 3 $ is composite). So one of the three numbers must equal $ 3 $. There are three cases:
+
+- **$ n = 3 $:** the triplet is $ 3, 5, 7 $ — and indeed all three are prime. ✓
+- **$ n + 2 = 3 $**, i.e. $ n = 1 $: the triplet is $ 1, 3, 5 $ — but $ 1 $ is not prime. ✗
+- **$ n + 4 = 3 $**, i.e. $ n = -1 $: not a positive integer. ✗
+
+Only the first case yields three primes. Therefore
+
+$$$
+3, \;5, \;7 \quad \text{is the unique prime triplet.} \qquad \blacksquare
+$$$
+
+## Seeing It in a Table
+
+!(100%)[Candidate triplets, each containing a multiple of 3](problem-9-triplets.svg "Every triplet (n, n+2, n+4) has exactly one member divisible by 3 (highlighted). For 3, 5, 7 that member is 3 itself — prime — so the triplet survives. For every other triplet the multiple of 3 is at least 9, hence composite, killing the triplet.")
+
+The highlighted cell in each row is the member divisible by $ 3 $. In the very first row it is $ 3 $, the lone prime multiple of $ 3 $, so $ 3, 5, 7 $ all pass. In *every other* row the multiple of $ 3 $ is $ 9, 15, 21, \ldots $ — composite — so the triplet fails. Notice the multiple of $ 3 $ moves around (first, middle, or last position) depending on $ n \bmod 3 $, but it is *always present*.
+
+## Remark — Why Triplets Are Settled but Twins Are Not
+
+It is striking that this triplet question is completely *solved* by a one-line modular argument, while the closely related Twin Prime conjecture (about *pairs* $ p, p+2 $) remains famously open. The difference is the mod-$ 3 $ obstruction:
+
+- For a **pair** $ p, p + 2 $: modulo $ 3 $ these are two residues, which need *not* include $ 0 $. (E.g. $ p \equiv 2 $ gives $ p \equiv 2 $, $ p+2 \equiv 1 $ — neither divisible by $ 3 $.) So there is no divisibility obstruction, and pairs of primes keep appearing as far as anyone has checked — hence the conjecture that they never stop.
+- For a **triplet** $ p, p+2, p+4 $: modulo $ 3 $ these cover all three residues, *forcing* one to be divisible by $ 3 $. This obstruction caps the triplets at the single exception $ 3, 5, 7 $.
+
+So the triplet problem is easy precisely *because* three terms cannot dodge the modulus $ 3 $, whereas two terms can. The twin prime problem is hard precisely because no such obstruction exists to exploit.
+
+## Remark — How Number Theorists Re-Define "Prime Triplet"
+
+Because $ (p, p+2, p+4) $ is doomed by the mod-$ 3 $ wall, professional number theory defines a **prime triplet** differently — as three primes in the tightest possible cluster that *avoids* a complete residue system mod $ 3 $:
+
+$$$
+(p,\, p+2,\, p+6) \qquad \text{or} \qquad (p,\, p+4,\, p+6).
+$$$
+
+These patterns hit only *two* residues mod $ 3 $, so they have no forced multiple of $ 3 $ and can occur infinitely often (conjecturally). Examples: $ (5, 7, 11) $, $ (7, 11, 13) $, $ (11, 13, 17) $, $ (13, 17, 19) $. It is conjectured — but, like the twin prime conjecture, *not proved* — that there are infinitely many of these. The pattern $ (p, p+2, p+4) $ is deliberately *excluded* from the definition precisely because of the result we just proved.
+
+## Remark — The Same Idea Kills Other "Naïve" Patterns
+
+The covering-all-residues trick is a general tool. Any cluster of integers whose differences make them cover every residue class modulo some prime $ q $ can contain at most one prime larger than $ q $. For instance:
+
+- $ n, n+2, n+4, n+6 $ — modulo $ 3 $ this still covers $ \{0,1,2\} $ (the first three already do), so again a multiple of $ 3 $ appears; four primes in a row at gap $ 2 $ is impossible beyond the start.
+- $ n, n+1 $ — modulo $ 2 $ one is always even, so the only "consecutive-integer prime pair" is $ 2, 3 $.
+
+The same one-line reasoning ("these residues cover everything mod $ q $, so $ q $ divides one of them; for all to be prime that one must be $ q $") settles each case. It is the cleanest weapon in elementary prime patterns — and a reminder that some prime questions are easy for a *structural* reason, even when their cousins (like twin primes) are deep.
+
+## Remark — $ 3, 5, 7 $ Is Also the Only Run of Three Consecutive Odd Primes
+
+Restating the result in plain terms: $ 3, 5, 7 $ is the **only set of three consecutive odd numbers that are all prime**. Every later block of three consecutive odd numbers $ \{n, n+2, n+4\} $ (with $ n \ge 5 $) is interrupted by a multiple of $ 3 $ that exceeds $ 3 $ and is therefore composite. This makes $ 3, 5, 7 $ a genuinely special object in the integers — the unique "prime triplet" — sitting right at the start of the number line where $ 3 $ itself can play the role of the unavoidable multiple of $ 3 $.
+
+## Remark — Longer Prime Progressions Need Bigger Gaps
+
+The result does *not* say prime arithmetic progressions of length $ 3 $ are impossible — only that ones with common difference $ 2 $ are. With a larger common difference the mod-$ 3 $ obstruction can be avoided: for example
+
+$$$
+5, \;11, \;17 \quad (\text{difference } 6), \qquad 7, \;37, \;67 \quad (\text{difference } 30)
+$$$
+
+are length-$ 3 $ arithmetic progressions of primes. In fact the **Green–Tao theorem** (2004) proves there are arbitrarily long arithmetic progressions consisting entirely of primes. But their common differences must be divisible by all small primes (for length $ \ge 3 $, by $ 2 $ and $ 3 $; for the AP to avoid a forced multiple of $ 3 $ the difference must be a multiple of $ 3 $, etc.) — which is exactly why the gap-$ 2 $ case collapses to the single starter $ 3, 5, 7 $.

@@ -1,0 +1,144 @@
+.docname {Solution — GIAM 1.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 5
+
+## Problem
+
+Complete the following table, related to the conjecture that whenever $ p $ is a prime number, $ 2^p - 1 $ is also a prime.
+
+| $ p $   | $ 2^p - 1 $ | prime? | factors        |
+| :---:   | :---:       | :---:  | :---           |
+| $ 2 $   | $ 3 $       | yes    | $ 1 $ and $ 3 $   |
+| $ 3 $   | $ 7 $       | yes    | $ 1 $ and $ 7 $   |
+| $ 5 $   | $ 31 $      | yes    |                |
+| $ 7 $   | $ 127 $     |        |                |
+| $ 11 $  |             |        |                |
+
+## The Completed Table
+
+| $ p $   | $ 2^p - 1 $ | prime? | factors                    |
+| :---:   | :---:       | :---:  | :---                       |
+| $ 2 $   | $ 3 $       | yes    | $ 1 $ and $ 3 $               |
+| $ 3 $   | $ 7 $       | yes    | $ 1 $ and $ 7 $               |
+| $ 5 $   | $ 31 $      | yes    | $ 1 $ and $ 31 $              |
+| $ 7 $   | $ 127 $     | yes    | $ 1 $ and $ 127 $             |
+| $ 11 $  | $ 2047 $    | **no** | $ 1,\; 23,\; 89,\; 2047 $     |
+
+The last row is where the story turns: $ 2^{11} - 1 = 2047 $ is **not** prime.
+
+## Filling In the Last Two Rows
+
+**Row $ p = 7 $.** Compute $ 2^7 - 1 = 128 - 1 = 127 $. To test primality, trial-divide by primes up to $ \sqrt{127} \approx 11.3 $, i.e. by $ 2, 3, 5, 7, 11 $:
+
+$$$
+127 \text{ is odd};\quad 1{+}2{+}7 = 10 \text{ (not div. by 3)};\quad \text{doesn't end in } 0/5;\quad 127/7 \approx 18.1;\quad 127/11 \approx 11.5.
+$$$
+
+None divides $ 127 $, so $ 127 $ is prime. Its only factors are $ 1 $ and $ 127 $.
+
+**Row $ p = 11 $.** Compute
+
+$$$
+2^{11} - 1 \;=\; 2048 - 1 \;=\; 2047.
+$$$
+
+Now trial-divide by primes up to $ \sqrt{2047} \approx 45.2 $. The first several primes fail:
+
+$$$
+2047/3 \approx 682.3,\quad 2047/7 \approx 292.4,\quad 2047/11 \approx 186.1,\quad 2047/13 \approx 157.5,\quad 2047/17 \approx 120.4,\quad 2047/19 \approx 107.7,
+$$$
+
+but then
+
+$$$
+2047 \;=\; 23 \times 89.
+$$$
+
+(Check: $ 23 \times 89 = 23 \times 90 - 23 = 2070 - 23 = 2047 $. ✓) Both $ 23 $ and $ 89 $ are prime, so the full list of factors of $ 2047 $ is $ 1, 23, 89, 2047 $ — *four* divisors, not two. Hence $ 2047 $ is **composite**.
+
+## The Conjecture Is False
+
+The conjecture "$ p $ prime $ \Rightarrow 2^p - 1 $ prime" holds for the first four primes $ 2, 3, 5, 7 $ — and then **fails at $ p = 11 $**:
+
+$$$
+p = 11 \text{ is prime, yet } \; 2^{11} - 1 = 2047 = 23 \times 89 \text{ is composite.}
+$$$
+
+So $ p = 11 $ is a *counterexample*, and the conjecture is disproved. (This is exactly the false "Conjecture 1" flagged in the Section 1.2 reading — a cautionary tale that a pattern holding for several cases is not a proof.)
+
+## Visualizing the Failure
+
+!(100%)[Mersenne numbers 2ᵖ − 1 for small primes p, colored by primality](problem-5-mersenne.svg "For p = 2, 3, 5, 7 the number 2ᵖ−1 is prime (green). At p = 11 it is composite (2047 = 23·89, red). It returns to prime at p = 13, 17, 19 — the failures are irregular, not a one-time hiccup.")
+
+The picture underlines why the conjecture is so tempting and yet so wrong: it works for the first four primes, breaks at $ 11 $, then *works again* at $ 13, 17, 19 $. There is no simple pattern to when $ 2^p - 1 $ is prime.
+
+## Remark — These Are Mersenne Numbers
+
+Numbers of the form
+
+$$$
+M_p \;=\; 2^p - 1
+$$$
+
+are called **Mersenne numbers**, after Marin Mersenne (1588–1648); when $ M_p $ happens to be prime it is a **Mersenne prime**. The conjecture in this problem is the (false) claim that $ M_p $ is prime for *every* prime $ p $.
+
+## Remark — The True Statement: Primality of $ p $ Is Necessary, Not Sufficient
+
+While "$ p $ prime $ \Rightarrow M_p $ prime" is false, the *reverse* implication is true and worth knowing:
+
+$$$
+2^p - 1 \text{ prime} \;\;\Longrightarrow\;\; p \text{ prime}.
+$$$
+
+*Proof (contrapositive).* Suppose $ p = ab $ is composite with $ 1 < a, b < p $. Using the factorization $ x^b - 1 = (x - 1)(x^{b-1} + \cdots + x + 1) $ with $ x = 2^a $:
+
+$$$
+2^p - 1 \;=\; 2^{ab} - 1 \;=\; (2^a)^b - 1 \;=\; (2^a - 1)\bigl((2^a)^{b-1} + \cdots + 2^a + 1\bigr).
+$$$
+
+Since $ 1 < a < p $, the factor $ 2^a - 1 $ satisfies $ 1 < 2^a - 1 < 2^p - 1 $ — a *nontrivial* divisor. So $ 2^p - 1 $ is composite. $ \blacksquare $
+
+So a prime exponent $ p $ is a **necessary** condition for $ 2^p - 1 $ to be prime — which is why the table only tests prime $ p $ in the first place. (E.g. $ 2^4 - 1 = 15 = 3 \times 5 $ and $ 2^6 - 1 = 63 = 7 \times 9 $ are composite, predictably, because $ 4 $ and $ 6 $ are composite.) But it is *not* **sufficient**, as $ p = 11 $ shows.
+
+## Remark — Concretely, Why $ 23 $ Divides $ 2047 $
+
+There is a slicker reason than blind trial division. A prime $ q $ divides $ 2^p - 1 $ exactly when the order of $ 2 $ modulo $ q $ divides $ p $; for prime $ p $ this forces the order to be exactly $ p $, which (by Fermat) requires $ p \mid (q - 1) $, i.e.
+
+$$$
+q \equiv 1 \pmod{p}.
+$$$
+
+So any prime factor of $ 2^{11} - 1 $ must be $ \equiv 1 \pmod{11} $: the candidates are $ 23, 67, 89, \ldots $ (that is, $ 23 = 2\cdot 11 + 1 $, $ 67 = 6 \cdot 11 + 1 $, $ 89 = 8 \cdot 11 + 1 $, …). This is why $ 23 $ — and not, say, $ 7 $ or $ 13 $ — is the smallest prime factor: only residue-$ 1 $-mod-$ 11 $ primes can possibly divide $ M_{11} $. The search space is tiny, which is how Mersenne factorizations are found in practice.
+
+## Remark — Mersenne Primes Today
+
+Mersenne primes are the headline-grabbers of computational number theory: the **largest known prime** has, for decades, almost always been a Mersenne prime, because the **Lucas–Lehmer test** checks $ M_p $ for primality far faster than general numbers of the same size can be tested. The distributed project **GIMPS** (Great Internet Mersenne Prime Search) has found all recent record primes; as of writing, only about $ 52 $ Mersenne primes are known, the largest with exponent $ p $ in the tens of millions (a number with over $ 24 $ million digits).
+
+It is an **open problem** whether there are infinitely many Mersenne primes — and, separately, whether infinitely many $ M_p $ are *composite* (this second one is known, in fact, on heuristic grounds but the distribution is subtle). The irregular green/red pattern in the figure is a small window onto a question nobody can yet fully answer.
+
+## Remark — The Link to Perfect Numbers
+
+Mersenne primes are not just a curiosity — they are in exact correspondence with the **even perfect numbers** (numbers equal to the sum of their proper divisors, like $ 6 = 1 + 2 + 3 $ and $ 28 = 1 + 2 + 4 + 7 + 14 $). The **Euclid–Euler theorem** says:
+
+$$$
+n \text{ is an even perfect number} \;\;\Longleftrightarrow\;\; n = 2^{p-1}\,(2^p - 1) \text{ with } 2^p - 1 \text{ a Mersenne prime.}
+$$$
+
+So our table is, in disguise, also a table of perfect numbers:
+
+| Mersenne prime $ 2^p - 1 $ | even perfect number $ 2^{p-1}(2^p - 1) $ |
+| :---:                      | :---:                                     |
+| $ 3 \; (p=2) $             | $ 2 \cdot 3 = 6 $                          |
+| $ 7 \; (p=3) $             | $ 4 \cdot 7 = 28 $                         |
+| $ 31 \; (p=5) $            | $ 16 \cdot 31 = 496 $                      |
+| $ 127 \; (p=7) $           | $ 64 \cdot 127 = 8128 $                    |
+
+And because $ 2^{11} - 1 = 2047 $ is *not* prime, $ p = 11 $ produces *no* perfect number — the failure in our table is also a gap in the list of perfect numbers. (Whether any *odd* perfect number exists is one of the oldest unsolved problems in mathematics.)

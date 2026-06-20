@@ -1,0 +1,120 @@
+.docname {Solution — GIAM 1.2 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 7
+
+## Problem
+
+Use the second definition of "prime" to see that $ 6 $ is not a prime. In other words, find two numbers (the $ a $ and $ b $ that appear in the definition) such that $ 6 $ is not a factor of either, but *is* a factor of their product.
+
+## The Second Definition
+
+Recall the definition from Section 1.2:
+
+> A prime is a quantity $ p $ such that whenever $ p $ is a factor of some product $ a b $, then either $ p $ is a factor of $ a $ or $ p $ is a factor of $ b $.
+
+In divisibility notation: $ p $ is prime iff
+
+$$$
+p \mid a b \;\;\Longrightarrow\;\; p \mid a \;\;\text{or}\;\; p \mid b.
+$$$
+
+To show $ 6 $ is *not* prime, we just need *one* product $ ab $ that $ 6 $ divides while dividing neither $ a $ nor $ b $.
+
+## The Counterexample
+
+Take
+
+$$$
+a = 2, \qquad b = 3, \qquad a b = 6.
+$$$
+
+Then:
+
+- $ 6 \mid 6 $ — yes, $ 6 $ is a factor of the product $ ab = 6 $.
+- $ 6 \nmid 2 $ — $ 6 $ is *not* a factor of $ a = 2 $.
+- $ 6 \nmid 3 $ — $ 6 $ is *not* a factor of $ b = 3 $.
+
+So $ 6 $ divides the product $ ab $ but divides *neither* $ a $ nor $ b $. This directly violates the second definition, so $ 6 $ is **not prime**. $ \blacksquare $
+
+## Why It Works
+
+The reason $ 6 $ can be "cheated" this way is that $ 6 = 2 \cdot 3 $ is *composite*: it is built from two different prime factors, $ 2 $ and $ 3 $. We hand the factor $ 2 $ to $ a $ and the factor $ 3 $ to $ b $. Then:
+
+- the product $ ab $ contains *both* prime factors, so $ 6 \mid ab $;
+- but $ a $ contains only the $ 2 $ (missing the $ 3 $) and $ b $ contains only the $ 3 $ (missing the $ 2 $), so $ 6 $ divides *neither*.
+
+!(100%)[6 splits its prime factors across a and b, while a single prime cannot split](problem-7-split.svg "Top: 6 = 2·3 deals its factor 2 to a and factor 3 to b. The product has both (6 | 6), but neither a nor b alone is divisible by 6. Bottom: a genuine prime like 5 is a single 'atom' that cannot be split — it must land wholly in a or wholly in b.")
+
+## The General Principle
+
+This is not special to $ 6 $. **Every** composite number $ n $ fails the second definition the same way. If $ n $ is composite, then $ n = d e $ with $ 1 < d < n $ and $ 1 < e < n $. Take $ a = d $ and $ b = e $:
+
+$$$
+n \mid ab = de = n \quad (\text{trivially}), \qquad \text{but} \qquad n \nmid d \;\text{ and }\; n \nmid e,
+$$$
+
+since $ d $ and $ e $ are both strictly smaller than $ n $ (and positive), so neither can have $ n $ as a factor. Hence every composite violates the definition — exactly as it should.
+
+For $ 6 $ the factorization is $ 6 = 2 \cdot 3 $, giving the $ a = 2 $, $ b = 3 $ above.
+
+## Remark — More Counterexamples for 6
+
+The product need not equal $ 6 $ exactly. Any $ a, b $ that split $ 6 $'s prime factors $ 2 $ and $ 3 $ between them will do:
+
+| $ a $ | $ b $ | $ ab $ | $ 6 \mid ab $? | $ 6 \mid a $? | $ 6 \mid b $? |
+| :---: | :---: | :---:  | :---:          | :---:         | :---:         |
+| $ 2 $ | $ 3 $ | $ 6 $    | yes            | no            | no            |
+| $ 3 $ | $ 4 $ | $ 12 $   | yes            | no            | no            |
+| $ 2 $ | $ 9 $ | $ 18 $   | yes            | no            | no            |
+| $ 4 $ | $ 9 $ | $ 36 $   | yes            | no            | no            |
+| $ 10 $| $ 15 $| $ 150 $  | yes            | no            | no            |
+
+Each row works because one number supplies a factor of $ 2 $ (but no $ 3 $) and the other supplies a factor of $ 3 $ (but no $ 2 $).
+
+## Remark — The Two Definitions Agree for Integers
+
+Section 1.2 gives two definitions of "prime":
+
+1. **(irreducible)** $ p > 1 $ whose only positive factors are $ 1 $ and $ p $;
+2. **(Euclid's lemma)** $ p \mid ab \Rightarrow p \mid a $ or $ p \mid b $.
+
+For the integers these are *equivalent* — they pick out exactly the same numbers. We just saw one half of the equivalence (composite $ \Rightarrow $ fails def. 2, equivalently def. 2 $ \Rightarrow $ not composite). The other half — that a genuine prime $ p $ *does* satisfy def. 2 — is precisely **Euclid's lemma**, the cornerstone fact that makes prime factorization *unique* (the Fundamental Theorem of Arithmetic, used throughout Problems 1 and 4). The proof of Euclid's lemma uses the gcd / Bézout identity and is a highlight of any first number-theory course.
+
+## Remark — Why the Textbook Bothers With a Second Definition
+
+If the two definitions agree for integers, why state both? Because they **stop agreeing in more general number systems**, and the second one is the "right" generalization. In ring theory the two notions get different names:
+
+- an **irreducible** element cannot be factored into two non-units (definition 1);
+- a **prime** element satisfies Euclid's lemma, $ p \mid ab \Rightarrow p \mid a $ or $ p \mid b $ (definition 2).
+
+Every prime element is irreducible, but *not* conversely. The classic example is the ring $ \mathbb{Z}[\sqrt{-5}] = \{ m + n\sqrt{-5} : m, n \in \mathbb{Z} \} $, where $ 2 $ is irreducible yet **not** prime — for exactly the reason $ 6 $ failed here:
+
+$$$
+2 \;\bigm|\; 6 \;=\; (1 + \sqrt{-5})(1 - \sqrt{-5}), \qquad \text{yet} \qquad 2 \nmid (1 + \sqrt{-5}) \;\text{ and }\; 2 \nmid (1 - \sqrt{-5}).
+$$$
+
+So $ 2 $ divides the product but neither factor — the *identical* splitting trick. This is why $ \mathbb{Z}[\sqrt{-5}] $ has non-unique factorization ($ 6 = 2 \cdot 3 = (1+\sqrt{-5})(1-\sqrt{-5}) $, two genuinely different factorizations — the same example flagged in Problem 1). The second definition is the one that survives into this setting and correctly distinguishes "true primes" from mere irreducibles.
+
+## Remark — Does $ 1 $ Satisfy the Second Definition?
+
+The textbook posed this as an exercise, and the answer sharpens our understanding. Check definition 2 for $ p = 1 $: whenever $ 1 \mid ab $ (which is *always* true), is $ 1 \mid a $ or $ 1 \mid b $? Yes — $ 1 $ divides *everything*. So $ 1 $ satisfies the second definition *vacuously*.
+
+This is exactly why the second definition, by itself, is *not enough* — it would wrongly admit $ 1 $ as a prime. The fix is to additionally require that $ p $ be greater than $ 1 $ (in ring-theoretic language, that $ p $ is *not a unit* and *not zero*). With that proviso, the two definitions agree perfectly for the integers. So $ 1 $ is excluded not because it fails Euclid's lemma — it passes — but by the separate "$ > 1 $" clause, the same clause needed to keep the Fundamental Theorem of Arithmetic clean (Problem 2's remark).
+
+## Remark — Composite ⟺ Splittable
+
+Pulling the threads together, we have a clean three-way equivalence for an integer $ n > 1 $:
+
+$$$
+n \text{ is composite} \;\;\Longleftrightarrow\;\; n = ab \text{ with } n \nmid a,\; n \nmid b \;\;\Longleftrightarrow\;\; n \text{ fails Euclid's lemma}.
+$$$
+
+The middle statement is the "splittability" we exploited; reading the chain right-to-left says that *passing* Euclid's lemma (plus being $ > 1 $) is the same as being prime. The exercise asked us to witness the leftmost-to-middle direction for the specific composite $ n = 6 $, and $ a = 2 $, $ b = 3 $ is the witness.

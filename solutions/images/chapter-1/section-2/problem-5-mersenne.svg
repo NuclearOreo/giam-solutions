@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 230" width="720" height="230" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="230" fill="white"/>
+
+  <defs>
+    <marker id="cmark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b02020"/>
+    </marker>
+  </defs>
+
+  <text x="360" y="26" font-size="13" font-style="italic" fill="#444" text-anchor="middle">M = 2<tspan dy="-6" font-size="9">p</tspan><tspan dy="6"> − 1</tspan> for each prime p:  green = M is prime,  red = M is composite</text>
+
+  <!-- cells: x = 20 + i*86, width 84 -->
+  <!-- prime cells -->
+  <g>
+    <rect x="20"  y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <rect x="106" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <rect x="192" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <rect x="278" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <!-- composite (p=11) -->
+    <rect x="364" y="68" width="84" height="74" fill="#fbdcdc" stroke="#b02020" stroke-width="2"/>
+    <rect x="450" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <rect x="536" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+    <rect x="622" y="68" width="84" height="74" fill="#ddf2dd" stroke="#5a8a5a" stroke-width="1.1"/>
+  </g>
+
+  <!-- p labels -->
+  <g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="62"  y="90">p = 2</text>
+    <text x="148" y="90">p = 3</text>
+    <text x="234" y="90">p = 5</text>
+    <text x="320" y="90">p = 7</text>
+    <text x="406" y="90">p = 11</text>
+    <text x="492" y="90">p = 13</text>
+    <text x="578" y="90">p = 17</text>
+    <text x="664" y="90">p = 19</text>
+  </g>
+
+  <!-- M values -->
+  <g font-size="14" fill="#222" text-anchor="middle">
+    <text x="62"  y="115">3</text>
+    <text x="148" y="115">7</text>
+    <text x="234" y="115">31</text>
+    <text x="320" y="115">127</text>
+    <text x="406" y="115">2047</text>
+    <text x="492" y="115">8191</text>
+    <text x="578" y="115" font-size="12">131071</text>
+    <text x="664" y="115" font-size="12">524287</text>
+  </g>
+
+  <!-- status -->
+  <g font-size="11" font-style="italic" text-anchor="middle">
+    <text x="62"  y="133" fill="#2e7d32">prime</text>
+    <text x="148" y="133" fill="#2e7d32">prime</text>
+    <text x="234" y="133" fill="#2e7d32">prime</text>
+    <text x="320" y="133" fill="#2e7d32">prime</text>
+    <text x="406" y="133" fill="#b02020">23 × 89</text>
+    <text x="492" y="133" fill="#2e7d32">prime</text>
+    <text x="578" y="133" fill="#2e7d32">prime</text>
+    <text x="664" y="133" fill="#2e7d32">prime</text>
+  </g>
+
+  <!-- callout arrow to p=11 cell -->
+  <line x1="406" y1="172" x2="406" y2="145" stroke="#b02020" stroke-width="1.4" marker-end="url(#cmark)"/>
+  <text x="360" y="190" font-size="12.5" fill="#b02020" text-anchor="middle">2<tspan dy="-6" font-size="9">11</tspan><tspan dy="6"> − 1 = 2047 = 23 × 89</tspan>  —  the first prime p for which 2<tspan dy="-6" font-size="9">p</tspan><tspan dy="6"> − 1 fails</tspan></text>
+
+  <text x="360" y="213" font-size="11" font-style="italic" fill="#666" text-anchor="middle">The conjecture works for p = 2, 3, 5, 7 — then breaks at 11, even though 13, 17, 19 work again.</text>
+</svg>

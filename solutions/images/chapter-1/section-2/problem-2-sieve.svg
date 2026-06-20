@@ -1,0 +1,278 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 700" width="620" height="700" font-family="Georgia, 'Times New Roman', serif">
+  <style>
+    .c   { stroke: none; }
+    .grey  { fill: #d8d8d8; }
+    .pr    { fill: #c8eccc; }
+    .f2    { fill: #fdf3c0; }
+    .f3    { fill: #fde0c0; }
+    .f5    { fill: #fdd0d0; }
+    .f7    { fill: #e8d8f0; }
+    .n     { font-size: 18px; text-anchor: middle; fill: #222; }
+    .pn    { font-weight: bold; fill: #1a5028; }
+    .one   { fill: #666; font-style: italic; }
+  </style>
+
+  <rect width="620" height="700" fill="white"/>
+
+  <text x="310" y="30" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Sieve of Eratosthenes: primes ≤ 100 (green) with composites coloured by smallest prime factor</text>
+
+  <rect class="c grey" x="50" y="50" width="50" height="50"/>
+
+  <rect class="c pr" x="100" y="50" width="50" height="50"/>
+  <rect class="c pr" x="150" y="50" width="50" height="50"/>
+  <rect class="c pr" x="250" y="50" width="50" height="50"/>
+  <rect class="c pr" x="350" y="50" width="50" height="50"/>
+  <rect class="c pr" x="50" y="100" width="50" height="50"/>
+  <rect class="c pr" x="150" y="100" width="50" height="50"/>
+  <rect class="c pr" x="350" y="100" width="50" height="50"/>
+  <rect class="c pr" x="450" y="100" width="50" height="50"/>
+  <rect class="c pr" x="150" y="150" width="50" height="50"/>
+  <rect class="c pr" x="450" y="150" width="50" height="50"/>
+  <rect class="c pr" x="50" y="200" width="50" height="50"/>
+  <rect class="c pr" x="350" y="200" width="50" height="50"/>
+  <rect class="c pr" x="50" y="250" width="50" height="50"/>
+  <rect class="c pr" x="150" y="250" width="50" height="50"/>
+  <rect class="c pr" x="350" y="250" width="50" height="50"/>
+  <rect class="c pr" x="150" y="300" width="50" height="50"/>
+  <rect class="c pr" x="450" y="300" width="50" height="50"/>
+  <rect class="c pr" x="50" y="350" width="50" height="50"/>
+  <rect class="c pr" x="350" y="350" width="50" height="50"/>
+  <rect class="c pr" x="50" y="400" width="50" height="50"/>
+  <rect class="c pr" x="150" y="400" width="50" height="50"/>
+  <rect class="c pr" x="450" y="400" width="50" height="50"/>
+  <rect class="c pr" x="150" y="450" width="50" height="50"/>
+  <rect class="c pr" x="450" y="450" width="50" height="50"/>
+  <rect class="c pr" x="350" y="500" width="50" height="50"/>
+
+  <rect class="c f2" x="200" y="50" width="50" height="50"/>
+  <rect class="c f2" x="300" y="50" width="50" height="50"/>
+  <rect class="c f2" x="400" y="50" width="50" height="50"/>
+  <rect class="c f2" x="500" y="50" width="50" height="50"/>
+  <rect class="c f2" x="100" y="100" width="50" height="50"/>
+  <rect class="c f2" x="200" y="100" width="50" height="50"/>
+  <rect class="c f2" x="300" y="100" width="50" height="50"/>
+  <rect class="c f2" x="400" y="100" width="50" height="50"/>
+  <rect class="c f2" x="500" y="100" width="50" height="50"/>
+  <rect class="c f2" x="100" y="150" width="50" height="50"/>
+  <rect class="c f2" x="200" y="150" width="50" height="50"/>
+  <rect class="c f2" x="300" y="150" width="50" height="50"/>
+  <rect class="c f2" x="400" y="150" width="50" height="50"/>
+  <rect class="c f2" x="500" y="150" width="50" height="50"/>
+  <rect class="c f2" x="100" y="200" width="50" height="50"/>
+  <rect class="c f2" x="200" y="200" width="50" height="50"/>
+  <rect class="c f2" x="300" y="200" width="50" height="50"/>
+  <rect class="c f2" x="400" y="200" width="50" height="50"/>
+  <rect class="c f2" x="500" y="200" width="50" height="50"/>
+  <rect class="c f2" x="100" y="250" width="50" height="50"/>
+  <rect class="c f2" x="200" y="250" width="50" height="50"/>
+  <rect class="c f2" x="300" y="250" width="50" height="50"/>
+  <rect class="c f2" x="400" y="250" width="50" height="50"/>
+  <rect class="c f2" x="500" y="250" width="50" height="50"/>
+  <rect class="c f2" x="100" y="300" width="50" height="50"/>
+  <rect class="c f2" x="200" y="300" width="50" height="50"/>
+  <rect class="c f2" x="300" y="300" width="50" height="50"/>
+  <rect class="c f2" x="400" y="300" width="50" height="50"/>
+  <rect class="c f2" x="500" y="300" width="50" height="50"/>
+  <rect class="c f2" x="100" y="350" width="50" height="50"/>
+  <rect class="c f2" x="200" y="350" width="50" height="50"/>
+  <rect class="c f2" x="300" y="350" width="50" height="50"/>
+  <rect class="c f2" x="400" y="350" width="50" height="50"/>
+  <rect class="c f2" x="500" y="350" width="50" height="50"/>
+  <rect class="c f2" x="100" y="400" width="50" height="50"/>
+  <rect class="c f2" x="200" y="400" width="50" height="50"/>
+  <rect class="c f2" x="300" y="400" width="50" height="50"/>
+  <rect class="c f2" x="400" y="400" width="50" height="50"/>
+  <rect class="c f2" x="500" y="400" width="50" height="50"/>
+  <rect class="c f2" x="100" y="450" width="50" height="50"/>
+  <rect class="c f2" x="200" y="450" width="50" height="50"/>
+  <rect class="c f2" x="300" y="450" width="50" height="50"/>
+  <rect class="c f2" x="400" y="450" width="50" height="50"/>
+  <rect class="c f2" x="500" y="450" width="50" height="50"/>
+  <rect class="c f2" x="100" y="500" width="50" height="50"/>
+  <rect class="c f2" x="200" y="500" width="50" height="50"/>
+  <rect class="c f2" x="300" y="500" width="50" height="50"/>
+  <rect class="c f2" x="400" y="500" width="50" height="50"/>
+  <rect class="c f2" x="500" y="500" width="50" height="50"/>
+
+  <rect class="c f3" x="450" y="50" width="50" height="50"/>
+  <rect class="c f3" x="250" y="100" width="50" height="50"/>
+  <rect class="c f3" x="50" y="150" width="50" height="50"/>
+  <rect class="c f3" x="350" y="150" width="50" height="50"/>
+  <rect class="c f3" x="150" y="200" width="50" height="50"/>
+  <rect class="c f3" x="450" y="200" width="50" height="50"/>
+  <rect class="c f3" x="250" y="250" width="50" height="50"/>
+  <rect class="c f3" x="50" y="300" width="50" height="50"/>
+  <rect class="c f3" x="350" y="300" width="50" height="50"/>
+  <rect class="c f3" x="150" y="350" width="50" height="50"/>
+  <rect class="c f3" x="450" y="350" width="50" height="50"/>
+  <rect class="c f3" x="250" y="400" width="50" height="50"/>
+  <rect class="c f3" x="50" y="450" width="50" height="50"/>
+  <rect class="c f3" x="350" y="450" width="50" height="50"/>
+  <rect class="c f3" x="150" y="500" width="50" height="50"/>
+  <rect class="c f3" x="450" y="500" width="50" height="50"/>
+
+  <rect class="c f5" x="250" y="150" width="50" height="50"/>
+  <rect class="c f5" x="250" y="200" width="50" height="50"/>
+  <rect class="c f5" x="250" y="300" width="50" height="50"/>
+  <rect class="c f5" x="250" y="350" width="50" height="50"/>
+  <rect class="c f5" x="250" y="450" width="50" height="50"/>
+  <rect class="c f5" x="250" y="500" width="50" height="50"/>
+
+  <rect class="c f7" x="450" y="250" width="50" height="50"/>
+  <rect class="c f7" x="350" y="400" width="50" height="50"/>
+  <rect class="c f7" x="50" y="500" width="50" height="50"/>
+
+  <g stroke="#777" stroke-width="0.9" fill="none">
+    <line x1="50" y1="50" x2="550" y2="50"/>
+    <line x1="50" y1="100" x2="550" y2="100"/>
+    <line x1="50" y1="150" x2="550" y2="150"/>
+    <line x1="50" y1="200" x2="550" y2="200"/>
+    <line x1="50" y1="250" x2="550" y2="250"/>
+    <line x1="50" y1="300" x2="550" y2="300"/>
+    <line x1="50" y1="350" x2="550" y2="350"/>
+    <line x1="50" y1="400" x2="550" y2="400"/>
+    <line x1="50" y1="450" x2="550" y2="450"/>
+    <line x1="50" y1="500" x2="550" y2="500"/>
+    <line x1="50" y1="550" x2="550" y2="550"/>
+    <line x1="50" y1="50" x2="50" y2="550"/>
+    <line x1="100" y1="50" x2="100" y2="550"/>
+    <line x1="150" y1="50" x2="150" y2="550"/>
+    <line x1="200" y1="50" x2="200" y2="550"/>
+    <line x1="250" y1="50" x2="250" y2="550"/>
+    <line x1="300" y1="50" x2="300" y2="550"/>
+    <line x1="350" y1="50" x2="350" y2="550"/>
+    <line x1="400" y1="50" x2="400" y2="550"/>
+    <line x1="450" y1="50" x2="450" y2="550"/>
+    <line x1="500" y1="50" x2="500" y2="550"/>
+    <line x1="550" y1="50" x2="550" y2="550"/>
+  </g>
+
+  <g class="n">
+    <text class="one" x="75" y="82">1</text>
+    <text class="pn" x="125" y="82">2</text>
+    <text class="pn" x="175" y="82">3</text>
+    <text x="225" y="82">4</text>
+    <text class="pn" x="275" y="82">5</text>
+    <text x="325" y="82">6</text>
+    <text class="pn" x="375" y="82">7</text>
+    <text x="425" y="82">8</text>
+    <text x="475" y="82">9</text>
+    <text x="525" y="82">10</text>
+
+    <text class="pn" x="75" y="132">11</text>
+    <text x="125" y="132">12</text>
+    <text class="pn" x="175" y="132">13</text>
+    <text x="225" y="132">14</text>
+    <text x="275" y="132">15</text>
+    <text x="325" y="132">16</text>
+    <text class="pn" x="375" y="132">17</text>
+    <text x="425" y="132">18</text>
+    <text class="pn" x="475" y="132">19</text>
+    <text x="525" y="132">20</text>
+
+    <text x="75" y="182">21</text>
+    <text x="125" y="182">22</text>
+    <text class="pn" x="175" y="182">23</text>
+    <text x="225" y="182">24</text>
+    <text x="275" y="182">25</text>
+    <text x="325" y="182">26</text>
+    <text x="375" y="182">27</text>
+    <text x="425" y="182">28</text>
+    <text class="pn" x="475" y="182">29</text>
+    <text x="525" y="182">30</text>
+
+    <text class="pn" x="75" y="232">31</text>
+    <text x="125" y="232">32</text>
+    <text x="175" y="232">33</text>
+    <text x="225" y="232">34</text>
+    <text x="275" y="232">35</text>
+    <text x="325" y="232">36</text>
+    <text class="pn" x="375" y="232">37</text>
+    <text x="425" y="232">38</text>
+    <text x="475" y="232">39</text>
+    <text x="525" y="232">40</text>
+
+    <text class="pn" x="75" y="282">41</text>
+    <text x="125" y="282">42</text>
+    <text class="pn" x="175" y="282">43</text>
+    <text x="225" y="282">44</text>
+    <text x="275" y="282">45</text>
+    <text x="325" y="282">46</text>
+    <text class="pn" x="375" y="282">47</text>
+    <text x="425" y="282">48</text>
+    <text x="475" y="282">49</text>
+    <text x="525" y="282">50</text>
+
+    <text x="75" y="332">51</text>
+    <text x="125" y="332">52</text>
+    <text class="pn" x="175" y="332">53</text>
+    <text x="225" y="332">54</text>
+    <text x="275" y="332">55</text>
+    <text x="325" y="332">56</text>
+    <text x="375" y="332">57</text>
+    <text x="425" y="332">58</text>
+    <text class="pn" x="475" y="332">59</text>
+    <text x="525" y="332">60</text>
+
+    <text class="pn" x="75" y="382">61</text>
+    <text x="125" y="382">62</text>
+    <text x="175" y="382">63</text>
+    <text x="225" y="382">64</text>
+    <text x="275" y="382">65</text>
+    <text x="325" y="382">66</text>
+    <text class="pn" x="375" y="382">67</text>
+    <text x="425" y="382">68</text>
+    <text x="475" y="382">69</text>
+    <text x="525" y="382">70</text>
+
+    <text class="pn" x="75" y="432">71</text>
+    <text x="125" y="432">72</text>
+    <text class="pn" x="175" y="432">73</text>
+    <text x="225" y="432">74</text>
+    <text x="275" y="432">75</text>
+    <text x="325" y="432">76</text>
+    <text x="375" y="432">77</text>
+    <text x="425" y="432">78</text>
+    <text class="pn" x="475" y="432">79</text>
+    <text x="525" y="432">80</text>
+
+    <text x="75" y="482">81</text>
+    <text x="125" y="482">82</text>
+    <text class="pn" x="175" y="482">83</text>
+    <text x="225" y="482">84</text>
+    <text x="275" y="482">85</text>
+    <text x="325" y="482">86</text>
+    <text x="375" y="482">87</text>
+    <text x="425" y="482">88</text>
+    <text class="pn" x="475" y="482">89</text>
+    <text x="525" y="482">90</text>
+
+    <text x="75" y="532">91</text>
+    <text x="125" y="532">92</text>
+    <text x="175" y="532">93</text>
+    <text x="225" y="532">94</text>
+    <text x="275" y="532">95</text>
+    <text x="325" y="532">96</text>
+    <text class="pn" x="375" y="532">97</text>
+    <text x="425" y="532">98</text>
+    <text x="475" y="532">99</text>
+    <text x="525" y="532">100</text>
+  </g>
+
+  <g font-size="12" fill="#444">
+    <rect x="50"  y="600" width="18" height="18" fill="#c8eccc" stroke="#666" stroke-width="0.6"/>
+    <text x="74"  y="614">prime (25)</text>
+    <rect x="170" y="600" width="18" height="18" fill="#fdf3c0" stroke="#666" stroke-width="0.6"/>
+    <text x="194" y="614">÷ 2 (49)</text>
+    <rect x="270" y="600" width="18" height="18" fill="#fde0c0" stroke="#666" stroke-width="0.6"/>
+    <text x="294" y="614">÷ 3 (16)</text>
+    <rect x="370" y="600" width="18" height="18" fill="#fdd0d0" stroke="#666" stroke-width="0.6"/>
+    <text x="394" y="614">÷ 5 (6)</text>
+    <rect x="460" y="600" width="18" height="18" fill="#e8d8f0" stroke="#666" stroke-width="0.6"/>
+    <text x="484" y="614">÷ 7 (3)</text>
+    <rect x="50"  y="630" width="18" height="18" fill="#d8d8d8" stroke="#666" stroke-width="0.6"/>
+    <text x="74"  y="644" font-style="italic">1 — neither prime nor composite</text>
+  </g>
+
+  <text x="310" y="675" font-size="11" font-style="italic" fill="#666" text-anchor="middle">Sieve by primes ≤ √100 = 10 (i.e. 2, 3, 5, 7); 49 + 16 + 6 + 3 = 74 composites; 25 primes; 1 special</text>
+</svg>

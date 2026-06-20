@@ -1,0 +1,155 @@
+.docname {Solution — GIAM 1.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 4
+
+## Problem
+
+Characterize the prime factorizations of numbers that are perfect squares.
+
+## The Characterization
+
+Write a positive integer $ n > 1 $ in its prime factorization
+
+$$$
+n \;=\; p_1^{a_1} \, p_2^{a_2} \, \cdots \, p_k^{a_k},
+$$$
+
+with distinct primes $ p_1 < p_2 < \cdots < p_k $ and exponents $ a_i \ge 1 $. Then:
+
+$$$
+\boxed{\;n \text{ is a perfect square} \;\;\Longleftrightarrow\;\; \text{every exponent } a_i \text{ is even}.\;}
+$$$
+
+(And $ n = 1 = $ the empty product is a perfect square, $ 1 = 1^2 $, vacuously satisfying "every exponent even.")
+
+## Proof
+
+Both directions lean on the **Fundamental Theorem of Arithmetic**: every positive integer has a prime factorization that is *unique* up to the order of the factors.
+
+**($ \Leftarrow $) Even exponents $ \Rightarrow $ perfect square.**
+Suppose every $ a_i $ is even, say $ a_i = 2 b_i $ with $ b_i \ge 0 $ an integer. Set
+
+$$$
+m \;=\; p_1^{b_1} \, p_2^{b_2} \, \cdots \, p_k^{b_k}.
+$$$
+
+Then
+
+$$$
+m^2 \;=\; \bigl(p_1^{b_1} \cdots p_k^{b_k}\bigr)^2 \;=\; p_1^{2 b_1} \cdots p_k^{2 b_k} \;=\; p_1^{a_1} \cdots p_k^{a_k} \;=\; n.
+$$$
+
+So $ n = m^2 $ is a perfect square.
+
+**($ \Rightarrow $) Perfect square $ \Rightarrow $ even exponents.**
+Suppose $ n = m^2 $ for some positive integer $ m $. Factor $ m $ by the FTA:
+
+$$$
+m \;=\; q_1^{c_1} \, q_2^{c_2} \, \cdots \, q_j^{c_j}.
+$$$
+
+Squaring,
+
+$$$
+n \;=\; m^2 \;=\; q_1^{2 c_1} \, q_2^{2 c_2} \, \cdots \, q_j^{2 c_j}.
+$$$
+
+This is *a* prime factorization of $ n $ in which every exponent ($ 2 c_i $) is even. By the *uniqueness* half of the FTA, it is *the* prime factorization of $ n $ — so the primes $ q_i $ are exactly the $ p_i $, and the exponents $ a_i = 2 c_i $ are all even. $ \blacksquare $
+
+The uniqueness step is essential: it is what lets us conclude that the *only* way to factor $ n $ has even exponents, rather than merely that *one* such factorization exists.
+
+## The Idea in One Picture
+
+A perfect square is a number whose prime factors can be dealt out evenly into **two identical hands** — one copy of $ \sqrt{n} $ for each. An even exponent on each prime is exactly the condition that lets every prime be split down the middle.
+
+!(100%)[Pairing prime factors into two identical copies of √n](problem-4-pairing.svg "Top: 36 = 2²·3² and 144 = 2⁴·3² split into two equal copies (6×6 and 12×12). Bottom: 72 = 2³·3² has an odd exponent on 2, so one factor of 2 is stranded with no partner — 72 is not a perfect square.")
+
+For $ 36 = 2^2 \cdot 3^2 $ the primes split as $ \{2, 3\} \mid \{2, 3\} $, giving $ 6 \times 6 $. For $ 144 = 2^4 \cdot 3^2 $ they split as $ \{2, 2, 3\} \mid \{2, 2, 3\} $, giving $ 12 \times 12 $. But $ 72 = 2^3 \cdot 3^2 $ has an *odd* number of factors of $ 2 $: two of them pair up, the third has no partner, so $ 72 $ cannot be written as $ m \times m $.
+
+## Examples
+
+| $ n $   | Prime factorization      | All exponents even? | Perfect square?              |
+| :---:   | :---                     | :---:               | :---:                        |
+| $ 36 $  | $ 2^2 \cdot 3^2 $          | yes                 | yes, $ 6^2 $                 |
+| $ 144 $ | $ 2^4 \cdot 3^2 $          | yes                 | yes, $ 12^2 $                |
+| $ 225 $ | $ 3^2 \cdot 5^2 $          | yes                 | yes, $ 15^2 $                |
+| $ 400 $ | $ 2^4 \cdot 5^2 $          | yes                 | yes, $ 20^2 $                |
+| $ 72 $  | $ 2^3 \cdot 3^2 $          | no ($ 2^3 $)        | no                           |
+| $ 50 $  | $ 2 \cdot 5^2 $            | no ($ 2^1 $)        | no                           |
+| $ 105 $ | $ 3 \cdot 5 \cdot 7 $      | no (all $ {}^1 $)   | no (square-free)             |
+
+## Remark — Equivalent Restatement via the Divisor Count
+
+There is a second, equally clean characterization of perfect squares, in terms of the **number of divisors**. If $ n = p_1^{a_1} \cdots p_k^{a_k} $, the count of positive divisors of $ n $ is
+
+$$$
+d(n) \;=\; (a_1 + 1)(a_2 + 1) \cdots (a_k + 1),
+$$$
+
+since a divisor is formed by choosing each exponent independently from $ 0 $ to $ a_i $. This product is **odd** if and only if every factor $ a_i + 1 $ is odd, i.e. every $ a_i $ is even. Combining with our characterization:
+
+$$$
+n \text{ is a perfect square} \;\;\Longleftrightarrow\;\; d(n) \text{ is odd}.
+$$$
+
+The intuitive reason: divisors of $ n $ pair up as $ \{d, \, n/d\} $, and the pairing has no fixed point *unless* some $ d = n/d $, i.e. $ d = \sqrt{n} $. So the divisors come in pairs except when $ n $ is a square, in which case $ \sqrt{n} $ is its own partner — leaving an *odd* total. This is why, for instance, $ 36 $ has the odd number of divisors $ 1, 2, 3, 4, 6, 9, 12, 18, 36 $ (nine of them), with $ 6 $ as the unpaired middle.
+
+## Remark — Connection to Irrationality of $ \sqrt{n} $
+
+Our characterization is the engine behind the fact (used in Section 1.1, Problem 6) that $ \sqrt{n} $ is irrational unless $ n $ is a perfect square. Writing $ n = p_1^{a_1} \cdots p_k^{a_k} $:
+
+$$$
+\sqrt{n} \;=\; p_1^{a_1/2} \cdots p_k^{a_k/2}.
+$$$
+
+If every $ a_i $ is even, all the exponents $ a_i / 2 $ are integers and $ \sqrt{n} $ is the *integer* $ p_1^{a_1/2} \cdots p_k^{a_k/2} $. But if even one exponent $ a_j $ is odd, then $ a_j / 2 $ is a half-integer; a short argument (essentially the one for $ \sqrt 2, \sqrt 3 $ in Problem 6) shows no rational number can have such a factorization, so $ \sqrt{n} $ is irrational. In short:
+
+$$$
+\sqrt{n} \in \mathbb{Q} \;\;\Longleftrightarrow\;\; \sqrt{n} \in \mathbb{Z} \;\;\Longleftrightarrow\;\; n \text{ is a perfect square}.
+$$$
+
+For square roots there is no middle ground: $ \sqrt n $ is either a whole number or irrational — never a non-integer rational.
+
+## Remark — Generalization to Higher Powers
+
+The characterization upgrades verbatim to **perfect $ k\text{-th} $ powers**:
+
+$$$
+n \text{ is a perfect } k\text{-th power} \;\;\Longleftrightarrow\;\; k \mid a_i \text{ for every } i,
+$$$
+
+i.e. every exponent is divisible by $ k $. The proof is identical with "$ 2 $" replaced by "$ k $": if $ a_i = k b_i $ then $ n = \bigl(\prod p_i^{b_i}\bigr)^k $, and conversely squaring becomes raising-to-the-$ k $ and uniqueness does the rest.
+
+- Perfect **square**: all exponents divisible by $ 2 $.
+- Perfect **cube**: all exponents divisible by $ 3 $. (E.g. $ 216 = 2^3 \cdot 3^3 = 6^3 $.)
+- Perfect **sixth power**: all exponents divisible by $ 6 $ — these are exactly the numbers that are *both* squares and cubes (since $ \mathrm{lcm}(2,3) = 6 $). (E.g. $ 64 = 2^6 = 8^2 = 4^3 $.)
+
+## Remark — Square-Free Numbers Are the Opposite Extreme
+
+A number is **square-free** when *every* exponent equals $ 1 $ — the maximal violation of "all exponents even." Such numbers (like $ 105 = 3 \cdot 5 \cdot 7 $ from Problem 1) are divisible by no perfect square other than $ 1 $.
+
+Every positive integer factors *uniquely* as
+
+$$$
+n \;=\; s \cdot t^2,
+$$$
+
+where $ s $ is square-free (its **square-free part**) and $ t^2 $ is the largest square dividing $ n $. The number $ n $ is a perfect square exactly when its square-free part is $ s = 1 $. For example $ 72 = 2 \cdot 36 = 2 \cdot 6^2 $, so $ 72 $ has square-free part $ 2 \ne 1 $ — not a square — whereas $ 36 = 1 \cdot 6^2 $ has square-free part $ 1 $. This $ s \cdot t^2 $ split is also exactly what you do to "simplify a radical": $ \sqrt{72} = \sqrt{2 \cdot 36} = 6\sqrt{2} $.
+
+## Remark — How Many Perfect Squares Are There?
+
+Perfect squares thin out as numbers grow. The perfect squares up to $ N $ are $ 1^2, 2^2, \ldots, \lfloor \sqrt N \rfloor^2 $, so there are exactly
+
+$$$
+\lfloor \sqrt{N} \rfloor
+$$$
+
+of them. Up to $ 100 $ there are $ 10 $ squares; up to $ 10\,000 $ there are $ 100 $. The *density* of squares near $ N $ is about $ \tfrac{1}{2\sqrt N} \to 0 $ — squares become arbitrarily rare. This is the same $ \sqrt N $ quantity that governs the sieve cutoff (Problems 2 and 3), reappearing here because squaring and square-rooting are the operations tying "size $ N $" to "exponent structure."

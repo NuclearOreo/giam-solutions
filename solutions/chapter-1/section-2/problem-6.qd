@@ -1,0 +1,124 @@
+.docname {Solution — GIAM 1.2 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 6
+
+## Problem
+
+Find a counterexample for the conjecture that $ x^2 - 31x + 257 $ evaluates to a prime number whenever $ x $ is a natural number.
+
+## The Counterexample
+
+Write $ f(x) = x^2 - 31x + 257 $. The smallest natural-number counterexample is
+
+$$$
+\boxed{\;x = 32 \;:\quad f(32) \;=\; 32^2 - 31\cdot 32 + 257 \;=\; 1024 - 992 + 257 \;=\; 289 \;=\; 17^2.\;}
+$$$
+
+Since $ 289 = 17 \times 17 $ is composite, the conjecture is false. $ \blacksquare $
+
+## It Holds for a Long Time First
+
+What makes this conjecture so seductive is that $ f(x) $ really *is* prime for every natural number from $ 1 $ all the way to $ 31 $ — thirty-one primes in a row — before it finally breaks at $ 32 $:
+
+| $ x $   | $ f(x) $ | prime? | &nbsp;&nbsp; | $ x $   | $ f(x) $ | prime? |
+| :---:   | :---:    | :---:  | :---:        | :---:   | :---:    | :---:  |
+| $ 1 $   | $ 227 $  | yes    |              | $ 9 $   | $ 59 $   | yes    |
+| $ 2 $   | $ 199 $  | yes    |              | $ 10 $  | $ 47 $   | yes    |
+| $ 3 $   | $ 173 $  | yes    |              | $ 11 $  | $ 37 $   | yes    |
+| $ 4 $   | $ 149 $  | yes    |              | $ 12 $  | $ 29 $   | yes    |
+| $ 5 $   | $ 127 $  | yes    |              | $ 13 $  | $ 23 $   | yes    |
+| $ 6 $   | $ 107 $  | yes    |              | $ 14 $  | $ 19 $   | yes    |
+| $ 7 $   | $ 89 $   | yes    |              | $ 15 $  | $ 17 $   | yes    |
+| $ 8 $   | $ 73 $   | yes    |              | $ 16 $  | $ 17 $   | yes    |
+
+For $ x = 17, 18, \ldots, 31 $ the values *mirror* those above (see the symmetry remark) and are likewise all prime — $ f(31) = 257 $. Then:
+
+| $ x $   | $ f(x) $ | prime?                |
+| :---:   | :---:    | :---                  |
+| $ 32 $  | $ 289 $  | **no** — $ 289 = 17^2 $    |
+| $ 33 $  | $ 323 $  | **no** — $ 323 = 17 \cdot 19 $ |
+| $ 34 $  | $ 359 $  | yes (prime again!)    |
+
+So $ x = 32 $ is the *first* counterexample, and the failures do not even persist — $ f(34) = 359 $ is prime again.
+
+## The Shape of the Values
+
+!(100%)[Values of f(x) plotted for x = 1 to 34, dots colored by primality](problem-6-parabola.svg "The parabola f(x) = x² − 31x + 257, symmetric about x = 15.5. Green dots (x = 1..31) are prime; the value bottoms out at 17 near the vertex. Red dots at x = 32 (289 = 17²) and x = 33 (323 = 17·19) are the first composites — then x = 34 is prime again.")
+
+The plot shows the parabola dipping to its minimum value $ 17 $ at the vertex ($ x = 15 $ and $ 16 $) and climbing symmetrically on either side. Every integer dot from $ x = 1 $ to $ 31 $ is green (prime); the first red dot is $ x = 32 $.
+
+## Remark — The Symmetry $ f(x) = f(31 - x) $
+
+The repeated values in the table are no accident. A parabola is symmetric about its vertex, which for $ f(x) = x^2 - 31x + 257 $ sits at $ x = \tfrac{31}{2} = 15.5 $. Hence
+
+$$$
+f(x) \;=\; f(31 - x) \qquad \text{for every } x.
+$$$
+
+So $ f(1) = f(30) = 227 $, $ f(2) = f(29) = 199 $, and so on — the values for $ x = 16, \ldots, 31 $ are a mirror image of those for $ x = 15, \ldots, 0 $. This is why checking $ x = 1, \ldots, 16 $ already determines everything up to $ x = 31 $.
+
+## Remark — This Is Euler's "Lucky" Polynomial in Disguise
+
+Why is $ f $ prime for such a long run? Shift the variable by completing the square. Setting $ y = x - 16 $:
+
+$$$
+f(x) \;=\; (y + 16)^2 - 31(y + 16) + 257 \;=\; y^2 + y + 17.
+$$$
+
+The polynomial $ y^2 + y + 17 $ is one of **Euler's prime-generating polynomials**: it is prime for every $ y = 0, 1, 2, \ldots, 15 $, and by the same symmetry ($ y^2 + y + 17 = (-y-1)^2 + (-y-1) + 17 $) also for $ y = -1, -2, \ldots, -16 $. That is a run of $ 32 $ consecutive prime values, $ y \in \{-16, \ldots, 15\} $ — exactly our $ x \in \{0, \ldots, 31\} $.
+
+The most famous member of this family is **Euler's** $ y^2 + y + 41 $, which is prime for $ y = 0, \ldots, 39 $ (forty values).
+
+## Remark — The Deep Reason: a Heegner Number
+
+The run-length is governed by a remarkable fact from algebraic number theory. The polynomial $ y^2 + y + q $ is prime for all $ y = 0, 1, \ldots, q - 2 $ **if and only if** the imaginary quadratic field $ \mathbb{Q}(\sqrt{1 - 4q}) $ has *class number one*. For $ q = 17 $:
+
+$$$
+1 - 4q \;=\; 1 - 68 \;=\; -67,
+$$$
+
+and $ 67 $ is one of the nine **Heegner numbers** ($ 1, 2, 3, 7, 11, 19, 43, 67, 163 $) — the discriminants for which class number one holds. So $ y^2 + y + 17 $ achieving its maximal prime run is a shadow of $ \mathbb{Q}(\sqrt{-67}) $ being a unique-factorization domain. Euler's $ y^2 + y + 41 $ corresponds to the largest Heegner number, $ 163 $ (since $ 1 - 4\cdot 41 = -163 $) — which is also why $ e^{\pi\sqrt{163}} $ is famously almost an integer.
+
+The conjecture in this problem was, in a sense, "true for a deep reason" right up until $ y = 16 $ (i.e. $ x = 32 $) — the first value *past* the run that the class-number-one phenomenon protects.
+
+## Remark — An Infinite Family of Counterexamples
+
+Once one counterexample is found, infinitely many follow. Reducing $ f $ modulo $ 17 $ using the shifted form $ f(x) = (x-16)^2 + (x-16) + 17 $:
+
+$$$
+f(x) \;\equiv\; (x-16)^2 + (x-16) \;=\; (x-16)(x-15) \pmod{17}.
+$$$
+
+This is $ \equiv 0 \pmod{17} $ whenever $ x \equiv 15 $ or $ x \equiv 16 \pmod{17} $. So $ 17 $ divides $ f(x) $ for
+
+$$$
+x \;=\; 15, 16, \quad 32, 33, \quad 49, 50, \quad 66, 67, \;\ldots
+$$$
+
+At $ x = 15, 16 $ the value *equals* $ 17 $ (still prime), but for every larger member of this list $ f(x) > 17 $ while remaining divisible by $ 17 $ — hence composite. So $ x = 32, 33, 49, 50, 66, 67, \ldots $ are *all* counterexamples. The conjecture fails infinitely often.
+
+## Remark — No Nonconstant Polynomial Is Always Prime
+
+The deepest moral is that this conjecture was *doomed from the start*: **no nonconstant polynomial with integer coefficients can produce a prime for every natural-number input.** Here is the short proof.
+
+Let $ f $ be such a polynomial and suppose, for contradiction, that $ f(n) $ is prime for all $ n \ge 1 $. Let $ p = f(1) $, a prime. For any integer $ k $, expand $ f(1 + kp) $: every term beyond the constant carries a factor of $ 1 + kp $, so
+
+$$$
+f(1 + kp) \;\equiv\; f(1) \;=\; p \;\equiv\; 0 \pmod{p}.
+$$$
+
+Thus $ p \mid f(1 + kp) $ for every $ k $. If each such value is prime, it must *equal* $ p $ (the only prime divisible by $ p $). But then the polynomial $ f(x) - p $ would have infinitely many roots $ x = 1, 1+p, 1+2p, \ldots $ — impossible for a nonconstant polynomial. Contradiction. $ \blacksquare $
+
+So *every* conjecture of the form "this polynomial is always prime" is false; the only question is *which* input is the first counterexample. For $ f(x) = x^2 - 31x + 257 $, that input is $ x = 32 $. (Applied directly, the proof would point to $ x = 1 + 227k $ as a guaranteed counterexample — e.g. $ f(228) $ is a large multiple of $ 227 $ — but the genuine *smallest* counterexample, $ 32 $, is found by direct search.)
+
+## Remark — The Echo of Problem 5
+
+This is the second false conjecture in a row (after "$ 2^p - 1 $ is prime for prime $ p $" in Problem 5), and the lesson is identical: **a pattern that holds for many cases — even thirty-one in a row — is not a proof.** Both conjectures were specifically chosen by the textbook to fail, precisely to inoculate against the temptation to believe a statement just because the first several cases check out. Verifying $ f(1), \ldots, f(31) $ feels overwhelmingly convincing, yet $ f(32) $ quietly demolishes it.

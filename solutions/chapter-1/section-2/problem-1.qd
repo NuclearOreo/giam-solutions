@@ -1,0 +1,166 @@
+.docname {Solution — GIAM 1.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 1
+
+## Problem
+
+Find the prime factorizations of the following integers.
+
+- **(a)** $ 105 $
+- **(b)** $ 414 $
+- **(*c*)** $ 168 $
+- **(d)** $ 1612 $
+- **(e)** $ 9177 $
+
+## Strategy — Divisibility Rules + Trial Division up to $ \sqrt{n} $
+
+For each integer $ n $:
+
+1. **Repeatedly divide out the small primes**: 2 (if $ n $ is even), 3 (if the digit sum is divisible by 3), 5 (if $ n $ ends in 0 or 5). Each successful division replaces $ n $ by a smaller quotient.
+2. **Then trial-divide by the remaining primes** $ 7, 11, 13, 17, 19, \ldots $ up to $ \sqrt{n} $. If no prime up to $ \sqrt{n} $ divides $ n $, then $ n $ itself is prime.
+
+The $ \sqrt{n} $ bound — exactly the sieve observation the textbook flags in Section 1.2 — comes from: if $ n = ab $ with both $ a, b > \sqrt{n} $, then $ ab > n $, contradiction. So at least one factor is $ \le \sqrt{n} $.
+
+## Visual Summary — The Five Factor Chains
+
+!(100%)[Prime factor chains for (a)–(e)](problem-1-chains.svg "Each column shows the running quotient after dividing out one prime at a time. Composite quotients are blue; the terminal prime is green. The divisor on each arrow is the smallest prime dividing the running quotient.")
+
+## Part (a) — $ 105 = 3 \cdot 5 \cdot 7 $
+
+- $ 105 $ ends in $ 5 $, so $ 5 \mid 105 $: $ 105 = 5 \cdot 21 $. Alternatively, digit sum $ 1+0+5 = 6 $ is divisible by $ 3 $, so we can start with $ 3 $: $ 105 = 3 \cdot 35 $.
+- $ 35 = 5 \cdot 7 $ — both prime.
+
+$$$
+\boxed{\;105 \;=\; 3 \cdot 5 \cdot 7\;}
+$$$
+
+## Part (b) — $ 414 = 2 \cdot 3^2 \cdot 23 $
+
+- $ 414 $ is even: $ 414 = 2 \cdot 207 $.
+- $ 207 $: digit sum $ 2+0+7 = 9 $, divisible by $ 9 $. So $ 207 = 9 \cdot 23 = 3^2 \cdot 23 $.
+- $ 23 $ is prime ($ \sqrt{23} < 5 $; not divisible by 2, 3).
+
+$$$
+\boxed{\;414 \;=\; 2 \cdot 3^2 \cdot 23\;}
+$$$
+
+## Part (*c*) — $ 168 = 2^3 \cdot 3 \cdot 7 $
+
+- $ 168 / 2 = 84 $.
+- $ 84 / 2 = 42 $.
+- $ 42 / 2 = 21 $.
+- $ 21 = 3 \cdot 7 $.
+
+$$$
+\boxed{\;168 \;=\; 2^3 \cdot 3 \cdot 7\;}
+$$$
+
+## Part (d) — $ 1612 = 2^2 \cdot 13 \cdot 31 $
+
+- $ 1612 / 2 = 806 $.
+- $ 806 / 2 = 403 $.
+- $ 403 $: odd; digit sum $ 4+0+3 = 7 $ — not divisible by $ 3 $. Doesn't end in $ 0 $ or $ 5 $. Try primes up to $ \sqrt{403} \approx 20.1 $:
+  - $ 403 / 7 = 57.57\ldots $ ✗
+  - $ 403 / 11 = 36.6\ldots $ ✗
+  - $ 403 / 13 = 31 $ ✓
+- So $ 403 = 13 \cdot 31 $, and $ 31 $ is prime (no prime $ \le \sqrt{31} \approx 5.6 $ divides it).
+
+$$$
+\boxed{\;1612 \;=\; 2^2 \cdot 13 \cdot 31\;}
+$$$
+
+## Part (e) — $ 9177 = 3 \cdot 7 \cdot 19 \cdot 23 $
+
+- $ 9177 $ is odd; digit sum $ 9+1+7+7 = 24 $, divisible by $ 3 $. So $ 9177 = 3 \cdot 3059 $.
+- $ 3059 $: digit sum $ 17 $ — not divisible by $ 3 $. Not even. Doesn't end in $ 0 $ or $ 5 $. Try primes:
+  - $ 3059 / 7 = 437 $ ✓
+- $ 437 $: odd, digit sum $ 14 $ (not div by 3), doesn't end in 0/5. Try primes up to $ \sqrt{437} \approx 20.9 $:
+  - $ 437 / 7 = 62.4\ldots $ ✗
+  - $ 437 / 11 = 39.7\ldots $ ✗
+  - $ 437 / 13 = 33.6\ldots $ ✗
+  - $ 437 / 17 = 25.7\ldots $ ✗
+  - $ 437 / 19 = 23 $ ✓
+- $ 23 $ is prime.
+
+$$$
+\boxed{\;9177 \;=\; 3 \cdot 7 \cdot 19 \cdot 23\;}
+$$$
+
+## Summary
+
+| Part   | Integer   | Prime factorization                | Distinct primes      |
+| :---:  | :---:     | :---                               | :---:                |
+| (a)    | $ 105 $     | $ 3 \cdot 5 \cdot 7 $                | $ 3, 5, 7 $            |
+| (b)    | $ 414 $     | $ 2 \cdot 3^2 \cdot 23 $             | $ 2, 3, 23 $           |
+| (*c*)  | $ 168 $     | $ 2^3 \cdot 3 \cdot 7 $              | $ 2, 3, 7 $            |
+| (d)    | $ 1612 $    | $ 2^2 \cdot 13 \cdot 31 $            | $ 2, 13, 31 $          |
+| (e)    | $ 9177 $    | $ 3 \cdot 7 \cdot 19 \cdot 23 $      | $ 3, 7, 19, 23 $       |
+
+## Remark — The Fundamental Theorem of Arithmetic
+
+Each of the five factorizations is *unique*, up to the order of factors. This is the **Fundamental Theorem of Arithmetic**:
+
+> Every integer $ n \ge 2 $ has a *unique* prime factorization, up to reordering of the primes.
+
+Existence comes from repeated division-by-a-prime-factor (Euclid's argument): if $ n > 1 $ is composite, its smallest divisor $ > 1 $ is a prime, and the quotient is strictly smaller — induct.
+
+Uniqueness comes from Euclid's lemma: *if a prime $ p $ divides $ ab $ then $ p \mid a $ or $ p \mid b $.* This is the alternative definition of "prime" the textbook flags in Section 1.2 — and it is exactly the property that forces factorizations to match. (Without Euclid's lemma, factorizations can branch — and they do, in some number systems like $ \mathbb{Z}[\sqrt{-5}] $, where $ 6 = 2 \cdot 3 = (1 + \sqrt{-5})(1 - \sqrt{-5}) $ are two genuinely distinct prime factorizations.)
+
+## Remark — The $ \sqrt{n} $ Bound, Made Concrete
+
+The textbook's sieve observation: "to find all primes less than $ p^2 $, we need only use the primes up to (but not including) $ p $." Applied to factorization: *to factor $ n $, we need only trial-divide by primes up to $ \lfloor \sqrt{n} \rfloor $*.
+
+Concretely, for each integer in this problem:
+
+| $ n $        | $ \sqrt{n} $    | Primes to try $ \le \sqrt{n} $   | # of primes |
+| :---:      | :---:         | :---                              | :---:       |
+| $ 105 $      | $ \approx 10.2 $  | $ 2, 3, 5, 7 $                      | 4           |
+| $ 414 $      | $ \approx 20.3 $  | $ 2, 3, 5, 7, 11, 13, 17, 19 $        | 8           |
+| $ 168 $      | $ \approx 12.9 $  | $ 2, 3, 5, 7, 11 $                  | 5           |
+| $ 1612 $     | $ \approx 40.1 $  | $ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37 $ | 12 |
+| $ 9177 $     | $ \approx 95.8 $  | $ 2, 3, 5, 7, \ldots, 89 $ (24 primes) | 24    |
+
+In practice you stop *much* earlier — as soon as you've stripped enough small primes that the running quotient is small enough to recognise as a known prime.
+
+## Remark — Divisibility Rules in Use
+
+The rules used silently above:
+
+| Prime $ p $ | Rule for $ p \mid n $                       | Example                |
+| :---:       | :---                                       | :---                   |
+| $ 2 $       | last digit is even                          | $ 414 \to 4 $ — even ✓    |
+| $ 3 $       | digit sum divisible by $ 3 $                | $ 105 \to 1+0+5 = 6 $ ✓  |
+| $ 5 $       | last digit is $ 0 $ or $ 5 $                | $ 105 \to 5 $ ✓           |
+| $ 9 $       | digit sum divisible by $ 9 $                | $ 207 \to 2+0+7 = 9 $ ✓  |
+| $ 11 $      | alternating digit sum divisible by $ 11 $   | $ 1331 \to 1-3+3-1 = 0 $ ✓ |
+
+There are similar tricks for $ 7, 13, 17 $ but they're less elegant; usually quicker to just trial-divide. The rules for $ 2, 3, 5, 11 $ are by far the most useful in practice.
+
+## Remark — Why $ (e) $ Is the Trickiest
+
+Item (e), $ 9177 $, is the hardest because *both* large prime factors are unfamiliar — neither $ 19 $ nor $ 23 $ is among the "first ten" primes that most people have memorised. The work to identify $ 19 \cdot 23 = 437 $ requires checking every prime up to $ \sqrt{437} \approx 20.9 $, which is essentially trial division through every prime through $ 19 $.
+
+A useful mental shortcut: once the running quotient is below a few thousand, *square-root every step* to narrow the search. For $ 437 $: $ \sqrt{437} \approx 21 $, so I need to check only $ 7, 11, 13, 17, 19 $ (having already ruled out $ 2, 3, 5 $).
+
+## Remark — Distinct Primes vs Repeated Primes
+
+The "shape" of a factorization (which primes appear with what multiplicity) is informative on its own. The integers above sort into two groups:
+
+- **Square-free** (no repeated prime): $ 105, 1612, 9177 $. These have factorization $ p_1 p_2 \cdots p_k $ with distinct primes.
+- **Has a repeated prime**: $ 414 = 2 \cdot 3^2 \cdot 23 $ (the $ 3 $ repeats), $ 168 = 2^3 \cdot 3 \cdot 7 $ (the $ 2 $ repeats).
+
+A number is square-free iff $ n $ is not divisible by any *perfect square* $ > 1 $. Square-free numbers play a special role in number theory (for instance, the Möbius function $ \mu(n) $ is zero exactly on the non-square-free integers).
+
+## Remark — Connection to Cryptography
+
+Prime factorization sits at the heart of **RSA encryption**: the security of RSA depends on the assumption that *factoring* a large composite is hard, while *multiplying* primes is easy. For an integer of the size we're factoring here ($ \le 10^4 $), trial division finishes in milliseconds. But for RSA-grade integers (say $ \sim 10^{600} $), even the best known algorithms take astronomical time on classical computers.
+
+The exercise in this problem is "factoring is straightforward for small $ n $." The exercise that secures the internet is "factoring is conjectured to be infeasible for large $ n $." The gap between those is the entire field of computational number theory.

@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 1.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 2
+
+## Problem
+
+Use the sieve of Eratosthenes to find all prime numbers up to $ 100 $.
+
+## How Far Do We Have to Sieve?
+
+The textbook flags the key bound in Section 1.2:
+
+> The sieve gives us a means of finding all the primes up to $ p^2 $ by using the primes up to (but not including) $ p $.
+
+Since $ 100 = 10^2 $, we only need to sieve by primes strictly less than $ 10 $ — that is, by
+
+$$$
+2, \;\; 3, \;\; 5, \;\; 7.
+$$$
+
+Any composite $ n \le 100 $ has a prime factor $ \le \sqrt{n} \le 10 $, so the smallest such factor is one of $ 2, 3, 5, 7 $. After we cross out all multiples of these four primes (other than the primes themselves), every remaining number $ \ge 2 $ is prime.
+
+## The Four Passes
+
+| Pass | Smallest prime $ p $ | Numbers crossed out (multiples of $ p $ not yet crossed)             | Count |
+| :---:| :---:                  | :---                                                                | :---: |
+| 1    | $ 2 $                  | $ 4, 6, 8, 10, 12, \ldots, 100 $ — all even integers $ > 2 $        | 49    |
+| 2    | $ 3 $                  | $ 9, 15, 21, 27, 33, 39, 45, 51, 57, 63, 69, 75, 81, 87, 93, 99 $ — odd multiples of $ 3 $ | 16    |
+| 3    | $ 5 $                  | $ 25, 35, 55, 65, 85, 95 $ — odd multiples of $ 5 $ not yet crossed | 6     |
+| 4    | $ 7 $                  | $ 49, 77, 91 $ — multiples of $ 7 $ coprime to $ 2, 3, 5 $          | 3     |
+
+After pass 4 we have crossed out a total of $ 49 + 16 + 6 + 3 = 74 $ composites. Together with $ 1 $ (which is neither prime nor composite), that accounts for $ 75 $ of the $ 100 $ integers. The remaining $ 25 $ are exactly the primes $ \le 100 $.
+
+## The Sieve in One Picture
+
+!(95%)[Sieve of Eratosthenes for n ≤ 100](problem-2-sieve.svg "Primes (green, 25 of them) and composites coloured by the smallest prime that crosses them out: yellow = ÷2 (49), orange = ÷3 (16), pink = ÷5 (6), purple = ÷7 (3). The number 1 (grey) is neither prime nor composite.")
+
+## The Primes — All 25 of Them
+
+Reading the green cells from the figure (or equivalently, listing what survives the four passes):
+
+$$$
+2,\; 3,\; 5,\; 7,\; 11,\; 13,\; 17,\; 19,\; 23,\; 29,\; 31,\; 37,\; 41,\; 43,\; 47,\; 53,\; 59,\; 61,\; 67,\; 71,\; 73,\; 79,\; 83,\; 89,\; 97.
+$$$
+
+There are **25 primes less than or equal to 100**.
+
+## Remark — The Prime-Counting Function $ \pi(n) $
+
+The count "$ 25 $ primes up to $ 100 $" is a value of the **prime-counting function** $ \pi(n) $, defined as the number of primes $ \le n $:
+
+$$$
+\pi(100) \;=\; 25.
+$$$
+
+The function grows surprisingly regularly. A few values:
+
+| $ n $        | $ 10 $ | $ 100 $ | $ 1000 $ | $ 10^4 $ | $ 10^6 $ | $ 10^9 $       |
+| :---:        | :---:  | :---:   | :---:    | :---:    | :---:    | :---:          |
+| $ \pi(n) $   | $ 4 $    | $ 25 $    | $ 168 $    | $ 1229 $   | $ 78498 $  | $ 50847534 $     |
+
+The **Prime Number Theorem** (Hadamard and de la Vallée Poussin, 1896) makes this regularity precise:
+
+$$$
+\pi(n) \;\sim\; \frac{n}{\ln n} \qquad \text{as } n \to \infty.
+$$$
+
+For $ n = 100 $: $ n / \ln n \approx 100 / 4.605 \approx 21.7 $ — the theorem under-estimates the actual count by about $ 13\% $. By $ n = 10^9 $ the estimate is within $ 5\% $ of the true value. The PNT's proof is far beyond a Chapter-1 exercise — it uses complex analysis and the Riemann zeta function — but the *statement* is easy to appreciate from the sieve picture.
+
+## Remark — Twin Primes Up to 100
+
+A **twin prime** pair is two primes that differ by $ 2 $. Reading down the list:
+
+$$$
+(3, 5),\; (5, 7),\; (11, 13),\; (17, 19),\; (29, 31),\; (41, 43),\; (59, 61),\; (71, 73)
+$$$
+
+— eight twin-prime pairs up to $ 100 $. (Some authors exclude $ (3, 5) $ since $ 3 $ and $ 5 $ are not both odd-greater-than-3 primes, but the count remains in the same ballpark either way.)
+
+Twin primes are famously *not* known to be infinite — the **twin prime conjecture** says there are infinitely many such pairs, and remains unproved as of writing. Yitang Zhang's 2013 breakthrough showed primes "infinitely close" in a quantitative sense (gaps of at most $ 7 \times 10^7 $), and follow-up work has dropped the bound to $ 246 $. But "$ p $ and $ p + 2 $ both prime infinitely often" is still open.
+
+## Remark — Prime Gaps Within 1–100
+
+The **prime gap** $ g_n $ is the difference between consecutive primes. From the list:
+
+$$$
+g_1 = 1\;\; (2 \to 3),\;\; g_2 = 2\;\; (3 \to 5),\;\; g_3 = 2\;\; (5 \to 7),\;\; g_4 = 4\;\; (7 \to 11),\; \ldots
+$$$
+
+The largest gap below $ 100 $ is $ 8 $, between the primes $ 89 $ and $ 97 $ — a famously prominent stretch on the chart. No primes lie in $ \{90, 91, 92, 93, 94, 95, 96\} $: $ 90 $ is even, $ 91 = 7 \cdot 13 $, $ 92 $ even, $ 93 = 3 \cdot 31 $, $ 94 $ even, $ 95 = 5 \cdot 19 $, $ 96 $ even. Seven consecutive composites — the longest run in 1–100.
+
+## Remark — Why the Sieve Stops at $ 7 $
+
+We don't need to sieve by $ 11 $ because $ 11^2 = 121 > 100 $. Any composite $ \le 100 $ has *some* prime factor $ \le \sqrt{100} = 10 $, so after crossing out multiples of $ 2, 3, 5, 7 $, every remaining number is either $ 1 $ or itself prime.
+
+A complementary intuition: if $ n \le 100 $ has no prime factor $ \le 10 $, then $ n $ has *at least two* prime factors $ > 10 $, and the product of any two such primes is $ > 100 $. So $ n $ cannot have two such factors — i.e. $ n $ has at most one prime factor $ > 10 $, and if it has any then $ n $ *is* that prime.
+
+So sieving by $ 2, 3, 5, 7 $ is *sufficient* — and any further sieving (by $ 11, 13, \ldots $) would do nothing new because there are no remaining un-crossed composites.
+
+## Remark — Why 1 is Not Prime
+
+The grey cell at $ n = 1 $ is a notational convenience. The textbook's definition reads "a prime is a positive integer **greater than 1**" — the explicit exclusion of $ 1 $ is necessary for the **Fundamental Theorem of Arithmetic** to hold: if $ 1 $ counted as prime, every prime factorisation could be padded with extra $ 1 $ s ($ 6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3 = 1 \cdot 1 \cdot 2 \cdot 3 = \ldots $), breaking uniqueness.
+
+Equivalently: the alternative "Euclid's lemma" definition ("$ p $ divides $ ab $ implies $ p \mid a $ or $ p \mid b $") *would* be satisfied by $ 1 $ — but only trivially. We exclude $ 1 $ because the resulting theorems are cleaner, not because $ 1 $ "fails" any algebraic criterion.
+
+## Remark — Visual Cues in the Figure
+
+A few patterns leap out from the colored grid:
+
+- **Even columns are nearly all yellow** (smallest factor $ 2 $). Only $ 2 $ itself in column 2 escapes.
+- **Column 5 (and 0, i.e. the column of multiples-of-10) is yellow or pink**: column 0 (numbers ending in 0) is all yellow (even); column 5 starts with $ 5 $ (green) and then alternates pink ($ 25, 35, \ldots $) and yellow ($ 50, 60, \ldots $).
+- **All primes $ \ge 5 $ end in $ 1, 3, 7, $ or $ 9 $**: columns 1, 3, 7, 9. Numbers ending in $ 0, 2, 4, 6, 8 $ are even (yellow except $ 2 $), and numbers ending in $ 5 $ are multiples of $ 5 $ (pink except $ 5 $).
+- **The purple cells** ($ 49, 77, 91 $) are scattered. These are the only composites $ \le 100 $ whose smallest prime factor is $ 7 $ — a very thin set.
+
+These visual regularities reflect the *modular arithmetic* underlying primality: the "shape" of primes is constrained by their residues mod $ 2, 3, 5 $.
+
+## Remark — Beyond 100: $ \pi(n) $ Grows Steadily
+
+If we extended the sieve to higher $ n $, the rate at which new primes appear *slows*. Below are the gaps between successive values of $ \pi(10^k) $:
+
+| $ n $ range                     | new primes in this decade | density (per integer)         |
+| :---                            | :---:                     | :---:                          |
+| $ 1 $–$ 10 $                      | $ 4 $                       | $ 40\% $                         |
+| $ 11 $–$ 100 $                    | $ 21 $                      | $ \approx 23\% $                 |
+| $ 101 $–$ 1000 $                  | $ 143 $                     | $ \approx 16\% $                 |
+| $ 1001 $–$ 10\,000 $              | $ 1061 $                    | $ \approx 12\% $                 |
+| $ 10^4 $–$ 10^5 $                 | $ 8363 $                    | $ \approx 9\% $                  |
+
+Primes thin out, but never disappear (Euclid's theorem: infinitely many primes). The 1-in-25 rate visible in our grid is already lower than the 1-in-2.5 rate in the first decade, and will continue dropping like $ 1 / \ln n $.

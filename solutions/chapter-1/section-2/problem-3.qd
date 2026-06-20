@@ -1,0 +1,102 @@
+.docname {Solution — GIAM 1.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 3
+
+## Problem
+
+What would be the largest prime one would sieve with in order to find all primes up to $ 400 $?
+
+## Answer
+
+$$$
+\boxed{\;19\;}
+$$$
+
+To find every prime up to $ 400 $ with the sieve of Eratosthenes, one crosses out multiples of $ 2, 3, 5, 7, 11, 13, 17, 19 $ — eight primes in all. The largest is $ 19 $.
+
+## Why — the $ \sqrt{N} $ Principle
+
+Section 1.2 states the rule: the sieve finds all primes up to $ p^2 $ using only the primes below $ p $. Turning this around: to sieve up to $ N $, we need every prime $ p $ with $ p^2 \le N $, i.e. every prime
+
+$$$
+p \;\le\; \sqrt{N}.
+$$$
+
+For $ N = 400 $ we have $ \sqrt{400} = 20 $, so we need every prime $ \le 20 $:
+
+$$$
+2, \;\; 3, \;\; 5, \;\; 7, \;\; 11, \;\; 13, \;\; 17, \;\; 19.
+$$$
+
+The largest is $ 19 $ (since $ 20 $ itself is not prime).
+
+**Why this is enough.** Every composite $ n \le 400 $ has a prime factor $ \le \sqrt{n} \le \sqrt{400} = 20 $. So its *smallest* prime factor is one of $ 2, 3, 5, 7, 11, 13, 17, 19 $, and $ n $ gets crossed out during one of those eight passes. Nothing composite survives.
+
+**Why $ 19 $ is genuinely necessary.** The number
+
+$$$
+361 \;=\; 19^2 \;\le\; 400
+$$$
+
+is composite, but its only prime factor is $ 19 $. So it survives every earlier pass — sieving by $ 2, 3, 5, 7, 11, 13, 17 $ never touches it. Only the pass for $ 19 $ crosses it out. Drop $ 19 $ from the sieve and $ 361 $ would be wrongly reported as prime. So $ 19 $ cannot be omitted.
+
+## The Cutoff, Visualized
+
+A prime $ p $ "earns its place" in the sieve precisely when its square $ p^2 $ — the smallest multiple of $ p $ that the smaller primes don't already catch — is still $ \le 400 $.
+
+!(100%)[Squares of primes against the n = 400 threshold](problem-3-squares.svg "Bar chart of p² for each prime. Bars for p = 2 through 19 stay left of the 400 line (these primes are needed); 19² = 361 is the last one under the line. The bar for 23 (23² = 529) pokes past 400, so 23 is never needed.")
+
+The picture makes the boundary vivid: $ 19^2 = 361 $ is the last prime-square that fits under $ 400 $, while the next prime's square, $ 23^2 = 529 $, already overshoots. That overshoot is exactly why $ 23 $ — and every larger prime — is unnecessary.
+
+## Remark — The General Rule
+
+For any target $ N $, the largest prime one sieves with is
+
+$$$
+\text{the largest prime } \;\le\; \lfloor \sqrt{N} \rfloor.
+$$$
+
+A few cases:
+
+| Find all primes up to $ N $ | $ \sqrt{N} $        | Largest sieving prime |
+| :---:                       | :---:               | :---:                 |
+| $ 50 $                      | $ \approx 7.07 $    | $ 7 $                 |
+| $ 100 $                     | $ 10 $              | $ 7 $                 |
+| $ 400 $                     | $ 20 $              | $ 19 $                |
+| $ 1000 $                    | $ \approx 31.6 $    | $ 31 $                |
+| $ 10000 $                   | $ 100 $             | $ 97 $                |
+
+Notice $ 50 $ and $ 100 $ share the same largest sieving prime ($ 7 $): the cutoff only jumps when $ \sqrt{N} $ crosses the next prime. It next bumps to $ 11 $ at $ N = 121 = 11^2 $.
+
+## Remark — Why $ p^2 $ Is the Right Threshold
+
+When you run the sieve, each prime $ p $ starts crossing out at $ p^2 $, not at $ 2p $. The multiples $ 2p, 3p, \ldots, (p-1)p $ have a smaller factor and were *already* crossed out on an earlier pass. So $ p^2 $ is the **smallest composite whose smallest prime factor is $ p $** — the first number that $ p $, and only $ p $, is responsible for eliminating.
+
+Consequently a prime $ p $ does useful work in a sieve up to $ N $ if and only if $ p^2 \le N $. The largest prime doing useful work is therefore the largest $ p $ with $ p^2 \le N $, which is the largest prime $ \le \sqrt{N} $. For $ N = 400 $ that is $ 19 $.
+
+## Remark — Why Not $ 20 $, and Why Not $ 23 $
+
+- **$ 20 $** is not a prime at all ($ 20 = 2^2 \cdot 5 $), so it is never a sieving prime. Even though $ \sqrt{400} = 20 $ exactly, the relevant quantity is the largest *prime* at or below $ 20 $, namely $ 19 $.
+- **$ 23 $** is prime, but $ 23^2 = 529 > 400 $. Every composite multiple of $ 23 $ that is $ \le 400 $ — such as $ 46, 69, 92, \ldots $ — already has a smaller prime factor ($ 2, 3, 2, \ldots $) and was crossed out earlier. So the pass for $ 23 $ would cross out nothing new; it is wasted effort.
+
+## Remark — The Inclusive/Exclusive Edge Case
+
+The textbook phrases the rule as "find all primes up to $ p^2 $ using the primes up to (but not including) $ p $," and its example finds the primes *strictly less than* $ 13^2 = 169 $ using $ 2, 3, 5, 7, 11 $.
+
+That strict "$ < $" matters only when $ \sqrt{N} $ is *itself prime*. For our problem there is no ambiguity: $ \sqrt{400} = 20 $ is composite, so "largest prime $ \le 20 $" and "largest prime $ < 20 $" both give $ 19 $.
+
+Where it would bite: to find all primes up to and *including* $ 361 = 19^2 $, you genuinely need $ 19 $ in the sieve (to cross out $ 361 $ itself) — whereas to find all primes *strictly below* $ 361 $, the primes up to $ 17 $ suffice. The clean, unambiguous statement is the one used above: **to find all primes $ \le N $, sieve by every prime $ \le \sqrt{N} $.**
+
+## Remark — Same Principle as Trial Division
+
+This is the identical $ \sqrt{N} $ bound that powered the factorizations in Problem 1: to test whether $ n $ is prime (or to find its smallest factor), you trial-divide only by primes $ \le \sqrt{n} $. The sieve is just this test run *in parallel* across an entire range — each prime $ p $ simultaneously strikes out every one of its multiples, rather than being re-tried against each $ n $ individually.
+
+The efficiency payoff is dramatic. A sieve up to $ N = 400 $ uses only the $ \pi(\sqrt{400}) = \pi(20) = 8 $ primes up to $ 20 $ to classify all $ 400 $ integers. More generally a sieve up to $ N $ needs only the $ \pi(\sqrt{N}) $ primes below $ \sqrt{N} $ — a vanishingly small fraction of the numbers being sieved as $ N $ grows.

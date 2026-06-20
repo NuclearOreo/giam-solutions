@@ -1,0 +1,81 @@
+.docname {Solution — GIAM 1.2 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.2 Problem 8
+
+## Problem
+
+Use the second definition of "prime" to show that $ 35 $ is not a prime.
+
+## The Second Definition
+
+From Section 1.2:
+
+> A prime is a quantity $ p $ such that whenever $ p $ is a factor of some product $ a b $, then either $ p $ is a factor of $ a $ or $ p $ is a factor of $ b $.
+
+That is, $ p $ is prime iff $ \; p \mid ab \Rightarrow p \mid a \text{ or } p \mid b $. To show $ 35 $ is *not* prime, we exhibit one product $ ab $ that $ 35 $ divides while dividing neither $ a $ nor $ b $.
+
+## The Counterexample
+
+Since $ 35 = 5 \cdot 7 $, take
+
+$$$
+a = 5, \qquad b = 7, \qquad a b = 35.
+$$$
+
+Then:
+
+- $ 35 \mid 35 $ — yes, $ 35 $ is a factor of the product $ ab = 35 $.
+- $ 35 \nmid 5 $ — $ 35 $ is *not* a factor of $ a = 5 $.
+- $ 35 \nmid 7 $ — $ 35 $ is *not* a factor of $ b = 7 $.
+
+So $ 35 $ divides the product $ ab $ but divides *neither* $ a $ nor $ b $, violating the second definition. Hence $ 35 $ is **not prime**. $ \blacksquare $
+
+## Why It Works
+
+As with $ 6 $ in Problem 7, the trick is that $ 35 = 5 \cdot 7 $ is *composite*: it is built from two distinct prime factors. We give the factor $ 5 $ to $ a $ and the factor $ 7 $ to $ b $. The product $ ab $ then carries *both* primes (so $ 35 \mid ab $), but $ a = 5 $ is missing the $ 7 $ and $ b = 7 $ is missing the $ 5 $, so $ 35 $ divides neither.
+
+!(100%)[35 = 5·7 splits its prime factors across a and b](problem-8-split.svg "35 deals its factor 5 to a and its factor 7 to b. The product ab = 35 contains both primes (35 | 35), but neither a = 5 nor b = 7 is divisible by 35. The only nontrivial factorization of 35 is 5 × 7, so this is essentially the unique counterexample of this form.")
+
+## Remark — More Counterexamples
+
+The product need not be exactly $ 35 $. Any $ a, b $ that split the prime factors $ 5 $ and $ 7 $ between them works:
+
+| $ a $  | $ b $  | $ ab $  | $ 35 \mid ab $? | $ 35 \mid a $? | $ 35 \mid b $? |
+| :---:  | :---:  | :---:   | :---:           | :---:          | :---:          |
+| $ 5 $  | $ 7 $  | $ 35 $  | yes             | no             | no             |
+| $ 10 $ | $ 7 $  | $ 70 $  | yes             | no             | no             |
+| $ 5 $  | $ 14 $ | $ 70 $  | yes             | no             | no             |
+| $ 15 $ | $ 14 $ | $ 210 $ | yes             | no             | no             |
+| $ 25 $ | $ 21 $ | $ 525 $ | yes             | no             | no             |
+
+Each row works because one number supplies a factor of $ 5 $ (but no $ 7 $) and the other supplies a factor of $ 7 $ (but no $ 5 $).
+
+## Remark — 35 Is a Semiprime, So the Pair Is Essentially Unique
+
+The positive divisors of $ 35 $ are $ 1, 5, 7, 35 $, so the only ways to write $ 35 $ as a product of two positive integers are
+
+$$$
+35 \;=\; 1 \times 35 \qquad \text{and} \qquad 35 \;=\; 5 \times 7.
+$$$
+
+The trivial factorization $ 1 \times 35 $ is no help (since $ 35 \mid 35 $), so $ a = 5 $, $ b = 7 $ is the **essentially unique** counterexample whose product equals $ 35 $ itself. A number like $ 35 $ — a product of *two distinct primes* — is called a **semiprime**; $ 6 = 2 \cdot 3 $ from Problem 7 is another. Semiprimes are the "simplest" composites: they split into exactly two prime atoms, one for each of $ a $ and $ b $.
+
+## Remark — Same Mechanism, Stated Once More in General
+
+This is the identical phenomenon as Problem 7, and the general fact bears repeating: **every composite $ n $ fails the second definition.** If $ n = de $ with $ 1 < d, e < n $, then $ a = d $, $ b = e $ gives
+
+$$$
+n \mid ab = n \quad (\text{trivially}), \qquad \text{but } n \nmid d \;\text{ and }\; n \nmid e,
+$$$
+
+because $ d, e $ are positive and strictly smaller than $ n $. For $ 35 $ this is the factorization $ 35 = 5 \cdot 7 $.
+
+Conversely, a genuine prime $ p $ *does* satisfy the definition — that is **Euclid's lemma** — so passing the second definition (together with being $ > 1 $) is exactly equivalent to being prime. The deeper significance of having a *second* definition at all — that "prime" and "irreducible" diverge in more general number systems such as $ \mathbb{Z}[\sqrt{-5}] $ — is discussed at length in the remarks to Problem 7.

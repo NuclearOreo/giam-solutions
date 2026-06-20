@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="400" fill="white"/>
+
+  <text x="360" y="28" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Every triplet (n, n+2, n+4) contains a multiple of 3. Only when that multiple is 3 itself can all three be prime.</text>
+
+  <!-- column header -->
+  <text x="200" y="62" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">n,  n+2,  n+4</text>
+  <text x="330" y="62" font-size="12" font-weight="bold" fill="#222" text-anchor="start">multiple of 3 (highlighted)</text>
+  <line x1="60" y1="70" x2="660" y2="70" stroke="#999" stroke-width="0.8"/>
+
+  <!-- helper to read: rows at y = 100,148,196,244,292,340 ; boxes 56 wide pitch 60 at x=92,152,212 ; box y=rowY-18 height34 -->
+
+  <!-- Row 1: 3,5,7  (÷3 = 3, prime) -->
+  <rect x="92"  y="82" width="56" height="34" fill="#dff0df" stroke="#2e7d32" stroke-width="1.6"/>
+  <rect x="152" y="82" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="212" y="82" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="104">3</text><text x="180" y="104">5</text><text x="240" y="104">7</text></g>
+  <text x="300" y="104" font-size="13" fill="#2e7d32" text-anchor="start">3 is the only prime multiple of 3  →  ✓ valid: 3, 5, 7</text>
+
+  <!-- Row 2: 5,7,9  (÷3 = 9, third) -->
+  <rect x="92"  y="130" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="152" y="130" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="212" y="130" width="56" height="34" fill="#fbdcdc" stroke="#b02020" stroke-width="1.6"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="152">5</text><text x="180" y="152">7</text><text x="240" y="152">9</text></g>
+  <text x="300" y="152" font-size="13" fill="#b02020" text-anchor="start">9 = 3 · 3 is composite  →  ✗</text>
+
+  <!-- Row 3: 7,9,11 (÷3 = 9, middle) -->
+  <rect x="92"  y="178" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="152" y="178" width="56" height="34" fill="#fbdcdc" stroke="#b02020" stroke-width="1.6"/>
+  <rect x="212" y="178" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="200">7</text><text x="180" y="200">9</text><text x="240" y="200">11</text></g>
+  <text x="300" y="200" font-size="13" fill="#b02020" text-anchor="start">9 = 3 · 3 is composite  →  ✗</text>
+
+  <!-- Row 4: 9,11,13 (÷3 = 9, first) -->
+  <rect x="92"  y="226" width="56" height="34" fill="#fbdcdc" stroke="#b02020" stroke-width="1.6"/>
+  <rect x="152" y="226" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="212" y="226" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="248">9</text><text x="180" y="248">11</text><text x="240" y="248">13</text></g>
+  <text x="300" y="248" font-size="13" fill="#b02020" text-anchor="start">9 = 3 · 3 is composite  →  ✗</text>
+
+  <!-- Row 5: 11,13,15 (÷3 = 15, third) -->
+  <rect x="92"  y="274" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="152" y="274" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="212" y="274" width="56" height="34" fill="#fbdcdc" stroke="#b02020" stroke-width="1.6"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="296">11</text><text x="180" y="296">13</text><text x="240" y="296">15</text></g>
+  <text x="300" y="296" font-size="13" fill="#b02020" text-anchor="start">15 = 3 · 5 is composite  →  ✗</text>
+
+  <!-- Row 6: 17,19,21 (÷3 = 21, third) -->
+  <rect x="92"  y="322" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="152" y="322" width="56" height="34" fill="#eef2f7" stroke="#446" stroke-width="1"/>
+  <rect x="212" y="322" width="56" height="34" fill="#fbdcdc" stroke="#b02020" stroke-width="1.6"/>
+  <g font-size="15" text-anchor="middle" fill="#222"><text x="120" y="344">17</text><text x="180" y="344">19</text><text x="240" y="344">21</text></g>
+  <text x="300" y="344" font-size="13" fill="#b02020" text-anchor="start">21 = 3 · 7 is composite  →  ✗</text>
+
+  <!-- legend -->
+  <g font-size="11" fill="#444">
+    <rect x="160" y="372" width="14" height="14" fill="#dff0df" stroke="#2e7d32" stroke-width="0.8"/>
+    <text x="180" y="383" text-anchor="start">multiple of 3 that IS prime (only 3)</text>
+    <rect x="420" y="372" width="14" height="14" fill="#fbdcdc" stroke="#b02020" stroke-width="0.8"/>
+    <text x="440" y="383" text-anchor="start">multiple of 3 that is composite</text>
+  </g>
+</svg>
