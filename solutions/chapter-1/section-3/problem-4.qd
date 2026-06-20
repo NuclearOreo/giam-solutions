@@ -1,0 +1,120 @@
+.docname {Solution — GIAM 1.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.3 Problem 4
+
+## Problem
+
+Write your own sentences containing four quantifiers. One sentence in which the quantifiers appear $ (\forall \exists \forall \exists) $ and another in which they appear $ (\exists \forall \exists \forall) $.
+
+## Sentence A — Pattern $ \forall \exists \forall \exists $
+
+> "For every city, there is an airport from which every traveler can catch some flight."
+
+Reading left to right, the four quantifier phrases are:
+
+| Phrase            | Quantifier  | Type        |
+| :---              | :---:       | :---        |
+| "every city"      | $ \forall $ | universal   |
+| "an airport"      | $ \exists $ | existential |
+| "every traveler"  | $ \forall $ | universal   |
+| "some flight"     | $ \exists $ | existential |
+
+So the pattern is $ \forall \,\exists \,\forall \,\exists $. Symbolically, with $ \mathrm{Serves}(a, c) $ for "airport $ a $ serves city $ c $", $ \mathrm{From}(f, a) $ for "flight $ f $ departs from $ a $", and $ \mathrm{Catch}(t, f) $ for "traveler $ t $ can catch flight $ f $":
+
+$$$
+\forall c \,\exists a \,\Bigl[ \mathrm{Serves}(a, c) \;\wedge\; \forall t \,\exists f \,\bigl( \mathrm{From}(f, a) \wedge \mathrm{Catch}(t, f) \bigr) \Bigr].
+$$$
+
+The quantifier prefix reads $ \forall c \,\exists a \,\forall t \,\exists f $ — exactly $ \forall \exists \forall \exists $.
+
+## Sentence B — Pattern $ \exists \forall \exists \forall $
+
+> "There is a website on which every student can find a tutorial that every beginner can follow."
+
+The four quantifier phrases, in order:
+
+| Phrase             | Quantifier  | Type        |
+| :---               | :---:       | :---        |
+| "a website"        | $ \exists $ | existential |
+| "every student"    | $ \forall $ | universal   |
+| "a tutorial"       | $ \exists $ | existential |
+| "every beginner"   | $ \forall $ | universal   |
+
+So the pattern is $ \exists \,\forall \,\exists \,\forall $. Symbolically, with $ \mathrm{On}(u, w) $ for "tutorial $ u $ is on website $ w $", $ \mathrm{Find}(s, u) $ for "student $ s $ can find $ u $", and $ \mathrm{Follow}(b, u) $ for "beginner $ b $ can follow $ u $":
+
+$$$
+\exists w \,\forall s \,\exists u \,\Bigl[ \mathrm{On}(u, w) \;\wedge\; \mathrm{Find}(s, u) \;\wedge\; \forall b \,\mathrm{Follow}(b, u) \Bigr].
+$$$
+
+The prefix reads $ \exists w \,\forall s \,\exists u \,\forall b $ — exactly $ \exists \forall \exists \forall $.
+
+## The Two Patterns Side by Side
+
+!(100%)[The two sentences, each tagged with its four quantifiers in order](problem-4-patterns.svg "Sentence A's quantifier phrases tag as ∀ ∃ ∀ ∃ (every city, an airport, every traveler, some flight); Sentence B's tag as ∃ ∀ ∃ ∀ (a website, every student, a tutorial, every beginner). Universal quantifiers are blue, existential orange.")
+
+## Remark — A Recipe for Building Such Sentences
+
+There is a reliable template. Pick four nouns and chain them, alternating the determiner that signals each quantifier:
+
+- $ \forall $ is signalled by "**every / for every / all / each**";
+- $ \exists $ is signalled by "**a / an / some / there is**".
+
+Then nest them so each quantifier sits inside the scope of the previous one. For $ \forall \exists \forall \exists $:
+
+$$$
+\underbrace{\text{For every } N_1}_{\forall}, \;\; \underbrace{\text{there is a } N_2}_{\exists} \;\; \text{such that} \;\; \underbrace{\text{every } N_3}_{\forall} \;\; \underbrace{\text{has some } N_4 \ldots}_{\exists}
+$$$
+
+Swapping the opening determiner from "every" to "there is a" flips the whole pattern's parity — which is exactly how Sentence B ($ \exists\forall\exists\forall $) is built from the same skeleton as Sentence A.
+
+## Remark — Order Is Not Cosmetic: $ \forall\exists $ vs $ \exists\forall $
+
+The point of the exercise — and of the whole section — is that the *order* of quantifiers controls meaning. Consider just the first two quantifiers of each sentence:
+
+- Sentence A opens $ \forall c \,\exists a $: "for every city there is an airport" — each city gets its *own* (possibly different) airport.
+- Sentence B opens $ \exists w \,\forall s $: "there is a website such that every student…" — *one single* website serves all students.
+
+These are genuinely different kinds of claim. The textbook's own cafeteria example makes the same contrast:
+
+- "$ \forall $ student $ \exists $ food they like" — everyone has *a* favourite (possibly different).
+- "$ \exists $ food $ \forall $ student likes it" — *one* food pleases everyone (much stronger).
+
+In a four-quantifier sentence this sensitivity compounds at *each* adjacent $ \forall\exists $ / $ \exists\forall $ junction — which is why being able to *write* a sentence to a prescribed quantifier pattern, as this exercise asks, is a genuine skill and not just notation-shuffling.
+
+## Remark — A Purely Mathematical Pair
+
+Natural-language sentences are fine here, but the same patterns occur in clean mathematical statements — where they can be checked for truth. Over the integers $ \mathbb{Z} $:
+
+**$ \forall\exists\forall\exists $** (true):
+
+$$$
+\forall m \;\exists n \;\forall k \;\exists j \;\; ( m + j = n + k ).
+$$$
+
+*Why true:* given $ m $, choose $ n = m $; then for each $ k $, choose $ j = k $, so $ m + j = m + k = n + k $. ✓
+
+**$ \exists\forall\exists\forall $** (true):
+
+$$$
+\exists z \;\forall x \;\exists y \;\forall t \;\; \bigl( (x + y)\cdot t = z \bigr).
+$$$
+
+*Why true:* choose $ z = 0 $; for each $ x $, choose $ y = -x $, so $ x + y = 0 $ and $ (x+y)\cdot t = 0 = z $ for *every* $ t $. ✓
+
+These show the patterns in their natural mathematical habitat: each is a nest of "for all / there exists" where the existential witnesses ($ n, j $ in the first; $ y $ in the second) are chosen *as functions of* the universally-quantified variables that precede them.
+
+## Remark — Nesting and Scope
+
+In both sentences the quantifiers are **nested**: each one lies inside the scope of all the quantifiers to its left. The practical consequence is that an inner existential witness may depend on *every* outer variable. In Sentence A, the flight $ f $ (innermost $ \exists $) can depend on *both* the city $ c $ and the traveler $ t $; the airport $ a $ (second $ \exists $) can depend on the city $ c $. Reading the prefix $ \forall c \,\exists a \,\forall t \,\exists f $ left to right is the same as reading nested dependencies: *choose $ c $ adversarially, respond with $ a $, then $ c $'s opponent chooses $ t $, and we respond with $ f $.* This "game" reading — universal = adversary's move, existential = our response — is the cleanest way to keep a four-quantifier sentence's meaning straight, and it is why the *order* of the moves is everything.
+
+## Remark — There Are Many Right Answers
+
+This is an open-ended exercise: *any* grammatical sentence whose four quantifier words appear in the prescribed order is a correct answer. The two given above are only samples. A reader's own pair — "For every lock there is a key that every locksmith can copy for some customer" ($ \forall\exists\forall\exists $), say, or "There is a law that every citizen has a right which every court must protect" ($ \exists\forall\exists\forall $) — is equally valid. What is being assessed is solely that the quantifier *types* occur in the requested *sequence*; the subject matter is free.

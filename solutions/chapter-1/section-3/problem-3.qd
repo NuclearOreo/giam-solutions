@@ -1,0 +1,111 @@
+.docname {Solution — GIAM 1.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.3 Problem 3
+
+## Problem
+
+The sentence "For every pair of (distinct) real numbers there is another real number between them." is true. Why?
+
+## The Short Answer
+
+Given any two distinct reals, their **midpoint** lies strictly between them:
+
+$$$
+\boxed{\;\text{For distinct } a, b \in \mathbb{R}, \text{ the midpoint } \; m = \frac{a + b}{2} \; \text{ satisfies } \; a < m < b \;\text{ (taking } a < b).\;}
+$$$
+
+Because the midpoint is itself a real number and works for *every* pair, the universal statement is true. $ \blacksquare $
+
+## Proof
+
+The sentence is a universally quantified statement with an existential inside — a "$ \forall\exists $" claim:
+
+$$$
+\forall a \,\forall b \,\Bigl( a \neq b \;\rightarrow\; \exists m \in \mathbb{R}\;( m \text{ is strictly between } a \text{ and } b ) \Bigr).
+$$$
+
+To prove it, take *arbitrary* distinct reals $ a, b $. Without loss of generality $ a < b $ (otherwise rename them). Define
+
+$$$
+m \;=\; \frac{a + b}{2}.
+$$$
+
+This $ m $ is a real number (the reals are closed under addition and division by $ 2 $). Check it lies strictly between $ a $ and $ b $:
+
+$$$
+m - a \;=\; \frac{a + b}{2} - a \;=\; \frac{b - a}{2} \;>\; 0 \quad (\text{since } b > a) \;\;\Longrightarrow\;\; m > a,
+$$$
+
+$$$
+b - m \;=\; b - \frac{a + b}{2} \;=\; \frac{b - a}{2} \;>\; 0 \;\;\Longrightarrow\;\; m < b.
+$$$
+
+Hence $ a < m < b $. Since $ a, b $ were an arbitrary distinct pair, *every* pair has a real number between them. $ \blacksquare $
+
+## Picture — Density of the Reals
+
+!(100%)[The midpoint lies between any two distinct reals; integers have no such property](problem-3-density.svg "Top: for reals a < b, the midpoint m = (a+b)/2 sits exactly halfway between them, at distance (b−a)/2 from each — so a < m < b. The faint ticks hint that the process repeats forever (infinitely many reals between any two). Bottom: in the integers, nothing lies strictly between 3 and 4, so the same sentence is false for ℤ.")
+
+## Remark — This Is "Density"
+
+The property just proved has a name: the real numbers are **dense** (more precisely, $ \mathbb{R} $ is a *densely ordered* set). Density means: between any two distinct elements there is always a third. The midpoint construction is the cleanest possible witness — though far from the only one (see below).
+
+## Remark — Proving "$ \forall $" Needs a Construction, Not Examples
+
+This problem is the mirror image of Problem 2. There, we *disproved* a universal statement ("every metal is solid") with a single counterexample. Here we must *prove* a universal statement is true — and for that, one example is *not* enough. Checking that $ 3.5 $ lies between $ 3 $ and $ 4 $ would verify a single instance, not the claim "for *every* pair."
+
+Proving a "$ \forall $" requires a method that works for an *arbitrary* input. The midpoint formula $ m = (a+b)/2 $ is exactly such a method: it takes *any* distinct $ a, b $ and produces a valid between-number. This is the asymmetry from Problem 2 seen from the other side — **disproving "all" needs one case; proving "all" needs a general argument.**
+
+## Remark — The Witness Depends on the Inputs ($ \forall\exists $ Structure)
+
+The statement is "$ \forall\exists $": *for all* $ a, b $, *there exists* $ m $. Crucially, the $ m $ that exists **depends on** $ a $ and $ b $ — it is not one fixed number that works for every pair. The dependence is captured exactly by the midpoint *function* $ m(a, b) = (a+b)/2 $ (a so-called *Skolem function* for the existential quantifier).
+
+This is the order-of-quantifiers point the section emphasises. The true reading is
+
+$$$
+\forall a \,\forall b \;\exists m \;( a < m < b ),
+$$$
+
+with $ \exists m $ *inside*. Swapping to put $ \exists m $ *outside* —
+
+$$$
+\exists m \;\forall a \,\forall b \;( a < m < b )
+$$$
+
+— would assert that *one single* real number lies between *every* pair, which is absurd. The truth lives entirely in the $ \forall\exists $ ordering.
+
+## Remark — Not Just One Between, but Infinitely Many
+
+The sentence only asks for "another" real — i.e. *at least one*. But the midpoint trick can be *iterated*: between $ a $ and $ m $ there is *their* midpoint, and between that and $ a $ another, and so on without end. So in fact there are **infinitely many** reals between any two distinct reals — uncountably many, in truth, since the whole interval $ (a, b) $ is squeezed in there. The faint repeated ticks in the figure hint at this endless subdivision.
+
+A vivid consequence: **no two distinct reals are ever "adjacent."** Unlike the integers, where $ 4 $ is the immediate successor of $ 3 $, a real number has *no* "next" real — there is always room for more in between.
+
+## Remark — Why the Universe of Discourse Is Essential
+
+The truth of this sentence hinges entirely on what set the numbers come from — the recurring lesson of these sections:
+
+| Universe        | "between any two distinct elements lies another"? |
+| :---            | :---                                               |
+| $ \mathbb{Z} $  | **false** — nothing lies between $ 3 $ and $ 4 $   |
+| $ \mathbb{Q} $  | **true** — the midpoint of two rationals is rational |
+| $ \mathbb{R} $  | **true** — the midpoint of two reals is real        |
+
+The integers are *discrete*: consecutive integers have a gap with nothing inside, so the statement fails (the bottom panel of the figure). The rationals and reals are *dense*, and the midpoint argument works verbatim in both — note $ (a+b)/2 \in \mathbb{Q} $ whenever $ a, b \in \mathbb{Q} $. As always, a quantified statement is only meaningful once its universe is fixed; the *same words* are true over $ \mathbb{R} $ and false over $ \mathbb{Z} $.
+
+## Remark — The Midpoint Is Not the Only Witness
+
+Any number strictly inside the interval works — the midpoint is just the symmetric, memorable choice. For distinct $ a < b $, every **convex combination**
+
+$$$
+m_\lambda \;=\; (1 - \lambda)\, a + \lambda\, b, \qquad 0 < \lambda < 1,
+$$$
+
+satisfies $ a < m_\lambda < b $ (the midpoint is the case $ \lambda = \tfrac{1}{2} $). As $ \lambda $ ranges over the open interval $ (0, 1) $ — itself uncountably many values — we get uncountably many distinct between-numbers, re-deriving the "infinitely many" remark. The freedom to pick *any* $ \lambda $ underscores that the existential witness is abundant, not scarce: density is not a near-miss property but an overwhelmingly satisfied one.

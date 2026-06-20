@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" width="720" height="300" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="300" fill="white"/>
+
+  <text x="360" y="30" font-size="14" font-weight="bold" fill="#222" text-anchor="middle">At room temperature (≈ 25 °C), which metallic elements are solid?</text>
+
+  <!-- six cards, centers at 80,192,304,416,528,640 ; width 100 ; y 56..166 -->
+  <!-- solid metals -->
+  <g>
+    <rect x="30"  y="56" width="100" height="110" rx="5" fill="#eaf3ea" stroke="#4a8a4a" stroke-width="1.2"/>
+    <rect x="142" y="56" width="100" height="110" rx="5" fill="#eaf3ea" stroke="#4a8a4a" stroke-width="1.2"/>
+    <rect x="254" y="56" width="100" height="110" rx="5" fill="#eaf3ea" stroke="#4a8a4a" stroke-width="1.2"/>
+    <rect x="366" y="56" width="100" height="110" rx="5" fill="#eaf3ea" stroke="#4a8a4a" stroke-width="1.2"/>
+    <rect x="478" y="56" width="100" height="110" rx="5" fill="#eaf3ea" stroke="#4a8a4a" stroke-width="1.2"/>
+    <!-- mercury (counterexample) -->
+    <rect x="590" y="56" width="100" height="110" rx="5" fill="#fbe4e4" stroke="#c33" stroke-width="2"/>
+  </g>
+
+  <!-- symbols -->
+  <g font-size="22" font-weight="bold" text-anchor="middle" fill="#222">
+    <text x="80"  y="92">Fe</text>
+    <text x="192" y="92">Au</text>
+    <text x="304" y="92">Pb</text>
+    <text x="416" y="92">Na</text>
+    <text x="528" y="92">Ga</text>
+    <text x="640" y="92" fill="#a02020">Hg</text>
+  </g>
+  <!-- names -->
+  <g font-size="11" text-anchor="middle" fill="#444">
+    <text x="80"  y="110">Iron</text>
+    <text x="192" y="110">Gold</text>
+    <text x="304" y="110">Lead</text>
+    <text x="416" y="110">Sodium</text>
+    <text x="528" y="110">Gallium</text>
+    <text x="640" y="110" fill="#a02020">Mercury</text>
+  </g>
+  <!-- melting points -->
+  <g font-size="11" text-anchor="middle" fill="#666">
+    <text x="80"  y="126">mp 1538 °C</text>
+    <text x="192" y="126">mp 1064 °C</text>
+    <text x="304" y="126">mp 327 °C</text>
+    <text x="416" y="126">mp 98 °C</text>
+    <text x="528" y="126">mp 30 °C</text>
+    <text x="640" y="126" fill="#a02020">mp −39 °C</text>
+  </g>
+  <!-- state badges -->
+  <g font-size="11" font-weight="bold" text-anchor="middle">
+    <rect x="48"  y="140" width="64" height="18" rx="9" fill="#4a8a4a"/><text x="80"  y="153" fill="white">SOLID ✓</text>
+    <rect x="160" y="140" width="64" height="18" rx="9" fill="#4a8a4a"/><text x="192" y="153" fill="white">SOLID ✓</text>
+    <rect x="272" y="140" width="64" height="18" rx="9" fill="#4a8a4a"/><text x="304" y="153" fill="white">SOLID ✓</text>
+    <rect x="384" y="140" width="64" height="18" rx="9" fill="#4a8a4a"/><text x="416" y="153" fill="white">SOLID ✓</text>
+    <rect x="496" y="140" width="64" height="18" rx="9" fill="#4a8a4a"/><text x="528" y="153" fill="white">SOLID ✓</text>
+    <rect x="606" y="140" width="68" height="18" rx="9" fill="#c33"/><text x="640" y="153" fill="white">LIQUID ✗</text>
+  </g>
+
+  <!-- counterexample arrow -->
+  <text x="640" y="188" font-size="11.5" font-style="italic" fill="#c33" text-anchor="middle">↑ the counterexample</text>
+
+  <!-- punchline -->
+  <line x1="40" y1="212" x2="680" y2="212" stroke="#ddd" stroke-width="1"/>
+  <text x="360" y="238" font-size="13" fill="#222" text-anchor="middle">"Every metallic element is a solid at room temperature" claims <tspan font-style="italic">all</tspan> metals are solid.</text>
+  <text x="360" y="262" font-size="13" fill="#222" text-anchor="middle">Mercury is liquid — and <tspan font-weight="bold">one counterexample is enough</tspan> to make the statement <tspan font-weight="bold" fill="#c33">FALSE</tspan>.</text>
+  <text x="360" y="284" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">¬(∀x  is-solid(x))  ≡  ∃x  ¬is-solid(x):  to disprove "all," exhibit a single exception.</text>
+</svg>

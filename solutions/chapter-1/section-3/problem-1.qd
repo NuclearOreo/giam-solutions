@@ -1,0 +1,103 @@
+.docname {Solution — GIAM 1.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.3 Problem 1
+
+## Problem
+
+How many quantifiers (and what sorts) are in the following sentence?
+
+> "Everybody has *some* friend that thinks they know everything about a sport."
+
+## Answer
+
+There are **four** quantifiers — **two universal** ($ \forall $) and **two existential** ($ \exists $):
+
+| Word in the sentence | Quantifier | Type                    |
+| :---                 | :---:      | :---                    |
+| "Everybody"          | $ \forall $ | universal ("for all")   |
+| "some friend"        | $ \exists $ | existential ("there is")|
+| "everything"         | $ \forall $ | universal ("for all")   |
+| "a sport"            | $ \exists $ | existential ("there is")|
+
+Read left to right, they alternate: $ \;\forall\; \exists\; \forall\; \exists $.
+
+## Identifying Each One
+
+- **"Everybody"** — ranges over *all* people: a universal quantifier, $ \forall $. ("Every," "all," "each," "everybody" are the tell-tale universal words.)
+- **"some friend"** — asserts the *existence* of at least one friend: an existential quantifier, $ \exists $. ("Some," "a," "there is," "at least one" signal existence. The textbook even italicised *some* to flag it.)
+- **"everything"** — "knows *everything*" means *all* the relevant facts: a universal quantifier, $ \forall $, ranging over facts.
+- **"a sport"** — "about *a* sport" asserts the existence of a sport: an existential quantifier, $ \exists $.
+
+## The Four Quantifiers at a Glance
+
+!(100%)[The four quantifiers in the sentence, labeled and color-coded](problem-1-quantifiers.svg "Each quantifier phrase is boxed and tagged: 'Everybody' (∀), 'some friend' (∃), 'everything' (∀), 'a sport' (∃). The pattern across the sentence is ∀ ∃ ∀ ∃. The word 'they' is a pronoun, not a quantifier.")
+
+## Symbolic Form
+
+Spelling the sentence out in logic makes the four quantifiers explicit. Let the universe of *people* be $ P $, write $ \mathrm{Fr}(x, y) $ for "$ y $ is a friend of $ x $", $ \mathrm{Sp}(s) $ for "$ s $ is a sport", $ \mathrm{Ab}(f, s) $ for "$ f $ is a fact about $ s $", and $ \mathrm{Kn}(y, f) $ for "$ y $ knows $ f $". One faithful rendering is:
+
+$$$
+\forall x \,\exists y \,\Bigl[\, \mathrm{Fr}(x, y) \;\wedge\; \exists s \,\bigl( \mathrm{Sp}(s) \,\wedge\, \forall f \,( \mathrm{Ab}(f, s) \rightarrow \mathrm{Kn}(y, f) ) \bigr) \,\Bigr].
+$$$
+
+The four quantifiers $ \forall x,\; \exists y,\; \exists s,\; \forall f $ are exactly the four English phrases "everybody," "some friend," "a sport," "everything."
+
+## Remark — The Alternating $ \forall \exists \forall \exists $ Pattern
+
+Reading the quantifier words in the order they *appear* in the sentence gives
+
+$$$
+\underbrace{\forall}_{\text{everybody}} \;\; \underbrace{\exists}_{\text{some friend}} \;\; \underbrace{\forall}_{\text{everything}} \;\; \underbrace{\exists}_{\text{a sport}},
+$$$
+
+a perfectly alternating $ \forall \exists \forall \exists $. This is almost certainly the point of the exercise: it is the *same* four-quantifier $ \forall \exists \forall \exists $ shape that the very next exercise (Exercise 4) asks the reader to *build* from scratch. Sentences with several alternating quantifiers are exactly the ones the section warns are easy to misread.
+
+## Remark — Scope: "Knows Everything About a Sport"
+
+The phrase "knows everything about a sport" hides a subtlety the bare count glosses over. Idiomatically it means *"is an expert on some particular sport"* — i.e. **there is a sport** such that the friend knows **every** fact about it:
+
+$$$
+\exists s \,\bigl( \mathrm{Sp}(s) \,\wedge\, \forall f \,(\mathrm{Ab}(f,s) \rightarrow \mathrm{Kn}(y,f)) \bigr).
+$$$
+
+Here the existential "a sport" actually takes *wider* scope than the universal "everything," even though "everything" appears *first* in the English. So the surface reading order ($ \ldots \forall\,\text{everything} \;\exists\,\text{a sport} $) and the logical nesting ($ \ldots \exists\,\text{a sport} \;\forall\,\text{fact} $) disagree in order. Either way the *count* is unchanged — two universals and two existentials — but the example shows why "just count the words" is only the first step; pinning the *scopes* is where the real care lies.
+
+## Remark — What Is *Not* a Quantifier
+
+It is worth being explicit about the words that look grammatically important but carry no quantification:
+
+- **"they"** — a *pronoun*, referring back to "some friend." In logic it becomes a *bound variable* (the $ y $ already introduced by $ \exists y $), not a new quantifier.
+- **"has," "thinks," "know"** — verbs (predicates/relations), not quantifiers.
+- **"that"** — a relative pronoun introducing the clause "that thinks…"; structural glue, not a quantifier.
+
+Only the four determiner/quantifier words — *everybody, some, everything, a* — introduce quantification.
+
+## Remark — Why the Order of Quantifiers Matters
+
+The section stresses that swapping quantifiers can change a sentence's meaning entirely. Compare the textbook's cafeteria example:
+
+- "For *every* student, there is *some* food they like" ($ \forall \exists $) — each student has a (possibly different) favourite.
+- "There is *some* food that *every* student likes" ($ \exists \forall $) — one single food pleases everyone.
+
+These are genuinely different claims. The same sensitivity lives in our sentence: "Everybody has *some* friend…" ($ \forall \exists $: each person's expert friend may differ) says something far weaker than "There is *some* friend that everybody has…" ($ \exists \forall $: one universally-shared friend). When a sentence stacks four alternating quantifiers, this ordering effect compounds — which is exactly why counting and *typing* them, as this exercise asks, is the necessary first discipline before reasoning about meaning.
+
+## Remark — The Universe of Discourse for Each Quantifier
+
+Each quantifier silently ranges over a different *universe of discourse*, and naming them is good hygiene (the section's recurring theme):
+
+| Quantifier      | Ranges over          |
+| :---            | :---                 |
+| "everybody" ($ \forall $) | people               |
+| "some friend" ($ \exists $) | people (a friend *is* a person) |
+| "everything" ($ \forall $) | facts about the chosen sport |
+| "a sport" ($ \exists $)    | sports               |
+
+Leaving these implicit is harmless in casual English, but in a careful proof the universe of each quantifier must be declared — otherwise statements like "everything" are ambiguous (everything in the world? every fact? every fact *about that sport*?). Making the universes explicit is precisely the "scary notation" discipline this section is introducing.

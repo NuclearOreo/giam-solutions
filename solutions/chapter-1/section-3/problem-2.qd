@@ -1,0 +1,88 @@
+.docname {Solution — GIAM 1.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.3 Problem 2
+
+## Problem
+
+The sentence "Every metallic element is a solid at room temperature." is false. Why?
+
+## The Short Answer
+
+The sentence is **universally quantified** — it claims something about *every* metallic element. A universal statement is false as soon as there is a *single* exception, and there is one:
+
+$$$
+\boxed{\;\text{Mercury (Hg) is a metallic element that is } \textit{liquid} \text{ at room temperature.}\;}
+$$$
+
+Mercury melts at about $ -38.8\,^{\circ}\mathrm{C} $, far below room temperature ($ \approx 25\,^{\circ}\mathrm{C} $), so at room temperature it is a *liquid*, not a solid. That one counterexample makes the statement false. $ \blacksquare $
+
+## Why One Counterexample Suffices
+
+The sentence has the logical form of a universally quantified statement — in fact a *universal conditional*:
+
+$$$
+\forall x \,\bigl( \mathrm{Metal}(x) \rightarrow \mathrm{SolidAtRT}(x) \bigr),
+$$$
+
+"for every element $ x $, if $ x $ is a metal then $ x $ is solid at room temperature." To *disprove* a "$ \forall $" statement, we use the **negation rule** for quantifiers:
+
+$$$
+\neg\, \forall x\, P(x) \;\;\equiv\;\; \exists x \,\neg P(x).
+$$$
+
+So the negation of our sentence is the *existential* statement
+
+$$$
+\exists x \,\bigl( \mathrm{Metal}(x) \,\wedge\, \neg\,\mathrm{SolidAtRT}(x) \bigr),
+$$$
+
+"there exists a metal that is *not* solid at room temperature." To establish this existential, we need just **one** witness — and mercury is it. A single counterexample is logically complete: it does not merely cast doubt on the universal claim, it *refutes* it outright.
+
+## The Counterexample, Visually
+
+!(100%)[Common metals at room temperature: all solid except mercury](problem-2-metals.svg "Iron, gold, lead, sodium, and gallium are all solid at room temperature; mercury alone is liquid (melting point −39 °C). The single liquid metal is the counterexample that falsifies the universal claim.")
+
+## Remark — Disproving "All" vs Proving "All": An Asymmetry
+
+There is a deep asymmetry between proving and disproving a universal statement, and this problem showcases the easy half:
+
+- To **prove** $ \forall x\, P(x) $ — that *every* metal is solid — you would have to verify it for *all* metals (infinitely many cases in general; here, every metallic element). No finite check suffices on its own; you need a general argument.
+- To **disprove** $ \forall x\, P(x) $ — to show it is false — you need only *one* counterexample.
+
+This is why universal statements are often "easy to kill, hard to confirm." We saw the same asymmetry in Chapter 1.2: the conjectures "$ 2^p - 1 $ is always prime" (Problem 5) and "$ x^2 - 31x + 257 $ is always prime" (Problem 6) were each demolished by a single counterexample, while *proving* a universal prime-generating claim is generally hopeless. The mercury example is the chemistry-flavoured version of exactly that move.
+
+## Remark — Mercury Is the *Only* Liquid Metallic Element at Room Temperature
+
+Mercury is special: among the metallic elements, it is the *unique* one that is liquid at standard room temperature. (The only other element that is liquid at room temperature is **bromine** — but bromine is a *nonmetal* (a halogen), so it is not a counterexample to *this* sentence, which is about metals.) Mercury's liquidity is itself a striking physical fact, traceable to relativistic effects on its electrons that weaken the metallic bonding — which is why a single metal stands out as the exception.
+
+## Remark — The Definition of "Room Temperature" Matters
+
+The sentence is false under *any* reasonable reading, but it is worth noting how close several other metals come — which is exactly why precise definitions (the recurring theme of these sections) matter:
+
+| Metal       | Melting point | Solid at $ 25\,^{\circ}\mathrm{C} $? |
+| :---        | :---:         | :---:                                 |
+| Mercury (Hg)| $ -39\,^{\circ}\mathrm{C} $   | **no — liquid** |
+| Caesium (Cs)| $ 28\,^{\circ}\mathrm{C} $    | yes, but barely |
+| Gallium (Ga)| $ 30\,^{\circ}\mathrm{C} $    | yes, but melts in your hand |
+| Rubidium (Rb)| $ 39\,^{\circ}\mathrm{C} $   | yes |
+| Sodium (Na) | $ 98\,^{\circ}\mathrm{C} $    | yes |
+
+Caesium and gallium melt only a few degrees *above* a typical room, and **gallium famously melts in the warmth of a held hand** ($ 30\,^{\circ}\mathrm{C} $). If "room temperature" were taken to be a warm $ 30\,^{\circ}\mathrm{C} $ day, caesium and gallium would *also* become counterexamples. But mercury is a counterexample regardless: at no ordinary room temperature is it solid. So the sentence fails robustly — mercury alone settles it, and the borderline metals only pile on.
+
+## Remark — How to State a *True* Version
+
+It is instructive to ask what nearby statement *is* true. Several repairs work:
+
+- **Weaken the quantifier** to existential: "*Some* metallic element is a solid at room temperature." — true (most of them are).
+- **Restrict the universe**: "Every metallic element *other than mercury* is a solid at room temperature." — true under a $ 25\,^{\circ}\mathrm{C} $ reading (and very nearly true in general).
+- **Change the predicate**: "Every metallic element is a solid *or a liquid* at room temperature." — true (no metal is gaseous at room temperature).
+
+Each repair illustrates a standard logical move: when a universal claim is refuted by counterexamples, you either shrink the domain, weaken the quantifier, or loosen the predicate until the survivors all comply. Knowing *which* repair you want is the difference between a sloppy claim and a precise theorem — the discipline this section is training.
