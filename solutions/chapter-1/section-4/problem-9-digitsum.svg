@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="400" fill="white"/>
+
+  <text x="360" y="28" font-size="13" font-style="italic" fill="#444" text-anchor="middle">The digit-sum test for 3 works exactly when every power of the base is ≡ 1 (mod 3).</text>
+
+  <!-- powers of 10 and 7 mod 3 -->
+  <text x="40" y="62" font-size="13" font-weight="bold" fill="#222">Why decimal and base 7 both work:</text>
+  <g font-size="13" text-anchor="middle">
+    <!-- header -->
+    <text x="200" y="88" fill="#666">bᵒ</text>
+    <text x="290" y="88" fill="#666">b¹</text>
+    <text x="380" y="88" fill="#666">b²</text>
+    <text x="470" y="88" fill="#666">b³</text>
+    <text x="580" y="88" fill="#666">(mod 3)</text>
+    <!-- base 10 row -->
+    <text x="110" y="116" text-anchor="start" font-weight="bold">base 10:</text>
+    <text x="200" y="116">1</text><text x="290" y="116">10</text><text x="380" y="116">100</text><text x="470" y="116">1000</text>
+    <text x="580" y="116" fill="#2e7d32" font-weight="bold">1, 1, 1, 1</text>
+    <!-- base 7 row -->
+    <text x="110" y="144" text-anchor="start" font-weight="bold">base 7:</text>
+    <text x="200" y="144">1</text><text x="290" y="144">7</text><text x="380" y="144">49</text><text x="470" y="144">343</text>
+    <text x="580" y="144" fill="#2e7d32" font-weight="bold">1, 1, 1, 1</text>
+  </g>
+  <text x="360" y="172" font-size="12.5" fill="#222" text-anchor="middle">Both have base ≡ 1 (mod 3), so  n = Σ dᵢ·bⁱ ≡ Σ dᵢ  (mod 3)  →  the digit-sum test holds.</text>
+
+  <line x1="40" y1="192" x2="680" y2="192" stroke="#ddd" stroke-width="1"/>
+
+  <!-- classification table -->
+  <text x="40" y="218" font-size="13" font-weight="bold" fill="#222">But not in every base — it depends on b mod 3:</text>
+  <g font-size="12.5">
+    <!-- header -->
+    <text x="120" y="244" font-weight="bold" text-anchor="middle">base b mod 3</text>
+    <text x="360" y="244" font-weight="bold" text-anchor="middle">test for divisibility by 3</text>
+    <text x="600" y="244" font-weight="bold" text-anchor="middle">example bases</text>
+    <line x1="50" y1="252" x2="670" y2="252" stroke="#999" stroke-width="0.8"/>
+    <!-- row 1: b≡1 -->
+    <rect x="50" y="258" width="620" height="28" fill="#e7f3e7"/>
+    <text x="120" y="277" text-anchor="middle" font-weight="bold" fill="#2e7d32">≡ 1</text>
+    <text x="360" y="277" text-anchor="middle">digit sum  (the familiar rule)</text>
+    <text x="600" y="277" text-anchor="middle">4, 7, 10, 13, 16</text>
+    <!-- row 2: b≡2 -->
+    <text x="120" y="309" text-anchor="middle" font-weight="bold" fill="#c06a16">≡ 2</text>
+    <text x="360" y="309" text-anchor="middle">alternating digit sum</text>
+    <text x="600" y="309" text-anchor="middle">2, 5, 8, 11</text>
+    <!-- row 3: b≡0 -->
+    <text x="120" y="337" text-anchor="middle" font-weight="bold" fill="#2a5db0">≡ 0</text>
+    <text x="360" y="337" text-anchor="middle">last digit  (since 3 | b)</text>
+    <text x="600" y="337" text-anchor="middle">3, 6, 9, 12</text>
+    <line x1="50" y1="348" x2="670" y2="348" stroke="#999" stroke-width="0.8"/>
+  </g>
+
+  <!-- example -->
+  <text x="360" y="378" font-size="12.5" font-style="italic" fill="#666" text-anchor="middle">Example: 3267 = 12345₇.  Digit sum 1+2+3+4+5 = 15, and 3 | 15  →  3 | 3267.  ✓</text>
+</svg>

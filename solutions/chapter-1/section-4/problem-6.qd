@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 1.4 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 6
+
+## Problem
+
+In hexadecimal (base-$ 16 $) the sixteen "digits" are $ 0 $–$ 9 $ together with $ A $–$ F $ for $ 10 $ through $ 15 $. Write the next $ 10 $ hexadecimal numbers after $ AB $, and the next $ 10 $ after $ FA $.
+
+## Hexadecimal Digits
+
+For reference, the sixteen hex digits and their decimal values:
+
+| hex     | $ 0 $ | $ 1 $ | $ 2 $ | $ 3 $ | $ 4 $ | $ 5 $ | $ 6 $ | $ 7 $ | $ 8 $ | $ 9 $ | $ A $ | $ B $ | $ C $ | $ D $ | $ E $ | $ F $ |
+| :---    | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   | :-:   |
+| decimal | $ 0 $ | $ 1 $ | $ 2 $ | $ 3 $ | $ 4 $ | $ 5 $ | $ 6 $ | $ 7 $ | $ 8 $ | $ 9 $ | $ 10 $| $ 11 $| $ 12 $| $ 13 $| $ 14 $| $ 15 $|
+
+Counting works like any base: increase the units digit until it passes $ F $ (= $ 15 $), then roll it over to $ 0 $ and carry $ 1 $ into the next place.
+
+## The Next 10 After $ AB $
+
+$$$
+\boxed{\;AC, \;\; AD, \;\; AE, \;\; AF, \;\; B0, \;\; B1, \;\; B2, \;\; B3, \;\; B4, \;\; B5.\;}
+$$$
+
+The units digit climbs $ B \to C \to D \to E \to F $, giving $ AC, AD, AE, AF $. At $ AF $ the units digit is maxed out, so the next step rolls it to $ 0 $ and carries: $ A \to B $, producing $ B0 $. Then $ B1, B2, \ldots, B5 $.
+
+## The Next 10 After $ FA $
+
+$$$
+\boxed{\;FB, \;\; FC, \;\; FD, \;\; FE, \;\; FF, \;\; 100, \;\; 101, \;\; 102, \;\; 103, \;\; 104.\;}
+$$$
+
+The units digit climbs $ A \to B \to C \to D \to E \to F $, giving $ FB, FC, FD, FE, FF $. Now $ FF $ has *both* digits maxed out, so the next step is a full rollover — both digits go to $ 0 $ and a new leading digit appears: $ FF + 1 = 100_{16} $. Then $ 101, 102, 103, 104 $.
+
+## Counting Through the Carries
+
+!(100%)[The two hex count sequences, with the carry points highlighted](problem-6-hex.svg "Top: the hex digits 0–F with A–F (the letter digits) highlighted. Middle: after AB, the units digit runs to AF then carries to B0 (F→0, A→B). Bottom: after FA, the digits run to FF then roll over to the three-digit 100₁₆ — like 99 → 100. Decimal anchors: AB = 171, AF = 175, B0 = 176; FA = 250, FF = 255, 100₁₆ = 256.")
+
+## Remark — Two Kinds of Rollover
+
+The two sequences showcase the *single* carry and the *full* carry:
+
+- **$ AF \to B0 $** is a single carry: only the units digit is maxed, so it resets to $ 0 $ and bumps the next digit up by one ($ A \to B $). This is the hex twin of $ 19 \to 20 $ in decimal.
+- **$ FF \to 100 $** is a cascading carry: *every* digit is maxed ($ F $), so they all reset to $ 0 $ and a fresh leading $ 1 $ is born. This is the hex twin of $ 99 \to 100 $ — and exactly the $ 777_8 \to 1000_8 $ rollover from Problem 3 and $ 7 \to 10_8 $, $ 9 \to 10 $ generally. In *any* base, a string of maximal digits rolls over to "$ 1 $ followed by zeros."
+
+In decimal terms, $ FF_{16} = 255 = 16^2 - 1 $ and $ 100_{16} = 256 = 16^2 $ — one more than the maxed two-digit number, opening a new power-of-$ 16 $ place. (Just as $ 99 = 10^2 - 1 $ rolls to $ 100 = 10^2 $.)
+
+## Remark — Decimal Cross-Check
+
+Converting to decimal confirms the counts are consecutive:
+
+| hex   | $ = $ | decimal |
+| :---: | :---: | :---:   |
+| $ AB $  | $ 10 \cdot 16 + 11 $   | $ 171 $ |
+| $ AF $  | $ 10 \cdot 16 + 15 $   | $ 175 $ |
+| $ B0 $  | $ 11 \cdot 16 + 0 $    | $ 176 $ |
+| $ FA $  | $ 15 \cdot 16 + 10 $   | $ 250 $ |
+| $ FF $  | $ 15 \cdot 16 + 15 $   | $ 255 $ |
+| $ 100_{16} $ | $ 1 \cdot 16^2 $  | $ 256 $ |
+
+So "next $ 10 $ after $ AB $" is $ 172 $ through $ 181 $, and "next $ 10 $ after $ FA $" is $ 251 $ through $ 260 $ — each list a run of ten consecutive integers, exactly as counting should give.
+
+## Remark — Hexadecimal Is Binary, Four Bits at a Time
+
+Just as octal packs binary three bits at a time (Problem 3), hexadecimal packs it **four** bits at a time, because $ 16 = 2^4 $. Each hex digit corresponds to a $ 4 $-bit block ($ 0000 $ through $ 1111 $):
+
+$$$
+AB_{16} \;=\; \underbrace{1010}_{A}\,\underbrace{1011}_{B}{}_2 \;=\; 10101011_2 \;=\; 171, \qquad FF_{16} \;=\; \underbrace{1111}_{F}\,\underbrace{1111}_{F}{}_2 \;=\; 11111111_2 \;=\; 2^8 - 1 = 255.
+$$$
+
+This is why hexadecimal is *the* notation of computing: a **byte** is $ 8 $ bits $ = $ exactly two hex digits, so any byte is written with two hex characters, and the largest byte value is $ FF = 255 = 2^8 - 1 $. The full rollover $ FF \to 100_{16} $ is the moment a value outgrows a single byte — the hexadecimal echo of $ 2^8 - 1 \to 2^8 $.
+
+## Remark — The General Rollover Rule
+
+Across Problems 3–6 the same odometer principle recurs in every base $ b $: count up the units digit through $ b - 1 $, then carry. A maximal string $ (b{-}1)(b{-}1)\cdots(b{-}1) $ of length $ k $ always rolls to $ 1\underbrace{00\cdots0}_{k} $, the value $ b^k $. We have now seen it in four bases:
+
+$$$
+9 \to 10 \;(b{=}10), \qquad 1_2\text{-runs}: 1 \to 10_2 \;(b{=}2), \qquad 7 \to 10_8 \;(b{=}8), \qquad F \to 10_{16} \;(b{=}16),
+$$$
+
+and the two-digit versions $ 99 \to 100 $, $ 11_2 \to 100_2 $, $ 77_8 \to 100_8 $, $ FF_{16} \to 100_{16} $. Hexadecimal feels exotic only because of the unfamiliar letter-digits $ A $–$ F $; the *mechanics* of counting are identical to decimal, which is the real takeaway of the exercise.

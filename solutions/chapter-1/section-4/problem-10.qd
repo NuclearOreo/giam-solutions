@@ -1,0 +1,93 @@
+.docname {Solution — GIAM 1.4 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 10
+
+## Problem
+
+Suppose that $ 340 $ pounds of sand must be placed into bags having a $ 50 $-pound capacity. Write an expression using either floor or ceiling notation for the number of bags required.
+
+## The Answer
+
+$$$
+\boxed{\;\text{number of bags} \;=\; \left\lceil \frac{340}{50} \right\rceil \;=\; \lceil 6.8 \rceil \;=\; 7.\;}
+$$$
+
+Seven bags are needed: six filled to capacity hold $ 6 \times 50 = 300 $ pounds, and a seventh holds the remaining $ 40 $ pounds.
+
+## Why Ceiling, Not Floor
+
+The exact quotient is $ 340 / 50 = 6.8 $, which is *not* a whole number — and you cannot use a fraction of a bag. The two roundings give different counts:
+
+- $ \lfloor 6.8 \rfloor = 6 $ — the *floor*, counting only the **completely full** bags. Six bags hold just $ 300 $ pounds, leaving $ 40 $ pounds unbagged. **Too few.**
+- $ \lceil 6.8 \rceil = 7 $ — the *ceiling*, rounding **up** to include the partially-filled seventh bag. **Correct.**
+
+Because any leftover sand still requires a whole additional bag, we must round *up* — and rounding up is exactly what the ceiling function does:
+
+$$$
+\lceil x \rceil \;=\; \text{the least integer} \;\ge\; x.
+$$$
+
+## The Picture
+
+!(100%)[Seven bags: six full at 50 lb each, the seventh holding the leftover 40 lb](problem-10-bags.svg "Six bags filled to the 50-lb line (300 lb total) plus a seventh, only 80% full, holding the last 40 lb. The expression ⌈340/50⌉ = ⌈6.8⌉ = 7 counts all seven; ⌊6.8⌋ = 6 would leave 40 lb on the ground.")
+
+## A Floor Version, If Required
+
+The problem allows *either* floor or ceiling. A ceiling can always be rewritten as a floor using the integer identity
+
+$$$
+\left\lceil \frac{a}{b} \right\rceil \;=\; \left\lfloor \frac{a + b - 1}{b} \right\rfloor \qquad (a, b \text{ positive integers}).
+$$$
+
+With $ a = 340 $, $ b = 50 $:
+
+$$$
+\left\lfloor \frac{340 + 50 - 1}{50} \right\rfloor \;=\; \left\lfloor \frac{389}{50} \right\rfloor \;=\; \lfloor 7.78 \rfloor \;=\; 7.
+$$$
+
+So $ \lfloor 389/50 \rfloor $ is an equally valid answer. The "$ +\,(b-1) $" nudge bumps any non-exact quotient up to the next integer before the floor chops it down — quietly turning a round-down into a round-up.
+
+## Remark — Ceiling Is the "Containers Needed" Function
+
+This problem is the prototype of a pattern that appears constantly: *how many fixed-capacity containers are needed to hold a given amount?* The answer is always a ceiling. For $ n $ units of stuff and bins of capacity $ c $,
+
+$$$
+\text{bins needed} \;=\; \left\lceil \frac{n}{c} \right\rceil.
+$$$
+
+Sand into bags, students onto buses, bytes into disk blocks, pages of items at a fixed-size-per-page — all the same. The ceiling captures the universal truth that a *partly used* container still counts as a whole container. (Floor, by contrast, answers the different question "how many *completely full* containers do I get?" — here, $ 6 $.)
+
+## Remark — It's Division With Remainder
+
+The ceiling is doing nothing more than the quotient-remainder split. Dividing $ 340 $ by $ 50 $:
+
+$$$
+340 \;=\; 6 \cdot 50 + 40, \qquad \text{quotient } 6, \;\; \text{remainder } 40.
+$$$
+
+The quotient $ 6 $ counts the full bags; the *nonzero* remainder $ 40 $ means there is leftover sand, forcing one more bag. In general,
+
+$$$
+\left\lceil \frac{n}{c} \right\rceil \;=\; \begin{cases} \,\lfloor n/c \rfloor & \text{if } c \mid n \text{ (remainder } 0\text{),} \\[2pt] \,\lfloor n/c \rfloor + 1 & \text{if } c \nmid n \text{ (remainder } > 0\text{).} \end{cases}
+$$$
+
+Here the remainder is $ 40 > 0 $, so we land in the second case: $ 6 + 1 = 7 $. Had the load been exactly $ 300 $ pounds (remainder $ 0 $), floor and ceiling would coincide at $ 6 $ — no "extra" bag, and $ \lceil 300/50 \rceil = \lfloor 300/50 \rfloor = 6 $.
+
+## Remark — Floor vs Ceiling: Which Question Are You Asking?
+
+Floor and ceiling differ by *at most $ 1 $* (they agree exactly when the quotient is already a whole number), but choosing the wrong one is a classic off-by-one error. The rule of thumb:
+
+| You want…                                | Use      | Here          |
+| :---                                     | :---:    | :---          |
+| how many bags are *needed* to hold it all | ceiling  | $ \lceil 340/50 \rceil = 7 $ |
+| how many bags can be *completely filled*  | floor    | $ \lfloor 340/50 \rfloor = 6 $ |
+
+The phrase "bags **required**" in the problem is the tell: requiring all the sand to be bagged means no leftover is allowed, which is the round-*up*, ceiling, reading. If the question had instead asked "how many bags can be filled to capacity," the answer would be the floor, $ 6 $.

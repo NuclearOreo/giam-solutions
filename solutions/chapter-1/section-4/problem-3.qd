@@ -1,0 +1,92 @@
+.docname {Solution — GIAM 1.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 3
+
+## Problem
+
+The *octal* representation of an integer uses powers of $ 8 $ in place notation. The digits of an octal number run from $ 0 $ to $ 7 $; one never sees $ 8 $'s or $ 9 $'s. How would you represent $ 8 $ and $ 9 $ as octal numbers? What octal number comes immediately after $ 777_8 $? What (decimal) number is $ 777_8 $?
+
+## Answers at a Glance
+
+$$$
+\boxed{\;8 = 10_8, \qquad 9 = 11_8, \qquad 777_8 + 1 = 1000_8, \qquad 777_8 = 511.\;}
+$$$
+
+## Representing $ 8 $ and $ 9 $ in Octal
+
+Octal has only the digits $ 0, 1, 2, 3, 4, 5, 6, 7 $. Counting upward, once you pass $ 7 $ there is no single digit left, so — exactly as decimal rolls $ 9 $ over to $ 10 $ — octal rolls $ 7 $ over to $ 10 $. The "$ 1 $" is now a *count of eights*:
+
+$$$
+8 \;=\; 1 \cdot 8 + 0 \;=\; 10_8, \qquad\qquad 9 \;=\; 1 \cdot 8 + 1 \;=\; 11_8.
+$$$
+
+So $ 8 $ and $ 9 $ — which *cannot* be written with a single octal digit — become the two-digit octal numbers $ 10_8 $ and $ 11_8 $.
+
+## What Comes Immediately After $ 777_8 $
+
+Every digit of $ 777_8 $ is already the maximum octal digit, $ 7 $. Adding $ 1 $ forces a carry that cascades all the way along — just like adding $ 1 $ to $ 999 $ in decimal:
+
+$$$
+777_8 + 1 \;=\; 1000_8.
+$$$
+
+(The rightmost $ 7 $ becomes $ 0 $ and carries; the middle $ 7 $ becomes $ 0 $ and carries; the leading $ 7 $ becomes $ 0 $ and carries into a new digit $ 1 $.)
+
+## $ 777_8 $ in Decimal
+
+Expand using powers of $ 8 $ in place notation:
+
+$$$
+777_8 \;=\; 7 \cdot 8^2 + 7 \cdot 8^1 + 7 \cdot 8^0 \;=\; 7 \cdot 64 + 7 \cdot 8 + 7 \cdot 1 \;=\; 448 + 56 + 7 \;=\; 511.
+$$$
+
+So $ 777_8 = 511 $. (And consistently $ 1000_8 = 1 \cdot 8^3 = 512 = 511 + 1 $, confirming the rollover.)
+
+## All Three at Once
+
+!(100%)[Octal counting, place-value of 777₈, and the rollover to 1000₈](problem-3-octal.svg "Top: counting in octal — decimal 8 and 9 become 10₈ and 11₈ (no single digit for 8 or 9). Middle: 777₈ = 7·64 + 7·8 + 7·1 = 448 + 56 + 7 = 511. Bottom: 777₈ + 1 = 1000₈, mirroring 999 → 1000; and 777₈ = 511 = 8³ − 1, 1000₈ = 512 = 8³.")
+
+## Remark — $ 777_8 = 8^3 - 1 $, the Octal "$ 999 $"
+
+The rollover $ 777_8 \to 1000_8 $ is the octal twin of $ 999 \to 1000 $. In *any* base $ b $, the largest three-digit number has every digit equal to $ b - 1 $, and it equals one less than $ b^3 $:
+
+$$$
+\underbrace{(b{-}1)(b{-}1)(b{-}1)}_{\text{base } b} \;=\; b^3 - 1.
+$$$
+
+- Decimal ($ b = 10 $): $ 999 = 10^3 - 1 = 1000 - 1 $.
+- Octal ($ b = 8 $): $ 777_8 = 8^3 - 1 = 512 - 1 = 511 $.
+
+This is why $ 777_8 $ comes out to the memorable $ 511 = 512 - 1 $, and why the *next* number, $ 1000_8 = 8^3 = 512 $, opens a fresh power-of-$ 8 $ place.
+
+## Remark — Octal Is Compressed Binary
+
+There is a beautiful link to Problem 2's binary theme: because $ 8 = 2^3 $, **each octal digit corresponds to exactly three binary digits**. The octal digits and their $ 3 $-bit forms:
+
+| octal | $ 0 $ | $ 1 $ | $ 2 $ | $ 3 $ | $ 4 $ | $ 5 $ | $ 6 $ | $ 7 $ |
+| :---  | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| binary| $ 000 $ | $ 001 $ | $ 010 $ | $ 011 $ | $ 100 $ | $ 101 $ | $ 110 $ | $ 111 $ |
+
+To convert, just translate each octal digit to its $ 3 $-bit block. So $ 7 = 111_2 $ gives
+
+$$$
+777_8 \;=\; \underbrace{111}_{7}\,\underbrace{111}_{7}\,\underbrace{111}_{7}{}_2 \;=\; 111111111_2 \;=\; 2^9 - 1 \;=\; 511,
+$$$
+
+nine $ 1 $'s in a row — confirming $ 511 = 2^9 - 1 $ from the binary side. Likewise $ 1000_8 = 001\,000\,000\,000_2 = 2^9 = 512 $. Octal is, in effect, *binary written three bits at a time* — which is exactly why it was historically popular in computing, as a compact human-readable stand-in for long bit strings.
+
+## Remark — Why Octal Has No $ 8 $ or $ 9 $
+
+The number of distinct digits a base needs is exactly the base itself: base $ b $ uses the $ b $ digits $ 0, 1, \ldots, b - 1 $. Octal ($ b = 8 $) therefore uses $ 0 $ through $ 7 $ — eight symbols, stopping right before $ 8 $. The symbols "$ 8 $" and "$ 9 $" are simply *not part of the octal alphabet*; the *quantities* eight and nine still exist, of course, but they must be spelled with multiple digits ($ 10_8 $ and $ 11_8 $). Conversely, bases *larger* than $ 10 $ must *invent new digits*: hexadecimal ($ b = 16 $) borrows $ A, B, C, D, E, F $ for ten through fifteen, since the familiar ten symbols run out.
+
+## Remark — A Quick Sanity Check via Subtraction
+
+A fast way to confirm $ 777_8 = 511 $ without multiplying: $ 777_8 $ is "one less than $ 1000_8 $," and $ 1000_8 = 8^3 = 512 $, so $ 777_8 = 512 - 1 = 511 $. This $ b^3 - 1 $ shortcut beats the place-by-place expansion and generalises: $ 7777_8 = 8^4 - 1 = 4095 $, $ 77_8 = 8^2 - 1 = 63 $, and so on. Recognising a string of maximal digits as "(one less than the next power of the base)" is a handy trick in any base.

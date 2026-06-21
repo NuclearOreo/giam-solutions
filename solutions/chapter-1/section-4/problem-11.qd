@@ -1,0 +1,96 @@
+.docname {Solution — GIAM 1.4 Problem 11}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 11
+
+## Problem
+
+True or false?
+
+$$$
+\left\lfloor \frac{n}{d} \right\rfloor \;<\; \left\lceil \frac{n}{d} \right\rceil \qquad \text{for all integers } n \text{ and } d > 0.
+$$$
+
+Support your claim.
+
+## Verdict: False
+
+The *strict* inequality fails whenever $ d $ divides $ n $ evenly. In that case $ n/d $ is itself an integer, and the floor and ceiling of an integer are *equal* — not strictly ordered.
+
+## A Counterexample
+
+Take $ n = 6 $, $ d = 3 $. Then $ n/d = 6/3 = 2 $, an integer, so
+
+$$$
+\left\lfloor \frac{6}{3} \right\rfloor = \lfloor 2 \rfloor = 2, \qquad \left\lceil \frac{6}{3} \right\rceil = \lceil 2 \rceil = 2.
+$$$
+
+The claim asserts $ 2 < 2 $, which is **false**. So the universal statement is disproved by this single counterexample. (Any multiple of $ d $ works: $ n = 0, d = 1 $ gives $ 0 < 0 $; $ n = d $ gives $ 1 < 1 $; and so on.)
+
+## The Correct Statement
+
+What *is* always true is the **non-strict** inequality, together with a precise description of when it is strict:
+
+$$$
+\left\lfloor \frac{n}{d} \right\rfloor \;\le\; \left\lceil \frac{n}{d} \right\rceil, \qquad \text{with} \qquad
+\begin{cases}
+\left\lfloor \tfrac{n}{d} \right\rfloor = \left\lceil \tfrac{n}{d} \right\rceil & \text{if } d \mid n, \\[4pt]
+\left\lfloor \tfrac{n}{d} \right\rfloor < \left\lceil \tfrac{n}{d} \right\rceil & \text{if } d \nmid n.
+\end{cases}
+$$$
+
+The reason is the basic floor/ceiling dichotomy: for any real $ x $,
+
+$$$
+\lceil x \rceil - \lfloor x \rfloor \;=\; \begin{cases} 0 & \text{if } x \in \mathbb{Z}, \\ 1 & \text{if } x \notin \mathbb{Z}. \end{cases}
+$$$
+
+Here $ x = n/d $ is an integer exactly when $ d \mid n $. So the strict inequality $ \lfloor n/d \rfloor < \lceil n/d \rceil $ holds **if and only if $ d \nmid n $** — *not* for all $ n, d $.
+
+## The Picture
+
+!(100%)[Two number lines: 7/3 (floor < ceiling) versus 6/3 (floor = ceiling)](problem-11-floorceil.svg "Top: for 7/3 ≈ 2.33 (not an integer), the floor 2 and ceiling 3 differ by 1, so ⌊⌋ < ⌈⌉ holds. Bottom: for 6/3 = 2 (an integer), the floor and ceiling coincide at 2, so ⌊⌋ < ⌈⌉ fails — the counterexample. The strict inequality holds only when d ∤ n.")
+
+## Remark — The Gap Is Always $ 0 $ or $ 1 $
+
+The whole question turns on a single clean fact: a real number is squeezed between its floor and ceiling,
+
+$$$
+\lfloor x \rfloor \;\le\; x \;\le\; \lceil x \rceil,
+$$$
+
+and these two integer bounds are *never more than $ 1 $ apart*. They are equal when $ x $ already sits on an integer (nothing to round), and exactly $ 1 $ apart otherwise (rounding down vs. rounding up land on adjacent integers). The proposed inequality mistakes "$ \le $" for "$ < $" by forgetting the equal case — a textbook off-by-the-boundary slip.
+
+## Remark — It's the Remainder Again
+
+The condition $ d \mid n $ is just "the remainder is zero," tying this back to division-with-remainder (and to Problem 10). Write $ n = qd + r $ with $ 0 \le r < d $:
+
+- **$ r = 0 $** ($ d \mid n $): $ n/d = q $ exactly, so $ \lfloor n/d \rfloor = \lceil n/d \rceil = q $. Equal.
+- **$ r > 0 $** ($ d \nmid n $): $ n/d = q + r/d $ with $ 0 < r/d < 1 $, so $ \lfloor n/d \rfloor = q $ and $ \lceil n/d \rceil = q + 1 $. Strictly less.
+
+This is the *same* dichotomy that decided whether Problem 10 needed an "extra bag": a nonzero remainder is exactly what makes ceiling exceed floor.
+
+## Remark — How to Fix the Claim
+
+Two repaired statements are both true, and each is useful:
+
+- **Weaken the relation:** $ \;\lfloor n/d \rfloor \le \lceil n/d \rceil\; $ for all integers $ n $ and $ d > 0 $. (Always holds.)
+- **Restrict the hypothesis:** $ \;\lfloor n/d \rfloor < \lceil n/d \rceil\; $ for all integers $ n $ and $ d > 0 $ **with $ d \nmid n $**. (The strict version, correctly qualified.)
+
+This mirrors the repair strategy from the quantifier sections (1.3) and the mercury problem: when a universal claim is refuted by boundary cases, you either *loosen the conclusion* ($ < \to \le $) or *shrink the domain* (exclude $ d \mid n $). The original error is exactly the kind of overstatement careful notation is meant to catch.
+
+## Remark — Negative and Zero Cases Behave the Same
+
+The counterexamples don't depend on positivity. The claim allows *all* integers $ n $ (with only $ d > 0 $), and the equal-case appears throughout:
+
+- $ n = 0 $: $ 0/d = 0 $, so $ \lfloor 0 \rfloor = \lceil 0 \rceil = 0 $ for *every* $ d $ — infinitely many counterexamples at once.
+- $ n = -6, d = 3 $: $ -6/3 = -2 $, and $ \lfloor -2 \rfloor = \lceil -2 \rceil = -2 $.
+
+(Worth noting: floor and ceiling of *negative* non-integers still differ by $ 1 $ — e.g. $ \lfloor -7/3 \rfloor = \lfloor -2.33 \rfloor = -3 $ while $ \lceil -7/3 \rceil = -2 $, and $ -3 < -2 $ ✓. The sign of $ n $ never matters; only whether $ d $ divides $ n $.) So the statement fails on a large, easily described family — every multiple of $ d $ — confirming it is false in the strongest way.

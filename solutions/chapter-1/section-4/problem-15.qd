@@ -1,0 +1,96 @@
+.docname {Solution — GIAM 1.4 Problem 15}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 15
+
+## Problem
+
+Calculate the following binomial coefficients:
+**(a)** $ \binom{3}{0} $; **(b)** $ \binom{7}{7} $; **(*c*)** $ \binom{13}{5} $; **(d)** $ \binom{13}{8} $; **(e)** $ \binom{52}{7} $.
+
+## The Definition
+
+The binomial coefficient counts the number of $ k $-element subsets of an $ n $-element set:
+
+$$$
+\binom{n}{k} \;=\; \frac{n!}{k!\,(n-k)!} \;=\; \frac{n (n-1) \cdots (n-k+1)}{k!}.
+$$$
+
+The right-hand "multiplicative" form — $ k $ factors on top, $ k! $ on the bottom — is the practical way to compute by hand, avoiding gigantic factorials.
+
+## The Five Values
+
+**(a) $ \binom{3}{0} $.** Choosing $ 0 $ objects: there is exactly one way (the empty selection). $ \;\binom{3}{0} = 1. $
+
+**(b) $ \binom{7}{7} $.** Choosing all $ 7 $ objects: again exactly one way (take everything). $ \;\binom{7}{7} = 1. $
+
+**(*c*) $ \binom{13}{5} $.** Five factors over $ 5! $:
+
+$$$
+\binom{13}{5} = \frac{13 \cdot 12 \cdot 11 \cdot 10 \cdot 9}{5!} = \frac{154440}{120} = 1287.
+$$$
+
+**(d) $ \binom{13}{8} $.** By symmetry (below), $ \binom{13}{8} = \binom{13}{5} = 1287. $
+
+**(e) $ \binom{52}{7} $.** Seven factors over $ 7! = 5040 $:
+
+$$$
+\binom{52}{7} = \frac{52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 \cdot 47 \cdot 46}{5040} = \frac{674{,}274{,}182{,}400}{5040} = 133{,}784{,}560.
+$$$
+
+## Summary
+
+| Part   | Coefficient        | Value         |
+| :---:  | :---:              | :---:         |
+| (a)    | $ \binom{3}{0} $   | $ 1 $         |
+| (b)    | $ \binom{7}{7} $   | $ 1 $         |
+| (*c*)  | $ \binom{13}{5} $  | $ 1287 $      |
+| (d)    | $ \binom{13}{8} $  | $ 1287 $      |
+| (e)    | $ \binom{52}{7} $  | $ 133{,}784{,}560 $ |
+
+## Reading the Answers Off Pascal's Triangle
+
+!(95%)[Pascal's triangle (rows 0–7) with the edge 1's highlighted and C(3,0), C(7,7) marked](problem-15-pascal.svg "The triangle's two outer edges are entirely 1's, so C(n,0) = C(n,n) = 1 — covering (a) C(3,0) and (b) C(7,7) at the left and right edges of rows 3 and 7. Each row is left-right symmetric, which gives C(13,5) = C(13,8) = 1287, and C(52,7) = 133 784 560.")
+
+## Remark — The Edge Cases $ \binom{n}{0} = \binom{n}{n} = 1 $
+
+Parts (a) and (b) are the two "edges" of every row of Pascal's triangle. They are $ 1 $ for a simple combinatorial reason: there is exactly **one** way to choose *nothing* from a set ($ \binom{n}{0} $ — the empty subset), and exactly **one** way to choose *everything* ($ \binom{n}{n} $ — the whole set). Algebraically both fall straight out of the formula, using $ 0! = 1 $:
+
+$$$
+\binom{n}{0} = \frac{n!}{0!\,n!} = 1, \qquad \binom{n}{n} = \frac{n!}{n!\,0!} = 1.
+$$$
+
+## Remark — The Symmetry $ \binom{n}{k} = \binom{n}{n-k} $
+
+Parts (*c*) and (d) are *equal* — and not by coincidence. The identity
+
+$$$
+\binom{n}{k} = \binom{n}{n-k}
+$$$
+
+holds because choosing which $ k $ elements to *include* is the same as choosing which $ n-k $ to *exclude* — every $ k $-subset pairs with its complementary $ (n-k) $-subset. Here $ \binom{13}{8} = \binom{13}{13-8} = \binom{13}{5} $, so once $ \binom{13}{5} = 1287 $ is computed, (d) is free. This symmetry is why each row of Pascal's triangle is a palindrome, and choosing the *smaller* of $ k $ and $ n-k $ always minimises the work — for (d), computing $ \binom{13}{5} $ (five factors) instead of $ \binom{13}{8} $ (eight factors).
+
+## Remark — Use the Multiplicative Form, Not Factorials
+
+Computing $ \binom{52}{7} $ from $ \frac{52!}{7!\,45!} $ directly would mean handling $ 52! $, a $ 68 $-digit monster. The multiplicative form sidesteps this: only $ 7 $ factors on top, cancelled against $ 7! = 5040 $. Even better, cancel *as you go* to keep the running product small — e.g. $ \binom{52}{7} = \frac{52}{4}\cdot\frac{51}{3}\cdot\frac{50}{5}\cdot\frac{49}{7}\cdot\frac{48}{2}\cdot 47 \cdot \frac{46}{1} $ (pairing each denominator factor with a numerator it divides). The answer $ 133{,}784{,}560 $ stays well within reach of pencil-and-paper. This "cancel early" habit is the standard way to evaluate binomial coefficients by hand.
+
+## Remark — $ \binom{52}{7} $ Counts Seven-Card Hands
+
+Binomial coefficients are *the* counting tool for unordered selections, and $ \binom{52}{7} $ has a concrete meaning: it is the number of distinct $ 7 $-card hands dealable from a standard $ 52 $-card deck — the relevant count when evaluating seven cards (as in seven-card stud, or the best-five-of-seven in Texas hold'em). So there are $ 133{,}784{,}560 $ such hands. (Its more famous cousin is $ \binom{52}{5} = 2{,}598{,}960 $, the number of five-card poker hands.) The "order doesn't matter" feature of $ \binom{n}{k} $ is exactly right for card hands, where $ \{A\heartsuit, K\spadesuit\} $ is the same hand however it was dealt.
+
+## Remark — Pascal's Rule Connects Adjacent Rows
+
+A final structural note: every interior entry of Pascal's triangle is the sum of the two above it,
+
+$$$
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k},
+$$$
+
+which is how the triangle is *built* row by row (and is provable by the "fix one element: either it's in the subset or it isn't" argument). For instance $ \binom{13}{5} = \binom{12}{4} + \binom{12}{5} = 495 + 792 = 1287 $ — a way to get (*c*) without any multiplication at all, just by extending the triangle. The edge rule (a, b), the symmetry (c = d), and Pascal's rule together let you generate every binomial coefficient purely additively.

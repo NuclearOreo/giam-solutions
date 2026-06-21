@@ -1,0 +1,80 @@
+.docname {Solution — GIAM 1.4 Problem 14}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 14
+
+## Problem
+
+Calculate the following quantities:
+**(a)** $ 3 \bmod 5 $; **(b)** $ 37 \bmod 7 $; **(*c*)** $ 1000001 \bmod 100000 $; **(d)** $ 6 \,\mathrm{div}\, 6 $; **(e)** $ 7 \,\mathrm{div}\, 6 $; **(f)** $ 1000001 \,\mathrm{div}\, 2 $.
+
+## Method
+
+From Problem 13, every division writes $ n = q\,d + r $ with $ 0 \le r < d $, where
+
+$$$
+n \,\mathrm{div}\, d \;=\; q \;=\; \left\lfloor \tfrac{n}{d} \right\rfloor \qquad\text{(the quotient)}, \qquad n \bmod d \;=\; r \qquad\text{(the remainder)}.
+$$$
+
+So each answer is found by writing $ n = qd + r $ and reading off the requested part — $ r $ for "mod," $ q $ for "div."
+
+## The Six Computations
+
+| Expression                  | Write as $ n = q\,d + r $       | Read off          | Answer       |
+| :---                        | :---                            | :---:             | :---:        |
+| **(a)** $ 3 \bmod 5 $       | $ 3 = 0\cdot 5 + \mathbf{3} $   | $ r $             | $ 3 $        |
+| **(b)** $ 37 \bmod 7 $      | $ 37 = 5\cdot 7 + \mathbf{2} $  | $ r $             | $ 2 $        |
+| **(*c*)** $ 1000001 \bmod 100000 $ | $ 1000001 = 10\cdot 100000 + \mathbf{1} $ | $ r $    | $ 1 $        |
+| **(d)** $ 6 \,\mathrm{div}\, 6 $   | $ 6 = \mathbf{1}\cdot 6 + 0 $   | $ q $             | $ 1 $        |
+| **(e)** $ 7 \,\mathrm{div}\, 6 $   | $ 7 = \mathbf{1}\cdot 6 + 1 $   | $ q $             | $ 1 $        |
+| **(f)** $ 1000001 \,\mathrm{div}\, 2 $ | $ 1000001 = \mathbf{500000}\cdot 2 + 1 $ | $ q $ | $ 500000 $   |
+
+## At a Glance
+
+!(100%)[Each computation as a quotient-remainder decomposition, with the requested part highlighted](problem-14-divmod.svg "Six rows: for each, n is written as q·d + r. The 'mod' answers (a, b, c) highlight the remainder r in orange; the 'div' answers (d, e, f) highlight the quotient q in blue. Results: 3, 2, 1, 1, 1, 500000.")
+
+## Remark — "mod" and "div" Are Two Halves of One Division
+
+Each single division produces *both* a quotient and a remainder; "div" and "mod" just pick which one you keep. The two are linked by $ n = (n \,\mathrm{div}\, d)\cdot d + (n \bmod d) $, so knowing one and the dividend gives the other. For instance, part (e) computed $ 7 \,\mathrm{div}\, 6 = 1 $; the companion is $ 7 \bmod 6 = 7 - 1\cdot 6 = 1 $. And in (f), alongside $ 1000001 \,\mathrm{div}\, 2 = 500000 $ sits $ 1000001 \bmod 2 = 1 $ — the remainder of $ 1 $ being exactly the statement that $ 1000001 $ is **odd**.
+
+## Remark — Small Cases: When $ n < d $
+
+Part (a) illustrates the boundary case $ n < d $: here $ 3 < 5 $, so no copies of $ 5 $ fit, the quotient is $ 0 $, and the *whole* number is the remainder. In general,
+
+$$$
+n < d \;\;\Longrightarrow\;\; n \,\mathrm{div}\, d = 0 \quad\text{and}\quad n \bmod d = n.
+$$$
+
+This is why $ 3 \bmod 5 = 3 $ — the input passes through unchanged. (Contrast (d), the other boundary: when $ d \mid n $ exactly, the remainder is $ 0 $ and div gives the clean quotient, here $ 6 \,\mathrm{div}\, 6 = 1 $.)
+
+## Remark — Mod and Div by Powers of Ten Read and Drop Digits
+
+Parts (*c*) and (f) reward a slick shortcut. Because $ 100000 = 10^5 $, taking $ \bmod\, 10^5 $ simply **reads off the last five decimal digits**, and $ \mathrm{div}\, 10^5 $ **drops** them:
+
+$$$
+1000001 \;=\; \underbrace{10}_{\text{div } 10^5}\;\underbrace{00001}_{\bmod 10^5}, \qquad 1000001 \bmod 100000 = \underbrace{00001}_{} = 1.
+$$$
+
+(So $ 1000001 \,\mathrm{div}\, 100000 = 10 $, the digits *above* the cut, and $ 1000001 \bmod 100000 = 1 $, the digits *below*.) This is the decimal cousin of the binary trailing-bit facts from Problem 2: dividing by $ b^k $ shifts the base-$ b $ representation right by $ k $ places (keeping the high part), while mod $ b^k $ keeps the low $ k $ places. Recognising $ 100000 $ as $ 10^5 $ turns (*c*) into a one-glance answer — just look at the bottom five digits of $ 1000001 $, which are $ 00001 $.
+
+## Remark — A Sanity Check via the Defining Identity
+
+Each answer can be re-verified instantly by plugging back into $ n = qd + r $ and confirming $ 0 \le r < d $:
+
+| Part   | Check $ n = qd + r $              | $ 0 \le r < d $?         |
+| :---:  | :---                              | :---:                    |
+| (a)    | $ 0\cdot 5 + 3 = 3 $ ✓            | $ 0 \le 3 < 5 $ ✓        |
+| (b)    | $ 5\cdot 7 + 2 = 37 $ ✓           | $ 0 \le 2 < 7 $ ✓        |
+| (*c*)  | $ 10\cdot 100000 + 1 = 1000001 $ ✓ | $ 0 \le 1 < 100000 $ ✓  |
+| (d)    | $ 1\cdot 6 + 0 = 6 $ ✓            | $ 0 \le 0 < 6 $ ✓        |
+| (e)    | $ 1\cdot 6 + 1 = 7 $ ✓            | $ 0 \le 1 < 6 $ ✓        |
+| (f)    | $ 500000\cdot 2 + 1 = 1000001 $ ✓ | $ 0 \le 1 < 2 $ ✓       |
+
+Every row reconstructs the original $ n $ and keeps the remainder in range, so all six answers are confirmed.

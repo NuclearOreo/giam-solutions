@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="380" fill="white"/>
+
+  <text x="360" y="28" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Write n = q·d + r (0 ≤ r &lt; d). Then "mod" reads off r (orange); "div" reads off q (blue).</text>
+
+  <!-- header -->
+  <g font-size="12" font-weight="bold" fill="#222">
+    <text x="60"  y="62" text-anchor="start">expression</text>
+    <text x="300" y="62" text-anchor="middle">n = q · d + r</text>
+    <text x="630" y="62" text-anchor="middle">answer</text>
+  </g>
+  <line x1="40" y1="70" x2="680" y2="70" stroke="#999" stroke-width="0.8"/>
+
+  <!-- rows at y = 100,140,180,220,260,300 -->
+  <g font-size="14">
+    <!-- (a) 3 mod 5 -->
+    <text x="60" y="105" text-anchor="start">(a)  3 mod 5</text>
+    <text x="300" y="105" text-anchor="middle">3 = 0·5 +</text>
+    <rect x="360" y="90" width="26" height="22" fill="#fde6d2" stroke="#c06a16" stroke-width="1.3"/>
+    <text x="373" y="106" text-anchor="middle" font-weight="bold" fill="#c06a16">3</text>
+    <text x="630" y="105" text-anchor="middle" fill="#c06a16" font-weight="bold">3</text>
+
+    <!-- (b) 37 mod 7 -->
+    <text x="60" y="145" text-anchor="start">(b)  37 mod 7</text>
+    <text x="300" y="145" text-anchor="middle">37 = 5·7 +</text>
+    <rect x="360" y="130" width="26" height="22" fill="#fde6d2" stroke="#c06a16" stroke-width="1.3"/>
+    <text x="373" y="146" text-anchor="middle" font-weight="bold" fill="#c06a16">2</text>
+    <text x="630" y="145" text-anchor="middle" fill="#c06a16" font-weight="bold">2</text>
+
+    <!-- (c) 1000001 mod 100000 -->
+    <text x="60" y="185" text-anchor="start" font-size="11.5">(*c*)  1000001 mod 100000</text>
+    <text x="358" y="185" text-anchor="middle" font-size="12.5">1000001 = 10·100000 +</text>
+    <rect x="456" y="170" width="26" height="22" fill="#fde6d2" stroke="#c06a16" stroke-width="1.3"/>
+    <text x="469" y="186" text-anchor="middle" font-weight="bold" fill="#c06a16">1</text>
+    <text x="630" y="185" text-anchor="middle" fill="#c06a16" font-weight="bold">1</text>
+
+    <!-- (d) 6 div 6 -->
+    <text x="60" y="225" text-anchor="start">(d)  6 div 6</text>
+    <text x="300" y="225" text-anchor="middle">6 =</text>
+    <rect x="318" y="210" width="26" height="22" fill="#dce8fb" stroke="#2a5db0" stroke-width="1.3"/>
+    <text x="331" y="226" text-anchor="middle" font-weight="bold" fill="#2a5db0">1</text>
+    <text x="372" y="225" text-anchor="middle">·6 + 0</text>
+    <text x="630" y="225" text-anchor="middle" fill="#2a5db0" font-weight="bold">1</text>
+
+    <!-- (e) 7 div 6 -->
+    <text x="60" y="265" text-anchor="start">(e)  7 div 6</text>
+    <text x="300" y="265" text-anchor="middle">7 =</text>
+    <rect x="318" y="250" width="26" height="22" fill="#dce8fb" stroke="#2a5db0" stroke-width="1.3"/>
+    <text x="331" y="266" text-anchor="middle" font-weight="bold" fill="#2a5db0">1</text>
+    <text x="372" y="265" text-anchor="middle">·6 + 1</text>
+    <text x="630" y="265" text-anchor="middle" fill="#2a5db0" font-weight="bold">1</text>
+
+    <!-- (f) 1000001 div 2 -->
+    <text x="60" y="305" text-anchor="start">(f)  1000001 div 2</text>
+    <text x="270" y="305" text-anchor="middle">1000001 =</text>
+    <rect x="318" y="290" width="80" height="22" fill="#dce8fb" stroke="#2a5db0" stroke-width="1.3"/>
+    <text x="358" y="306" text-anchor="middle" font-weight="bold" fill="#2a5db0">500000</text>
+    <text x="445" y="305" text-anchor="middle">·2 + 1</text>
+    <text x="630" y="305" text-anchor="middle" fill="#2a5db0" font-weight="bold">500000</text>
+  </g>
+  <line x1="40" y1="318" x2="680" y2="318" stroke="#999" stroke-width="0.8"/>
+
+  <!-- legend -->
+  <g font-size="11.5" fill="#444">
+    <rect x="180" y="340" width="16" height="14" fill="#fde6d2" stroke="#c06a16" stroke-width="0.8"/>
+    <text x="202" y="352" text-anchor="start">mod → the remainder r</text>
+    <rect x="420" y="340" width="16" height="14" fill="#dce8fb" stroke="#2a5db0" stroke-width="0.8"/>
+    <text x="442" y="352" text-anchor="start">div → the quotient q</text>
+  </g>
+</svg>

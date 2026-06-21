@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" width="720" height="360" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="360" fill="white"/>
+
+  <text x="360" y="28" font-size="13" font-style="italic" fill="#444" text-anchor="middle">7 flavors, 3 scoops. The count depends on two yes/no questions: does order matter? may scoops repeat?</text>
+
+  <!-- flavor list -->
+  <text x="40" y="58" font-size="12" fill="#666">The 7 flavors (n = 7):</text>
+  <text x="40" y="76" font-size="12" fill="#222">chocolate · vanilla · strawberry · coffee · butter pecan · mint chocolate chip · raspberry</text>
+
+  <!-- 2x2 table -->
+  <!-- columns: "repeats NOT allowed" (x~290), "repeats allowed" (x~520); rows: "order matters" (y~150), "order irrelevant — a bowl" (y~230) -->
+  <!-- header -->
+  <text x="300" y="118" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">repeats NOT allowed</text>
+  <text x="530" y="118" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">repeats allowed</text>
+  <line x1="160" y1="128" x2="660" y2="128" stroke="#999" stroke-width="0.8"/>
+  <line x1="160" y1="96" x2="160" y2="300" stroke="#999" stroke-width="0.8"/>
+
+  <!-- row 1: order matters -->
+  <text x="100" y="166" font-size="12.5" fill="#222" text-anchor="middle">order</text>
+  <text x="100" y="182" font-size="12.5" fill="#222" text-anchor="middle">matters</text>
+  <text x="300" y="166" font-size="13" text-anchor="middle">P(7,3) = 7·6·5</text>
+  <text x="300" y="186" font-size="15" font-weight="bold" text-anchor="middle">= 210</text>
+  <text x="530" y="166" font-size="13" text-anchor="middle">7³</text>
+  <text x="530" y="186" font-size="15" font-weight="bold" text-anchor="middle">= 343</text>
+
+  <line x1="160" y1="208" x2="660" y2="208" stroke="#eee" stroke-width="1"/>
+
+  <!-- row 2: order irrelevant — a BOWL (highlighted) -->
+  <rect x="160" y="210" width="500" height="80" fill="#eef5ee"/>
+  <text x="100" y="246" font-size="12.5" fill="#2e7d32" text-anchor="middle">order</text>
+  <text x="100" y="262" font-size="12.5" fill="#2e7d32" text-anchor="middle">irrelevant</text>
+  <text x="100" y="280" font-size="10.5" font-style="italic" fill="#2e7d32" text-anchor="middle">(a bowl!)</text>
+  <!-- distinct -->
+  <text x="300" y="246" font-size="13" text-anchor="middle">C(7,3)</text>
+  <text x="300" y="268" font-size="16" font-weight="bold" fill="#2e7d32" text-anchor="middle">= 35</text>
+  <text x="300" y="286" font-size="10" font-style="italic" fill="#666" text-anchor="middle">3 different flavors</text>
+  <!-- repeats -->
+  <text x="530" y="246" font-size="13" text-anchor="middle">C(9,3) = C(7+3−1, 3)</text>
+  <text x="530" y="268" font-size="16" font-weight="bold" fill="#2a5db0" text-anchor="middle">= 84</text>
+  <text x="530" y="286" font-size="10" font-style="italic" fill="#666" text-anchor="middle">scoops may repeat</text>
+
+  <!-- note -->
+  <text x="360" y="320" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">A bowl is unordered (bottom row). If the three scoops must be different flavors → 35; if repeats are allowed → 84.</text>
+  <text x="360" y="340" font-size="11" font-style="italic" fill="#888" text-anchor="middle">(35 is the direct "choose 3 of 7" binomial-coefficient reading this section is practicing.)</text>
+</svg>

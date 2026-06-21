@@ -1,0 +1,121 @@
+.docname {Solution — GIAM 1.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 1
+
+## Problem
+
+An integer $ n $ is *doubly-even* if it is even, and the integer $ m $ guaranteed to exist because $ n $ is even is itself even. Is $ 0 $ doubly-even? What are the first $ 3 $ positive, doubly-even integers?
+
+## Unpacking the Definition
+
+Section 1.4 defines: $ n $ is **even** exactly when there is an integer $ m $ with $ n = 2m $. That $ m $ is the "half" of $ n $. The new term *doubly-even* asks that this half be even too:
+
+$$$
+n \text{ is doubly-even} \;\;\Longleftrightarrow\;\; n = 2m \;\text{ with } m \text{ even.}
+$$$
+
+Now apply the definition of "even" a *second* time to $ m $: $ m $ even means $ m = 2k $ for some integer $ k $. Substituting back,
+
+$$$
+n \;=\; 2m \;=\; 2(2k) \;=\; 4k.
+$$$
+
+So the doubly-even integers are precisely the **multiples of $ 4 $**:
+
+$$$
+\boxed{\;n \text{ is doubly-even} \;\;\Longleftrightarrow\;\; 4 \mid n \;\;\Longleftrightarrow\;\; n \in \{\ldots, -8, -4, 0, 4, 8, 12, \ldots\}.\;}
+$$$
+
+## Is $ 0 $ Doubly-Even?
+
+**Yes.** Walk through the two requirements:
+
+- *Is $ 0 $ even?* Yes — $ 0 = 2 \cdot 0 $, so the guaranteed half is $ m = 0 $. (This is exactly the textbook's own observation that $ 0 $ is even, with $ m = 0 $; the definition never required $ m \ne n $.)
+- *Is that $ m = 0 $ even?* Yes — again $ 0 = 2 \cdot 0 $.
+
+Both halvings land on integers, so $ 0 $ is doubly-even. (Consistently, $ 0 = 4 \cdot 0 $ is a multiple of $ 4 $.)
+
+## The First Three Positive Doubly-Even Integers
+
+The positive multiples of $ 4 $, in order, are $ 4, 8, 12, 16, \ldots $ The first three are
+
+$$$
+\boxed{\;4, \quad 8, \quad 12.\;}
+$$$
+
+Checking each against the definition:
+
+| $ n $   | $ m = n/2 $ | is $ m $ even? | doubly-even? |
+| :---:   | :---:       | :---:          | :---:        |
+| $ 4 $   | $ 2 $       | yes ($ 2 = 2\cdot 1 $) | **yes** |
+| $ 8 $   | $ 4 $       | yes            | **yes**      |
+| $ 12 $  | $ 6 $       | yes            | **yes**      |
+
+By contrast $ 2, 6, 10 $ are even but *not* doubly-even: their halves $ 1, 3, 5 $ are odd.
+
+## Picture — Every Fourth Integer
+
+!(100%)[Integers 0–16 classified as odd, even-but-not-doubly, or doubly-even](problem-1-strip.svg "The integers 0 through 16 colored by type: odd (grey), even-but-not-doubly i.e. 2 × odd (yellow: 2, 6, 10, 14), and doubly-even i.e. multiples of 4 (green: 0, 4, 8, 12, 16). Zero is doubly-even; the first three positive doubly-even integers are 4, 8, 12.")
+
+The green cells — the doubly-even integers — occur at every *fourth* position, starting from $ 0 $. Between consecutive doubly-even numbers sits exactly one "merely even" number ($ 2, 6, 10, 14 $: the doubles of odd numbers) and two odd numbers.
+
+## Remark — The "Halving Test"
+
+The definition is really a *halving test*: divide by $ 2 $ and ask whether the result is *still* even.
+
+$$$
+12 \;\xrightarrow{\;\div 2\;}\; 6 \;\;(\text{even}) \;\;\Longrightarrow\; 12 \text{ doubly-even}, \qquad\qquad 6 \;\xrightarrow{\;\div 2\;}\; 3 \;\;(\text{odd}) \;\;\Longrightarrow\; 6 \text{ not}.
+$$$
+
+A number is doubly-even precisely when it survives *two* halvings and is still an integer at the end — equivalently, when $ 4 $ divides it.
+
+## Remark — Why $ 0 $ Is Special
+
+Zero passes the doubly-even test, and in fact it passes *every* such test. The textbook flagged that "$ 0 $ is even" surprises some people; doubly-evenness sharpens the point. Halving $ 0 $ gives $ 0 $ again — so $ 0 $ can be halved *forever* and never leaves the integers:
+
+$$$
+0 \;\xrightarrow{\div 2}\; 0 \;\xrightarrow{\div 2}\; 0 \;\xrightarrow{\div 2}\; \cdots
+$$$
+
+So $ 0 $ is not merely doubly-even — it is "triply-even," "quadruply-even," and so on without limit. In the language of the next remark, $ 0 $ is *infinitely* even. The definition's silent allowance that $ m $ may equal $ n $ (here $ 0 = 2 \cdot 0 $) is exactly what lets $ 0 $ behave this way.
+
+## Remark — Even, but Not Doubly: the Doubles of Odd Numbers
+
+It is worth isolating the integers that are even but *fail* to be doubly-even. These are the numbers $ n = 2m $ with $ m $ *odd* — i.e.
+
+$$$
+n \;=\; 2 \cdot (\text{odd}) \;=\; 2, \; 6, \; 10, \; 14, \; 18, \; \ldots
+$$$
+
+the integers $ \equiv 2 \pmod 4 $ (yellow in the figure). Every even number is therefore exactly one of two kinds: a multiple of $ 4 $ (doubly-even) or twice an odd number (even but not doubly). This is the first step of a complete classification of integers by *how many factors of $ 2 $ they contain*.
+
+## Remark — "$ k $-Times Even" and the 2-adic Valuation
+
+The pattern generalises immediately. Call $ n $ **$ k $-times even** if it can be halved $ k $ times and stay an integer — equivalently, if $ 2^k \mid n $:
+
+| term            | condition          | examples                |
+| :---            | :---:              | :---                    |
+| even            | $ 2 \mid n $       | $ 2, 4, 6, 8, \ldots $    |
+| doubly-even     | $ 4 \mid n $       | $ 4, 8, 12, 16, \ldots $  |
+| triply-even     | $ 8 \mid n $       | $ 8, 16, 24, \ldots $     |
+| $ k $-times even| $ 2^k \mid n $     | multiples of $ 2^k $    |
+
+The exact number of times a (nonzero) integer can be halved is a genuinely useful quantity in number theory: the **2-adic valuation** $ v_2(n) $, the largest $ k $ with $ 2^k \mid n $. In these terms, *doubly-even* means $ v_2(n) \ge 2 $. For example $ v_2(12) = 2 $ (so $ 12 $ is doubly-even but not triply), while $ v_2(8) = 3 $ (so $ 8 $ is triply-even). And $ v_2(0) = \infty $ — the formal statement of "$ 0 $ is infinitely even."
+
+## Remark — The General Pattern
+
+Putting it together, the doubly-even integers are exactly
+
+$$$
+\{\, 4k : k \in \mathbb{Z} \,\} \;=\; \{\ldots, -12, -8, -4, 0, 4, 8, 12, \ldots\},
+$$$
+
+an evenly-spaced set hitting every fourth integer. The *positive* ones are $ 4, 8, 12, 16, \ldots $ — the answer to the second half of the problem is their first three: $ 4, 8, 12 $. And because the spacing is uniform, exactly one quarter of all integers are doubly-even, just as one half are even.

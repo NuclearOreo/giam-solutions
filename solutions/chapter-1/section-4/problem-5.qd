@@ -1,0 +1,95 @@
+.docname {Solution — GIAM 1.4 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 5
+
+## Problem
+
+State a theorem about the octal representation of even numbers.
+
+## The Theorem
+
+In the style of the section's Theorems 1.4.1 (decimal) and 1.4.2 (binary):
+
+> **Theorem.** An integer is even if and only if the units digit of its octal (base-$ 8 $) representation is one of $ 0, 2, 4, 6 $ — that is, if and only if its last octal digit is itself even.
+
+## Proof
+
+Write an integer $ n $ in octal as
+
+$$$
+n \;=\; d_k\, 8^k + \cdots + d_2\, 8^2 + d_1\, 8^1 + d_0\, 8^0,
+$$$
+
+where $ d_0 $ is the units digit. Separate the units digit from the rest:
+
+$$$
+n - d_0 \;=\; d_k\, 8^k + \cdots + d_1\, 8 \;=\; 8 \cdot \bigl( d_k\, 8^{k-1} + \cdots + d_1 \bigr).
+$$$
+
+The right-hand side is a multiple of $ 8 $, hence even. So $ n $ and $ d_0 $ differ by an even number — they have the **same parity**:
+
+$$$
+n \;\equiv\; d_0 \pmod 2.
+$$$
+
+Therefore $ n $ is even exactly when $ d_0 $ is even. Among the octal digits $ 0, 1, \ldots, 7 $, the even ones are $ 0, 2, 4, 6 $. $ \blacksquare $
+
+## Examples
+
+!(100%)[Octal evenness: even iff the last octal digit is even, with examples and the even-vs-odd-base contrast](problem-5-octal-even.svg "The octal digits 0–7 with the even ones (0, 2, 4, 6) marked green. Examples: 8 = 10₈ (ends 0 → even), 9 = 11₈ (ends 1 → odd), 22 = 26₈ (ends 6 → even), 511 = 777₈ (ends 7 → odd). Bottom: base 8 is even so read the last digit; an odd base like 7 needs the digit sum instead.")
+
+| decimal | octal   | last digit | even? |
+| :---:   | :---:   | :---:      | :---: |
+| $ 8 $   | $ 10_8 $  | $ 0 $      | even  |
+| $ 9 $   | $ 11_8 $  | $ 1 $      | odd   |
+| $ 22 $  | $ 26_8 $  | $ 6 $      | even  |
+| $ 511 $ | $ 777_8 $ | $ 7 $      | odd   |
+
+Each verdict matches the decimal number's actual parity.
+
+## Remark — One Theorem, Three Bases
+
+This is the octal member of a family the section has been building:
+
+| base    | "even" iff the units digit is… |
+| :---:   | :---                            |
+| $ 10 $ (decimal) | $ 0, 2, 4, 6, 8 $ — Theorem 1.4.1 |
+| $ 2 $ (binary)   | $ 0 $ — Theorem 1.4.2             |
+| $ 8 $ (octal)    | $ 0, 2, 4, 6 $ — this theorem      |
+
+All three are the *same* statement, because all three bases ($ 10, 2, 8 $) are **even**. Whenever the base $ b $ is even, every higher place value $ b^i $ ($ i \ge 1 $) is even, so only the units digit can affect parity. The even digits available shrink with the base: $ \{0,2,4,6,8\} $ in decimal, $ \{0,2,4,6\} $ in octal, $ \{0\} $ in binary.
+
+## Remark — Odd Bases Behave Completely Differently
+
+The last-digit test relies on the base being even. In an **odd** base the test *fails*, and parity is governed by the **digit sum** instead. The reason: if $ b $ is odd then $ b \equiv 1 \pmod 2 $, so $ b^i \equiv 1 \pmod 2 $ for every $ i $, and
+
+$$$
+n \;=\; \sum_i d_i\, b^i \;\equiv\; \sum_i d_i \pmod 2.
+$$$
+
+So in an odd base, $ n $ is even iff the *sum of its digits* is even. Base $ 7 $ (from Problem 4) is the perfect test case: $ 3267 = 12345_7 $, whose digit sum is $ 1 + 2 + 3 + 4 + 5 = 15 $ — *odd* — correctly predicting that $ 3267 $ is odd (it ends in $ 7 $ in decimal). The *last* base-$ 7 $ digit alone ($ 5 $) would give no reliable parity information; you must add them all.
+
+## Remark — The General Divisibility Principle
+
+The octal theorem is one instance of a single unifying fact. For a modulus $ m $:
+
+- **If $ m \mid b $** (the modulus divides the base): then $ b^i \equiv 0 \pmod m $ for $ i \ge 1 $, so $ n \equiv d_0 \pmod m $ — a **last-digit test**.
+- **If $ b \equiv 1 \pmod m $**: then $ b^i \equiv 1 \pmod m $, so $ n \equiv \sum_i d_i \pmod m $ — a **digit-sum test**.
+
+This explains *every* elementary divisibility rule at once. In decimal ($ b = 10 $): $ 2, 5, 10 $ divide $ 10 $, giving last-digit tests; $ 3, 9 $ satisfy $ 10 \equiv 1 $, giving digit-sum tests. In octal ($ b = 8 $): $ 2, 4, 8 $ divide $ 8 $ (last-digit tests), while $ 7 $ satisfies $ 8 \equiv 1 \pmod 7 $ (so a base-$ 8 $ number is divisible by $ 7 $ iff its octal digit sum is). Our evenness theorem is just the case $ m = 2 $, $ b = 8 $.
+
+## Remark — Doubly-Even in Octal (Tying Back to Problems 1–3)
+
+The same idea extends the parity test to higher powers of $ 2 $, connecting to the "doubly-even" thread. Since $ 8 \equiv 0 \pmod 4 $, we have $ 8^i \equiv 0 \pmod 4 $ for $ i \ge 1 $, so $ n \equiv d_0 \pmod 4 $. Hence:
+
+> An integer is **doubly-even** (divisible by $ 4 $) iff its last octal digit is $ 0 $ or $ 4 $.
+
+For example $ 12 = 14_8 $ ends in $ 4 $, and indeed $ 4 \mid 12 $; $ 8 = 10_8 $ ends in $ 0 $, and $ 4 \mid 8 $; but $ 22 = 26_8 $ ends in $ 6 $ (not $ 0 $ or $ 4 $), so $ 22 $ is *not* doubly-even — consistent with Problem 1. And since $ 8 \equiv 0 \pmod 8 $ too, divisibility by $ 8 $ (triply-even) is read off the last octal digit being exactly $ 0 $. So octal makes the whole "$ k $-times even" hierarchy visible in the units digit — the base-$ 8 $ counterpart of the trailing-zeros test that binary gave in Problem 2.

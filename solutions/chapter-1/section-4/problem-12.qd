@@ -1,0 +1,73 @@
+.docname {Solution — GIAM 1.4 Problem 12}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 12
+
+## Problem
+
+What is the value of $ \lceil \pi \rceil^2 - \lceil \pi^2 \rceil $?
+
+## The Computation
+
+Read the expression carefully: $ \lceil \pi \rceil^2 $ means $ \bigl(\lceil \pi \rceil\bigr)^2 $ — take the ceiling *first*, then square — while $ \lceil \pi^2 \rceil $ squares *first*, then takes the ceiling. These are different operations in different orders.
+
+**First term, $ \lceil \pi \rceil^2 $.** Since $ \pi \approx 3.14159 $,
+
+$$$
+\lceil \pi \rceil \;=\; \lceil 3.14159\ldots \rceil \;=\; 4, \qquad\text{so}\qquad \lceil \pi \rceil^2 \;=\; 4^2 \;=\; 16.
+$$$
+
+**Second term, $ \lceil \pi^2 \rceil $.** Since $ \pi^2 \approx 9.8696 $,
+
+$$$
+\lceil \pi^2 \rceil \;=\; \lceil 9.8696\ldots \rceil \;=\; 10.
+$$$
+
+**Subtract:**
+
+$$$
+\boxed{\;\lceil \pi \rceil^2 - \lceil \pi^2 \rceil \;=\; 16 - 10 \;=\; 6.\;}
+$$$
+
+## Why It Isn't Zero — Order Matters
+
+!(100%)[Two routes from π: ceiling-then-square gives 16, square-then-ceiling gives 10](problem-12-commute.svg "Route 1 (ceiling first): π → ⌈π⌉ = 4 → 4² = 16. Route 2 (square first): π → π² ≈ 9.87 → ⌈π²⌉ = 10. The two routes disagree, so ⌈π⌉² − ⌈π²⌉ = 16 − 10 = 6.")
+
+If ceiling and squaring *commuted*, the two terms would be equal and the answer would be $ 0 $. They do not. Rounding $ \pi $ up to $ 4 $ *before* squaring overshoots a lot — it jumps from $ 3.14 $ to $ 4 $, a gap of $ 0.86 $, which squaring then magnifies ($ 4^2 = 16 $ versus $ \pi^2 \approx 9.87 $). Rounding *after* squaring only nudges $ 9.87 $ up to $ 10 $. The difference between "round-then-magnify" and "magnify-then-round" is the $ 6 $.
+
+## Remark — Ceiling Does Not Commute With Squaring
+
+The lesson generalises: $ \lceil x \rceil^2 \ne \lceil x^2 \rceil $ in general — the ceiling function does not pass through a squaring. For any $ x \ge 0 $ one *does* have the inequality
+
+$$$
+\lceil x \rceil^2 \;\ge\; \lceil x^2 \rceil,
+$$$
+
+because $ \lceil x \rceil \ge x \ge 0 $ forces $ \lceil x \rceil^2 \ge x^2 $, and $ \lceil x \rceil^2 $ is an *integer* that is $ \ge x^2 $, while $ \lceil x^2 \rceil $ is the *least* such integer. The two are equal only in special cases (for instance when $ x $ is itself an integer); for $ x = \pi $ the gap is a full $ 6 $. The same non-commuting behaviour afflicts square roots, logarithms, and most non-linear functions — rounding and a curved function simply don't interchange.
+
+## Remark — The Floor Version Is Zero
+
+A striking contrast: replace every ceiling with a floor and the answer collapses to $ 0 $. Since $ \lfloor \pi \rfloor = 3 $ and $ \pi^2 \approx 9.8696 $,
+
+$$$
+\lfloor \pi \rfloor^2 - \lfloor \pi^2 \rfloor \;=\; 3^2 - \lfloor 9.8696 \rfloor \;=\; 9 - 9 \;=\; 0.
+$$$
+
+Here the two operations *happen* to agree — $ \lfloor \pi \rfloor^2 = 9 $ lands exactly on $ \lfloor \pi^2 \rfloor = 9 $ — purely because $ 3^2 = 9 \le \pi^2 < 10 $ keeps $ \pi^2 $ in the same integer interval $ [9, 10) $ as $ \lfloor \pi \rfloor^2 $. This is a coincidence of where $ \pi^2 \approx 9.87 $ sits, not a general rule: $ \lfloor x \rfloor^2 \le \lfloor x^2 \rfloor $ always (for $ x \ge 0 $), but the gap need not be zero (e.g. $ x = 3.9 $: $ \lfloor 3.9 \rfloor^2 = 9 $ while $ \lfloor 15.21 \rfloor = 15 $, a gap of $ 6 $). The floor problem giving $ 0 $ and the ceiling problem giving $ 6 $ together make the point vividly: *whether and by how much rounding commutes with squaring depends delicately on the number.*
+
+## Remark — Watch the Notation
+
+The expression rewards careful reading of operator precedence, a recurring theme of these sections. The superscript binds to the *ceiling*, not to $ \pi $:
+
+$$$
+\lceil \pi \rceil^2 \;=\; \bigl( \lceil \pi \rceil \bigr)^2 \;=\; 4^2 \;=\; 16, \qquad \text{not} \qquad \lceil \pi^2 \rceil \;=\; \lceil 9.87 \rceil \;=\; 10.
+$$$
+
+Misreading $ \lceil \pi \rceil^2 $ as $ \lceil \pi^2 \rceil $ would make the whole expression $ 10 - 10 = 0 $ — the wrong answer. The two bracket placements are *exactly* the two terms being subtracted, which is precisely what makes the problem a clean test of "do you see where the brackets go?" The intended value is $ 6 $.

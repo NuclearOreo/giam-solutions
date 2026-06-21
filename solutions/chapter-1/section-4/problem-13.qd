@@ -1,0 +1,82 @@
+.docname {Solution — GIAM 1.4 Problem 13}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 13
+
+## Problem
+
+Assuming the symbols $ n, d, q $ and $ r $ have meanings as in the quotient-remainder theorem (GIAM p.29), write expressions for $ q $ and $ r $ in terms of $ n $ and $ d $ using floor and/or ceiling notation.
+
+## Recall the Theorem
+
+**Theorem 1.4.3 (quotient-remainder).** Given integers $ n $ and $ d > 0 $, there are *unique* integers $ q $ and $ r $ with
+
+$$$
+n \;=\; q\, d + r, \qquad 0 \le r < d.
+$$$
+
+Here $ q = n \,\mathrm{div}\, d $ is the quotient and $ r = n \bmod d $ is the remainder.
+
+## The Expressions
+
+$$$
+\boxed{\;q \;=\; \left\lfloor \frac{n}{d} \right\rfloor, \qquad\qquad r \;=\; n - d\left\lfloor \frac{n}{d} \right\rfloor.\;}
+$$$
+
+Both use the **floor** function. The quotient is the divided value rounded *down*; the remainder is whatever is left after subtracting off $ q $ copies of $ d $.
+
+## Why These Are Right
+
+Set $ q = \lfloor n/d \rfloor $ and $ r = n - dq $. Two things must be checked: that $ r $ is an integer in the range $ [0, d) $, and that $ n = qd + r $.
+
+- **$ n = qd + r $** holds by construction: $ r = n - dq $ rearranges to $ n = qd + r $. And $ r $ is an integer, being a difference of integers.
+- **$ 0 \le r < d $.** Write the fractional part $ \{x\} = x - \lfloor x \rfloor $, which always satisfies $ 0 \le \{x\} < 1 $. Then
+
+$$$
+r \;=\; n - d\left\lfloor \frac{n}{d} \right\rfloor \;=\; d\left( \frac{n}{d} - \left\lfloor \frac{n}{d} \right\rfloor \right) \;=\; d \cdot \left\{ \frac{n}{d} \right\}.
+$$$
+
+Since $ 0 \le \{n/d\} < 1 $ and $ d > 0 $, multiplying through gives $ 0 \le r < d $. ✓
+
+So $ q = \lfloor n/d \rfloor $ and $ r = n - d\lfloor n/d \rfloor $ satisfy *all* the conditions of Theorem 1.4.3, and by the uniqueness clause they are *the* quotient and remainder.
+
+## The Picture
+
+!(95%)[Number-line view: q full steps of size d below n, with remainder r left over](problem-13-qr.svg "On a number line, the multiples 0, d, 2d, … sit at the ticks. For n = 23, d = 5, the largest multiple of 5 not exceeding 23 is 4·5 = 20, so q = ⌊23/5⌋ = 4 full steps, and the leftover is r = 23 − 20 = 3. Thus 23 = 4·5 + 3.")
+
+The picture is the whole idea: $ q = \lfloor n/d \rfloor $ is the *number of complete $ d $-sized steps* you can take from $ 0 $ without passing $ n $, and $ r = n - qd $ is the *gap* between that last step and $ n $ — necessarily smaller than a full step $ d $.
+
+## Remark — Why Floor and Not Ceiling
+
+The remainder must satisfy $ 0 \le r < d $, in particular $ r \ge 0 $. That forces $ qd \le n $, i.e. $ q \le n/d $, so $ q $ must be the *largest* integer $ \le n/d $ — which is exactly $ \lfloor n/d \rfloor $. Using the ceiling instead, $ q = \lceil n/d \rceil \ge n/d $, would give $ qd \ge n $ and hence $ r = n - qd \le 0 $ — a *non-positive* remainder, violating the theorem's $ 0 \le r $ (except when $ d \mid n $, where the two agree and $ r = 0 $). So the sign convention "$ r \ge 0 $" is precisely what selects floor over ceiling.
+
+## Remark — These Are Exactly "div" and "mod"
+
+The two expressions are the formal definitions of the operations the textbook names in §1.4.5:
+
+$$$
+n \,\mathrm{div}\, d \;=\; \left\lfloor \frac{n}{d} \right\rfloor, \qquad n \bmod d \;=\; n - d\left\lfloor \frac{n}{d} \right\rfloor.
+$$$
+
+This is also how `//` (integer division) and `%` (modulo) are *defined* in many programming languages (Python among them) — `n // d` is the floored quotient and `n % d` the matching remainder, chosen so that the identity `n == (n // d) * d + (n % d)` always holds.
+
+## Remark — Floor, Not Truncation, for Negative $ n $
+
+The choice of *floor* (rounding toward $ -\infty $) rather than *truncation* (rounding toward $ 0 $) is invisible for $ n \ge 0 $ but essential for negative $ n $ — and it is exactly what keeps the remainder non-negative. Take $ n = -7 $, $ d = 3 $:
+
+$$$
+q = \left\lfloor \frac{-7}{3} \right\rfloor = \lfloor -2.33\ldots \rfloor = -3, \qquad r = -7 - 3(-3) = -7 + 9 = 2,
+$$$
+
+giving $ -7 = (-3)(3) + 2 $ with $ 0 \le 2 < 3 $. ✓ Had we *truncated* $ -7/3 $ to $ -2 $ (toward zero), we would get $ r = -7 - 3(-2) = -1 $, a *negative* remainder violating the theorem. So the theorem genuinely requires the floor; truncation-based "integer division" (as in C for negatives) does *not* match the quotient-remainder theorem's convention.
+
+## Remark — Uniqueness Makes the Formula Unambiguous
+
+The theorem guarantees $ q $ and $ r $ are *unique*, which is what lets us speak of "the" quotient and "the" remainder — and hence write closed-form expressions for them at all. If, say, $ (q, r) = (4, 3) $ and $ (q', r') = (3, 8) $ both satisfied $ 23 = 5q + r $, there would be no single value for $ \lfloor n/d \rfloor $ to equal. The constraint $ 0 \le r < d $ is what pins the pair down: it forbids "carrying" between $ q $ and $ r $ (you cannot trade a unit of $ q $ for $ d $ more in $ r $ without pushing $ r \ge d $). Floor produces the one admissible pair, and uniqueness certifies it is *the* answer.

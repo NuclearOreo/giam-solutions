@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="420" fill="white"/>
+
+  <!-- ===== Part A: counting in octal ===== -->
+  <text x="40" y="32" font-size="13" font-weight="bold" fill="#222">Counting in octal: after 7 comes 10 — there is no digit "8" or "9".</text>
+
+  <!-- row labels -->
+  <text x="34" y="64" font-size="11" fill="#666" text-anchor="end">decimal</text>
+  <text x="34" y="88" font-size="11" fill="#666" text-anchor="end">octal</text>
+
+  <!-- 10 cells, decimal 0..9, x = 44 + i*64, width 56 -->
+  <g>
+    <!-- cells 0..7 plain, 8 & 9 highlighted green -->
+    <rect x="44"  y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="108" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="172" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="236" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="300" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="364" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="428" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="492" y="48" width="56" height="48" fill="#f3f5f8" stroke="#888" stroke-width="1"/>
+    <rect x="556" y="48" width="56" height="48" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.6"/>
+    <rect x="620" y="48" width="56" height="48" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.6"/>
+  </g>
+  <g font-size="15" text-anchor="middle">
+    <!-- decimal top (y=68), octal bottom (y=90) -->
+    <text x="72"  y="69" fill="#444">0</text><text x="72"  y="90" font-weight="bold">0</text>
+    <text x="136" y="69" fill="#444">1</text><text x="136" y="90" font-weight="bold">1</text>
+    <text x="200" y="69" fill="#444">2</text><text x="200" y="90" font-weight="bold">2</text>
+    <text x="264" y="69" fill="#444">3</text><text x="264" y="90" font-weight="bold">3</text>
+    <text x="328" y="69" fill="#444">4</text><text x="328" y="90" font-weight="bold">4</text>
+    <text x="392" y="69" fill="#444">5</text><text x="392" y="90" font-weight="bold">5</text>
+    <text x="456" y="69" fill="#444">6</text><text x="456" y="90" font-weight="bold">6</text>
+    <text x="520" y="69" fill="#444">7</text><text x="520" y="90" font-weight="bold">7</text>
+    <text x="584" y="69" fill="#444">8</text><text x="584" y="90" font-weight="bold" fill="#2e7d32">10</text>
+    <text x="648" y="69" fill="#444">9</text><text x="648" y="90" font-weight="bold" fill="#2e7d32">11</text>
+  </g>
+  <text x="612" y="116" font-size="11.5" font-style="italic" fill="#2e7d32" text-anchor="middle">8 = 10₈,  9 = 11₈</text>
+
+  <!-- divider -->
+  <line x1="40" y1="138" x2="680" y2="138" stroke="#ddd" stroke-width="1"/>
+
+  <!-- ===== Part B: place value of 777_8 ===== -->
+  <text x="40" y="166" font-size="13" font-weight="bold" fill="#222">777₈ in place notation:</text>
+
+  <!-- three place columns centered around x = 240,360,480 -->
+  <g text-anchor="middle">
+    <!-- place value row -->
+    <text x="240" y="196" font-size="13" fill="#555">8² = 64</text>
+    <text x="360" y="196" font-size="13" fill="#555">8¹ = 8</text>
+    <text x="480" y="196" font-size="13" fill="#555">8⁰ = 1</text>
+    <!-- digit boxes -->
+    <rect x="210" y="206" width="60" height="34" fill="#eef2f7" stroke="#446" stroke-width="1.1"/>
+    <rect x="330" y="206" width="60" height="34" fill="#eef2f7" stroke="#446" stroke-width="1.1"/>
+    <rect x="450" y="206" width="60" height="34" fill="#eef2f7" stroke="#446" stroke-width="1.1"/>
+    <text x="240" y="229" font-size="16" font-weight="bold">7</text>
+    <text x="360" y="229" font-size="16" font-weight="bold">7</text>
+    <text x="480" y="229" font-size="16" font-weight="bold">7</text>
+    <!-- products -->
+    <text x="240" y="262" font-size="13" fill="#222">7 × 64 = 448</text>
+    <text x="360" y="262" font-size="13" fill="#222">7 × 8 = 56</text>
+    <text x="480" y="262" font-size="13" fill="#222">7 × 1 = 7</text>
+  </g>
+  <text x="360" y="292" font-size="14" fill="#222" text-anchor="middle">448 + 56 + 7  =  <tspan font-weight="bold">511</tspan>   →   777₈ = 511 in decimal.</text>
+
+  <!-- divider -->
+  <line x1="40" y1="312" x2="680" y2="312" stroke="#ddd" stroke-width="1"/>
+
+  <!-- ===== Part C: rollover ===== -->
+  <text x="40" y="340" font-size="13" font-weight="bold" fill="#222">Adding 1 rolls all the 7s over — like 999 → 1000 in decimal:</text>
+  <text x="360" y="372" font-size="17" text-anchor="middle" fill="#222">776₈  →  777₈  →  <tspan font-weight="bold" fill="#2a5db0">1000₈</tspan></text>
+  <text x="360" y="400" font-size="12" font-style="italic" fill="#666" text-anchor="middle">777₈ = 511 = 8³ − 1   and   1000₈ = 512 = 8³.</text>
+</svg>

@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 1.4 Problem 16}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 16
+
+## Problem
+
+An ice cream shop sells $ 7 $ flavors: chocolate, vanilla, strawberry, coffee, butter pecan, mint chocolate chip, and raspberry. How many different bowls of ice cream — with three scoops — can they make?
+
+## First Fix the Assumptions
+
+A counting problem has no single answer until two modelling questions are settled:
+
+1. **Does order matter?** In a *bowl*, the scoops sit together and are not ranked — so order should *not* matter. (A *cone*, where one scoop sits atop another, would be different.)
+2. **May a flavor repeat?** Can a bowl have two scoops of chocolate? Realistically yes; but if "bowl" is meant as a selection of three *different* flavors, then no.
+
+Since a bowl is unordered, the answer is one of the two unordered counts below. The shop, the textbook context, and the phrasing all bear on which.
+
+## The Two Reasonable Answers
+
+**Three different flavors (no repeats).** This is the direct "choose $ 3 $ of the $ 7 $ flavors" reading — a straight binomial coefficient, exactly what this section practices:
+
+$$$
+\binom{7}{3} \;=\; \frac{7 \cdot 6 \cdot 5}{3!} \;=\; \frac{210}{6} \;=\; \boxed{35}.
+$$$
+
+**Scoops may repeat.** Allowing $ \{ \text{choc}, \text{choc}, \text{vanilla} \} $ and the like, this is a *multiset* count — combinations with repetition, $ \binom{n + k - 1}{k} $:
+
+$$$
+\binom{7 + 3 - 1}{3} \;=\; \binom{9}{3} \;=\; \frac{9 \cdot 8 \cdot 7}{3!} \;=\; \frac{504}{6} \;=\; \boxed{84}.
+$$$
+
+Given that the problem sits in the *binomial-coefficient* section, **$ 35 $** is the most likely intended answer; **$ 84 $** is the more physically realistic one (a real shop will happily give you two scoops of the same flavor). Both are correct *for their stated assumption*.
+
+## The Four Possible Counts at a Glance
+
+!(95%)[A 2×2 table of the four counts according to order and repetition](problem-16-scoops.svg "Two yes/no questions give four counts. Order matters: P(7,3)=210 (no repeats), 7³=343 (repeats). Order irrelevant — a bowl: C(7,3)=35 (three different flavors) or C(9,3)=84 (scoops may repeat). A bowl is unordered, so the answer is 35 or 84 depending on whether repeats are allowed.")
+
+| | repeats **not** allowed | repeats allowed |
+| :--- | :---: | :---: |
+| **order matters** (a ranked stack) | $ P(7,3) = 7\cdot 6\cdot 5 = 210 $ | $ 7^3 = 343 $ |
+| **order irrelevant** (a bowl) | $ \binom{7}{3} = 35 $ | $ \binom{9}{3} = 84 $ |
+
+## Remark — Why a Bowl Is Unordered
+
+The bottom row is the relevant one because a bowl has no "first" or "top" scoop — three scoops dropped in a bowl form an unordered collection. If instead the question were about a *cone* (scoops stacked in a definite order), the top row would apply: $ P(7,3) = 210 $ different cones of three distinct flavors, or $ 7^3 = 343 $ if a flavor may be repeated up the stack. Recognising "bowl = unordered, cone = ordered" is the modelling step that picks the row; it is exactly the kind of unstated assumption the textbook keeps urging us to make explicit.
+
+## Remark — Where the Multiset Count $ \binom{9}{3} $ Comes From
+
+The repeats-allowed answer uses the **stars-and-bars** idea. To build a bowl, decide *how many scoops of each of the $ 7 $ flavors* — a list of $ 7 $ non-negative counts summing to $ 3 $. Picture $ 3 $ scoops (stars) and $ 6 $ dividers (bars) separating the $ 7 $ flavor-bins:
+
+$$$
+\underbrace{\star\star}_{\text{choc}} \mid \;\; \mid \underbrace{\star}_{\text{straw}} \mid\;\mid\;\mid\;\mid \qquad\longleftrightarrow\qquad 2\text{ chocolate} + 1\text{ strawberry}.
+$$$
+
+Each bowl is one arrangement of $ 3 $ stars and $ 6 $ bars in a row of $ 9 $ symbols, and choosing *which $ 3 $ of the $ 9 $ positions* are stars gives
+
+$$$
+\binom{3 + 6}{3} \;=\; \binom{9}{3} \;=\; 84.
+$$$
+
+In general, the number of $ k $-scoop bowls from $ n $ flavors with repeats allowed is $ \binom{n+k-1}{k} $.
+
+## Remark — How the Four Counts Relate
+
+The four numbers $ 35, 84, 210, 343 $ are not independent; they are tied by the order/repeat toggles:
+
+- **No repeats:** ordered $ \div\, k! $ = unordered, i.e. $ P(7,3)/3! = 210/6 = 35 = \binom{7}{3} $. (Dividing out the $ 3! $ orderings of three *distinct* scoops.)
+- **Repeats allowed:** the division by $ k! $ is *not* exact, because bowls with a repeated flavor have fewer distinct orderings. That is why $ 343 / 6 = 57.2\ldots $ is not an integer and *not* the answer — the multiset count $ 84 $ must be gotten by stars-and-bars, not by naive division. This subtlety (repeats break the clean "divide by $ k! $") is the main reason combinations-with-repetition needs its own formula.
+
+## Remark — The Real Lesson: State Your Assumptions
+
+This problem is less about a single number than about *recognising that the wording is ambiguous*. Each of the four answers is correct under explicit assumptions:
+
+| Assumption                                   | Count |
+| :---                                         | :---: |
+| bowl, three different flavors                | $ 35 $  |
+| bowl, scoops may repeat                      | $ 84 $  |
+| cone (ordered), three different flavors      | $ 210 $ |
+| cone (ordered), scoops may repeat            | $ 343 $ |
+
+A careful solver writes down *which* model they are using before computing — the recurring discipline of these sections (Problems 11–13 made the same point about strict-vs-non-strict and floor-vs-truncation). For a problem in the binomial-coefficient subsection, the cleanest single answer is $ \binom{7}{3} = 35 $; for a real ice-cream shop, $ 84 $.

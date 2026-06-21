@@ -1,0 +1,102 @@
+.docname {Solution — GIAM 1.4 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 9
+
+## Problem
+
+It is a well-known fact that if a number is divisible by $ 3 $, then $ 3 $ divides the sum of its (decimal) digits. Is this result true in base $ 7 $? Do you think this result is true in *any* base?
+
+## Short Answers
+
+- **In base $ 7 $: yes.** The digit-sum test for $ 3 $ works in base $ 7 $ exactly as it does in decimal.
+- **In *any* base: no.** It holds precisely when the base $ b $ satisfies $ b \equiv 1 \pmod 3 $ — true for $ 10 $ and for $ 7 $, but false for many other bases.
+
+## Why the Decimal Rule Works
+
+The rule is really a fact about $ 10 $ modulo $ 3 $, not about decimal as such. Write a number in base $ b $:
+
+$$$
+n \;=\; d_k\, b^k + \cdots + d_1\, b + d_0.
+$$$
+
+Reduce modulo $ 3 $. If $ b \equiv 1 \pmod 3 $, then $ b^i \equiv 1^i = 1 \pmod 3 $ for every $ i $, so each place value contributes just its digit:
+
+$$$
+n \;\equiv\; d_k + \cdots + d_1 + d_0 \;=\; \sum_i d_i \pmod 3.
+$$$
+
+Hence $ 3 \mid n $ if and only if $ 3 \mid \sum_i d_i $. For decimal, $ 10 \equiv 1 \pmod 3 $, which is exactly the hypothesis — so the familiar rule follows.
+
+## Base 7: Yes
+
+Everything above used only the single fact $ b \equiv 1 \pmod 3 $. For base $ 7 $:
+
+$$$
+7 \;=\; 2 \cdot 3 + 1 \;\equiv\; 1 \pmod 3,
+$$$
+
+so $ 7^i \equiv 1 \pmod 3 $ for all $ i $, and the *same* argument gives $ n \equiv \sum_i d_i \pmod 3 $. Therefore in base $ 7 $, too, **a number is divisible by $ 3 $ exactly when its base-$ 7 $ digit sum is.**
+
+## Example
+
+Take $ 3267 = 12345_7 $ (from Problem 4). Its base-$ 7 $ digit sum is
+
+$$$
+1 + 2 + 3 + 4 + 5 \;=\; 15, \qquad 3 \mid 15,
+$$$
+
+so the rule predicts $ 3 \mid 3267 $ — and indeed $ 3267 = 3 \cdot 1089 $. (The decimal digit sum $ 3 + 2 + 6 + 7 = 18 $ is also divisible by $ 3 $, agreeing.)
+
+## Any Base? No — It Depends on $ b \bmod 3 $
+
+The test is *not* universal. The behaviour splits into three cases according to $ b \bmod 3 $:
+
+!(100%)[Why the rule works in base 7, and how the test depends on b mod 3](problem-9-digitsum.svg "Top: powers of 10 and of 7 are all ≡ 1 (mod 3), so n ≡ digit sum (mod 3) in both bases — the digit-sum test holds. Bottom: classified by b mod 3, divisibility-by-3 uses the digit sum (b ≡ 1: bases 4, 7, 10, …), the alternating digit sum (b ≡ 2: bases 2, 5, 8, …), or the last digit (b ≡ 0: bases 3, 6, 9, …). Example: 3267 = 12345₇, digit sum 15.")
+
+- **$ b \equiv 1 \pmod 3 $** (bases $ 4, 7, 10, 13, \ldots $): $ b^i \equiv 1 $, so the **plain digit sum** works — this is the decimal/base-$ 7 $ case.
+- **$ b \equiv 2 \equiv -1 \pmod 3 $** (bases $ 2, 5, 8, 11, \ldots $): $ b^i \equiv (-1)^i $, so $ n \equiv \sum_i (-1)^i d_i \pmod 3 $ — an **alternating** digit sum, not the plain one.
+- **$ b \equiv 0 \pmod 3 $** (bases $ 3, 6, 9, \ldots $): here $ 3 \mid b $, so $ b^i \equiv 0 $ for $ i \ge 1 $ and $ n \equiv d_0 \pmod 3 $ — a **last-digit** test.
+
+So the digit-sum rule for $ 3 $ holds **iff $ b \equiv 1 \pmod 3 $**. It is a happy accident that both of our everyday-ish bases, $ 10 $ and $ 7 $, fall into that class.
+
+## Remark — The Same Principle Behind Every Divisibility Rule
+
+This is the general fact already met in Problem 5 (octal evenness), now applied to $ m = 3 $. For a modulus $ m $ and base $ b $:
+
+| relationship of $ b $ to $ m $ | reduction of $ b^i $ | resulting test                 |
+| :---                            | :---:                | :---                           |
+| $ m \mid b $                    | $ 0 $                | last digit ($ n \equiv d_0 $)  |
+| $ b \equiv 1 \pmod m $          | $ 1 $                | digit sum                      |
+| $ b \equiv -1 \pmod m $         | $ (-1)^i $           | alternating digit sum          |
+
+The "well-known" decimal digit-sum rule for $ 3 $ is just the middle row with $ m = 3 $, $ b = 10 $. Reading the table the other way explains *all* the standard tricks at once: divisibility by $ 2 $ or $ 5 $ in decimal is a last-digit test (both divide $ 10 $); divisibility by $ 11 $ is an alternating-sum test ($ 10 \equiv -1 \pmod{11} $).
+
+## Remark — The Rule for $ 9 $ Comes Free
+
+Because $ 10 \equiv 1 \pmod 9 $ as well, the *identical* argument gives the digit-sum test for $ 9 $ in decimal: $ 9 \mid n \iff 9 \mid \sum_i d_i $. This is the basis of the old arithmetic check **"casting out nines."** It transfers to base $ 7 $ only if $ 7 \equiv 1 \pmod 9 $ — which is false ($ 7 \not\equiv 1 $) — so the digit-sum-for-$ 9 $ rule does *not* hold in base $ 7 $. (What *does* hold in base $ 7 $ is a digit-sum test for $ 6 $, since $ 7 \equiv 1 \pmod 6 $.) The moral: each base inherits digit-sum tests for exactly the divisors $ m $ of $ b - 1 $.
+
+## Remark — Divisibility by 3 in Binary
+
+Binary is the most familiar base in the *alternating-sum* class, since $ 2 \equiv -1 \pmod 3 $. So a binary number is divisible by $ 3 $ iff its **alternating bit sum** is:
+
+$$$
+6 = 110_2 :\;\; 0 - 1 + 1 = 0 \;(\equiv 0), \qquad 9 = 1001_2 :\;\; 1 - 0 + 0 - 1 = 0 \;(\equiv 0), \qquad 5 = 101_2 :\;\; 1 - 0 + 1 = 2 \;(\not\equiv 0).
+$$$
+
+The first two are multiples of $ 3 $, the third is not — correctly. So even where the *plain* digit-sum test fails, a close cousin (the alternating sum) takes over; the underlying machinery, $ b^i \bmod m $, never stops working.
+
+## Remark — It Was Never About Decimal
+
+The cleanest takeaway is that the "well-known fact" is mis-stated when pinned to decimal. The real theorem is:
+
+> In base $ b $, divisibility by $ m $ can be checked from the digit sum **whenever $ b \equiv 1 \pmod m $**.
+
+Decimal earns the digit-sum tests for $ 3 $ and $ 9 $ only because $ 10 - 1 = 9 $ is divisible by $ 3 $ and $ 9 $. Base $ 7 $ earns them for $ 3 $ and $ 6 $ (and $ 2 $) because $ 7 - 1 = 6 $. The rule "feels" like a property of decimal arithmetic, but it is really a property of the number $ b - 1 $ — which is why the question "is it true in base 7?" has the satisfying answer *yes, for the very same reason*, and "in any base?" the answer *no, only when $ b \equiv 1 \pmod 3 $.*

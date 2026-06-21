@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="380" fill="white"/>
+
+  <text x="360" y="28" font-size="14" font-weight="bold" fill="#222" text-anchor="middle">A doubly-even integer ends in 00 in binary (its last two bits are both 0).</text>
+
+  <!-- table header -->
+  <g font-size="12" font-weight="bold" fill="#222">
+    <text x="70"  y="62" text-anchor="middle">n</text>
+    <text x="320" y="62" text-anchor="middle">binary (last two bits boxed)</text>
+    <text x="470" y="62" text-anchor="start">doubly-even?</text>
+  </g>
+  <line x1="40" y1="70" x2="680" y2="70" stroke="#999" stroke-width="0.8"/>
+
+  <!-- rows: digits end at x=352, step 16; box over x 328..360 -->
+  <!-- monospace-ish digits via fixed positions -->
+  <g font-size="15" text-anchor="middle" font-family="'Courier New', monospace">
+    <!-- Row 4 "100" green, Y=96 -->
+    <rect x="328" y="80" width="40" height="22" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="70" y="97" font-family="Georgia, serif">4</text>
+    <text x="320" y="97">1</text><text x="336" y="97">0</text><text x="352" y="97">0</text>
+    <text x="470" y="97" text-anchor="start" fill="#2e7d32" font-family="Georgia, serif" font-size="12.5">✓ yes — ends 00</text>
+
+    <!-- Row 8 "1000" green, Y=128 -->
+    <rect x="328" y="112" width="40" height="22" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="70" y="129" font-family="Georgia, serif">8</text>
+    <text x="304" y="129">1</text><text x="320" y="129">0</text><text x="336" y="129">0</text><text x="352" y="129">0</text>
+    <text x="470" y="129" text-anchor="start" fill="#2e7d32" font-family="Georgia, serif" font-size="12.5">✓ yes — ends 00</text>
+
+    <!-- Row 12 "1100" green, Y=160 -->
+    <rect x="328" y="144" width="40" height="22" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="70" y="161" font-family="Georgia, serif">12</text>
+    <text x="304" y="161">1</text><text x="320" y="161">1</text><text x="336" y="161">0</text><text x="352" y="161">0</text>
+    <text x="470" y="161" text-anchor="start" fill="#2e7d32" font-family="Georgia, serif" font-size="12.5">✓ yes — ends 00</text>
+
+    <!-- Row 2 "10" red, Y=192 -->
+    <rect x="328" y="176" width="40" height="22" fill="#fbdcdc" stroke="#c33" stroke-width="1.2"/>
+    <text x="70" y="193" font-family="Georgia, serif">2</text>
+    <text x="336" y="193">1</text><text x="352" y="193">0</text>
+    <text x="470" y="193" text-anchor="start" fill="#c33" font-family="Georgia, serif" font-size="12.5">✗ no — ends 10</text>
+
+    <!-- Row 6 "110" red, Y=224 -->
+    <rect x="328" y="208" width="40" height="22" fill="#fbdcdc" stroke="#c33" stroke-width="1.2"/>
+    <text x="70" y="225" font-family="Georgia, serif">6</text>
+    <text x="320" y="225">1</text><text x="336" y="225">1</text><text x="352" y="225">0</text>
+    <text x="470" y="225" text-anchor="start" fill="#c33" font-family="Georgia, serif" font-size="12.5">✗ no — ends 10</text>
+
+    <!-- Row 22 "10110" red, Y=256 -->
+    <rect x="328" y="240" width="40" height="22" fill="#fbdcdc" stroke="#c33" stroke-width="1.2"/>
+    <text x="70" y="257" font-family="Georgia, serif">22</text>
+    <text x="288" y="257">1</text><text x="304" y="257">0</text><text x="320" y="257">1</text><text x="336" y="257">1</text><text x="352" y="257">0</text>
+    <text x="470" y="257" text-anchor="start" fill="#c33" font-family="Georgia, serif" font-size="12.5">✗ no — ends 10</text>
+  </g>
+
+  <text x="360" y="288" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">2, 6, 22 are even (they end in a single 0) but not doubly-even (they don't end in 00).</text>
+
+  <!-- shift illustration -->
+  <line x1="40" y1="306" x2="680" y2="306" stroke="#ddd" stroke-width="1"/>
+  <text x="40" y="328" font-size="12" fill="#222">Shift-right (= ÷ 2) drops the last bit. Doubly-even ⟺ the first two dropped bits are both 0:</text>
+  <g font-size="13" font-family="'Courier New', monospace">
+    <text x="60"  y="352" fill="#2e7d32">12:  1100 → 110 → 11   (dropped 0, then 0)  ✓ doubly-even</text>
+    <text x="60"  y="372" fill="#c33">22:  10110 → 1011 → 101  (dropped 0, then 1)  ✗ not</text>
+  </g>
+</svg>

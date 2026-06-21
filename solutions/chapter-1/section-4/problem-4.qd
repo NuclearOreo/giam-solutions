@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 1.4 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 4
+
+## Problem
+
+One method of converting from decimal to another base is *repeated division*: divide the number by the base and record the remainder; then divide the quotient by the base and record the remainder; continue until the quotient is smaller than the base. Convert $ 3267 $ to base-$ 7 $ using repeated division, and check the answer using the meaning of base-$ 7 $ place notation.
+
+## Repeated Division
+
+Divide by $ 7 $ over and over, recording each remainder:
+
+| Division                  | Quotient | Remainder |
+| :---                      | :---:    | :---:     |
+| $ 3267 \div 7 $           | $ 466 $  | $ 5 $     |
+| $ 466 \div 7 $            | $ 66 $   | $ 4 $     |
+| $ 66 \div 7 $             | $ 9 $    | $ 3 $     |
+| $ 9 \div 7 $              | $ 1 $    | $ 2 $     |
+| $ 1 \div 7 $              | $ 0 $    | $ 1 $     |
+
+The remainders, **read from the bottom up** (last computed first), spell out the base-$ 7 $ digits:
+
+$$$
+\boxed{\;3267 \;=\; 12345_7.\;}
+$$$
+
+## The Division Ladder
+
+!(95%)[Repeated division of 3267 by 7, reading remainders bottom-up, with place-value check](problem-4-division.svg "Each row divides the previous quotient by 7 and records the remainder (5, 4, 3, 2, 1). Reading those remainders bottom-to-top gives the base-7 digits 1 2 3 4 5, so 3267 = 12345₇. The check expands 12345₇ = 1·7⁴ + 2·7³ + 3·7² + 4·7 + 5 = 3267.")
+
+## Checking with Place Notation
+
+Expand $ 12345_7 $ by the meaning of base-$ 7 $ place notation and confirm it returns $ 3267 $:
+
+$$$
+\begin{aligned}
+12345_7 \;&=\; 1 \cdot 7^4 + 2 \cdot 7^3 + 3 \cdot 7^2 + 4 \cdot 7^1 + 5 \cdot 7^0 \\
+&=\; 1 \cdot 2401 + 2 \cdot 343 + 3 \cdot 49 + 4 \cdot 7 + 5 \cdot 1 \\
+&=\; 2401 + 686 + 147 + 28 + 5 \\
+&=\; 3267. \quad \checkmark
+\end{aligned}
+$$$
+
+The conversion checks out: $ 3267 = 12345_7 $.
+
+## Remark — Why the Remainders Are Read Backwards
+
+The first division produces the *units* digit, but we want to *write* the number most-significant digit first — so the order of writing is opposite to the order of computing. Here is why the first remainder is the units digit. Writing the place-value expansion and factoring out a $ 7 $:
+
+$$$
+3267 \;=\; \underbrace{(1 \cdot 7^3 + 2 \cdot 7^2 + 3 \cdot 7 + 4)}_{\text{quotient } 466} \cdot 7 \;+\; \underbrace{5}_{\text{remainder}}.
+$$$
+
+The remainder of $ 3267 \div 7 $ is exactly the units digit ($ 5 $), and the quotient $ 466 $ "holds" all the higher digits, *shifted down by one place*. Dividing again peels off the next digit ($ 4 $), and so on. The last division exposes the leading digit. So the remainders emerge units-first; reading them bottom-up restores the proper left-to-right order.
+
+## Remark — Why We Stop When the Quotient Drops Below the Base
+
+The instruction says to stop once the quotient is smaller than the base. At the step $ 9 \div 7 = 1 $ remainder $ 2 $, the quotient $ 1 $ is already less than $ 7 $, so $ 1 $ cannot be split further — it *is* a single base-$ 7 $ digit, the leading one. (Equivalently, one more division $ 1 \div 7 = 0 $ remainder $ 1 $ makes the quotient $ 0 $; the table above shows this final step explicitly, with the remainder $ 1 $ as the leading digit.) Either way the process terminates because the quotients strictly *decrease* at every step — they shrink by a factor of about $ 7 $ each time — and a strictly decreasing sequence of non-negative integers must reach $ 0 $.
+
+## Remark — The Memorable Answer $ 12345_7 $
+
+It is a pleasant coincidence that $ 3267 $ converts to the consecutive digits $ 12345_7 $. This is the base-$ 7 $ analogue of asking "what decimal number is $ 12345 $?" — the place-value expansion $ 1 \cdot 7^4 + 2 \cdot 7^3 + 3 \cdot 7^2 + 4 \cdot 7 + 5 $ just happens to equal $ 3267 $. (In decimal, $ 12345 = 1\cdot 10^4 + \cdots + 5 $ is of course $ 12{,}345 $ — much larger, because base $ 10 > 7 $ weights each place more heavily.) The neat answer is a good final sanity check: a string of *increasing* digits like $ 1,2,3,4,5 $ is easy to verify both ways.
+
+## Remark — The Method Works for Any Base
+
+Nothing about repeated division is special to $ 7 $. To convert a decimal integer $ N $ to base $ b $, repeatedly divide by $ b $ and read the remainders bottom-up; each remainder lies in $ \{0, 1, \ldots, b-1\} $, exactly the digit-set of base $ b $. For example, the same $ 3267 $:
+
+- in base $ 2 $: $ 3267 = 110011000011_2 $;
+- in base $ 8 $: $ 3267 = 6303_8 $;
+- in base $ 16 $: $ 3267 = \mathrm{CC3}_{16} $ (using $ \mathrm{C} = 12 $).
+
+The repeated-division algorithm and its place-notation inverse are a matched pair: division *extracts* digits one at a time, place notation *reassembles* them. Together they let us move a number freely between any two bases (routing through decimal, as the textbook suggests, or directly).
+
+## Remark — How Many Digits to Expect
+
+The number of base-$ b $ digits of $ N $ is $ \lfloor \log_b N \rfloor + 1 $ — equivalently, the number of repeated-division steps before the quotient hits $ 0 $. For $ N = 3267 $, $ b = 7 $:
+
+$$$
+\log_7 3267 \;=\; \frac{\ln 3267}{\ln 7} \;\approx\; \frac{8.092}{1.946} \;\approx\; 4.16,
+$$$
+
+so $ \lfloor 4.16 \rfloor + 1 = 5 $ digits — matching the five digits of $ 12345_7 $ and the five rows of the division table. A smaller base needs *more* digits (base $ 2 $ took twelve), a larger base *fewer* (base $ 16 $ took three): the digit count scales like $ 1 / \log b $, the same reason hexadecimal is a compact way to write long binary strings.

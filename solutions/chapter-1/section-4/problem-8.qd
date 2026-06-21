@@ -1,0 +1,101 @@
+.docname {Solution — GIAM 1.4 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.4 Problem 8
+
+## Problem
+
+Use the tables from the previous problem to make the following conversions:
+**(a)** $ 757_8 $ to binary; **(b)** $ 1007_8 $ to hexadecimal; **(*c*)** $ 100101010110_2 $ to octal; **(d)** $ 1111101000110101_2 $ to hexadecimal; **(e)** $ \mathrm{FEED}_{16} $ to binary; **(f)** $ \mathrm{FFFFFF}_{16} $ to octal.
+
+## The Method
+
+Binary is the hub. Each **octal** digit is a $ 3 $-bit block and each **hex** digit is a $ 4 $-bit block (Problem 7). So every conversion is just *grouping*:
+
+- to/from **octal** $ \leftrightarrow $ binary: translate digits $ \leftrightarrow $ $ 3 $-bit blocks;
+- to/from **hex** $ \leftrightarrow $ binary: translate digits $ \leftrightarrow $ $ 4 $-bit blocks;
+- **octal $ \leftrightarrow $ hex**: route through binary — expand to bits, then *re-group* ($ 3 \leftrightarrow 4 $).
+
+When grouping bits, count *from the right*, padding the leftmost group with leading zeros if needed.
+
+## The Six Conversions
+
+**(a) $ 757_8 \to $ binary.** Replace each octal digit by its $ 3 $-bit block: $ 7 \to 111 $, $ 5 \to 101 $, $ 7 \to 111 $.
+
+$$$
+757_8 \;=\; \underbrace{111}_{7}\,\underbrace{101}_{5}\,\underbrace{111}_{7} \;=\; \boxed{111101111_2}.
+$$$
+
+**(b) $ 1007_8 \to $ hex.** First expand to binary ($ 3 $-bit blocks): $ 1\,0\,0\,7 \to 001\,000\,000\,111 $. Then re-group into $ 4 $-bit blocks from the right and read off hex:
+
+$$$
+1007_8 = 001000000111_2 = \underbrace{0010}_{2}\,\underbrace{0000}_{0}\,\underbrace{0111}_{7} = \boxed{207_{16}}.
+$$$
+
+**(*c*) $ 100101010110_2 \to $ octal.** Group the bits into threes from the right:
+
+$$$
+\underbrace{100}_{4}\,\underbrace{101}_{5}\,\underbrace{010}_{2}\,\underbrace{110}_{6} \;=\; \boxed{4526_8}.
+$$$
+
+**(d) $ 1111101000110101_2 \to $ hex.** Group into fours from the right:
+
+$$$
+\underbrace{1111}_{F}\,\underbrace{1010}_{A}\,\underbrace{0011}_{3}\,\underbrace{0101}_{5} \;=\; \boxed{\mathrm{FA35}_{16}}.
+$$$
+
+**(e) $ \mathrm{FEED}_{16} \to $ binary.** Replace each hex digit by its $ 4 $-bit block: $ F \to 1111 $, $ E \to 1110 $, $ E \to 1110 $, $ D \to 1101 $.
+
+$$$
+\mathrm{FEED}_{16} \;=\; \underbrace{1111}_{F}\,\underbrace{1110}_{E}\,\underbrace{1110}_{E}\,\underbrace{1101}_{D} \;=\; \boxed{1111111011101101_2}.
+$$$
+
+**(f) $ \mathrm{FFFFFF}_{16} \to $ octal.** Each $ F $ is $ 1111 $, so $ \mathrm{FFFFFF}_{16} $ is *twenty-four $ 1 $'s*. Re-group those $ 24 $ bits into eight threes:
+
+$$$
+\mathrm{FFFFFF}_{16} = \underbrace{1111\cdots1111}_{24 \text{ ones}}{}_2 = \underbrace{111}_{7}\,\underbrace{111}_{7}\,\cdots\,\underbrace{111}_{7} \;(\times 8) \;=\; \boxed{77777777_8}.
+$$$
+
+## The Grouping at Work
+
+!(100%)[Three representative conversions done by grouping bits](problem-8-grouping.svg "(a) 757₈ → each octal digit becomes a 3-bit block → 111101111₂. (e) FEED₁₆ → each hex digit becomes a 4-bit block → 1111111011101101₂. (f) FFFFFF₁₆ is twenty-four 1's; grouped by 4 it reads FFFFFF, grouped by 3 it reads 77777777 — so FFFFFF₁₆ = 77777777₈ = 2²⁴ − 1.")
+
+## Summary
+
+| Part  | Given                       | Convert to | Answer                     |
+| :---: | :---                        | :---:      | :---                       |
+| (a)   | $ 757_8 $                   | binary     | $ 111101111_2 $            |
+| (b)   | $ 1007_8 $                  | hex        | $ 207_{16} $               |
+| (*c*)   | $ 100101010110_2 $          | octal      | $ 4526_8 $                 |
+| (d)   | $ 1111101000110101_2 $      | hex        | $ \mathrm{FA35}_{16} $     |
+| (e)   | $ \mathrm{FEED}_{16} $      | binary     | $ 1111111011101101_2 $     |
+| (f)   | $ \mathrm{FFFFFF}_{16} $    | octal      | $ 77777777_8 $             |
+
+## Remark — Why No Arithmetic Is Needed
+
+Every conversion above used only table look-up and grouping — *no division, no multiplication, no carrying*. That is the whole payoff of binary being the common hub, and it works precisely because $ 8 = 2^3 $ and $ 16 = 2^4 $ are powers of $ 2 $: each octal or hex digit owns a self-contained block of bits, so digits never interact. Contrast this with the *repeated-division* method of Problem 4, which was needed only because decimal ($ 10 \ne 2^k $) shares no such clean bit-grouping with binary. For the power-of-two bases, conversion is pure clerical bookkeeping.
+
+## Remark — Padding from the Right
+
+The rule "group from the right, pad the left" matters whenever the bit count is not a clean multiple of the block size. In (b) the binary string $ 001000000111 $ has $ 12 $ bits — already a multiple of both $ 3 $ and $ 4 $ — but in general one pads. For instance, to octal-convert $ 100101010110_2 $ (part (*c*), $ 12 $ bits, fine) versus a $ 10 $-bit string like $ 1011001110_2 $: group as $ 1\,011\,001\,110 \to 001\,011\,001\,110 = 1316_8 $, padding the leftmost group $ 1 \to 001 $. Padding on the *left* never changes the value (leading zeros are free), whereas padding on the right would multiply by a power of the base — which is why grouping always starts at the units end.
+
+## Remark — $ \mathrm{FFFFFF}_{16} = 77777777_8 = 2^{24} - 1 $: All-Ones in Three Bases
+
+Part (f) is the prettiest. The number is "all $ 1 $'s" in binary ($ 24 $ of them), which is exactly $ 2^{24} - 1 $. Because $ 24 $ is divisible by *both* $ 3 $ and $ 4 $, those $ 24 $ ones partition cleanly either way:
+
+$$$
+2^{24} - 1 \;=\; \underbrace{1\cdots1}_{24}{}_2 \;=\; \underbrace{F\cdots F}_{6}{}_{16} \;=\; \underbrace{7\cdots7}_{8}{}_{8}.
+$$$
+
+So the *same* number is a string of maximal digits in all three power-of-two bases — six $ F $'s, eight $ 7 $'s, twenty-four $ 1 $'s. This also confirms the value: $ \mathrm{FFFFFF}_{16} = 16^6 - 1 $ and $ 77777777_8 = 8^8 - 1 $, and indeed $ 16^6 = (2^4)^6 = 2^{24} = (2^3)^8 = 8^8 $, so both equal $ 2^{24} - 1 = 16{,}777{,}215 $. (This is the "$ 24 $-bit" all-ones value — three bytes of $ \mathrm{FF} $, as in a $ 24 $-bit RGB color $ \#\mathrm{FFFFFF} $: pure white.)
+
+## Remark — Octal and Hex Are Each Other's Cousins Through Binary
+
+Parts (b) and (f) — the octal $ \leftrightarrow $ hex conversions — never touched decimal. They went $ \text{octal} \to \text{binary} \to \text{hex} $ and $ \text{hex} \to \text{binary} \to \text{octal} $, just by expanding to bits and re-cutting them into different-sized groups. There is no direct "octal digit $ \to $ hex digit" table, because $ 3 $ and $ 4 $ don't divide each other; but the least common multiple $ \mathrm{lcm}(3,4) = 12 $ does mean the two regroupings re-synchronise every $ 12 $ bits ($ = 4 $ octal digits $ = 3 $ hex digits). Binary is the universal translator that makes all three power-of-two bases freely interchangeable.

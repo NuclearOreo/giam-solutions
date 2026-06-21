@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="420" fill="white"/>
+
+  <defs>
+    <marker id="up4" viewBox="0 0 10 10" refX="5" refY="1" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="32" font-size="14" font-weight="bold" fill="#222">Repeated division of 3267 by 7:</text>
+
+  <!-- column header for remainders -->
+  <text x="418" y="56" font-size="11" fill="#666" text-anchor="middle">remainder</text>
+
+  <!-- division rows -->
+  <g font-size="15" fill="#222">
+    <text x="60" y="84">3267 ÷ 7 = 466</text>
+    <text x="60" y="116">466 ÷ 7 = 66</text>
+    <text x="60" y="148">66 ÷ 7 = 9</text>
+    <text x="60" y="180">9 ÷ 7 = 1</text>
+    <text x="60" y="212">1 ÷ 7 = 0</text>
+  </g>
+
+  <!-- remainder boxes (green), centered at x=418 -->
+  <g>
+    <rect x="400" y="68" width="36" height="24" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="418" y="86" font-size="15" font-weight="bold" text-anchor="middle">5</text>
+    <rect x="400" y="100" width="36" height="24" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="418" y="118" font-size="15" font-weight="bold" text-anchor="middle">4</text>
+    <rect x="400" y="132" width="36" height="24" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="418" y="150" font-size="15" font-weight="bold" text-anchor="middle">3</text>
+    <rect x="400" y="164" width="36" height="24" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="418" y="182" font-size="15" font-weight="bold" text-anchor="middle">2</text>
+    <rect x="400" y="196" width="36" height="24" fill="#cdeccd" stroke="#2e7d32" stroke-width="1.2"/>
+    <text x="418" y="214" font-size="15" font-weight="bold" text-anchor="middle">1</text>
+  </g>
+
+  <!-- up arrow + read direction -->
+  <line x1="466" y1="216" x2="466" y2="70" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#up4)"/>
+  <text x="486" y="150" font-size="12" font-style="italic" fill="#2e7d32">read the remainders</text>
+  <text x="486" y="166" font-size="12" font-style="italic" fill="#2e7d32">from the bottom up:</text>
+  <text x="486" y="186" font-size="14" font-weight="bold" fill="#2e7d32">1  2  3  4  5</text>
+
+  <!-- note about stopping -->
+  <text x="60" y="240" font-size="11.5" font-style="italic" fill="#666">(stop when the quotient drops below 7 — the final quotient 1 becomes the leading digit)</text>
+
+  <!-- result -->
+  <rect x="230" y="256" width="260" height="34" rx="5" fill="#eef2f7" stroke="#2a5db0" stroke-width="1.4"/>
+  <text x="360" y="279" font-size="16" font-weight="bold" fill="#2a5db0" text-anchor="middle">3267 = 12345₇</text>
+
+  <!-- check -->
+  <line x1="40" y1="314" x2="680" y2="314" stroke="#ddd" stroke-width="1"/>
+  <text x="40" y="338" font-size="14" font-weight="bold" fill="#222">Check by place notation:</text>
+  <g font-size="14" fill="#222" text-anchor="middle">
+    <text x="360" y="364">12345₇ = 1·7⁴ + 2·7³ + 3·7² + 4·7¹ + 5·7⁰</text>
+    <text x="360" y="388">= 2401 + 686 + 147 + 28 + 5 = <tspan font-weight="bold">3267</tspan>  ✓</text>
+  </g>
+</svg>
