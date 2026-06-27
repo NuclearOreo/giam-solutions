@@ -1,0 +1,123 @@
+.docname {Solution — GIAM 1.5 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.5 Problem 2
+
+## Problem
+
+Find the $ \gcd $'s and $ \operatorname{lcm} $'s of the following pairs of numbers.
+
+| $ a $ | $ b $ | $ \gcd(a,b) $ | $ \operatorname{lcm}(a,b) $ |
+| :---: | :---: | :---:         | :---:                       |
+| 110   | 273   |               |                             |
+| 105   | 42    |               |                             |
+| 168   | 189   |               |                             |
+
+## Answer
+
+| $ a $ | $ b $ | $ \gcd(a,b) $ | $ \operatorname{lcm}(a,b) $ |
+| :---: | :---: | :---:         | :---:                       |
+| 110   | 273   | $ \mathbf{1} $   | $ \mathbf{30030} $ |
+| 105   | 42    | $ \mathbf{21} $  | $ \mathbf{210} $   |
+| 168   | 189   | $ \mathbf{21} $  | $ \mathbf{1512} $  |
+
+## Method — Prime Factorizations
+
+Write each number as a product of primes. Then for every prime $ p $:
+
+- $ \gcd $ takes the **smaller** exponent of $ p $ (the most that divides *both*);
+- $ \operatorname{lcm} $ takes the **larger** exponent of $ p $ (the least that *both* divide into).
+
+**Pair 1 — $ 110 $ and $ 273 $.**
+
+$$$
+110 = 2 \cdot 5 \cdot 11, \qquad 273 = 3 \cdot 7 \cdot 13.
+$$$
+
+They share *no* prime, so they are **coprime**: $ \gcd = 1 $. With no overlap the $ \operatorname{lcm} $ is the full product:
+
+$$$
+\operatorname{lcm} = 2\cdot 3\cdot 5\cdot 7\cdot 11\cdot 13 = 110 \cdot 273 = 30030.
+$$$
+
+**Pair 2 — $ 105 $ and $ 42 $.**
+
+$$$
+105 = 3 \cdot 5 \cdot 7, \qquad 42 = 2 \cdot 3 \cdot 7.
+$$$
+
+Shared primes are $ 3 $ and $ 7 $, so $ \gcd = 3\cdot 7 = 21 $. Taking the larger power of each prime ($ 2,3,5,7 $):
+
+$$$
+\operatorname{lcm} = 2\cdot 3\cdot 5\cdot 7 = 210.
+$$$
+
+**Pair 3 — $ 168 $ and $ 189 $.**
+
+$$$
+168 = 2^3 \cdot 3 \cdot 7, \qquad 189 = 3^3 \cdot 7.
+$$$
+
+Shared primes are $ 3 $ (smaller power $ 3^1 $) and $ 7 $, so $ \gcd = 3\cdot 7 = 21 $. The larger power of each prime gives
+
+$$$
+\operatorname{lcm} = 2^3 \cdot 3^3 \cdot 7 = 8\cdot 27\cdot 7 = 1512.
+$$$
+
+## Both Methods Side by Side
+
+!(98%)[Prime-factorization method and Euclidean algorithm for all three pairs](problem-2-gcdlcm.svg "For each pair: the left column factors a and b into primes — gcd multiplies the lower power of each shared prime, lcm the higher. The right column runs the Euclidean algorithm, taking remainders until one is zero; the last nonzero remainder is the gcd. Every row satisfies gcd·lcm = a·b.")
+
+## Method — The Euclidean Algorithm
+
+The Section 1.5 way to find a $ \gcd $ without factoring is **Euclid's algorithm**: replace $ (a,b) $ by $ (b,\ a \bmod b) $ repeatedly; the last nonzero remainder is the $ \gcd $.
+
+$$$
+\begin{aligned}
+\textbf{Pair 1:}\quad &273 = 2\cdot 110 + 53,\;\; 110 = 2\cdot 53 + 4,\;\; 53 = 13\cdot 4 + 1,\;\; 4 = 4\cdot 1 + 0 \;\Rightarrow\; \gcd = 1. \\
+\textbf{Pair 2:}\quad &105 = 2\cdot 42 + 21,\;\; 42 = 2\cdot 21 + 0 \;\Rightarrow\; \gcd = 21. \\
+\textbf{Pair 3:}\quad &189 = 1\cdot 168 + 21,\;\; 168 = 8\cdot 21 + 0 \;\Rightarrow\; \gcd = 21.
+\end{aligned}
+$$$
+
+Once the $ \gcd $ is known, the $ \operatorname{lcm} $ follows instantly from the identity in the next remark — no factoring needed.
+
+## Remark — The Identity $ \gcd(a,b)\cdot\operatorname{lcm}(a,b) = a\,b $
+
+For any positive integers, the product of the $ \gcd $ and the $ \operatorname{lcm} $ equals the product of the numbers:
+
+$$$
+\gcd(a,b)\cdot \operatorname{lcm}(a,b) = a\,b.
+$$$
+
+This is exactly the "min exponent $ + $ max exponent $ = $ both exponents" fact, prime by prime: for each $ p $, $ \min(e_a,e_b) + \max(e_a,e_b) = e_a + e_b $. It also gives the fastest way to get each $ \operatorname{lcm} $ above — divide the product by the $ \gcd $:
+
+| pair | $ \dfrac{a\,b}{\gcd} = \operatorname{lcm} $ | check |
+| :--- | :---: | :--- |
+| $ 110,273 $ | $ \dfrac{110\cdot 273}{1} $ | $ = 30030 $ ✓ |
+| $ 105,42 $  | $ \dfrac{105\cdot 42}{21} = \dfrac{4410}{21} $ | $ = 210 $ ✓ |
+| $ 168,189 $ | $ \dfrac{168\cdot 189}{21} = \dfrac{31752}{21} $ | $ = 1512 $ ✓ |
+
+## Remark — Coprime Pairs and the Primorial $ 30030 $
+
+Pair 1 is **coprime** ($ \gcd = 1 $): $ 110 $ and $ 273 $ share no prime factor even though neither is prime. For coprime numbers the $ \operatorname{lcm} $ is just the product, which is why $ \operatorname{lcm}(110,273) = 30030 $ is so large relative to the inputs. That $ 30030 $ is no accident: it is $ 2\cdot 3\cdot 5\cdot 7\cdot 11\cdot 13 $, the product of the first six primes — the *primorial* $ 13\# $. Between them, $ 110 = 2\cdot 5\cdot 11 $ and $ 273 = 3\cdot 7\cdot 13 $ happen to use each of those six primes exactly once.
+
+## Remark — Why Min-for-gcd and Max-for-lcm
+
+The rule is forced by what divisibility *means* in terms of exponents. A number $ d = \prod p^{f_p} $ divides $ a = \prod p^{e_p} $ exactly when $ f_p \le e_p $ for every prime. So:
+
+- a *common divisor* of $ a,b $ needs $ f_p \le e_a $ **and** $ f_p \le e_b $, i.e. $ f_p \le \min(e_a,e_b) $ — the **greatest** such $ d $ takes $ f_p = \min $;
+- a *common multiple* $ m $ needs $ a \mid m $ **and** $ b \mid m $, i.e. exponent $ \ge \max(e_a,e_b) $ — the **least** such $ m $ takes exponent $ = \max $.
+
+This is the same min/max bookkeeping seen with exponents throughout the chapter, and it makes the $ \gcd $–$ \operatorname{lcm} $ pair a clean illustration of unique factorization at work.
+
+## Remark — Factoring vs. Euclid
+
+Both methods give identical answers here, but they scale very differently. The prime-factorization method is wonderfully transparent for small numbers like these, but it secretly requires *factoring* — which becomes infeasible for large inputs (the hardness of factoring is what RSA encryption rests on). Euclid's algorithm, by contrast, never factors anything: it only takes remainders, and it finishes in a number of steps roughly proportional to the number of *digits* of the inputs. For Pair 1, factoring and Euclid each took about four lines; for two thousand-digit numbers, factoring is hopeless while Euclid still finishes almost instantly. That is why Euclid's algorithm — not factorization — is the one actually used to compute $ \gcd $'s in practice.

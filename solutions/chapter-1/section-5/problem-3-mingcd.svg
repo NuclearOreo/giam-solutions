@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" width="720" height="440" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="440" fill="white"/>
+
+  <text x="360" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">List both numbers over the SAME primes. For each prime, the gcd takes the smaller exponent.</text>
+
+  <!-- column headers: prime | a-exp | b-exp | min -> gcd-exp -->
+  <g text-anchor="middle" font-size="13">
+    <text x="150" y="72" font-weight="bold" fill="#222">prime  p</text>
+    <text x="320" y="72" font-weight="bold" fill="#222">exponent in a</text>
+    <text x="320" y="90" font-size="11" font-style="italic" fill="#666">a = 2³·3·5²</text>
+    <text x="480" y="72" font-weight="bold" fill="#222">exponent in b</text>
+    <text x="480" y="90" font-size="11" font-style="italic" fill="#666">b = 2·3⁴·7</text>
+    <text x="620" y="72" font-weight="bold" fill="#2e7d32">min → in gcd</text>
+  </g>
+  <line x1="60" y1="100" x2="680" y2="100" stroke="#999" stroke-width="0.8"/>
+
+  <!-- rows for primes 2,3,5,7 -->
+  <g text-anchor="middle" font-size="14">
+    <!-- p=2 -->
+    <text x="150" y="134">2</text>
+    <text x="320" y="134" fill="#2a5db0">3</text>
+    <text x="480" y="134" fill="#b0582a">1</text>
+    <text x="620" y="134" fill="#2e7d32" font-weight="bold">min(3,1) = 1</text>
+
+    <!-- p=3 -->
+    <rect x="60" y="146" width="620" height="32" fill="#f7f7f7"/>
+    <text x="150" y="168">3</text>
+    <text x="320" y="168" fill="#2a5db0">1</text>
+    <text x="480" y="168" fill="#b0582a">4</text>
+    <text x="620" y="168" fill="#2e7d32" font-weight="bold">min(1,4) = 1</text>
+
+    <!-- p=5 -->
+    <text x="150" y="202">5</text>
+    <text x="320" y="202" fill="#2a5db0">2</text>
+    <text x="480" y="202" fill="#b0582a">0</text>
+    <text x="620" y="202" fill="#2e7d32" font-weight="bold">min(2,0) = 0</text>
+
+    <!-- p=7 -->
+    <rect x="60" y="214" width="620" height="32" fill="#f7f7f7"/>
+    <text x="150" y="236">7</text>
+    <text x="320" y="236" fill="#2a5db0">0</text>
+    <text x="480" y="236" fill="#b0582a">1</text>
+    <text x="620" y="236" fill="#2e7d32" font-weight="bold">min(0,1) = 0</text>
+  </g>
+  <line x1="60" y1="258" x2="680" y2="258" stroke="#999" stroke-width="0.8"/>
+
+  <!-- note about padding with zero -->
+  <text x="360" y="284" font-size="11.5" font-style="italic" fill="#888" text-anchor="middle">A prime missing from a number is included with exponent 0 (e.g. 5 is absent from b, 7 is absent from a).</text>
+
+  <!-- the general formula -->
+  <rect x="120" y="304" width="480" height="54" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="360" y="338" font-size="18" text-anchor="middle" fill="#1b5e20">gcd(a, b) = ∏ p^min(eₚ, fₚ)</text>
+
+  <!-- worked result -->
+  <text x="360" y="392" font-size="14" text-anchor="middle" fill="#222">Here:  gcd = 2¹ · 3¹ · 5⁰ · 7⁰ = 2 · 3 = <tspan font-weight="bold">6</tspan></text>
+  <text x="360" y="420" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">lcm uses max instead of min:  lcm(a, b) = ∏ p^max(eₚ, fₚ).   And min + max = eₚ + fₚ, so gcd·lcm = a·b.</text>
+</svg>

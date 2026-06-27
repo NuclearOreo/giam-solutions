@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" width="720" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="520" fill="white"/>
+
+  <text x="360" y="26" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Each call Division(a, b) returns (q, r) with a = qb + r. The remainder r becomes the next divisor:</text>
+  <text x="360" y="44" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">(a, b) → (b, r). Stop when r = 0; the last divisor is the gcd.</text>
+
+  <!-- column guides -->
+  <text x="120" y="78" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">call #</text>
+  <text x="360" y="78" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">a = q · b + r</text>
+  <text x="630" y="78" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">next (a, b)</text>
+  <line x1="40" y1="88" x2="680" y2="88" stroke="#999" stroke-width="0.8"/>
+
+  <!-- 6 rows, y from 118 step 64 -->
+  <!-- helper: each row: call number, equation, arrow showing b and r feeding down -->
+  <g font-size="15">
+    <!-- row 1 -->
+    <text x="120" y="122" text-anchor="middle" font-size="13">1</text>
+    <text x="360" y="122" text-anchor="middle">3731 = <tspan fill="#2a5db0">1</tspan> · <tspan fill="#1b5e20" font-weight="bold">2730</tspan> + <tspan fill="#b0582a" font-weight="bold">1001</tspan></text>
+    <text x="630" y="122" text-anchor="middle" font-size="12" fill="#666">(2730, 1001)</text>
+
+    <!-- row 2 -->
+    <text x="120" y="186" text-anchor="middle" font-size="13">2</text>
+    <text x="360" y="186" text-anchor="middle"><tspan fill="#1b5e20" font-weight="bold">2730</tspan> = <tspan fill="#2a5db0">2</tspan> · <tspan fill="#1b5e20" font-weight="bold">1001</tspan> + <tspan fill="#b0582a" font-weight="bold">728</tspan></text>
+    <text x="630" y="186" text-anchor="middle" font-size="12" fill="#666">(1001, 728)</text>
+
+    <!-- row 3 -->
+    <text x="120" y="250" text-anchor="middle" font-size="13">3</text>
+    <text x="360" y="250" text-anchor="middle"><tspan fill="#1b5e20" font-weight="bold">1001</tspan> = <tspan fill="#2a5db0">1</tspan> · <tspan fill="#1b5e20" font-weight="bold">728</tspan> + <tspan fill="#b0582a" font-weight="bold">273</tspan></text>
+    <text x="630" y="250" text-anchor="middle" font-size="12" fill="#666">(728, 273)</text>
+
+    <!-- row 4 -->
+    <text x="120" y="314" text-anchor="middle" font-size="13">4</text>
+    <text x="360" y="314" text-anchor="middle"><tspan fill="#1b5e20" font-weight="bold">728</tspan> = <tspan fill="#2a5db0">2</tspan> · <tspan fill="#1b5e20" font-weight="bold">273</tspan> + <tspan fill="#b0582a" font-weight="bold">182</tspan></text>
+    <text x="630" y="314" text-anchor="middle" font-size="12" fill="#666">(273, 182)</text>
+
+    <!-- row 5 -->
+    <text x="120" y="378" text-anchor="middle" font-size="13">5</text>
+    <text x="360" y="378" text-anchor="middle"><tspan fill="#1b5e20" font-weight="bold">273</tspan> = <tspan fill="#2a5db0">1</tspan> · <tspan fill="#1b5e20" font-weight="bold">182</tspan> + <tspan fill="#b0582a" font-weight="bold">91</tspan></text>
+    <text x="630" y="378" text-anchor="middle" font-size="12" fill="#666">(182, 91)</text>
+
+    <!-- row 6 -->
+    <rect x="40" y="412" width="640" height="44" fill="#eef5ee"/>
+    <text x="120" y="440" text-anchor="middle" font-size="13">6</text>
+    <text x="360" y="440" text-anchor="middle"><tspan fill="#1b5e20" font-weight="bold">182</tspan> = <tspan fill="#2a5db0">2</tspan> · <tspan fill="#1b5e20" font-weight="bold">91</tspan> + <tspan fill="#b0582a" font-weight="bold">0</tspan></text>
+    <text x="630" y="440" text-anchor="middle" font-size="12" fill="#2e7d32">r = 0 → stop</text>
+  </g>
+
+  <!-- diagonal arrows: b of one row becomes a of next (1001 row1 r -> row2 b etc). Show r feeds down -->
+  <g stroke="#b0582a" stroke-width="1" fill="none" opacity="0.5">
+    <path d="M 430 128 C 470 150, 300 160, 300 178" marker-end="url(#ar)"/>
+    <path d="M 422 192 C 460 214, 300 224, 296 242" marker-end="url(#ar)"/>
+    <path d="M 416 256 C 450 278, 300 288, 294 306" marker-end="url(#ar)"/>
+    <path d="M 410 320 C 444 342, 300 352, 290 370" marker-end="url(#ar)"/>
+    <path d="M 404 384 C 438 406, 300 414, 288 434" marker-end="url(#ar)"/>
+  </g>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b0582a" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <line x1="40" y1="468" x2="680" y2="468" stroke="#999" stroke-width="0.8"/>
+  <text x="360" y="494" font-size="15" text-anchor="middle" fill="#222">The division algorithm is called <tspan font-weight="bold">6 times</tspan>.  Last nonzero divisor → <tspan font-weight="bold" fill="#2e7d32">gcd(3731, 2730) = 91</tspan>.</text>
+  <text x="360" y="514" font-size="11" font-style="italic" fill="#666" text-anchor="middle">Check: 91 = 7·13,  3731 = 7·13·41,  2730 = 2·3·5·7·13 — the shared part is 7·13 = 91.</text>
+</svg>

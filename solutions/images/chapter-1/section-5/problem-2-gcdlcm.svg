@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" width="720" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="560" fill="white"/>
+
+  <text x="360" y="26" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Two methods. Left: prime factorizations — gcd takes the LOWER power of each shared prime, lcm the HIGHER.</text>
+  <text x="360" y="44" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Right: the Euclidean algorithm — repeated remainders; the last nonzero remainder is the gcd.</text>
+
+  <!-- ============ BLOCK 1: 110 & 273 ============ -->
+  <g>
+    <rect x="24" y="60" width="672" height="146" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="84" font-size="14" font-weight="bold" fill="#222">Pair 1:  a = 110,  b = 273</text>
+
+    <!-- factorization (left) -->
+    <text x="40" y="112" font-size="12.5" fill="#222">110 = 2 · 5 · 11</text>
+    <text x="40" y="134" font-size="12.5" fill="#222">273 = 3 · 7 · 13</text>
+    <text x="40" y="160" font-size="12" font-style="italic" fill="#888">no shared primes → coprime</text>
+    <text x="40" y="184" font-size="13" fill="#2e7d32"><tspan font-weight="bold">gcd = 1</tspan>,   lcm = 2·3·5·7·11·13 = <tspan font-weight="bold">30030</tspan></text>
+
+    <!-- euclid (right) -->
+    <line x1="400" y1="68" x2="400" y2="198" stroke="#e0e0e0"/>
+    <text x="420" y="104" font-size="12" fill="#555">273 = 2·110 + 53</text>
+    <text x="420" y="124" font-size="12" fill="#555">110 = 2·53 + 4</text>
+    <text x="420" y="144" font-size="12" fill="#555">53 = 13·4 + <tspan fill="#2e7d32" font-weight="bold">1</tspan></text>
+    <text x="420" y="164" font-size="12" fill="#555">4 = 4·<tspan fill="#2e7d32" font-weight="bold">1</tspan> + 0  ← stop</text>
+    <text x="420" y="188" font-size="12.5" fill="#2e7d32">last nonzero remainder = <tspan font-weight="bold">gcd = 1</tspan></text>
+  </g>
+
+  <!-- ============ BLOCK 2: 105 & 42 ============ -->
+  <g>
+    <rect x="24" y="216" width="672" height="146" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="240" font-size="14" font-weight="bold" fill="#222">Pair 2:  a = 105,  b = 42</text>
+
+    <text x="40" y="268" font-size="12.5" fill="#222">105 = <tspan fill="#2a5db0" font-weight="bold">3</tspan> · 5 · <tspan fill="#2a5db0" font-weight="bold">7</tspan></text>
+    <text x="40" y="290" font-size="12.5" fill="#222"> 42 = 2 · <tspan fill="#2a5db0" font-weight="bold">3</tspan> · <tspan fill="#2a5db0" font-weight="bold">7</tspan></text>
+    <text x="40" y="316" font-size="12" font-style="italic" fill="#888">shared: 3 and 7</text>
+    <text x="40" y="340" font-size="13" fill="#2e7d32"><tspan font-weight="bold">gcd = 3·7 = 21</tspan>,   lcm = 2·3·5·7 = <tspan font-weight="bold">210</tspan></text>
+
+    <line x1="400" y1="224" x2="400" y2="354" stroke="#e0e0e0"/>
+    <text x="420" y="272" font-size="12" fill="#555">105 = 2·42 + <tspan fill="#2e7d32" font-weight="bold">21</tspan></text>
+    <text x="420" y="292" font-size="12" fill="#555">42 = 2·<tspan fill="#2e7d32" font-weight="bold">21</tspan> + 0  ← stop</text>
+    <text x="420" y="324" font-size="12.5" fill="#2e7d32">last nonzero remainder = <tspan font-weight="bold">gcd = 21</tspan></text>
+  </g>
+
+  <!-- ============ BLOCK 3: 168 & 189 ============ -->
+  <g>
+    <rect x="24" y="372" width="672" height="160" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="396" font-size="14" font-weight="bold" fill="#222">Pair 3:  a = 168,  b = 189</text>
+
+    <text x="40" y="424" font-size="12.5" fill="#222">168 = 2³ · <tspan fill="#2a5db0" font-weight="bold">3</tspan> · <tspan fill="#2a5db0" font-weight="bold">7</tspan></text>
+    <text x="40" y="446" font-size="12.5" fill="#222">189 = <tspan fill="#2a5db0" font-weight="bold">3</tspan>³ · <tspan fill="#2a5db0" font-weight="bold">7</tspan></text>
+    <text x="40" y="472" font-size="12" font-style="italic" fill="#888">shared: 3 (lower power 3¹) and 7</text>
+    <text x="40" y="496" font-size="13" fill="#2e7d32"><tspan font-weight="bold">gcd = 3·7 = 21</tspan>,   lcm = 2³·3³·7 = <tspan font-weight="bold">1512</tspan></text>
+
+    <line x1="400" y1="380" x2="400" y2="524" stroke="#e0e0e0"/>
+    <text x="420" y="428" font-size="12" fill="#555">189 = 1·168 + <tspan fill="#2e7d32" font-weight="bold">21</tspan></text>
+    <text x="420" y="448" font-size="12" fill="#555">168 = 8·<tspan fill="#2e7d32" font-weight="bold">21</tspan> + 0  ← stop</text>
+    <text x="420" y="480" font-size="12.5" fill="#2e7d32">last nonzero remainder = <tspan font-weight="bold">gcd = 21</tspan></text>
+  </g>
+
+  <text x="360" y="550" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">Cross-check every row:  gcd(a,b) · lcm(a,b) = a · b.   (1·30030 = 110·273;  21·210 = 105·42;  21·1512 = 168·189.)</text>
+</svg>

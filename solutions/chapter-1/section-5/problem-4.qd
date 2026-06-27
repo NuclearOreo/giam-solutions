@@ -1,0 +1,93 @@
+.docname {Solution — GIAM 1.5 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.5 Problem 4
+
+## Problem
+
+Trace through the Euclidean algorithm with inputs $ a = 3731 $ and $ b = 2730 $. Each time the assignment statement that calls the division algorithm is encountered, write out the expression $ a = qb + r $ (with the actual values involved).
+
+## The Algorithm
+
+The Section 1.5 pseudocode for *Euclidean*:
+
+$$$
+\begin{aligned}
+&\textbf{Label 1.} \\
+&\textbf{Let } (q, r) = \text{Division}(a, b). \\
+&\textbf{If } r = 0 \textbf{ then Return } b. \\
+&\textbf{Let } a = b. \\
+&\textbf{Let } b = r. \\
+&\textbf{Goto 1.}
+\end{aligned}
+$$$
+
+The assignment that calls the division algorithm is $ \textbf{Let } (q,r) = \text{Division}(a,b) $. Each time it runs, $ \text{Division} $ returns the unique $ q, r $ with $ a = qb + r $ and $ 0 \le r < b $. We write out that equation, then — if $ r \ne 0 $ — shift $ (a,b) \leftarrow (b, r) $ and loop.
+
+## The Trace ($ a = 3731 $, $ b = 2730 $)
+
+Each line below is one execution of the $ \text{Division} $ call:
+
+$$$
+\begin{aligned}
+3731 &= 1\cdot 2730 + 1001, \\
+2730 &= 2\cdot 1001 + 728, \\
+1001 &= 1\cdot 728 + 273, \\
+728  &= 2\cdot 273 + 182, \\
+273  &= 1\cdot 182 + 91, \\
+182  &= 2\cdot 91 + 0. \qquad\Leftarrow\; r = 0,\ \textbf{Return } b = 91.
+\end{aligned}
+$$$
+
+The remainder hits $ 0 $ on the sixth call, so the algorithm returns the last divisor:
+
+$$$
+\boxed{\;\gcd(3731, 2730) = 91, \quad\text{found in } 6 \text{ calls to Division}.\;}
+$$$
+
+## The Remainder Cascade
+
+Notice how each line's divisor and remainder become the next line's dividend and divisor — the pair $ (a,b) $ slides down to $ (b, r) $ every step:
+
+!(98%)[The six Division calls, with each remainder feeding down to become the next divisor](problem-4-euclid.svg "Six calls to Division. Row 1: 3731 = 1·2730 + 1001; the divisor 2730 and remainder 1001 become the next (a,b). Each subsequent row shifts (a,b) → (b,r): 2730=2·1001+728, 1001=1·728+273, 728=2·273+182, 273=1·182+91, 182=2·91+0. The remainder reaching 0 on call 6 stops the loop; the last divisor 91 is the gcd. Check: 91 = 7·13, dividing both 3731 = 7·13·41 and 2730 = 2·3·5·7·13.")
+
+## Remark — Why the Last Nonzero Remainder Is the gcd
+
+The algorithm works because of one key fact: $ \gcd(a, b) = \gcd(b, r) $ whenever $ a = qb + r $. Any number dividing both $ a $ and $ b $ also divides $ r = a - qb $; conversely any number dividing $ b $ and $ r $ divides $ a = qb + r $. So the *set* of common divisors — and hence the greatest one — is unchanged at every step. Tracking the $ \gcd $ down the cascade:
+
+$$$
+\gcd(3731,2730) = \gcd(2730,1001) = \gcd(1001,728) = \cdots = \gcd(182,91) = \gcd(91,0) = 91.
+$$$
+
+When the remainder finally reaches $ 0 $, the pair is $ (91, 0) $, and $ \gcd(91,0) = 91 $ because everything divides $ 0 $ — so $ 91 $ is its own gcd with $ 0 $. That is why the *last nonzero remainder* (equivalently, the last divisor) is the answer.
+
+## Remark — Counting the Division Calls
+
+The question highlights the $ \text{Division} $ call specifically because that is the algorithm's real unit of work — and here it runs exactly $ 6 $ times. Note this is *one* assignment per loop pass, in contrast to the repeated-subtraction division of Problem 1 which did many cheap assignments. Each Euclidean step does a single (expensive) division but slashes the numbers dramatically: $ 3731 \to 2730 \to 1001 \to 728 \to 273 \to 182 \to 91 $. The number of steps grows only like the number of *digits* of the inputs, which is why Euclid is so fast — six divisions here versus the hundreds of subtractions a naïve approach would need.
+
+## Remark — The Quotients and a Glimpse of Continued Fractions
+
+The quotients produced, in order, were
+
+$$$
+q = 1,\ 2,\ 1,\ 2,\ 1,\ 2.
+$$$
+
+These are not throwaway by-products: read top to bottom they are exactly the **continued-fraction expansion** of $ a/b $,
+
+$$$
+\frac{3731}{2730} = 1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{2 + \cfrac{1}{1 + \cfrac{1}{2}}}}}.
+$$$
+
+So a single run of the Euclidean algorithm simultaneously delivers the $ \gcd $ *and* the continued fraction of the ratio — a small preview of how much structure is packed into this short loop.
+
+## Remark — Contrast With the Factoring Method
+
+We could instead have factored: $ 3731 = 7\cdot 13\cdot 41 $ and $ 2730 = 2\cdot 3\cdot 5\cdot 7\cdot 13 $, whose shared part is $ 7\cdot 13 = 91 $ — matching the boxed answer, and illustrating the min-exponent rule of Problem 3. But finding those factorizations is *harder* than running Euclid: spotting that $ 3731 = 7\cdot 13\cdot 41 $ takes real work, whereas the six divisions above are mechanical. This is the recurring lesson of the section — Euclid computes the same $ \gcd $ the factorization *describes*, but does so without the (expensive) detour through factoring.
