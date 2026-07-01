@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 470" width="720" height="470" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="470" fill="white"/>
+
+  <text x="360" y="26" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Experiment: the parity of x² always matches the parity of x. So x² even happens EXACTLY when x is even.</text>
+
+  <!-- table: x | x^2 | x parity | x^2 parity, two column groups (1-7 and 8-14) -->
+  <!-- headers left group -->
+  <g font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="70" y="62">x</text>
+    <text x="150" y="62">x²</text>
+    <text x="250" y="62">x</text>
+    <text x="330" y="62">x²</text>
+  </g>
+  <line x1="40" y1="70" x2="360" y2="70" stroke="#999" stroke-width="0.8"/>
+  <g font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="430" y="62">x</text>
+    <text x="510" y="62">x²</text>
+    <text x="610" y="62">x</text>
+    <text x="690" y="62">x²</text>
+  </g>
+  <line x1="400" y1="70" x2="712" y2="70" stroke="#999" stroke-width="0.8"/>
+
+  <!-- rows 1-7 left, 8-14 right; step 48, start y 96 -->
+  <g font-size="13" text-anchor="middle">
+    <!-- x=1 odd -->
+    <text x="70" y="96">1</text><text x="150" y="96">1</text><text x="250" y="96" fill="#b0582a">odd</text><text x="330" y="96" fill="#b0582a">odd</text>
+    <rect x="40" y="108" width="320" height="24" fill="#eef5ee"/>
+    <text x="70" y="126">2</text><text x="150" y="126">4</text><text x="250" y="126" fill="#1b5e20">even</text><text x="330" y="126" fill="#1b5e20">even</text>
+    <text x="70" y="156">3</text><text x="150" y="156">9</text><text x="250" y="156" fill="#b0582a">odd</text><text x="330" y="156" fill="#b0582a">odd</text>
+    <rect x="40" y="168" width="320" height="24" fill="#eef5ee"/>
+    <text x="70" y="186">4</text><text x="150" y="186">16</text><text x="250" y="186" fill="#1b5e20">even</text><text x="330" y="186" fill="#1b5e20">even</text>
+    <text x="70" y="216">5</text><text x="150" y="216">25</text><text x="250" y="216" fill="#b0582a">odd</text><text x="330" y="216" fill="#b0582a">odd</text>
+    <rect x="40" y="228" width="320" height="24" fill="#eef5ee"/>
+    <text x="70" y="246">6</text><text x="150" y="246">36</text><text x="250" y="246" fill="#1b5e20">even</text><text x="330" y="246" fill="#1b5e20">even</text>
+    <text x="70" y="276">7</text><text x="150" y="276">49</text><text x="250" y="276" fill="#b0582a">odd</text><text x="330" y="276" fill="#b0582a">odd</text>
+
+    <!-- right group 8-14 -->
+    <rect x="400" y="78" width="312" height="24" fill="#eef5ee"/>
+    <text x="430" y="96">8</text><text x="510" y="96">64</text><text x="610" y="96" fill="#1b5e20">even</text><text x="690" y="96" fill="#1b5e20">even</text>
+    <text x="430" y="126">9</text><text x="510" y="126">81</text><text x="610" y="126" fill="#b0582a">odd</text><text x="690" y="126" fill="#b0582a">odd</text>
+    <rect x="400" y="138" width="312" height="24" fill="#eef5ee"/>
+    <text x="430" y="156">10</text><text x="510" y="156">100</text><text x="610" y="156" fill="#1b5e20">even</text><text x="690" y="156" fill="#1b5e20">even</text>
+    <text x="430" y="186">11</text><text x="510" y="186">121</text><text x="610" y="186" fill="#b0582a">odd</text><text x="690" y="186" fill="#b0582a">odd</text>
+    <rect x="400" y="198" width="312" height="24" fill="#eef5ee"/>
+    <text x="430" y="216">12</text><text x="510" y="216">144</text><text x="610" y="216" fill="#1b5e20">even</text><text x="690" y="216" fill="#1b5e20">even</text>
+    <text x="430" y="246">13</text><text x="510" y="246">169</text><text x="610" y="246" fill="#b0582a">odd</text><text x="690" y="246" fill="#b0582a">odd</text>
+    <rect x="400" y="258" width="312" height="24" fill="#eef5ee"/>
+    <text x="430" y="276">14</text><text x="510" y="276">196</text><text x="610" y="276" fill="#1b5e20">even</text><text x="690" y="276" fill="#1b5e20">even</text>
+  </g>
+  <line x1="40" y1="288" x2="360" y2="288" stroke="#999" stroke-width="0.8"/>
+  <line x1="400" y1="288" x2="712" y2="288" stroke="#999" stroke-width="0.8"/>
+
+  <text x="360" y="312" font-size="12.5" font-style="italic" fill="#666" text-anchor="middle">Green rows: x even ⟺ x² even.   Orange rows: x odd ⟺ x² odd.   The two columns of parity are always identical.</text>
+
+  <!-- the contrapositive proof box -->
+  <rect x="60" y="330" width="600" height="118" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="360" y="356" font-size="14" font-weight="bold" fill="#222" text-anchor="middle">The proof (contrapositive): if x is ODD then x² is ODD.</text>
+  <text x="80" y="384" font-size="13.5" fill="#333">x odd  ⟹  x = 2k + 1  for some integer k</text>
+  <text x="80" y="410" font-size="13.5" fill="#333">x² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1  ⟹  x² is odd.</text>
+  <text x="80" y="436" font-size="13" fill="#1b5e20">Contrapositive of "x odd ⟹ x² odd" is  "x² even ⟹ x even."  ∎</text>
+</svg>

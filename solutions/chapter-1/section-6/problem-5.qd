@@ -1,0 +1,81 @@
+.docname {Solution — GIAM 1.6 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.6 Problem 5
+
+## Problem
+
+Write a proof that $ \sqrt 3 $ is irrational.
+
+## Strategy
+
+We mimic the classical proof for $ \sqrt 2 $, using the case $ p = 3 $ of the lemma from Problem 4:
+
+$$$
+\text{if } 3 \mid x^2, \text{ then } 3 \mid x.
+$$$
+
+We first prove this lemma, then run the contradiction argument.
+
+## The Lemma: $ 3 \mid x^2 \Rightarrow 3 \mid x $
+
+Every integer $ x $ leaves remainder $ 0 $, $ 1 $, or $ 2 $ on division by $ 3 $. Squaring each case and reducing mod $ 3 $:
+
+| $ x \equiv \ (\bmod\ 3) $ | $ x^2 \equiv \ (\bmod\ 3) $ | $ 3 \mid x^2 $? |
+| :---: | :---: | :---: |
+| $ 0 $ | $ 0 $ | yes |
+| $ 1 $ | $ 1 $ | no |
+| $ 2 $ | $ 4 \equiv 1 $ | no |
+
+A square is divisible by $ 3 $ **only** in the first row — precisely when $ x $ itself is divisible by $ 3 $. Hence $ 3 \mid x^2 \Rightarrow 3 \mid x $. (Equivalently, this is Euclid's Lemma with the prime $ 3 $.) $ \square $
+
+## The Proof That $ \sqrt 3 $ Is Irrational
+
+!(98%)[The mod-3 residue table for the lemma, and the six-step contradiction proof](problem-5-sqrt3.svg "Top: residues mod 3. If x ≡ 0 then x² ≡ 0 (divisible by 3); if x ≡ 1 then x² ≡ 1; if x ≡ 2 then x² ≡ 4 ≡ 1. So x² is a multiple of 3 only when x is, giving 3 | x² ⟹ 3 | x. Bottom, the proof by contradiction: (1) suppose √3 = a/b with gcd(a,b)=1; (2) then a² = 3b², so 3 | a²; (3) by the lemma 3 | a, write a = 3c; (4) then 9c² = 3b², so b² = 3c², so 3 | b²; (5) by the lemma 3 | b; (6) but then 3 divides both a and b, contradicting gcd(a,b)=1. Therefore √3 is irrational.")
+
+**Theorem.** $ \sqrt 3 $ is irrational.
+
+**Proof.** Suppose, for contradiction, that $ \sqrt 3 $ is rational. Then we may write it in lowest terms,
+
+$$$
+\sqrt 3 = \frac{a}{b}, \qquad a, b \in \mathbb{Z},\ b \ne 0,\ \gcd(a,b) = 1.
+$$$
+
+Squaring both sides and clearing the denominator:
+
+$$$
+3 = \frac{a^2}{b^2} \quad\Longrightarrow\quad a^2 = 3\,b^2.
+$$$
+
+Thus $ 3 \mid a^2 $, and by the lemma $ 3 \mid a $. Write $ a = 3c $ for some integer $ c $. Substituting,
+
+$$$
+(3c)^2 = 3\,b^2 \quad\Longrightarrow\quad 9c^2 = 3\,b^2 \quad\Longrightarrow\quad b^2 = 3\,c^2.
+$$$
+
+So $ 3 \mid b^2 $, and by the lemma again $ 3 \mid b $. But now $ 3 $ divides *both* $ a $ and $ b $, so $ \gcd(a,b) \ge 3 $ — contradicting $ \gcd(a,b) = 1 $.
+
+The assumption that $ \sqrt 3 $ is rational is therefore false, so $ \sqrt 3 $ is irrational. $ \blacksquare $
+
+## Remark — Where the Argument Differs From $ \sqrt 2 $
+
+Structurally the proof is *identical* to the $ \sqrt2 $ argument — only the number $ 3 $ plays the role of $ 2 $. The one place care is needed is the lemma. For $ \sqrt2 $ the lemma "$ 2 \mid x^2 \Rightarrow 2 \mid x $" is the parity statement of Problem 3, proved by writing an odd $ x = 2k+1 $. For $ \sqrt3 $ the analogous move is to check the *three* residues mod $ 3 $, as in the table: $ x^2 $ is never $ \equiv 2 \pmod 3 $, and is $ \equiv 0 $ only when $ x \equiv 0 $. The residue-checking method scales to any prime and is the concrete engine behind the general Problem 4 lemma.
+
+## Remark — Why "Lowest Terms" Is the Trap That Springs
+
+The contradiction is powered entirely by the assumption $ \gcd(a,b) = 1 $. The algebra forces $ 3 $ to divide both $ a $ and $ b $, which is impossible for a *reduced* fraction. This "infinite descent in one step" is the heart of the method: if $ \sqrt3 = a/b $ existed, then $ a/3 $ and $ b/3 $ would give a *smaller* representation $ \sqrt3 = (a/3)/(b/3) $, and one could repeat forever — impossible for positive integers. Insisting on lowest terms at the outset packages that infinite regress into a single, clean contradiction.
+
+## Remark — The Non-Square Modulus Would Fail
+
+It is worth seeing why the same script does *not* prove "$ \sqrt4 $ is irrational" (it had better not — $ \sqrt4 = 2 $). Rerunning with $ 4 $: from $ a^2 = 4b^2 $ we get $ 4 \mid a^2 $, but the lemma "$ 4 \mid x^2 \Rightarrow 4 \mid x $" is **false** ($ x = 2 $ gives $ 4 \mid 4 $ yet $ 4 \nmid 2 $). The chain breaks at the first step. This is exactly the point of Problem 4: the argument needs a *prime* (or, more generally, a non-square with some prime to an odd power). Since $ 3 $ is prime, the lemma holds and $ \sqrt3 $ is irrational; since $ 4 = 2^2 $ is a perfect square, it isn't.
+
+## Remark — A One-Line Factorization Proof
+
+For those who prefer the prime-factorization viewpoint (Problem 1.5.3), here is the whole argument compressed. In $ a^2 = 3b^2 $, count the exponent of the prime $ 3 $ on each side. On the left, $ a^2 $ has an **even** exponent of $ 3 $ (squaring doubles it). On the right, $ 3b^2 $ has an **odd** exponent of $ 3 $ (an even exponent from $ b^2 $, plus one more from the explicit factor $ 3 $). An integer cannot have both an even and an odd exponent of $ 3 $ in its unique factorization — contradiction. The same parity-of-exponent clash proves $ \sqrt n $ irrational for every non-square $ n $.

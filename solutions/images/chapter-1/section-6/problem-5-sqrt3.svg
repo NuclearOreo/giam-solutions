@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" width="720" height="500" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="500" fill="white"/>
+
+  <text x="360" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">The lemma for p = 3: a square is divisible by 3 only when its root is. Check all residues mod 3.</text>
+
+  <!-- residue table -->
+  <g text-anchor="middle" font-size="13.5">
+    <text x="200" y="64" font-weight="bold" fill="#222">if  x ≡ … (mod 3)</text>
+    <text x="420" y="64" font-weight="bold" fill="#222">then  x² ≡ … (mod 3)</text>
+    <text x="600" y="64" font-weight="bold" fill="#222">3 | x² ?</text>
+  </g>
+  <line x1="60" y1="74" x2="672" y2="74" stroke="#999" stroke-width="0.8"/>
+  <g text-anchor="middle" font-size="14">
+    <rect x="60" y="84" width="612" height="30" fill="#eef5ee"/>
+    <text x="200" y="104">0   (so 3 | x)</text>
+    <text x="420" y="104">0² = 0</text>
+    <text x="600" y="104" fill="#1b5e20" font-weight="bold">yes</text>
+
+    <text x="200" y="140">1</text>
+    <text x="420" y="140">1² = 1</text>
+    <text x="600" y="140" fill="#b0582a">no</text>
+
+    <text x="200" y="172">2</text>
+    <text x="420" y="172">2² = 4 ≡ 1</text>
+    <text x="600" y="172" fill="#b0582a">no</text>
+  </g>
+  <line x1="60" y1="184" x2="672" y2="184" stroke="#999" stroke-width="0.8"/>
+  <text x="360" y="208" font-size="13" font-style="italic" fill="#666" text-anchor="middle">x² is a multiple of 3 only in the top row, where x itself is a multiple of 3.  Hence  3 | x²  ⟹  3 | x.</text>
+
+  <!-- the proof flow -->
+  <text x="360" y="244" font-size="15" font-weight="bold" fill="#222" text-anchor="middle">Proof that √3 is irrational (by contradiction)</text>
+
+  <g font-size="13" fill="#333">
+    <text x="60" y="278">1.  Suppose not:  √3 = a/b  with  gcd(a, b) = 1  (lowest terms).</text>
+    <text x="60" y="308">2.  Square and clear:  3 = a²/b²  ⟹  a² = 3b².   So  3 | a².</text>
+    <text x="60" y="338">3.  By the lemma,  3 | a.   Write  a = 3c.</text>
+    <text x="60" y="368">4.  Substitute:  (3c)² = 3b²  ⟹  9c² = 3b²  ⟹  b² = 3c².   So  3 | b².</text>
+    <text x="60" y="398">5.  By the lemma again,  3 | b.</text>
+    <text x="60" y="428">6.  But then  3 | a  and  3 | b, so  gcd(a, b) ≥ 3 — contradicting step 1.</text>
+  </g>
+
+  <rect x="150" y="448" width="420" height="38" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="360" y="472" font-size="15" text-anchor="middle" fill="#1b5e20" font-weight="bold">Contradiction ⟹ √3 is irrational.  ∎</text>
+</svg>

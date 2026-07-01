@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 560" width="720" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="560" fill="white"/>
+
+  <text x="360" y="26" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Run the Euclidean algorithm on the irrational: its quotients give a continued fraction, whose</text>
+  <text x="360" y="44" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">truncations (convergents) are the best rational approximations. Each one alternates over / under the true value.</text>
+
+  <!-- Four blocks. Each: name+value, CF, convergent list with errors, boxed pick. -->
+
+  <!-- ===== sqrt2 ===== -->
+  <g>
+    <rect x="24" y="60" width="672" height="106" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="84" font-size="14" font-weight="bold" fill="#222">√2 = 1.41421356…</text>
+    <text x="230" y="84" font-size="12.5" fill="#555">continued fraction  [1; 2, 2, 2, 2, …]  (period 2̄)</text>
+    <text x="40" y="112" font-size="12.5" fill="#333">convergents:  1,  3/2,  7/5,  17/12,  41/29,  <tspan fill="#2a5db0" font-weight="bold">99/70</tspan>,  <tspan fill="#1b5e20" font-weight="bold">577/408</tspan></text>
+    <text x="40" y="136" font-size="12" fill="#666">99/70 = 1.4142857…  (error ≈ +7×10⁻⁵)</text>
+    <text x="40" y="156" font-size="12" fill="#666">577/408 = 1.41421569…  (error ≈ +2×10⁻⁶)</text>
+    <rect x="470" y="120" width="206" height="38" fill="#eef5ee" stroke="#bcd9bc"/>
+    <text x="573" y="144" font-size="15" text-anchor="middle" fill="#1b5e20"><tspan font-weight="bold">√2 ≈ 577/408</tspan></text>
+  </g>
+
+  <!-- ===== sqrt3 ===== -->
+  <g>
+    <rect x="24" y="176" width="672" height="106" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="200" font-size="14" font-weight="bold" fill="#222">√3 = 1.73205081…</text>
+    <text x="230" y="200" font-size="12.5" fill="#555">continued fraction  [1; 1, 2, 1, 2, …]  (period 1,2‾)</text>
+    <text x="40" y="228" font-size="12.5" fill="#333">convergents:  1,  2,  5/3,  7/4,  19/11,  26/15,  71/41,  <tspan fill="#1b5e20" font-weight="bold">97/56</tspan></text>
+    <text x="40" y="252" font-size="12" fill="#666">71/41 = 1.7317073…  (error ≈ −3×10⁻⁴)</text>
+    <text x="40" y="272" font-size="12" fill="#666">97/56 = 1.7321429…  (error ≈ +9×10⁻⁵)</text>
+    <rect x="470" y="236" width="206" height="38" fill="#eef5ee" stroke="#bcd9bc"/>
+    <text x="573" y="260" font-size="15" text-anchor="middle" fill="#1b5e20"><tspan font-weight="bold">√3 ≈ 97/56</tspan></text>
+  </g>
+
+  <!-- ===== sqrt5 ===== -->
+  <g>
+    <rect x="24" y="292" width="672" height="106" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="316" font-size="14" font-weight="bold" fill="#222">√5 = 2.23606798…</text>
+    <text x="230" y="316" font-size="12.5" fill="#555">continued fraction  [2; 4, 4, 4, 4, …]  (period 4̄)</text>
+    <text x="40" y="344" font-size="12.5" fill="#333">convergents:  2,  9/4,  38/17,  <tspan fill="#2a5db0" font-weight="bold">161/72</tspan>,  <tspan fill="#1b5e20" font-weight="bold">682/305</tspan></text>
+    <text x="40" y="368" font-size="12" fill="#666">161/72 = 2.2361111…  (error ≈ +4×10⁻⁵)</text>
+    <text x="40" y="388" font-size="12" fill="#666">682/305 = 2.23606557…  (error ≈ −2×10⁻⁶)</text>
+    <rect x="470" y="352" width="206" height="38" fill="#eef5ee" stroke="#bcd9bc"/>
+    <text x="573" y="376" font-size="15" text-anchor="middle" fill="#1b5e20"><tspan font-weight="bold">√5 ≈ 682/305</tspan></text>
+  </g>
+
+  <!-- ===== e ===== -->
+  <g>
+    <rect x="24" y="408" width="672" height="112" fill="#fafafa" stroke="#ddd"/>
+    <text x="40" y="432" font-size="14" font-weight="bold" fill="#222">e = 2.71828183…</text>
+    <text x="230" y="432" font-size="12.5" fill="#555">continued fraction  [2; 1, 2, 1, 1, 4, 1, 1, 6, …]  (pattern, not periodic)</text>
+    <text x="40" y="460" font-size="12.5" fill="#333">convergents:  2,  3,  8/3,  11/4,  19/7,  87/32,  106/39,  <tspan fill="#1b5e20" font-weight="bold">193/71</tspan></text>
+    <text x="40" y="484" font-size="12" fill="#666">87/32 = 2.71875…  (error ≈ +5×10⁻⁴)</text>
+    <text x="40" y="504" font-size="12" fill="#666">193/71 = 2.7183099…  (error ≈ +3×10⁻⁵)</text>
+    <rect x="470" y="468" width="206" height="38" fill="#eef5ee" stroke="#bcd9bc"/>
+    <text x="573" y="492" font-size="15" text-anchor="middle" fill="#1b5e20"><tspan font-weight="bold">e ≈ 193/71</tspan></text>
+  </g>
+
+  <text x="360" y="542" font-size="11" font-style="italic" fill="#888" text-anchor="middle">The famous 22/7 ≈ π works the same way — it is the convergent [3; 7] of π = [3; 7, 15, 1, 292, …].</text>
+</svg>

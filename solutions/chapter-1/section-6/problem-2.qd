@@ -1,0 +1,79 @@
+.docname {Solution — GIAM 1.6 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.6 Problem 2
+
+## Problem
+
+Base-$ n $ notation extends to real numbers by adding digits after a "decimal" point: e.g. $ 1.1011_2 = 1\cdot 2^0 + 1\cdot 2^{-1} + 0\cdot 2^{-2} + 1\cdot 2^{-3} + 1\cdot 2^{-4} = 1\tfrac{11}{16} $. Consider the binary number
+
+$$$
+x = .1010010001000010000010000001\ldots
+$$$
+
+Is this number rational or irrational? Why?
+
+## Answer
+
+$$$
+\boxed{\;x \text{ is } \textbf{irrational}.\;}
+$$$
+
+**Why:** its binary expansion never terminates and never becomes periodic — and a real number is rational *if and only if* its base-$ b $ expansion is eventually periodic. The runs of $ 0 $'s between the $ 1 $'s keep growing, so no repeating block can ever form.
+
+## Spotting the Pattern
+
+Break the string at each $ 1 $:
+
+$$$
+x = .\underbrace{1}_{}\,\underbrace{01}_{}\,\underbrace{001}_{}\,\underbrace{0001}_{}\,\underbrace{00001}_{}\,\underbrace{000001}_{}\,\underbrace{0000001}_{}\ldots
+$$$
+
+The $ k $-th block is $ (k-1) $ zeros followed by a $ 1 $, so the $ 1 $'s land at positions
+
+$$$
+1,\; 3,\; 6,\; 10,\; 15,\; 21,\; 28,\; \ldots
+$$$
+
+after the point — the **triangular numbers** $ T_k = \dfrac{k(k+1)}{2} $. Equivalently,
+
+$$$
+x = \sum_{k=1}^{\infty} 2^{-T_k} = 2^{-1} + 2^{-3} + 2^{-6} + 2^{-10} + 2^{-15} + \cdots
+$$$
+
+The gap (number of $ 0 $'s) before the $ k $-th one is $ k-1 $: the gaps run $ 1, 2, 3, 4, 5, 6, \ldots $ and **grow without bound**.
+
+## The Rationality Criterion
+
+!(98%)[The 1's at triangular positions with growing zero-runs, versus the repeating expansions of rationals](problem-2-binary.svg "The binary digits with 1's highlighted at positions 1,3,6,10,15,21,28 — the triangular numbers — and the runs of zeros labelled 1,2,3,4,5,6, strictly increasing. The key criterion: a real number is rational iff its base-b expansion terminates or is eventually periodic. Rationals repeat: 1/3 = .(01) period 2, 1/5 = .(0011) period 4, 1/7 = .(001) period 3, because long division has only finitely many remainders. Our number's gaps grow without bound, so it is never periodic and therefore irrational.")
+
+The decisive fact — true in *every* base $ b \ge 2 $ — is:
+
+$$$
+\text{a real number is rational} \quad\Longleftrightarrow\quad \text{its base-}b\text{ expansion terminates or is eventually periodic.}
+$$$
+
+Our $ x $ does not terminate (there are infinitely many $ 1 $'s). And it is **not eventually periodic**: a periodic tail would repeat some block of fixed length $ L $ forever, so the gaps between consecutive $ 1 $'s would be bounded by $ L $. But our gaps $ 1, 2, 3, \ldots $ exceed every bound. Hence no periodic tail exists, and $ x $ is irrational. $ \blacksquare $
+
+## Remark — Why Rational $ \Rightarrow $ Eventually Periodic
+
+The "$ \Rightarrow $" direction is just long division. To expand $ p/q $ in base $ b $, repeatedly multiply the remainder by $ b $ and divide by $ q $; each step's remainder lies in $ \{0, 1, \ldots, q-1\} $ — only $ q $ possibilities. By the pigeonhole principle a remainder must **recur** within $ q $ steps, and once a remainder repeats the whole digit sequence repeats. So the period length is at most $ q $. For example $ 1/3 $ in binary cycles with period $ 2 $ ($ .\overline{01} $), $ 1/7 $ with period $ 3 $ ($ .\overline{001} $), $ 1/5 $ with period $ 4 $ ($ .\overline{0011} $). A number whose digits refuse to settle into *any* such cycle therefore cannot be a fraction.
+
+## Remark — Why Eventually Periodic $ \Rightarrow $ Rational
+
+The converse is a geometric-series computation. An eventually periodic expansion is a terminating part plus a repeating block, and a pure repeating block of length $ L $ is a geometric series that sums to a fraction. In base ten this is the familiar $ 0.\overline{d_1\cdots d_L} = \frac{d_1\cdots d_L}{\,\underbrace{9\cdots 9}_{L}\,} $; in base $ b $ the denominator is $ b^{L}-1 $. For instance $ .\overline{01}_2 = \frac{1}{2^2 - 1} = \frac{1}{3} $, matching $ 1/3 $ above. Any eventually periodic string is thus a rational. Together with the previous remark this proves the biconditional the whole argument rests on.
+
+## Remark — The Same Number Written in Base Ten Is Still Irrational
+
+Irrationality is a property of the *number*, not of the base you happen to write it in. If $ x $ were rational it would be eventually periodic in **every** base; being non-periodic in binary already settles it. Converting $ x $ to base ten would produce some other messy non-repeating string, but the conclusion is unchanged. This is worth stressing because the digits look base-specific — yet "rational or irrational" is base-independent.
+
+## Remark — A Cousin of Liouville's Number
+
+This construction — placing $ 1 $'s at a sparse, ever-thinning set of positions — is the classic recipe for building irrational (and even *transcendental*) numbers by hand. Liouville's famous constant $ \sum_k 10^{-k!} = 0.11000100000000000000000100\ldots $ uses the factorials $ k! $ (gaps growing even faster) and was the first number *proved* transcendental. Our $ x = \sum_k 2^{-T_k} $ uses the triangular numbers; the growing gaps guarantee non-periodicity in exactly the same spirit. It stands in deliberate contrast to Problem 1: there we *approximated* irrationals like $ \sqrt2 $ by rationals, here we *manufacture* an irrational outright — and it neatly previews the section's headline result, the irrationality of $ \sqrt 2 $, proved on the following page.

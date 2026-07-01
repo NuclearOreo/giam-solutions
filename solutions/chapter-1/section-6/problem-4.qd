@@ -1,0 +1,70 @@
+.docname {Solution — GIAM 1.6 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.6 Problem 4
+
+## Problem
+
+The proof that $ \sqrt 2 $ is irrational can be generalized to show that $ \sqrt p $ is irrational for every prime number $ p $. What statement would be equivalent to the lemma about the parity of $ x $ and $ x^2 $ in such a generalization?
+
+## Answer
+
+The parity lemma says "$ x^2 $ even $ \Rightarrow x $ even," which is just the case $ p = 2 $ of divisibility. The generalization replaces "even" (divisible by $ 2 $) with "divisible by $ p $":
+
+$$$
+\boxed{\;\text{If } p \mid x^2, \text{ then } p \mid x. \qquad (p \text{ prime})\;}
+$$$
+
+In words: **if a prime $ p $ divides $ x^2 $, then $ p $ divides $ x $.** Taking $ p = 2 $ recovers "$ x^2 $ even $ \Rightarrow x $ even" exactly, since "even" is precisely "divisible by $ 2 $."
+
+## The Analogy Term-by-Term
+
+The word "even" is nothing but shorthand for "divisible by $ 2 $." So every clause of the original lemma has a direct translation:
+
+!(98%)[Side-by-side of the parity lemma (p=2) and its general-prime version, with the proof of the general lemma](problem-4-analogy.svg "Left column, the case p=2 (parity): the lemma 'x squared even implies x even', i.e. 2 divides x squared implies 2 divides x; used in the proof that root 2 = a/b gives a squared = 2 b squared, so a is even, ..., b is even, contradicting gcd(a,b)=1. Right column, general prime p: the equivalent lemma 'p divides x squared implies p divides x'; used in root p = a/b gives a squared = p b squared, so p divides a, ..., p divides b, contradicting gcd(a,b)=1. Same skeleton — only 2 becomes p and even becomes divisible by p. Proof of the general lemma: the exponent of p in x is e, squaring doubles it to 2e, and p divides x squared iff 2e at least 1 iff e at least 1 iff p divides x. This is Euclid's Lemma.")
+
+| parity lemma ($ p = 2 $) | general prime $ p $ |
+| :---                      | :---                 |
+| $ x $ is even             | $ p \mid x $          |
+| $ x^2 $ is even           | $ p \mid x^2 $        |
+| $ x^2 $ even $ \Rightarrow x $ even | $ p \mid x^2 \Rightarrow p \mid x $ |
+| $ \sqrt2 = a/b \Rightarrow a^2 = 2b^2 $ | $ \sqrt p = a/b \Rightarrow a^2 = p\,b^2 $ |
+
+## Why the General Lemma Is True
+
+The cleanest proof uses exponents in the prime factorization (Problem 1.5.3). Let $ e $ be the exponent of the prime $ p $ in the factorization of $ x $. Squaring **doubles** every exponent, so the exponent of $ p $ in $ x^2 $ is $ 2e $. Then
+
+$$$
+p \mid x^2 \iff 2e \ge 1 \iff e \ge 1 \iff p \mid x.
+$$$
+
+So not only does $ p \mid x^2 \Rightarrow p \mid x $ — the two are actually *equivalent*. This is the same one-line argument that handled parity, with $ 2 $ replaced by $ p $. Equivalently, the statement is **Euclid's Lemma**: if a prime $ p $ divides a product $ a\,b $ then $ p \mid a $ or $ p \mid b $; applied to $ x\cdot x $ it gives $ p \mid x $.
+
+## How It Powers the $ \sqrt p $ Proof
+
+With the lemma in hand the irrationality proof runs exactly parallel to the $ \sqrt2 $ case. Suppose $ \sqrt p = a/b $ in lowest terms, so $ \gcd(a,b) = 1 $. Squaring and clearing gives
+
+$$$
+a^2 = p\,b^2.
+$$$
+
+Then $ p \mid a^2 $, so by the lemma $ p \mid a $; write $ a = p c $. Substituting, $ p^2 c^2 = p\,b^2 $, i.e. $ b^2 = p\,c^2 $, so $ p \mid b^2 $ and by the lemma again $ p \mid b $. But now $ p $ divides both $ a $ and $ b $, contradicting $ \gcd(a,b) = 1 $. Hence $ \sqrt p $ is irrational. $ \blacksquare $
+
+## Remark — Where "$ p $ Is Prime" Is Actually Used
+
+The lemma is *false* for composite moduli, and the $ \sqrt p $ proof breaks down for exactly that reason. Take the composite $ n = 4 $ and $ x = 2 $: then $ n \mid x^2 $ (since $ 4 \mid 4 $) but $ n \nmid x $ (since $ 4 \nmid 2 $). Correspondingly $ \sqrt 4 = 2 $ *is* rational. The exponent argument shows why: for a prime $ p $, "$ p \mid x^2 $" reads off a *single* exponent ($ 2e \ge 1 \iff e \ge 1 $), but for a composite the condition mixes several primes' exponents and the clean equivalence fails. Primeness is precisely what makes divisibility of $ x^2 $ transfer to $ x $.
+
+## Remark — What Survives for Non-Squares in General
+
+The same machinery shows $ \sqrt n $ is irrational for *every* integer $ n $ that is not a perfect square — not just primes. In the factorization $ n = \prod p_i^{a_i} $, $ n $ is a perfect square iff every $ a_i $ is even; if some $ a_i $ is odd, the "double the exponents" bookkeeping in $ a^2 = n\,b^2 $ cannot balance (the left side has all-even exponents, the right an odd one), giving a contradiction. So $ \sqrt2, \sqrt3, \sqrt5, \sqrt6, \sqrt7, \sqrt8, \sqrt{10}, \dots $ are all irrational, while $ \sqrt1, \sqrt4, \sqrt9, \dots $ are the rational exceptions. The prime case of this problem is the cleanest instance, since a single prime automatically has an odd exponent (namely $ 1 $).
+
+## Remark — The Lemma Is the Heart of Unique Factorization
+
+"$ p \mid x^2 \Rightarrow p \mid x $" and its parent Euclid's Lemma ($ p \mid ab \Rightarrow p\mid a $ or $ p\mid b $) are not mere technical conveniences — they are the engine behind the **Fundamental Theorem of Arithmetic**. The *uniqueness* of prime factorization is proved precisely by repeated use of Euclid's Lemma. So the little fact this problem isolates is the same fact that guarantees every integer factors into primes in only one way, and it is why the exponent-based reasoning used throughout Section 1.5 (gcd, lcm, and now irrationality) is legitimate in the first place. A humble lemma about parity, generalized, turns out to sit at the foundation of number theory.

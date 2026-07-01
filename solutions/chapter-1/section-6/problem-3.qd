@@ -1,0 +1,74 @@
+.docname {Solution — GIAM 1.6 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.6 Problem 3
+
+## Problem
+
+If a number $ x $ is even, it is easy to show that its square $ x^2 $ is even. The lemma that went unproved in this section asks us to start with a square $ x^2 $ that is even and deduce that the unsquared number $ x $ is even. Perform some numerical experimentation to check whether this assertion is reasonable. Can you give an argument that would prove it?
+
+## The Claim (Lemma 1.6.2)
+
+$$$
+\boxed{\;\text{If } x^2 \text{ is even, then } x \text{ is even.}\;}
+$$$
+
+Equivalently: **the parity of $ x^2 $ always equals the parity of $ x $** — a square is even exactly when its root is even.
+
+## Numerical Experimentation
+
+Tabulate $ x $ and $ x^2 $ for the first several integers and record the parities:
+
+!(98%)[Table of x, x-squared, and their parities for x = 1..14, showing the parities always agree](problem-3-parity.svg "For x from 1 to 14: the parity of x-squared always matches the parity of x. Even x (2,4,6,8,10,12,14) give even squares (4,16,36,64,100,144,196); odd x (1,3,5,7,9,11,13) give odd squares (1,9,25,49,81,121,169). So x-squared is even exactly when x is even. The proof by contrapositive: x odd means x = 2k+1, so x-squared = 4k²+4k+1 = 2(2k²+2k)+1, which is odd; the contrapositive of 'x odd ⟹ x-squared odd' is 'x-squared even ⟹ x even'.")
+
+| $ x $ | $ x^2 $ | $ x $ | $ x^2 $ | conclusion |
+| :---: | :---:   | :---: | :---:   | :---       |
+| $ 2 $ | $ 4 $   | even  | even    | even $ \to $ even ✓ |
+| $ 3 $ | $ 9 $   | odd   | odd     | odd $ \to $ odd ✓ |
+| $ 6 $ | $ 36 $  | even  | even    | even $ \to $ even ✓ |
+| $ 7 $ | $ 49 $  | odd   | odd     | odd $ \to $ odd ✓ |
+| $ 11 $| $ 121 $ | odd   | odd     | odd $ \to $ odd ✓ |
+| $ 12 $| $ 144 $ | even  | even    | even $ \to $ even ✓ |
+
+In every case an even square comes from an even $ x $, and we *never* see an even square produced by an odd $ x $. The assertion looks entirely reasonable — no counterexample appears.
+
+## The Proof — by Contrapositive
+
+Numerical checking builds confidence but proves nothing (there are infinitely many integers). For a proof, the direct route — "assume $ x^2 $ even, show $ x $ even" — is awkward, so we prove the logically equivalent **contrapositive**:
+
+$$$
+\text{if } x \text{ is } \textbf{odd}, \text{ then } x^2 \text{ is } \textbf{odd}.
+$$$
+
+Suppose $ x $ is odd. Then $ x = 2k + 1 $ for some integer $ k $. Squaring,
+
+$$$
+x^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2\underbrace{(2k^2 + 2k)}_{\text{an integer}} + 1,
+$$$
+
+which is $ 2\cdot(\text{integer}) + 1 $ — odd. So an odd $ x $ always has an odd square.
+
+The statement "$ x $ odd $ \Rightarrow x^2 $ odd" and its contrapositive "$ x^2 $ even $ \Rightarrow x $ even" are logically the same statement, so we have proved the lemma. $ \blacksquare $
+
+## Remark — Why the Contrapositive Instead of a Direct Proof
+
+A direct attack ("$ x^2 = 2m $, therefore $ x = ? $") stalls: from $ x^2 = 2m $ there is no algebraic way to *extract* $ x $ and read off its parity. The contrapositive flips the problem to start from $ x $ odd, where we have an explicit handle — $ x = 2k+1 $ — that we can square and simplify directly. This is the payoff of contraposition: $ P \Rightarrow Q $ and $ (\lnot Q) \Rightarrow (\lnot P) $ are equivalent, so we are free to prove whichever direction gives us something concrete to compute with. Here, "not even $ = $ odd" hands us a formula, so the contrapositive is the easy side.
+
+## Remark — Experimentation vs. Proof
+
+The problem deliberately pairs *experimentation* with *proof* to make a methodological point. The table checks $ 14 $ cases and finds no counterexample — genuinely useful for spotting whether a claim is even *plausible* before investing in a proof. But no finite table can establish a statement about *all* integers: a pattern that holds for the first billion cases can still fail later (many famous conjectures do). The algebraic argument, by contrast, covers every odd $ x $ at once through the single symbol $ k $. Experimentation suggests; only proof settles.
+
+## Remark — The Same Fact via Prime Factorization
+
+There is a second proof, straight from Problem 3 of the previous section. In the factorization of $ x $, let the exponent of the prime $ 2 $ be $ e $. Squaring *doubles* every exponent, so the exponent of $ 2 $ in $ x^2 $ is $ 2e $. Now $ x $ is even $ \iff e \ge 1 $, and $ x^2 $ is even $ \iff 2e \ge 1 \iff e \ge 1 $. The two conditions are identical, so $ x^2 $ even $ \iff x $ even. This viewpoint also explains the general pattern: for any prime $ p $, $ p \mid x^2 \iff p \mid x $, because a prime dividing a square must divide the base — the exact fact the $ \sqrt2 $ proof needs.
+
+## Remark — This Is the Missing Gear in the $ \sqrt2 $ Proof
+
+This lemma is not an idle curiosity; it is the load-bearing step in the section's proof that $ \sqrt2 $ is irrational. There one writes $ \sqrt2 = a/b $ in lowest terms, squares to get $ a^2 = 2b^2 $, and concludes $ a^2 $ is even. To continue — "so $ a $ is even" — one needs *exactly* this lemma. Then $ a = 2c $ gives $ 4c^2 = 2b^2 $, i.e. $ b^2 = 2c^2 $, so $ b^2 $ is even and (lemma again) $ b $ is even. But now $ a $ and $ b $ are both even, contradicting "lowest terms" ($ \gcd(a,b)=1 $). The whole irrationality argument hinges on being able to pass from "$ x^2 $ even" to "$ x $ even," which is why the text flagged it as the lemma that had gone unproved.
