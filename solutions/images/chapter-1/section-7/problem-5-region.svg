@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 560" width="660" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="660" height="560" fill="white"/>
+
+  <text x="330" y="28" font-size="14" font-style="italic" fill="#444" text-anchor="middle">The set of points strictly above the parabola y = x². The curve itself is dashed — it is not included.</text>
+
+  <!-- shaded region: above the parabola, clipped to plot box -->
+  <!-- region = plot-box top minus the area under parabola. Build polygon: parabola points then across top -->
+  <defs>
+    <clipPath id="box"><rect x="60" y="60" width="540" height="480"/></clipPath>
+  </defs>
+  <g clip-path="url(#box)">
+    <!-- fill everything above parabola: polygon from left-top, down parabola, to right-top -->
+    <polygon fill="#d7e8f7" stroke="none" points="
+      105.0,82.5 114.0,112.9 123.0,142.0 132.0,169.9 141.0,196.6 150.0,222.0 159.0,246.2 168.0,269.1 177.0,290.8 186.0,311.3 195.0,330.5 204.0,348.5 213.0,365.2 222.0,380.7 231.0,395.0 240.0,408.0 249.0,419.8 258.0,430.3 267.0,439.6 276.0,447.7 285.0,454.5 294.0,460.1 303.0,464.4 312.0,467.5 321.0,469.4 330.0,470.0 339.0,469.4 348.0,467.5 357.0,464.4 366.0,460.1 375.0,454.5 384.0,447.7 393.0,439.6 402.0,430.3 411.0,419.8 420.0,408.0 429.0,395.0 438.0,380.7 447.0,365.2 456.0,348.5 465.0,330.5 474.0,311.3 483.0,290.8 492.0,269.1 501.0,246.2 510.0,222.0 519.0,196.6 528.0,169.9 537.0,142.0 546.0,112.9 555.0,82.5
+      600,60 60,60"/>
+  </g>
+
+  <!-- axes -->
+  <g stroke="#333" stroke-width="1.4">
+    <line x1="60" y1="470" x2="600" y2="470"/> <!-- x-axis -->
+    <line x1="330" y1="60" x2="330" y2="540"/> <!-- y-axis -->
+  </g>
+  <!-- arrowheads -->
+  <path d="M600,470 l-10,-4 l0,8 z" fill="#333"/>
+  <path d="M330,60 l-4,10 l8,0 z" fill="#333"/>
+  <text x="612" y="475" font-size="14" font-style="italic" fill="#333">x</text>
+  <text x="338" y="72" font-size="14" font-style="italic" fill="#333">y</text>
+
+  <!-- x ticks at -2,-1,1,2 (xs=90) -->
+  <g stroke="#333" stroke-width="1" font-size="12" fill="#333" text-anchor="middle">
+    <line x1="150" y1="466" x2="150" y2="474"/><text x="150" y="490">−2</text>
+    <line x1="240" y1="466" x2="240" y2="474"/><text x="240" y="490">−1</text>
+    <line x1="420" y1="466" x2="420" y2="474"/><text x="420" y="490">1</text>
+    <line x1="510" y1="466" x2="510" y2="474"/><text x="510" y="490">2</text>
+  </g>
+  <!-- y ticks at 1..6 (ys=62): y=1->408, 2->346,3->284,4->222,5->160,6->98 -->
+  <g stroke="#333" stroke-width="1" font-size="12" fill="#333" text-anchor="end">
+    <line x1="326" y1="408" x2="334" y2="408"/><text x="322" y="412">1</text>
+    <line x1="326" y1="346" x2="334" y2="346"/><text x="322" y="350">2</text>
+    <line x1="326" y1="284" x2="334" y2="284"/><text x="322" y="288">3</text>
+    <line x1="326" y1="222" x2="334" y2="222"/><text x="322" y="226">4</text>
+    <line x1="326" y1="160" x2="334" y2="160"/><text x="322" y="164">5</text>
+    <line x1="326" y1="98"  x2="334" y2="98"/><text x="322" y="102">6</text>
+  </g>
+
+  <!-- the parabola, dashed (boundary excluded) -->
+  <polyline fill="none" stroke="#8a3b12" stroke-width="2.4" stroke-dasharray="7 5" points="
+    105.0,82.5 114.0,112.9 123.0,142.0 132.0,169.9 141.0,196.6 150.0,222.0 159.0,246.2 168.0,269.1 177.0,290.8 186.0,311.3 195.0,330.5 204.0,348.5 213.0,365.2 222.0,380.7 231.0,395.0 240.0,408.0 249.0,419.8 258.0,430.3 267.0,439.6 276.0,447.7 285.0,454.5 294.0,460.1 303.0,464.4 312.0,467.5 321.0,469.4 330.0,470.0 339.0,469.4 348.0,467.5 357.0,464.4 366.0,460.1 375.0,454.5 384.0,447.7 393.0,439.6 402.0,430.3 411.0,419.8 420.0,408.0 429.0,395.0 438.0,380.7 447.0,365.2 456.0,348.5 465.0,330.5 474.0,311.3 483.0,290.8 492.0,269.1 501.0,246.2 510.0,222.0 519.0,196.6 528.0,169.9 537.0,142.0 546.0,112.9 555.0,82.5"/>
+  <text x="560" y="96" font-size="14" font-style="italic" fill="#8a3b12">y = x²</text>
+
+  <!-- region label -->
+  <text x="330" y="200" font-size="16" fill="#1a4a73" text-anchor="middle" font-weight="bold">y &gt; x²</text>
+  <text x="330" y="222" font-size="12.5" fill="#1a4a73" text-anchor="middle" font-style="italic">(shaded region — interior of the parabola)</text>
+
+  <!-- sample points -->
+  <!-- (0,2) in: 330,346 filled -->
+  <circle cx="330" cy="346" r="5" fill="#1b5e20"/>
+  <text x="342" y="342" font-size="12.5" fill="#1b5e20">(0, 2)  in</text>
+  <!-- (-1,3) in: 240,284 -->
+  <circle cx="240" cy="284" r="5" fill="#1b5e20"/>
+  <text x="150" y="280" font-size="12.5" fill="#1b5e20">(−1, 3)  in</text>
+  <!-- (0,0) on boundary: open circle -->
+  <circle cx="330" cy="470" r="5" fill="white" stroke="#8a3b12" stroke-width="1.8"/>
+  <text x="342" y="486" font-size="12.5" fill="#8a3b12">(0, 0)  on curve — excluded</text>
+  <!-- (1.5,1) below: 465,408 -->
+  <circle cx="465" cy="408" r="5" fill="#b0582a"/>
+  <text x="476" y="412" font-size="12.5" fill="#b0582a">(1.5, 1)  out</text>
+
+  <text x="330" y="536" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">A point (x, y) is in the relation exactly when it lies above the parabola: y &gt; x². Points on or below are excluded.</text>
+</svg>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 620" width="620" height="620" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="620" height="620" fill="white"/>
+
+  <text x="310" y="30" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Five outer tips A–E, five inner points F–J. Each of the 5 lines carries 4 collinear points.</text>
+
+  <!-- center (310,320), radius 250 for outer, inner ~ 250*0.382 -->
+  <!-- Outer tips: A=90, B=162, C=234, D=306, E=18. Screen y flips. -->
+  <!-- Compute: cx=310, cy=320, R=250 -->
+  <!-- A (0,1)->(310,70); B(-.951,.309)->(72,243); C(-.588,-.809)->(163,522); D(.588,-.809)->(457,522); E(.951,.309)->(548,243) -->
+  <!-- inner R'=250*0.382=95.5 ; F(.225,.309)->(366,243); G(-.225,.309)->(254,243); H(-.363,-.118)->(219,349); I(0,-.382)->(310,415); J(.363,-.118)->(401,349) -->
+
+  <!-- the 5 pentagram lines -->
+  <g stroke="#333" stroke-width="1.6" fill="none">
+    <line x1="310" y1="70"  x2="163" y2="522"/> <!-- A-C -->
+    <line x1="163" y1="522" x2="548" y2="243"/> <!-- C-E -->
+    <line x1="548" y1="243" x2="72"  y2="243"/> <!-- E-B -->
+    <line x1="72"  y1="243" x2="457" y2="522"/> <!-- B-D -->
+    <line x1="457" y1="522" x2="310" y2="70"/>  <!-- D-A -->
+  </g>
+
+  <!-- inner pentagon faint outline -->
+  <polygon points="366,243 254,243 219,349 310,415 401,349" fill="#f4f8f4" stroke="none" opacity="0.7"/>
+  <g stroke="#333" stroke-width="1.6" fill="none">
+    <line x1="310" y1="70"  x2="163" y2="522"/>
+    <line x1="163" y1="522" x2="548" y2="243"/>
+    <line x1="548" y1="243" x2="72"  y2="243"/>
+    <line x1="72"  y1="243" x2="457" y2="522"/>
+    <line x1="457" y1="522" x2="310" y2="70"/>
+  </g>
+
+  <!-- points -->
+  <!-- outer tips -->
+  <g>
+    <circle cx="310" cy="70"  r="6" fill="#8a3b12"/>
+    <circle cx="72"  cy="243" r="6" fill="#8a3b12"/>
+    <circle cx="163" cy="522" r="6" fill="#8a3b12"/>
+    <circle cx="457" cy="522" r="6" fill="#8a3b12"/>
+    <circle cx="548" cy="243" r="6" fill="#8a3b12"/>
+  </g>
+  <!-- inner points -->
+  <g>
+    <circle cx="366" cy="243" r="6" fill="#1b5e20"/>
+    <circle cx="254" cy="243" r="6" fill="#1b5e20"/>
+    <circle cx="219" cy="349" r="6" fill="#1b5e20"/>
+    <circle cx="310" cy="415" r="6" fill="#1b5e20"/>
+    <circle cx="401" cy="349" r="6" fill="#1b5e20"/>
+  </g>
+
+  <!-- labels: outer tips (offset outward) -->
+  <g font-size="18" font-weight="bold" fill="#8a3b12" text-anchor="middle">
+    <text x="310" y="54">A</text>
+    <text x="52"  y="235">B</text>
+    <text x="145" y="543">C</text>
+    <text x="475" y="543">D</text>
+    <text x="568" y="235">E</text>
+  </g>
+  <!-- labels: inner points (offset toward center-ish but readable) -->
+  <g font-size="15" font-weight="bold" fill="#1b5e20" text-anchor="middle">
+    <text x="384" y="232">F</text>
+    <text x="236" y="232">G</text>
+    <text x="198" y="352">H</text>
+    <text x="310" y="437">I</text>
+    <text x="422" y="352">J</text>
+  </g>
+
+  <!-- line legend at bottom -->
+  <g font-size="12.5" fill="#333">
+    <text x="60" y="578" font-weight="bold" fill="#222">The 5 lines (each 4 points, in order):</text>
+    <text x="60" y="598">A–G–H–C,   C–I–J–E,   E–F–G–B,   B–H–I–D,   D–J–F–A</text>
+  </g>
+</svg>

@@ -1,0 +1,71 @@
+.docname {Solution — GIAM 1.7 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 2
+
+## Problem
+
+The *domain* of a function (or binary relation) is the set of numbers appearing in the first coordinate; the *range* is the set of numbers appearing in the second coordinate. Consider the set $ \{0,1,2,3,4,5,6\} $ and the function $ f(x) = x^2 \pmod 7 $. Express this function as a relation by explicitly writing out the set of ordered pairs it contains. What is the range of this function?
+
+## Answer
+
+The function as a set of ordered pairs $ (x, f(x)) $:
+
+$$$
+\boxed{\; f = \{\,(0,0),\ (1,1),\ (2,4),\ (3,2),\ (4,2),\ (5,4),\ (6,1)\,\} \;}
+$$$
+
+and its range — the set of second coordinates — is
+
+$$$
+\boxed{\;\operatorname{range}(f) = \{0, 1, 2, 4\}.\;}
+$$$
+
+## The Computation
+
+Square each element of the domain and reduce modulo $ 7 $ (i.e. take the remainder after dividing by $ 7 $):
+
+| $ x $ | $ x^2 $ | $ x^2 \bmod 7 $ | pair |
+| :---: | :---:   | :---:            | :---: |
+| $ 0 $ | $ 0 $   | $ 0 $ | $ (0,0) $ |
+| $ 1 $ | $ 1 $   | $ 1 $ | $ (1,1) $ |
+| $ 2 $ | $ 4 $   | $ 4 $ | $ (2,4) $ |
+| $ 3 $ | $ 9 $   | $ 2 $ | $ (3,2) $ |
+| $ 4 $ | $ 16 $  | $ 2 $ | $ (4,2) $ |
+| $ 5 $ | $ 25 $  | $ 4 $ | $ (5,4) $ |
+| $ 6 $ | $ 36 $  | $ 1 $ | $ (6,1) $ |
+
+The **domain** is all seven first coordinates $ \{0,1,2,3,4,5,6\} $; the **range** is the set of distinct second coordinates, $ \{0,1,2,4\} $ — only four values, because several inputs share an output.
+
+## The Function as a Mapping
+
+!(88%)[Arrow diagram from the 7-element domain to the 4-element range, showing inputs that collapse together](problem-2-map.svg "An arrow diagram. On the left, the domain nodes 0,1,2,3,4,5,6; on the right, the range nodes 0,1,2,4. Arrows: 0→0, 1→1, 6→1, 2→4, 5→4, 3→2, 4→2. The pairs 1 and 6 both map to 1; 2 and 5 both map to 4; 3 and 4 both map to 2; only 0 maps alone (to 0). So the range {0,1,2,4} is the set of quadratic residues mod 7.")
+
+## Remark — Why the Range Is Smaller Than the Domain (Non-Injectivity)
+
+Seven inputs produce only four outputs, so $ f $ is **not injective** (not one-to-one): distinct inputs can share an output. The collapses are not random — they come from the symmetry $ x^2 \equiv (7-x)^2 \pmod 7 $, since $ (7-x)^2 = 49 - 14x + x^2 \equiv x^2 $. So the inputs pair up as
+
+$$$
+1 \leftrightarrow 6, \qquad 2 \leftrightarrow 5, \qquad 3 \leftrightarrow 4,
+$$$
+
+each pair landing on a common value ($ 1, 4, 2 $ respectively), while $ 0 $ is alone (it is its own "partner," $ 7-0 \equiv 0 $). That is exactly $ 3 $ pairs $ + 1 $ singleton $ = 4 $ outputs from $ 7 $ inputs.
+
+## Remark — The Range Is the Set of Quadratic Residues mod 7
+
+The nonzero outputs $ \{1,2,4\} $ are precisely the **quadratic residues** modulo $ 7 $ — the nonzero values that are perfect squares in modular arithmetic. For an odd prime $ p $ there are always exactly $ \tfrac{p-1}{2} $ nonzero quadratic residues; here $ \tfrac{7-1}{2} = 3 $, matching $ \{1,2,4\} $. The non-residues are the missing $ \{3,5,6\} $ — no square is ever congruent to $ 3 $, $ 5 $, or $ 6 $ mod $ 7 $. Including $ 0 $, the full range $ \{0,1,2,4\} $ has $ \tfrac{p-1}{2}+1 = 4 $ elements. This "roughly half of everything is a square" phenomenon is a cornerstone of number theory (it underlies quadratic reciprocity and much of modern cryptography).
+
+## Remark — Function-as-Relation, and the Vertical-Line Test
+
+Writing $ f $ out as the pair-set $ \{(0,0),(1,1),\dots\} $ is exactly the "function is a special relation" viewpoint the section describes. What makes this relation a **function** is that each domain element appears as a first coordinate *exactly once* — no input has two different outputs. That is the set-theoretic form of the vertical-line test: reading first coordinates as $ x $ and second as $ y $, no two pairs share an $ x $. Note the contrast with the *range*: outputs may repeat freely (and here they do), but inputs may not. A relation like $ \{(2,4),(2,5)\} $ would fail — the input $ 2 $ would have two outputs — so it would not be a function.
+
+## Remark — Domain, Range, and Codomain Are Different Things
+
+It is worth separating three ideas the problem's vocabulary can blur. The **domain** $ \{0,1,\dots,6\} $ is where inputs come from; the **range** (or image) $ \{0,1,2,4\} $ is the set of outputs actually achieved; and the **codomain** — the set outputs are *allowed* to fall in — here would naturally be all residues $ \{0,1,2,3,4,5,6\} $. The function is **onto** (surjective) only if range $ = $ codomain, which fails here since $ 3,5,6 $ are never hit. So $ f $ is neither injective nor surjective as a map $ \{0,\dots,6\}\to\{0,\dots,6\} $. GIAM's definition of range as "the numbers in the second coordinate" is precisely the *image* — the outputs that genuinely occur — which is why it can be a strict subset of the possible values.

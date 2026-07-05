@@ -1,0 +1,88 @@
+.docname {Solution — GIAM 1.7 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 1
+
+## Problem
+
+Consider the numbers from $ 1 $ to $ 10 $. Give the set of pairs of these numbers that corresponds to the divisibility relation.
+
+## Answer
+
+Writing the relation as the set of ordered pairs $ (a,b) $ for which $ a \mid b $ (read "$ a $ divides $ b $"), with $ a,b \in \{1,2,\dots,10\} $:
+
+$$$
+\begin{aligned}
+\mid \;=\; \{\,
+&(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10), \\
+&(2,2),(2,4),(2,6),(2,8),(2,10), \\
+&(3,3),(3,6),(3,9), \\
+&(4,4),(4,8),\; (5,5),(5,10),\; (6,6),\; (7,7),\; (8,8),\; (9,9),\; (10,10)
+\,\}.
+\end{aligned}
+$$$
+
+There are $ \boxed{27} $ pairs.
+
+## How the Pairs Are Found
+
+Following the textbook's own convention — recall the less-than relation on $ \{1,\dots,5\} $ was listed as the pairs whose *first* entry is smaller than the second — we include $ (a,b) $ exactly when the first number divides the second. Going divisor by divisor:
+
+| $ a $ | the $ b $ with $ a \mid b $ | count |
+| :---: | :---                          | :---: |
+| $ 1 $ | $ 1,2,3,4,5,6,7,8,9,10 $       | $ 10 $ |
+| $ 2 $ | $ 2,4,6,8,10 $                | $ 5 $  |
+| $ 3 $ | $ 3,6,9 $                     | $ 3 $  |
+| $ 4 $ | $ 4,8 $                       | $ 2 $  |
+| $ 5 $ | $ 5,10 $                      | $ 2 $  |
+| $ 6 $ | $ 6 $                         | $ 1 $  |
+| $ 7 $ | $ 7 $                         | $ 1 $  |
+| $ 8 $ | $ 8 $                         | $ 1 $  |
+| $ 9 $ | $ 9 $                         | $ 1 $  |
+| $ 10 $| $ 10 $                        | $ 1 $  |
+
+Summing the counts: $ 10 + 5 + 3 + 2 + 2 + 1 + 1 + 1 + 1 + 1 = 27 $.
+
+## The Relation as a Grid
+
+Displaying the relation as a $ 10\times 10 $ grid makes its shape vivid — a dot sits at $ (a,b) $ precisely when $ a \mid b $:
+
+!(88%)[A 10×10 grid with a dot at (a,b) whenever a divides b, showing 27 dots on or above the diagonal](problem-1-grid.svg "A 10 by 10 grid, rows a = 1..10 and columns b = 1..10, with a green dot in cell (a,b) exactly when a divides b. Row 1 is completely full because 1 divides every number. Row 2 hits the even columns 2,4,6,8,10; row 3 hits 3,6,9; and so on. The primes 7 and larger, and 6,8,9,10 as first entry, contribute only the single diagonal pair (a,a). The shaded main diagonal marks reflexivity a divides a. All 27 dots lie on or above the diagonal because a divides b forces a to be at most b. Total 27 = 10+5+3+2+2+1+1+1+1+1.")
+
+## Remark — Divisibility Is Reflexive, So the Diagonal Is Included
+
+Unlike the strict less-than relation (whose set of pairs on $ \{1,\dots,5\} $ *omits* $ (1,1),(2,2),\dots $), divisibility **is reflexive**: every number divides itself, since $ a = 1\cdot a $. That is why all ten diagonal pairs $ (1,1),(2,2),\dots,(10,10) $ appear in the answer. Watching whether a relation contains its diagonal is the quickest visual test for reflexivity — and it is the single biggest way this list differs from the "$ < $" example the section gives.
+
+## Remark — Why Every Dot Sits On or Above the Diagonal
+
+No pair $ (a,b) $ with $ a > b $ can appear, because a positive divisor of $ b $ can be at most $ b $ itself: if $ a \mid b $ and $ b > 0 $ then $ a \le b $. So the relation lives entirely in the "upper triangle" of the grid. This makes divisibility an **antisymmetric** relation on the positive integers — if $ a \mid b $ and $ b \mid a $ both hold, then $ a \le b $ and $ b \le a $, forcing $ a = b $. Reflexive $ + $ antisymmetric $ + $ transitive ($ a \mid b $ and $ b \mid c \Rightarrow a \mid c $) makes divisibility a **partial order**, which is exactly why it can be drawn as the divisibility "lattice" the book returns to in Chapter 6.
+
+## Remark — The Row Lengths Are the Counting Function $ \lfloor 10/a \rfloor $
+
+The number of multiples of $ a $ in $ \{1,\dots,10\} $ — the length of row $ a $ — is exactly $ \lfloor 10/a \rfloor $:
+
+$$$
+\left\lfloor \tfrac{10}{1} \right\rfloor,\ \left\lfloor \tfrac{10}{2} \right\rfloor,\ \dots,\ \left\lfloor \tfrac{10}{10} \right\rfloor \;=\; 10,5,3,2,2,1,1,1,1,1,
+$$$
+
+tying this problem back to the floor/quotient material of Section 1.4. Summing $ \sum_{a=1}^{10} \lfloor 10/a \rfloor = 27 $ counts *all* (divisor, multiple) pairs at once — equivalently it counts $ \sum_{b=1}^{10} d(b) $, the total number of divisors of the numbers $ 1 $ through $ 10 $, read column-by-column instead of row-by-row.
+
+## Remark — Reading the Grid by Columns Gives the Divisor Counts
+
+The same $ 27 $ dots can be tallied down the columns instead of across the rows. Column $ b $ contains a dot for each divisor $ a $ of $ b $, so its height is $ d(b) $, the number-of-divisors function:
+
+| $ b $ | divisors $ a $ | $ d(b) $ |
+| :---: | :---           | :---:    |
+| $ 1 $ | $ 1 $                 | $ 1 $ |
+| $ 2 $ | $ 1,2 $               | $ 2 $ |
+| $ 4,\,9 $ | e.g. $ 1,2,4 $ / $ 1,3,9 $ | $ 3 $ |
+| $ 6,\,8,\,10 $ | e.g. $ 1,2,3,6 $ | $ 4 $ |
+
+Prime columns ($ b = 2,3,5,7 $) have height $ 2 $; the perfect squares $ 4,9 $ have the odd height $ 3 $ (divisors pair up except the square root) — a small echo of the divisor-counting ideas that recur throughout number theory. Rows and columns give two different bookkeepings of the *same* relation, and both must total $ 27 $.

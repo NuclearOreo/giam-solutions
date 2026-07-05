@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 460" width="660" height="460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="660" height="460" fill="white"/>
+
+  <text x="330" y="30" font-size="14" font-style="italic" fill="#444" text-anchor="middle">"has color" goes from fruits F to colors C. Draw an arrow from each fruit to the color it has.</text>
+
+  <!-- headers -->
+  <text x="170" y="72" font-size="15" font-weight="bold" fill="#2a5db0" text-anchor="middle">F  (fruits)</text>
+  <text x="490" y="72" font-size="15" font-weight="bold" fill="#1b5e20" text-anchor="middle">C  (colors)</text>
+
+  <!-- F nodes: left column x=170, y=120,190,260,330 -->
+  <g font-size="14.5" text-anchor="middle">
+    <rect x="90" y="104" width="160" height="34" rx="17" fill="#eaf1fb" stroke="#2a5db0"/><text x="170" y="126">orange</text>
+    <rect x="90" y="174" width="160" height="34" rx="17" fill="#eaf1fb" stroke="#2a5db0"/><text x="170" y="196">cherry</text>
+    <rect x="90" y="244" width="160" height="34" rx="17" fill="#eaf1fb" stroke="#2a5db0"/><text x="170" y="266">pumpkin</text>
+    <rect x="90" y="314" width="160" height="34" rx="17" fill="#eaf1fb" stroke="#2a5db0"/><text x="170" y="336">banana</text>
+  </g>
+
+  <!-- C nodes: right column x=490, y=120,190,260,330. Fill swatch with the actual color. -->
+  <g font-size="14.5" text-anchor="middle">
+    <rect x="410" y="104" width="160" height="34" rx="17" fill="#ffd9a3" stroke="#d08a2e"/><text x="490" y="126">orange</text>
+    <rect x="410" y="174" width="160" height="34" rx="17" fill="#f6b6b6" stroke="#c0392b"/><text x="490" y="196">red</text>
+    <rect x="410" y="244" width="160" height="34" rx="17" fill="#bfe6bf" stroke="#2e7d32"/><text x="490" y="266">green</text>
+    <rect x="410" y="314" width="160" height="34" rx="17" fill="#fdf0a8" stroke="#c9a900"/><text x="490" y="336">yellow</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#555" stroke-width="1.8" marker-end="url(#ar7)">
+    <line x1="250" y1="121" x2="406" y2="121"/> <!-- orange -> orange -->
+    <line x1="250" y1="191" x2="406" y2="191"/> <!-- cherry -> red -->
+    <line x1="250" y1="261" x2="406" y2="128"/> <!-- pumpkin -> orange -->
+    <line x1="250" y1="331" x2="406" y2="331"/> <!-- banana -> yellow -->
+  </g>
+  <defs>
+    <marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+  </defs>
+
+  <!-- note green unhit -->
+  <text x="580" y="265" font-size="11.5" fill="#b0582a" text-anchor="start">← no</text>
+  <text x="580" y="279" font-size="11.5" fill="#b0582a" text-anchor="start">   arrow</text>
+
+  <!-- the pair set -->
+  <rect x="60" y="378" width="540" height="66" fill="#f4f8f4" stroke="#cde0cd"/>
+  <text x="330" y="404" font-size="14" fill="#222" text-anchor="middle" font-weight="bold">"has color" =</text>
+  <text x="330" y="430" font-size="14" fill="#1b5e20" text-anchor="middle">{ (orange, orange), (cherry, red), (pumpkin, orange), (banana, yellow) }</text>
+</svg>

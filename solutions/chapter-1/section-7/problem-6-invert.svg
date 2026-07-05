@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+
+  <text x="350" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">To invert, swap each pair (x, y) → (y, x). The result is a function only if no output was repeated.</text>
+
+  <!-- ===== LEFT: invertible example ===== -->
+  <rect x="24" y="48" width="330" height="440" fill="#f4f8f4" stroke="#cde0cd"/>
+  <text x="189" y="72" font-size="14" font-weight="bold" fill="#1b5e20" text-anchor="middle">Invertible ✓</text>
+  <text x="189" y="94" font-size="12.5" fill="#555" text-anchor="middle">all outputs distinct (one-to-one)</text>
+
+  <text x="60" y="126" font-size="13.5" fill="#222">f = { (1, 5), (2, 7), (3, 9) }</text>
+
+  <!-- mapping diagram -->
+  <g font-size="14" text-anchor="middle">
+    <!-- domain col x=110, range col x=270 -->
+    <circle cx="110" cy="170" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="110" y="175">1</text>
+    <circle cx="110" cy="215" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="110" y="220">2</text>
+    <circle cx="110" cy="260" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="110" y="265">3</text>
+    <circle cx="270" cy="170" r="15" fill="#eef5ee" stroke="#1b5e20"/><text x="270" y="175">5</text>
+    <circle cx="270" cy="215" r="15" fill="#eef5ee" stroke="#1b5e20"/><text x="270" y="220">7</text>
+    <circle cx="270" cy="260" r="15" fill="#eef5ee" stroke="#1b5e20"/><text x="270" y="265">9</text>
+  </g>
+  <g stroke="#888" stroke-width="1.4" marker-end="url(#ar6)">
+    <line x1="126" y1="170" x2="253" y2="170"/>
+    <line x1="126" y1="215" x2="253" y2="215"/>
+    <line x1="126" y1="260" x2="253" y2="260"/>
+  </g>
+  <text x="189" y="298" font-size="12" fill="#1b5e20" text-anchor="middle">each output hit once → swap is safe</text>
+
+  <!-- swap arrow -->
+  <text x="189" y="330" font-size="22" fill="#8a3b12" text-anchor="middle">↓ swap ↓</text>
+
+  <text x="60" y="364" font-size="13.5" fill="#222">f⁻¹ = { (5, 1), (7, 2), (9, 3) }</text>
+  <rect x="50" y="384" width="278" height="88" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="189" y="412" font-size="12.5" fill="#1b5e20" text-anchor="middle">Reading it back:</text>
+  <text x="189" y="434" font-size="13" fill="#222" text-anchor="middle">5 → 1,  7 → 2,  9 → 3</text>
+  <text x="189" y="458" font-size="12.5" fill="#1b5e20" text-anchor="middle">still a valid function.  Invertible!</text>
+
+  <!-- ===== RIGHT: non-invertible example ===== -->
+  <rect x="370" y="48" width="306" height="440" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="523" y="72" font-size="14" font-weight="bold" fill="#8a3b12" text-anchor="middle">Not invertible ✗</text>
+  <text x="523" y="94" font-size="12.5" fill="#555" text-anchor="middle">output 4 is repeated (not one-to-one)</text>
+
+  <text x="400" y="126" font-size="13.5" fill="#222">g = { (1, 4), (2, 4), (3, 9) }</text>
+
+  <g font-size="14" text-anchor="middle">
+    <circle cx="450" cy="170" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="450" y="175">1</text>
+    <circle cx="450" cy="215" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="450" y="220">2</text>
+    <circle cx="450" cy="260" r="15" fill="#eaf1fb" stroke="#2a5db0"/><text x="450" y="265">3</text>
+    <circle cx="610" cy="192" r="15" fill="#fbe4da" stroke="#b0582a"/><text x="610" y="197">4</text>
+    <circle cx="610" cy="260" r="15" fill="#eef5ee" stroke="#1b5e20"/><text x="610" y="265">9</text>
+  </g>
+  <g stroke="#888" stroke-width="1.4" marker-end="url(#ar6)">
+    <line x1="466" y1="170" x2="593" y2="188"/>
+    <line x1="466" y1="215" x2="593" y2="196"/>
+    <line x1="466" y1="260" x2="593" y2="260"/>
+  </g>
+  <text x="523" y="298" font-size="12" fill="#b0582a" text-anchor="middle">two inputs → same output 4</text>
+
+  <text x="523" y="330" font-size="22" fill="#8a3b12" text-anchor="middle">↓ swap ↓</text>
+
+  <text x="400" y="364" font-size="13.5" fill="#222">{ (4, 1), (4, 2), (9, 3) }</text>
+  <rect x="392" y="384" width="262" height="88" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="523" y="412" font-size="12.5" fill="#8a3b12" text-anchor="middle">Reading it back:</text>
+  <text x="523" y="434" font-size="13" fill="#b0582a" text-anchor="middle">4 → 1  AND  4 → 2  (conflict!)</text>
+  <text x="523" y="458" font-size="12.5" fill="#8a3b12" text-anchor="middle">input 4 has two outputs → not a function.</text>
+
+  <defs>
+    <marker id="ar6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="508" font-size="12.5" font-style="italic" fill="#666" text-anchor="middle">Test: are all second coordinates different? Yes → invertible; the inverse is the swapped pair-set. No → not invertible.</text>
+</svg>

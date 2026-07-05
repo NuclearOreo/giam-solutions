@@ -1,0 +1,69 @@
+.docname {Solution — GIAM 1.7 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 6
+
+## Problem
+
+A function $ f(x) $ is *invertible* if there is another function $ g(x) $ with $ g(f(x)) = x $ for all $ x $ (the inverse is usually written $ f^{-1}(x) $). Suppose a function is presented to you as a relation — a set of pairs. How can you tell whether it is invertible? How can you produce the inverse as a set of ordered pairs?
+
+## Answer
+
+Suppose the function is the pair-set $ f = \{(x_1,y_1), (x_2,y_2), \dots\} $, where each first coordinate is an input and each second coordinate its output.
+
+**Test for invertibility.** The function is invertible **if and only if all the second coordinates (outputs) are distinct** — no two pairs share the same output value:
+
+$$$
+\boxed{\; f \text{ is invertible} \iff (x_i, y) \in f \text{ and } (x_j, y) \in f \ \Rightarrow\ x_i = x_j. \;}
+$$$
+
+Equivalently: $ f $ is **one-to-one** (injective).
+
+**Producing the inverse.** Simply **swap the two coordinates of every pair**:
+
+$$$
+\boxed{\; f^{-1} = \{\,(y, x) \mid (x, y) \in f\,\}. \;}
+$$$
+
+When the outputs were all distinct, this swapped set is again a genuine function, and it is the inverse $ f^{-1} $.
+
+## Why This Works
+
+A set of pairs is a *function* when each first coordinate appears **once** (each input has a single output). When we swap every pair, the old *outputs* become the new *inputs*. So the swapped set is a function exactly when the old outputs were all distinct — otherwise some new input would carry two different outputs, and "function" fails. That is precisely the one-to-one condition.
+
+!(96%)[Two examples: an invertible function whose swap is a valid function, and a non-invertible one whose swap conflicts](problem-6-invert.svg "Left, an invertible example: f = {(1,5),(2,7),(3,9)} has all outputs 5,7,9 distinct, so swapping gives f-inverse = {(5,1),(7,2),(9,3)}, which reads 5→1, 7→2, 9→3 — still a valid function. Right, a non-invertible example: g = {(1,4),(2,4),(3,9)} repeats the output 4 (both 1 and 2 map to 4), so swapping gives {(4,1),(4,2),(9,3)}, where the input 4 would map to both 1 and 2 — not a function. The test: are all second coordinates different? Yes means invertible with inverse the swapped set; no means not invertible.")
+
+## A Worked Pair of Examples
+
+**Invertible.** $ f = \{(1,5),(2,7),(3,9)\} $. Outputs $ 5,7,9 $ are distinct, so $ f $ is invertible and
+
+$$$
+f^{-1} = \{(5,1),(7,2),(9,3)\}.
+$$$
+
+Check: $ f^{-1}(f(2)) = f^{-1}(7) = 2 $ ✓.
+
+**Not invertible.** $ g = \{(1,4),(2,4),(3,9)\} $. The output $ 4 $ is repeated (both $ 1 $ and $ 2 $ map to it). Swapping gives $ \{(4,1),(4,2),(9,3)\} $, in which the input $ 4 $ is paired with *both* $ 1 $ and $ 2 $ — not a function. So $ g $ has no inverse: given the output $ 4 $, you cannot recover which input produced it.
+
+## Remark — The Set-Form of the Horizontal Line Test
+
+The "all outputs distinct" rule is exactly the **horizontal line test** rewritten for pairs. Graphically, a function is one-to-one when no horizontal line $ y = c $ meets its graph twice; in pair language, "the graph meets $ y = c $ twice" means two pairs share the second coordinate $ c $. So checking for a repeated second coordinate *is* the horizontal line test. Compare Problem 2: there the *vertical* line test (no repeated **first** coordinate) decided whether a relation is a function at all; invertibility adds the *horizontal* test (no repeated **second** coordinate) on top.
+
+## Remark — Swapping Coordinates Is Reflecting Across $ y = x $
+
+Producing $ f^{-1} $ by swapping each $ (x,y) $ to $ (y,x) $ has a clean geometric meaning: it **reflects the graph across the line $ y = x $**. That is why the graph of $ f^{-1} $ is always the mirror image of the graph of $ f $ in that diagonal — the picture-level version of the pair-swap. It also explains the defining property both ways round: not only $ f^{-1}(f(x)) = x $, but also $ f(f^{-1}(y)) = y $, since swapping twice returns the original pair. The inverse "undoes" $ f $, and $ f $ "undoes" $ f^{-1} $.
+
+## Remark — Injective, Surjective, and What "Invertible" Really Needs
+
+Strictly, whether $ f^{-1} $ is a function on a *prescribed* codomain depends on two properties. **Injectivity** (distinct outputs) is what guarantees the swap has no input-conflict — this is the crux and the answer to the problem. **Surjectivity** (every codomain value is actually hit) governs whether $ f^{-1} $ is defined on *all* of the intended codomain or only on the range. When a function is presented merely as a list of pairs — with no codomain specified beyond "the outputs that occur" — the range *is* the codomain, so surjectivity is automatic and **injectivity alone decides invertibility**. This is why, for a bare set of pairs, the single check "are all second coordinates distinct?" is exactly right.
+
+## Remark — Connecting to $ f(x) = x^2 \bmod 7 $ (Problem 2)
+
+The function of Problem 2, $ f = \{(0,0),(1,1),(2,4),(3,2),(4,2),(5,4),(6,1)\} $, is a perfect illustration of a **non**-invertible function. Its outputs are not distinct — $ 2 $ and $ 5 $ both give $ 4 $, $ 3 $ and $ 4 $ both give $ 2 $, $ 1 $ and $ 6 $ both give $ 1 $ — so it fails the test. Swapping would produce pairs like $ (4,2) $ and $ (4,5) $, forcing the input $ 4 $ to two outputs. Concretely: knowing $ x^2 \equiv 4 \pmod 7 $ does not tell you whether $ x = 2 $ or $ x = 5 $. This is the reason square-root "functions" are multivalued, and why cryptographic schemes built on squaring modulo a number are hard to reverse — the many-to-one collapse destroys invertibility.

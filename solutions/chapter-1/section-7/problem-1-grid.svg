@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" width="700" height="600" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="600" fill="white"/>
+
+  <text x="350" y="26" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Mark cell (a, b) when a divides b. A dot means the pair (a, b) is in the relation.</text>
+  <text x="350" y="44" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">All 27 dots lie on or above the diagonal, since a | b forces a ≤ b.</text>
+
+  <!-- grid: rows a=1..10 (top to bottom), cols b=1..10 (left to right). cell 44 px. origin x0=150,y0=90 -->
+  <!-- column headers (b) -->
+  <text x="80" y="80" font-size="13" font-weight="bold" fill="#2a5db0" text-anchor="middle">a \ b</text>
+  <g font-size="13" font-weight="bold" fill="#2a5db0" text-anchor="middle">
+    <text x="194" y="80">1</text><text x="238" y="80">2</text><text x="282" y="80">3</text><text x="326" y="80">4</text><text x="370" y="80">5</text>
+    <text x="414" y="80">6</text><text x="458" y="80">7</text><text x="502" y="80">8</text><text x="546" y="80">9</text><text x="590" y="80">10</text>
+  </g>
+
+  <!-- grid lines -->
+  <g stroke="#e2e2e2" stroke-width="1">
+    <!-- vertical: from x=172 to 612 step 44, 11 lines -->
+    <line x1="172" y1="90" x2="172" y2="530"/><line x1="216" y1="90" x2="216" y2="530"/><line x1="260" y1="90" x2="260" y2="530"/>
+    <line x1="304" y1="90" x2="304" y2="530"/><line x1="348" y1="90" x2="348" y2="530"/><line x1="392" y1="90" x2="392" y2="530"/>
+    <line x1="436" y1="90" x2="436" y2="530"/><line x1="480" y1="90" x2="480" y2="530"/><line x1="524" y1="90" x2="524" y2="530"/>
+    <line x1="568" y1="90" x2="568" y2="530"/><line x1="612" y1="90" x2="612" y2="530"/>
+    <!-- horizontal: y=90 to 530 step 44 -->
+    <line x1="172" y1="90" x2="612" y2="90"/><line x1="172" y1="134" x2="612" y2="134"/><line x1="172" y1="178" x2="612" y2="178"/>
+    <line x1="172" y1="222" x2="612" y2="222"/><line x1="172" y1="266" x2="612" y2="266"/><line x1="172" y1="310" x2="612" y2="310"/>
+    <line x1="172" y1="354" x2="612" y2="354"/><line x1="172" y1="398" x2="612" y2="398"/><line x1="172" y1="442" x2="612" y2="442"/>
+    <line x1="172" y1="486" x2="612" y2="486"/><line x1="172" y1="530" x2="612" y2="530"/>
+  </g>
+
+  <!-- row labels (a) at x=155, row centers y = 112,156,... -->
+  <g font-size="13" font-weight="bold" fill="#8a3b12" text-anchor="middle">
+    <text x="150" y="117">1</text><text x="150" y="161">2</text><text x="150" y="205">3</text><text x="150" y="249">4</text><text x="150" y="293">5</text>
+    <text x="150" y="337">6</text><text x="150" y="381">7</text><text x="150" y="425">8</text><text x="150" y="469">9</text><text x="150" y="513">10</text>
+  </g>
+
+  <!-- diagonal shading (a=b) -->
+  <g fill="#eef5ee">
+    <rect x="172" y="90"  width="44" height="44"/>
+    <rect x="216" y="134" width="44" height="44"/>
+    <rect x="260" y="178" width="44" height="44"/>
+    <rect x="304" y="222" width="44" height="44"/>
+    <rect x="348" y="266" width="44" height="44"/>
+    <rect x="392" y="310" width="44" height="44"/>
+    <rect x="436" y="354" width="44" height="44"/>
+    <rect x="480" y="398" width="44" height="44"/>
+    <rect x="524" y="442" width="44" height="44"/>
+    <rect x="568" y="486" width="44" height="44"/>
+  </g>
+
+  <!-- dots: col centers x_b = 194 + 44*(b-1); row centers y_a = 112 + 44*(a-1) -->
+  <!-- a=1: all b -->
+  <g fill="#1b5e20">
+    <circle cx="194" cy="112" r="7"/><circle cx="238" cy="112" r="7"/><circle cx="282" cy="112" r="7"/><circle cx="326" cy="112" r="7"/><circle cx="370" cy="112" r="7"/><circle cx="414" cy="112" r="7"/><circle cx="458" cy="112" r="7"/><circle cx="502" cy="112" r="7"/><circle cx="546" cy="112" r="7"/><circle cx="590" cy="112" r="7"/>
+    <!-- a=2: b=2,4,6,8,10 -> x 238,326,414,502,590 ; y=156 -->
+    <circle cx="238" cy="156" r="7"/><circle cx="326" cy="156" r="7"/><circle cx="414" cy="156" r="7"/><circle cx="502" cy="156" r="7"/><circle cx="590" cy="156" r="7"/>
+    <!-- a=3: b=3,6,9 -> x 282,414,546 ; y=200 -->
+    <circle cx="282" cy="200" r="7"/><circle cx="414" cy="200" r="7"/><circle cx="546" cy="200" r="7"/>
+    <!-- a=4: b=4,8 -> x 326,502 ; y=244 -->
+    <circle cx="326" cy="244" r="7"/><circle cx="502" cy="244" r="7"/>
+    <!-- a=5: b=5,10 -> x 370,590 ; y=288 -->
+    <circle cx="370" cy="288" r="7"/><circle cx="590" cy="288" r="7"/>
+    <!-- a=6: b=6 -> x 414 ; y=332 -->
+    <circle cx="414" cy="332" r="7"/>
+    <!-- a=7: b=7 -> x 458 ; y=376 -->
+    <circle cx="458" cy="376" r="7"/>
+    <!-- a=8: b=8 -> x 502 ; y=420 -->
+    <circle cx="502" cy="420" r="7"/>
+    <!-- a=9: b=9 -> x 546 ; y=464 -->
+    <circle cx="546" cy="464" r="7"/>
+    <!-- a=10: b=10 -> x 590 ; y=508 -->
+    <circle cx="590" cy="508" r="7"/>
+  </g>
+
+  <!-- legend / counts -->
+  <text x="350" y="556" font-size="12.5" fill="#333" text-anchor="middle">Row a=1 is full (1 divides everything); primes 6&lt;p≤10 give only (p, p); the shaded diagonal is reflexivity a | a.</text>
+  <text x="350" y="578" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">27 pairs in total  =  10 + 5 + 3 + 2 + 2 + 1 + 1 + 1 + 1 + 1.</text>
+</svg>

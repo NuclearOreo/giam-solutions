@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 1.7 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 4
+
+## Problem
+
+Draw a five-pointed star and label all $ 10 $ points. There are $ 40 $ triples of these labels that satisfy the betweenness relation. List them.
+
+## The Star and Its Labels
+
+A five-pointed star (pentagram) has $ 10 $ points: the $ 5 $ outer **tips** and the $ 5 $ inner **crossing points** (the vertices of the small pentagon in the middle). Label the tips $ A, B, C, D, E $ around the outside and the inner points $ F, G, H, I, J $:
+
+!(60%)[A labeled pentagram: outer tips A–E and inner crossing points F–J, with the five straight lines marked](problem-4-star.svg "A five-pointed star drawn with five straight lines. Outer tips: A at top, B upper-left, C lower-left, D lower-right, E upper-right. Inner crossing points forming the central pentagon: F upper-right, G upper-left, H left, I bottom, J right. The five straight lines, each carrying four collinear points in order, are A-G-H-C, C-I-J-E, E-F-G-B, B-H-I-D, and D-J-F-A.")
+
+The crucial structural fact: the star is made of **five straight lines**, and each line passes through **four** of the ten points — two outer tips at its ends and two inner points between them. In order along each line:
+
+$$$
+A\text{–}G\text{–}H\text{–}C, \quad C\text{–}I\text{–}J\text{–}E, \quad E\text{–}F\text{–}G\text{–}B, \quad B\text{–}H\text{–}I\text{–}D, \quad D\text{–}J\text{–}F\text{–}A.
+$$$
+
+## Counting: Why Exactly 40
+
+Betweenness triples only occur among **collinear** points, so we work one line at a time. On a line with four points in order $ P_1\,P_2\,P_3\,P_4 $, a triple $ (X, Y, Z) $ satisfies betweenness when $ Y $ lies strictly between $ X $ and $ Z $. The middle point must be $ P_2 $ or $ P_3 $ (the ends $ P_1, P_4 $ are never between anything):
+
+- $ P_2 $ between: $ \{P_1, P_2, P_3\} $ and $ \{P_1, P_2, P_4\} $;
+- $ P_3 $ between: $ \{P_1, P_3, P_4\} $ and $ \{P_2, P_3, P_4\} $.
+
+That is $ 4 $ unordered configurations per line. Following the section's convention — where the betweenness example listed *both* $ (A,B,C) $ and $ (C,B,A) $ — each configuration counts in **both directions**, giving $ 8 $ ordered triples per line. With $ 5 $ lines:
+
+$$$
+5 \text{ lines} \times 8 \text{ triples} = \boxed{40 \text{ triples}}.
+$$$
+
+## The 40 Triples
+
+Grouped by the line they live on (order written $ X ? Y ? Z $, meaning $ Y $ is between $ X $ and $ Z $):
+
+**Line $ A\text{–}G\text{–}H\text{–}C $:**
+
+$$$
+(A,G,H),(H,G,A),\ (A,G,C),(C,G,A),\ (A,H,C),(C,H,A),\ (G,H,C),(C,H,G)
+$$$
+
+**Line $ C\text{–}I\text{–}J\text{–}E $:**
+
+$$$
+(C,I,J),(J,I,C),\ (C,I,E),(E,I,C),\ (C,J,E),(E,J,C),\ (I,J,E),(E,J,I)
+$$$
+
+**Line $ E\text{–}F\text{–}G\text{–}B $:**
+
+$$$
+(E,F,G),(G,F,E),\ (E,F,B),(B,F,E),\ (E,G,B),(B,G,E),\ (F,G,B),(B,G,F)
+$$$
+
+**Line $ B\text{–}H\text{–}I\text{–}D $:**
+
+$$$
+(B,H,I),(I,H,B),\ (B,H,D),(D,H,B),\ (B,I,D),(D,I,B),\ (H,I,D),(D,I,H)
+$$$
+
+**Line $ D\text{–}J\text{–}F\text{–}A $:**
+
+$$$
+(D,J,F),(F,J,D),\ (D,J,A),(A,J,D),\ (D,F,A),(A,F,D),\ (J,F,A),(A,F,J)
+$$$
+
+## Remark — Why Each Line Contributes Exactly 8
+
+The count "$ 8 $ per line" is worth pinning down, because it is where the $ 40 $ comes from. For $ n $ collinear points there are $ \binom{n}{3} $ ways to choose three of them, and *every* such choice has exactly one middle point — so it yields exactly one unordered betweenness relation, hence two ordered triples. With $ n = 4 $ points per line, $ \binom{4}{3} = 4 $ unordered relations and $ 2\times 4 = 8 $ ordered triples. The $ 5 $ lines share points but never share a *triple* (two points already determine a unique line), so there is no double-counting: $ 5 \times 8 = 40 $ exactly. Had we used only $ 3 $ collinear points per line we would get $ \binom{3}{3}\cdot 2 = 2 $ each; the pentagram's $ 4 $-per-line structure is what makes the total come out to the stated $ 40 $.
+
+## Remark — Betweenness Is Symmetric, So Triples Come in Pairs
+
+Every triple above appears next to its reverse — $ (A,G,H) $ with $ (H,G,A) $, and so on — because "$ Y $ is between $ X $ and $ Z $" says exactly the same thing as "$ Y $ is between $ Z $ and $ X $." The *middle* label is what carries the geometric content; the two ends may be swapped freely. This is why the $ 40 $ is an even number: the triples pair off into $ 20 $ genuinely distinct betweenness facts, each recorded twice for the two reading directions. (Contrast the divisibility and $ \le $ relations of Problems 1 and 3, which are *not* symmetric — there $ (a,b) $ and $ (b,a) $ say different things.)
+
+## Remark — Betweenness Is a Ternary Relation
+
+Unlike divisibility, $ \le $, or $ = $ — all **binary** relations, sets of *pairs* — betweenness is a **ternary** relation: a set of ordered *triples*. This is exactly the point the section makes by introducing it. It cannot be reduced to a relation between two objects, because "between" is inherently about a middle and two ends. Higher-arity relations are drawn not as a grid of dots (as the binary relations of Problems 1 and 3 were) but must be listed as tuples, which is why this problem asks for an explicit list rather than a single relation symbol.
+
+## Remark — The Inner Points Are Never Endpoints of the Whole Line
+
+Notice that in every line's ordering, the two **outer tips** are the extreme points and the two **inner points** sit in the middle — e.g. on $ A\text{–}G\text{–}H\text{–}C $, the tips $ A, C $ are the ends and the inner points $ G, H $ are interior. Consequently each inner point serves as the "between" (middle) label more often than a tip does. This reflects the geometry of a pentagram: the inner pentagon is where all the crossings happen, so its vertices are precisely the points that lie *between* pairs of others. Every one of the $ 20 $ distinct betweenness facts has an inner point ($ F,G,H,I, $ or $ J $) as its middle — no tip is ever strictly between two other marked points.

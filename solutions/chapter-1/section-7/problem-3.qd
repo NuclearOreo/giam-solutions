@@ -1,0 +1,76 @@
+.docname {Solution — GIAM 1.7 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 3
+
+## Problem
+
+What relation on the numbers from $ 1 $ to $ 10 $ does the given set of ordered pairs represent?
+
+$$$
+\{(1,1),(1,2),\dots,(1,10),\ (2,2),\dots,(2,10),\ \dots,\ (9,9),(9,10),\ (10,10)\}
+$$$
+
+## Answer
+
+$$$
+\boxed{\; \text{the "less than or equal to" relation, } \le. \;}
+$$$
+
+A pair $ (a,b) $ is in the set exactly when $ a \le b $.
+
+## Reading the Pattern
+
+Look at how the pairs are organised by first coordinate:
+
+| first coord. $ a $ | the second coords. $ b $ that appear | condition |
+| :---: | :---                            | :---:    |
+| $ 1 $ | $ 1,2,3,4,5,6,7,8,9,10 $         | $ b \ge 1 $ |
+| $ 2 $ | $ 2,3,4,5,6,7,8,9,10 $           | $ b \ge 2 $ |
+| $ 3 $ | $ 3,4,5,6,7,8,9,10 $             | $ b \ge 3 $ |
+| $ \vdots $ | $ \vdots $                    | $ \vdots $ |
+| $ 9 $ | $ 9,10 $                        | $ b \ge 9 $ |
+| $ 10 $| $ 10 $                          | $ b \ge 10 $ |
+
+For each first coordinate $ a $, the partners $ b $ are precisely those with $ b \ge a $ — i.e. $ a \le b $. So the relation is $ \le $.
+
+## The Relation as a Grid
+
+Every cell on or above the main diagonal is filled — the entire upper triangle:
+
+!(88%)[A 10×10 grid with a dot at (a,b) whenever a ≤ b, filling the whole upper triangle including the diagonal](problem-3-grid.svg "A 10 by 10 grid, rows a = 1..10 and columns b = 1..10, with a dot in cell (a,b) exactly when a is less than or equal to b. The entire region on and above the main diagonal is solid. Row 1 has all 10 dots, row 2 has 9 (columns 2..10), and so on down to row 10 with a single dot at (10,10). The shaded diagonal a=b is included, marking that this is the non-strict relation ≤ rather than strict <. Total 55 = 10+9+8+7+6+5+4+3+2+1 = (10 times 11)/2.")
+
+## Remark — The Diagonal Tells $ \le $ Apart From $ < $
+
+The decisive detail is that the diagonal pairs $ (1,1),(2,2),\dots,(10,10) $ are **present**. That makes the relation **reflexive** ($ a \le a $ always holds), which is exactly what separates $ \le $ from the strict $ < $. The section's own example listed $ < $ on $ \{1,\dots,5\} $ *without* any $ (k,k) $ pair. So the single distinction between this problem and that example is the diagonal: include it and you have $ \le $; drop it and you have $ < $.
+
+## Remark — Contrast With the Divisibility Relation (Problem 1)
+
+Both this relation and divisibility (Problem 1) live in the upper triangle of the grid, because $ a \le b $ and $ a \mid b $ both force $ a \le b $. But $ \le $ fills the triangle *completely* ($ 55 $ pairs), while divisibility keeps only the cells where $ a $ actually divides $ b $ ($ 27 $ pairs). In fact divisibility is a **sub-relation** of $ \le $: whenever $ a \mid b $ we also have $ a \le b $, so every divisibility pair is a $ \le $ pair, but not conversely (e.g. $ (2,3) $ is a $ \le $ pair but not a divisibility pair). Divisibility is a *partial* order — some pairs like $ 4 $ and $ 6 $ are incomparable — whereas $ \le $ is a **total** (linear) order: any two of the numbers are comparable, which is precisely why its grid has no gaps in the triangle.
+
+## Remark — Counting the Pairs: A Triangular Number
+
+The number of pairs is
+
+$$$
+10 + 9 + 8 + \cdots + 2 + 1 = \frac{10\cdot 11}{2} = 55,
+$$$
+
+the **tenth triangular number**. This is no coincidence: counting pairs $ (a,b) $ with $ 1 \le a \le b \le 10 $ is the same as *choosing $ 2 $ of the numbers $ 1,\dots,10 $ with repetition allowed*, which is $ \binom{10+1}{2} = \binom{11}{2} = 55 $ (the stars-and-bars count from Section 1.4). Equivalently, of the $ 10^2 = 100 $ cells in the full grid, the $ 10 $ diagonal cells sit on the line $ a=b $, and the remaining $ 90 $ split evenly into $ 45 $ below and $ 45 $ above; the $ \le $ relation takes the $ 45 $ strictly-above plus the $ 10 $ diagonal $ = 55 $.
+
+## Remark — The Three Order Properties Are Visible in the Grid
+
+That this relation is a (total) order can be read straight off the picture:
+
+- **Reflexive** — the diagonal is fully shaded ($ a \le a $).
+- **Antisymmetric** — no cell $ (a,b) $ with $ a \ne b $ has its mirror $ (b,a) $ also filled; all off-diagonal dots lie strictly on one side. (If $ a \le b $ and $ b \le a $ then $ a = b $.)
+- **Transitive** — if $ (a,b) $ and $ (b,c) $ are dots then so is $ (a,c) $ ($ a\le b $ and $ b \le c \Rightarrow a \le c $).
+
+Reflexive $ + $ antisymmetric $ + $ transitive is the definition of a partial order; the extra fact that *every* pair is comparable (the triangle is completely filled) upgrades $ \le $ to a **total order**. This is the cleanest, most familiar order relation, and it is the yardstick against which the more subtle divisibility order of Problem 1 is measured.

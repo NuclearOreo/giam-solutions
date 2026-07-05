@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" width="700" height="600" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="600" fill="white"/>
+
+  <text x="350" y="26" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">A dot sits at (a, b) exactly when a ≤ b. Every cell on or above the diagonal is filled — the relation is  ≤.</text>
+  <text x="350" y="44" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">The shaded diagonal (a = b) is included, so it is "≤" and not the strict "&lt;".</text>
+
+  <!-- column headers (b) -->
+  <text x="80" y="80" font-size="13" font-weight="bold" fill="#2a5db0" text-anchor="middle">a \ b</text>
+  <g font-size="13" font-weight="bold" fill="#2a5db0" text-anchor="middle">
+    <text x="194" y="80">1</text><text x="238" y="80">2</text><text x="282" y="80">3</text><text x="326" y="80">4</text><text x="370" y="80">5</text>
+    <text x="414" y="80">6</text><text x="458" y="80">7</text><text x="502" y="80">8</text><text x="546" y="80">9</text><text x="590" y="80">10</text>
+  </g>
+
+  <!-- grid lines -->
+  <g stroke="#e2e2e2" stroke-width="1">
+    <line x1="172" y1="90" x2="172" y2="530"/><line x1="216" y1="90" x2="216" y2="530"/><line x1="260" y1="90" x2="260" y2="530"/>
+    <line x1="304" y1="90" x2="304" y2="530"/><line x1="348" y1="90" x2="348" y2="530"/><line x1="392" y1="90" x2="392" y2="530"/>
+    <line x1="436" y1="90" x2="436" y2="530"/><line x1="480" y1="90" x2="480" y2="530"/><line x1="524" y1="90" x2="524" y2="530"/>
+    <line x1="568" y1="90" x2="568" y2="530"/><line x1="612" y1="90" x2="612" y2="530"/>
+    <line x1="172" y1="90" x2="612" y2="90"/><line x1="172" y1="134" x2="612" y2="134"/><line x1="172" y1="178" x2="612" y2="178"/>
+    <line x1="172" y1="222" x2="612" y2="222"/><line x1="172" y1="266" x2="612" y2="266"/><line x1="172" y1="310" x2="612" y2="310"/>
+    <line x1="172" y1="354" x2="612" y2="354"/><line x1="172" y1="398" x2="612" y2="398"/><line x1="172" y1="442" x2="612" y2="442"/>
+    <line x1="172" y1="486" x2="612" y2="486"/><line x1="172" y1="530" x2="612" y2="530"/>
+  </g>
+
+  <!-- row labels (a) -->
+  <g font-size="13" font-weight="bold" fill="#8a3b12" text-anchor="middle">
+    <text x="150" y="117">1</text><text x="150" y="161">2</text><text x="150" y="205">3</text><text x="150" y="249">4</text><text x="150" y="293">5</text>
+    <text x="150" y="337">6</text><text x="150" y="381">7</text><text x="150" y="425">8</text><text x="150" y="469">9</text><text x="150" y="513">10</text>
+  </g>
+
+  <!-- diagonal shading (a=b) -->
+  <g fill="#eef5ee">
+    <rect x="172" y="90"  width="44" height="44"/>
+    <rect x="216" y="134" width="44" height="44"/>
+    <rect x="260" y="178" width="44" height="44"/>
+    <rect x="304" y="222" width="44" height="44"/>
+    <rect x="348" y="266" width="44" height="44"/>
+    <rect x="392" y="310" width="44" height="44"/>
+    <rect x="436" y="354" width="44" height="44"/>
+    <rect x="480" y="398" width="44" height="44"/>
+    <rect x="524" y="442" width="44" height="44"/>
+    <rect x="568" y="486" width="44" height="44"/>
+  </g>
+
+  <!-- dots: for each row a, columns b>=a. x_b = 194 + 44*(b-1); y_a = 112 + 44*(a-1) -->
+  <g fill="#1b5e20">
+    <!-- a=1 y=112: b1..10 -->
+    <circle cx="194" cy="112" r="7"/><circle cx="238" cy="112" r="7"/><circle cx="282" cy="112" r="7"/><circle cx="326" cy="112" r="7"/><circle cx="370" cy="112" r="7"/><circle cx="414" cy="112" r="7"/><circle cx="458" cy="112" r="7"/><circle cx="502" cy="112" r="7"/><circle cx="546" cy="112" r="7"/><circle cx="590" cy="112" r="7"/>
+    <!-- a=2 y=156: b2..10 -->
+    <circle cx="238" cy="156" r="7"/><circle cx="282" cy="156" r="7"/><circle cx="326" cy="156" r="7"/><circle cx="370" cy="156" r="7"/><circle cx="414" cy="156" r="7"/><circle cx="458" cy="156" r="7"/><circle cx="502" cy="156" r="7"/><circle cx="546" cy="156" r="7"/><circle cx="590" cy="156" r="7"/>
+    <!-- a=3 y=200: b3..10 -->
+    <circle cx="282" cy="200" r="7"/><circle cx="326" cy="200" r="7"/><circle cx="370" cy="200" r="7"/><circle cx="414" cy="200" r="7"/><circle cx="458" cy="200" r="7"/><circle cx="502" cy="200" r="7"/><circle cx="546" cy="200" r="7"/><circle cx="590" cy="200" r="7"/>
+    <!-- a=4 y=244: b4..10 -->
+    <circle cx="326" cy="244" r="7"/><circle cx="370" cy="244" r="7"/><circle cx="414" cy="244" r="7"/><circle cx="458" cy="244" r="7"/><circle cx="502" cy="244" r="7"/><circle cx="546" cy="244" r="7"/><circle cx="590" cy="244" r="7"/>
+    <!-- a=5 y=288: b5..10 -->
+    <circle cx="370" cy="288" r="7"/><circle cx="414" cy="288" r="7"/><circle cx="458" cy="288" r="7"/><circle cx="502" cy="288" r="7"/><circle cx="546" cy="288" r="7"/><circle cx="590" cy="288" r="7"/>
+    <!-- a=6 y=332: b6..10 -->
+    <circle cx="414" cy="332" r="7"/><circle cx="458" cy="332" r="7"/><circle cx="502" cy="332" r="7"/><circle cx="546" cy="332" r="7"/><circle cx="590" cy="332" r="7"/>
+    <!-- a=7 y=376: b7..10 -->
+    <circle cx="458" cy="376" r="7"/><circle cx="502" cy="376" r="7"/><circle cx="546" cy="376" r="7"/><circle cx="590" cy="376" r="7"/>
+    <!-- a=8 y=420: b8..10 -->
+    <circle cx="502" cy="420" r="7"/><circle cx="546" cy="420" r="7"/><circle cx="590" cy="420" r="7"/>
+    <!-- a=9 y=464: b9,10 -->
+    <circle cx="546" cy="464" r="7"/><circle cx="590" cy="464" r="7"/>
+    <!-- a=10 y=508: b10 -->
+    <circle cx="590" cy="508" r="7"/>
+  </g>
+
+  <text x="350" y="556" font-size="12.5" fill="#333" text-anchor="middle">Each row a runs from column a rightward: row a has (11 − a) dots. The whole upper triangle is solid.</text>
+  <text x="350" y="578" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">55 pairs  =  10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1  =  (10 · 11)/2.</text>
+</svg>

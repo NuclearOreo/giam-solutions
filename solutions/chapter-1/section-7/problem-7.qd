@@ -1,0 +1,64 @@
+.docname {Solution — GIAM 1.7 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 1.7 Problem 7
+
+## Problem
+
+There is a relation known as "has color" which goes from the set
+
+$$$
+F = \{\text{orange}, \text{cherry}, \text{pumpkin}, \text{banana}\}
+$$$
+
+to the set
+
+$$$
+C = \{\text{orange}, \text{red}, \text{green}, \text{yellow}\}.
+$$$
+
+What pairs are in "has color"?
+
+## Answer
+
+Pairing each fruit with its (ripe, typical) color:
+
+$$$
+\boxed{\; \text{has color} = \{\,(\text{orange}, \text{orange}),\ (\text{cherry}, \text{red}),\ (\text{pumpkin}, \text{orange}),\ (\text{banana}, \text{yellow})\,\}. \;}
+$$$
+
+## Reading Off the Pairs
+
+The relation goes *from* $ F $ *to* $ C $, so each pair is $ (\text{fruit}, \text{color}) $ with the fruit first:
+
+| fruit ($ \in F $) | its color ($ \in C $) | pair |
+| :---          | :---                    | :---  |
+| orange        | orange                  | $ (\text{orange}, \text{orange}) $ |
+| cherry        | red                     | $ (\text{cherry}, \text{red}) $ |
+| pumpkin       | orange                  | $ (\text{pumpkin}, \text{orange}) $ |
+| banana        | yellow                  | $ (\text{banana}, \text{yellow}) $ |
+
+!(88%)[Bipartite diagram: arrows from each fruit to its color, with green receiving no arrow](problem-7-hascolor.svg "A bipartite arrow diagram from the fruit set F on the left to the color set C on the right, with the color nodes tinted their actual colors. Arrows: orange the fruit to orange the color, cherry to red, pumpkin to orange, banana to yellow. The color green on the right receives no arrow — no fruit in F is green. The pair-set is { (orange, orange), (cherry, red), (pumpkin, orange), (banana, yellow) }.")
+
+## Remark — "orange" Lives in Both Sets
+
+The word *orange* appears in $ F $ (the fruit) **and** in $ C $ (the color). The pair $ (\text{orange}, \text{orange}) $ is therefore not a typo or a trivial "reflexive" pairing — its first coordinate is the *fruit* orange and its second is the *color* orange, two different kinds of thing that happen to share a name. Because a relation from $ F $ to $ C $ is a subset of the Cartesian product $ F \times C $, the two coordinates come from different sets and are read in different roles; the coincidence of names is harmless. This is a small caution the problem builds in on purpose: in a relation *between two sets*, position (first vs. second coordinate) is what carries meaning, not the label alone.
+
+## Remark — Not Every Color Is Used (Not Onto)
+
+The color **green** is in $ C $ but appears in *no* pair — none of these four fruits is green (in ripe form). So the **range** of the relation, $ \{\text{orange}, \text{red}, \text{yellow}\} $, is a *proper subset* of the codomain $ C $. In the vocabulary of Problem 2, the relation is **not onto** $ C $: there is a codomain element nothing maps to. Meanwhile *orange* (the color) is hit **twice** — by both the orange and the pumpkin — so if we view "has color" as a function it is **not one-to-one** either. Two fruits, one color: the many-to-one collapse means "has color" could not be inverted (Problem 6) — knowing something "has color orange" would not tell you whether it is an orange or a pumpkin.
+
+## Remark — This Relation Depends on Real-World Judgment
+
+Unlike the arithmetic relations of the earlier problems ($ \mid $, $ \le $, betweenness), "has color" is not settled by a formula — it depends on facts about the world, and those facts are fuzzy. A banana is *yellow* when ripe but *green* when unripe; a pumpkin is *orange* but some varieties are *green*; a cherry is usually *red* but can be nearly black or yellow. The answer above takes the *prototypical ripe color* of each fruit, which is surely the intended reading, but one could defensibly add pairs like $ (\text{banana}, \text{green}) $ or $ (\text{pumpkin}, \text{green}) $. This is exactly the modelling-assumption theme that ran through Chapter 1: before listing the pairs, one must decide what "has color" is going to *mean*. State the assumption (here: ripe, typical color) and the relation becomes well-defined.
+
+## Remark — Why Relations Beat Functions for "has color"
+
+Precisely because a single object can have several colors, "has color" is most honestly modelled as a **relation**, not a function. A function would force each fruit to exactly one color and could not record that a banana is *both* yellow and (when unripe) green. A relation carries no such restriction: it may contain $ (\text{banana}, \text{yellow}) $ and $ (\text{banana}, \text{green}) $ simultaneously. This is the deeper reason the section introduces relations as more general than functions — many natural real-world associations (a person "speaks" a language, a book "is about" a topic, a fruit "has" a color) are genuinely many-to-many, and only the relation framework captures them. With the ripe-color convention we happen to land on a function here, but the framework does not *require* it.
