@@ -1,0 +1,98 @@
+.docname {Solution — GIAM 2.1 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.1 Problem 5
+
+## Problem
+
+The Sheffer stroke $ \mid $ (**NAND**) and the Peirce arrow $ \downarrow $ (**NOR**) are defined by
+
+$$$
+A \mid B = \lnot(A \land B), \qquad A \downarrow B = \lnot(A \lor B).
+$$$
+
+Find an expression for $ (A \land \lnot B) \lor C $ using only these connectives (together with negation and the variables).
+
+## Answer
+
+$$$
+\boxed{\;(A \land \lnot B) \lor C \;=\; \lnot\big(\, \lnot(A \mid \lnot B) \,\downarrow\, C \,\big).\;}
+$$$
+
+## The Derivation
+
+The two definitions, read backwards, let us *replace* $ \land $ and $ \lor $:
+
+$$$
+A \land B = \lnot(A \mid B), \qquad A \lor B = \lnot(A \downarrow B).
+$$$
+
+Apply these to the target, outermost connective first.
+
+**Step 1 — rewrite the outer $ \lor $ as a NOR.** With $ X = A\land\lnot B $,
+
+$$$
+(A \land \lnot B) \lor C \;=\; \lnot\big( (A \land \lnot B) \downarrow C \big).
+$$$
+
+**Step 2 — rewrite the inner $ \land $ as a NAND.** Using $ A \land \lnot B = \lnot(A \mid \lnot B) $,
+
+$$$
+(A \land \lnot B) \lor C \;=\; \lnot\big( \lnot(A \mid \lnot B) \downarrow C \big).
+$$$
+
+This uses only $ \mid $, $ \downarrow $, $ \lnot $, and the variables — as required.
+
+!(96%)[Step-by-step reduction of the target into NAND/NOR form, with a verification truth table](problem-5-reduce.svg "The two identities are shown: NAND A|B = not(A and B) so A and B = not(A|B); NOR A down-arrow B = not(A or B) so A or B = not(A down-arrow B). The reduction: start with (A and not B) or C; turn the outer or into NOR giving not((A and not B) down-arrow C); turn the and into NAND giving not(not(A | not B) down-arrow C), the boxed answer. A verification table shows all eight rows agree: for A=1,B=1 the target is C; for A=1,B=0 the target is 1; and for A=0 the target is C — matching in every case.")
+
+## Verification
+
+Tracing the built expression against the target on all eight rows (writing $ 1 $ for true, $ 0 $ for false):
+
+| $ A $ | $ B $ | $ C $ | $ A\mid\lnot B $ | $ \lnot(A\mid\lnot B) $ | $ \lnot(A\mid\lnot B)\downarrow C $ | $ \lnot(\cdots) $ | target |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ |
+| $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ |
+| $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ |
+
+The last two columns match in every row, confirming the expression. $ \blacksquare $
+
+## Remark — The General Recipe: NAND for $ \land $, NOR for $ \lor $
+
+The derivation followed a mechanical rule that works for *any* formula: process it from the outside in, and each time you meet an $ \land $ or $ \lor $, replace it using
+
+$$$
+X \land Y \;\rightsquigarrow\; \lnot(X \mid Y), \qquad X \lor Y \;\rightsquigarrow\; \lnot(X \downarrow Y).
+$$$
+
+Because $ \mid $ and $ \downarrow $ are literally "negated-and" and "negated-or," each swap costs exactly one outer negation. Since negation is permitted here, *any* sentence built from $ \land, \lor, \lnot $ can be translated this way — the pair $ \{\mid, \downarrow, \lnot\} $ is **functionally complete**. The translation is not unique; one could equally rewrite the outer $ \lor $ via NAND and De Morgan, giving a different but logically identical expression.
+
+## Remark — Negation Is Redundant: One Connective Suffices
+
+The problem allows $ \lnot $ as a convenience, but it is not actually needed — **NAND alone is functionally complete**, and so is **NOR alone**. The reason is that each can build its own negation:
+
+$$$
+\lnot X \;=\; X \mid X \;=\; X \downarrow X.
+$$$
+
+(Check: $ X \mid X = \lnot(X\land X) = \lnot X $, and $ X\downarrow X = \lnot(X\lor X)=\lnot X $.) Feeding a wire into *both* inputs of a NAND gate inverts it. Substituting $ B\mid B $ for every $ \lnot B $ (and likewise for the outer negations) turns our answer into a NAND-*only* expression; the same trick with $ \downarrow $ gives a NOR-only one. Both were checked to reproduce the target on all eight rows. This is exactly why real hardware can be — and often is — fabricated from a single gate type.
+
+## Remark — This Is Why NAND/NOR Rule Chip Design
+
+The functional completeness of NAND (and NOR) is not just a logician's curiosity — it is the organizing principle of digital hardware. A chip fabricator who can reliably etch *one* kind of gate can build *every* Boolean function, hence any circuit, from copies of it. NAND and NOR are the natural choices because a single CMOS NAND or NOR needs only a handful of transistors and inverts "for free" (the transistor stages are naturally inverting). So a memory cell, an adder, a whole processor, can be laid down as a sea of identical NAND gates. The XOR of Problem 1, for instance, is customarily built from four NAND gates. This exercise — reducing an everyday $ \land/\lor $ formula to strokes and arrows — is the pencil-and-paper version of that entire design philosophy.
+
+## Remark — Sheffer's and Peirce's Discovery
+
+That a single connective could generate all of logic was found by **Charles Sanders Peirce** around 1880 (for NOR, his "ampheck") and independently published by **Henry Sheffer** in 1913 (for NAND, the "stroke"). The result was striking because the standard development of logic used several primitives ($ \lnot, \land, \lor, \to $); Sheffer showed one binary operation sufficed to define them all. It is a logical echo of a recurring theme in this book — reducing a rich system to the fewest possible primitives, as with the axioms of arithmetic or the generators of a group. Here the "fewest possible" is exactly **one**: every truth function whatsoever is some tower of NANDs.

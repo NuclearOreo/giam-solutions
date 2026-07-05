@@ -1,0 +1,53 @@
+.docname {Solution — GIAM 2.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.1 Problem 2
+
+## Problem
+
+Consider the sentence "This is a sentence which does not refer to itself." (given at the start of the chapter). Is this sentence a statement? If so, what is its truth value?
+
+## Answer
+
+$$$
+\boxed{\;\text{Yes — it } \textbf{is} \text{ a statement, and its truth value is } \textbf{FALSE}.\;}
+$$$
+
+The sentence *does* refer to itself (through the word "This"), so its claim that it does *not* refer to itself is simply false. Crucially — unlike the classic liar paradox — calling it false leads to **no contradiction**, so it qualifies as a legitimate (if self-defeating) statement.
+
+## The Reasoning
+
+Call the sentence $ S $. A **statement** is a declarative sentence that has a definite, consistent truth value. Let us see whether $ S $ can be assigned one.
+
+!(88%)[Step-by-step analysis showing S refers to itself, so its claim is false, and this is stable — contrasted with the liar paradox](problem-2-selfref.svg "A reasoning chart. The sentence S is 'This is a sentence which does not refer to itself.' Step 1, a fact about grammar not truth: the word 'This' points at S, so S really does refer to itself. Step 2, what S asserts: 'S does not refer to itself' — the opposite of the fact. Step 3, conclusion: S asserts something false, so S is FALSE. Step 4, stability check: 'S is false' means 'S refers to itself is true', which matches the fact — consistent, so S is a genuine statement with truth value FALSE. Contrast box, the Liar: 'This sentence is false' loops true-to-false-to-true endlessly, so it is not a statement; our sentence is different because it settles on FALSE.")
+
+**Step 1 — a fact about reference.** The demonstrative "This" in $ S $ points at $ S $ itself. Whether a sentence refers to itself is a matter of *grammar and reference*, settled independently of the sentence's truth. And here the fact is clear: **$ S $ does refer to itself.**
+
+**Step 2 — what $ S $ claims.** $ S $ asserts "$ S $ does *not* refer to itself" — the exact opposite of the Step 1 fact.
+
+**Step 3 — the verdict.** Since $ S $ asserts the negation of something true, $ S $ asserts a falsehood. So $ S $ is **false**.
+
+**Step 4 — no paradox (the crucial check).** Assigning "false" must not blow up. If $ S $ is false, then "$ S $ does not refer to itself" is false, i.e. "$ S $ *does* refer to itself" is true — which is exactly the Step 1 fact. Everything agrees. The value **false** is stable, so $ S $ is a bona-fide statement.
+
+## Remark — Why It Is *Not* a Paradox (Contrast With the Liar)
+
+It is tempting to lump this in with the liar sentence "This sentence is false," but they behave completely differently. The liar is genuinely paradoxical: assume it true and it must be false; assume it false and it must be true — no consistent value exists, so the liar is *not* a statement. Our sentence avoids the loop because its self-referential claim is about a **grammatical property** (does it refer to itself?), whose answer is fixed *before* we ever ask about truth. The liar's claim, by contrast, is about **its own truth value**, which is precisely what we are trying to pin down — that circularity is what breaks it. So $ S $ is merely *self-defeating* (false), while the liar is *self-undermining* (valueless).
+
+## Remark — A Self-Refuting but Consistent Statement
+
+$ S $ belongs to a tidy little family: sentences that are false *because* of what they say about themselves, yet perfectly consistent. Compare "This sentence has five words" (it has six, so it is false — no paradox) or "This sentence is written in French" (false, stated in English). Each refers to itself, makes a checkable claim about itself, and comes out false without any vicious circle. $ S $ is the same: it truthfully *could* have said "This sentence refers to itself" (which would be **true**), but by asserting the negation it lands on **false**. Self-reference alone does not create paradox — only self-reference *about truth* does.
+
+## Remark — Statements vs. Non-Statements in Logic
+
+The exercise is really drilling the chapter's central definition: a **statement** (or proposition) is a sentence that is definitely *either* true *or* false. Several kinds of sentence fail this test and are excluded from logic's domain: questions ("What time is it?"), commands ("Shut the door."), open sentences with free variables ("$ x > 3 $" — neither true nor false until $ x $ is fixed), and genuine paradoxes (the liar). This problem sharpens the boundary by presenting a sentence that *looks* like it might be excluded — it is weird and self-referential — yet on inspection has a perfectly determinate truth value and so *is* admitted as a statement. The lesson: strangeness or self-reference does not disqualify a sentence; only the absence of a consistent truth value does.
+
+## Remark — Self-Reference Is Not Always Harmful
+
+Self-reference has a fearsome reputation because of the liar and Russell's paradox, but this problem shows it is not intrinsically toxic. A self-referential sentence can be true ("This sentence contains the word *sentence*"), false (our $ S $), or paradoxical (the liar) — the outcome depends entirely on *what* the sentence says about itself. Productive self-reference is in fact essential to mathematics: Gödel's incompleteness theorems are built by constructing a carefully controlled self-referential statement ("this statement is not provable") that, unlike the liar, is consistent and turns out to be *true but unprovable*. Learning to tell harmless self-reference from paradoxical self-reference — exactly the discrimination this problem asks for — is the first step toward those deeper results.

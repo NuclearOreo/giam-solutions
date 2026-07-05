@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" height="500" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="500" fill="white"/>
+
+  <text x="350" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Ask either person: "Which door would the OTHER person say leads to freedom?" — then take the opposite door.</text>
+
+  <text x="350" y="56" font-size="12.5" font-style="italic" fill="#666" text-anchor="middle">Why it always works: one relayed answer passes through exactly one liar, so it comes out inverted.</text>
+
+  <!-- 2x2 case table -->
+  <!-- columns: you ask the KNIGHT / you ask the KNAVE ; rows: freedom door is LEFT / RIGHT -->
+  <g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="360" y="94">You ask the KNIGHT (truth-teller)</text>
+    <text x="560" y="94">You ask the KNAVE (liar)</text>
+  </g>
+  <line x1="40" y1="104" x2="660" y2="104" stroke="#999" stroke-width="0.9"/>
+  <line x1="250" y1="76" x2="250" y2="450" stroke="#e0e0e0"/>
+  <line x1="460" y1="76" x2="460" y2="450" stroke="#e0e0e0"/>
+
+  <!-- Row 1: freedom is LEFT -->
+  <text x="145" y="150" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">Truth:</text>
+  <text x="145" y="170" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">LEFT = freedom</text>
+  <g font-size="11.5" fill="#333">
+    <text x="360" y="134" text-anchor="middle">Knave would (lie and) say</text>
+    <text x="360" y="150" text-anchor="middle">"RIGHT is freedom."</text>
+    <text x="360" y="170" text-anchor="middle">Knight relays truthfully:</text>
+    <text x="360" y="186" text-anchor="middle" fill="#c0392b" font-weight="bold">points to RIGHT</text>
+    <text x="560" y="134" text-anchor="middle">Knight would say "LEFT."</text>
+    <text x="560" y="150" text-anchor="middle">Knave lies about that,</text>
+    <text x="560" y="170" text-anchor="middle">so answers:</text>
+    <text x="560" y="186" text-anchor="middle" fill="#c0392b" font-weight="bold">points to RIGHT</text>
+  </g>
+  <line x1="40" y1="204" x2="660" y2="204" stroke="#eee"/>
+
+  <!-- Row 2: freedom is RIGHT -->
+  <text x="145" y="270" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">Truth:</text>
+  <text x="145" y="290" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">RIGHT = freedom</text>
+  <g font-size="11.5" fill="#333">
+    <text x="360" y="240" text-anchor="middle">Knave would (lie and) say</text>
+    <text x="360" y="256" text-anchor="middle">"LEFT is freedom."</text>
+    <text x="360" y="276" text-anchor="middle">Knight relays truthfully:</text>
+    <text x="360" y="292" text-anchor="middle" fill="#c0392b" font-weight="bold">points to LEFT</text>
+    <text x="560" y="240" text-anchor="middle">Knight would say "RIGHT."</text>
+    <text x="560" y="256" text-anchor="middle">Knave lies about that,</text>
+    <text x="560" y="276" text-anchor="middle">so answers:</text>
+    <text x="560" y="292" text-anchor="middle" fill="#c0392b" font-weight="bold">points to LEFT</text>
+  </g>
+  <line x1="40" y1="310" x2="660" y2="310" stroke="#999" stroke-width="0.9"/>
+
+  <!-- key observation -->
+  <rect x="60" y="326" width="580" height="52" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="348" font-size="13" fill="#8a3b12" text-anchor="middle" font-weight="bold">In every case, both people point to the DEATH door.</text>
+  <text x="350" y="368" font-size="12.5" fill="#333" text-anchor="middle">The identity of who you asked never matters — the relayed answer is always wrong.</text>
+
+  <!-- decision rule -->
+  <rect x="120" y="394" width="460" height="46" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="422" font-size="15" fill="#1b5e20" text-anchor="middle" font-weight="bold">Rule: take the door they DON'T point to.</text>
+
+  <text x="350" y="466" font-size="12" font-style="italic" fill="#666" text-anchor="middle">Equivalent yes/no form: "Would the other person say the left door leads to freedom?"</text>
+  <text x="350" y="484" font-size="12" font-style="italic" fill="#666" text-anchor="middle">"Yes" ⟹ left is death (go right);  "No" ⟹ left is freedom (go left).</text>
+</svg>

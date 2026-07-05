@@ -1,0 +1,65 @@
+.docname {Solution — GIAM 2.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.1 Problem 3
+
+## Problem
+
+Consider the sentence "This sentence is false." Is this sentence a statement?
+
+## Answer
+
+$$$
+\boxed{\;\text{No — it is } \textbf{not} \text{ a statement.}\;}
+$$$
+
+This is the famous **liar paradox**. A statement must have a *definite, consistent* truth value — true or false. The liar sentence can be assigned *neither* without contradiction, so it fails the very definition of a statement.
+
+## The Reasoning
+
+Call the sentence $ L $. There are only two possibilities to test — $ L $ true or $ L $ false — and both self-destruct.
+
+!(90%)[The liar paradox: assuming true forces false and assuming false forces true, an endless loop, contrasted with Problem 2](problem-3-liar.svg "An analysis of L = 'This sentence is false.' Left branch: assume L is TRUE; then what it says holds, and it says 'L is false', so L must be FALSE. Right branch: assume L is FALSE; then 'L is false' is itself false, so L is not false, i.e. L must be TRUE. Red arrows show each conclusion forcing the opposite assumption: TRUE gives FALSE gives TRUE forever, with no consistent value. So L is neither true nor false and is NOT a statement. A contrast box notes Problem 2's sentence WAS a statement (false) because its self-claim was about grammar not truth, so no loop formed; the liar's claim is about its own truth value, which creates the vicious circle.")
+
+**Case 1 — suppose $ L $ is true.** Then what $ L $ asserts is the case. But $ L $ asserts "$ L $ is false." So $ L $ is false — contradicting our supposition.
+
+**Case 2 — suppose $ L $ is false.** Then what $ L $ asserts fails to hold. $ L $ asserts "$ L $ is false," so *that* is false, meaning $ L $ is *not* false — i.e. $ L $ is true — again contradicting the supposition.
+
+Each assumption forces its own opposite:
+
+$$$
+L \text{ true} \;\Longrightarrow\; L \text{ false} \;\Longrightarrow\; L \text{ true} \;\Longrightarrow\; \cdots
+$$$
+
+an unending flip with no stable resting point. Since no consistent truth value can be attached, $ L $ is **not a statement**.
+
+## Remark — The Sharp Contrast With Problem 2
+
+This problem is the deliberate foil to the previous one. There, "This sentence does not refer to itself" turned out to *be* a statement (a false one); here, "This sentence is false" is *not* a statement at all. The single decisive difference is **what the self-reference is about**:
+
+| | Problem 2 sentence | Problem 3 (liar) |
+| :--- | :--- | :--- |
+| self-claim is about… | a *grammatical* property (does it refer to itself?) | its *own truth value* |
+| answer fixed independently of truth? | yes (it plainly does refer to itself) | no (truth value is the very unknown) |
+| result | consistently **false** — a statement | **no consistent value** — not a statement |
+
+When a sentence talks about a feature settled *before* truth enters (word count, language, reference), self-reference is harmless. When it talks about its *own* truth, the evaluation feeds back into itself and the vicious circle appears.
+
+## Remark — Why This Does Not Break Logic
+
+A first reaction is alarm: has logic sprung a leak? No. The resolution is simply to **restrict the domain**. Classical logic is built only for sentences that *are* statements — those with a definite truth value — and the liar is excluded from that domain at the outset, exactly as questions and commands are. The liar does not prove a *contradiction within* logic (which would be catastrophic, since from a contradiction everything follows); it merely exhibits a sentence that lies *outside* logic's intended scope. Recognising and quarantining such sentences is precisely why the chapter is so careful to define "statement" before doing anything else.
+
+## Remark — Escaping the Paradox: Tarski's Hierarchy
+
+Logicians have made the informal fix precise. Alfred Tarski's diagnosis is that a consistent language cannot contain its own truth predicate — "is true"/"is false" for sentences of language $ \mathcal L $ must live in a richer *meta-language* $ \mathcal L' $. In that stratified setup the liar cannot even be *written*, because it would have to apply a level-$ n $ truth predicate to a level-$ n $ sentence, which the hierarchy forbids. Other approaches keep one language but change the logic — e.g. Kripke's *truth-value gaps*, where the liar is simply assigned *neither* true nor false (it is "ungrounded"). Both routes agree with our elementary conclusion: the liar is not a legitimate bearer of a truth value.
+
+## Remark — The Same Engine Powers Deep Theorems
+
+The liar looks like a mere curiosity, but the self-referential machinery behind it is one of the most productive ideas in all of mathematics — *when aimed correctly*. Replace "false" with "not provable" and you get Gödel's sentence "this statement is not provable," which (unlike the liar) is **consistent** and yields the **Incompleteness Theorems**: any sufficiently strong formal system contains true statements it cannot prove. Replace it with "does not halt" applied to programs and you get Turing's proof that the **Halting Problem** is undecidable. Russell's paradox — "the set of all sets that do not contain themselves" — is the set-theoretic liar, and forced the axiomatic rebuilding of set theory. The liar sentence of this exercise is thus the toy model for a family of results that map the outer limits of computation, provability, and set theory.

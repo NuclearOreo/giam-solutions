@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" height="500" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="500" fill="white"/>
+
+  <text x="350" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Is the sentence consistently assignable a truth value? Follow the reasoning.</text>
+
+  <!-- The sentence box -->
+  <rect x="120" y="46" width="460" height="42" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="72" font-size="14" fill="#1a3a63" text-anchor="middle" font-style="italic">S:  "This is a sentence which does not refer to itself."</text>
+
+  <!-- step 1: the fact -->
+  <rect x="60" y="108" width="580" height="56" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="80" y="132" font-size="13" fill="#222"><tspan font-weight="bold">Fact (about grammar, not truth):</tspan>  the word "This" points at S, so</text>
+  <text x="80" y="154" font-size="13.5" fill="#8a3b12" font-weight="bold">S really does refer to itself.</text>
+
+  <!-- arrow -->
+  <text x="350" y="184" font-size="18" fill="#999" text-anchor="middle">↓</text>
+
+  <!-- step 2: the claim -->
+  <rect x="60" y="192" width="580" height="56" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="80" y="216" font-size="13" fill="#222"><tspan font-weight="bold">What S asserts:</tspan>  "S does <tspan font-style="italic">not</tspan> refer to itself."</text>
+  <text x="80" y="238" font-size="13" fill="#222">The assertion is the <tspan font-weight="bold">opposite</tspan> of the fact above.</text>
+
+  <text x="350" y="268" font-size="18" fill="#999" text-anchor="middle">↓</text>
+
+  <!-- step 3: conclusion -->
+  <rect x="140" y="276" width="420" height="46" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="304" font-size="14.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">S asserts something false  ⟹  S is FALSE.</text>
+
+  <!-- step 4: stability check -->
+  <rect x="60" y="338" width="580" height="66" fill="#f4f8f4" stroke="#cde0cd"/>
+  <text x="350" y="362" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">Stability check — no paradox:</text>
+  <text x="350" y="384" font-size="12.5" fill="#222" text-anchor="middle">"S is false" means "S refers to itself is true" — which matches the fact.</text>
+  <text x="350" y="400" font-size="12.5" fill="#1b5e20" text-anchor="middle">Consistent. So S is a genuine statement with truth value FALSE.</text>
+
+  <!-- contrast box: the liar -->
+  <rect x="60" y="420" width="580" height="66" fill="#fbeeee" stroke="#e0b8b8"/>
+  <text x="80" y="442" font-size="12.5" fill="#7a1f1f"><tspan font-weight="bold">Contrast — the Liar:</tspan>  "This sentence is false."</text>
+  <text x="80" y="460" font-size="12" fill="#333">true ⟹ false, and false ⟹ true — an endless loop, no consistent value.</text>
+  <text x="80" y="478" font-size="12" fill="#7a1f1f">The Liar is NOT a statement. Our sentence is different: it settles on FALSE.</text>
+</svg>

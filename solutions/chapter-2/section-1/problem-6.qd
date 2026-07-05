@@ -1,0 +1,78 @@
+.docname {Solution — GIAM 2.1 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.1 Problem 6
+
+## Problem
+
+On the Island of Knights and Knaves, knights always tell the truth and knaves always lie. You are in a room with two doors — one to freedom, one to death — and two people, one a knight and one a knave (you don't know which is which). Determine the door to freedom by asking **a single question**.
+
+## The Question
+
+Point to either door and ask *either* person:
+
+$$$
+\boxed{\;\text{"Would the } \textit{other} \text{ person tell me that } \textit{this} \text{ door leads to freedom?"}\;}
+$$$
+
+Then act on the reverse of the answer:
+
+- If the answer is **"yes,"** that door leads to **death** — take the *other* door.
+- If the answer is **"no,"** that door leads to **freedom** — take *this* door.
+
+(Equivalently, in the "point to a door" form: ask "Which door would the *other* one say leads to freedom?" — and walk through the door they do **not** indicate.)
+
+## Why It Works
+
+The trick is that your question routes the answer through **both** people — the one you ask *and* the one they speak about. Since exactly one of the two is a liar, the report is inverted **exactly once**, so it is always wrong. It does not matter whom you happen to ask.
+
+!(94%)[Case table showing that whether you ask the knight or the knave, both point to the death door](problem-6-knights.svg "A two-by-two case analysis. Columns: you ask the knight (truth-teller) or the knave (liar). Rows: the freedom door is on the left, or on the right. When left is freedom: the knave would lie and say right, so the knight relays 'right'; and the knight would say left, but the knave lies and says 'right' — both point to the death door on the right. When right is freedom: symmetrically both point to left, the death door. In every one of the four cases both people point to the DEATH door, so the rule is to take the door they do not point to. An equivalent yes/no form asks 'would the other person say the left door leads to freedom?' — yes means left is death, no means left is freedom.")
+
+Work the "point to a door" version through all cases. Say you ask, *"Which door would the other person say leads to freedom?"*
+
+- **Ask the knight.** The knight answers truthfully, reporting what the knave *would* say. But the knave, asked directly, would *lie* and name the death door. So the knight — truthfully relaying a lie — names the **death** door.
+- **Ask the knave.** The knight would truthfully name the freedom door. The knave *lies* about that report, and so names the **death** door.
+
+Either way the reply names the death door, so you take the **opposite** one. $ \blacksquare $
+
+## Why the Naive Question Fails
+
+It helps to see why you cannot just ask *"Does this door lead to freedom?"* If you ask the knight you get the truth; if you ask the knave you get a lie — and since you don't know which person you're facing, the bare answer is useless. The genius of the relay question is that it makes the composite answer **independent of whom you asked**: the truth passes through exactly one liar in both scenarios, so the outcome is the same known distortion every time. You've converted an *unknown* single distortion into a *guaranteed* double-pass that you can correct for.
+
+## Remark — It Is Really a Statement About Composing Negations
+
+Underneath, this is pure Boolean logic. Model "tells the truth about $ P $" as reporting $ P $, and "lies about $ P $" as reporting $ \lnot P $. Asking person $ X $ what person $ Y $ would say composes the two: the answer is $ f_X(f_Y(P)) $ where each $ f $ is either the identity (knight) or negation (knave). Because your pair is *one of each*, the composition is always
+
+$$$
+\text{knight} \circ \text{knave} = \lnot, \qquad \text{knave} \circ \text{knight} = \lnot,
+$$$
+
+i.e. a single negation — regardless of order. So the reply is guaranteed to be $ \lnot P $ ("this door does *not* lead to freedom" when it does), and you simply negate again in your head. Two lies would cancel ($ \lnot\lnot = \text{id} $); one lie inverts. This is exactly the parity/XOR idea from Problem 1: the answer's correctness is the XOR of the two people's honesty bits, and (knight, knave) always XORs to "lying."
+
+## Remark — A Version That Works on a *Single* Guard
+
+Remarkably, you don't even need two people or a reference to "the other." A **biconditional** question works on *any one* islander, knight or knave. Ask:
+
+$$$
+\text{"Are you a knight } \textbf{if and only if} \text{ this door leads to freedom?"}
+$$$
+
+- A **knight** answers the biconditional truthfully. Since "you are a knight" is *true* for them, the biconditional reduces to "this door leads to freedom" — they say **yes** exactly when it does.
+- A **knave**: "you are a knight" is *false*, so the biconditional equals $ \lnot(\text{door} \to \text{freedom}) $; but the knave *lies*, inverting it back to "door leads to freedom." So they also say **yes** exactly when it does.
+
+Either way, **"yes" means this door leads to freedom.** The self-cancelling structure ("knave-ness" appears once in the biconditional and once in the lie, and cancels) is the same double-negation trick, folded into a single guard. This is the tool behind the "hardest logic puzzle ever" and its many relatives.
+
+## Remark — Why Logic Puzzles Live in a Logic Chapter
+
+Smullyan's knights and knaves are not mere entertainment: they are natural-language *models of Boolean logic*. "Knight" and "knave" are the truth-functions identity and negation; "$ X $ says $ P $" is an implication constrained by $ X $'s type; and solving a puzzle is exactly finding a truth assignment consistent with all the utterances — precisely the satisfiability question the truth tables of Problems 4–5 decide. Smullyan (a logician and, fittingly, a magician) used these puzzles to smuggle deep results — up to Gödel's incompleteness — into recreational form. This problem is the gateway: a single well-designed question, engineered so its answer is a *known* function of the hidden truth no matter which unknown you're dealing with.
+
+## Remark — The General Principle for Unreliable Informants
+
+The relay question generalises to a rule of thumb well beyond this puzzle: **to extract truth from an informant whose reliability you cannot verify, ask a question whose answer depends on the truth in a way you *can* predict.** Here, routing through a guaranteed-odd number of liars makes the distortion known. The same idea recurs in error-correcting codes (parity bits detect an odd number of flips), in cryptographic protocols, and in interview brain-teasers. The lesson of the exercise is less about doors than about *designing questions*: a cleverly structured query can neutralise an unknown, turning "I don't know who is lying" into "the answer is reliably backwards."

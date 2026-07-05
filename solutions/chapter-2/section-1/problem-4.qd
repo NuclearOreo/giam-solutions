@@ -1,0 +1,73 @@
+.docname {Solution — GIAM 2.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.1 Problem 4
+
+## Problem
+
+Complete truth tables for each of the sentences $ (A \land B) \lor C $ and $ A \land (B \lor C) $. Does it seem that these sentences have the same logical content?
+
+## Answer
+
+$$$
+\boxed{\;\textbf{No} — \text{the two sentences are } \textit{not} \text{ logically equivalent.}\;}
+$$$
+
+They agree on $ 6 $ of the $ 8 $ input rows but disagree on the two rows where $ A = 0 $ and $ C = 1 $.
+
+## The Truth Tables
+
+Building both formulas column by column over all $ 2^3 = 8 $ combinations of $ A, B, C $:
+
+!(96%)[Combined 8-row truth table for both formulas, with the two disagreeing rows shaded](problem-4-tt.svg "A combined truth table with columns A, B, C, A and B, (A and B) or C, B or C, and A and (B or C), over all 8 rows. The two output columns (A and B) or C and A and (B or C) are equal in six rows but differ in two shaded rows: (A,B,C) = (0,0,1) where left is 1 and right is 0, and (A,B,C) = (0,1,1) where left is 1 and right is 0. In both differing rows A = 0 and C = 1, so the left side is true because of C alone while the right side is false because it requires A. Conclusion: not logically equivalent.")
+
+| $ A $ | $ B $ | $ C $ | $ A\land B $ | $ (A\land B)\lor C $ | $ B\lor C $ | $ A\land(B\lor C) $ |
+| :---: | :---: | :---: | :---:        | :---:                 | :---:       | :---:                |
+| $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ |
+| $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ \mathbf{1} $ | $ 1 $ | $ \mathbf{0} $ |
+| $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ |
+| $ 0 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ \mathbf{1} $ | $ 1 $ | $ \mathbf{0} $ |
+| $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 0 $ |
+| $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+
+The two boldfaced rows are where the final columns disagree.
+
+## Where and Why They Differ
+
+The formulas part ways exactly when $ A = 0 $ and $ C = 1 $ (rows $ (0,0,1) $ and $ (0,1,1) $):
+
+- **$ (A\land B)\lor C $** is *true* there, because the lone disjunct $ C $ is true — and an OR needs only one true piece.
+- **$ A\land(B\lor C) $** is *false* there, because the outer AND demands $ A $, and $ A = 0 $ kills the whole conjunction regardless of $ B $ or $ C $.
+
+So the disagreement is entirely about whether a true $ C $ can "carry" the sentence on its own. In the first formula it can; in the second it cannot, because $ C $ is trapped inside a conjunction with $ A $.
+
+## Remark — Parentheses Are Not Decorative
+
+The only difference between the two sentences is *where the parentheses sit*, and that difference changes the meaning. This is the logical analogue of arithmetic's $ (2\times 3) + 4 = 10 $ versus $ 2\times(3+4) = 14 $: regrouping is not free. The lesson the exercise drives home is that $ \land $ and $ \lor $ do **not** associate *with each other* — you may not slide parentheses across a mixed $ \land/\lor $ expression. (They *do* each associate with themselves: $ (A\land B)\land C = A\land(B\land C) $, and likewise for $ \lor $. It is only the mixing that breaks.) Whenever both connectives appear, the grouping must be written explicitly or the sentence is genuinely ambiguous.
+
+## Remark — The Correct Distributive Law
+
+There *is* a valid way to "multiply out" a mixed expression — the **distributive law** — but it introduces a repeated variable rather than simply moving a parenthesis:
+
+$$$
+A \land (B \lor C) \;=\; (A \land B) \lor (A \land C).
+$$$
+
+Notice the $ A $ appears *twice* on the right. The naive $ (A\land B)\lor C $ of this problem is missing that second copy of $ A $ (it has a bare $ C $ instead of $ A\land C $), which is precisely why it comes out different. Distribution is the analogue of $ a\times(b+c) = ab + ac $ in arithmetic — and just as there, you cannot drop one of the two products. The exercise is a concrete warning against the mistake of "distributing" by only relocating a parenthesis.
+
+## Remark — When Do the Two *Happen* to Agree?
+
+Although not equivalent in general, the two formulas coincide on $ 6 $ of $ 8 $ rows, and it is worth seeing which. They agree whenever $ A = 1 $ (all four such rows: then both reduce to $ B\lor C $ vs. $ 1 $... let us check — with $ A=1 $, left is $ B\lor C $ and right is $ B\lor C $, identical), and also on the rows with $ C = 0 $ (then left is $ A\land B $ and right is $ A\land B $, identical). The *only* way to break them is to make the bare $ C $ decisive: $ C $ true while $ A $ false. So the equivalence fails on exactly the two rows where those conditions coincide. Spotting *when* two non-equivalent formulas nonetheless match is a useful habit — it often reveals the extra hypothesis under which a tempting-but-false identity becomes true (here: "if $ A $ is known true, the two sentences *are* interchangeable").
+
+## Remark — Truth Tables as a Decision Procedure
+
+This problem showcases the truth table as a complete, mechanical **decision procedure** for equivalence: two sentences have the same logical content *if and only if* their final columns match in every row, and a single differing row disproves equivalence outright. No cleverness is required — just fill in all $ 2^n $ rows for the $ n $ variables. The cost is that the table doubles with each new variable ($ 2^n $ rows), which is why, for larger formulas, logicians turn to the algebraic laws (De Morgan, distribution, association) that let one *transform* one sentence into another symbolically. But as a guaranteed-to-terminate check, the truth table is the bedrock — and here it settles the question in eight lines.
