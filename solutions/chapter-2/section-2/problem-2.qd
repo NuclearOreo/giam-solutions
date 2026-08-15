@@ -1,0 +1,66 @@
+.docname {Solution — GIAM 2.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 2
+
+## Problem
+
+Complete truth tables for the compound sentences $ A \Rightarrow B $ and $ \lnot A \lor B $.
+
+## Answer
+
+The two sentences have **identical** truth tables, so they are logically equivalent:
+
+$$$
+\boxed{\; A \Rightarrow B \;\equiv\; \lnot A \lor B. \;}
+$$$
+
+## The Truth Table
+
+Computing both formulas over all four combinations of $ A, B $ (with the helper column $ \lnot A $):
+
+| $ A $ | $ B $ | $ \lnot A $ | $ A \Rightarrow B $ | $ \lnot A \lor B $ |
+| :---: | :---: | :---:        | :---:                | :---:               |
+| T | T | F | $ \mathbf{T} $ | $ \mathbf{T} $ |
+| T | F | F | $ \mathbf{F} $ | $ \mathbf{F} $ |
+| F | T | T | $ \mathbf{T} $ | $ \mathbf{T} $ |
+| F | F | T | $ \mathbf{T} $ | $ \mathbf{T} $ |
+
+!(90%)[Side-by-side truth table showing A ⟹ B and ¬A ∨ B agree in all four rows](problem-2-tt.svg "A truth table with columns A, B, not-A, A implies B, and not-A or B, over all four rows. Row T,T: not-A is F, both final columns T. Row T,F: not-A F, both final columns F. Row F,T: not-A T, both T. Row F,F: not-A T, both T. The two final columns A implies B and not-A or B are identical in every row, so the boxed conclusion is A implies B is equivalent to not-A or B.")
+
+The columns for $ A\Rightarrow B $ and $ \lnot A\lor B $ agree in every row, confirming the equivalence.
+
+## Remark — This Is the *Definition* of Material Implication
+
+The equivalence $ A\Rightarrow B \equiv \lnot A\lor B $ is often taken as the very **definition** of the logical (material) conditional. It captures the promise "if $ A $, then $ B $" as "either $ A $ fails, or $ B $ holds." Read that way, the only situation that breaks the promise is $ A $ true while $ B $ false — exactly the single $ \mathbf F $ in row 2. Some textbooks introduce $ \Rightarrow $ by *stipulating* $ \lnot A\lor B $ and then deriving its properties; this problem shows the two presentations coincide.
+
+## Remark — Vacuous Truth: Why "False Implies Anything"
+
+The two bottom rows, where $ A $ is false, are the ones that puzzle newcomers: $ A\Rightarrow B $ comes out **true** whenever $ A $ is false, *regardless of $ B $*. The $ \lnot A\lor B $ form explains why instantly — if $ \lnot A $ is true, the disjunction is already true, so $ B $ is irrelevant. This is **vacuous truth**: a conditional with a false hypothesis makes no claim that can be violated, so it is counted true by default. "If the moon is made of cheese, then $ 2+2=5 $" is a *true* statement. The equivalence makes this convention feel less arbitrary: it is forced by identifying $ \Rightarrow $ with $ \lnot A\lor B $.
+
+## Remark — A Gateway to the Other Rewrites
+
+Once $ A\Rightarrow B \equiv \lnot A\lor B $ is in hand, a whole family of identities follows by simple algebra of $ \lnot, \lor, \land $. Negating both sides and applying De Morgan gives the negation of a conditional:
+
+$$$
+\lnot(A\Rightarrow B) \;\equiv\; \lnot(\lnot A\lor B) \;\equiv\; A\land\lnot B,
+$$$
+
+"not (if $ A $ then $ B $)" means "$ A $ holds but $ B $ fails" — again matching row 2, the lone false row. Swapping the disjuncts and re-folding gives the **contrapositive**:
+
+$$$
+\lnot A\lor B \;\equiv\; B\lor\lnot A \;\equiv\; \lnot(\lnot B)\lor(\lnot A) \;\equiv\; \lnot B\Rightarrow\lnot A.
+$$$
+
+So $ A\Rightarrow B \equiv \lnot B\Rightarrow\lnot A $ drops out of the same rewrite. The disjunctive form is the hub from which these standard equivalences radiate.
+
+## Remark — Turning Conditionals Into Circuits
+
+The rewrite is also what lets implication be *built* from the basic gates of Problem 2.1.1. There is no "implication gate" among the standard $ \{\land,\lor,\lnot\} $, but $ A\Rightarrow B \equiv \lnot A\lor B $ says one is unnecessary: feed $ A $ through a NOT gate, then OR the result with $ B $. Two gates realise the conditional. This is precisely how conditionals are handled in hardware and in the internals of a SAT solver — every $ \Rightarrow $ is silently replaced by its $ \lnot A\lor B $ form so that the whole formula lives in the common language of $ \land, \lor, \lnot $ (indeed, disjunctive clauses like $ \lnot A\lor B $ are the native input format — "clauses" — of modern SAT solvers).

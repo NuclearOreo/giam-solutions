@@ -1,0 +1,107 @@
+.docname {Solution — GIAM 2.2 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 8
+
+## Problem
+
+Find the contrapositives of the following sentences.
+
+- *(a)* If you can't do the time, don't do the crime.
+- *(b)* If you do well in school, you'll get a good job.
+- (*c*) If you wish others to treat you in a certain way, you must treat others in that fashion.
+- *(d)* If it's raining, there must be clouds.
+- *(e)* If $ a_n \le b_n $ for all $ n $ and $ \sum_{n=0}^{\infty} b_n $ is a convergent series, then $ \sum_{n=0}^{\infty} a_n $ is a convergent series.
+
+## The Rule
+
+The contrapositive of $ P \Rightarrow Q $ is $ \lnot Q \Rightarrow \lnot P $ — **swap** the two parts and **negate** both. By Problem 2's rewrite the two are logically equivalent, so a statement and its contrapositive always have the same truth value.
+
+!(94%)[The contrapositive rule, with the De Morgan step for part (e) and the double-negation care needed in part (a)](problem-8-contrapositive.svg "The contrapositive swaps and negates both parts: P implies Q becomes not-Q implies not-P, and the two are equivalent. The subtle case, part (e): the hypothesis is an AND, P = (a-n at most b-n for all n) and (sum of b-n converges), Q = (sum of a-n converges). Negate the whole hypothesis by De Morgan: not(P1 and P2) = not-P1 or not-P2, giving 'a-n greater than b-n for some n, OR sum of b-n diverges'. So: if sum of a-n diverges, then a-n exceeds b-n for some n, or sum of b-n diverges. Part (a) warns to watch built-in negations: with P = can't do the time and Q = don't do the crime, not-Q = do the crime and not-P = can do the time, so the contrapositive is 'If you do the crime, then you can do the time.'")
+
+## The Contrapositives
+
+**(a)** Original: $ P = $ "you can't do the time," $ Q = $ "don't do the crime." Negating each undoes the built-in "can't"/"don't":
+
+$$$
+\boxed{\;\text{If you } \textit{do} \text{ the crime, then you } \textit{can} \text{ do the time.}\;}
+$$$
+
+**(b)** $ P = $ "you do well in school," $ Q = $ "you'll get a good job":
+
+$$$
+\boxed{\;\text{If you don't get a good job, then you didn't do well in school.}\;}
+$$$
+
+**(*c*)** $ P = $ "you wish others to treat you in a certain way," $ Q = $ "you must treat others in that fashion":
+
+$$$
+\boxed{\;\text{If you don't treat others in a certain fashion, then you don't wish to be treated that way.}\;}
+$$$
+
+**(d)** $ P = $ "it's raining," $ Q = $ "there are clouds":
+
+$$$
+\boxed{\;\text{If there are no clouds, then it isn't raining.}\;}
+$$$
+
+**(e)** Here the hypothesis is a **conjunction**: $ P = \big(a_n \le b_n \text{ for all } n\big) \land \big(\sum b_n \text{ converges}\big) $, and $ Q = \big(\sum a_n \text{ converges}\big) $. Negating $ P $ requires De Morgan, turning the "and" into an "or":
+
+$$$
+\boxed{
+\begin{aligned}
+&\text{If } \textstyle\sum_{n=0}^{\infty} a_n \text{ diverges, then either } a_n > b_n \text{ for some } n, \\
+&\text{or } \textstyle\sum_{n=0}^{\infty} b_n \text{ diverges.}
+\end{aligned}
+}
+$$$
+
+## Remark — Watch the Negations Already in the Sentence
+
+Part (a) is the trap. Both of its clauses *already contain* a negation ("can't," "don't"), so forming the contrapositive **removes** them rather than adding more. The contrapositive of "if you can't do the time, don't do the crime" is *not* "if you can do the crime, you can't do the time" — one must negate each clause as a whole:
+
+$$$
+\begin{aligned}
+\lnot Q &= \lnot(\text{don't do the crime}) = \text{do the crime}, \\
+\lnot P &= \lnot(\text{can't do the time}) = \text{can do the time}.
+\end{aligned}
+$$$
+
+The double negations cancel, giving the clean positive statement in the box. Whenever a clause is already negative, negating it should *simplify* the English, not pile on another "not."
+
+## Remark — Part (e): Negating a Compound Hypothesis
+
+Part (e) is the mathematically substantial one, because its hypothesis has two parts joined by "and." De Morgan's law says
+
+$$$
+\lnot(P_1 \land P_2) \;\equiv\; \lnot P_1 \lor \lnot P_2,
+$$$
+
+so the negated hypothesis becomes a *disjunction*: at least one of the two conditions fails. Note also the careful negation of the quantified clause — the opposite of "$ a_n\le b_n $ **for all** $ n $" is "$ a_n > b_n $ **for some** $ n $," not "$ a_n>b_n $ for all $ n $." (Negating a universal gives an existential — the topic Chapter 2 takes up next.) Both subtleties must be handled for the contrapositive to be correct.
+
+## Remark — Why Contrapositives Are Useful in Proofs
+
+The contrapositive is not just a grammatical exercise: it is a **proof strategy**. Since $ P\Rightarrow Q $ and $ \lnot Q\Rightarrow\lnot P $ are equivalent, one may prove either. Often the contrapositive is dramatically easier, because its hypothesis gives you something concrete to work with. Statement (e) is a perfect example: it is the **comparison test** from calculus, and its contrapositive is the form actually used in practice — to show a series *diverges*, you compare it to a smaller divergent series. Similarly, Problem 2.1.3's parity lemma ("if $ x^2 $ is even then $ x $ is even") was proved by its contrapositive, because "$ x $ is odd" hands you the formula $ x = 2k+1 $ while "$ x^2 $ is even" hands you nothing usable.
+
+## Remark — Contrapositive vs. Converse vs. Inverse
+
+Three transformations of $ P\Rightarrow Q $ are easily confused, and only one preserves truth:
+
+| name | form | equivalent to original? |
+| :--- | :--- | :---: |
+| **contrapositive** | $ \lnot Q\Rightarrow\lnot P $ | **yes** ✓ |
+| converse | $ Q\Rightarrow P $ | no |
+| inverse | $ \lnot P\Rightarrow\lnot Q $ | no |
+
+Statement (d) makes the difference vivid. The original ("if raining, then clouds") is true; its contrapositive ("if no clouds, then not raining") is also true. But the *converse* ("if there are clouds, then it's raining") is plainly **false** — cloudy days are often dry. The converse and inverse are equivalent to each other (each is the contrapositive of the other), but neither follows from the original. Confusing a statement with its converse is among the most common reasoning errors, in mathematics and in daily life alike.
+
+## Remark — The Golden Rule, Contraposed
+
+Statement (*c*) is a rendering of the **Golden Rule**, and contraposing it gives a striking rhetorical shift. The original is aspirational — "treat others as you wish to be treated" — while the contrapositive reads as a diagnosis: *if you are not treating others well, then you do not really wish to be treated well yourself.* Logically the two say precisely the same thing, yet they land very differently on the ear. This is a nice reminder that logical equivalence is about *truth conditions* only; emphasis, tone, and persuasive force are not preserved by the transformation, even though truth value always is.

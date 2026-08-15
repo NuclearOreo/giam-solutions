@@ -1,0 +1,69 @@
+.docname {Solution — GIAM 2.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 4
+
+## Problem
+
+Determine a sentence using the *and* connector ($ \land $) that gives the negation of $ A \Rightarrow B $.
+
+## Answer
+
+$$$
+\boxed{\; \lnot(A \Rightarrow B) \;\equiv\; A \land \lnot B. \;}
+$$$
+
+"It is *not* the case that $ A $ implies $ B $" means exactly "$ A $ is true **and** $ B $ is false."
+
+## Derivation
+
+Start from the material-implication rewrite of Problem 2, $ A\Rightarrow B \equiv \lnot A\lor B $, negate, and apply **De Morgan's law** ($ \lnot(P\lor Q)\equiv\lnot P\land\lnot Q $):
+
+$$$
+\lnot(A\Rightarrow B) \;\equiv\; \lnot(\lnot A\lor B) \;\equiv\; \lnot(\lnot A)\land\lnot B \;\equiv\; A\land\lnot B.
+$$$
+
+## Verification by Truth Table
+
+| $ A $ | $ B $ | $ \lnot B $ | $ A\Rightarrow B $ | $ \lnot(A\Rightarrow B) $ | $ A\land\lnot B $ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | F | T | $ \mathbf{F} $ | $ \mathbf{F} $ |
+| T | F | T | F | $ \mathbf{T} $ | $ \mathbf{T} $ |
+| F | T | F | T | $ \mathbf{F} $ | $ \mathbf{F} $ |
+| F | F | T | T | $ \mathbf{F} $ | $ \mathbf{F} $ |
+
+!(90%)[Truth table verifying ¬(A ⟹ B) equals A ∧ ¬B, both true only in the row A=T, B=F](problem-4-tt.svg "A truth table with columns A, B, not-B, A implies B, not-(A implies B), and A and not-B. The column not-(A implies B) and the column A and not-B are identical: both false in rows TT, FT, FF, and both true only in the highlighted row A=T, B=F. Boxed conclusion: not-(A implies B) is equivalent to A and not-B.")
+
+The columns for $ \lnot(A\Rightarrow B) $ and $ A\land\lnot B $ match in all four rows. Both are true in exactly **one** row — $ A $ true, $ B $ false. $ \blacksquare $
+
+## Remark — The Negation Pinpoints the One Broken Row
+
+A conditional $ A\Rightarrow B $ is false in only a single situation: hypothesis true, conclusion false. Its negation must therefore be true in *exactly* that one situation — and $ A\land\lnot B $ is the sentence that "fires" precisely there. This is the quickest way to remember the identity: to *break* the promise "if $ A $ then $ B $," you need $ A $ to actually happen while $ B $ fails to. No other row can be a counterexample, which is why the negation is a single conjunction rather than something more complicated.
+
+## Remark — This Is How You Disprove an Implication
+
+The identity is the logical backbone of **finding a counterexample**. To refute a claim "$ A\Rightarrow B $" — for instance "if $ n $ is prime, then $ n $ is odd" — you do *not* argue about implications directly; you produce a single case where the hypothesis holds and the conclusion fails: $ n = 2 $ is prime ($ A $) and even ($ \lnot B $). That witness is exactly an instance of $ A\land\lnot B $. So "the negation of a conditional is a conjunction" is the precise reason a lone counterexample suffices to kill a universally-quantified "if–then" statement — a theme that returns when Chapter 2 negates quantifiers.
+
+## Remark — Note What the Negation Is *Not*
+
+Two tempting wrong answers are worth ruling out. The negation of $ A\Rightarrow B $ is **not** $ A\Rightarrow\lnot B $ ("if $ A $ then not $ B $"): that is a *different, stronger* claim, and it is even *true* in the rows where $ A $ is false, so it cannot be the negation (a statement and its negation must disagree in every row). Nor is it $ \lnot A\Rightarrow\lnot B $ or the converse $ B\Rightarrow A $. The negation is not a conditional at all — it is a flat conjunction of facts, $ A\land\lnot B $, asserting *both* that $ A $ holds *and* that $ B $ does not. Dropping the arrow entirely is the whole point.
+
+## Remark — The Companion Negations
+
+The same De Morgan machinery negates the other connectives, and it is useful to see $ A\land\lnot B $ sit among them:
+
+| statement | its negation |
+| :--- | :--- |
+| $ A\land B $ | $ \lnot A\lor\lnot B $ |
+| $ A\lor B $ | $ \lnot A\land\lnot B $ |
+| $ A\Rightarrow B $ | $ A\land\lnot B $ |
+| $ A\Leftrightarrow B $ | $ A\oplus B $ (exactly one holds) |
+
+Notice the pattern: negation swaps $ \land\leftrightarrow\lor $ and flips each piece — and a conditional, once unmasked as $ \lnot A\lor B $, follows the same rule to become $ A\land\lnot B $. This closes a small loop with the very first problem of the chapter: the negation of a biconditional is the **exclusive-or** of Problem 2.1.1, so the XOR circuit built there computes $ \lnot(A\Leftrightarrow B) $.

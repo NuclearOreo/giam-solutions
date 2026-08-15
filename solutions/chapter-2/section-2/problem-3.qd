@@ -1,0 +1,80 @@
+.docname {Solution — GIAM 2.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 3
+
+## Problem
+
+Complete a truth table for $ A \Rightarrow (B \Rightarrow C) $ and for $ (A \Rightarrow B) \Rightarrow C $. What can you conclude about conditionals and the associative property?
+
+## Answer
+
+$$$
+\boxed{\;\text{Conditionals are } \textbf{not associative}: \quad A \Rightarrow (B \Rightarrow C) \;\not\equiv\; (A \Rightarrow B) \Rightarrow C.\;}
+$$$
+
+The two groupings agree on $ 6 $ of the $ 8 $ rows but differ on the two rows where $ A = 0 $ and $ C = 0 $. So the parentheses in a chain of implications genuinely matter and cannot be dropped.
+
+## The Truth Table
+
+Building both formulas over all $ 8 $ rows (helper columns $ B\Rightarrow C $ and $ A\Rightarrow B $):
+
+| $ A $ | $ B $ | $ C $ | $ B{\Rightarrow}C $ | $ A{\Rightarrow}(B{\Rightarrow}C) $ | $ A{\Rightarrow}B $ | $ (A{\Rightarrow}B){\Rightarrow}C $ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ |
+| $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ 1 $ |
+| $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 0 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ \mathbf{1} $ | $ 1 $ | $ \mathbf{0} $ |
+| $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ \mathbf{1} $ | $ 1 $ | $ \mathbf{0} $ |
+
+The two boldfaced rows are where the final columns disagree.
+
+!(96%)[Combined 8-row truth table for both groupings, with the two disagreeing rows shaded](problem-3-tt.svg "A combined truth table with columns A, B, C, B implies C, A implies (B implies C), A implies B, and (A implies B) implies C, over all 8 rows. The two output columns are equal in six rows but differ in two shaded rows: (A,B,C) = (0,1,0) and (0,0,0). In both, A = 0 so the left formula A implies (B implies C) is vacuously true (value 1), while the right formula (A implies B) implies C has A implies B true and reduces to C, which is 0. Conclusion: implication is not associative; the parentheses cannot be dropped.")
+
+## Where and Why They Differ
+
+The two formulas part ways exactly when $ A = 0 $ and $ C = 0 $ (rows $ (0,1,0) $ and $ (0,0,0) $):
+
+- **$ A \Rightarrow (B\Rightarrow C) $** is **true** there. Its hypothesis $ A $ is false, so the whole conditional is *vacuously true* regardless of the inside.
+- **$ (A\Rightarrow B)\Rightarrow C $** is **false** there. With $ A $ false, the inner $ A\Rightarrow B $ is *true*, so the outer conditional reduces to $ \text{true}\Rightarrow C $, which is just $ C $ — and $ C = 0 $.
+
+So the disagreement comes from *where the false $ A $ lands*. On the left $ A $ is the outermost hypothesis and short-circuits the sentence to true; on the right $ A $ is buried in the antecedent, which a false $ A $ makes *true*, exposing $ C $ as the deciding value.
+
+## Remark — Contrast With Problem 1: Chained vs. Nested
+
+Beware a tempting confusion with Problem 1. There, "transitivity" chained *separate* implications: from $ A\Rightarrow B $ and $ B\Rightarrow C $ we got $ A\Rightarrow C $. That is a statement about combining two premises, and it is valid. **This** problem is different: it *nests* a single expression and asks whether the grouping can be shifted. It cannot. Transitivity ("$ A\Rightarrow B $ and $ B\Rightarrow C $ give $ A\Rightarrow C $") is true; associativity ("$ A\Rightarrow(B\Rightarrow C) $ equals $ (A\Rightarrow B)\Rightarrow C $") is false. The two are easy to conflate but say entirely different things.
+
+## Remark — The Right-Associative Convention
+
+Because the grouping matters, mathematicians adopt a **convention**: an unparenthesised chain $ A\Rightarrow B\Rightarrow C $ is read **right-associatively**, i.e. as $ A\Rightarrow(B\Rightarrow C) $. This choice is not arbitrary — the right-nested form is the more useful one, since (via Problem 2's rewrite) it equals
+
+$$$
+A\Rightarrow(B\Rightarrow C) \;\equiv\; \lnot A\lor(\lnot B\lor C) \;\equiv\; (A\land B)\Rightarrow C,
+$$$
+
+the natural "if $ A $ and $ B $, then $ C $" (a rule with two hypotheses). This equivalence — called **exportation** — is why the right-nested conditional appears constantly in mathematics, while the left-nested $ (A\Rightarrow B)\Rightarrow C $ is comparatively rare and, as we saw, behaves quite differently.
+
+## Remark — Which Connectives *Are* Associative
+
+This problem is a companion to Problem 2.1.4, where $ \land $ and $ \lor $ failed to associate *with each other*. The pattern of what associates is worth collecting:
+
+- $ \land $ associates with itself: $ (A\land B)\land C \equiv A\land(B\land C) $. ✓
+- $ \lor $ associates with itself: $ (A\lor B)\lor C \equiv A\lor(B\lor C) $. ✓
+- $ \Leftrightarrow $ associates: $ (A\Leftrightarrow B)\Leftrightarrow C \equiv A\Leftrightarrow(B\Leftrightarrow C) $ (both equal "an even number of $ A,B,C $ are false"). ✓
+- $ \Rightarrow $ does **not** associate (this problem). ✗
+
+So associativity is a special privilege, not a default. The symmetric connectives ($ \land, \lor, \Leftrightarrow $) enjoy it; the directional $ \Rightarrow $, which distinguishes hypothesis from conclusion, does not — its asymmetry is exactly what the two differing rows expose.
+
+## Remark — A Faster Way to See the Non-Equivalence
+
+One need not fill all eight rows to answer the question — a single well-chosen row suffices to *disprove* equivalence. Try to make the two sides differ by killing $ A $ and $ C $: set $ A = C = \text{false} $ (leave $ B $ anything). Then $ A\Rightarrow(B\Rightarrow C) $ is true (false hypothesis), while $ (A\Rightarrow B)\Rightarrow C $ has a true antecedent $ A\Rightarrow B $ and false consequent $ C $, hence is false. One row, $ (0,\cdot,0) $, already settles it. Producing a single **counterexample** row is the standard efficient technique for showing two formulas are *not* equivalent — you only need the full table to show that they *are*.

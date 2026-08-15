@@ -1,0 +1,76 @@
+.docname {Solution — GIAM 2.2 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 9
+
+## Problem
+
+What are the converse and inverse of "If you watch my back, I'll watch your back."?
+
+## Answer
+
+Let $ W = $ "you watch my back" and $ B = $ "I'll watch your back," so the sentence is $ W \Rightarrow B $.
+
+**Converse** ($ B \Rightarrow W $ — swap the two parts):
+
+$$$
+\boxed{\;\text{"If I watch your back, then you'll watch my back."}\;}
+$$$
+
+**Inverse** ($ \lnot W \Rightarrow \lnot B $ — negate both parts):
+
+$$$
+\boxed{\;\text{"If you don't watch my back, then I won't watch your back."}\;}
+$$$
+
+## The Four Relatives of a Conditional
+
+Every conditional $ P\Rightarrow Q $ has three companions, obtained by swapping, negating, or both:
+
+| name | form | English version |
+| :--- | :---: | :--- |
+| original | $ W\Rightarrow B $ | If you watch my back, I'll watch your back. |
+| **converse** | $ B\Rightarrow W $ | If I watch your back, you'll watch my back. |
+| **inverse** | $ \lnot W\Rightarrow\lnot B $ | If you don't watch my back, I won't watch your back. |
+| contrapositive | $ \lnot B\Rightarrow\lnot W $ | If I don't watch your back, you didn't watch my back. |
+
+!(96%)[Quadrant diagram of the original, converse, inverse, and contrapositive, showing which pairs are equivalent](problem-9-four.svg "A two-by-two quadrant diagram with W = 'you watch my back' and B = 'I'll watch your back'. Top-left, ORIGINAL W implies B: 'If you watch my back, I'll watch your back' — the given sentence. Top-right, CONVERSE B implies W: 'If I watch your back, you'll watch my back' — swap only, not equivalent. Bottom-left, INVERSE not-W implies not-B: 'If you don't watch my back, I won't watch your back' — negate only, not equivalent. Bottom-right, CONTRAPOSITIVE not-B implies not-W: 'If I don't watch your back, you didn't watch my back' — swap and negate, equivalent. Dashed diagonals mark the equivalent pairs: original with contrapositive, and converse with inverse. Red crosses mark the non-equivalent horizontal and vertical pairs. A note observes that the original promises loyalty in return, while the converse makes your loyalty conditional on mine — a genuinely different deal.")
+
+## Remark — Neither Follows From the Original
+
+The central point is that the converse and inverse are **not** logically equivalent to the sentence you started with. The original promises: *if you have my back, I will reciprocate.* The converse promises something quite different: *if I have your back, you will reciprocate* — it makes **your** loyalty the consequence rather than mine. Someone who sincerely asserts the original has committed to nothing at all about what happens when *they* act first. In everyday speech both sound like the same "we've got each other's backs" sentiment, which is exactly why the distinction is so easy to miss and so worth drilling.
+
+## Remark — Converse and Inverse Are Equivalent to *Each Other*
+
+Although neither matches the original, the converse and inverse do match one another:
+
+$$$
+\underbrace{B\Rightarrow W}_{\text{converse}} \quad\text{and}\quad \underbrace{\lnot W\Rightarrow\lnot B}_{\text{inverse}}
+$$$
+
+are contrapositives of each other (swap **and** negate $ B\Rightarrow W $ to get $ \lnot W\Rightarrow\lnot B $), and by Problem 8's rule contrapositives are equivalent. So the four sentences fall into exactly **two** equivalence classes of two — **{original, contrapositive}** and **{converse, inverse}** — the diagonal pairs in the figure. Asserting the converse is the same as asserting the inverse, and both are independent of the original.
+
+## Remark — Asserting Both Gives the Biconditional
+
+If you assert the original *and* its converse together, you get
+
+$$$
+(W\Rightarrow B)\land(B\Rightarrow W) \;\equiv\; W\Leftrightarrow B,
+$$$
+
+the **biconditional** — "I'll watch your back **if and only if** you watch mine." That is a genuinely stronger, symmetric pact: neither party acts without the other. This is the logical content of a true mutual agreement, and it explains the pull of the confusion. Colloquially, "if you watch my back, I'll watch yours" is *intended* as a biconditional (a two-way deal), even though it *literally* states only one direction. Logic makes explicit what the idiom leaves implicit.
+
+## Remark — Why Confusing a Statement With Its Converse Is Dangerous
+
+This is among the most common reasoning errors, and it has real consequences beyond word games. "If a patient has the disease, the test is positive" does **not** give "if the test is positive, the patient has the disease" — that leap ignores false positives and is the source of countless misread medical results. Likewise "all squares are rectangles" does not yield "all rectangles are squares." In each case the original constrains one direction only; the converse is a *separate* claim requiring its own evidence. Problem 8's table and this problem together make the moral concrete: contraposing is free, but converting is not.
+
+## Remark — Where Converses *Do* Hold: "If and Only If" Theorems
+
+None of this means converses are always false — only that they must be proved separately. Mathematics is full of theorems whose converse also happens to be true, and those are precisely the ones stated as **iff**: "$ n $ is even $ \iff n^2 $ is even" (Problem 2.1.3 established both directions), or "a triangle has a right angle $ \iff a^2+b^2=c^2 $" (the Pythagorean theorem *and* its converse, both true but requiring separate proofs). The habit worth building is to notice when you have proved only one direction and to ask deliberately whether the converse holds — sometimes it does, sometimes it fails, and the two questions are never the same question.

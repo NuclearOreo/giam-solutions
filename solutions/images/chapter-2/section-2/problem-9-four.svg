@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="470" fill="white"/>
+
+  <text x="350" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">The four relatives of a conditional. Only the contrapositive is equivalent to the original.</text>
+  <text x="350" y="48" font-size="12.5" font-style="italic" fill="#666" text-anchor="middle">W = "you watch my back",   B = "I'll watch your back".</text>
+
+  <!-- 2x2 quadrant layout -->
+  <!-- ORIGINAL top-left -->
+  <rect x="30" y="70" width="310" height="112" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="185" y="94" font-size="13.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">ORIGINAL:  W ⟹ B</text>
+  <text x="185" y="120" font-size="12.5" fill="#222" text-anchor="middle">"If you watch my back,</text>
+  <text x="185" y="138" font-size="12.5" fill="#222" text-anchor="middle">I'll watch your back."</text>
+  <text x="185" y="166" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">the given sentence</text>
+
+  <!-- CONVERSE top-right -->
+  <rect x="360" y="70" width="310" height="112" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="515" y="94" font-size="13.5" font-weight="bold" fill="#8a3b12" text-anchor="middle">CONVERSE:  B ⟹ W</text>
+  <text x="515" y="120" font-size="12.5" fill="#222" text-anchor="middle">"If I watch your back,</text>
+  <text x="515" y="138" font-size="12.5" fill="#222" text-anchor="middle">you'll watch my back."</text>
+  <text x="515" y="166" font-size="11.5" font-style="italic" fill="#8a3b12" text-anchor="middle">swap only — NOT equivalent</text>
+
+  <!-- INVERSE bottom-left -->
+  <rect x="30" y="198" width="310" height="112" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="185" y="222" font-size="13.5" font-weight="bold" fill="#8a3b12" text-anchor="middle">INVERSE:  ¬W ⟹ ¬B</text>
+  <text x="185" y="248" font-size="12.5" fill="#222" text-anchor="middle">"If you don't watch my back,</text>
+  <text x="185" y="266" font-size="12.5" fill="#222" text-anchor="middle">I won't watch your back."</text>
+  <text x="185" y="294" font-size="11.5" font-style="italic" fill="#8a3b12" text-anchor="middle">negate only — NOT equivalent</text>
+
+  <!-- CONTRAPOSITIVE bottom-right -->
+  <rect x="360" y="198" width="310" height="112" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="515" y="222" font-size="13.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">CONTRAPOSITIVE:  ¬B ⟹ ¬W</text>
+  <text x="515" y="248" font-size="12.5" fill="#222" text-anchor="middle">"If I don't watch your back,</text>
+  <text x="515" y="266" font-size="12.5" fill="#222" text-anchor="middle">you didn't watch my back."</text>
+  <text x="515" y="294" font-size="11.5" font-style="italic" fill="#1b5e20" text-anchor="middle">swap AND negate — EQUIVALENT ✓</text>
+
+  <!-- equivalence arrows -->
+  <path d="M340,126 L358,126" stroke="#c0392b" stroke-width="2" fill="none"/>
+  <text x="349" y="118" font-size="14" fill="#c0392b" text-anchor="middle">✗</text>
+  <path d="M185,184 L185,196" stroke="#c0392b" stroke-width="2" fill="none"/>
+  <text x="199" y="194" font-size="14" fill="#c0392b" text-anchor="middle">✗</text>
+  <!-- diagonal equivalence original <-> contrapositive -->
+  <line x1="336" y1="176" x2="364" y2="204" stroke="#1b5e20" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="318" y="196" font-size="13" fill="#1b5e20" font-weight="bold">≡</text>
+  <!-- diagonal equivalence converse <-> inverse -->
+  <line x1="364" y1="176" x2="336" y2="204" stroke="#8a3b12" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="378" y="196" font-size="13" fill="#8a3b12" font-weight="bold">≡</text>
+
+  <!-- explanation -->
+  <rect x="40" y="330" width="620" height="60" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="350" y="354" font-size="12.5" fill="#222" text-anchor="middle">Diagonal pairs are equivalent:  original ≡ contrapositive,  and  converse ≡ inverse.</text>
+  <text x="350" y="376" font-size="12.5" fill="#8a3b12" text-anchor="middle">But the converse/inverse pair does <tspan font-weight="bold">not</tspan> follow from the original — they say something new.</text>
+
+  <!-- concrete note -->
+  <rect x="40" y="404" width="620" height="52" fill="#fbeeee" stroke="#e0b8b8"/>
+  <text x="350" y="426" font-size="12" fill="#7a1f1f" text-anchor="middle">The original promises loyalty in return. The converse instead makes YOUR loyalty conditional on mine —</text>
+  <text x="350" y="446" font-size="12" fill="#7a1f1f" text-anchor="middle">a genuinely different deal, even though both sound like "we've got each other's backs."</text>
+</svg>

@@ -1,0 +1,70 @@
+.docname {Solution — GIAM 2.2 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 6
+
+## Problem
+
+Why is it that the sentence "If pigs can fly, I am the king of Mesopotamia." is true?
+
+## Answer
+
+$$$
+\boxed{\;\text{Its hypothesis ("pigs can fly") is } \textbf{false}, \text{ so the conditional is } \textit{vacuously true}.\;}
+$$$
+
+A conditional $ P \Rightarrow Q $ is false in exactly **one** situation — $ P $ true and $ Q $ false. Here $ P = $ "pigs can fly" is false, so that situation cannot occur, and the sentence is automatically true *regardless of whether the speaker is king of Mesopotamia*.
+
+## The Explanation
+
+Let $ P = $ "pigs can fly" and $ Q = $ "I am the king of Mesopotamia." The sentence is $ P \Rightarrow Q $. Recall the conditional's truth table:
+
+| $ P $ | $ Q $ | $ P \Rightarrow Q $ |
+| :---: | :---: | :---: |
+| T | T | T |
+| T | F | $ \mathbf{F} $ |
+| F | T | $ \mathbf{T} $ |
+| F | F | $ \mathbf{T} $ |
+
+The only way for $ P\Rightarrow Q $ to be **false** is the second row: hypothesis true, conclusion false. Since "pigs can fly" is false, we are in one of the two bottom rows — and **both give true**. So the sentence is true.
+
+!(90%)[Truth table for P ⟹ Q with the two false-hypothesis rows shaded, both yielding true](problem-6-vacuous.svg "The setup: P = 'pigs can fly' is FALSE; Q = 'I am the king of Mesopotamia' has irrelevant truth value. The truth table for P implies Q: row T,T gives T; row T,F gives F, the only false row; rows F,T and F,F (shaded) both give T. Our sentence lives in a shaded row because 'pigs can fly' is false, so the conditional is vacuously true no matter what the conclusion says.")
+
+## Why the $ \lnot P\lor Q $ Form Makes It Obvious
+
+Using Problem 2's equivalence $ P\Rightarrow Q\equiv\lnot P\lor Q $, the sentence becomes
+
+$$$
+\underbrace{\lnot(\text{pigs can fly})}_{\text{TRUE}} \;\lor\; (\text{I am king}).
+$$$
+
+Since "pigs *cannot* fly" is true, the disjunction is already true on its first half — the second disjunct never even needs to be examined. This is the cleanest way to see vacuous truth: a false hypothesis makes $ \lnot P $ true, which satisfies the "or" by itself.
+
+## Remark — The Conditional Makes No Claim When the Hypothesis Fails
+
+The intuition is a *promise*. "If $ P $, then $ Q $" is a pledge that only comes due when $ P $ actually happens. If $ P $ never happens, the pledge is never called upon, so it cannot be broken — and an unbroken promise counts as kept (true). The speaker who says "if pigs can fly, I'm king of Mesopotamia" risks nothing, because pigs don't fly; there is no possible world (among the actual facts) in which they are caught out. Crucially, the sentence asserts **nothing** about the speaker's royalty — it would be *equally true* with any conclusion: "if pigs can fly, then $ 2+2=5 $" is just as true.
+
+## Remark — This Is a Rhetorical Device
+
+The construction is used in ordinary speech precisely *because* everyone knows the hypothesis is absurd. By attaching an outlandish conclusion to an impossible condition, the speaker vividly asserts "$ P $ is false" — "I'm no more the king of Mesopotamia than pigs can fly." Sarcasm like "if he passed that exam, I'll eat my hat" works the same way: the true content is the *falsity of the hypothesis*, conveyed by daring the listener to accept a ridiculous consequence. Logic's vacuous-truth convention is exactly what makes the rhetorical move valid — the whole conditional is true, so uttering it commits the speaker to nothing embarrassing.
+
+## Remark — Vacuous Truth Is Indispensable in Mathematics
+
+Far from a mere curiosity, vacuous truth is *essential* to how mathematics is stated. Countless true theorems are vacuously true in edge cases:
+
+- "Every element of the empty set is purple" is **true** — there is no element to serve as a counterexample.
+- "For all $ x $, if $ x^2 < 0 $ then $ x = 5 $" is **true** over the reals, since $ x^2<0 $ never holds.
+- "If $ n $ is both even and odd, then $ n = 100 $" is **true**, vacuously.
+
+The convention is forced on us: a universal statement $ \forall x\,(P(x)\Rightarrow Q(x)) $ should be false *only* if some $ x $ actually violates it (satisfies $ P $ but not $ Q $). With no such witness, it must be true. Defining the conditional any other way would make basic laws — like "the empty set is a subset of every set" — break down. So the pigs-can-fly sentence is a jokey instance of a convention that quietly underpins theorems throughout the book.
+
+## Remark — How to *Refute* Such a Sentence (You Can't, Here)
+
+To disprove a conditional you must exhibit the one forbidden combination, $ P\land\lnot Q $ (Problem 4) — the hypothesis holding while the conclusion fails. For "if pigs can fly, I'm king," a refutation would require producing a *flying pig* alongside a *non-royal speaker*. Since no flying pig exists, no such counterexample can be assembled, and the sentence stands unrefuted — which is precisely what "true" means for it. This is the mirror image of Problem 4: there, one counterexample kills a conditional; here, the impossibility of even *starting* a counterexample (no true hypothesis) guarantees the conditional survives.

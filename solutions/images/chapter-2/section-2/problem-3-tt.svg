@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" width="700" height="460" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="460" fill="white"/>
+
+  <text x="350" y="28" font-size="13.5" font-style="italic" fill="#444" text-anchor="middle">Both groupings over all 8 rows. The two final columns disagree in the shaded rows — so ⟹ is not associative.</text>
+
+  <!-- headers -->
+  <g font-size="13" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="65"  y="70">A</text>
+    <text x="110" y="70">B</text>
+    <text x="155" y="70">C</text>
+    <text x="240" y="70">B⟹C</text>
+    <text x="370" y="70" fill="#2a5db0">A⟹(B⟹C)</text>
+    <text x="500" y="70">A⟹B</text>
+    <text x="620" y="70" fill="#8a3b12">(A⟹B)⟹C</text>
+  </g>
+  <line x1="30" y1="80" x2="680" y2="80" stroke="#999" stroke-width="0.9"/>
+  <line x1="305" y1="52" x2="305" y2="410" stroke="#e0e0e0"/>
+  <line x1="560" y1="52" x2="560" y2="410" stroke="#e0e0e0"/>
+
+  <g font-size="13" text-anchor="middle">
+    <!-- 111 -->
+    <text x="65" y="108">1</text><text x="110" y="108">1</text><text x="155" y="108">1</text><text x="240" y="108">1</text><text x="370" y="108" fill="#2a5db0">1</text><text x="500" y="108">1</text><text x="620" y="108" fill="#8a3b12">1</text>
+    <!-- 110 -->
+    <text x="65" y="140">1</text><text x="110" y="140">1</text><text x="155" y="140">0</text><text x="240" y="140">0</text><text x="370" y="140" fill="#2a5db0">0</text><text x="500" y="140">1</text><text x="620" y="140" fill="#8a3b12">0</text>
+    <!-- 101 -->
+    <text x="65" y="172">1</text><text x="110" y="172">0</text><text x="155" y="172">1</text><text x="240" y="172">1</text><text x="370" y="172" fill="#2a5db0">1</text><text x="500" y="172">0</text><text x="620" y="172" fill="#8a3b12">1</text>
+    <!-- 100 -->
+    <text x="65" y="204">1</text><text x="110" y="204">0</text><text x="155" y="204">0</text><text x="240" y="204">1</text><text x="370" y="204" fill="#2a5db0">1</text><text x="500" y="204">0</text><text x="620" y="204" fill="#8a3b12">1</text>
+    <!-- 011 -->
+    <text x="65" y="236">0</text><text x="110" y="236">1</text><text x="155" y="236">1</text><text x="240" y="236">1</text><text x="370" y="236" fill="#2a5db0">1</text><text x="500" y="236">1</text><text x="620" y="236" fill="#8a3b12">1</text>
+    <!-- 010 DIFFER -->
+    <rect x="30" y="248" width="650" height="32" fill="#fbe4da"/>
+    <text x="65" y="270">0</text><text x="110" y="270">1</text><text x="155" y="270">0</text><text x="240" y="270">0</text><text x="370" y="270" fill="#2a5db0" font-weight="bold">1</text><text x="500" y="270">1</text><text x="620" y="270" fill="#8a3b12" font-weight="bold">0</text>
+    <!-- 001 -->
+    <text x="65" y="304">0</text><text x="110" y="304">0</text><text x="155" y="304">1</text><text x="240" y="304">1</text><text x="370" y="304" fill="#2a5db0">1</text><text x="500" y="304">1</text><text x="620" y="304" fill="#8a3b12">1</text>
+    <!-- 000 DIFFER -->
+    <rect x="30" y="316" width="650" height="32" fill="#fbe4da"/>
+    <text x="65" y="338">0</text><text x="110" y="338">0</text><text x="155" y="338">0</text><text x="240" y="338">1</text><text x="370" y="338" fill="#2a5db0" font-weight="bold">1</text><text x="500" y="338">1</text><text x="620" y="338" fill="#8a3b12" font-weight="bold">0</text>
+  </g>
+  <line x1="30" y1="356" x2="680" y2="356" stroke="#999" stroke-width="0.9"/>
+
+  <text x="350" y="384" font-size="12.5" fill="#c0392b" text-anchor="middle" font-weight="bold">Rows differ when A = 0 and C = 0: the left is vacuously TRUE (A false), but the right collapses to C = 0.</text>
+  <text x="350" y="410" font-size="13" fill="#222" text-anchor="middle">Different columns  ⟹  <tspan font-weight="bold">A ⟹ (B ⟹ C)  is NOT equivalent to  (A ⟹ B) ⟹ C.</tspan></text>
+  <text x="350" y="440" font-size="12" font-style="italic" fill="#666" text-anchor="middle">Implication is not associative — the parentheses cannot be dropped.</text>
+</svg>

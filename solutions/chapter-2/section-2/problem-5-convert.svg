@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="420" fill="white"/>
+
+  <text x="350" y="30" font-size="14" font-style="italic" fill="#444" text-anchor="middle">A "do this OR else that" threat is really an if–then. Translate the disjunction to a conditional.</text>
+
+  <!-- step 1: name the atoms -->
+  <rect x="60" y="52" width="580" height="60" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="80" y="76" font-size="13" fill="#222"><tspan font-weight="bold">Let</tspan>  T = "you fix the toilet",   R = "I pay the rent".</text>
+  <text x="80" y="100" font-size="13" fill="#222">Sentence "Fix the toilet or I won't pay the rent" becomes:   <tspan font-weight="bold" fill="#2a5db0">T ∨ ¬R</tspan></text>
+
+  <!-- step 2: rewrite rule -->
+  <rect x="120" y="132" width="460" height="44" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="159" font-size="14" fill="#1a3a63" text-anchor="middle" font-weight="bold">Rewrite rule:   P ∨ Q  ≡  ¬P ⟹ Q</text>
+
+  <text x="350" y="200" font-size="13" fill="#666" text-anchor="middle">Apply with P = T, Q = ¬R:</text>
+
+  <!-- step 3: the conditional -->
+  <text x="350" y="234" font-size="16" fill="#222" text-anchor="middle">T ∨ ¬R   ≡   ¬T ⟹ ¬R</text>
+
+  <!-- boxed english -->
+  <rect x="90" y="256" width="520" height="46" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="284" font-size="14.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">"If you don't fix the toilet, then I won't pay the rent."</text>
+
+  <!-- the contrapositive alt -->
+  <text x="350" y="336" font-size="12.5" fill="#666" text-anchor="middle" font-style="italic">Equivalent (contrapositive), reading the other disjunct as antecedent:</text>
+  <text x="350" y="362" font-size="14" fill="#222" text-anchor="middle">T ∨ ¬R   ≡   R ⟹ T</text>
+  <rect x="120" y="378" width="460" height="34" fill="#fafafa" stroke="#e0e0e0"/>
+  <text x="350" y="400" font-size="13" fill="#333" text-anchor="middle">"If I (am to) pay the rent, then you fix the toilet."</text>
+</svg>

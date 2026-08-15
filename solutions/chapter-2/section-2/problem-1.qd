@@ -1,0 +1,74 @@
+.docname {Solution — GIAM 2.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 1
+
+## Problem
+
+The transitive property of equality says that if $ a = b $ and $ b = c $ then $ a = c $. Does the implication arrow satisfy a transitive property? If so, state it.
+
+## Answer
+
+$$$
+\boxed{\;\text{Yes. If } A \Rightarrow B \text{ and } B \Rightarrow C, \text{ then } A \Rightarrow C.\;}
+$$$
+
+As a single tautology,
+
+$$$
+\big[\, (A \Rightarrow B) \,\land\, (B \Rightarrow C) \,\big] \;\Rightarrow\; (A \Rightarrow C).
+$$$
+
+This is a classical rule of inference called **hypothetical syllogism** (the "chain rule" for implications).
+
+## The Idea
+
+Implication behaves just like $ = $ here: it *chains*. If truth of $ A $ guarantees truth of $ B $, and truth of $ B $ guarantees truth of $ C $, then truth of $ A $ guarantees truth of $ C $ — passing through $ B $ as a stepping-stone.
+
+!(96%)[Chain diagram A→B→C with a derived arrow A→C, plus a truth table confirming the tautology](problem-1-chain.svg "A chain diagram: A arrow B labelled A implies B, B arrow C labelled B implies C, and a dashed derived arrow from A to C labelled 'so A implies C'. Below, a boxed statement: [(A implies B) and (B implies C)] implies (A implies C) is a tautology. A truth table over all eight combinations of A, B, C lists the columns A implies B, B implies C, their conjunction (the premise), A implies C, and the whole conditional — whose final column is 1 in every one of the eight rows, confirming it is a tautology.")
+
+## Verifying It Is a Tautology
+
+Build the truth table for $ [(A\Rightarrow B)\land(B\Rightarrow C)]\Rightarrow(A\Rightarrow C) $ over all $ 8 $ rows (recall $ X\Rightarrow Y $ is false only when $ X $ is true and $ Y $ is false):
+
+| $ A $ | $ B $ | $ C $ | $ A{\Rightarrow}B $ | $ B{\Rightarrow}C $ | premise | $ A{\Rightarrow}C $ | whole |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ |
+| $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 1 $ | $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 1 $ | $ 0 $ | $ 1 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+| $ 0 $ | $ 0 $ | $ 0 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ | $ 1 $ |
+
+The final column is $ 1 $ in **every** row, so the conditional is a tautology — the transitive property holds. $ \blacksquare $
+
+## Remark — A Shorter Proof Than the Full Table
+
+We need not check the outputs blindly; the conditional can only *fail* when its premise is true and its conclusion false. So suppose the premise $ (A\Rightarrow B)\land(B\Rightarrow C) $ is true, and suppose (for contradiction) $ A\Rightarrow C $ is false. "$ A\Rightarrow C $ false" forces $ A $ true and $ C $ false. Then $ A $ true with $ A\Rightarrow B $ true gives $ B $ true; and $ B $ true with $ B\Rightarrow C $ true gives $ C $ true — contradicting $ C $ false. So the conclusion cannot fail while the premise holds: the implication is valid. This "attack only the one dangerous row" method is faster than an $ 8 $-row table and scales far better.
+
+## Remark — This Is Exactly How Proofs Are Built
+
+Transitivity of $ \Rightarrow $ is not a curiosity — it is the *engine* of essentially every mathematical proof. A proof is a chain
+
+$$$
+A \Rightarrow A_1 \Rightarrow A_2 \Rightarrow \cdots \Rightarrow A_n \Rightarrow Z,
+$$$
+
+and hypothetical syllogism, applied repeatedly, collapses the whole chain into the single conclusion $ A \Rightarrow Z $. Each step licenses the next, and transitivity guarantees the endpoints connect. When you prove "the hypotheses imply the theorem" by a sequence of intermediate lemmas, you are invoking this property at every link. The equality analogy in the problem is apt: just as $ a=b=c=\cdots $ lets you conclude the first equals the last, $ A\Rightarrow\cdots\Rightarrow Z $ lets you conclude the first implies the last.
+
+## Remark — Both $ \Rightarrow $ and $ \Leftrightarrow $ Are Transitive, but They Differ
+
+The biconditional $ \Leftrightarrow $ is *also* transitive — $ (A\Leftrightarrow B)\land(B\Leftrightarrow C)\Rightarrow(A\Leftrightarrow C) $ — and it is the connective that most closely mirrors $ = $, since it is additionally **symmetric** ($ A\Leftrightarrow B $ gives $ B\Leftrightarrow A $) and **reflexive** ($ A\Leftrightarrow A $). Plain implication $ \Rightarrow $ is transitive and reflexive ($ A\Rightarrow A $) but **not** symmetric: $ A\Rightarrow B $ does not give $ B\Rightarrow A $ (rain implies clouds, but clouds do not imply rain). So $ \Rightarrow $ behaves like an *order* relation (reflexive, transitive, antisymmetric up to equivalence) — akin to $ \le $ from Chapter 1 — while $ \Leftrightarrow $ behaves like an *equivalence* relation, the true logical counterpart of equality.
+
+## Remark — The Contrast With a Non-Transitive Relation
+
+It is worth appreciating that transitivity is a genuine, checkable property that some relations *lack* — so confirming it for $ \Rightarrow $ is not automatic. "Is a friend of" is famously non-transitive (your friend's friend need not be your friend); in logic, "is *consistent* with" fails too — $ A $ can be consistent with $ B $ and $ B $ consistent with $ C $ while $ A $ and $ C $ contradict. That $ \Rightarrow $ *does* chain is precisely what makes long deductions trustworthy: you can stack a hundred valid steps and the conclusion still follows from the start. Had implication not been transitive, mathematics as a step-by-step enterprise would collapse.

@@ -1,0 +1,84 @@
+.docname {Solution — GIAM 2.2 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 7
+
+## Problem
+
+Express the statement $ A \Rightarrow B $ using the Peirce arrow ($ \downarrow $, NOR) and/or the Scheffer stroke ($ \mid $, NAND). (Recall Problem 2.1.5, where $ A\mid B = \lnot(A\land B) $ and $ A\downarrow B = \lnot(A\lor B) $.)
+
+## Answer
+
+The shortest form uses the Scheffer stroke alone:
+
+$$$
+\boxed{\; A \Rightarrow B \;=\; A \mid (B \mid B). \;}
+$$$
+
+Using the Peirce arrow alone:
+
+$$$
+\boxed{\; A \Rightarrow B \;=\; \big((A\downarrow A)\downarrow B\big) \downarrow \big((A\downarrow A)\downarrow B\big). \;}
+$$$
+
+## Derivation
+
+Start from the material-implication rewrite $ A\Rightarrow B\equiv\lnot A\lor B $ (Problem 2), and recall from Problem 2.1.5 that each connective builds negation from itself: $ \lnot X = X\mid X = X\downarrow X $.
+
+**Scheffer stroke (NAND).** Rewrite the disjunction as a NAND via De Morgan:
+
+$$$
+A\Rightarrow B \;\equiv\; \lnot A\lor B \;\equiv\; \lnot(A\land\lnot B) \;=\; A\mid\lnot B.
+$$$
+
+Then replace $ \lnot B $ by $ B\mid B $:
+
+$$$
+A\Rightarrow B \;=\; A\mid(B\mid B).
+$$$
+
+**Peirce arrow (NOR).** Write the disjunction as a doubly-negated NOR:
+
+$$$
+A\Rightarrow B \;\equiv\; \lnot A\lor B \;=\; \lnot(\lnot A\downarrow B) \;=\; (\lnot A\downarrow B)\downarrow(\lnot A\downarrow B),
+$$$
+
+then substitute $ \lnot A = A\downarrow A $ to get the boxed NOR expression.
+
+!(96%)[Derivations of A ⟹ B in NAND-only and NOR-only form, with a verification table](problem-7-forms.svg "Two derivations. Via NAND, A|B = not(A and B): A implies B is not-A or B, which is not(A and not-B) = A | not-B; since not-B = B|B, the result is A | (B|B). Via NOR, A down-arrow B = not(A or B): A implies B is not-A or B = not(not-A down-arrow B); since not-A = A down-arrow A, the result is ((A down-arrow A) down-arrow B) down-arrow ((A down-arrow A) down-arrow B). A small table confirms both reproduce A implies B on all four rows: 1 1 gives 1, 1 0 gives 0, 0 1 gives 1, 0 0 gives 1.")
+
+## Verification of the NAND Form
+
+Tracing $ A\mid(B\mid B) $ (recall $ X\mid Y $ is false only when both $ X,Y $ are true):
+
+| $ A $ | $ B $ | $ B\mid B\ (=\lnot B) $ | $ A\mid(B\mid B) $ | $ A\Rightarrow B $ |
+| :---: | :---: | :---: | :---: | :---: |
+| T | T | F | T | T |
+| T | F | T | F | F |
+| F | T | F | T | T |
+| F | F | T | T | T |
+
+The computed column matches $ A\Rightarrow B $ in every row. $ \blacksquare $
+
+## Remark — Why the NAND Form Is So Short
+
+The Scheffer stroke wins here because implication is *almost already* a NAND. Unwinding the definition, $ A\mid\lnot B = \lnot(A\land\lnot B) $, and $ \lnot(A\land\lnot B) $ is exactly "not ($ A $ but not $ B $)" — which is precisely the conditional (recall $ A\land\lnot B $ is the *negation* of $ A\Rightarrow B $ from Problem 4!). So $ A\Rightarrow B $ is literally "NAND of $ A $ with $ \lnot B $," and the only extra work is manufacturing $ \lnot B = B\mid B $. The result, $ A\mid(B\mid B) $, uses just **three** strokes, versus **five** arrows for the NOR version — a nice illustration that the choice of primitive connective changes how compactly a given function can be written.
+
+## Remark — Connecting to the Negation of Problem 4
+
+This problem and Problem 4 are two sides of one coin. Problem 4 found $ \lnot(A\Rightarrow B) = A\land\lnot B $. Since the Scheffer stroke *is* negated-and, $ A\mid\lnot B = \lnot(A\land\lnot B) = \lnot\big(\lnot(A\Rightarrow B)\big) = A\Rightarrow B $. In other words, the single NAND gate directly *un-negates* the "counterexample" formula $ A\land\lnot B $. Seeing the implication as "the NAND that rejects only the counterexample row" ties the two exercises together: the one row where $ A\land\lnot B $ is true is exactly the one row where $ A\Rightarrow B $ is false.
+
+## Remark — Everything Really Does Reduce to One Gate
+
+This is the payoff of Problem 2.1.5's functional completeness. There we saw NAND (and NOR) alone can express *any* truth function; here we cash that out for the conditional, the one connective not in the basic $ \{\land,\lor,\lnot\} $ toolkit. Because $ A\Rightarrow B $ reduces to strokes, a circuit built entirely from NAND gates can compute implication — feed $ B $ into a NAND with both inputs tied (making $ \lnot B $), then NAND that with $ A $. Two physical gates realise "$ A\Rightarrow B $." This is why a chip fabricator needs only master a single gate type to build control logic full of conditionals, and it closes the loop with the hardware theme running through this chapter's problems.
+
+## Remark — The Forms Are Not Unique
+
+Several equally-valid expressions exist, since the algebra of $ \mid $ and $ \downarrow $ offers many routes. For instance, one could expand $ \lnot A\lor B $ differently and reach a longer NAND expression, or mix the two connectives. The boxed answers are simply the *shortest* in each single-connective style. What is forced is only the *function* computed (the truth table), not the syntactic form — a reminder that "expressing" a statement in a given basis admits many correct answers, and minimality is a separate (often harder) optimisation question, central to real circuit design.

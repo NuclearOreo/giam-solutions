@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 400" width="680" height="400" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="680" height="400" fill="white"/>
+
+  <text x="340" y="30" font-size="14" font-style="italic" fill="#444" text-anchor="middle">A conditional is false in only one case. With a false hypothesis, that case can never arise.</text>
+
+  <!-- atoms -->
+  <rect x="50" y="52" width="580" height="58" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="70" y="76" font-size="13" fill="#222"><tspan font-weight="bold">P</tspan> = "pigs can fly"  —  <tspan fill="#c0392b" font-weight="bold">FALSE</tspan></text>
+  <text x="70" y="98" font-size="13" fill="#222"><tspan font-weight="bold">Q</tspan> = "I am the king of Mesopotamia"  —  truth value irrelevant</text>
+
+  <!-- truth table for P=>Q, highlight the two P=false rows -->
+  <g font-size="13.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="150" y="146">P</text>
+    <text x="280" y="146">Q</text>
+    <text x="450" y="146">P ⟹ Q</text>
+  </g>
+  <line x1="90" y1="156" x2="590" y2="156" stroke="#999" stroke-width="0.9"/>
+  <g font-size="13.5" text-anchor="middle">
+    <text x="150" y="182">T</text><text x="280" y="182">T</text><text x="450" y="182">T</text>
+    <text x="150" y="212">T</text><text x="280" y="212">F</text><text x="450" y="212" fill="#c0392b" font-weight="bold">F  ← the only false row</text>
+    <!-- highlight P false rows -->
+    <rect x="90" y="224" width="500" height="30" fill="#eef5ee"/>
+    <text x="150" y="245" fill="#c0392b">F</text><text x="280" y="245">T</text><text x="450" y="245" fill="#1b5e20" font-weight="bold">T</text>
+    <rect x="90" y="256" width="500" height="30" fill="#eef5ee"/>
+    <text x="150" y="277" fill="#c0392b">F</text><text x="280" y="277">F</text><text x="450" y="277" fill="#1b5e20" font-weight="bold">T</text>
+  </g>
+  <line x1="90" y1="290" x2="590" y2="290" stroke="#999" stroke-width="0.9"/>
+
+  <text x="340" y="316" font-size="12.5" fill="#666" text-anchor="middle" font-style="italic">Both shaded rows (P false) give TRUE — and our sentence lives in a shaded row, since "pigs can fly" is false.</text>
+
+  <!-- boxed conclusion -->
+  <rect x="110" y="336" width="460" height="46" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="340" y="358" font-size="13.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">False hypothesis ⟹ the conditional is vacuously TRUE,</text>
+  <text x="340" y="376" font-size="12.5" fill="#1b5e20" text-anchor="middle">no matter what the conclusion says.</text>
+</svg>

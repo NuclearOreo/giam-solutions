@@ -1,0 +1,81 @@
+.docname {Solution — GIAM 2.2 Problem 11}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 11
+
+## Problem
+
+On the Island of Knights and Knaves you encounter two individuals named Locke and Demosthenes.
+
+- Locke says, "Demosthenes is a knave."
+- Demosthenes says, "Locke and I are knights."
+
+Who is a knight and who a knave?
+
+## Answer
+
+$$$
+\boxed{\;\text{Locke is a } \textbf{knight}; \text{ Demosthenes is a } \textbf{knave}.\;}
+$$$
+
+## Setting Up
+
+Let $ L $ = "Locke is a knight" and $ D $ = "Demosthenes is a knight." Recall the island's rule: a knight's utterance is **true** and a knave's is **false**. So for each speaker, *being a knight* must match *their claim being true*:
+
+$$$
+L \Leftrightarrow \underbrace{(\lnot D)}_{\text{Locke's claim}}, \qquad D \Leftrightarrow \underbrace{(L \land D)}_{\text{Demosthenes' claim}}.
+$$$
+
+We need the assignment of $ L, D $ satisfying both biconditionals.
+
+## The Short Argument
+
+**Step 1 — Demosthenes must be a knave.** Suppose he were a knight. Then his claim "Locke and I are knights" would be *true*, so Locke would be a knight too. But then Locke — a knight — asserts "Demosthenes is a knave," which would be *false*. A knight cannot say something false. Contradiction. Hence **Demosthenes is a knave**.
+
+**Step 2 — Locke must be a knight.** Given that Demosthenes is a knave, Locke's statement "Demosthenes is a knave" is **true**. Only a knight speaks truth, so **Locke is a knight**.
+
+**Step 3 — check consistency.** With $ L = $ knight, $ D = $ knave: Locke (knight) says $ \lnot D $, which is true ✓. Demosthenes (knave) says $ L\land D = \text{true}\land\text{false} = $ false, and a knave must speak falsely ✓. Both conditions hold, so the solution is consistent. $ \blacksquare $
+
+## All Four Cases
+
+Checking every possibility confirms the answer is not just consistent but **unique**:
+
+!(96%)[Case table over all four knight/knave assignments, with only one row consistent](problem-11-cases.svg "A case table. Locke claims not-D, consistent iff L equals the value of not-D; Demosthenes claims L and D, consistent iff D equals the value of L and D. Row 1, both knights: not-D is F but Locke must speak truth, fails. Row 2, Locke knight and Demosthenes knave: not-D is T and Locke is a knight so ok; L and D is F and Demosthenes is a knave so ok — both consistent, the shaded solution row. Row 3, Locke knave and Demosthenes knight: Locke ok, but L and D is F while Demosthenes as a knight must speak truth, fails. Row 4, both knaves: not-D is T but a knave must speak falsely, fails. Only the shaded row works. Answer: Locke is a knight, Demosthenes is a knave. Shortcut argument: if Demosthenes were a knight his claim would make Locke a knight, but then Locke's claim would be false — contradiction.")
+
+| Locke | Demosthenes | Locke's claim $ \lnot D $ | consistent? | Dem.'s claim $ L\land D $ | consistent? |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| knight | knight | F | ✗ (knight needs T) | T | ✓ |
+| **knight** | **knave** | T | ✓ | F | ✓ |
+| knave | knight | F | ✓ | F | ✗ (knight needs T) |
+| knave | knave | T | ✗ (knave needs F) | F | ✓ |
+
+Exactly one row has both columns consistent — the second.
+
+## Remark — Why Demosthenes' Claim Was Self-Defeating
+
+Demosthenes made a strategic blunder available only to knaves: he asserted a conjunction that *included his own knighthood*. Any statement of the form "$ \dots $ and I am a knight" is a trap, because it can only be true if the speaker is a knight — so a knave uttering it is guaranteed to be lying, and the whole conjunction collapses to false. Since $ D $ appears as a conjunct in $ L\land D $, the biconditional $ D\Leftrightarrow(L\land D) $ simplifies dramatically: if $ D $ is true, it forces $ L $ true; if $ D $ is false, the conjunction is automatically false and the condition is satisfied with no constraint on $ L $. That is exactly why Demosthenes' statement carried *no* information about Locke once he turned out to be a knave — all the work was done by Locke's statement.
+
+## Remark — Some Statements Are Impossible on the Island
+
+The island's rule makes certain utterances unsayable, and spotting them shortcuts many puzzles. **No inhabitant can say "I am a knave."** A knight cannot (it would be a false statement from a truth-teller); a knave cannot either (it would be a *true* statement from a liar). Conversely, **everyone can say "I am a knight"** — a knight truthfully, a knave falsely — so that claim is completely uninformative. Demosthenes' statement is the informative upgrade: by conjoining his own (useless) self-claim with a claim about Locke, he produced a sentence that *does* constrain the situation — just not in his favour.
+
+## Remark — This Is a Satisfiability Problem
+
+Formally, solving a knight/knave puzzle means finding a truth assignment satisfying the conjunction of all the biconditionals:
+
+$$$
+\big(L \Leftrightarrow \lnot D\big) \;\land\; \big(D \Leftrightarrow (L\land D)\big).
+$$$
+
+This is exactly the **satisfiability (SAT)** question, and the four-row table is the brute-force decision procedure of Problem 2.1.4 applied to it. A puzzle is *well-posed* when the formula has exactly one satisfying assignment; it would be *contradictory* if there were none (like the liar of Problem 2.1.3), and *underdetermined* if there were several. Here the unique solution is what makes the puzzle fair. With $ n $ inhabitants there are $ 2^n $ assignments to check, which is why larger Smullyan puzzles reward the kind of clever shortcut used in the Short Argument above.
+
+## Remark — A Note on the Names
+
+The names are a literary wink. **Locke** and **Demosthenes** are the online pseudonyms adopted by the Wiggin siblings in Orson Scott Card's *Ender's Game* — personas designed to make readers believe they were seasoned political commentators rather than children. They are borrowed in turn from John Locke, the philosopher of reasoned argument, and Demosthenes, the Athenian orator famed for fiery rhetoric. There is a pleasing irony in casting them here: the puzzle's Demosthenes is the one whose grand claim ("we are *both* knights") turns out to be pure bluster, while the quieter Locke — who asserts a single modest fact — is the one telling the truth.

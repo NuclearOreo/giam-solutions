@@ -1,0 +1,68 @@
+.docname {Solution — GIAM 2.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 5
+
+## Problem
+
+Rewrite the sentence "Fix the toilet or I won't pay the rent!" as a conditional.
+
+## Answer
+
+$$$
+\boxed{\;\text{"If you don't fix the toilet, then I won't pay the rent."}\;}
+$$$
+
+Symbolically, with $ T = $ "you fix the toilet" and $ R = $ "I pay the rent," the sentence is the disjunction $ T \lor \lnot R $, which rewrites as the conditional $ \lnot T \Rightarrow \lnot R $.
+
+## The Translation
+
+Name the atomic statements:
+
+- $ T $ = "you fix the toilet,"
+- $ R $ = "I pay the rent," so $ \lnot R $ = "I won't pay the rent."
+
+The sentence "Fix the toilet **or** I won't pay the rent" is then $ T \lor \lnot R $. Now use the disjunction-to-conditional rule (Problem 2's material-implication equivalence, read the other way):
+
+$$$
+P \lor Q \;\equiv\; \lnot P \Rightarrow Q.
+$$$
+
+With $ P = T $ and $ Q = \lnot R $,
+
+$$$
+T \lor \lnot R \;\equiv\; \lnot T \Rightarrow \lnot R,
+$$$
+
+i.e. **"If you don't fix the toilet, then I won't pay the rent."**
+
+!(94%)[Translation from the English disjunction to symbolic form and then to the conditional](problem-5-convert.svg "The translation. Let T be 'you fix the toilet' and R be 'I pay the rent'. The sentence 'Fix the toilet or I won't pay the rent' becomes T or not-R. The rewrite rule P or Q is equivalent to not-P implies Q. Applying it with P = T and Q = not-R gives T or not-R equivalent to not-T implies not-R, i.e. 'If you don't fix the toilet, then I won't pay the rent.' An equivalent contrapositive form, taking the other disjunct as antecedent, is R implies T: 'If I am to pay the rent, then you fix the toilet.'")
+
+## Why "Or" Becomes "If–Not–Then"
+
+The rule $ P\lor Q\equiv\lnot P\Rightarrow Q $ is just the material-implication equivalence of Problem 2 run backwards: $ \lnot P\Rightarrow Q\equiv\lnot(\lnot P)\lor Q\equiv P\lor Q $. Intuitively, "$ P $ or $ Q $" promises at least one of them; so *if $ P $ fails*, $ Q $ is forced. That is exactly the landlord's threat: the tenant offers "either you fix the toilet, or the rent doesn't come" — and if the fixing doesn't happen, the non-payment follows. Everyday "**do this, or else that**" ultimatums are conditionals in disguise, which is why the rewrite feels so natural once stated.
+
+## Remark — An Equivalent Form: the Contrapositive
+
+There are two ways to turn a disjunction into a conditional, depending on which disjunct you negate for the antecedent. Taking $ \lnot R $ as the "if" part instead gives
+
+$$$
+T \lor \lnot R \;\equiv\; \lnot(\lnot R)\Rightarrow T \;\equiv\; R \Rightarrow T,
+$$$
+
+"**If** I pay the rent, **then** you (will have) fixed the toilet." This is the **contrapositive** of the first answer ($ \lnot T\Rightarrow\lnot R $ and $ R\Rightarrow T $ are equivalent, by Problem 2's remark). Both are correct rewrites; the first is the more natural reading of a threat (it keeps cause before effect), while the second states the same commitment from the rent-payer's side. That a single "or" yields these two equivalent conditionals is a small showcase of contraposition in ordinary language.
+
+## Remark — What the Rewrite Is *Not*
+
+It is worth flagging the common slip. The conditional is $ \lnot T\Rightarrow\lnot R $ (*if you don't fix it, I won't pay*), **not** $ T\Rightarrow\lnot R $ (*if you fix it, I won't pay*) — the latter negates the wrong side and reverses the intended incentive. The antecedent must be the *negation* of the first disjunct, because "or" only forces the second alternative once the first has *failed*. Keeping track of that single negation is the whole content of the exercise; getting it backwards turns a reasonable threat into a nonsensical one.
+
+## Remark — Everyday Logic and the Truth-Functional Caveat
+
+This problem illustrates that natural language is quietly full of logical connectives, and that translating them into symbols both sharpens the meaning and exposes hidden structure — the landlord's "or" was an "if–then" all along. One honest caveat: the *material* conditional captures only the **truth-functional** skeleton, not the causal or threatening force. Logic records that $ \lnot T\Rightarrow\lnot R $ is *false* precisely when the toilet is unfixed yet the rent is paid anyway — the one outcome that would break the tenant's word. It does not model the *menace* or the temporal "you fix it first." Stripping a sentence down to that truth-functional core is exactly the modelling step this chapter trains, and the same discipline (name the atoms, pick the connective, mind the negations) scales to translating far more intricate mathematical prose.

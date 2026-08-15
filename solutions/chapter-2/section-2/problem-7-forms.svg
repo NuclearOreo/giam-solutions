@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="420" fill="white"/>
+
+  <text x="350" y="30" font-size="14" font-style="italic" fill="#444" text-anchor="middle">Start from A ⟹ B ≡ ¬A ∨ B, then express with the single-gate connectives.</text>
+
+  <!-- NAND derivation -->
+  <rect x="40" y="52" width="620" height="120" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="60" y="76" font-size="14" font-weight="bold" fill="#1a3a63">Via NAND ( A | B = ¬(A ∧ B) )</text>
+  <text x="70" y="102" font-size="13" fill="#222">A ⟹ B  ≡  ¬A ∨ B  ≡  ¬(A ∧ ¬B)  =  A | ¬B</text>
+  <text x="70" y="126" font-size="13" fill="#222">and  ¬B = B | B,  so:</text>
+  <rect x="200" y="138" width="300" height="30" fill="#dbe7f5"/>
+  <text x="350" y="159" font-size="16" fill="#1a3a63" text-anchor="middle" font-weight="bold">A ⟹ B  =  A | (B | B)</text>
+
+  <!-- NOR derivation -->
+  <rect x="40" y="188" width="620" height="128" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="60" y="212" font-size="14" font-weight="bold" fill="#1b5e20">Via NOR ( A ↓ B = ¬(A ∨ B) )</text>
+  <text x="70" y="238" font-size="13" fill="#222">A ⟹ B  ≡  ¬A ∨ B  =  ¬( ¬A ↓ B )  and  ¬A = A ↓ A,  so:</text>
+  <rect x="150" y="256" width="400" height="30" fill="#d7ebd7"/>
+  <text x="350" y="277" font-size="15" fill="#1b5e20" text-anchor="middle" font-weight="bold">A ⟹ B  =  ( (A↓A) ↓ B ) ↓ ( (A↓A) ↓ B )</text>
+  <text x="350" y="304" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">(a NOR of a value with itself is negation, undoing the inner NOR)</text>
+
+  <!-- verification mini table -->
+  <text x="350" y="344" font-size="12.5" fill="#222" text-anchor="middle" font-weight="bold">Both reproduce A ⟹ B on all four rows:</text>
+  <g font-size="12.5" text-anchor="middle" fill="#333">
+    <text x="200" y="368">A B :  A⟹B</text>
+    <text x="200" y="388">1 1 : 1     1 0 : 0</text>
+    <text x="200" y="406">0 1 : 1     0 0 : 1</text>
+    <text x="520" y="378" fill="#1a3a63">A|(B|B) ✓</text>
+    <text x="520" y="398" fill="#1b5e20">((A↓A)↓B)↓(…) ✓</text>
+  </g>
+</svg>

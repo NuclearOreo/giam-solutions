@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 2.2 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.2 Problem 10
+
+## Problem
+
+The **integral test**: suppose $ f(x) $ is a positive, decreasing, real-valued function with $ \lim_{x\to\infty} f(x) = 0 $. If the improper integral $ \int_0^{\infty} f(x)\,dx $ has a finite value, then the infinite series $ \sum_{n=1}^{\infty} f(n) $ converges. The test is envisioned via a right-hand Riemann sum, which (as $ f $ decreases) underestimates the integral:
+
+$$$
+\sum_{n=1}^{\infty} f(n) \;<\; \int_0^{\infty} f(x)\,dx.
+$$$
+
+Discuss the meanings of and (where possible) provide justifications for the **inverse**, **converse**, and **contrapositive** of the conditional in the integral test.
+
+## Setting Up
+
+Write the conditional as $ P \Rightarrow Q $ with
+
+$$$
+P: \int_0^{\infty} f(x)\,dx \text{ converges}, \qquad Q: \sum_{n=1}^{\infty} f(n) \text{ converges},
+$$$
+
+throughout assuming the standing hypotheses ($ f $ positive, decreasing, $ f\to 0 $). The four relatives are:
+
+| name | form | meaning |
+| :--- | :---: | :--- |
+| original | $ P\Rightarrow Q $ | integral converges $ \Rightarrow $ series converges |
+| **contrapositive** | $ \lnot Q\Rightarrow\lnot P $ | series diverges $ \Rightarrow $ integral diverges |
+| **converse** | $ Q\Rightarrow P $ | series converges $ \Rightarrow $ integral converges |
+| **inverse** | $ \lnot P\Rightarrow\lnot Q $ | integral diverges $ \Rightarrow $ series diverges |
+
+**All four are true here** — but for different reasons, and that is the point of the exercise.
+
+## The Contrapositive — True, and Free
+
+$$$
+\boxed{\;\text{If } \sum_{n=1}^{\infty} f(n) \text{ diverges, then } \int_0^{\infty} f(x)\,dx \text{ diverges.}\;}
+$$$
+
+This needs **no new work**: by Problem 8, a conditional and its contrapositive are logically equivalent, so it is true the moment the original is. It is also the *practically useful* form — it is how one proves an integral diverges by recognising a divergent series (or, read the other way, how a divergent series certifies a divergent integral).
+
+The underlying justification is the same inequality. Since $ \sum f(n) \le \int_0^\infty f $, an infinite left side forces an infinite right side.
+
+## The Converse — Also True, but Needs a *New* Argument
+
+$$$
+\boxed{\;\text{If } \sum_{n=1}^{\infty} f(n) \text{ converges, then } \int_0^{\infty} f(x)\,dx \text{ converges.}\;}
+$$$
+
+This does **not** follow from the original (converses never do — Problem 9). It happens to be true, but requires the *other* Riemann sum: the **left-hand** sum, which for a decreasing $ f $ **over**estimates.
+
+!(98%)[Two panels: right-hand rectangles under the curve proving the original, left-hand rectangles over the curve proving the converse](problem-10-riemann.svg "Two side-by-side panels, each showing a positive decreasing curve f(x) with unit-width rectangles. Left panel, right-hand rectangles: on each strip from n-1 to n the bar has height f(n) and fits entirely under the curve, so the total bar area is at most the area under f — giving sum of f(n) at most the integral from 0 to infinity. This proves 'integral finite implies series finite', the original. Right panel, left-hand rectangles: on each strip from n to n+1 the bar has height f(n) and covers the curve, so the total bar area is at least the area under f on [1, infinity) — giving the integral from 1 to infinity at most the sum. This proves 'series finite implies integral finite', the converse.")
+
+**Justification.** On the strip $ [n, n+1] $, decreasing $ f $ means $ f(x) \le f(n) $ for all $ x $ there, so $ \int_n^{n+1} f(x)\,dx \le f(n) $. Summing over $ n \ge 1 $:
+
+$$$
+\int_1^{\infty} f(x)\,dx \;\le\; \sum_{n=1}^{\infty} f(n).
+$$$
+
+Now suppose the series converges, say to $ S < \infty $. Then $ \int_1^\infty f \le S $ is finite. The leftover piece is finite too: $ f $ is decreasing and positive, so on $ [0,1] $ it is bounded by $ f(0) $, giving $ \int_0^1 f(x)\,dx \le f(0) < \infty $. Adding,
+
+$$$
+\int_0^{\infty} f = \int_0^1 f + \int_1^{\infty} f \;\le\; f(0) + S \;<\; \infty. \qquad \blacksquare
+$$$
+
+## The Inverse — True, Because It Is the Contrapositive of the Converse
+
+$$$
+\boxed{\;\text{If } \int_0^{\infty} f(x)\,dx \text{ diverges, then } \sum_{n=1}^{\infty} f(n) \text{ diverges.}\;}
+$$$
+
+The inverse $ \lnot P\Rightarrow\lnot Q $ is the contrapositive of the converse $ Q\Rightarrow P $, so it is *automatically* true once the converse is established (Problem 9's observation that converse $ \equiv $ inverse). Directly: if $ \int_0^\infty f = \infty $ then $ \int_1^\infty f = \infty $, and since $ \int_1^\infty f \le \sum f(n) $, the series must diverge too.
+
+## Remark — The Integral Test Is Really a Biconditional
+
+Because the original *and* its converse both hold, the two may be combined (Problem 9):
+
+$$$
+\int_0^{\infty} f(x)\,dx \text{ converges} \quad\Longleftrightarrow\quad \sum_{n=1}^{\infty} f(n) \text{ converges}.
+$$$
+
+Under the standing hypotheses, integral and series **live or die together**. This is why the integral test is a genuine *test* rather than a one-way sufficient condition: it can certify convergence *and* divergence. Most textbooks state it as an "if and only if" for exactly this reason. The whole content of the two-sided result is captured by the sandwich
+
+$$$
+\int_1^{\infty} f(x)\,dx \;\le\; \sum_{n=1}^{\infty} f(n) \;\le\; \int_0^{\infty} f(x)\,dx,
+$$$
+
+with the left inequality (left-hand sum) giving one direction and the right inequality (right-hand sum) the other.
+
+## Remark — Why the Converse Genuinely Needed New Work
+
+It is worth stressing that we could *not* have obtained the converse for free. Logic guarantees only the contrapositive; the converse is an independent claim (Problem 9), and here it demanded a second geometric argument with the rectangles shifted one unit. That the answer came out "true" is a fact about *this particular* $ f $-hypothesis, not about conditionals in general. Had we only ever drawn the right-hand rectangles, we would possess a one-directional test — able to prove convergence but never divergence — which is exactly half as useful.
+
+## Remark — Where the Hypotheses Earn Their Keep
+
+Each standing assumption does real work, and dropping any one breaks the equivalence:
+
+- **Decreasing** is essential to both inequalities: it is what puts $ f(n) $ below $ f $ on $ [n-1,n] $ and above $ f $ on $ [n,n+1] $. For a non-monotone $ f $ (say one with tall thin spikes at each integer), the series can diverge while the integral converges — the spikes have negligible area but huge sampled values.
+- **Positive** ensures the partial sums and partial integrals are increasing, so "converges" means "bounded"; with sign changes, cancellation could make an integral converge conditionally while the sampled series does not.
+- $ f\to 0 $ is implied by the others in the convergent case, but stating it flags the necessary condition for any series to converge.
+
+## Remark — A Worked Instance: The $ p $-Series
+
+The biconditional is what makes the $ p $-series verdict so clean. Take $ f(x) = 1/(x+1)^p $, positive and decreasing for $ p > 0 $. The integral $ \int_0^\infty (x+1)^{-p}dx $ converges exactly when $ p > 1 $, so by the two-way test $ \sum 1/n^p $ converges exactly when $ p>1 $. Both halves are used: for $ p>1 $ the *original* (finite integral $ \Rightarrow $ finite sum) settles convergence; for $ p \le 1 $ the *inverse* (infinite integral $ \Rightarrow $ infinite sum) settles divergence — including the harmonic series $ p=1 $, whose divergence is certified by $ \int_1^\infty dx/x = \infty $. A test that only ran one direction could prove half of this and no more.

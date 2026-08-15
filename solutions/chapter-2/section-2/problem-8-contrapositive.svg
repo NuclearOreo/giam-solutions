@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="470" fill="white"/>
+
+  <text x="350" y="30" font-size="14" font-style="italic" fill="#444" text-anchor="middle">The contrapositive swaps and negates both parts:  P ⟹ Q   becomes   ¬Q ⟹ ¬P.</text>
+
+  <!-- general rule box -->
+  <rect x="130" y="50" width="440" height="86" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="76" font-size="14" fill="#1a3a63" text-anchor="middle" font-weight="bold">original:   P ⟹ Q</text>
+  <text x="350" y="102" font-size="20" fill="#999" text-anchor="middle">↓</text>
+  <text x="350" y="124" font-size="14" fill="#1a3a63" text-anchor="middle" font-weight="bold">contrapositive:   ¬Q ⟹ ¬P   (equivalent, by Problem 2)</text>
+
+  <!-- the subtle case (e): negating a conjunction -->
+  <rect x="40" y="160" width="620" height="150" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="60" y="186" font-size="14" fill="#1b5e20" font-weight="bold">The subtle one — part (e): the hypothesis is an AND.</text>
+  <text x="70" y="212" font-size="13" fill="#222">P = ( aₙ ≤ bₙ for all n )  ∧  ( Σ bₙ converges ),    Q = ( Σ aₙ converges )</text>
+  <text x="70" y="238" font-size="13" fill="#222">Negate the whole hypothesis by De Morgan:  ¬(P₁ ∧ P₂) = ¬P₁ ∨ ¬P₂</text>
+  <text x="70" y="264" font-size="13" fill="#8a3b12" font-weight="bold">¬P = ( aₙ &gt; bₙ for some n )  OR  ( Σ bₙ diverges )</text>
+  <text x="70" y="290" font-size="13" fill="#222">So: if Σ aₙ diverges, then aₙ &gt; bₙ for some n, or Σ bₙ diverges.</text>
+
+  <!-- reminder about (a) -->
+  <rect x="40" y="330" width="620" height="120" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="60" y="356" font-size="14" fill="#8a3b12" font-weight="bold">Watch the built-in negations — part (a).</text>
+  <text x="70" y="382" font-size="13" fill="#222">"If you can't do the time, don't do the crime."</text>
+  <text x="70" y="406" font-size="13" fill="#222">P = can't do the time,   Q = don't do the crime.   ¬Q = do the crime,  ¬P = can do the time.</text>
+  <text x="70" y="432" font-size="13" fill="#8a3b12" font-weight="bold">Contrapositive:  "If you do the crime, then you can do the time."</text>
+</svg>
