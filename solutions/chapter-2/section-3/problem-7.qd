@@ -1,0 +1,94 @@
+.docname {Solution — GIAM 2.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 7
+
+## Problem
+
+You encounter two natives of the land of knights and knaves. **Fill in an explanation for each line** of the proofs of their identities.
+
+- *(a)* Natasha says, "Boris is a knave." Boris says, "Natasha and I are knights."
+- *(b)* Bonaparte says, "I am a knight and Wellington is a knave." Wellington says, "I would tell you that Bonaparte is a knight."
+
+## The Standing Rule
+
+Every justification below appeals, directly or indirectly, to the island's single rule:
+
+$$$
+\begin{aligned}
+\text{a speaker is a } \textbf{knight} \;&\iff\; \text{everything they say is } \textbf{true}, \\
+\text{a speaker is a } \textbf{knave} \;&\iff\; \text{everything they say is } \textbf{false}.
+\end{aligned}
+$$$
+
+Two derived principles do the heavy lifting, and it is worth naming them before annotating:
+
+!(96%)[The two inference engines used, plus case verification for both puzzles and a decoding of Wellington's statement](problem-7-engines.svg "Engine 1, chaining: from P implies Q and Q implies R conclude P implies R — hypothetical syllogism from Problem 2.2.1, used to reach 'if X is a knave then X is a knight'. Engine 2, self-refutation, the consequentia mirabilis or Clavius's law: not-P implies P is equivalent to P, and P implies not-P is equivalent to not-P, because not-P implies P reduces to P or P which is P, and P implies not-P reduces to not-P or not-P which is not-P; an assumption that implies its own opposite is false. Below, verification tables for both puzzles. For (a) the four cases show only Natasha knight with Boris knave satisfies both speakers, uniquely. For (b) only Bonaparte knight with Wellington knave works, uniquely. A panel decodes Wellington's statement: if he is a knight he reports truthfully so he'd say knight exactly when Bonaparte is one; if he is a knave he reports falsely so he'd say knight exactly when Bonaparte is not one; hence his claim is true precisely when Wellington being a knight is equivalent to Bonaparte being a knight. Both proofs are proofs by contradiction: assume one identity, chain to its opposite, conclude the assumption was false.")
+
+## Part (a) — Annotated Proof
+
+**Claim:** Natasha is a knight, and Boris is a knave.
+
+| line of the proof | justification |
+| :--- | :--- |
+| "If Natasha is a knave, then Boris is a knight." | If Natasha is a knave her statement is **false**. Her statement was "Boris is a knave," so its falsity means Boris is *not* a knave — hence a knight. |
+| "If Boris is a knight, then Natasha is a knight." | If Boris is a knight his statement is **true**. His statement was "Natasha and I are knights," so both conjuncts hold; in particular Natasha is a knight. |
+| "Therefore, if Natasha is a knave, then Natasha is a knight." | **Hypothetical syllogism** (Problem 2.2.1): chaining the previous two conditionals, $ (\lnot N\Rightarrow B)\land(B\Rightarrow N) $ gives $ \lnot N\Rightarrow N $. |
+| "Hence Natasha is a knight." | **Self-refutation** (Clavius's law): $ (\lnot N\Rightarrow N)\cong N $, since $ \lnot N\Rightarrow N \cong N\lor N \cong N $. Assuming she is a knave forces her to be a knight, which is impossible — so she is a knight. |
+| "Therefore, Boris is a knave." | Natasha is a knight, so her statement is **true**; her statement was exactly "Boris is a knave." |
+
+## Part (b) — Annotated Proof
+
+**Claim:** Bonaparte is a knight and Wellington is a knave.
+
+| line of the proof | justification |
+| :--- | :--- |
+| "Either Wellington is a knave or Wellington is a knight." | The island's **dichotomy** — every native is one or the other, and not both. (An instance of the law of the excluded middle.) |
+| "If Wellington is a knight it follows that Bonaparte is a knight." | A knight speaks truly, and a knight's report *is* the truth. So if Wellington (a knight) "would tell you Bonaparte is a knight," then Bonaparte is a knight. |
+| "If Bonaparte is a knight then Wellington is a knave." | If Bonaparte is a knight his statement is **true**. His statement was "I am a knight **and** Wellington is a knave," so the second conjunct holds. |
+| "So, if Wellington is a knight then Wellington is a knave (which is impossible!)" | **Hypothetical syllogism** again: chaining the previous two conditionals gives $ W\Rightarrow\lnot W $. |
+| "Thus, Wellington is a knave." | **Self-refutation** in its dual form: $ (W\Rightarrow\lnot W)\cong\lnot W $, since $ W\Rightarrow\lnot W \cong \lnot W\lor\lnot W \cong \lnot W $. |
+| "Since Wellington is a knave, his statement … is false." | Definition of knave: everything a knave says is false. |
+| "So Wellington would in fact tell us that Bonaparte is a knave." | The negation of "he would tell you *knight*" is "he would tell you *knave*" — there are only two options, so denying one asserts the other. |
+| "Since Wellington is a knave we conclude that Bonaparte is a knight." | A knave's report is the **opposite** of the truth. He would report "knave," so the truth is "knight." |
+| "Thus Bonaparte is a knight and Wellington is a knave." | **Conjunction** of the two established facts — the claim as stated. |
+
+## Remark — Both Proofs Are Proofs by Contradiction
+
+Stripped of the costumes, the two arguments share one skeleton:
+
+1. Suppose a particular person has a particular type.
+2. Chain the consequences (hypothetical syllogism) until you derive that the *same* person has the *opposite* type.
+3. Conclude the supposition was false.
+
+Step 3 is where Clavius's law does its work. The two forms are duals of one another:
+
+$$$
+(\lnot P\Rightarrow P)\cong P \qquad\text{and}\qquad (P\Rightarrow\lnot P)\cong\lnot P.
+$$$
+
+Part (a) uses the first ("assuming Natasha is a knave makes her a knight, so she is a knight"); part (b) uses the second ("assuming Wellington is a knight makes him a knave, so he is a knave"). Both reduce to $ P\lor P $ or $ \lnot P\lor\lnot P $ once the conditional is unfolded by Problem 2.2.2 — an instance of the *idempotent* law.
+
+## Remark — Decoding Wellington's Peculiar Statement
+
+The one genuinely novel step is line 2 of (b), because "I would tell you that Bonaparte is a knight" is a claim *about the speaker's own future testimony*. Unpacking it:
+
+- If Wellington is a **knight**, he reports truthfully, so he would say "knight" exactly when Bonaparte *is* a knight.
+- If Wellington is a **knave**, he reports falsely, so he would say "knight" exactly when Bonaparte is *not* a knight.
+
+Combining, his statement is true precisely when $ W \Leftrightarrow \text{Bo} $. The book's proof only needs the first bullet (line 2 assumes Wellington is a knight), and later uses the second bullet in the "so he would in fact tell us …" step. Note the striking consequence of the full biconditional: $ W\Leftrightarrow(W\Leftrightarrow \text{Bo}) $ simplifies to $ \text{Bo} $ **regardless of $ W $**, so Wellington's statement alone already guarantees Bonaparte is a knight — Bonaparte's own statement is needed only to pin down Wellington.
+
+## Remark — Part (a) Is Problem 2.2.11 in Disguise
+
+Part (a) has *exactly* the structure of the Locke/Demosthenes puzzle from Problem 2.2.11: one speaker calls the other a knave, and the other claims "we are both knights." Natasha plays Locke and Boris plays Demosthenes, with the same answer (first speaker knight, second knave). The reason is the same too: any statement of the form "… **and I am a knight**" is self-defeating for a knave, since the conjunct about the speaker guarantees the whole conjunction is false. That single observation short-circuits the puzzle — Boris cannot be a knight, and once he is a knave Natasha's claim is true.
+
+## Remark — Why Annotating a Proof Is Worth Doing
+
+The exercise asks for justifications rather than an answer, which is the real point. A proof is not just a sequence of true statements — it is a sequence of statements each *licensed* by something: a definition, a previously established line, or a named rule of inference. Writing the licences in the margin exposes whether a step is genuinely earned. Here it reveals that a nine-line English argument uses only four ingredients: the definition of knight/knave, excluded middle, hypothetical syllogism, and Clavius's law. Recognising that a long argument reduces to a handful of repeated moves is exactly the habit Chapter 2 is building toward the formal proof techniques of Chapter 3.

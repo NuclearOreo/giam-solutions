@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" height="500" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="500" fill="white"/>
+
+  <text x="350" y="24" font-size="13" font-style="italic" fill="#444" text-anchor="middle">A conditional is broken in exactly one way: the hypothesis holds while the conclusion fails.</text>
+
+  <!-- rule box -->
+  <rect x="150" y="38" width="400" height="58" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="60" font-size="13" fill="#1a3a63" text-anchor="middle">P ⟹ Q   ≅   ¬P ∨ Q</text>
+  <text x="350" y="84" font-size="14" fill="#1a3a63" text-anchor="middle" font-weight="bold">so   ¬(P ⟹ Q)   ≅   ¬(¬P ∨ Q)   ≅   P ∧ ¬Q</text>
+
+  <!-- rows -->
+  <!-- (a) -->
+  <text x="30" y="132" font-size="12.5" font-weight="bold" fill="#8a3b12">(a)</text>
+  <text x="62" y="132" font-size="11.5" font-style="italic" fill="#777">"If you smoke, you'll get lung cancer."</text>
+  <text x="62" y="152" font-size="12.5" fill="#1b5e20" font-weight="bold">You smoke and you do not get lung cancer.</text>
+  <rect x="470" y="138" width="196" height="20" fill="#dfeadd"/>
+  <text x="568" y="152" font-size="10.5" fill="#1b5e20" text-anchor="middle">denial is true — original fails</text>
+  <line x1="30" y1="166" x2="670" y2="166" stroke="#eee"/>
+
+  <!-- (b) -->
+  <text x="30" y="192" font-size="12.5" font-weight="bold" fill="#8a3b12">(b)</text>
+  <text x="62" y="192" font-size="11.5" font-style="italic" fill="#777">"If a substance glitters, it is not necessarily gold."</text>
+  <text x="62" y="212" font-size="12.5" fill="#1b5e20" font-weight="bold">A substance glitters and it necessarily is gold.</text>
+  <rect x="470" y="198" width="196" height="20" fill="#fbe4da"/>
+  <text x="568" y="212" font-size="10.5" fill="#8a3b12" text-anchor="middle">denial is false — original holds</text>
+  <line x1="30" y1="226" x2="670" y2="226" stroke="#eee"/>
+
+  <!-- (c) -->
+  <text x="30" y="252" font-size="12.5" font-weight="bold" fill="#8a3b12">(c)</text>
+  <text x="62" y="252" font-size="11.5" font-style="italic" fill="#777">"If there is smoke, there must also be fire."</text>
+  <text x="62" y="272" font-size="12.5" fill="#1b5e20" font-weight="bold">There is smoke and there is no fire.</text>
+  <rect x="470" y="258" width="196" height="20" fill="#f2f2f2"/>
+  <text x="568" y="272" font-size="10.5" fill="#555" text-anchor="middle">true of fog machines, dry ice…</text>
+  <line x1="30" y1="286" x2="670" y2="286" stroke="#eee"/>
+
+  <!-- (d) -->
+  <text x="30" y="312" font-size="12.5" font-weight="bold" fill="#8a3b12">(d)</text>
+  <text x="62" y="312" font-size="11.5" font-style="italic" fill="#777">"If a number is squared, the result is positive."</text>
+  <text x="62" y="332" font-size="12.5" fill="#1b5e20" font-weight="bold">A number is squared and the result is not positive.</text>
+  <rect x="470" y="318" width="196" height="20" fill="#dfeadd"/>
+  <text x="568" y="332" font-size="10.5" fill="#1b5e20" text-anchor="middle">TRUE:  0² = 0, not positive</text>
+  <line x1="30" y1="346" x2="670" y2="346" stroke="#eee"/>
+
+  <!-- (e) -->
+  <text x="30" y="372" font-size="12.5" font-weight="bold" fill="#8a3b12">(e)</text>
+  <text x="62" y="372" font-size="11.5" font-style="italic" fill="#777">"If a matrix is square, it is invertible."</text>
+  <text x="62" y="392" font-size="12.5" fill="#1b5e20" font-weight="bold">A matrix is square and it is not invertible.</text>
+  <rect x="470" y="378" width="196" height="20" fill="#dfeadd"/>
+  <text x="568" y="392" font-size="10.5" fill="#1b5e20" text-anchor="middle">TRUE:  the zero matrix</text>
+  <line x1="30" y1="406" x2="670" y2="406" stroke="#999" stroke-width="0.8"/>
+
+  <!-- bottom note -->
+  <rect x="30" y="422" width="640" height="64" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="444" font-size="12" fill="#1b5e20" text-anchor="middle" font-weight="bold">Note the grammar: every denial is an "and", never an "if".</text>
+  <text x="350" y="464" font-size="11.5" fill="#222" text-anchor="middle">Each of these sentences is implicitly "for all", so its denial is really "there is a case where…"</text>
+  <text x="350" y="480" font-size="11" font-style="italic" fill="#666" text-anchor="middle">— i.e. exhibiting a single counterexample refutes the original.</text>
+</svg>

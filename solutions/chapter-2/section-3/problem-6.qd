@@ -1,0 +1,103 @@
+.docname {Solution — GIAM 2.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 6
+
+## Problem
+
+The "ethic of reciprocity" appears in many of the world's religions and philosophies. Discuss the logical meanings of the seven statements given, and determine which (if any) are logically equivalent.
+
+## Setting Up the Notation
+
+Fix an action $ a $ and let
+
+$$$
+W \;=\; \text{"you would want } a \text{ done to you,"} \qquad D \;=\; \text{"you do } a \text{ to others."}
+$$$
+
+Every version of the ethic is then one of two conditionals — a **positive** (prescriptive) form or a **negative** (prohibitive) one:
+
+$$$
+\underbrace{W \Rightarrow D}_{\text{positive — the "Golden Rule"}}, \qquad\qquad \underbrace{\lnot W \Rightarrow \lnot D}_{\text{negative — the "Silver Rule"}}.
+$$$
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+&\textbf{(a), (d), (f)} && \text{negative form } \lnot W\Rightarrow\lnot D \;\;-\!\!-\;\; \textbf{mutually equivalent} \\
+&\textbf{(c)}, \text{ and the core of } \textbf{(b)} && \text{positive form } W\Rightarrow D \\
+&\textbf{(e)} && \text{a harm-based permission — a different principle} \\
+&\textbf{(g)} && \text{a } \textit{denial} \text{ of the positive form}
+\end{aligned}
+}
+$$$
+
+Crucially, the positive and negative groups are **not** equivalent to one another.
+
+## The Key Logical Point
+
+$ \lnot W\Rightarrow\lnot D $ is the **inverse** of $ W\Rightarrow D $ — and by Problem 2.2.9 the inverse is *not* equivalent to the original (it is equivalent to the converse $ D\Rightarrow W $). The truth table shows exactly where they part:
+
+| $ W $ | $ D $ | $ W\Rightarrow D $ (positive) | $ \lnot W\Rightarrow\lnot D $ (negative) |
+| :---: | :---: | :---: | :---: |
+| T | T | T | T |
+| T | F | **F** | **T** |
+| F | T | **T** | **F** |
+| F | F | T | T |
+
+!(96%)[The two logical shapes with a truth table, and the classification of all seven statements](problem-6-reciprocity.svg "Left column, the two logical shapes. Positive, the Golden Rule: W implies D — if you'd want it done to you, do it to them. Negative, the Silver Rule: not-W implies not-D — if you wouldn't want it, don't do it to them. A banner notes that not-W implies not-D is the inverse of W implies D, so the two are not equivalent, per Problem 2.2.9. A four-row truth table shows the columns agree when W and D match but disagree in the two shaded rows W true D false and W false D true. Right column, classifying the seven. Negative form: (a) Mencius, (d) Talmud, (f) Epictetus — these three are equivalent to each other. Positive form: Luke 6:31 and the Hadith, positive in content but wrapped in 'you believe implies you so wish'. Neither: (e) Wicca, not-harm implies permitted — about harm, not reciprocity. A denial: (g) Shaw, rejecting the positive rule because their tastes may not be the same. Bottom banner: only (a), (d), (f) are mutually equivalent; the negative rule only forbids while the positive rule also obligates, and doing nothing satisfies the first but not the second.")
+
+The two disagreeing rows are exactly the interesting cases — an action you'd welcome but withhold, and an action you'd dislike but perform anyway.
+
+## Statement-by-Statement
+
+**(a) Mencius** — "One should not behave towards others in a way which is disagreeable to oneself." *Disagreeable* is $ \lnot W $; *should not behave that way* is $ \lnot D $. So this is $ \lnot W\Rightarrow\lnot D $: **negative form**.
+
+**(b) Hadith** — "None of you believes until he wishes for his brother what he wishes for himself." The phrase "none … until" is a necessary condition: *if you believe, then you so wish*. So the structure is $ B \Rightarrow (W_{\text{self}}\Rightarrow W_{\text{brother}}) $ — the inner clause is **positive in form**, but it governs *wishes* rather than *actions*, and it is embedded inside a claim about belief. So it is not literally equivalent to Luke, though its ethical core is the positive rule.
+
+**(*c*) Luke 6:31** — "As ye would that men should do to you, do ye also to them likewise." Directly $ W \Rightarrow D $: **positive form**, the Golden Rule proper.
+
+**(d) Talmud** — "What is hateful to you, do not to your fellow man." *Hateful to you* is $ \lnot W $; *do not* is $ \lnot D $. So $ \lnot W\Rightarrow\lnot D $: **negative form**, equivalent to (a).
+
+**(e) Wicca** — "An it harm no one, do what thou wilt." Here "an" is archaic *if*. The structure is $ \lnot H \Rightarrow \text{Permitted} $ — a conditional about **harm**, not about what you would want for yourself. It grants latitude rather than imposing reciprocity, so it is **not** in either group.
+
+**(f) Epictetus** — "What you would avoid suffering yourself, seek not to impose on others." *Would avoid suffering* is $ \lnot W $; *seek not to impose* is $ \lnot D $. So $ \lnot W\Rightarrow\lnot D $: **negative form**, equivalent to (a) and (d).
+
+**(g) Shaw** — "Do not do unto others as you expect they should do unto you. Their tastes may not be the same." This *rejects* Luke 6:31: it instructs you **not** to follow $ W\Rightarrow D $. It is therefore a denial of the positive form, plus a stated reason.
+
+## Remark — Why "Don't Harm" Is Weaker Than "Do Good"
+
+The logical gap has real ethical content. The **negative** rule is purely **restrictive**: it forbids certain actions but never requires any. A person who does absolutely nothing satisfies it perfectly — you cannot violate "do not do what you'd hate" by inaction. The **positive** rule is **prescriptive**: it obligates you to act whenever you'd want the same done for you, so inaction *can* violate it (you would want help if drowning, therefore you must help someone drowning).
+
+This is precisely the difference between the two shaded truth-table rows. Row $ (W = \text{T}, D = \text{F}) $ — you'd want it but don't do it — is a **failure of the positive rule** and no problem for the negative one. Row $ (W = \text{F}, D = \text{T}) $ — you wouldn't want it yet you do it — is a **failure of the negative rule** and no problem for the positive one. Each rule polices one of the two ways reciprocity can break down, and neither polices both.
+
+## Remark — Shaw's Objection Is a Real Defect, Not a Joke
+
+Statement (g) is often read as a witticism, but it identifies a genuine flaw in the positive rule. The Golden Rule takes **your own** preferences as the standard, so it misfires whenever preferences differ: the extrovert who loves surprise parties throws one for an introvert; the person who would want blunt criticism delivers it to someone who would not. The negative rule is less exposed to this — refraining from what *you* would hate is more often (though not always) safe. The modern repair is the so-called **Platinum Rule**, "treat others as *they* would wish to be treated," which replaces $ W $ (your preference) with $ W' $ (theirs):
+
+$$$
+W'(a) \Rightarrow D(a).
+$$$
+
+Formalising the maxims is what makes the defect visible: it lives entirely in *whose* preference occupies the antecedent.
+
+## Remark — What Equivalence Can and Cannot Detect
+
+This problem is a good lesson in the limits of logical analysis. Truth tables can certify that (a), (d), and (f) share a form and that Luke does not share it — but they cannot capture the differences in *scope, force, and register* among the statements. (d) claims to be "the whole law"; (b) makes the ethic a condition of faith; (f) is offered as practical advice. Logically the three negative versions are interchangeable; rhetorically and theologically they are not. Formalisation deliberately discards that content in order to expose structure — the same trade-off noted for the tenant's threat in Problem 2.2.5 and the Golden Rule contraposed in Problem 2.2.8.
+
+## Remark — A Note on the Attribution of (a)
+
+The source given for (a) is *Mencius* VII.A.4, labelled "(Hinduism)." Mencius (Mèngzǐ, c. 372–289 BC) was in fact a **Confucian** philosopher, traditionally the "second sage" after Confucius — so the tradition label appears to be a slip. A genuinely Hindu statement of the same negative form does exist and is often quoted alongside these: the *Mahābhārata* (Anuśāsana Parva) has "one should never do to another that which one regards as injurious to one's own self." Either way the *logic* is unchanged — both are instances of $ \lnot W\Rightarrow\lnot D $ — which is itself a small illustration of the point: the formal structure is stable even when the provenance is muddled.
+
+## Remark — The Ubiquity of the Negative Form
+
+It is striking that the **negative** version is the more widely attested one — (a), (d), and (f) come from three unrelated traditions and all take the prohibitive shape, as do formulations in Confucius (*Analects* XV.24, "what you do not want done to yourself, do not do to others") and in Buddhist texts. One plausible reason is the logical asymmetry above: a purely restrictive rule is easier to state, easier to obey, and far harder to abuse, since it never compels you to impose anything on anyone. The positive form is more demanding and more prone to Shaw's objection. That the world's ethical traditions converged mostly on the *weaker* conditional is a fact the logic makes legible.

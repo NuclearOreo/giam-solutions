@@ -1,0 +1,78 @@
+.docname {Solution — GIAM 2.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 5
+
+## Problem
+
+Because a conditional is equivalent to a disjunction, and De Morgan's law turns the negation of a disjunction into a conjunction, the negation of a conditional is a conjunction. Find **denials** for each of the following conditionals.
+
+- *(a)* "If you smoke, you'll get lung cancer."
+- *(b)* "If a substance glitters, it is not necessarily gold."
+- (*c*) "If there is smoke, there must also be fire."
+- *(d)* "If a number is squared, the result is positive."
+- *(e)* "If a matrix is square, it is invertible."
+
+## The Rule
+
+Chaining the two facts named in the problem:
+
+$$$
+\lnot(P\Rightarrow Q) \;\cong\; \lnot(\lnot P\lor Q) \;\cong\; \lnot(\lnot P)\land\lnot Q \;\cong\; P\land\lnot Q.
+$$$
+
+So every denial below is an **"and"** statement: *the hypothesis holds and the conclusion fails.*
+
+## The Denials
+
+- **(a)** $ \boxed{\text{"You smoke and you do not get lung cancer."}} $
+- **(b)** $ \boxed{\text{"A substance glitters and it necessarily } \textit{is} \text{ gold."}} $
+- **(*c*)** $ \boxed{\text{"There is smoke and there is no fire."}} $
+- **(d)** $ \boxed{\text{"A number is squared and the result is not positive."}} $
+- **(e)** $ \boxed{\text{"A matrix is square and it is not invertible."}} $
+
+!(96%)[The five conditionals with their denials and a note on which denials are actually true](problem-5-denials.svg "The rule at top: P implies Q is equivalent to not-P or Q, so the negation is P and not-Q. Then five rows, each pairing an original conditional in italic grey with its denial in bold green. (a) 'If you smoke, you'll get lung cancer' denies to 'You smoke and you do not get lung cancer' — denial is true, so the original fails as a universal claim. (b) 'If a substance glitters, it is not necessarily gold' denies to 'A substance glitters and it necessarily is gold' — denial is false, the original holds. Third, 'If there is smoke, there must also be fire', denies to 'There is smoke and there is no fire' — true of fog machines and dry ice. (d) 'If a number is squared, the result is positive' denies to 'A number is squared and the result is not positive' — TRUE, since zero squared is zero, which is not positive. (e) 'If a matrix is square, it is invertible' denies to 'A matrix is square and it is not invertible' — TRUE, the zero matrix is a counterexample. A closing note observes that every denial is an 'and', never an 'if', and that since these sentences are implicitly universal their denials are really existential — exhibiting one counterexample refutes the original.")
+
+## Remark — Part (b): Negating a Negation
+
+Part (b) is the trap, because its conclusion **already contains a negation**: "it is *not necessarily* gold." Writing $ Q = $ "it is not necessarily gold," we need $ \lnot Q = $ "it *is* necessarily gold." The two negations cancel rather than stack:
+
+$$$
+\lnot\big(\text{not necessarily gold}\big) \;=\; \text{necessarily gold}.
+$$$
+
+So the denial is "**a substance glitters and it must be gold**" — the claim that *all that glitters is gold*, restricted to one witness. This is the same double-negation care needed in Problem 2.2.8(a) ("if you can't do the time, don't do the crime"): when a clause is already negative, denying it should *simplify* the English, not add another "not." Note also that this is the one part whose denial is **false** — pyrite ("fool's gold") glitters without being gold, so the original conditional stands.
+
+## Remark — A Denial Is Never an "If"
+
+The structural point the problem is making deserves emphasis: **the denial of a conditional is not another conditional.** A frequent error is to answer (a) with "If you smoke, you won't get lung cancer" — but that is a *different, stronger* claim, and it is even *true* in the vacuous case where nobody smokes, so it cannot be the negation (a statement and its negation must disagree in every case). The negation drops the arrow entirely and asserts two things at once, joined by "and." Watch the grammar: every boxed answer above is a flat conjunction of facts.
+
+## Remark — The Hidden Universal Quantifier
+
+Each of these sentences is really a claim about *all* cases — "for **every** person, if they smoke then they get lung cancer" — even though the word "all" never appears. Consequently each denial is really an **existential** statement:
+
+$$$
+\lnot\big[\forall x\,(P(x)\Rightarrow Q(x))\big] \;\cong\; \exists x\,\big(P(x)\land\lnot Q(x)\big).
+$$$
+
+Read this way, (d) becomes "**there is** a number whose square is not positive" and (e) becomes "**there is** a square matrix that is not invertible." The propositional rule $ P\land\lnot Q $ supplies the *inside* of the existential; the quantifier flip from $ \forall $ to $ \exists $ is the next section's business. Both parts matter for a correct denial in English.
+
+## Remark — Denials (d) and (e) Are Actually True
+
+Two of these denials are not hypothetical — they are **theorems**, which means the original conditionals are *false*:
+
+- **(d)** Take $ n = 0 $. Then $ n^2 = 0 $, which is **not positive** (positive means $ > 0 $). So a number can be squared without the result being positive. The correct statement is "the result is *non-negative*," $ n^2 \ge 0 $ — the original overstates by one value.
+- **(e)** Take the $ 2\times 2 $ zero matrix, or $ \begin{pmatrix} 1 & 2\\ 2 & 4\end{pmatrix} $ with determinant $ 0 $. Both are square and neither is invertible. Squareness is *necessary* for invertibility, not *sufficient* — the correct criterion is a nonzero determinant.
+
+This is exactly the working method of Problem 2.2.4: to refute a claim of the form $ P\Rightarrow Q $, you construct its denial $ P\land\lnot Q $ and then exhibit a witness. Forming the denial tells you precisely *what to hunt for*, which is why denial-formation is a proof skill and not merely a grammar exercise.
+
+## Remark — Why Everyday Conditionals Are Rarely Strict
+
+Parts (a) and (*c*) illustrate a gap between logic and ordinary speech. "If you smoke, you'll get lung cancer" is not literally a universal implication — plenty of smokers never develop it — so its denial is *true* and the sentence, read strictly, is **false**. What the speaker means is statistical ("smoking sharply raises the risk"), a claim the material conditional cannot express. Likewise "where there's smoke there's fire" is a proverb about likelihood; a fog machine denies it outright. Translating such sentences into logic makes them precise but also *stricter than intended*, and the resulting denials can feel like pedantic quibbles. That mismatch is worth recognising: logic models the truth-functional skeleton, and part of using it well is knowing when an everyday sentence was never meant to bear that weight.

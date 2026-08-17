@@ -1,0 +1,104 @@
+.docname {Solution — GIAM 2.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 1
+
+## Problem
+
+There are $ 3 $ operations used in basic algebra (addition, multiplication, exponentiation), so there are potentially $ 6 $ different distributive laws. State all $ 6 $ "laws" and determine which $ 2 $ are actually valid. (As an example, the distributive law of addition over multiplication would look like $ x + (y\cdot z) = (x+y)\cdot(x+z) $ — not one of the true ones.)
+
+## The Six Candidate Laws
+
+"Operation $ \ast $ distributes over operation $ \circ $" means $ x \ast (y \circ z) = (x\ast y)\circ(x \ast z) $. With $ 3 $ operations there are $ 3\times 2 = 6 $ ordered pairs, hence six candidates:
+
+| # | law | statement | verdict |
+| :---: | :--- | :--- | :---: |
+| 1 | $ + $ over $ \cdot $ | $ x + (y\cdot z) = (x+y)\cdot(x+z) $ | ✗ |
+| 2 | $ + $ over $ \hat{\ } $ | $ x + y^{z} = (x+y)^{(x+z)} $ | ✗ |
+| 3 | $ \cdot $ over $ + $ | $ x\cdot(y+z) = x\cdot y + x\cdot z $ | **✓** |
+| 4 | $ \cdot $ over $ \hat{\ } $ | $ x\cdot y^{z} = (x\cdot y)^{(x\cdot z)} $ | ✗ |
+| 5 | $ \hat{\ } $ over $ + $ | $ x^{(y+z)} = x^{y} + x^{z} $ | ✗ |
+| 6 | $ \hat{\ } $ over $ \cdot $ | $ x^{(y\cdot z)} = x^{y}\cdot x^{z} $ | ✗ |
+
+## The Answer
+
+$$$
+\boxed{
+\begin{aligned}
+&\textbf{(3) Multiplication over addition:} && x(y+z) = xy + xz \\[2pt]
+&\textbf{(6R) Exponentiation over multiplication:} && (xy)^{z} = x^{z}\,y^{z}
+\end{aligned}
+}
+$$$
+
+Law (3) is the familiar one. The second valid law is exponentiation over multiplication, but written in its **right-hand** form — see the subtlety below.
+
+## Counterexamples for the False Laws
+
+A single numerical counterexample refutes each (Problem 2.2.4: to disprove a universal claim, exhibit one failing case):
+
+| law | counterexample | left side | right side |
+| :--- | :--- | :---: | :---: |
+| 1. $ + $ over $ \cdot $ | $ x{=}1, y{=}2, z{=}3 $ | $ 1+6 = 7 $ | $ 3\cdot 4 = 12 $ |
+| 2. $ + $ over $ \hat{\ } $ | $ x{=}1, y{=}2, z{=}3 $ | $ 1+8 = 9 $ | $ 3^{4} = 81 $ |
+| 4. $ \cdot $ over $ \hat{\ } $ | $ x{=}2, y{=}3, z{=}2 $ | $ 2\cdot 9 = 18 $ | $ 6^{4} = 1296 $ |
+| 5. $ \hat{\ } $ over $ + $ | $ x{=}2, y{=}1, z{=}2 $ | $ 2^{3} = 8 $ | $ 2+4 = 6 $ |
+| 6. $ \hat{\ } $ over $ \cdot $ | $ x{=}2, y{=}2, z{=}3 $ | $ 2^{6} = 64 $ | $ 4\cdot 8 = 32 $ |
+
+## The Subtlety: Exponentiation Has Two Sides
+
+!(96%)[All six laws with verdicts and counterexamples, plus the right-hand forms for exponentiation](problem-1-laws.svg "A table of six candidate distributive laws with verdicts. Addition over multiplication: 1+(2·3)=7 but 3·4=12, false. Addition over exponentiation: 1+2 cubed = 9 but 3 to the fourth = 81, false. Multiplication over addition: x(y+z) = xy+xz, VALID, the familiar one. Multiplication over exponentiation: 2·3 squared = 18 but 6 to the fourth = 1296, false. Exponentiation over addition: 2 cubed = 8 but 2+4 = 6, false. Exponentiation over multiplication in left form: 2 to the sixth = 64 but 4·8 = 32, false. Below, a panel notes exponentiation is not commutative so it also has a right-hand form: exponentiation over addition on the right, (x+y)^z = x^z + y^z, is false since (3+4) squared = 49 but 9+16 = 25; but exponentiation over multiplication on the right, (xy)^z = x^z y^z, is VALID — the second true law. Final box: the two valid laws are x(y+z) = xy+xz and (xy)^z = x^z y^z.")
+
+Addition and multiplication are **commutative**, so for them "$ x\ast(y\circ z) $" is the only form worth testing. Exponentiation is **not** commutative ($ 2^3 \ne 3^2 $), so it has *two* distinct distributive forms — one where the compound expression sits in the exponent, one where it sits in the base:
+
+$$$
+\underbrace{x^{(y\circ z)} \overset{?}{=} x^{y}\circ x^{z}}_{\text{left form (tested above)}}, \qquad \underbrace{(y\circ z)^{x} \overset{?}{=} y^{x}\circ z^{x}}_{\text{right form}}.
+$$$
+
+Testing the right forms:
+
+- **$ \hat{\ } $ over $ + $, right:** $ (x+y)^{z} = x^{z}+y^{z} $? **False** — $ (3+4)^2 = 49 $ but $ 9+16 = 25 $.
+- **$ \hat{\ } $ over $ \cdot $, right:** $ (xy)^{z} = x^{z}y^{z} $? **True** ✓ — this is the standard exponent rule.
+
+So the second valid law lives in the right-hand column. Counting strictly by the left-form template one finds only *one* valid law; the problem's "$ 2 $" is recovered once exponentiation's non-commutativity is respected.
+
+## Remark — Why Multiplication Over Addition Is the One That Works
+
+Distribution is not an accident of notation — it reflects genuine structure. Multiplication over addition holds because multiplication *is* repeated addition: $ x(y+z) $ means "$ y+z $ copies of $ x $," which can be split into "$ y $ copies plus $ z $ copies," i.e. $ xy + xz $. Likewise $ (xy)^z $ works because exponentiation is repeated multiplication: $ (xy)^z $ is $ z $ copies of $ xy $ multiplied together, and commutativity lets one regroup all the $ x $'s and all the $ y $'s, giving $ x^z y^z $. In both valid cases the *outer* operation is one level "higher" than the inner one, and the higher operation is built by iterating the lower. Every failure above tries to distribute in the wrong direction (a lower operation over a higher one) or across a two-level gap.
+
+## Remark — The Correct Exponent Laws Are Not Distributive Laws
+
+Laws (5) and (6) fail, but each has a *true* cousin that is often confused with it:
+
+$$$
+x^{y+z} = x^{y}\cdot x^{z}, \qquad x^{yz} = \left(x^{y}\right)^{z}.
+$$$
+
+Notice these are **not** distributive laws: the operation on the right-hand side is *different* from the one inside the parentheses on the left ($ + $ becomes $ \cdot $; $ \cdot $ becomes exponentiation). A distributive law must preserve the inner operation. These identities instead express the "one level up" phenomenon — adding exponents corresponds to multiplying powers. So the temptation to write $ x^{y+z} = x^y + x^z $ is a genuine error, but the *correct* identity is close at hand and worth keeping straight.
+
+## Remark — The Freshman's Dream and Where It Comes True
+
+The failed right-hand law $ (x+y)^{z} = x^{z}+y^{z} $ is famous enough to have a nickname: the **freshman's dream**, from the perennial student error $ (x+y)^2 = x^2+y^2 $ (the truth being $ x^2+2xy+y^2 $ — the missing $ 2xy $ is exactly the gap). Remarkably, the dream *does* come true in a different setting: in arithmetic modulo a prime $ p $,
+
+$$$
+(x+y)^{p} \equiv x^{p}+y^{p} \pmod p,
+$$$
+
+because every binomial coefficient $ \binom{p}{k} $ with $ k = 1, 2, \dots, p-1 $ is divisible by $ p $, wiping out all the cross terms. (Checked for $ p = 2,3,5,7 $.) This is the **Frobenius endomorphism**, a cornerstone of finite-field theory. A law that is false over the integers can be true in another algebraic system — which is precisely why laws must be *proved* for the structure at hand rather than assumed.
+
+## Remark — In Logic, *Both* Distributive Laws Hold
+
+This problem makes a striking contrast with the logic of this very chapter. In arithmetic, $ \cdot $ distributes over $ + $ but $ + $ does **not** distribute over $ \cdot $ — the asymmetry is the whole point of law (1) being the given false example. In **Boolean algebra**, however, the analogous pair of laws *both* hold:
+
+$$$
+A\land(B\lor C) \equiv (A\land B)\lor(A\land C), \qquad A\lor(B\land C) \equiv (A\lor B)\land(A\lor C).
+$$$
+
+(Both verified over all eight truth assignments.) So $ \land $ and $ \lor $ enjoy a perfect symmetry that $ \cdot $ and $ + $ do not — which is why the "$ \land \approx \cdot $, $ \lor \approx + $" analogy is useful but must not be pushed too far. Interestingly, the false arithmetic law (1) becomes *true* under that translation: $ x + (y\cdot z) = (x+y)(x+z) $ is exactly the shape of $ A\lor(B\land C) \equiv (A\lor B)\land(A\lor C) $. Same syntax, different structure, opposite verdict.

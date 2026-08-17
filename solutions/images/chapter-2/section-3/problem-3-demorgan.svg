@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 580" width="720" height="580" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="720" height="580" fill="white"/>
+
+  <text x="360" y="24" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Each law is a pair of circuits with identical behaviour. A small bubble ( ○ ) on a wire means inversion.</text>
+
+  <!-- ================= LAW 1 HEADER ================= -->
+  <text x="360" y="52" font-size="14" font-weight="bold" fill="#1a3a63" text-anchor="middle">De Morgan's First Law:   ¬(A ∧ B)   ≡   ¬A ∨ ¬B</text>
+
+  <!-- LAW 1 LEFT PANEL -->
+  <rect x="30" y="62" width="300" height="190" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="180" y="86" font-size="13.5" font-weight="bold" fill="#2a5db0" text-anchor="middle">¬(A ∧ B)</text>
+  <text x="180" y="102" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">AND the inputs, then invert  (a NAND)</text>
+  <!-- wires in -->
+  <g stroke="#333" stroke-width="1.8" fill="none">
+    <line x1="55" y1="145" x2="120" y2="145"/>
+    <line x1="55" y1="185" x2="120" y2="185"/>
+    <line x1="172" y1="165" x2="192" y2="165"/>
+    <line x1="238" y1="165" x2="284" y2="165"/>
+  </g>
+  <!-- AND gate -->
+  <path d="M120,141 L148,141 A24,24 0 0 1 148,189 L120,189 Z" fill="#eaf1fb" stroke="#2a5db0" stroke-width="1.6"/>
+  <text x="140" y="170" font-size="10.5" fill="#2a5db0" text-anchor="middle">AND</text>
+  <!-- NOT gate -->
+  <path d="M192,147 L226,165 L192,183 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="232" cy="165" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <!-- labels -->
+  <text x="46" y="150" font-size="14" font-weight="bold" fill="#8a3b12">A</text>
+  <text x="46" y="190" font-size="14" font-weight="bold" fill="#8a3b12">B</text>
+  <text x="294" y="170" font-size="14" font-weight="bold" fill="#8a3b12">Q</text>
+
+  <!-- equivalence sign -->
+  <text x="360" y="174" font-size="24" fill="#8a3b12" text-anchor="middle">≡</text>
+
+  <!-- LAW 1 RIGHT PANEL -->
+  <rect x="390" y="62" width="300" height="190" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="540" y="86" font-size="13.5" font-weight="bold" fill="#2a5db0" text-anchor="middle">¬A ∨ ¬B</text>
+  <text x="540" y="102" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">invert each input, then OR</text>
+  <g stroke="#333" stroke-width="1.8" fill="none">
+    <line x1="415" y1="145" x2="450" y2="145"/>
+    <line x1="496" y1="145" x2="536" y2="145"/>
+    <line x1="415" y1="185" x2="450" y2="185"/>
+    <line x1="496" y1="185" x2="536" y2="185"/>
+    <line x1="586" y1="165" x2="626" y2="165"/>
+  </g>
+  <path d="M450,127 L484,145 L450,163 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="490" cy="145" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <path d="M450,167 L484,185 L450,203 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="490" cy="185" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <path d="M534,141 Q562,141 586,165 Q562,189 534,189 Q550,165 534,141 Z" fill="#fdf2ee" stroke="#8a3b12" stroke-width="1.6"/>
+  <text x="556" y="170" font-size="10.5" fill="#8a3b12" text-anchor="middle">OR</text>
+  <text x="406" y="150" font-size="14" font-weight="bold" fill="#8a3b12">A</text>
+  <text x="406" y="190" font-size="14" font-weight="bold" fill="#8a3b12">B</text>
+  <text x="636" y="170" font-size="14" font-weight="bold" fill="#8a3b12">Q</text>
+
+  <!-- ================= LAW 2 HEADER ================= -->
+  <text x="360" y="282" font-size="14" font-weight="bold" fill="#1a3a63" text-anchor="middle">De Morgan's Second Law:   ¬(A ∨ B)   ≡   ¬A ∧ ¬B</text>
+
+  <!-- LAW 2 LEFT PANEL -->
+  <rect x="30" y="292" width="300" height="190" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="180" y="316" font-size="13.5" font-weight="bold" fill="#2a5db0" text-anchor="middle">¬(A ∨ B)</text>
+  <text x="180" y="332" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">OR the inputs, then invert  (a NOR)</text>
+  <g stroke="#333" stroke-width="1.8" fill="none">
+    <line x1="55" y1="375" x2="122" y2="375"/>
+    <line x1="55" y1="415" x2="122" y2="415"/>
+    <line x1="172" y1="395" x2="192" y2="395"/>
+    <line x1="238" y1="395" x2="284" y2="395"/>
+  </g>
+  <path d="M120,371 Q148,371 172,395 Q148,419 120,419 Q136,395 120,371 Z" fill="#fdf2ee" stroke="#8a3b12" stroke-width="1.6"/>
+  <text x="142" y="400" font-size="10.5" fill="#8a3b12" text-anchor="middle">OR</text>
+  <path d="M192,377 L226,395 L192,413 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="232" cy="395" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <text x="46" y="380" font-size="14" font-weight="bold" fill="#8a3b12">A</text>
+  <text x="46" y="420" font-size="14" font-weight="bold" fill="#8a3b12">B</text>
+  <text x="294" y="400" font-size="14" font-weight="bold" fill="#8a3b12">Q</text>
+
+  <text x="360" y="404" font-size="24" fill="#8a3b12" text-anchor="middle">≡</text>
+
+  <!-- LAW 2 RIGHT PANEL -->
+  <rect x="390" y="292" width="300" height="190" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="540" y="316" font-size="13.5" font-weight="bold" fill="#2a5db0" text-anchor="middle">¬A ∧ ¬B</text>
+  <text x="540" y="332" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">invert each input, then AND</text>
+  <g stroke="#333" stroke-width="1.8" fill="none">
+    <line x1="415" y1="375" x2="450" y2="375"/>
+    <line x1="496" y1="375" x2="534" y2="375"/>
+    <line x1="415" y1="415" x2="450" y2="415"/>
+    <line x1="496" y1="415" x2="534" y2="415"/>
+    <line x1="586" y1="395" x2="626" y2="395"/>
+  </g>
+  <path d="M450,357 L484,375 L450,393 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="490" cy="375" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <path d="M450,397 L484,415 L450,433 Z" fill="#eef5ee" stroke="#1b5e20" stroke-width="1.6"/>
+  <circle cx="490" cy="415" r="6" fill="white" stroke="#1b5e20" stroke-width="1.6"/>
+  <path d="M534,371 L562,371 A24,24 0 0 1 562,419 L534,419 Z" fill="#eaf1fb" stroke="#2a5db0" stroke-width="1.6"/>
+  <text x="554" y="400" font-size="10.5" fill="#2a5db0" text-anchor="middle">AND</text>
+  <text x="406" y="380" font-size="14" font-weight="bold" fill="#8a3b12">A</text>
+  <text x="406" y="420" font-size="14" font-weight="bold" fill="#8a3b12">B</text>
+  <text x="636" y="400" font-size="14" font-weight="bold" fill="#8a3b12">Q</text>
+
+  <!-- ================= BOTTOM NOTE ================= -->
+  <rect x="30" y="500" width="660" height="68" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="360" y="522" font-size="12.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">"Bubble pushing": slide the output bubble back through the gate onto both inputs —</text>
+  <text x="360" y="542" font-size="12.5" fill="#222" text-anchor="middle">and flip the gate ( AND ↔ OR ) as it passes through.</text>
+  <text x="360" y="560" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">This is exactly what De Morgan's laws say, drawn instead of written.</text>
+</svg>

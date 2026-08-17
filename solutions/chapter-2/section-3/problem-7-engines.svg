@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 530" width="700" height="530" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="530" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Both proofs run on the same two engines: chain the conditionals, then let a self-refuting one collapse.</text>
+
+  <!-- ===== ENGINE 1 ===== -->
+  <rect x="20" y="36" width="325" height="150" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="182" y="58" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">Engine 1 — chaining</text>
+  <text x="182" y="76" font-size="11" font-style="italic" fill="#555" text-anchor="middle">hypothetical syllogism (Problem 2.2.1)</text>
+  <text x="182" y="104" font-size="13.5" fill="#222" text-anchor="middle">P ⟹ Q   and   Q ⟹ R</text>
+  <text x="182" y="124" font-size="16" fill="#999" text-anchor="middle">↓</text>
+  <text x="182" y="146" font-size="13.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">P ⟹ R</text>
+  <text x="182" y="172" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">used to reach "if X is a knave then X is a knight"</text>
+
+  <!-- ===== ENGINE 2 ===== -->
+  <rect x="355" y="36" width="325" height="150" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="517" y="58" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">Engine 2 — self-refutation</text>
+  <text x="517" y="76" font-size="11" font-style="italic" fill="#555" text-anchor="middle">"consequentia mirabilis" (Clavius's law)</text>
+  <text x="440" y="106" font-size="13" fill="#222" text-anchor="middle">(¬P ⟹ P)  ≡  P</text>
+  <text x="600" y="106" font-size="13" fill="#222" text-anchor="middle">(P ⟹ ¬P)  ≡  ¬P</text>
+  <text x="517" y="132" font-size="11" fill="#333" text-anchor="middle">because ¬P ⟹ P  ≡  P ∨ P  ≡  P</text>
+  <text x="517" y="150" font-size="11" fill="#333" text-anchor="middle">and  P ⟹ ¬P  ≡  ¬P ∨ ¬P  ≡  ¬P</text>
+  <text x="517" y="172" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">an assumption that implies its own opposite is false</text>
+
+  <!-- ===== VERIFICATION (a) ===== -->
+  <text x="182" y="214" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">(a) checking all four cases</text>
+  <g font-size="10.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="58"  y="238">Natasha</text><text x="120" y="238">Boris</text>
+    <text x="196" y="238">N's claim ¬B</text><text x="290" y="238">B's claim N∧B</text>
+  </g>
+  <line x1="24" y1="246" x2="342" y2="246" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="10.5" text-anchor="middle">
+    <text x="58" y="266">knight</text><text x="120" y="266">knight</text><text x="196" y="266" fill="#c0392b">F  ✗</text><text x="290" y="266" fill="#1b5e20">T  ✓</text>
+    <rect x="24" y="274" width="318" height="22" fill="#dfeadd"/>
+    <text x="58" y="290" font-weight="bold">knight</text><text x="120" y="290" font-weight="bold">knave</text><text x="196" y="290" fill="#1b5e20">T  ✓</text><text x="290" y="290" fill="#1b5e20">F  ✓</text>
+    <text x="58" y="314">knave</text><text x="120" y="314">knight</text><text x="196" y="314" fill="#1b5e20">F  ✓</text><text x="290" y="314" fill="#c0392b">F  ✗</text>
+    <text x="58" y="338">knave</text><text x="120" y="338">knave</text><text x="196" y="338" fill="#c0392b">T  ✗</text><text x="290" y="338" fill="#1b5e20">F  ✓</text>
+  </g>
+  <line x1="24" y1="346" x2="342" y2="346" stroke="#aaa" stroke-width="0.8"/>
+  <text x="182" y="366" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">Natasha knight, Boris knave — unique</text>
+
+  <!-- ===== VERIFICATION (b) ===== -->
+  <text x="517" y="214" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">(b) checking all four cases</text>
+  <g font-size="10.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="398" y="238">Bonaparte</text><text x="466" y="238">Welling.</text>
+    <text x="546" y="238">Bo's claim</text><text x="632" y="238">W's claim</text>
+  </g>
+  <line x1="362" y1="246" x2="680" y2="246" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="10.5" text-anchor="middle">
+    <text x="398" y="266">knight</text><text x="466" y="266">knight</text><text x="546" y="266" fill="#c0392b">F  ✗</text><text x="632" y="266" fill="#1b5e20">T  ✓</text>
+    <rect x="362" y="274" width="318" height="22" fill="#dfeadd"/>
+    <text x="398" y="290" font-weight="bold">knight</text><text x="466" y="290" font-weight="bold">knave</text><text x="546" y="290" fill="#1b5e20">T  ✓</text><text x="632" y="290" fill="#1b5e20">F  ✓</text>
+    <text x="398" y="314">knave</text><text x="466" y="314">knight</text><text x="546" y="314" fill="#1b5e20">F  ✓</text><text x="632" y="314" fill="#c0392b">F  ✗</text>
+    <text x="398" y="338">knave</text><text x="466" y="338">knave</text><text x="546" y="338" fill="#1b5e20">F  ✓</text><text x="632" y="338" fill="#c0392b">T  ✗</text>
+  </g>
+  <line x1="362" y1="346" x2="680" y2="346" stroke="#aaa" stroke-width="0.8"/>
+  <text x="517" y="366" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">Bonaparte knight, Wellington knave — unique</text>
+
+  <!-- ===== Wellington's odd statement ===== -->
+  <rect x="20" y="384" width="660" height="82" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="404" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">Decoding Wellington's "I would tell you that Bonaparte is a knight"</text>
+  <text x="40" y="426" font-size="11.5" fill="#222">If Wellington is a <tspan font-weight="bold">knight</tspan>, he reports truthfully — he'd say "knight" exactly when Bonaparte is one.</text>
+  <text x="40" y="444" font-size="11.5" fill="#222">If Wellington is a <tspan font-weight="bold">knave</tspan>, he reports falsely — he'd say "knight" exactly when Bonaparte is <tspan font-style="italic">not</tspan> one.</text>
+  <text x="350" y="461" font-size="11.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">So his claim is true precisely when  (Wellington is a knight)  ⟺  (Bonaparte is a knight).</text>
+
+  <!-- bottom -->
+  <rect x="20" y="478" width="660" height="42" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="497" font-size="11.5" fill="#1b5e20" text-anchor="middle">Both proofs are <tspan font-weight="bold">proofs by contradiction</tspan>: assume one identity, chain to its opposite, conclude the assumption was false.</text>
+  <text x="350" y="513" font-size="11" font-style="italic" fill="#666" text-anchor="middle">The final line in each is just the island's rule applied once more to the now-known speaker.</text>
+</svg>

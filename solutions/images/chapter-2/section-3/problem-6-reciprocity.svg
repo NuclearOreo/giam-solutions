@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 490" width="700" height="490" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="490" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Let W = "you would want this done to you" and D = "you do it to others."</text>
+
+  <!-- ============ LEFT COLUMN: the logic ============ -->
+  <text x="185" y="48" font-size="13" font-weight="bold" fill="#1a3a63" text-anchor="middle">The two logical shapes</text>
+
+  <rect x="24" y="58" width="322" height="52" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="185" y="78" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">POSITIVE  ("Golden Rule"):   W ⟹ D</text>
+  <text x="185" y="98" font-size="11" fill="#333" text-anchor="middle">"if you'd want it done to you, do it to them"</text>
+
+  <rect x="24" y="120" width="322" height="52" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="185" y="140" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">NEGATIVE  ("Silver Rule"):   ¬W ⟹ ¬D</text>
+  <text x="185" y="160" font-size="11" fill="#333" text-anchor="middle">"if you wouldn't want it, don't do it to them"</text>
+
+  <rect x="24" y="182" width="322" height="44" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="185" y="200" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">¬W ⟹ ¬D is the INVERSE of W ⟹ D —</text>
+  <text x="185" y="217" font-size="11.5" fill="#8a3b12" text-anchor="middle">so the two are NOT equivalent (Problem 2.2.9).</text>
+
+  <!-- truth table -->
+  <g font-size="11" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="60"  y="252">W</text><text x="100" y="252">D</text>
+    <text x="185" y="252" fill="#1a3a63">W ⟹ D</text><text x="290" y="252" fill="#1b5e20">¬W ⟹ ¬D</text>
+  </g>
+  <line x1="34" y1="260" x2="340" y2="260" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="60" y="280">T</text><text x="100" y="280">T</text><text x="185" y="280" fill="#1a3a63">T</text><text x="290" y="280" fill="#1b5e20">T</text>
+    <rect x="34" y="288" width="306" height="22" fill="#fbe4da"/>
+    <text x="60" y="304">T</text><text x="100" y="304">F</text><text x="185" y="304" fill="#1a3a63" font-weight="bold">F</text><text x="290" y="304" fill="#1b5e20" font-weight="bold">T</text>
+    <rect x="34" y="312" width="306" height="22" fill="#fbe4da"/>
+    <text x="60" y="328">F</text><text x="100" y="328">T</text><text x="185" y="328" fill="#1a3a63" font-weight="bold">T</text><text x="290" y="328" fill="#1b5e20" font-weight="bold">F</text>
+    <text x="60" y="352">F</text><text x="100" y="352">F</text><text x="185" y="352" fill="#1a3a63">T</text><text x="290" y="352" fill="#1b5e20">T</text>
+  </g>
+  <line x1="34" y1="360" x2="340" y2="360" stroke="#aaa" stroke-width="0.8"/>
+  <text x="185" y="378" font-size="10.5" font-style="italic" fill="#8a3b12" text-anchor="middle">the shaded rows disagree — the columns are different</text>
+
+  <!-- ============ RIGHT COLUMN: classification ============ -->
+  <line x1="358" y1="36" x2="358" y2="400" stroke="#e0e0e0"/>
+  <text x="530" y="48" font-size="13" font-weight="bold" fill="#1a3a63" text-anchor="middle">Classifying the seven</text>
+
+  <rect x="372" y="58" width="306" height="92" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="384" y="78" font-size="12" font-weight="bold" fill="#1b5e20">NEGATIVE form  ¬W ⟹ ¬D</text>
+  <text x="390" y="98" font-size="11.5" fill="#222">(a) Mencius   (d) Talmud   (f) Epictetus</text>
+  <text x="390" y="118" font-size="11" font-style="italic" fill="#555">"don't do what you'd find disagreeable"</text>
+  <text x="390" y="138" font-size="11.5" fill="#1b5e20" font-weight="bold">→ these three ARE equivalent to each other</text>
+
+  <rect x="372" y="160" width="306" height="92" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="384" y="180" font-size="12" font-weight="bold" fill="#1a3a63">POSITIVE form  W ⟹ D</text>
+  <text x="390" y="200" font-size="11.5" fill="#222">(c) Luke 6:31</text>
+  <text x="390" y="220" font-size="11.5" fill="#222">(b) Hadith — positive in content, but</text>
+  <text x="390" y="236" font-size="11" font-style="italic" fill="#555">wrapped in "you believe ⟹ you so wish"</text>
+
+  <rect x="372" y="262" width="306" height="62" fill="#f7f7f7" stroke="#ddd"/>
+  <text x="384" y="282" font-size="12" font-weight="bold" fill="#555">NEITHER — a different principle</text>
+  <text x="390" y="302" font-size="11.5" fill="#222">(e) Wicca:  ¬harm ⟹ permitted</text>
+  <text x="390" y="318" font-size="11" font-style="italic" fill="#555">about harm, not about reciprocity at all</text>
+
+  <rect x="372" y="334" width="306" height="62" fill="#fbeeee" stroke="#e0b8b8"/>
+  <text x="384" y="354" font-size="12" font-weight="bold" fill="#7a1f1f">A DENIAL of the positive form</text>
+  <text x="390" y="374" font-size="11.5" fill="#222">(g) Shaw:  don't apply (c) —</text>
+  <text x="390" y="390" font-size="11" font-style="italic" fill="#555">"their tastes may not be the same"</text>
+
+  <!-- bottom banner -->
+  <rect x="24" y="412" width="654" height="64" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="434" font-size="12.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">Only (a), (d), (f) are mutually equivalent. The positive group and the negative group are NOT.</text>
+  <text x="350" y="454" font-size="11.5" fill="#222" text-anchor="middle">The negative rule only forbids; the positive rule also obligates. Doing nothing satisfies the first, not the second.</text>
+  <text x="350" y="470" font-size="11" font-style="italic" fill="#666" text-anchor="middle">That difference is exactly the gap between a conditional and its inverse.</text>
+</svg>

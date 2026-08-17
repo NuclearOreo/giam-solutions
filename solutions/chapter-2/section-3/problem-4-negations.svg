@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 570" width="700" height="570" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="570" fill="white"/>
+
+  <text x="350" y="24" font-size="13" font-style="italic" fill="#444" text-anchor="middle">Push the negation inward with the standard rules, then simplify. The truth table confirms each result.</text>
+
+  <!-- ================= PANEL (a) ================= -->
+  <rect x="20" y="38" width="660" height="268" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="36" y="60" font-size="13.5" font-weight="bold" fill="#1a3a63">(a)   ¬[ (A ∨ B) ⟺ C ]</text>
+
+  <!-- derivation -->
+  <text x="46" y="94" font-size="12.5" fill="#222">¬[ (A ∨ B) ⟺ C ]</text>
+  <text x="60" y="118" font-size="11.5" font-style="italic" fill="#8a3b12">↓  the negation of a biconditional is exclusive-or</text>
+  <text x="46" y="146" font-size="12.5" fill="#222">( (A∨B) ∧ ¬C )  ∨  ( ¬(A∨B) ∧ C )</text>
+  <text x="60" y="170" font-size="11.5" font-style="italic" fill="#8a3b12">↓  De Morgan on ¬(A∨B)</text>
+  <rect x="40" y="184" width="330" height="34" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="205" y="206" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">( (A∨B) ∧ ¬C )  ∨  ( ¬A ∧ ¬B ∧ C )</text>
+  <text x="46" y="240" font-size="11.5" fill="#555">In words: exactly one of "A or B" and "C" holds.</text>
+  <text x="46" y="262" font-size="11.5" fill="#666" font-style="italic">Fully expanded (DNF):</text>
+  <text x="46" y="282" font-size="12" fill="#222">(A ∧ ¬C) ∨ (B ∧ ¬C) ∨ (¬A ∧ ¬B ∧ C)</text>
+
+  <!-- truth table (a) -->
+  <g font-size="11" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="428" y="76">A</text><text x="456" y="76">B</text><text x="484" y="76">C</text>
+    <text x="545" y="76">(A∨B)⟺C</text><text x="632" y="76" fill="#1b5e20">negation</text>
+  </g>
+  <line x1="410" y1="84" x2="670" y2="84" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="428" y="104">T</text><text x="456" y="104">T</text><text x="484" y="104">T</text><text x="545" y="104">T</text><text x="632" y="104" fill="#1b5e20">F</text>
+    <text x="428" y="126">T</text><text x="456" y="126">T</text><text x="484" y="126">F</text><text x="545" y="126">F</text><text x="632" y="126" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="428" y="148">T</text><text x="456" y="148">F</text><text x="484" y="148">T</text><text x="545" y="148">T</text><text x="632" y="148" fill="#1b5e20">F</text>
+    <text x="428" y="170">T</text><text x="456" y="170">F</text><text x="484" y="170">F</text><text x="545" y="170">F</text><text x="632" y="170" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="428" y="192">F</text><text x="456" y="192">T</text><text x="484" y="192">T</text><text x="545" y="192">T</text><text x="632" y="192" fill="#1b5e20">F</text>
+    <text x="428" y="214">F</text><text x="456" y="214">T</text><text x="484" y="214">F</text><text x="545" y="214">F</text><text x="632" y="214" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="428" y="236">F</text><text x="456" y="236">F</text><text x="484" y="236">T</text><text x="545" y="236">F</text><text x="632" y="236" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="428" y="258">F</text><text x="456" y="258">F</text><text x="484" y="258">F</text><text x="545" y="258">T</text><text x="632" y="258" fill="#1b5e20">F</text>
+  </g>
+  <line x1="410" y1="268" x2="670" y2="268" stroke="#aaa" stroke-width="0.8"/>
+  <text x="540" y="288" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">the boxed formula reproduces the "negation" column</text>
+
+  <!-- ================= PANEL (b) ================= -->
+  <rect x="20" y="318" width="660" height="236" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="36" y="340" font-size="13.5" font-weight="bold" fill="#1a3a63">(b)   ¬[ (A ∨ B) ⟹ (A ∧ B) ]</text>
+
+  <text x="46" y="372" font-size="12.5" fill="#222">¬[ (A ∨ B) ⟹ (A ∧ B) ]</text>
+  <text x="60" y="394" font-size="11.5" font-style="italic" fill="#8a3b12">↓  ¬(P ⟹ Q)  =  P ∧ ¬Q</text>
+  <text x="46" y="420" font-size="12.5" fill="#222">(A ∨ B)  ∧  ¬(A ∧ B)</text>
+  <text x="60" y="442" font-size="11.5" font-style="italic" fill="#8a3b12">↓  De Morgan on ¬(A∧B)</text>
+  <rect x="40" y="456" width="330" height="34" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="205" y="478" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">(A ∨ B) ∧ (¬A ∨ ¬B)   =   A ⊕ B</text>
+  <text x="46" y="512" font-size="11.5" fill="#555">"A or B, but not both" — exactly the exclusive-or of Problem 2.1.1.</text>
+  <text x="46" y="534" font-size="11.5" fill="#8a3b12" font-style="italic">Bonus: the original statement is just  A ⟺ B  (see the table).</text>
+
+  <!-- truth table (b) -->
+  <g font-size="11" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="440" y="358">A</text><text x="470" y="358">B</text>
+    <text x="545" y="358">(A∨B)⟹(A∧B)</text><text x="640" y="358" fill="#1b5e20">negation</text>
+  </g>
+  <line x1="420" y1="366" x2="672" y2="366" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="440" y="388">T</text><text x="470" y="388">T</text><text x="545" y="388">T</text><text x="640" y="388" fill="#1b5e20">F</text>
+    <text x="440" y="412">T</text><text x="470" y="412">F</text><text x="545" y="412">F</text><text x="640" y="412" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="440" y="436">F</text><text x="470" y="436">T</text><text x="545" y="436">F</text><text x="640" y="436" fill="#1b5e20" font-weight="bold">T</text>
+    <text x="440" y="460">F</text><text x="470" y="460">F</text><text x="545" y="460">T</text><text x="640" y="460" fill="#1b5e20">F</text>
+  </g>
+  <line x1="420" y1="470" x2="672" y2="470" stroke="#aaa" stroke-width="0.8"/>
+  <text x="546" y="492" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">T,F,F,T is  A ⟺ B;  its negation F,T,T,F is  A ⊕ B</text>
+</svg>

@@ -1,0 +1,118 @@
+.docname {Solution — GIAM 2.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 4
+
+## Problem
+
+Find the negation of each of the following and simplify as much as possible.
+
+- *(a)* $ (A\lor B) \Longleftrightarrow C $
+- *(b)* $ (A\lor B) \Longrightarrow (A\land B) $
+
+## Answers
+
+$$$
+\boxed{\;\textbf{(a)}\quad \lnot\big[(A\lor B)\Leftrightarrow C\big] \;\cong\; \big((A\lor B)\land\lnot C\big) \;\lor\; \big(\lnot A\land\lnot B\land C\big)\;}
+$$$
+
+$$$
+\boxed{\;\textbf{(b)}\quad \lnot\big[(A\lor B)\Rightarrow(A\land B)\big] \;\cong\; (A\lor B)\land(\lnot A\lor\lnot B) \;\cong\; A\oplus B\;}
+$$$
+
+## The Tools
+
+Three rules do all the work — the first two from Section 2.2, the third being De Morgan:
+
+$$$
+\begin{aligned}
+\lnot(P\Leftrightarrow Q) &\cong (P\land\lnot Q)\lor(\lnot P\land Q), \\
+\lnot(P\Rightarrow Q) &\cong P\land\lnot Q, \\
+\lnot(P\lor Q) &\cong \lnot P\land\lnot Q.
+\end{aligned}
+$$$
+
+!(96%)[Derivation chains and confirming truth tables for both negations](problem-4-negations.svg "Two panels. Panel (a): starting from not[(A or B) iff C], apply the rule that the negation of a biconditional is exclusive-or, giving ((A or B) and not-C) or (not(A or B) and C); then De Morgan on not(A or B) gives the boxed result ((A or B) and not-C) or (not-A and not-B and C). In words, exactly one of 'A or B' and 'C' holds. Fully expanded in disjunctive normal form it is (A and not-C) or (B and not-C) or (not-A and not-B and C). An eight-row truth table lists (A or B) iff C and its negation, confirming the formula. Panel (b): starting from not[(A or B) implies (A and B)], apply not(P implies Q) equals P and not-Q, giving (A or B) and not(A and B); then De Morgan gives the boxed result (A or B) and (not-A or not-B), which equals A xor B — 'A or B but not both', exactly the exclusive-or of Problem 2.1.1. A four-row truth table shows the original column is T, F, F, T, which is A iff B, and its negation F, T, T, F is A xor B.")
+
+## Part (a)
+
+Write $ P = A\lor B $. The negation of a biconditional says the two sides *differ*:
+
+$$$
+\lnot(P\Leftrightarrow C) \;\cong\; (P\land\lnot C)\;\lor\;(\lnot P\land C).
+$$$
+
+Substituting $ P = A\lor B $ and applying De Morgan to $ \lnot(A\lor B) = \lnot A\land\lnot B $:
+
+$$$
+\lnot\big[(A\lor B)\Leftrightarrow C\big] \;\cong\; \big((A\lor B)\land\lnot C\big)\;\lor\;\big(\lnot A\land\lnot B\land C\big).
+$$$
+
+In words: **exactly one** of "$ A $ or $ B $" and "$ C $" holds. Distributing the first term gives the fully expanded disjunctive normal form
+
+$$$
+(A\land\lnot C)\;\lor\;(B\land\lnot C)\;\lor\;(\lnot A\land\lnot B\land C),
+$$$
+
+though the two-term version above is the more readable answer.
+
+## Part (b)
+
+Here the negation of a conditional applies: $ \lnot(P\Rightarrow Q) \cong P\land\lnot Q $, with $ P = A\lor B $ and $ Q = A\land B $:
+
+$$$
+\lnot\big[(A\lor B)\Rightarrow(A\land B)\big] \;\cong\; (A\lor B)\land\lnot(A\land B).
+$$$
+
+De Morgan on $ \lnot(A\land B) $ gives the clean form
+
+$$$
+(A\lor B)\land(\lnot A\lor\lnot B),
+$$$
+
+which reads "**$ A $ or $ B $, but not both**" — precisely the **exclusive-or** $ A\oplus B $. Equivalently, in disjunctive normal form, $ (A\land\lnot B)\lor(\lnot A\land B) $.
+
+## Remark — Part (b) Comes Full Circle to the XOR Circuit
+
+The answer to (b) is exactly the formula built in the very first problem of the chapter. Problem 2.1.1 constructed a circuit for $ A\oplus B $ from the sum-of-products form $ (A\land\lnot B)\lor(\lnot A\land B) $, and noted in passing the equivalent "or but not both" form $ (A\lor B)\land\lnot(A\land B) $. That second form is precisely what falls out here. So the negation of "if either holds then both hold" *is* the XOR gate — and the circuit drawn back in 2.1.1 already computes it.
+
+## Remark — The Original Statement in (b) Is Just $ A \Leftrightarrow B $
+
+There is a hidden simplification lurking on the *other* side. The truth table of $ (A\lor B)\Rightarrow(A\land B) $ is $ \text{T},\text{F},\text{F},\text{T} $ — which is the table of $ A\Leftrightarrow B $. Indeed the statement says "if at least one holds, then both hold," which forces $ A $ and $ B $ to agree; and when neither holds they agree vacuously. So
+
+$$$
+(A\lor B)\Rightarrow(A\land B) \;\cong\; A\Leftrightarrow B.
+$$$
+
+That makes part (b) an instance of the general fact $ \lnot(A\Leftrightarrow B)\cong A\oplus B $ (the last row of the negation table in Problem 2.2.4). Spotting this first would have given the answer in one step — a good illustration of the habit from Problem 2: **simplify before you negate**, since a simpler starting formula usually yields a simpler negation.
+
+## Remark — Negation Never Simplifies a Biconditional Away
+
+Contrast the two parts. In (b) the negation *collapsed* — three connectives became one XOR. In (a) it did not: the answer still needs two clauses, because a biconditional genuinely relates three independent letters here and there is no shorter equivalent. This is worth noticing because "simplify as much as possible" does not promise a one-symbol answer; it asks for the shortest *correct* form. A useful stopping test is whether every remaining clause is doing real work — in (a), dropping either disjunct changes the truth table, so both are needed.
+
+## Remark — Why Negating a Biconditional Gives XOR
+
+The rule used in (a) deserves a one-line justification. $ P\Leftrightarrow Q $ is true exactly when $ P $ and $ Q $ have the *same* truth value; so its negation is true exactly when they **differ** — and "differ" is the definition of exclusive-or. Symbolically,
+
+$$$
+\lnot(P\Leftrightarrow Q) \;\cong\; P\oplus Q \;\cong\; (P\land\lnot Q)\lor(\lnot P\land Q).
+$$$
+
+This is the reason $ \Leftrightarrow $ and $ \oplus $ are sometimes called **XNOR** and **XOR** in hardware: each is the other's negation. As noted in Problem 2.1.1, XOR is also addition modulo $ 2 $, so a biconditional is "the two bits are equal" and its negation is "the two bits sum to $ 1 $."
+
+## Remark — A General Strategy for Negating Compound Statements
+
+Both parts follow one algorithm, worth stating explicitly:
+
+1. **Identify the outermost connective** and apply its negation rule ($ \Leftrightarrow\to\oplus $, $ \Rightarrow\to P\land\lnot Q $, $ \land\to\lor $ via De Morgan, $ \lor\to\land $).
+2. **Push the remaining negations inward**, repeating step 1 on each sub-formula, until every $ \lnot $ sits directly on a variable.
+3. **Simplify** using the absorption, distributive, and complement laws of Problems 1–2.
+
+Step 2's end state — negations only on letters — is called **negation normal form**, and it is the standard preprocessing step before converting to CNF or DNF. Working outside-in is what keeps a multi-layer negation from turning into guesswork; each rule application strips exactly one layer.

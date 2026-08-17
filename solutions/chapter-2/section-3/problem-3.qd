@@ -1,0 +1,76 @@
+.docname {Solution — GIAM 2.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 3
+
+## Problem
+
+Draw pairs of related digital logic circuits that illustrate De Morgan's laws.
+
+## The Laws
+
+De Morgan's two laws say that a negation may be pushed inside a conjunction or disjunction, provided the connective is flipped:
+
+$$$
+\lnot(A\land B) \;\cong\; \lnot A\lor\lnot B, \qquad\qquad \lnot(A\lor B) \;\cong\; \lnot A\land\lnot B.
+$$$
+
+Each law therefore corresponds to **two circuits that compute the same output** from the same inputs.
+
+## The Circuits
+
+!(96%)[Two pairs of gate-level circuits, one pair per De Morgan law](problem-3-demorgan.svg "Two pairs of digital logic circuits. Top pair, De Morgan's first law: on the left, inputs A and B feed an AND gate whose output passes through a NOT gate to give Q — this computes not(A and B), a NAND. On the right, A and B each pass through their own NOT gate and the two inverted signals feed an OR gate to give Q — this computes not-A or not-B. The two circuits are marked equivalent. Bottom pair, De Morgan's second law: on the left, A and B feed an OR gate whose output passes through a NOT gate — this computes not(A or B), a NOR. On the right, A and B each pass through a NOT gate and the inverted signals feed an AND gate — this computes not-A and not-B. Again the two are marked equivalent. A closing note explains bubble pushing: slide the output bubble back through the gate onto both inputs, and flip the gate from AND to OR or OR to AND as it passes through.")
+
+**Top pair (first law).** On the left, $ A $ and $ B $ are combined by an AND gate and the result is inverted — a **NAND**. On the right, each input is inverted first and the results are combined by an OR gate. Both produce the same $ Q $.
+
+**Bottom pair (second law).** On the left, $ A $ and $ B $ are combined by an OR gate and inverted — a **NOR**. On the right, each input is inverted first and the results are ANDed. Again both produce the same $ Q $.
+
+## Verification
+
+Tracing all four input combinations through each circuit confirms the pairs agree:
+
+| $ A $ | $ B $ | $ \lnot(A\land B) $ | $ \lnot A\lor\lnot B $ | $ \lnot(A\lor B) $ | $ \lnot A\land\lnot B $ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | **F** | **F** | **F** | **F** |
+| T | F | **T** | **T** | **F** | **F** |
+| F | T | **T** | **T** | **F** | **F** |
+| F | F | **T** | **T** | **T** | **T** |
+
+Columns 3 and 4 match (first law); columns 5 and 6 match (second law). $ \blacksquare $
+
+## Remark — "Bubble Pushing": The Visual Form of the Laws
+
+Engineers draw inversion as a small **bubble** ($ \circ $) rather than a full triangle, and in that notation De Morgan's laws become a purely graphical manipulation called **bubble pushing**:
+
+> Slide the bubble from the output back through the gate onto *both* inputs — and change the gate's shape as it passes through ($ \text{AND}\leftrightarrow\text{OR} $).
+
+A NAND (AND with an output bubble) becomes an OR with two input bubbles; a NOR becomes an AND with two input bubbles. The rule "move the bubbles, flip the gate" is exactly $ \lnot(A\land B) = \lnot A\lor\lnot B $ restated in pictures. Because the manipulation is visual, designers apply it fluently while reading a schematic — no algebra required.
+
+## Remark — Why the Connective *Must* Flip
+
+The flip is not a convention but a necessity, and one row of the table shows why. Take $ A $ true and $ B $ false. Then:
+
+- $ \lnot(A\land B) $ is **true** (the AND fails, so its negation holds);
+- $ \lnot A\lor\lnot B $ is **true** (because $ \lnot B $ holds) ✓ — matches;
+- but $ \lnot A\land\lnot B $ would be **false** ($ \lnot A $ fails).
+
+So negating "both" gives "at least one fails," not "both fail." In English: the opposite of *"both switches are on"* is *"at least one switch is off,"* not *"both switches are off."* Forgetting the flip — writing $ \lnot(A\land B) = \lnot A\land\lnot B $ — is one of the most common errors in elementary logic, and this row is the counterexample that kills it.
+
+## Remark — This Is Why NAND and NOR Are Universal
+
+The circuits above quietly explain the functional completeness proved in Problem 2.1.5. Because a NAND gate is *also* an OR gate with inverted inputs, a single NAND can play either role depending on how you feed it. Combined with the self-negation trick $ \lnot X = X\mid X $ (tie both inputs together), one gate type yields NOT, AND, and OR — hence everything. De Morgan's laws are the bridge: they are what allow a chip full of identical NAND gates to realise both conjunctive and disjunctive logic. A fabricator masters one gate; De Morgan supplies the rest.
+
+## Remark — Redrawing a Schematic Without Changing It
+
+A practical use of these pairs is that they let a designer redraw a circuit to make its *intent* legible without altering its behaviour. Suppose a safety interlock should fire when "the door is not closed **or** the guard is not engaged." Written directly that is $ \lnot D\lor\lnot G $ — two inverters and an OR. By the first law it is identical to $ \lnot(D\land G) $: a single NAND fed by both sensors, reading naturally as "*not* (door closed **and** guard engaged)." Same silicon behaviour, fewer gates, and a description that matches how an engineer would state the requirement. Choosing between logically equivalent forms for clarity or cost is precisely the payoff of knowing the laws (as in Problem 2).
+
+## Remark — The Laws Are Dual to One Another
+
+The two laws are not independent facts but mirror images under the **duality** that swaps $ \land\leftrightarrow\lor $ and $ \text{T}\leftrightarrow\text{F} $ throughout. Applying that swap to the first law produces the second, and vice versa — which is visible in the figure as the top and bottom rows being the same picture with the gate shapes exchanged. Duality runs through all of Boolean algebra: absorption came in a dual pair in Problem 2 ($ A\lor(A\land B)=A $ and $ A\land(A\lor B)=A $), as did the distributive laws in Problem 1. Prove one member of a dual pair and the other follows for free, which is why these identities are conventionally tabulated two at a time.

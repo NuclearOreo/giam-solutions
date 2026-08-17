@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="26" font-size="13" font-style="italic" fill="#444" text-anchor="middle">All four hold — the two columns agree in every row, and each side collapses to something simple.</text>
+
+  <!-- ============ PANEL (a) ============ -->
+  <rect x="20" y="44" width="320" height="204" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="180" y="66" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">(a)  (A∧B)∨B   ≅   (A∨B)∧B</text>
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="70" y="92">A</text><text x="110" y="92">B</text>
+    <text x="200" y="92" fill="#2a5db0">(A∧B)∨B</text><text x="295" y="92" fill="#8a3b12">(A∨B)∧B</text>
+  </g>
+  <line x1="40" y1="100" x2="320" y2="100" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="12.5" text-anchor="middle">
+    <text x="70" y="122">T</text><text x="110" y="122">T</text><text x="200" y="122" fill="#2a5db0">T</text><text x="295" y="122" fill="#8a3b12">T</text>
+    <text x="70" y="146">T</text><text x="110" y="146">F</text><text x="200" y="146" fill="#2a5db0">F</text><text x="295" y="146" fill="#8a3b12">F</text>
+    <text x="70" y="170">F</text><text x="110" y="170">T</text><text x="200" y="170" fill="#2a5db0">T</text><text x="295" y="170" fill="#8a3b12">T</text>
+    <text x="70" y="194">F</text><text x="110" y="194">F</text><text x="200" y="194" fill="#2a5db0">F</text><text x="295" y="194" fill="#8a3b12">F</text>
+  </g>
+  <line x1="40" y1="204" x2="320" y2="204" stroke="#aaa" stroke-width="0.8"/>
+  <rect x="50" y="212" width="260" height="26" fill="#dfeadd"/>
+  <text x="180" y="230" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">✓ VALID — both columns are just B</text>
+
+  <!-- ============ PANEL (b) ============ -->
+  <rect x="360" y="44" width="320" height="204" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="520" y="66" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">(b)  A∧(B∨¬A)   ≅   A∧B</text>
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="410" y="92">A</text><text x="450" y="92">B</text>
+    <text x="540" y="92" fill="#2a5db0">A∧(B∨¬A)</text><text x="640" y="92" fill="#8a3b12">A∧B</text>
+  </g>
+  <line x1="380" y1="100" x2="660" y2="100" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="12.5" text-anchor="middle">
+    <text x="410" y="122">T</text><text x="450" y="122">T</text><text x="540" y="122" fill="#2a5db0">T</text><text x="640" y="122" fill="#8a3b12">T</text>
+    <text x="410" y="146">T</text><text x="450" y="146">F</text><text x="540" y="146" fill="#2a5db0">F</text><text x="640" y="146" fill="#8a3b12">F</text>
+    <text x="410" y="170">F</text><text x="450" y="170">T</text><text x="540" y="170" fill="#2a5db0">F</text><text x="640" y="170" fill="#8a3b12">F</text>
+    <text x="410" y="194">F</text><text x="450" y="194">F</text><text x="540" y="194" fill="#2a5db0">F</text><text x="640" y="194" fill="#8a3b12">F</text>
+  </g>
+  <line x1="380" y1="204" x2="660" y2="204" stroke="#aaa" stroke-width="0.8"/>
+  <rect x="390" y="212" width="260" height="26" fill="#dfeadd"/>
+  <text x="520" y="230" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">✓ VALID — the ¬A disjunct is absorbed</text>
+
+  <!-- ============ PANEL (c) ============ -->
+  <rect x="20" y="262" width="320" height="204" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="180" y="282" font-size="11" font-weight="bold" fill="#1a3a63" text-anchor="middle">(c)  (A∧¬B)∨(¬A∧¬B)  ≅  (A∨¬B)∧(¬A∨¬B)</text>
+  <g font-size="11" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="70" y="308">A</text><text x="110" y="308">B</text>
+    <text x="200" y="308" fill="#2a5db0">left side</text><text x="295" y="308" fill="#8a3b12">right side</text>
+  </g>
+  <line x1="40" y1="316" x2="320" y2="316" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="12.5" text-anchor="middle">
+    <text x="70" y="338">T</text><text x="110" y="338">T</text><text x="200" y="338" fill="#2a5db0">F</text><text x="295" y="338" fill="#8a3b12">F</text>
+    <text x="70" y="362">T</text><text x="110" y="362">F</text><text x="200" y="362" fill="#2a5db0">T</text><text x="295" y="362" fill="#8a3b12">T</text>
+    <text x="70" y="386">F</text><text x="110" y="386">T</text><text x="200" y="386" fill="#2a5db0">F</text><text x="295" y="386" fill="#8a3b12">F</text>
+    <text x="70" y="410">F</text><text x="110" y="410">F</text><text x="200" y="410" fill="#2a5db0">T</text><text x="295" y="410" fill="#8a3b12">T</text>
+  </g>
+  <line x1="40" y1="420" x2="320" y2="420" stroke="#aaa" stroke-width="0.8"/>
+  <rect x="50" y="428" width="260" height="26" fill="#dfeadd"/>
+  <text x="180" y="446" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">✓ VALID — both columns are just ¬B</text>
+
+  <!-- ============ PANEL (d) ============ -->
+  <rect x="360" y="262" width="320" height="204" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="520" y="282" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">(d)  absorption:  A∨(A∧B) ≅ A,   A∧(A∨B) ≅ A</text>
+  <g font-size="11" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="400" y="308">A</text><text x="435" y="308">B</text>
+    <text x="510" y="308" fill="#2a5db0">A∨(A∧B)</text><text x="600" y="308" fill="#8a3b12">A∧(A∨B)</text><text x="662" y="308">A</text>
+  </g>
+  <line x1="380" y1="316" x2="672" y2="316" stroke="#aaa" stroke-width="0.8"/>
+  <g font-size="12.5" text-anchor="middle">
+    <text x="400" y="338">T</text><text x="435" y="338">T</text><text x="510" y="338" fill="#2a5db0">T</text><text x="600" y="338" fill="#8a3b12">T</text><text x="662" y="338">T</text>
+    <text x="400" y="362">T</text><text x="435" y="362">F</text><text x="510" y="362" fill="#2a5db0">T</text><text x="600" y="362" fill="#8a3b12">T</text><text x="662" y="362">T</text>
+    <text x="400" y="386">F</text><text x="435" y="386">T</text><text x="510" y="386" fill="#2a5db0">F</text><text x="600" y="386" fill="#8a3b12">F</text><text x="662" y="386">F</text>
+    <text x="400" y="410">F</text><text x="435" y="410">F</text><text x="510" y="410" fill="#2a5db0">F</text><text x="600" y="410" fill="#8a3b12">F</text><text x="662" y="410">F</text>
+  </g>
+  <line x1="380" y1="420" x2="672" y2="420" stroke="#aaa" stroke-width="0.8"/>
+  <rect x="390" y="428" width="260" height="26" fill="#dfeadd"/>
+  <text x="520" y="446" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">✓ VALID — both collapse to A; B is absorbed</text>
+
+  <!-- bottom summary -->
+  <rect x="20" y="480" width="660" height="66" fill="#eef5ee" stroke="#bcd9bc"/>
+  <text x="350" y="502" font-size="12.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">All four are valid. Notice how much each one simplifies:</text>
+  <text x="350" y="522" font-size="12" fill="#222" text-anchor="middle">(a) both sides = B    (b) both sides = A∧B    (c) both sides = ¬B    (d) both sides = A</text>
+  <text x="350" y="540" font-size="11.5" font-style="italic" fill="#666" text-anchor="middle">In every case a variable that looks essential turns out to be redundant.</text>
+</svg>

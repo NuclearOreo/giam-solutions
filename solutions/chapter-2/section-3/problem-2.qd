@@ -1,0 +1,145 @@
+.docname {Solution — GIAM 2.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.3 Problem 2
+
+## Problem
+
+Use truth tables to verify or disprove the following logical equivalences.
+
+- *(a)* $ (A\land B)\lor B \;\cong\; (A\lor B)\land B $
+- *(b)* $ A\land(B\lor\lnot A) \;\cong\; A\land B $
+- (*c*) $ (A\land\lnot B)\lor(\lnot A\land\lnot B) \;\cong\; (A\lor\lnot B)\land(\lnot A\lor\lnot B) $
+- *(d)* The absorption laws.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{All four are valid logical equivalences.}\;}
+$$$
+
+Moreover each one collapses dramatically: **(a)** both sides equal $ B $; **(b)** both sides equal $ A\land B $; **(*c*)** both sides equal $ \lnot B $; **(d)** both sides equal $ A $.
+
+## The Truth Tables
+
+!(96%)[Four truth tables, one per part, each showing the two columns agreeing in all rows](problem-2-tables.svg "Four panels of truth tables over A and B. Panel (a): the columns for (A and B) or B and for (A or B) and B are T, F, T, F — identical, and both equal B; valid. Panel (b): A and (B or not-A) versus A and B give T, F, F, F in both columns; valid, the not-A disjunct is absorbed. Panel three: (A and not-B) or (not-A and not-B) versus (A or not-B) and (not-A or not-B) give F, T, F, T in both columns, and both equal not-B; valid. Panel (d), the absorption laws: A or (A and B) and A and (A or B) both give T, T, F, F, matching the column for A itself; valid, B is absorbed in each. Summary: all four valid, with (a) equal to B, (b) equal to A and B, the third equal to not-B, and (d) equal to A — in every case a variable that looks essential turns out to be redundant.")
+
+### (a) $ (A\land B)\lor B \cong (A\lor B)\land B $ — **valid**
+
+| $ A $ | $ B $ | $ A\land B $ | $ (A\land B)\lor B $ | $ A\lor B $ | $ (A\lor B)\land B $ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | T | **T** | T | **T** |
+| T | F | F | **F** | T | **F** |
+| F | T | F | **T** | T | **T** |
+| F | F | F | **F** | F | **F** |
+
+The two final columns match. Both are simply the column for $ B $.
+
+### (b) $ A\land(B\lor\lnot A) \cong A\land B $ — **valid**
+
+| $ A $ | $ B $ | $ \lnot A $ | $ B\lor\lnot A $ | $ A\land(B\lor\lnot A) $ | $ A\land B $ |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | F | T | **T** | **T** |
+| T | F | F | F | **F** | **F** |
+| F | T | T | T | **F** | **F** |
+| F | F | T | T | **F** | **F** |
+
+### (*c*) $ (A\land\lnot B)\lor(\lnot A\land\lnot B) \cong (A\lor\lnot B)\land(\lnot A\lor\lnot B) $ — **valid**
+
+| $ A $ | $ B $ | $ A\land\lnot B $ | $ \lnot A\land\lnot B $ | left side | $ A\lor\lnot B $ | $ \lnot A\lor\lnot B $ | right side |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | F | F | **F** | T | F | **F** |
+| T | F | T | F | **T** | T | T | **T** |
+| F | T | F | F | **F** | F | T | **F** |
+| F | F | F | T | **T** | T | T | **T** |
+
+Both sides reduce to $ \lnot B $.
+
+### (d) The absorption laws — **valid**
+
+The two absorption laws are
+
+$$$
+A\lor(A\land B) \;\cong\; A, \qquad A\land(A\lor B) \;\cong\; A.
+$$$
+
+| $ A $ | $ B $ | $ A\land B $ | $ A\lor(A\land B) $ | $ A\lor B $ | $ A\land(A\lor B) $ | $ A $ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | T | **T** | T | **T** | **T** |
+| T | F | F | **T** | T | **T** | **T** |
+| F | T | F | **F** | T | **F** | **F** |
+| F | F | F | **F** | F | **F** | **F** |
+
+Both compound columns match the $ A $ column exactly. $ \blacksquare $
+
+## Remark — Part (a) *Is* the Absorption Laws in Disguise
+
+Part (a) looks like a new fact, but it is really parts (d) applied twice. Reading each side with $ B $ as the "absorbing" variable:
+
+$$$
+(A\land B)\lor B \;=\; B\lor(B\land A) \overset{\text{absorption}}{=} B, \qquad (A\lor B)\land B \;=\; B\land(B\lor A) \overset{\text{absorption}}{=} B.
+$$$
+
+Both sides independently collapse to $ B $, so of course they are equal to each other. This is a useful habit: rather than comparing two messy expressions row by row, **simplify each side separately** and see whether they land on the same normal form. Here the shared normal form is the single letter $ B $.
+
+## Remark — Part (b): Absorption in Its Complemented Form
+
+Part (b) is the *complemented* cousin of absorption, sometimes listed separately as
+
+$$$
+A\land(\lnot A\lor B) \;\cong\; A\land B, \qquad A\lor(\lnot A\land B) \;\cong\; A\lor B.
+$$$
+
+The algebraic derivation is a distribution followed by a cancellation:
+
+$$$
+A\land(B\lor\lnot A) \;=\; (A\land B)\lor(A\land\lnot A) \;=\; (A\land B)\lor \text{F} \;=\; A\land B.
+$$$
+
+The point is that $ A\land\lnot A $ is a **contradiction** — always false — so that disjunct contributes nothing and drops out. Intuitively: once you have already assumed $ A $, being told "$ B $ or not-$ A $" gives you no new escape route, since "not-$ A $" is already ruled out; all you learn is $ B $.
+
+## Remark — Part (*c*) and the Two Normal Forms
+
+Part (*c*) is a nice illustration of the two standard **normal forms**. The left side,
+
+$$$
+(A\land\lnot B)\lor(\lnot A\land\lnot B),
+$$$
+
+is in **disjunctive normal form** (an OR of ANDs), while the right side,
+
+$$$
+(A\lor\lnot B)\land(\lnot A\lor\lnot B),
+$$$
+
+is in **conjunctive normal form** (an AND of ORs). Both simplify to $ \lnot B $ by factoring out the common piece and applying a tautology/contradiction:
+
+$$$
+\begin{aligned}
+\text{left} &= \lnot B\land(A\lor\lnot A) = \lnot B\land\text{T} = \lnot B, \\
+\text{right} &= \lnot B\lor(A\land\lnot A) = \lnot B\lor\text{F} = \lnot B.
+\end{aligned}
+$$$
+
+Any formula can be written in *either* normal form, so the same truth function routinely wears two very different-looking syntactic costumes. Recognising that is precisely what these exercises train — and it is why SAT solvers insist on converting everything to one fixed form (CNF) before starting work.
+
+## Remark — Why Absorption Deserves Its Name
+
+The absorption laws say that when a variable appears both alone and inside a nested clause, the nested clause is **absorbed** — swallowed with no trace:
+
+$$$
+A\lor(A\land B) = A, \qquad A\land(A\lor B) = A.
+$$$
+
+The reasoning is one line each. For the first: if $ A $ is true the whole disjunction is true; if $ A $ is false then $ A\land B $ is also false, so the disjunction is false. Either way the value is exactly $ A $, and $ B $ never matters. Absorption has no analogue in ordinary arithmetic — $ a + ab \ne a $ in general — which is one more sign (following Problem 1) that Boolean algebra is genuinely its own structure rather than arithmetic with new symbols.
+
+## Remark — Simplification Is the Practical Payoff
+
+Every part of this problem ends with an expression shrinking: a four-symbol formula becomes a single letter. That is not a curiosity but the entire economic motive for studying these laws. In digital design (Problem 2.1.1), each connective is a physical gate costing area, power, and delay; discovering that $ (A\land B)\lor B $ is just $ B $ means deleting two gates and a wire. The same is true in software — a compiler simplifying a Boolean condition, or a database engine simplifying a `WHERE` clause, is running exactly these identities. Truth tables *verify* an equivalence; the algebraic laws are what let you *find* one in the first place, and at scale the laws are the only practical option, since a truth table with $ n $ variables has $ 2^n $ rows.
