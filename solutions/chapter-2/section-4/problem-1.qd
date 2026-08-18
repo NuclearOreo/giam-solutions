@@ -12,101 +12,111 @@
 
 ## Problem
 
-Write two-column proofs that verify each of the following logical equivalences.
+Write two-column proofs that verify each of the following logical equivalences. Throughout, $ t $ denotes a tautology and $ c $ a contradiction.
 
-1. $ A\lor(A\land B) \cong A\land(A\lor B) $
-2. $ (A\land\lnot B)\lor A \cong A $
-3. $ A\lor B \cong A\lor(\lnot A\land B) $
-4. $ \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B) \cong \lnot A $
-5. $ A \cong A\land\big((A\lor\lnot B)\lor(A\lor B)\big) $
-6. $ (A\land\lnot B)\land(\lnot A\lor B) \cong c $
-7. $ A \cong A\land\big(A\lor(A\land(B\lor C))\big) $
-8. $ \lnot(A\land B)\land\lnot(A\land C) \cong \lnot A\lor(\lnot B\land\lnot C) $
-
-Throughout, $ t $ denotes a tautology and $ c $ a contradiction.
+| # | equivalence |
+| :---: | :--- |
+| 1 | $ A\lor(A\land B) \cong A\land(A\lor B) $ |
+| 2 | $ (A\land\lnot B)\lor A \cong A $ |
+| 3 | $ A\lor B \cong A\lor(\lnot A\land B) $ |
+| 4 | $ \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B) \cong \lnot A $ |
+| 5 | $ A \cong A\land\big((A\lor\lnot B)\lor(A\lor B)\big) $ |
+| 6 | $ (A\land\lnot B)\land(\lnot A\lor B) \cong c $ |
+| 7 | $ A \cong A\land\big(A\lor(A\land(B\lor C))\big) $ |
+| 8 | $ \lnot(A\land B)\land\lnot(A\land C) \cong \lnot A\lor(\lnot B\land\lnot C) $ |
 
 ## The Toolkit
 
-!(96%)[Reference card of the logical laws, and what each of the eight equivalences collapses to](problem-1-laws.svg "A reference card of laws in three groups. Rearranging: commutative, associative, distributive in both directions, idempotent, and double negation. Collapsing: absorption in both forms, complement giving A or not-A equals t and A and not-A equals c, and identity giving A and t equals A and A or c equals A. Moving negations: De Morgan in both forms, and domination giving A or t equals t and A and c equals c. A summary panel lists what each of the eight equivalences collapses to: 1 both sides equal A; 2 equals A; 3 both sides equal A or B; 4 equals not-A; 5 equals A; 6 equals c, a contradiction; 7 equals A; 8 both sides equal not-A or (not-B and not-C). A closing note gives the strategy: start from the messier side and simplify until you reach the other, justifying every line by exactly one named law applied to the line above.")
+!(94%)[Reference card of the logical laws, and what each of the eight equivalences collapses to](problem-1-laws.svg "A reference card of laws in three groups. Rearranging: commutative, associative, distributive in both directions, idempotent, and double negation. Collapsing: absorption in both forms, complement giving A or not-A equals t and A and not-A equals c, and identity giving A and t equals A and A or c equals A. Moving negations: De Morgan in both forms, and domination giving A or t equals t and A and c equals c. A summary panel lists what each of the eight equivalences collapses to: 1 both sides equal A; 2 equals A; 3 both sides equal A or B; 4 equals not-A; 5 equals A; 6 equals c, a contradiction; 7 equals A; 8 both sides equal not-A or (not-B and not-C). A closing note gives the strategy: start from the messier side and simplify until you reach the other, justifying every line by exactly one named law applied to the line above.")
 
 ## The Eight Proofs
 
-### 1. $ A\lor(A\land B) \cong A\land(A\lor B) $
+Each proof restates the claim, then simplifies one line at a time; every line names the single law that licenses it.
 
-| statement | reason |
-| :--- | :--- |
-| $ A\lor(A\land B) $ | given |
-| $ \cong A $ | absorption |
-| $ \cong A\land(A\lor B) $ | absorption (read right-to-left) |
+$$$
+\begin{aligned}
+\textbf{1.}\;\;& A\lor(A\land B) \;\cong\; A\land(A\lor B) \\[6pt]
+       & A\lor(A\land B)  &&\text{given} \\
+\cong\;& A                &&\text{absorption} \\
+\cong\;& A\land(A\lor B)  &&\text{absorption, read right-to-left}
+\end{aligned}
+$$$
 
-Both sides collapse to $ A $, so they are equal to each other.
+Both sides collapse to $ A $, so they are equivalent to each other.
 
-### 2. $ (A\land\lnot B)\lor A \cong A $
+$$$
+\begin{aligned}
+\textbf{2.}\;\;& (A\land\lnot B)\lor A \;\cong\; A \\[6pt]
+       & (A\land\lnot B)\lor A  &&\text{given} \\
+\cong\;& A\lor(A\land\lnot B)   &&\text{commutative } (\lor) \\
+\cong\;& A                      &&\text{absorption, with } \lnot B \text{ for } B
+\end{aligned}
+$$$
 
-| statement | reason |
-| :--- | :--- |
-| $ (A\land\lnot B)\lor A $ | given |
-| $ \cong A\lor(A\land\lnot B) $ | commutative ($ \lor $) |
-| $ \cong A $ | absorption (with $ \lnot B $ in the role of $ B $) |
+Proof 3 starts from the messier right-hand side.
 
-### 3. $ A\lor B \cong A\lor(\lnot A\land B) $
+$$$
+\begin{aligned}
+\textbf{3.}\;\;& A\lor B \;\cong\; A\lor(\lnot A\land B) \\[6pt]
+       & A\lor(\lnot A\land B)         &&\text{given} \\
+\cong\;& (A\lor\lnot A)\land(A\lor B)  &&\text{distributive } (\lor \text{ over } \land) \\
+\cong\;& t\land(A\lor B)               &&\text{complement} \\
+\cong\;& A\lor B                       &&\text{identity}
+\end{aligned}
+$$$
 
-Starting from the right-hand side, which is the messier one:
+$$$
+\begin{aligned}
+\textbf{4.}\;\;& \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B) \;\cong\; \lnot A \\[6pt]
+       & \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B)        &&\text{given} \\
+\cong\;& (\lnot A\land\lnot\lnot B)\lor(\lnot A\land\lnot B) &&\text{De Morgan} \\
+\cong\;& (\lnot A\land B)\lor(\lnot A\land\lnot B)           &&\text{double negation} \\
+\cong\;& \lnot A\land(B\lor\lnot B)                          &&\text{distributive, factoring out } \lnot A \\
+\cong\;& \lnot A\land t                                      &&\text{complement} \\
+\cong\;& \lnot A                                             &&\text{identity}
+\end{aligned}
+$$$
 
-| statement | reason |
-| :--- | :--- |
-| $ A\lor(\lnot A\land B) $ | given |
-| $ \cong (A\lor\lnot A)\land(A\lor B) $ | distributive ($ \lor $ over $ \land $) |
-| $ \cong t\land(A\lor B) $ | complement |
-| $ \cong A\lor B $ | identity |
+$$$
+\begin{aligned}
+\textbf{5.}\;\;& A \;\cong\; A\land\big((A\lor\lnot B)\lor(A\lor B)\big) \\[6pt]
+       & A\land\big((A\lor\lnot B)\lor(A\lor B)\big)  &&\text{given} \\
+\cong\;& A\land\big(A\lor\lnot B\lor A\lor B\big)     &&\text{associative } (\lor) \\
+\cong\;& A\land\big(A\lor A\lor(\lnot B\lor B)\big)   &&\text{commutative, associative} \\
+\cong\;& A\land\big(A\lor(\lnot B\lor B)\big)         &&\text{idempotent} \\
+\cong\;& A\land(A\lor t)                              &&\text{complement} \\
+\cong\;& A\land t                                     &&\text{domination} \\
+\cong\;& A                                            &&\text{identity}
+\end{aligned}
+$$$
 
-### 4. $ \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B) \cong \lnot A $
+$$$
+\begin{aligned}
+\textbf{6.}\;\;& (A\land\lnot B)\land(\lnot A\lor B) \;\cong\; c \\[6pt]
+       & (A\land\lnot B)\land(\lnot A\lor B)            &&\text{given} \\
+\cong\;& (A\land\lnot B)\land(\lnot A\lor\lnot\lnot B)  &&\text{double negation} \\
+\cong\;& (A\land\lnot B)\land\lnot(A\land\lnot B)       &&\text{De Morgan, read right-to-left} \\
+\cong\;& c                                              &&\text{complement}
+\end{aligned}
+$$$
 
-| statement | reason |
-| :--- | :--- |
-| $ \lnot(A\lor\lnot B)\lor(\lnot A\land\lnot B) $ | given |
-| $ \cong (\lnot A\land\lnot\lnot B)\lor(\lnot A\land\lnot B) $ | De Morgan |
-| $ \cong (\lnot A\land B)\lor(\lnot A\land\lnot B) $ | double negation |
-| $ \cong \lnot A\land(B\lor\lnot B) $ | distributive (factoring out $ \lnot A $) |
-| $ \cong \lnot A\land t $ | complement |
-| $ \cong \lnot A $ | identity |
+$$$
+\begin{aligned}
+\textbf{7.}\;\;& A \;\cong\; A\land\big(A\lor(A\land(B\lor C))\big) \\[6pt]
+       & A\land\big(A\lor(A\land(B\lor C))\big)  &&\text{given} \\
+\cong\;& A\land A                                &&\text{absorption, with } B\lor C \text{ for } B \\
+\cong\;& A                                       &&\text{idempotent}
+\end{aligned}
+$$$
 
-### 5. $ A \cong A\land\big((A\lor\lnot B)\lor(A\lor B)\big) $
-
-| statement | reason |
-| :--- | :--- |
-| $ A\land\big((A\lor\lnot B)\lor(A\lor B)\big) $ | given |
-| $ \cong A\land\big(A\lor\lnot B\lor A\lor B\big) $ | associative ($ \lor $) |
-| $ \cong A\land\big(A\lor A\lor(\lnot B\lor B)\big) $ | commutative, associative |
-| $ \cong A\land\big(A\lor(\lnot B\lor B)\big) $ | idempotent |
-| $ \cong A\land(A\lor t) $ | complement |
-| $ \cong A\land t $ | domination |
-| $ \cong A $ | identity |
-
-### 6. $ (A\land\lnot B)\land(\lnot A\lor B) \cong c $
-
-| statement | reason |
-| :--- | :--- |
-| $ (A\land\lnot B)\land(\lnot A\lor B) $ | given |
-| $ \cong (A\land\lnot B)\land(\lnot A\lor\lnot\lnot B) $ | double negation |
-| $ \cong (A\land\lnot B)\land\lnot(A\land\lnot B) $ | De Morgan (read right-to-left) |
-| $ \cong c $ | complement |
-
-### 7. $ A \cong A\land\big(A\lor(A\land(B\lor C))\big) $
-
-| statement | reason |
-| :--- | :--- |
-| $ A\land\big(A\lor(A\land(B\lor C))\big) $ | given |
-| $ \cong A\land A $ | absorption (inner, with $ B\lor C $ in the role of $ B $) |
-| $ \cong A $ | idempotent |
-
-### 8. $ \lnot(A\land B)\land\lnot(A\land C) \cong \lnot A\lor(\lnot B\land\lnot C) $
-
-| statement | reason |
-| :--- | :--- |
-| $ \lnot(A\land B)\land\lnot(A\land C) $ | given |
-| $ \cong (\lnot A\lor\lnot B)\land(\lnot A\lor\lnot C) $ | De Morgan (twice) |
-| $ \cong \lnot A\lor(\lnot B\land\lnot C) $ | distributive ($ \lor $ over $ \land $, factoring out $ \lnot A $) |
+$$$
+\begin{aligned}
+\textbf{8.}\;\;& \lnot(A\land B)\land\lnot(A\land C) \;\cong\; \lnot A\lor(\lnot B\land\lnot C) \\[6pt]
+       & \lnot(A\land B)\land\lnot(A\land C)             &&\text{given} \\
+\cong\;& (\lnot A\lor\lnot B)\land(\lnot A\lor\lnot C)   &&\text{De Morgan, twice} \\
+\cong\;& \lnot A\lor(\lnot B\land\lnot C)                &&\text{distributive, factoring out } \lnot A
+\end{aligned}
+$$$
 
 ## Remark — The Two Proof Shapes
 
@@ -114,21 +124,21 @@ The eight proofs use only two overall shapes, and recognising which applies save
 
 **Shape 1 — one side is already simple.** In 2, 4, 5, 6, 7, and 8, one side is a bare letter (or $ c $, or a short expression), so the proof is a straight-line simplification of the *other* side down to it. Always start from the messier expression: simplifying is easier than complicating, because at each step you can see what to cancel.
 
-**Shape 2 — both sides are messy.** In 1 and 3 neither side is obviously simpler. The technique is to reduce **each side separately** to a common **normal form** and let transitivity of $ \cong $ close the gap. In proof 1 both sides collapse to $ A $; the middle line of the two-column table is that shared form, and the second half of the proof is the first half's reasoning run backwards. This is the habit noted in Problem 2.3.2.
+**Shape 2 — both sides are messy.** In 1 and 3 neither side is obviously simpler. The technique is to reduce **each side separately** to a common **normal form** and let transitivity of $ \cong $ close the gap. In proof 1 both sides collapse to $ A $; the middle line is that shared form, and the second half of the proof is the first half's reasoning run backwards. This is the habit noted in Problem 2.3.2.
 
 ## Remark — Proof 6: Spotting a Disguised Complement
 
-Proof 6 is the cleverest of the eight, and the trick is worth isolating. The expression is
+Proof 6 is the cleverest of the eight. The expression is
 
 $$$
 \underbrace{(A\land\lnot B)}_{X}\;\land\;(\lnot A\lor B),
 $$$
 
-and the second factor is exactly $ \lnot X $ in disguise: by De Morgan, $ \lnot(A\land\lnot B) \cong \lnot A\lor\lnot\lnot B \cong \lnot A\lor B $. So the whole thing is $ X\land\lnot X $, which the complement law sends to $ c $ immediately. Without noticing the disguise one is tempted to distribute everything out into four terms and cancel them individually — which works, but takes four times as long. **Looking for a sub-expression and its negation** is a habit worth building; it is also what made Problem 2.2.7 short.
+and the second factor is exactly $ \lnot X $ in disguise: by De Morgan, $ \lnot(A\land\lnot B) \cong \lnot A\lor\lnot\lnot B \cong \lnot A\lor B $. So the whole thing is $ X\land\lnot X $, which the complement law sends to $ c $ immediately. Without noticing the disguise one is tempted to distribute everything into four terms and cancel them individually — which works, but takes four times as long. **Looking for a sub-expression and its negation** is a habit worth building; it is also what made Problem 2.2.7 short.
 
 ## Remark — Absorption Does Most of the Work
 
-Six of the eight proofs (1, 2, 5, 7, and implicitly others) turn on **absorption**, $ A\lor(A\land B)\cong A $ and $ A\land(A\lor B)\cong A $. Proofs 5 and 7 in particular are near-instant once you see the shape $ A\land(A\lor\text{anything}) $: whatever fills the "anything" slot is irrelevant, so the whole expression is just $ A $. In proof 5 the "anything" is $ \lnot B\lor(A\lor B) $; in proof 7 it is $ A\land(B\lor C) $. Both proofs could be done in a single line by citing absorption directly — the longer versions above are given to show the mechanism, but recognising the shape at a glance is the real skill.
+Proofs 1, 2, 5, and 7 all turn on **absorption**, $ A\lor(A\land B)\cong A $ and $ A\land(A\lor B)\cong A $. Proofs 5 and 7 in particular are near-instant once you see the shape $ A\land(A\lor\textit{anything}) $: whatever fills the slot is irrelevant, so the whole expression is just $ A $. In proof 5 the "anything" is $ \lnot B\lor(A\lor B) $; in proof 7 it is $ A\land(B\lor C) $. Both could be done in a single line by citing absorption directly — the longer versions above are given to show the mechanism, but recognising the shape at a glance is the real skill.
 
 ## Remark — Why Two-Column Proofs Are Worth the Trouble
 
@@ -136,7 +146,7 @@ A truth table would verify all eight of these mechanically (Problem 2.3.2 did ex
 
 ## Remark — On the Notation $ t $ and $ c $
 
-The symbols $ t $ and $ c $ stand for a **tautology** (always true) and a **contradiction** (always false), and they behave like the constants $ 1 $ and $ 0 $ of ordinary algebra. The parallel is exact enough to be a useful memory aid:
+The symbols $ t $ and $ c $ stand for a **tautology** (always true) and a **contradiction** (always false), and they behave like the constants $ 1 $ and $ 0 $ of ordinary algebra:
 
 | logic | arithmetic analogue |
 | :--- | :--- |
