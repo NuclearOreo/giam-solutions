@@ -1,0 +1,103 @@
+.docname {Solution — GIAM 2.6 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.6 Problem 1
+
+## Problem
+
+In *Monty Python and the Holy Grail* a medieval villager makes the following argument:
+
+> If she weighs the same as a duck, then she's made of wood.
+> If she's made of wood then she's a witch.
+> Therefore, if she weighs the same as a duck, she's a witch.
+
+Which rule of inference is he using?
+
+## Answer
+
+$$$
+\boxed{\;\textbf{Hypothetical syllogism}\;-\;\text{the chain rule, i.e. transitivity of } \Rightarrow\;}
+$$$
+
+Writing $ D $ for "she weighs the same as a duck," $ W $ for "she's made of wood," and $ C $ for "she's a witch," the argument is
+
+$$$
+\begin{aligned}
+& D \Rightarrow W \\
+& W \Rightarrow C \\
+\hline
+\therefore\;& D \Rightarrow C
+\end{aligned}
+$$$
+
+which is exactly the pattern established in Problem 2.2.1: from $ P\Rightarrow Q $ and $ Q\Rightarrow R $, conclude $ P\Rightarrow R $.
+
+## The Rule Is Valid
+
+!(94%)[The argument in symbols, the chain D to W to C with the derived link, and the eight-row truth table](problem-1-syllogism.svg "The argument written in English with its symbolic form alongside: 'If she weighs the same as a duck then she's made of wood' is D implies W; 'if she's made of wood then she's a witch' is W implies C; therefore 'if she weighs the same as a duck she's a witch' is D implies C. Here D means weighs the same as a duck, W means made of wood, C means is a witch. The rule is named hypothetical syllogism, also called the chain rule or transitivity of implication. A diagram shows three circles D, W, C with solid arrows from D to W and from W to C, and a dashed arrow curving from D directly to C labelled 'the derived link'. Below, an eight-row truth table over D, W, C with columns for D implies W, W implies C, the premise which is their conjunction, D implies C, and the whole rule — whose final column is true in every one of the eight rows, confirming the rule is a tautology.")
+
+The corresponding conditional
+
+$$$
+\big[(D\Rightarrow W)\land(W\Rightarrow C)\big] \Rightarrow (D\Rightarrow C)
+$$$
+
+is a **tautology** — true in all eight rows of the truth table. So the villager's reasoning is *logically impeccable*: **if** his two premises were true, his conclusion would follow with certainty.
+
+## Remark — Valid but Not Sound
+
+This is the joke, and the point of the exercise. Logic distinguishes two things that ordinary speech runs together:
+
+- An argument is **valid** if the conclusion follows from the premises by a correct rule of inference — a fact about *form* alone.
+- An argument is **sound** if it is valid **and** its premises are actually true — a fact about *content*.
+
+The villager's argument is **valid but wildly unsound**. Both premises are false: weighing the same as a duck does not make one wooden, and being wooden does not make one a witch. A valid rule applied to garbage premises yields garbage conclusions, and logic offers no protection against that. Rules of inference guarantee only that they never take you from *true* premises to a *false* conclusion; they say nothing about where the premises came from.
+
+## Remark — The Full Chain in the Scene
+
+The two premises given are the tail end of a longer chain the villagers build, and the whole thing is a cascade of hypothetical syllogisms:
+
+$$$
+\begin{aligned}
+\text{witch} &\Rightarrow \text{burns} \\
+\text{burns} &\Rightarrow \text{made of wood} \\
+\text{made of wood} &\Rightarrow \text{floats} \\
+\text{floats} &\Rightarrow \text{weighs the same as a duck}
+\end{aligned}
+$$$
+
+Repeated chaining gives "witch $ \Rightarrow $ weighs the same as a duck." But the villagers then *use the converse* — they weigh her against a duck and conclude she is a witch. So the sketch contains a second, subtler error on top of the false premises: **affirming the consequent**, the invalid pattern of Problem 2.2.9. Hypothetical syllogism gets them from one end of the chain to the other legitimately; reversing the arrow at the end does not.
+
+## Remark — Chaining Is How Proofs Are Built
+
+Hypothetical syllogism is not an exotic rule — it is the backbone of essentially every mathematical proof. A proof is a chain
+
+$$$
+H \Rightarrow A_1 \Rightarrow A_2 \Rightarrow \cdots \Rightarrow A_n \Rightarrow T,
+$$$
+
+and repeated application of this one rule collapses it into $ H\Rightarrow T $. That the chain is *arbitrarily long* is guaranteed by the same rule applied over and over. This is exactly what made the two-column proofs of Section 2.4 legitimate: each line followed from the previous, and transitivity licensed reading the first line and the last as connected. The villager is doing real mathematics — with fictional inputs.
+
+## Remark — Why Comedy Is Good Pedagogy Here
+
+The scene is a memorable illustration precisely because the *form* is so obviously fine while the *content* is so obviously absurd. That separation is hard to feel with a sterile example ($ P\Rightarrow Q $, $ Q\Rightarrow R $, therefore $ P\Rightarrow R $) where there is no content to be wrong about. Real-world reasoning failures much more often resemble the villager's — a sound-looking chain of inference resting on premises nobody checked — than they resemble a genuine logical fallacy. Learning to ask "is the rule valid?" *and separately* "are the premises true?" is the practical skill this problem is drilling.
+
+## Remark — Distinguishing It From Neighbouring Rules
+
+It is worth being able to tell hypothetical syllogism apart from the rules it resembles:
+
+| rule | premises | conclusion |
+| :--- | :--- | :--- |
+| **hypothetical syllogism** | $ P\Rightarrow Q $, $ Q\Rightarrow R $ | $ P\Rightarrow R $ |
+| modus ponens | $ P\Rightarrow Q $, $ P $ | $ Q $ |
+| modus tollens | $ P\Rightarrow Q $, $ \lnot Q $ | $ \lnot P $ |
+| disjunctive syllogism | $ P\lor Q $, $ \lnot P $ | $ Q $ |
+
+The tell for hypothetical syllogism is that **both premises and the conclusion are conditionals** — nothing is ever asserted outright. Modus ponens would require the villager to establish that she *does* weigh the same as a duck; his argument as stated only links the hypotheses, which is why his conclusion is itself an "if–then." The weighing experiment that follows in the film is the attempted modus ponens step.

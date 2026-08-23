@@ -1,0 +1,95 @@
+.docname {Solution — GIAM 2.6 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.6 Problem 2
+
+## Problem
+
+In constructive dilemma the antecedents of the conditionals are usually chosen to represent opposite alternatives, which lets us introduce their disjunction as a tautology. Consider the following proof that there is never any reason to worry (found on the walls of an Irish pub):
+
+> Either you are sick or you are well. If you are well there's nothing to worry about. If you are sick there are just two possibilities: Either you will get better or you will die. If you are going to get better there's nothing to worry about. If you are going to die there are just two possibilities: Either you will go to Heaven or to Hell. If you go to Heaven there is nothing to worry about. If you go to Hell, you'll be so busy shaking hands with all your friends there won't be time to worry…
+
+**Identify the three tautologies that are introduced in this "proof."**
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+&\text{1.}\quad \text{"Either you are sick or you are well."} &&\quad S \lor \lnot S \\
+&\text{2.}\quad \text{"Either you will get better or you will die."} &&\quad B \lor \lnot B \\
+&\text{3.}\quad \text{"Either you will go to Heaven or to Hell."} &&\quad H \lor \lnot H
+\end{aligned}
+}
+$$$
+
+Each is an instance of the **law of the excluded middle**, $ P\lor\lnot P $ — asserted with no evidence because the two alternatives are taken to be exhaustive and mutually exclusive.
+
+## The Structure
+
+!(94%)[A decision tree with three branch points, each opened by a tautology, all leaves reaching "nothing to worry about"](problem-2-dilemma.svg "A decision tree. At the top, tautology one, 'Either you are sick or you are well', labelled S or not-S, branching into 'well' and 'sick'. The 'well' branch ends immediately at a leaf reading 'nothing to worry about'. The 'sick' branch leads to tautology two, 'Either you get better or you die', labelled B or not-B, branching into 'get better' and 'die'. The 'get better' branch ends at a leaf 'nothing to worry about'. The 'die' branch leads to tautology three, 'Either Heaven or Hell', labelled H or not-H, branching into 'Heaven' and 'Hell'. The Heaven branch ends at 'nothing to worry about' and the Hell branch ends at 'too busy shaking hands to worry'. A banner concludes that every leaf says the same thing, so there is never any reason to worry. Two panels follow. The first states the rule applied three times: from P or Q, P implies R, and Q implies R, conclude R. The second explains why the disjunctions count as tautologies: each pair is stipulated to be exhaustive, so the disjunction is an instance of the excluded middle P or not-P, true with no evidence required — and notes that this stipulation is where the joke hides, since 'get better or die' quietly rules out staying ill. A final banner lists the three tautologies: sick or well, get better or die, Heaven or Hell.")
+
+Each tautology opens one round of **constructive dilemma** (here in its "proof by cases" form, since both branches reach the same conclusion $ R $):
+
+$$$
+\begin{aligned}
+& P \lor Q \\
+& P \Rightarrow R \\
+& Q \Rightarrow R \\
+\hline
+\therefore\;& R
+\end{aligned}
+$$$
+
+The three rounds are nested: the "sick" branch of the first opens the second, and the "die" branch of the second opens the third. Every leaf — well, get better, Heaven, Hell — terminates in "nothing to worry about," so the whole tree collapses to that conclusion unconditionally. Checking all $ 2^3 = 8 $ combinations of the atoms confirms each lands on exactly one leaf, and every leaf agrees.
+
+## Remark — Why a Disjunction Can Be Asserted for Free
+
+The passage the problem quotes explains the technique: choosing the antecedents to be **opposite alternatives** makes their disjunction a tautology, so it needs no justification. Compare an ordinary disjunction like "either it is raining or the bus is late" — that is a substantive claim requiring evidence. But "either you are sick or you are well" costs nothing, because "well" just means "not sick." This is what makes constructive dilemma such an economical rule: one of its three premises is free, so you only have to establish the two conditionals. Every case-split proof in mathematics uses the same trick — "either $ n $ is even or $ n $ is odd" is asserted without argument for exactly this reason.
+
+## Remark — Where the Joke Hides: Are They Really Exhaustive?
+
+The three disjunctions are tautologies *only if* each pair genuinely partitions the possibilities, and that is precisely where the humour lives:
+
+- **Sick or well** — reasonable, if "well" is defined as "not sick."
+- **Get better or die** — this one quietly rules out **staying ill**. Chronic illness is neither getting better nor dying, so as ordinary English this is not exhaustive at all.
+- **Heaven or Hell** — presupposes an afterlife with exactly two destinations, ruling out purgatory, reincarnation, or oblivion.
+
+So the argument smuggles substantive assumptions in under the cover of "obviously one or the other." A false dichotomy dressed as excluded middle is one of the most common informal fallacies, and this proof commits it twice. Note the difference from Problem 1: there the *premises* were absurd on their face; here the suspect material is hidden inside statements that *look* like free tautologies.
+
+## Remark — Valid Form, Dubious Content (Again)
+
+As in Problem 1, the *form* is beyond reproach. Constructive dilemma is a tautology, nesting it three deep is legitimate, and the tree really does cover every case its disjunctions allow. The argument fails, if it fails, on **soundness**: besides the questionable dichotomies, the final conditional ("if you go to Hell you'll be too busy shaking hands to worry") is a punchline rather than a premise anyone would defend. This is the same validity/soundness split, and it is worth noticing that the two problems illustrate two *different* ways to be unsound — false premises stated openly, versus false premises disguised as logical truths.
+
+## Remark — Constructive Dilemma in Its General Form
+
+The version used here is the special case where both branches lead to the same place. The general rule allows different conclusions:
+
+$$$
+\begin{aligned}
+& P \lor Q \\
+& P \Rightarrow R \\
+& Q \Rightarrow S \\
+\hline
+\therefore\;& R \lor S
+\end{aligned}
+$$$
+
+Setting $ S = R $ and simplifying $ R\lor R $ to $ R $ by idempotence recovers the proof-by-cases form. The name "dilemma" is apt — you are caught between two horns, but *both* horns are shown to gore you the same way, which is exactly why the pub argument works: no matter which branch reality takes, you arrive at "no worries."
+
+## Remark — The Same Skeleton Appears in Real Proofs
+
+Strip away the comedy and this is a completely standard proof pattern. To show some property $ R $ holds always, split into exhaustive cases and prove $ R $ in each:
+
+$$$
+\text{"either } n \text{ is even or } n \text{ is odd"} \quad\longrightarrow\quad \text{prove } R \text{ for even } n, \text{ prove } R \text{ for odd } n, \text{ conclude } R.
+$$$
+
+That is the shape of the parity arguments in Chapter 1 (Problem 1.6.3, for instance) and of countless proofs to come. Nesting the cases — as the pub does three times over — is likewise routine. The pub proof is a genuine piece of logical machinery running on comic fuel, which is what makes it a good exercise: the structure is easy to see precisely because the content is impossible to take seriously.

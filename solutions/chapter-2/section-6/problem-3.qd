@@ -1,0 +1,134 @@
+.docname {Solution — GIAM 2.6 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.6 Problem 3
+
+## Problem
+
+For each of the following arguments, write it in symbolic form and determine which rules of inference are used.
+
+- *(a)* You are either with us, or you're against us. And you don't appear to be with us. So, that means you're against us!
+- *(b)* All those who had cars escaped the flooding. Sandra had a car — therefore, Sandra escaped the flooding.
+- (*c*) When Johnny goes to the casino, he always gambles 'til he goes broke. Today, Johnny has money, so Johnny hasn't been to the casino recently.
+- *(d)* (A non-constructive proof that there are irrational $ a, b $ with $ a^b $ rational.) Either $ \sqrt2^{\sqrt2} $ is rational or it is irrational. If it is rational, let $ a = b = \sqrt2 $. Otherwise let $ a = \sqrt2^{\sqrt2} $ and $ b = \sqrt2 $. In either case there are irrational $ a, b $ with $ a^b $ rational.
+
+## Answers
+
+!(94%)[The four arguments in symbolic form with their rules, plus the two cases of part (d) worked out](problem-3-rules.svg "Four panels. Panel (a), with us slash against us: premises W or A, and not W, conclusion therefore A — disjunctive syllogism. Panel (b), cars and the flood: premises for-all x C(x) implies E(x), and C(Sandra), conclusion therefore E(Sandra) — universal modus ponens. The third panel, Johnny and the casino: premises G implies B, and not B, conclusion therefore not G — modus tollens. Panel (d), the irrational powers proof: premises R or not-R, R implies T, and not-R implies T, conclusion therefore T — constructive dilemma plus excluded middle. A glossary defines W as you are with us, A as you are against us, C of x as x has a car, E of x as x escaped the flooding, G as Johnny went to the casino, B as Johnny is broke, R as root two to the root two is rational, and T as there exist irrational a and b with a to the b rational. Below, part (d)'s two cases are spelled out. Case R, root two to the root two is rational: take a equals b equals root two; both are irrational and a to the b is rational by assumption. Case not-R, root two to the root two is irrational: take a equals root two to the root two and b equals root two; both are irrational and a to the b equals root two to the power root two times root two, which is root two squared, which is 2. A closing banner notes the proof is non-constructive — it supplies a pair without saying which pair — and that excluded middle is asserted for free, which is exactly what lets us skip deciding whether root two to the root two is rational.")
+
+### (a) — disjunctive syllogism
+
+Let $ W $ = "you are with us" and $ A $ = "you are against us."
+
+$$$
+\begin{aligned}
+& W \lor A \\
+& \lnot W \\
+\hline
+\therefore\;& A
+\end{aligned}
+$$$
+
+### (b) — universal modus ponens
+
+Let $ C(x) $ = "$ x $ has a car" and $ E(x) $ = "$ x $ escaped the flooding."
+
+$$$
+\begin{aligned}
+& \forall x,\ C(x) \Rightarrow E(x) \\
+& C(\text{Sandra}) \\
+\hline
+\therefore\;& E(\text{Sandra})
+\end{aligned}
+$$$
+
+This is **universal instantiation** followed by **modus ponens**; at this stage it is fine simply to call it modus ponens and not fuss over the quantifier.
+
+### (*c*) — modus tollens
+
+Let $ G $ = "Johnny went to the casino (recently)" and $ B $ = "Johnny is broke." "He has money" is $ \lnot B $.
+
+$$$
+\begin{aligned}
+& G \Rightarrow B \\
+& \lnot B \\
+\hline
+\therefore\;& \lnot G
+\end{aligned}
+$$$
+
+### (d) — constructive dilemma, with excluded middle
+
+Let $ R $ = "$ \sqrt2^{\sqrt2} $ is rational" and $ T $ = "there exist irrational $ a,b $ with $ a^b $ rational."
+
+$$$
+\begin{aligned}
+& R \lor \lnot R && \text{(law of the excluded middle — free)} \\
+& R \Rightarrow T && \text{(take } a=b=\sqrt2 ) \\
+& \lnot R \Rightarrow T && \text{(take } a=\sqrt2^{\sqrt2},\ b=\sqrt2 ) \\
+\hline
+\therefore\;& T
+\end{aligned}
+$$$
+
+All four rules were verified to be tautologies.
+
+## Checking the Two Cases in (d)
+
+**Case $ R $.** Suppose $ \sqrt2^{\sqrt2} $ is rational. Take $ a = b = \sqrt2 $. Both are irrational (Chapter 1.6), and $ a^b = \sqrt2^{\sqrt2} $ is rational by the case assumption. ✓
+
+**Case $ \lnot R $.** Suppose $ \sqrt2^{\sqrt2} $ is irrational. Take $ a = \sqrt2^{\sqrt2} $ and $ b = \sqrt2 $. Both are irrational — $ a $ by the case assumption, $ b $ by Chapter 1.6 — and
+
+$$$
+a^b = \left(\sqrt2^{\sqrt2}\right)^{\sqrt2} = \sqrt2^{\,\sqrt2\cdot\sqrt2} = \sqrt2^{\,2} = 2,
+$$$
+
+which is rational. ✓
+
+Both branches deliver $ T $, so $ T $ holds. $ \blacksquare $
+
+## Remark — Why (d) Is Called Non-Constructive
+
+The proof establishes that a pair $ (a,b) $ **exists** without ever telling us which pair it is. It offers two candidates — $ (\sqrt2, \sqrt2) $ and $ (\sqrt2^{\sqrt2}, \sqrt2) $ — and guarantees at least one works, but since we never decide whether $ \sqrt2^{\sqrt2} $ is rational, we never learn which. A **constructive** proof would hand over a specific witness and verify it. (An easy constructive alternative exists: $ a = \sqrt2 $, $ b = 2\log_2 3 $ gives $ a^b = 3 $. But the point of the exercise is the *shape* of the argument, not the sharpest result.)
+
+The engine of the non-constructiveness is the very first line: **excluded middle**, $ R\lor\lnot R $, asserted for free exactly as in Problem 2. That single free premise is what buys us permission to reason about both cases without resolving either.
+
+## Remark — As It Happens, We *Do* Know Which Case Holds
+
+By the **Gelfond–Schneider theorem** (1934), $ \alpha^\beta $ is transcendental whenever $ \alpha $ is algebraic and $ \ne 0,1 $ and $ \beta $ is algebraic and irrational. Taking $ \alpha = \beta = \sqrt2 $ shows $ \sqrt2^{\sqrt2} $ is transcendental, hence **irrational** — so Case $ \lnot R $ is the real one, and the honest witnesses are $ a = \sqrt2^{\sqrt2} $, $ b = \sqrt2 $.
+
+But notice: the proof in part (d) does not need, use, or even mention this. Gelfond–Schneider is a deep theorem; the pub-style case split is elementary. That is the appeal of non-constructive arguments — they can settle an existence question far more cheaply than any method that must actually produce the object.
+
+## Remark — Modus Tollens Is Not "Denying the Antecedent"
+
+Part (*c*) is the one most often gotten wrong. The valid move is
+
+$$$
+\underbrace{G\Rightarrow B,\ \lnot B \;\vdash\; \lnot G}_{\text{modus tollens — valid}} \qquad\text{not}\qquad \underbrace{G\Rightarrow B,\ \lnot G \;\vdash\; \lnot B}_{\text{denying the antecedent — invalid}}.
+$$$
+
+Johnny having money tells us the *consequent* failed, so the antecedent must have failed too — you may run the arrow backwards only when you negate. Had the argument instead said "Johnny hasn't been to the casino, so he must have money," it would be fallacious: he could be broke for entirely unrelated reasons. Modus tollens is just the contrapositive of Problem 2.2.8 combined with modus ponens: from $ G\Rightarrow B $ get $ \lnot B\Rightarrow\lnot G $, then apply $ \lnot B $.
+
+## Remark — Part (a)'s Rhetoric vs. Its Logic
+
+The form of (a) is valid, but the argument is a textbook piece of political rhetoric and repays a second look. Its first premise, $ W\lor A $, is a **false dichotomy** unless "against us" is *defined* as "not with us" — neutrality, indifference, and partial agreement are all excluded by fiat. This is exactly the trap identified in Problem 2: a disjunction that *looks* like a free tautology $ P\lor\lnot P $, but is doing real (and contestable) work. Note too the slide in the second premise — the speaker says "you don't *appear* to be with us" and then treats it as $ \lnot W $. Disjunctive syllogism is perfectly valid; the mischief is entirely in what gets fed to it.
+
+## Remark — The Four Rules Side by Side
+
+Collecting the patterns for reference:
+
+| part | rule | premises | conclusion |
+| :--- | :--- | :--- | :--- |
+| (a) | disjunctive syllogism | $ P\lor Q $, $ \lnot P $ | $ Q $ |
+| (b) | (universal) modus ponens | $ P\Rightarrow Q $, $ P $ | $ Q $ |
+| (*c*) | modus tollens | $ P\Rightarrow Q $, $ \lnot Q $ | $ \lnot P $ |
+| (d) | constructive dilemma | $ P\lor Q $, $ P\Rightarrow R $, $ Q\Rightarrow R $ | $ R $ |
+
+Together with hypothetical syllogism from Problem 1, these five account for the overwhelming majority of steps in ordinary mathematical writing. Learning to spot them under the English — as all three problems in this section have asked — is the point: once the skeleton is visible, checking validity is mechanical, and all your attention can go to whether the premises deserve to be believed.
