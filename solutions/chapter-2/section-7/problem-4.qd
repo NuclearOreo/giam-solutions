@@ -1,0 +1,108 @@
+.docname {Solution — GIAM 2.7 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 4
+
+## Problem
+
+Identify the rule of inference being used.
+
+- *(a)* The Buley Library is very tall. Therefore, either the Buley Library is very tall or it has many levels underground.
+- *(b)* The grass is green. The sky is blue. Therefore, the grass is green and the sky is blue.
+- (*c*) $ g $ has order $ 3 $ or it has order $ 4 $. If $ g $ has order $ 3 $ then $ g $ has an inverse. If $ g $ has order $ 4 $ then $ g $ has an inverse. Therefore $ g $ has an inverse.
+- *(d)* $ x $ is greater than $ 5 $ and $ x $ is less than $ 53 $. Therefore $ x $ is less than $ 53 $.
+- *(e)* If $ a\mid b $ then $ a $ is a perfect square. If $ a\mid b $ then $ b $ is a perfect square. Therefore, if $ a\mid b $ then $ a $ is a perfect square and $ b $ is a perfect square.
+
+## Answers
+
+$$$
+\begin{aligned}
+\textbf{(a)}\;\;& T \;\vdash\; T\lor U &&\quad \textbf{disjunctive addition} \\[4pt]
+\textbf{(b)}\;\;& G,\ B \;\vdash\; G\land B &&\quad \textbf{conjunctive addition} \\[4pt]
+\textbf{(c)}\;\;& O_3\lor O_4,\ O_3\Rightarrow I,\ O_4\Rightarrow I \;\vdash\; I &&\quad \textbf{constructive dilemma} \\[4pt]
+\textbf{(d)}\;\;& G\land L \;\vdash\; L &&\quad \textbf{conjunctive simplification} \\[4pt]
+\textbf{(e)}\;\;& D\Rightarrow P,\ D\Rightarrow Q \;\vdash\; D\Rightarrow(P\land Q) &&\quad \textbf{composition}
+\end{aligned}
+$$$
+
+All five were verified valid by truth table.
+
+!(94%)[The five rules in symbolic form with their names, the build/tear-down duality, and a note that (e) is an equivalence](problem-4-rules.svg "Five stacked panels, each giving an argument's symbolic form and the rule's name. (a) From T conclude T or U — disjunctive addition. (b) From G and B separately conclude G and B conjoined — conjunctive addition. The third, from O-three or O-four,, O-three implies I, and O-four implies I, conclude I — constructive dilemma. (d) From G and L conclude L — conjunctive simplification. (e), highlighted, from D implies P and D implies Q conclude D implies P-and-Q — composition, described as conjunctive addition under a shared hypothesis. A panel below shows the build-up versus tear-down duality: conjunctive addition takes P and Q to P-and-Q while conjunctive simplification takes P-and-Q to P; disjunctive addition takes P to P-or-Q while disjunctive syllogism takes P-or-Q with not-P to Q. Each connective has a rule that introduces it and a rule that gets rid of it. A closing note observes that (e) is the only one that is an equivalence, since the converse is valid too, so 'if D then both' and 'if D then P, and if D then Q' say exactly the same thing.")
+
+## Remark — Part (e): Composition
+
+The one part without a stated answer is (e), whose form is
+
+$$$
+\begin{aligned}
+& D\Rightarrow P \\
+& D\Rightarrow Q \\
+\hline
+\therefore\;& D\Rightarrow(P\land Q)
+\end{aligned}
+$$$
+
+This is usually called **composition**. It is best understood as **conjunctive addition performed inside the scope of a shared hypothesis**:
+
+$$$
+\begin{aligned}
+& \text{assume } D \\
+& P &&\quad \text{modus ponens on } D\Rightarrow P \\
+& Q &&\quad \text{modus ponens on } D\Rightarrow Q \\
+& P\land Q &&\quad \text{conjunctive addition} \\
+& D\Rightarrow(P\land Q) &&\quad \text{discharge the assumption}
+\end{aligned}
+$$$
+
+So (e) is not really a *new* rule — it is part (b) run under an assumption, plus the conditional-proof move of discharging that assumption at the end. If one prefers to name it by what it does rather than by its textbook label, "conjunctive addition of the consequents" is an accurate description.
+
+## Remark — (e) Is the Only Equivalence in the List
+
+Rules of inference are one-directional by nature: from the premises you may infer the conclusion, but not the reverse. Part (e) is unusual in that **its converse is also valid**:
+
+$$$
+D\Rightarrow(P\land Q) \;\vdash\; D\Rightarrow P \quad\text{and}\quad D\Rightarrow Q,
+$$$
+
+which follows by composing with conjunctive simplification. Both directions were verified, so in fact
+
+$$$
+D\Rightarrow(P\land Q) \;\cong\; (D\Rightarrow P)\land(D\Rightarrow Q).
+$$$
+
+"If $ a\mid b $ then both are perfect squares" and "if $ a\mid b $ then $ a $ is, and if $ a\mid b $ then $ b $ is" carry exactly the same information. Contrast (a) and (d), where the reverse direction is plainly invalid — you cannot get $ T $ back from $ T\lor U $, nor $ G\land L $ back from $ L $.
+
+## Remark — Additions Build, Simplifications Tear Down
+
+Four of the five rules come in a tidy pattern: each connective has a rule that **introduces** it and a rule that **eliminates** it.
+
+| connective | introduce | eliminate |
+| :--- | :--- | :--- |
+| $ \land $ | conjunctive addition: $ P, Q \vdash P\land Q $ | conjunctive simplification: $ P\land Q\vdash P $ |
+| $ \lor $ | disjunctive addition: $ P\vdash P\lor Q $ | disjunctive syllogism: $ P\lor Q, \lnot P\vdash Q $ |
+| $ \Rightarrow $ | conditional proof (assume, then discharge) | modus ponens: $ P\Rightarrow Q, P\vdash Q $ |
+
+This introduction/elimination pairing is the organising principle of **natural deduction**, and it is why the rule names sound so mechanical. Notice that (e) uses the $ \land $-introduction rule and the $ \Rightarrow $-introduction rule together, which is exactly why it needed two steps to justify.
+
+## Remark — Disjunctive Addition Looks Like It Gives Something for Free
+
+Part (a) can feel suspicious: from "the library is tall" we conclude "the library is tall **or** it has many underground levels," having learned nothing whatever about the basement. The rule is nonetheless valid, because a disjunction is *weaker* than either disjunct — asserting $ T\lor U $ claims less than asserting $ T $. You are not gaining information; you are **discarding** some, by declining to say which disjunct holds.
+
+This is why disjunctive addition is useful in practice: it lets you match a conclusion to the shape a later rule needs. If you have $ T $ and want to apply constructive dilemma or disjunctive syllogism, you must first manufacture a disjunction — and (a) is the licence to do so.
+
+## Remark — Part (*c*) Really Is a Proof-by-Cases
+
+Part (*c*) is the same shape as the Irish-pub argument of Problem 2.6.2: a disjunction, two conditionals with the **same** consequent, and that consequent as the conclusion. Both branches lead to "$ g $ has an inverse," so it does not matter which of order $ 3 $ or order $ 4 $ actually holds — the conclusion follows either way without ever settling the question.
+
+The mathematical content is worth noting too: in a group, *every* element has an inverse, so the disjunctive premise is doing no real work here. The argument is valid, but the case split is unnecessary — a reminder that a valid argument need not be an *efficient* one.
+
+## Remark — Why These Small Rules Matter
+
+Compared with modus ponens or constructive dilemma, rules like conjunctive simplification look almost too trivial to name — of course "$ x>5 $ and $ x<53 $" lets you conclude "$ x<53 $." But formal proof systems must license *every* step, including the obvious ones, or an automated checker cannot follow along. Naming the trivial moves is what makes a proof mechanically verifiable, and it is the same discipline the two-column proofs of Section 2.4 demanded. When you later write "and hence, in particular, $ x < 53 $," you are silently invoking part (d).

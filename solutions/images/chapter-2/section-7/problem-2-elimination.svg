@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Valid means: no row has every premise true and the conclusion false. Only one row here even has all three premises true.</text>
+
+  <!-- headers -->
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="70"  y="56">A</text><text x="104" y="56">B</text><text x="138" y="56">C</text>
+    <text x="200" y="56">A∨B</text>
+    <text x="286" y="56" fill="#1a3a63">(A∨B)∨C</text>
+    <text x="368" y="56">¬A</text><text x="410" y="56">¬B</text>
+    <text x="490" y="56" fill="#8a3b12">all premises?</text>
+    <text x="584" y="56">C</text>
+    <text x="644" y="56" fill="#1b5e20">rule</text>
+  </g>
+  <line x1="46" y1="64" x2="672" y2="64" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="12" text-anchor="middle">
+    <!-- rows: y 86,114,142,170,198,226,254(crit),282 -->
+    <text x="70" y="86">T</text><text x="104" y="86">T</text><text x="138" y="86">T</text><text x="200" y="86">T</text><text x="286" y="86" fill="#1a3a63">T</text><text x="368" y="86">F</text><text x="410" y="86">F</text><text x="490" y="86" fill="#999">no</text><text x="584" y="86">T</text><text x="644" y="86" fill="#1b5e20">T</text>
+    <text x="70" y="114">T</text><text x="104" y="114">T</text><text x="138" y="114">F</text><text x="200" y="114">T</text><text x="286" y="114" fill="#1a3a63">T</text><text x="368" y="114">F</text><text x="410" y="114">F</text><text x="490" y="114" fill="#999">no</text><text x="584" y="114">F</text><text x="644" y="114" fill="#1b5e20">T</text>
+    <text x="70" y="142">T</text><text x="104" y="142">F</text><text x="138" y="142">T</text><text x="200" y="142">T</text><text x="286" y="142" fill="#1a3a63">T</text><text x="368" y="142">F</text><text x="410" y="142">T</text><text x="490" y="142" fill="#999">no</text><text x="584" y="142">T</text><text x="644" y="142" fill="#1b5e20">T</text>
+    <text x="70" y="170">T</text><text x="104" y="170">F</text><text x="138" y="170">F</text><text x="200" y="170">T</text><text x="286" y="170" fill="#1a3a63">T</text><text x="368" y="170">F</text><text x="410" y="170">T</text><text x="490" y="170" fill="#999">no</text><text x="584" y="170">F</text><text x="644" y="170" fill="#1b5e20">T</text>
+    <text x="70" y="198">F</text><text x="104" y="198">T</text><text x="138" y="198">T</text><text x="200" y="198">T</text><text x="286" y="198" fill="#1a3a63">T</text><text x="368" y="198">T</text><text x="410" y="198">F</text><text x="490" y="198" fill="#999">no</text><text x="584" y="198">T</text><text x="644" y="198" fill="#1b5e20">T</text>
+    <text x="70" y="226">F</text><text x="104" y="226">T</text><text x="138" y="226">F</text><text x="200" y="226">T</text><text x="286" y="226" fill="#1a3a63">T</text><text x="368" y="226">T</text><text x="410" y="226">F</text><text x="490" y="226" fill="#999">no</text><text x="584" y="226">F</text><text x="644" y="226" fill="#1b5e20">T</text>
+
+    <rect x="46" y="236" width="626" height="28" fill="#dfeadd"/>
+    <text x="70" y="255" font-weight="bold">F</text><text x="104" y="255" font-weight="bold">F</text><text x="138" y="255" font-weight="bold">T</text><text x="200" y="255">F</text><text x="286" y="255" fill="#1a3a63" font-weight="bold">T</text><text x="368" y="255" font-weight="bold">T</text><text x="410" y="255" font-weight="bold">T</text><text x="490" y="255" fill="#8a3b12" font-weight="bold">YES</text><text x="584" y="255" font-weight="bold" fill="#1b5e20">T</text><text x="644" y="255" fill="#1b5e20" font-weight="bold">T</text>
+
+    <text x="70" y="284">F</text><text x="104" y="284">F</text><text x="138" y="284">F</text><text x="200" y="284">F</text><text x="286" y="284" fill="#1a3a63">F</text><text x="368" y="284">T</text><text x="410" y="284">T</text><text x="490" y="284" fill="#999">no</text><text x="584" y="284">F</text><text x="644" y="284" fill="#1b5e20">T</text>
+  </g>
+  <line x1="46" y1="294" x2="672" y2="294" stroke="#999" stroke-width="0.9"/>
+
+  <text x="350" y="316" font-size="12" fill="#1b5e20" text-anchor="middle" font-weight="bold">The rule column is T in all eight rows — the rule is VALID.</text>
+  <text x="350" y="336" font-size="11" font-style="italic" fill="#666" text-anchor="middle">Seven rows pass for free because a premise fails; only the shaded row does real work, and there C is true.</text>
+
+  <!-- the two derivations -->
+  <rect x="24" y="352" width="322" height="146" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="185" y="372" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">Route 1 — regroup, then eliminate twice</text>
+  <g font-size="11.5" fill="#222">
+    <text x="40" y="396">(A ∨ B) ∨ C  ≅  A ∨ (B ∨ C)</text>
+    <text x="200" y="396" font-size="10" font-style="italic" fill="#777">associativity</text>
+    <text x="40" y="420">with ¬A  ⟹  B ∨ C</text>
+    <text x="200" y="420" font-size="10" font-style="italic" fill="#777">disjunctive syllogism</text>
+    <text x="40" y="444">with ¬B  ⟹  C</text>
+    <text x="200" y="444" font-size="10" font-style="italic" fill="#777">disjunctive syllogism</text>
+  </g>
+  <text x="185" y="476" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">strip one disjunct at a time</text>
+
+  <rect x="356" y="352" width="320" height="146" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="516" y="372" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">Route 2 — collapse the pair first</text>
+  <g font-size="11.5" fill="#222">
+    <text x="372" y="396">¬A  ∧  ¬B   ≅   ¬(A ∨ B)</text>
+    <text x="560" y="396" font-size="10" font-style="italic" fill="#777">De Morgan</text>
+    <text x="372" y="420">write X = A ∨ B, so we have</text>
+    <text x="372" y="444">X ∨ C  with  ¬X   ⟹   C</text>
+    <text x="560" y="444" font-size="10" font-style="italic" fill="#777">disjunctive syllogism</text>
+  </g>
+  <text x="516" y="476" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">one elimination on a compound disjunct</text>
+
+  <!-- generalization -->
+  <rect x="24" y="510" width="652" height="42" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="529" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">It generalises: from A₁ ∨ A₂ ∨ ⋯ ∨ Aₙ together with ¬A₁, …, ¬Aₙ₋₁, conclude Aₙ.</text>
+  <text x="350" y="545" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">This repeated stripping is exactly "unit propagation", the innermost loop of every modern SAT solver.</text>
+</svg>

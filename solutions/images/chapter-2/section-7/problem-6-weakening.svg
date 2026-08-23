@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Once ≤ is unpacked into its definition, the "weakening" is a single application of a familiar rule.</text>
+
+  <!-- unpacking -->
+  <rect x="120" y="38" width="460" height="46" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="58" font-size="12.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">by definition:   x ≤ y   is   (x &lt; y)  ∨  (x = y)</text>
+  <text x="350" y="76" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">"≤" is not a primitive symbol — it abbreviates a disjunction</text>
+
+  <!-- the rule -->
+  <text x="350" y="112" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">So the step in question is:</text>
+
+  <rect x="200" y="124" width="300" height="86" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="350" y="150" font-size="13" text-anchor="middle" fill="#222">x &lt; y</text>
+  <line x1="270" y1="158" x2="430" y2="158" stroke="#333" stroke-width="1.1"/>
+  <text x="350" y="178" font-size="13" text-anchor="middle" fill="#1b5e20" font-weight="bold">∴  (x &lt; y) ∨ (x = y)</text>
+  <text x="350" y="199" font-size="11" text-anchor="middle" fill="#1b5e20" font-style="italic">that is,  x ≤ y</text>
+
+  <rect x="200" y="220" width="300" height="30" fill="#1b5e20"/>
+  <text x="350" y="240" font-size="14" fill="white" text-anchor="middle" font-weight="bold">DISJUNCTIVE ADDITION</text>
+
+  <!-- number line picture -->
+  <text x="350" y="286" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">Why it is a weakening: the claim covers strictly more cases</text>
+
+  <!-- line for < -->
+  <text x="60" y="322" font-size="12" fill="#2a5db0" font-weight="bold">x &lt; y</text>
+  <line x1="130" y1="318" x2="560" y2="318" stroke="#ddd" stroke-width="1"/>
+  <rect x="130" y="311" width="240" height="14" fill="#cfe0f5"/>
+  <circle cx="370" cy="318" r="5" fill="white" stroke="#2a5db0" stroke-width="1.8"/>
+  <text x="370" y="342" font-size="10.5" fill="#555" text-anchor="middle">x = y</text>
+  <text x="580" y="322" font-size="10.5" fill="#2a5db0">the point x = y is excluded</text>
+
+  <!-- line for <= -->
+  <text x="60" y="378" font-size="12" fill="#1b5e20" font-weight="bold">x ≤ y</text>
+  <line x1="130" y1="374" x2="560" y2="374" stroke="#ddd" stroke-width="1"/>
+  <rect x="130" y="367" width="240" height="14" fill="#cfe6cf"/>
+  <circle cx="370" cy="374" r="5" fill="#1b5e20"/>
+  <text x="580" y="378" font-size="10.5" fill="#1b5e20">the point x = y is included</text>
+
+  <text x="350" y="404" font-size="11" font-style="italic" fill="#666" text-anchor="middle">x ≤ y admits one more possibility, so it asserts less — you give up the information that equality fails.</text>
+
+  <!-- the dual -->
+  <rect x="30" y="420" width="640" height="84" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="440" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">Going back the other way needs a different rule</text>
+  <text x="90" y="464" font-size="11.5" fill="#222">weaken:</text>
+  <text x="200" y="464" font-size="11.5" fill="#222">x &lt; y   ⊢   x ≤ y</text>
+  <text x="440" y="464" font-size="11" fill="#1b5e20" font-style="italic">disjunctive addition</text>
+  <text x="90" y="486" font-size="11.5" fill="#222">restore:</text>
+  <text x="200" y="486" font-size="11.5" fill="#222">x ≤ y,  x ≠ y   ⊢   x &lt; y</text>
+  <text x="440" y="486" font-size="11" fill="#8a3b12" font-style="italic">disjunctive syllogism</text>
+</svg>

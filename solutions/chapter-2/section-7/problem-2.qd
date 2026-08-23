@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 2.7 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 2
+
+## Problem
+
+Below is a rule of inference we call **extended elimination**:
+
+$$$
+\begin{aligned}
+& (A\lor B)\lor C \\
+& \lnot A \\
+& \lnot B \\
+\hline
+\therefore\;& C
+\end{aligned}
+$$$
+
+Use a truth table to verify that this rule is valid.
+
+## The Truth Table
+
+A rule is **valid** when no row makes every premise true while the conclusion is false — equivalently, when $ \big[((A\lor B)\lor C) \land \lnot A \land \lnot B\big] \Rightarrow C $ is a tautology.
+
+| $ A $ | $ B $ | $ C $ | $ A\lor B $ | $ (A\lor B)\lor C $ | $ \lnot A $ | $ \lnot B $ | all premises? | $ C $ | rule |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| T | T | T | T | T | F | F | no | T | **T** |
+| T | T | F | T | T | F | F | no | F | **T** |
+| T | F | T | T | T | F | T | no | T | **T** |
+| T | F | F | T | T | F | T | no | F | **T** |
+| F | T | T | T | T | T | F | no | T | **T** |
+| F | T | F | T | T | T | F | no | F | **T** |
+| **F** | **F** | **T** | F | **T** | **T** | **T** | **YES** | **T** | **T** |
+| F | F | F | F | F | T | T | no | F | **T** |
+
+The final column is **T** in all eight rows, so the rule is **valid**. $ \blacksquare $
+
+!(94%)[The eight-row truth table with the single critical row shaded, and two derivations of the rule](problem-2-elimination.svg "An eight-row truth table with columns A, B, C, A or B, (A or B) or C, not-A, not-B, an 'all premises?' column, C, and the rule column. In seven rows the 'all premises' column reads no, because at least one premise fails. Exactly one row — A false, B false, C true — is shaded and reads YES, and in that row C is true. The rule column is T in all eight rows, so the rule is valid; seven rows pass for free because a premise fails, and only the shaded row does real work. Below, two derivations. Route 1, regroup then eliminate twice: (A or B) or C is equivalent to A or (B or C) by associativity; with not-A this gives B or C by disjunctive syllogism; with not-B this gives C by disjunctive syllogism again — stripping one disjunct at a time. Route 2, collapse the pair first: not-A and not-B is equivalent to not(A or B) by De Morgan; writing X for A or B, we have X or C together with not-X, which gives C by a single disjunctive syllogism on a compound disjunct. A closing note observes the rule generalises: from a disjunction of n things together with the negations of the first n minus one, conclude the last — which is exactly unit propagation, the innermost loop of every modern SAT solver.")
+
+## Only One Row Does Any Work
+
+Notice how lopsided the table is. In **seven** of the eight rows at least one premise is false, so the conditional is **vacuously true** (Problem 2.2.6) and tells us nothing. The rule's entire content sits in the single row
+
+$$$
+A = \text{F},\quad B = \text{F},\quad C = \text{T},
+$$$
+
+which is the only assignment satisfying all three premises — and there the conclusion $ C $ is indeed true. This is worth noticing as a technique: to check a rule you need only find the rows where **all premises hold** and confirm the conclusion in each. The other rows are guaranteed to pass.
+
+Why is that the only such row? The premises $ \lnot A $ and $ \lnot B $ force $ A = B = \text{F} $, which collapses $ (A\lor B)\lor C $ to just $ C $; the first premise then forces $ C = \text{T} $.
+
+## Two Derivations From Rules Already Known
+
+The rule is not new information — it follows from tools already in hand, in two different ways.
+
+**Route 1 — regroup, then eliminate twice.**
+
+$$$
+\begin{aligned}
+(A\lor B)\lor C \;&\cong\; A\lor(B\lor C) &&\quad \text{associativity} \\
+\text{with } \lnot A \;&\Longrightarrow\; B\lor C &&\quad \text{disjunctive syllogism} \\
+\text{with } \lnot B \;&\Longrightarrow\; C &&\quad \text{disjunctive syllogism}
+\end{aligned}
+$$$
+
+**Route 2 — collapse the pair first.** By De Morgan, $ \lnot A\land\lnot B \cong \lnot(A\lor B) $. Writing $ X = A\lor B $, the premises become $ X\lor C $ and $ \lnot X $, and a single disjunctive syllogism yields $ C $.
+
+Both routes were checked; either is a complete justification, and the truth table confirms the result independently.
+
+## Remark — The Rule Generalises to Any Length
+
+Nothing about the argument depends on there being three disjuncts. For any $ n $:
+
+$$$
+\begin{aligned}
+& A_1\lor A_2\lor\cdots\lor A_n \\
+& \lnot A_1,\ \lnot A_2,\ \dots,\ \lnot A_{n-1} \\
+\hline
+\therefore\;& A_n
+\end{aligned}
+$$$
+
+Route 1 explains why: each $ \lnot A_i $ strips one disjunct by disjunctive syllogism, and after $ n-1 $ strips only $ A_n $ remains. Extended elimination is just disjunctive syllogism iterated, which is why it deserves the name "extended" rather than a place in the basic catalogue. It is the formal version of the everyday process of elimination — rule out every suspect but one, and you have your answer.
+
+## Remark — Why Parenthesisation Does Not Matter Here
+
+The rule is stated with a specific grouping, $ (A\lor B)\lor C $, but the parentheses are cosmetic: $ \lor $ is **associative**, so $ (A\lor B)\lor C \cong A\lor(B\lor C) $ and both mean "at least one of the three." Contrast this with Problem 2.2.3, where $ \Rightarrow $ turned out *not* to be associative and the parentheses in $ A\Rightarrow(B\Rightarrow C) $ genuinely mattered. Here we may drop them and write $ A\lor B\lor C $ without ambiguity — which is exactly what makes the $ n $-fold generalisation above well posed.
+
+## Remark — This Is Unit Propagation
+
+The iterated form is not merely a curiosity; it is the workhorse of automated reasoning. SAT solvers store a formula as a set of **clauses** (disjunctions of literals), and the central operation of the DPLL algorithm is:
+
+> if every literal in a clause but one has been falsified, the remaining literal must be true.
+
+That is precisely extended elimination, and it is called **unit propagation**. Modern solvers spend the large majority of their running time doing it, which is why the rule is implemented with great care. The humble process of elimination, formalised and run billions of times a second, is what lets a SAT solver handle formulas with millions of variables.
+
+## Remark — Checking Validity: Two Equivalent Framings
+
+Two descriptions of validity were used above and it is worth seeing that they agree:
+
+1. **No bad row.** There is no assignment making all premises true and the conclusion false.
+2. **The conditional is a tautology.** $ (\text{premises}) \Rightarrow (\text{conclusion}) $ is true in every row.
+
+These say the same thing, because a conditional is false in exactly one circumstance — true antecedent, false consequent (Problem 2.2.2). So "no bad row" and "no false entry in the final column" are the same check. Framing 1 is faster in practice: scan for rows where the premises all hold and inspect only those. With three premises that pruned eight rows down to one.

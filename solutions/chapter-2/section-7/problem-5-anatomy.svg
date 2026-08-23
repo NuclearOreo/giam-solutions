@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" width="700" height="600" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="600" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">A four-sentence proof, with every inference named. The sentences are English; the right column is the machinery.</text>
+
+  <!-- headers -->
+  <g font-size="11.5" font-weight="bold" fill="#222">
+    <text x="40" y="48">the proof, line by line</text>
+    <text x="410" y="48">rule of inference</text>
+  </g>
+  <line x1="30" y1="56" x2="670" y2="56" stroke="#999" stroke-width="0.9"/>
+
+  <!-- step 1 -->
+  <rect x="30" y="62" width="640" height="46" fill="#eef2f8"/>
+  <text x="44" y="80" font-size="11.5" fill="#222" font-style="italic">"Let x and y be odd numbers."</text>
+  <text x="410" y="80" font-size="11.5" fill="#1a3a63" font-weight="bold">set up universal generalisation</text>
+  <text x="410" y="98" font-size="10" fill="#555" font-style="italic">x, y arbitrary; also the hypothesis of a conditional proof</text>
+
+  <!-- step 2 -->
+  <rect x="30" y="112" width="640" height="60" fill="#f7f9fc"/>
+  <text x="44" y="130" font-size="11.5" fill="#222" font-style="italic">"Then x = 2k+1 and y = 2j+1</text>
+  <text x="44" y="147" font-size="11.5" fill="#222" font-style="italic">for some integers j and k."</text>
+  <text x="410" y="130" font-size="11.5" fill="#1a3a63" font-weight="bold">universal modus ponens, twice</text>
+  <text x="410" y="147" font-size="10" fill="#555" font-style="italic">definition of "odd" applied to x and to y,</text>
+  <text x="410" y="163" font-size="10" fill="#555" font-style="italic">then existential instantiation names k and j</text>
+
+  <!-- step 3 -->
+  <rect x="30" y="176" width="640" height="56" fill="#f7f9fc"/>
+  <text x="44" y="196" font-size="11.5" fill="#222" font-style="italic">"By algebra,</text>
+  <text x="44" y="216" font-size="11.5" fill="#222">x + y = 2k+1+2j+1 = 2(k+j+1)."</text>
+  <text x="410" y="196" font-size="11.5" fill="#1a3a63" font-weight="bold">substitution and transitivity of =</text>
+  <text x="410" y="214" font-size="10" fill="#555" font-style="italic">not a logical rule — the arithmetic axioms</text>
+
+  <!-- step 4 -->
+  <rect x="30" y="236" width="640" height="56" fill="#f7f9fc"/>
+  <text x="44" y="256" font-size="11.5" fill="#222" font-style="italic">"Note that k+j+1 is an integer</text>
+  <text x="44" y="273" font-size="11.5" fill="#222" font-style="italic">because k and j are integers."</text>
+  <text x="410" y="256" font-size="11.5" fill="#1a3a63" font-weight="bold">universal modus ponens</text>
+  <text x="410" y="274" font-size="10" fill="#555" font-style="italic">closure of ℤ under addition</text>
+
+  <!-- step 5 -->
+  <rect x="30" y="296" width="640" height="56" fill="#f7f9fc"/>
+  <text x="44" y="316" font-size="11.5" fill="#222" font-style="italic">"Hence x + y is even."</text>
+  <text x="410" y="316" font-size="11.5" fill="#1a3a63" font-weight="bold">existential generalisation,</text>
+  <text x="410" y="332" font-size="11.5" fill="#1a3a63" font-weight="bold">then the definition of "even"</text>
+  <text x="410" y="348" font-size="10" fill="#555" font-style="italic">∃m ∈ ℤ with x+y = 2m, so x+y is even</text>
+
+  <!-- step 6 -->
+  <rect x="30" y="356" width="640" height="46" fill="#dfeadd"/>
+  <text x="44" y="374" font-size="11.5" fill="#222" font-style="italic">"Q.E.D."</text>
+  <text x="410" y="374" font-size="11.5" fill="#1b5e20" font-weight="bold">universal generalisation — discharge</text>
+  <text x="410" y="392" font-size="10" fill="#1b5e20" font-style="italic">x and y were arbitrary, so this holds for all odd x, y</text>
+  <line x1="30" y1="406" x2="670" y2="406" stroke="#999" stroke-width="0.9"/>
+
+  <!-- the definitions used both ways -->
+  <rect x="30" y="420" width="640" height="90" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="440" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">The two definitions are used in opposite directions</text>
+  <text x="50" y="464" font-size="11.5" fill="#222">unpacking <tspan font-weight="bold">odd</tspan>:</text>
+  <text x="190" y="464" font-size="11.5" fill="#222">n is odd  ⟹  ∃m ∈ ℤ,  n = 2m+1</text>
+  <text x="520" y="464" font-size="10.5" font-style="italic" fill="#8a3b12">forward, at the start</text>
+  <text x="50" y="486" font-size="11.5" fill="#222">packing <tspan font-weight="bold">even</tspan>:</text>
+  <text x="190" y="486" font-size="11.5" fill="#222">∃m ∈ ℤ,  n = 2m   ⟹  n is even</text>
+  <text x="520" y="486" font-size="10.5" font-style="italic" fill="#8a3b12">backward, at the end</text>
+  <text x="350" y="504" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Legitimate because a definition is a biconditional — it may be run either way.</text>
+
+  <!-- shape of the proof -->
+  <rect x="30" y="522" width="640" height="62" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="350" y="542" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">The overall shape</text>
+  <text x="350" y="562" font-size="11.5" fill="#222" text-anchor="middle">assume the hypothesis for arbitrary x, y  →  unpack definitions  →  compute  →  repack  →  generalise</text>
+  <text x="350" y="578" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Almost every direct proof in mathematics has exactly this skeleton.</text>
+</svg>

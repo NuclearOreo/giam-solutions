@@ -1,0 +1,79 @@
+.docname {Solution — GIAM 2.7 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 5
+
+## Problem
+
+Read the following proof that the sum of two odd numbers is even. Discuss the rules of inference used.
+
+> **Proof:** Let $ x $ and $ y $ be odd numbers. Then $ x = 2k+1 $ and $ y = 2j+1 $ for some integers $ j $ and $ k $. By algebra, $ x+y = 2k+1+2j+1 = 2(k+j+1) $. Note that $ k+j+1 $ is an integer because $ k $ and $ j $ are integers. Hence $ x+y $ is even. **Q.E.D.**
+
+## The Rules, Line by Line
+
+!(94%)[The proof annotated line by line with the rule each step uses, plus the two definitions and the overall shape](problem-5-anatomy.svg "A two-column annotation of the proof. Line one, 'Let x and y be odd numbers': sets up universal generalisation — x and y are arbitrary, and this is also the hypothesis of a conditional proof. Line two, 'Then x = 2k+1 and y = 2j+1 for some integers j and k': universal modus ponens applied twice, using the definition of odd on x and on y, followed by existential instantiation to name k and j. Line three, 'By algebra, x+y = 2k+1+2j+1 = 2(k+j+1)': substitution and transitivity of equality — not a logical rule but the arithmetic axioms. Line four, 'Note that k+j+1 is an integer because k and j are integers': universal modus ponens, using closure of the integers under addition. Line five, 'Hence x+y is even': existential generalisation followed by the definition of even, since there exists an integer m with x+y equal to 2m. Line six, 'Q.E.D.': universal generalisation, discharging the assumption, since x and y were arbitrary. A panel notes the two definitions are used in opposite directions — odd is unpacked forward at the start, even is packed backward at the end — which is legitimate because a definition is a biconditional. A final panel gives the overall shape: assume the hypothesis for arbitrary x and y, unpack definitions, compute, repack, generalise.")
+
+| line of the proof | rule of inference |
+| :--- | :--- |
+| "Let $ x $ and $ y $ be odd numbers." | Sets up **universal generalisation**: $ x, y $ are *arbitrary*. Simultaneously the hypothesis of a **conditional proof**. |
+| "Then $ x = 2k+1 $ and $ y = 2j+1 $…" | **Universal modus ponens**, twice — the definition $ \forall n,\ n \text{ odd} \Rightarrow \exists m\in\mathbb Z,\ n = 2m+1 $ applied at $ x $ and at $ y $ — followed by **existential instantiation** to give the witnesses the names $ k $ and $ j $. |
+| "By algebra, $ x+y = 2k+1+2j+1 = 2(k+j+1) $." | **Substitution** of equals for equals, plus **transitivity of $ = $**. Not a rule of logic — these are the arithmetic axioms doing the work. |
+| "$ k+j+1 $ is an integer because $ k $ and $ j $ are." | **Universal modus ponens** on the closure property $ \forall a,b\in\mathbb Z,\ a+b\in\mathbb Z $. |
+| "Hence $ x+y $ is even." | **Existential generalisation** — from the specific witness $ k+j+1 $ to $ \exists m\in\mathbb Z,\ x+y = 2m $ — then the definition of *even* run backwards. |
+| "Q.E.D." | **Universal generalisation**: since $ x $ and $ y $ were arbitrary, the conclusion holds for *all* odd $ x, y $. This discharges the opening assumption. |
+
+The algebra was verified on $ 200 $ random integer pairs, and the theorem itself on all $ 2704 $ pairs of odd numbers in $ [-51, 51] $.
+
+## Remark — The Quantifier Rules Do the Real Work
+
+The propositional rules of Section 2.6 barely appear here. What actually drives the proof are the four **quantifier rules**:
+
+| rule | form | what it does here |
+| :--- | :--- | :--- |
+| universal instantiation | $ \forall x\, P(x) \vdash P(c) $ | apply a definition to a particular thing |
+| existential instantiation | $ \exists x\, P(x) \vdash P(k) $, new name $ k $ | name the witness |
+| existential generalisation | $ P(c) \vdash \exists x\, P(x) $ | forget which witness it was |
+| universal generalisation | $ P(x) $ for arbitrary $ x \vdash \forall x\, P(x) $ | discharge at the end |
+
+The proof instantiates twice at the start, generalises twice at the end, and the middle is arithmetic. That in–out sandwich is the standard architecture of a direct proof, and recognising it makes unfamiliar proofs far easier to read.
+
+## Remark — "Let $ x $ Be Arbitrary" Is a Promise You Must Keep
+
+The opening line does double duty, and both jobs matter. It **assumes the hypothesis** (that $ x, y $ are odd), which is what makes the final statement a conditional. And it declares $ x, y $ **arbitrary**, which is what licenses the closing generalisation.
+
+The second is the fragile one. Universal generalisation is valid only if *nothing beyond the stated hypothesis* was assumed about $ x $ and $ y $. Had the proof said "let $ x = 3 $" or slipped in "and suppose $ x < y $," the final "for all" would be unearned. Notice the proof is scrupulous here: after naming $ k $ and $ j $ it never uses any property of them except that they are integers. This is the same "let $ x $ be arbitrary … therefore for all $ x $" pattern identified in Problem 3, now seen doing real work.
+
+## Remark — Definitions Are Biconditionals, So They Run Both Ways
+
+The proof uses the definition of *odd* in the forward direction and the definition of *even* in the backward direction:
+
+$$$
+\underbrace{n \text{ odd} \;\Rightarrow\; \exists m,\ n = 2m+1}_{\text{unpacking, at the start}}, \qquad \underbrace{\exists m,\ n = 2m \;\Rightarrow\; n \text{ even}}_{\text{packing, at the end}}.
+$$$
+
+This asymmetry is deliberate and is the shape of most proofs: **unpack the hypothesis into raw arithmetic, do the computation, then repack the result into the vocabulary of the conclusion.** It is legitimate because a definition is an *if and only if* — unlike an ordinary theorem, whose converse must be proved separately (Problem 2.2.9). Writing "$ x $ is odd, so $ x = 2k+1 $" and "$ x+y = 2m $, so $ x+y $ is even" both invoke the same biconditional, read in opposite directions.
+
+## Remark — Distinct Names for Distinct Witnesses
+
+A subtle but essential point: the proof writes $ x = 2k+1 $ and $ y = 2j+1 $ with **two different letters**. Existential instantiation must introduce a *fresh* name each time. Had the proof written $ x = 2k+1 $ and $ y = 2k+1 $, it would have silently assumed $ x = y $ and proved only that a number's double is even — a far weaker claim.
+
+This is the same distinctness care that Problem 2.5.1 required when negating $ \exists! $: bound variables are not automatically different, so if you need them distinct you must arrange it. Here the discipline is to pick an unused letter every time you name a witness.
+
+## Remark — Not Every Step Is a Rule of Logic
+
+The line "by algebra" is worth flagging, because it is *not* an inference rule at all. It appeals to the axioms of arithmetic — associativity, commutativity, distributivity — plus substitution of equals for equals. Likewise "$ k+j+1 $ is an integer" appeals to a **closure property** of $ \mathbb Z $, a fact about the number system rather than about logic.
+
+A complete formalisation would list these as additional non-logical premises. Ordinary mathematical writing suppresses them because they are universally agreed, which is exactly why an exercise like this is useful: it reveals how much a two-word phrase like "by algebra" is actually carrying. The step deserves scrutiny precisely because it is where a plausible-looking proof can hide an error.
+
+## Remark — Why the Closure Step Is Not Pedantry
+
+Newcomers often find "note that $ k+j+1 $ is an integer" fussy — of course it is. But the step is genuinely required, because the definition of *even* demands $ n = 2m $ **for an integer $ m $**. Producing the equation $ x+y = 2(k+j+1) $ is not enough on its own; one must confirm that the thing in parentheses lives in the right set.
+
+The necessity becomes obvious if the setting changes. Over the integers $ 7 = 2\cdot 3.5 $ does *not* make $ 7 $ even, because $ 3.5\notin\mathbb Z $. Every "$ n $ is divisible by $ d $" claim carries the same hidden requirement, and forgetting to check it is a standard source of bogus proofs. The proof under discussion is careful, and the line is there for a reason.

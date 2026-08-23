@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 2.7 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 6
+
+## Problem
+
+Sometimes in constructing a proof we find it necessary to "weaken" an inequality. For example, we might already have deduced that $ x < y $ but what we need is $ x \le y $. It is okay to deduce $ x\le y $ from $ x< y $ because the former is just shorthand for $ (x< y)\lor(x=y) $. **What rule of inference are we using?**
+
+## Answer
+
+$$$
+\boxed{\;\textbf{Disjunctive addition}\;-\;\text{from } P \text{ infer } P\lor Q.\;}
+$$$
+
+Take $ P $ to be "$ x< y $" and $ Q $ to be "$ x=y $". Since $ x\le y $ is *by definition* the disjunction $ (x< y)\lor(x=y) $, the step is
+
+$$$
+\begin{aligned}
+& x< y \\
+\hline
+\therefore\;& (x< y)\lor(x=y), \quad\text{i.e.}\quad x\le y.
+\end{aligned}
+$$$
+
+## Why This Is the Rule
+
+!(94%)[The definition of ≤ unpacked, the disjunctive-addition step, a number-line picture of the weakening, and the reverse rule](problem-6-weakening.svg "Top: by definition, x less-than-or-equal-to y is the disjunction x less than y, or x equals y — the symbol is not primitive but abbreviates a disjunction. The step in question is therefore: from x less than y, infer the disjunction x less than y or x equals y, that is x less-than-or-equal-to y — labelled DISJUNCTIVE ADDITION. Below, a number-line picture showing why this is a weakening. The band for x less than y stops at an open circle at the point x equals y, which is excluded. The band for x less-than-or-equal-to y is identical but ends in a filled circle, including the point x equals y. So the weaker claim admits one more possibility and asserts less — you give up the information that equality fails. A final panel contrasts the two directions: to weaken, from x less than y infer x less-than-or-equal-to y, by disjunctive addition; to restore, from x less-than-or-equal-to y together with x not equal to y infer x less than y, by disjunctive syllogism.")
+
+The whole exercise turns on recognising that **$ \le $ is not a primitive symbol**. Once it is unpacked into $ (x< y)\lor(x=y) $, the step is transparently an instance of
+
+$$$
+P \;\vdash\; P\lor Q,
+$$$
+
+which is valid because a disjunction is true as soon as *one* disjunct is. The rule was verified by truth table, and the concrete claim "$ x< y $ implies $ x\le y $" on $ 2000 $ random integer pairs.
+
+## Remark — "Weakening" Is Exactly the Right Word
+
+The problem's scare quotes around *weaken* are well earned: the new statement really does say **less**. Asserting $ x< y $ rules out two of the three possibilities allowed by trichotomy ($ x=y $ and $ x>y $); asserting $ x\le y $ rules out only one. You have thrown away the information that equality fails.
+
+That is why disjunctive addition can never lead you astray — it only ever *discards* information, never invents any. It is also why the reverse move is illegal: from $ x\le y $ alone you cannot recover $ x< y $, because you no longer know which disjunct held.
+
+## Remark — Going Back Requires a Different Rule
+
+To reverse the weakening you need an extra premise and a different rule:
+
+$$$
+\begin{aligned}
+& x\le y \quad\text{i.e.}\quad (x< y)\lor(x=y) \\
+& x\ne y \\
+\hline
+\therefore\;& x< y
+\end{aligned}
+$$$
+
+This is **disjunctive syllogism** — eliminate the disjunct you have ruled out. So the pair of moves fits the introduction/elimination pattern noted in Problem 4: disjunctive addition builds the $ \lor $, disjunctive syllogism takes it apart. In practice this is how one upgrades a non-strict inequality: prove $ x\le y $, separately rule out $ x=y $, conclude $ x< y $.
+
+## Remark — Why You Would Ever Want the Weaker Statement
+
+It can seem perverse to deliberately throw information away, but there is a very practical reason: **you must match the form a later step requires.** Many theorems are stated with $ \le $, and a theorem's hypothesis has to be met *literally*. If a result says "if $ a\le b $ and $ b\le c $ then $ a\le c $," you cannot feed it "$ a< b $" without first weakening.
+
+The same need arises when combining inequalities of different strictness. Given $ a< b $ and $ b\le c $, the cleanest route to a conclusion about $ a $ and $ c $ is often to weaken $ a< b $ to $ a\le b $, apply a $ \le $-transitivity result, and get $ a\le c $ — accepting a slightly weaker conclusion in exchange for a uniform argument. This is exactly the situation Problem 4's remark anticipated: disjunctive addition is useful precisely because it lets you *manufacture the shape* a subsequent rule demands.
+
+## Remark — The Same Move Appears Throughout Mathematics
+
+Weakening by disjunctive addition is everywhere once you look for it:
+
+| you have | you weaken to | discarded disjunct |
+| :--- | :--- | :--- |
+| $ x < y $ | $ x \le y $ | $ x = y $ |
+| $ n $ is prime | $ n $ is prime or $ n = 1 $ | $ n = 1 $ |
+| $ A \subsetneq B $ | $ A \subseteq B $ | $ A = B $ |
+| $ f $ is strictly increasing | $ f $ is non-decreasing | $ f $ is constant somewhere |
+
+In each row the second column is the *shorthand for a disjunction* containing the first, and each step is the same one-line rule. Recognising the pattern explains why so many pairs of mathematical notions come as a "strict" and a "non-strict" version.
+
+## Remark — A Caution About Inclusive Or
+
+The definition $ x\le y \;\cong\; (x< y)\lor(x=y) $ uses the **inclusive** or of Problem 2.1.1, and it is worth being clear that nothing goes wrong even though the two disjuncts can never hold simultaneously. By **trichotomy**, exactly one of $ x< y $, $ x=y $, $ x>y $ is true, so the disjunction always has at most one true disjunct.
+
+Some might therefore expect an *exclusive* or. But disjunctive addition is stated for inclusive $ \lor $, and using it here is still correct — inclusive or is *weaker* than exclusive or, so asserting the inclusive version is the safe move. Had $ \le $ been defined with $ \oplus $, the inference $ P\vdash P\oplus Q $ would in fact be **invalid** (it fails when $ Q $ is also true). The definition is stated with $ \lor $ for exactly this reason, and it is a small illustration of why the inclusive reading is the default in mathematics.

@@ -1,0 +1,162 @@
+.docname {Solution — GIAM 2.7 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 1
+
+## Problem
+
+Determine the logical form of the following arguments. Use symbols to express that form and determine whether the form is **valid or invalid**. If invalid, determine the type of error. Comment on the **soundness** as well — in particular, whether any premises are questionable.
+
+- *(a)* All who are guilty are in prison. George is not in prison. Therefore George is not guilty.
+- *(b)* If one eats oranges one will have high levels of vitamin C. You do have high levels of vitamin C. Therefore you must eat oranges.
+- (*c*) All fish live in water. The mackerel is a fish. Therefore the mackerel lives in water.
+- *(d)* If you're lazy, don't take math courses. Everyone is lazy. Therefore no one should take math courses.
+- *(e)* All fish live in water. The octopus lives in water. Therefore the octopus is a fish.
+- *(f)* If a person goes into politics, they are a scoundrel. Harold has gone into politics. Therefore Harold is a scoundrel.
+
+## Summary of Answers
+
+| part | form | verdict | soundness |
+| :--- | :--- | :--- | :--- |
+| (a) | universal modus tollens | **valid** | unsound — premise false |
+| (b) | affirming the consequent | **invalid** | — |
+| (*c*) | universal modus ponens | **valid** | **sound** |
+| (d) | universal modus ponens | **valid** | unsound — premise false |
+| (e) | affirming the consequent | **invalid** | premises true, conclusion false |
+| (f) | universal modus ponens | **valid** | unsound — premise false |
+
+!(94%)[Six panels giving each argument's symbolic form, validity verdict, and soundness note, plus the (c)/(e) contrast](problem-1-forms.svg "Six panels, each showing an argument's symbolic form and two verdicts. Panel (a), guilt and prison: for-all x G(x) implies P(x), not P of George, therefore not G of George — VALID, universal modus tollens, but unsound since plenty of guilty people are not in prison. Panel (b), oranges and vitamin C: O implies V, V, therefore O — INVALID, affirming the consequent, since peppers, broccoli and supplements also supply vitamin C. The third panel, the mackerel, highlighted green: for-all x F(x) implies W(x), F of mackerel, therefore W of mackerel — VALID, universal modus ponens, and SOUND, the only good argument here. Panel (d), laziness and math: for-all x L(x) implies not M(x), for-all x L(x), therefore for-all x not M(x) — VALID, universal modus ponens, but unsound since 'everyone is lazy' is plainly false. Panel (e), the octopus, highlighted red: for-all x F(x) implies W(x), W of octopus, therefore F of octopus — INVALID, affirming the consequent, with both premises TRUE and the conclusion FALSE. Panel (f), Harold the politician: for-all x P(x) implies S(x), P of Harold, therefore S of Harold — VALID, universal modus ponens, but unsound since 'all politicians are scoundrels' is a slur not a fact. A closing panel gives the designed contrast: the mackerel and octopus arguments share the premise 'fish implies lives in water', but the mackerel affirms the antecedent and runs with the arrow, while (e) affirms the consequent and runs against it. Living in water is necessary for being a fish, not sufficient — and the octopus is a mollusc.")
+
+## The Six Arguments
+
+### (a) Guilt and prison — valid, unsound
+
+Let $ G(x) $ = "$ x $ is guilty," $ P(x) $ = "$ x $ is in prison."
+
+$$$
+\begin{aligned}
+& \forall x,\ G(x)\Rightarrow P(x) \\
+& \lnot P(\text{George}) \\
+\hline
+\therefore\;& \lnot G(\text{George})
+\end{aligned}
+$$$
+
+**Universal modus tollens** — valid. But the first premise is false: many guilty people are never caught, and prisons hold some innocents besides. Valid form, worthless conclusion.
+
+### (b) Oranges and vitamin C — invalid
+
+Let $ O $ = "you eat oranges," $ V $ = "you have high vitamin C."
+
+$$$
+\begin{aligned}
+& O\Rightarrow V \\
+& V \\
+\hline
+\therefore\;& O
+\end{aligned}
+$$$
+
+**Affirming the consequent** — invalid (counterexample: $ O $ false, $ V $ true). Oranges are *sufficient* for high vitamin C, not *necessary*; peppers, broccoli and supplements do the job too.
+
+### (*c*) The mackerel — valid and sound
+
+Let $ F(x) $ = "$ x $ is a fish," $ W(x) $ = "$ x $ lives in water."
+
+$$$
+\begin{aligned}
+& \forall x,\ F(x)\Rightarrow W(x) \\
+& F(\text{mackerel}) \\
+\hline
+\therefore\;& W(\text{mackerel})
+\end{aligned}
+$$$
+
+**Universal modus ponens** — valid, and both premises are true, so the argument is **sound**. This is the only genuinely good argument in the list.
+
+### (d) Laziness and math — valid, unsound
+
+Let $ L(x) $ = "$ x $ is lazy," $ M(x) $ = "$ x $ should take math courses."
+
+$$$
+\begin{aligned}
+& \forall x,\ L(x)\Rightarrow \lnot M(x) \\
+& \forall x,\ L(x) \\
+\hline
+\therefore\;& \forall x,\ \lnot M(x)
+\end{aligned}
+$$$
+
+**Universal modus ponens**, applied to an arbitrary $ x $ and then generalised — valid. Unsound: "everyone is lazy" is a sweeping falsehood, and the first premise is dubious advice rather than a fact.
+
+### (e) The octopus — invalid
+
+$$$
+\begin{aligned}
+& \forall x,\ F(x)\Rightarrow W(x) \\
+& W(\text{octopus}) \\
+\hline
+\therefore\;& F(\text{octopus})
+\end{aligned}
+$$$
+
+**Affirming the consequent** — invalid. This case is especially clean: **both premises are true** (all fish do live in water; the octopus does live in water) while **the conclusion is false** (an octopus is a mollusc). True premises with a false conclusion is a *proof* that the form cannot be valid.
+
+### (f) Harold the politician — valid, unsound
+
+Let $ P(x) $ = "$ x $ goes into politics," $ S(x) $ = "$ x $ is a scoundrel."
+
+$$$
+\begin{aligned}
+& \forall x,\ P(x)\Rightarrow S(x) \\
+& P(\text{Harold}) \\
+\hline
+\therefore\;& S(\text{Harold})
+\end{aligned}
+$$$
+
+**Universal modus ponens** — valid. Unsound: "everyone who goes into politics is a scoundrel" is a cynical generalisation, not a truth.
+
+## Remark — (*c*) and (e) Are the Point of the Exercise
+
+The two fish arguments share the *identical* first premise and differ only in which part of it the second premise attaches to:
+
+$$$
+\underbrace{F(\text{mackerel}) \;\Rightarrow\; W(\text{mackerel})}_{\text{(c): affirm the antecedent — valid}}, \qquad \underbrace{W(\text{octopus}) \;\not\Rightarrow\; F(\text{octopus})}_{\text{(e): affirm the consequent — invalid}}.
+$$$
+
+"All fish live in water" says living in water is **necessary** for being a fish, not **sufficient**. Whales, octopuses, and jellyfish all satisfy the consequent without satisfying the antecedent. Running an implication backwards is exactly the converse error of Problem 2.2.9, and (e) is the cleanest possible demonstration of it because the premises really are true.
+
+## Remark — How to Prove a Form Invalid
+
+Part (e) illustrates the standard technique. To show a form is **invalid**, exhibit an interpretation in which **every premise is true and the conclusion is false**. One such instance suffices, because validity means "no such interpretation exists." Here the real world provides the counterexample for free — no artificial model needed.
+
+Note the direction of the inference: a valid form can still have a false conclusion (if a premise is false), and an invalid form can still have a true conclusion (by luck). What is *impossible* is a valid form with true premises and a false conclusion. That is the entire content of validity, and it is what makes the octopus decisive.
+
+## Remark — Four Valid Arguments, Only One Worth Anything
+
+Parts (a), (*c*), (d) and (f) are all valid, yet only (*c*) is any good. The other three run correct machinery on false inputs:
+
+- (a) "all who are guilty are in prison" — plainly false.
+- (d) "everyone is lazy" — plainly false.
+- (f) "all politicians are scoundrels" — a prejudice stated as a universal.
+
+Notice the shared shape of the failures: each unsound premise is a **sweeping universal** of the form $ \forall x, \dots $, and each can be refuted by a single counterexample (Problem 2.3.5). Sweeping universals are where unsoundness usually enters an otherwise well-formed argument, which is why "is that premise *really* true of everyone?" is the most productive question to ask of an argument whose logic checks out.
+
+## Remark — Why Both Questions Must Be Asked
+
+This problem set is built to force the two questions apart, and the six parts populate three of the four possible combinations:
+
+| | valid | invalid |
+| :--- | :--- | :--- |
+| **all premises true** | (*c*) — sound, conclusion guaranteed | (e) — conclusion happens to be false |
+| **some premise false** | (a), (d), (f) — conclusion unsupported | (b) — doubly bad |
+
+Only the top-left cell licenses believing the conclusion. Everything else leaves the conclusion unsupported, whether the fault lies in the form, the premises, or both. Checking validity is mechanical (Sections 2.6–2.7 give the catalogue of rules); checking premises requires knowing something about the world — which is why logic is a tool for reasoning, not a substitute for it.

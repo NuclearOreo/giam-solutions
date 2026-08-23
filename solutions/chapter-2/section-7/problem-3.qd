@@ -1,0 +1,122 @@
+.docname {Solution — GIAM 2.7 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.7 Problem 3
+
+## Problem
+
+Allowing quantifiers and open sentences into argument forms gives two new forms, **universal modus ponens** and **universal modus tollens**. The minor premise may itself be quantified, or may involve a particular element of the universe — which distinguishes the **universal** and **particular** subtypes. For example
+
+$$$
+\begin{aligned}
+& \forall x,\ A(x)\Rightarrow B(x) \\
+& A(p) \\
+\hline
+\therefore\;& B(p)
+\end{aligned}
+\qquad\text{is the } \textit{particular} \text{ form of universal modus ponens,}
+$$$
+
+and
+
+$$$
+\begin{aligned}
+& \forall x,\ A(x)\Rightarrow B(x) \\
+& \forall x,\ \lnot B(x) \\
+\hline
+\therefore\;& \forall x,\ \lnot A(x)
+\end{aligned}
+\qquad\text{is the } \textit{universal} \text{ form of modus tollens.}
+$$$
+
+Re-examine the arguments from Problem 1, determine their forms (including quantifiers) and whether they are universal or particular.
+
+## The Deciding Question
+
+In all six arguments the **major premise is $ \forall $-quantified**. What differs is the **minor premise**:
+
+- if it names a particular individual $ p $ — *George, you, the mackerel, the octopus, Harold* — the argument is **particular**;
+- if it is itself quantified — *everyone is lazy* — the argument is **universal**.
+
+## Classification
+
+| part | minor premise | subtype | form |
+| :--- | :--- | :--- | :--- |
+| (a) | $ \lnot P(\text{George}) $ | particular | universal modus tollens |
+| (b) | $ V(\text{you}) $ | particular | affirming the consequent — **invalid** |
+| (*c*) | $ F(\text{mackerel}) $ | particular | universal modus ponens |
+| **(d)** | $ \forall x,\ L(x) $ | **universal** | universal modus ponens |
+| (e) | $ W(\text{octopus}) $ | particular | affirming the consequent — **invalid** |
+| (f) | $ P(\text{Harold}) $ | particular | universal modus ponens |
+
+**Only (d) is of the universal subtype.** All four valid subtypes were confirmed by brute force over every predicate on a three-element universe.
+
+!(94%)[The two rules in both subtypes, and the classification of all six arguments](problem-3-subtypes.svg "Top: a two-by-two arrangement of the two rules in two subtypes. The major premise is always for-all x, A(x) implies B(x). Modus ponens, particular: minor premise A(p), conclusion B(p). Modus ponens, universal: minor premise for-all x A(x), conclusion for-all x B(x). Modus tollens, particular: minor premise not B(p), conclusion not A(p). Modus tollens, universal: minor premise for-all x not B(x), conclusion for-all x not A(x). All four were checked valid by brute force over every predicate on a three-element universe. Below, a classification table of the six arguments from Problem 1. Part (a), minor premise not P of George, particular, universal modus tollens. Part (b), minor premise V of you, particular, affirming the consequent — invalid. The mackerel row, minor premise F of mackerel, particular, universal modus ponens. Part (d), highlighted, minor premise for-all x L(x), UNIVERSAL, universal modus ponens. Part (e), minor premise W of octopus, particular, affirming the consequent — invalid. Part (f), minor premise P of Harold, particular, universal modus ponens. A closing note observes that only (d) is universal, since its minor premise 'everyone is lazy' is itself a for-all statement, while the other five name an individual.")
+
+## The Six Arguments in Quantified Form
+
+$$$
+\begin{aligned}
+\textbf{(a)}\;\;& \forall x,\ G(x)\Rightarrow P(x);\quad \lnot P(\text{George}) \;\vdash\; \lnot G(\text{George}) &&\quad \text{modus tollens, particular} \\[4pt]
+\textbf{(b)}\;\;& \forall x,\ O(x)\Rightarrow V(x);\quad V(\text{you}) \;\vdash\; O(\text{you}) &&\quad \text{invalid, particular} \\[4pt]
+\textbf{(c)}\;\;& \forall x,\ F(x)\Rightarrow W(x);\quad F(\text{mackerel}) \;\vdash\; W(\text{mackerel}) &&\quad \text{modus ponens, particular} \\[4pt]
+\textbf{(d)}\;\;& \forall x,\ L(x)\Rightarrow \lnot M(x);\quad \forall x,\ L(x) \;\vdash\; \forall x,\ \lnot M(x) &&\quad \text{modus ponens, } \textbf{universal} \\[4pt]
+\textbf{(e)}\;\;& \forall x,\ F(x)\Rightarrow W(x);\quad W(\text{octopus}) \;\vdash\; F(\text{octopus}) &&\quad \text{invalid, particular} \\[4pt]
+\textbf{(f)}\;\;& \forall x,\ P(x)\Rightarrow S(x);\quad P(\text{Harold}) \;\vdash\; S(\text{Harold}) &&\quad \text{modus ponens, particular}
+\end{aligned}
+$$$
+
+Note that (*c*) is *literally* the example given in the problem statement, with $ A = F $, $ B = W $, and $ p = $ the mackerel.
+
+## Remark — Part (d) Is the Only Universal One
+
+Five of the six arguments reason about a **named individual**, which is the overwhelmingly common case in practice — you generally know a specific fact about a specific thing and want to draw a specific conclusion. Part (d) is the exception: "everyone is lazy" quantifies over the whole universe, so the conclusion "no one should take math courses" is likewise quantified.
+
+That is what makes (d) worth including. It is easy to read the universal subtype as somehow *more* powerful, but notice it also demands *more*: to run it you must establish a claim about **every** element, which is a far heavier burden than a single fact about one element. In (d) that burden is exactly where the argument collapses — "everyone is lazy" is false. The universal subtype is not stronger reasoning, it is reasoning with a more expensive premise.
+
+## Remark — The Universal Form Is Derivable From the Particular
+
+The two subtypes are not independent rules. The universal form follows from the particular one by the standard quantifier moves:
+
+$$$
+\begin{aligned}
+& \text{let } x \text{ be arbitrary} \\
+& A(x) &&\quad \text{universal instantiation of } \forall x,\ A(x) \\
+& A(x)\Rightarrow B(x) &&\quad \text{universal instantiation of the major premise} \\
+& B(x) &&\quad \text{modus ponens (the particular form)} \\
+& \forall x,\ B(x) &&\quad \text{universal generalisation, since } x \text{ was arbitrary}
+\end{aligned}
+$$$
+
+The essential step is the last: because nothing about $ x $ was assumed beyond $ A(x) $, whatever we proved holds for every $ x $. This "let $ x $ be arbitrary … therefore for all $ x $" pattern is the standard way universal statements get proved throughout mathematics, and Chapter 3 will lean on it constantly.
+
+## Remark — The Fallacy Also Comes in Two Subtypes
+
+Parts (b) and (e) are both invalid, and both happen to be *particular*. But affirming the consequent has a universal variant too:
+
+$$$
+\forall x,\ A(x)\Rightarrow B(x);\quad \forall x,\ B(x) \;\not\vdash\; \forall x,\ A(x),
+$$$
+
+equally invalid. Adding quantifiers changes neither the validity nor the invalidity of a form — it only changes the *scope* of what is being claimed. That is worth stating explicitly, because the quantified notation can look imposing enough to obscure the fact that the underlying error is the same converse mistake of Problem 2.2.9.
+
+## Remark — Why the Major Premise Is Always Universal
+
+Every argument in Problem 1 has a $ \forall $-quantified major premise, and the problem statement notes that "arguments involving existentially quantified premises are rare." The reason is that an existential premise is nearly useless for drawing conclusions about anything specific. From "$ \exists x,\ A(x)\Rightarrow B(x) $" you cannot instantiate at a chosen individual — you get *some* witness, but not one you may name in advance. Rules of inference need premises that apply to **whatever** the minor premise happens to be about, and that is exactly what $ \forall $ provides. Universal premises are the workhorses; existentials are usually what one is trying to *prove*, not what one reasons *from*.
+
+## Remark — Where the English Hides the Quantifier
+
+Part of the exercise is noticing quantifiers that are never spoken. None of the six arguments contains the word "all" in its minor premise, and several conceal it in the major premise too:
+
+- (b) "**If one** eats oranges…" — the indefinite "one" is a universal.
+- (d) "**If you're** lazy, don't take math courses" — "you" here means anyone.
+- (f) "**If a person** goes into politics…" — "a person" means every person.
+
+Rendering these as $ \forall x $ is a modelling decision, and it is the right one: each is plainly meant as a general rule, not a claim about one individual. The habit of asking "is this sentence secretly universal?" is the same one that Problem 2.3.5 demanded when forming denials, and it is what lets these arguments be classified at all.
