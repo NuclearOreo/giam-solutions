@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 2.5 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.5 Problem 1
+
+## Problem
+
+There is a common variant of the existential quantifier, $ \exists! $. Writing $ \exists! x,\, P(x) $ asserts that there is a **unique** element in the universe making $ P(x) $ true. Determine how to negate the sentence $ \exists! x,\, P(x) $.
+
+## Answer
+
+$$$
+\boxed{\;\lnot\big[\exists! x,\, P(x)\big] \;\cong\; \underbrace{\big(\forall x,\ \lnot P(x)\big)}_{\text{nothing works}} \;\lor\; \underbrace{\big(\exists y\,\exists z,\ P(y)\land P(z)\land y\ne z\big)}_{\text{two different things work}}\;}
+$$$
+
+In words: **either nothing satisfies $ P $, or at least two different things do.**
+
+An equivalent single-quantifier form, proved below, is
+
+$$$
+\lnot\big[\exists! x,\, P(x)\big] \;\cong\; \forall x\,\big[\,P(x) \Rightarrow \exists y\,(P(y)\land y\ne x)\,\big],
+$$$
+
+read as "**every** witness has a companion" — no element is ever the lone one.
+
+## Why: Unpack "Exactly One" First
+
+The key is that $ \exists! $ is not a primitive — it abbreviates a **conjunction of two claims**:
+
+$$$
+\exists! x,\, P(x) \;\cong\; \underbrace{\exists x,\ P(x)}_{\text{existence}} \;\land\; \underbrace{\forall y\,\forall z\,\big[(P(y)\land P(z))\Rightarrow y = z\big]}_{\text{uniqueness}}.
+$$$
+
+Since it is a conjunction, De Morgan says its negation is a **disjunction** — the claim can fail in exactly two ways, and negating must cover both:
+
+$$$
+\lnot(\text{existence}\land\text{uniqueness}) \;\cong\; \lnot\text{existence}\;\lor\;\lnot\text{uniqueness}.
+$$$
+
+Negating each half in turn (flipping quantifiers as in this section):
+
+$$$
+\begin{aligned}
+\lnot\,\text{existence} \;&\cong\; \lnot\exists x,\ P(x) \;\cong\; \forall x,\ \lnot P(x), \\[3pt]
+\lnot\,\text{uniqueness} \;&\cong\; \lnot\forall y\forall z\big[(P(y)\land P(z))\Rightarrow y=z\big] \\
+&\cong\; \exists y\,\exists z\,\lnot\big[(P(y)\land P(z))\Rightarrow y=z\big] \\
+&\cong\; \exists y\,\exists z\,\big[P(y)\land P(z)\land y\ne z\big].
+\end{aligned}
+$$$
+
+The second line uses the negation of a conditional from Problem 2.2.4, $ \lnot(P\Rightarrow Q)\cong P\land\lnot Q $. Joining the two halves with $ \lor $ gives the boxed answer. $ \blacksquare $
+
+## The Trichotomy
+
+!(94%)[Unpacking exists-unique into existence and uniqueness, the three witness-count cases, and both answer forms](problem-1-unique.svg "The unpacking: exists-unique x P(x) means existence and uniqueness — at least one witness, written there exists x P(x), and no two distinct witnesses, written for all y and z, if P(y) and P(z) then y equals z. Then a trichotomy by witness count. Zero witnesses, shaded: nothing satisfies P, so exists-unique is false. Exactly one witness, green: precisely one satisfies P, exists-unique is true. Two or more witnesses, shaded: exists-unique is false. The negation is true in the two shaded columns — none, or more than one. Form A splits the two failure modes: not exists-unique is equivalent to (for all x, not P(x)) or (there exist y and z with P(y) and P(z) and y not equal to z), read as either nothing works or at least two different things do. Form B says no witness is ever alone: not exists-unique is equivalent to for all x, if P(x) then there exists y with P(y) and y not equal to x, read as every witness has a companion, vacuously true when there are none.")
+
+Counting witnesses makes the answer obvious: $ \exists! $ picks out **exactly one** column of three, so its negation is the union of the other two. Both forms above were checked exhaustively against every predicate on universes of size $ 0 $ through $ 4 $.
+
+## Remark — The Two Failure Modes Are Genuinely Different
+
+It is tempting to answer this problem with a single clause, but no single clause will do — the claim has *two independent* ways of failing, and a correct negation must admit both. "There is no such $ x $" is too weak (it misses the case of two solutions); "there are two such $ x $" is also too weak (it misses the empty case). This is exactly why the answer is a **disjunction**. The lesson generalises: when a statement is secretly a conjunction, its negation is secretly a case split, and forgetting one case is the commonest error in negating $ \exists! $.
+
+## Remark — Form B: Why the Two Cases Can Be Merged
+
+Form B, $ \forall x\,[P(x)\Rightarrow\exists y\,(P(y)\land y\ne x)] $, looks like it only covers the "two or more" case, but it silently covers the empty case too — by **vacuous truth** (Problem 2.2.6). If nothing satisfies $ P $, the antecedent $ P(x) $ is false for every $ x $, so the conditional holds trivially and Form B is true. That is precisely the behaviour we need. So the apparent two-case split of Form A is absorbed into one universal statement, at the cost of the reasoning being less transparent. Both are correct; Form A is clearer to read, Form B is more compact to manipulate.
+
+## Remark — Why $ y\ne x $ and Not Just Two Variables
+
+The clause $ y\ne z $ in Form A is doing essential work. Without it, $ \exists y\exists z\,(P(y)\land P(z)) $ is satisfied by taking $ y = z $ to be the *same* single witness — so it would say merely "at least one thing satisfies $ P $," which is far too weak. Bound variables in logic are not assumed distinct; if you want distinctness you must **write it down**. This is the same care needed in reading $ \exists! $ itself, whose uniqueness clause is stated as $ y = z $ rather than by any implicit convention.
+
+## Remark — $ \exists! $ Is Not a Primitive Quantifier
+
+Although $ \exists! $ is written like $ \forall $ and $ \exists $, it is a *defined abbreviation*, not a third quantifier — which is why negating it required unpacking rather than a memorised flip rule. The definition also needs the equality symbol $ = $, so $ \exists! $ is only available in a language that has equality; the plain quantifiers $ \forall,\exists $ do not. A second common definition, worth recognising, is
+
+$$$
+\exists! x,\, P(x) \;\cong\; \exists x\,\big[P(x)\land\forall y\,(P(y)\Rightarrow y = x)\big],
+$$$
+
+which packs existence and uniqueness into a single existential ("there is an $ x $ that works and is the only thing that works"). Negating *this* form directly gives Form B in three steps, which is where Form B comes from.
+
+## Remark — Where This Shows Up in Practice
+
+Uniqueness claims are everywhere in mathematics, and knowing their negation tells you exactly what a counterexample must look like. "Every linear system $ Ax = b $ has a unique solution" fails in two ways — **no** solution (inconsistent system) or **infinitely many** (free variables) — which is precisely the trichotomy above, and precisely why linear algebra courses treat those two failures as separate cases. Likewise "the equation has a unique root," "the limit is unique," "the identity element is unique": to disprove any of them you must either exhibit *nothing*, or exhibit *two distinct* objects. The negation rule tells you which hunt to start.

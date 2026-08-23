@@ -1,0 +1,99 @@
+.docname {Solution — GIAM 2.5 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.5 Problem 5
+
+## Problem
+
+Alvin, Betty, and Charlie enter a cafeteria offering three entrees (turkey sandwich, veggie burger, pizza), four beverages (soda, water, coffee, milk), and two desserts (pie, pudding).
+
+- **Alvin** takes a turkey sandwich, a soda, and a pie.
+- **Betty** takes a veggie burger, a soda, and a pie.
+- **Charlie** takes a pizza and a soda.
+
+Determine whether the following are true or false.
+
+- *(a)* $ \forall $ people $ p $, $ \exists $ dessert $ d $ such that $ p $ took $ d $.
+- *(b)* $ \exists $ person $ p $ such that $ \forall $ desserts $ d $, $ p $ did not take $ d $.
+- (*c*) $ \forall $ entrees $ e $, $ \exists $ person $ p $ such that $ p $ took $ e $.
+- *(d)* $ \exists $ entree $ e $ such that $ \forall $ people $ p $, $ p $ took $ e $.
+- *(e)* $ \forall $ people $ p $, $ p $ took a dessert $ \iff p $ did not take a pizza.
+- *(f)* Change one word of statement (d) so that it becomes true.
+- *(g)* Write down the negation of (a) and compare it to statement (b).
+
+## Answers
+
+$$$
+\boxed{
+\begin{aligned}
+\textbf{(a)}\ \text{FALSE} \qquad \textbf{(b)}\ \text{TRUE} \qquad \textbf{(c)}\ \text{TRUE} \qquad \textbf{(d)}\ \text{FALSE} \qquad \textbf{(e)}\ \text{TRUE}
+\end{aligned}
+}
+$$$
+
+**(f)** Change "**entree**" to "**beverage**": $ \exists $ beverage $ b $ such that $ \forall $ people $ p $, $ p $ took $ b $ — **true**, witnessed by soda.
+
+**(g)** $ \lnot $(a) is "$ \exists $ person $ p $ such that $ \forall $ desserts $ d $, $ p $ did not take $ d $" — which is **exactly statement (b)**. So (a) and (b) must have opposite truth values; FALSE and TRUE is consistent, and no answer needs changing.
+
+## Reading the Answers Off the Tray Table
+
+!(94%)[A grid of who took what, with each statement evaluated against it](problem-5-cafeteria.svg "A table with rows Alvin, Betty, Charlie and columns grouped into entrees turkey veggie pizza, beverages soda water coffee milk, and desserts pie pudding. Alvin has ticks under turkey, soda, and pie. Betty has ticks under veggie, soda, and pie. Charlie has ticks under pizza and soda only, and his two dessert cells are highlighted as empty with the note 'no dessert at all'. The soda column is shaded because all three people took it. Below, each statement is evaluated. (a) for-all people there exists a dessert they took, meaning every row must have a dessert tick: FALSE, since Charlie's dessert cells are empty. (b) there exists a person with no dessert, meaning some row is blank across desserts: TRUE, Charlie is the witness. The third, for-all entrees there exists someone who took it,, meaning every entree column has a tick: TRUE, turkey to Alvin, veggie to Betty, pizza to Charlie. (d) there exists an entree everyone took, meaning some entree column is full: FALSE, each entree column holds exactly one tick. (e) for-all people, took a dessert if and only if took no pizza: TRUE, since Alvin is true-iff-true, Betty true-iff-true, and Charlie false-iff-false. Part (f): change entree to beverage in (d), and the shaded soda column is full, so it becomes true. Part (g): the negation of (a) is exactly (b), so they must have opposite truth values, and FALSE and TRUE is consistent.")
+
+The grid turns each quantifier into a geometric instruction:
+
+- **(a)** $ \forall p\,\exists d $ — *every row* needs a dessert tick. Charlie's dessert cells are empty. **FALSE**
+- **(b)** $ \exists p\,\forall d\,\lnot $ — *some row* is blank across the dessert columns. Charlie again. **TRUE**
+- (**c**) $ \forall e\,\exists p $ — *every entree column* needs a tick. Turkey $ \to $ Alvin, veggie $ \to $ Betty, pizza $ \to $ Charlie. **TRUE**
+- **(d)** $ \exists e\,\forall p $ — *some entree column* must be full. Each holds exactly one tick. **FALSE**
+- **(e)** Check the biconditional person by person:
+
+$$$
+\begin{aligned}
+\text{Alvin:}\;\;   & \text{dessert } \mathrm{T} \iff \text{no pizza } \mathrm{T} \;\;\checkmark \\
+\text{Betty:}\;\;   & \text{dessert } \mathrm{T} \iff \text{no pizza } \mathrm{T} \;\;\checkmark \\
+\text{Charlie:}\;\; & \text{dessert } \mathrm{F} \iff \text{no pizza } \mathrm{F} \;\;\checkmark
+\end{aligned}
+$$$
+
+All three agree — note that Charlie satisfies it by making **both sides false**, which a biconditional accepts. **TRUE**
+
+## Remark — Part (g): The Consistency Check
+
+Part (g) is the most instructive item. Negating (a) by the rules of this section:
+
+$$$
+\lnot\big[\forall p\,\exists d\ \text{took}(p,d)\big] \;\cong\; \exists p\,\forall d\ \lnot\text{took}(p,d),
+$$$
+
+and the right-hand side is *verbatim* statement (b). Since a statement and its negation can never share a truth value, (a) and (b) are guaranteed to come out opposite — so answering "FALSE, TRUE" is not two independent judgements but **one judgement plus a free check**. This is a genuinely useful habit: whenever two items on a problem set are negations of each other, they audit one another. Had both come out true, at least one would certainly be wrong.
+
+## Remark — (*c*) and (d) Look Parallel to (a) and (b) but Are Not
+
+It is tempting to see the same relationship one row down: (*c*) is $ \forall\exists $ and (d) is $ \exists\forall $, just like (a) and (b). But **(d) is not the negation of (*c*)**. Negating (*c*) gives
+
+$$$
+\lnot\big[\forall e\,\exists p\ \text{took}(p,e)\big] \;\cong\; \exists e\,\forall p\ \lnot\text{took}(p,e),
+$$$
+
+"some entree that *nobody* took" — whereas (d) says "some entree that *everybody* took." The quantifier pattern matches, but the inner sentence is negated in one and not the other. The pair (a)/(b) are negations only because (b) already carries the "did not take" inside it.
+
+Here both $ \lnot $(*c*) and (d) happen to be false, which disguises the difference — but they genuinely differ in other worlds. If Alvin took all three entrees while Betty and Charlie each took only turkey, then every entree was taken by someone (so $ \lnot $(*c*) is false) yet turkey was taken by all (so (d) is true). Matching quantifier shapes is not the same as being negations, which is the caution from Problem 2.
+
+## Remark — Why "Beverage" Is the Word to Change in (f)
+
+Statement (d) asks for an item everyone took. Scanning the grid by column: no entree column is full, and neither dessert column is full — but the **soda** column is. Since soda is a beverage, replacing the single word "entree" with "beverage" makes the statement true. Note the constraint that only *one word* may change: swapping the quantifiers instead (turning (d) into (*c*)) would also produce a truth, but that changes the logical form rather than the domain. The intended lesson is that an $ \exists\forall $ statement is a claim about the *whole* domain you quantify over — the very same shape is false over entrees and true over beverages.
+
+## Remark — Charlie Carries All the Weight
+
+Every false statement here fails because of Charlie, and every "somebody" witness is Charlie. He is the only person without a dessert, which single-handedly kills (a) and establishes (b). He is also the only pizza-eater, which is what makes the biconditional in (e) interesting rather than trivial: Alvin and Betty satisfy it in the "both sides true" way, while Charlie satisfies it in the "both sides false" way. Had Charlie taken a pudding, (e) would have failed for him alone (dessert T, no-pizza F) and the whole universal would collapse. A single individual is often the pivot for several quantified claims at once, which is why locating the extreme case first is good strategy.
+
+## Remark — What the Grid Really Shows
+
+The tray table is a **relation** in the sense of Chapter 1 — a set of (person, item) pairs — and each quantified statement is a claim about its shape. Reading $ \forall\exists $ as "every row is nonempty in these columns" and $ \exists\forall $ as "some column is completely full" turns logic into geometry, and makes the order-dependence of Problem 2 visible: rows-then-columns is simply a different question from columns-then-rows. This picture generalises well beyond cafeterias — the same grid, with "row $ i $ relates to column $ j $", underlies adjacency matrices for graphs and incidence matrices throughout combinatorics.

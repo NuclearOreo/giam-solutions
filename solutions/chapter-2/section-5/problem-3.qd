@@ -1,0 +1,95 @@
+.docname {Solution — GIAM 2.5 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.5 Problem 3
+
+## Problem
+
+Determine a useful denial of
+
+$$$
+\forall \epsilon > 0\ \ \exists \delta > 0\ \ \forall x\ \ \big(|x-c| < \delta\big) \Longrightarrow \big(|f(x)-l| < \epsilon\big).
+$$$
+
+The denial gives a criterion for saying $ \lim_{x\to c} f(x) \ne l $.
+
+## Answer
+
+$$$
+\boxed{\;\exists \epsilon > 0\ \ \forall \delta > 0\ \ \exists x\ \ \Big(|x-c| < \delta \;\land\; |f(x)-l| \ge \epsilon\Big)\;}
+$$$
+
+In words: **there is a tolerance $ \epsilon $ that no $ \delta $ can meet** — however small the window around $ c $, some $ x $ inside it is thrown at least $ \epsilon $ away from $ l $.
+
+## The Derivation
+
+Push the negation inward one quantifier at a time, flipping each as it passes:
+
+$$$
+\begin{aligned}
+&\lnot\ \forall \epsilon{>}0\ \exists \delta{>}0\ \forall x\ \big[|x{-}c|{<}\delta \Rightarrow |f(x){-}l|{<}\epsilon\big] \\[3pt]
+\cong\;& \exists \epsilon{>}0\ \lnot\ \exists \delta{>}0\ \forall x\ [\,\cdots] &&\text{flip the outer } \forall \\[3pt]
+\cong\;& \exists \epsilon{>}0\ \forall \delta{>}0\ \lnot\ \forall x\ [\,\cdots] &&\text{flip the } \exists \\[3pt]
+\cong\;& \exists \epsilon{>}0\ \forall \delta{>}0\ \exists x\ \lnot\big[|x{-}c|{<}\delta \Rightarrow |f(x){-}l|{<}\epsilon\big] &&\text{flip the inner } \forall \\[3pt]
+\cong\;& \exists \epsilon{>}0\ \forall \delta{>}0\ \exists x\ \big[|x{-}c|{<}\delta \;\land\; |f(x){-}l| \ge \epsilon\big] &&\lnot(P \Rightarrow Q) \cong P \land \lnot Q
+\end{aligned}
+$$$
+
+The last step is Problem 2.2.4: the negation of a conditional is a **conjunction**, not another conditional. Note also that $ \lnot(|f(x)-l| < \epsilon) $ is $ |f(x)-l| \ge \epsilon $ — the strict inequality flips to a *non-strict* one.
+
+## Why This Is the "Useful" Denial
+
+!(94%)[The four-step negation chain, and a picture of the unit step failing to have limit 0](problem-3-limit.svg "Top: the negation chain. Starting from not for-all epsilon greater than zero, exists delta greater than zero, for-all x, the conditional; flipping the outer for-all gives exists epsilon, not exists delta; flipping the exists gives exists epsilon, for-all delta, not for-all x; flipping the inner for-all gives exists epsilon, for-all delta, exists x, not of the conditional; and negating the conditional gives the boxed result: exists epsilon greater than zero, for-all delta greater than zero, exists x with absolute value of x minus c less than delta AND absolute value of f of x minus l greater than or equal to epsilon. Reading: there is a tolerance epsilon that no delta can meet. Below, a picture of the unit step function at c equals zero with the false claim that the limit is zero. A green horizontal band of half-width epsilon surrounds l equals zero. The step function is flat at zero to the left of the origin and jumps to one to the right, so the right branch lies entirely above the band. Three progressively smaller delta windows are drawn below the axis; in each one a marked point on the upper branch escapes the band. Taking epsilon equal to one half, whatever delta is offered the point x equals delta over two lies in the window yet sits a full unit from l. One stubborn epsilon plus a bad x for every delta is exactly what the negation demands.")
+
+The denial is *useful* because it tells you precisely what to hunt for. To prove $ \lim_{x\to c} f(x) \ne l $ you must:
+
+1. **Produce one specific $ \epsilon > 0 $** — a single tolerance that will never be met.
+2. **Take an arbitrary $ \delta > 0 $** — you do not get to choose it.
+3. **Exhibit an $ x $** in the window $ |x-c| < \delta $ with $ |f(x)-l| \ge \epsilon $.
+
+Worked example: let $ f $ be the unit step ($ f(x) = 0 $ for $ x < 0 $, $ f(x) = 1 $ for $ x > 0 $), take $ c = 0 $ and the false claim $ l = 0 $. Choose $ \epsilon = \tfrac12 $. Given *any* $ \delta > 0 $, take $ x = \delta/2 $. Then $ |x - 0| = \delta/2 < \delta $ ✓ and $ |f(x) - 0| = 1 \ge \tfrac12 $ ✓. Since $ \delta $ was arbitrary, no $ \delta $ works, so $ \lim_{x\to 0} f(x) \ne 0 $. $ \blacksquare $
+
+## Remark — The Roles of $ \epsilon $ and $ \delta $ Reverse
+
+The single most important consequence of the flip is that the **burden of choice swaps sides**. In the original definition, $ \epsilon $ is the adversary's move (given to you) and $ \delta $ is yours (you must supply it). In the denial the roles reverse: **you** pick the $ \epsilon $, and $ \delta $ becomes the adversary's — you must defeat every one. This is the whole content of Problem 2's lesson about $ \forall\exists $ versus $ \exists\forall $: a quantifier flip is a change of *who chooses*. Proving a limit means answering all challenges; disproving one means issuing a challenge nobody can answer.
+
+## Remark — The Inner Conditional Must Become a Conjunction
+
+A very common wrong answer is
+
+$$$
+\exists\epsilon>0\ \forall\delta>0\ \exists x\ \big(|x-c| < \delta \Rightarrow |f(x)-l| \ge \epsilon\big),
+$$$
+
+keeping the arrow. This is not merely different — it is nearly **vacuous**, because any $ x $ far from $ c $ makes the antecedent false and the conditional true for free. The correct denial *asserts both halves at once*: the bad point must genuinely lie inside the window **and** genuinely miss the target. Dropping the arrow is exactly the "denial is never an if" point of Problem 2.3.5.
+
+## Remark — Why $ \ge $ and Not $ > $
+
+The negation of $ |f(x)-l| < \epsilon $ is $ |f(x)-l| \ge \epsilon $, with equality included. This is easy to fumble, and it matters for edge cases: a function sitting *exactly* $ \epsilon $ away from $ l $ has not stayed strictly inside the band, so it counts as an escape. In practice the distinction rarely changes an argument — if some $ \epsilon $ works, so does $ \epsilon/2 $ with a strict inequality — but writing $ > $ where $ \ge $ belongs is a genuine error in the formal statement, and graders notice.
+
+## Remark — A Note on the Punctured Neighbourhood
+
+As printed, the hypothesis is $ |x-c| < \delta $, which *includes* $ x = c $. The standard definition of $ \lim_{x\to c} f(x) = l $ uses a **punctured** neighbourhood, $ 0 < |x-c| < \delta $, precisely so that the value $ f(c) $ — which may be undefined, or defined "wrongly" — is irrelevant to the limit. With the puncture, the denial picks up the same extra clause:
+
+$$$
+\exists\epsilon>0\ \forall\delta>0\ \exists x\ \big(0 < |x-c| < \delta \;\land\; |f(x)-l| \ge \epsilon\big).
+$$$
+
+Nothing about the negation *procedure* changes — the conditions in the antecedent simply travel intact into the conjunction. The worked example above was chosen to survive either reading: the escaping point $ x = \delta/2 $ is never equal to $ c $.
+
+## Remark — What "$ \lim $ Does Not Exist" Would Require Instead
+
+The denial above says the limit is not the *particular* number $ l $. Saying the limit **does not exist at all** is a stronger claim — it must rule out every candidate:
+
+$$$
+\forall l\ \ \exists\epsilon>0\ \ \forall\delta>0\ \ \exists x\ \big(|x-c| < \delta \land |f(x)-l| \ge \epsilon\big).
+$$$
+
+Note the new outermost $ \forall l $, and that $ \epsilon $ may now depend on $ l $. For the unit step this holds: given any candidate $ l $, at least one of the two branch values $ 0, 1 $ is at distance $ \ge \tfrac12 $ from $ l $, and points of that branch appear in every window around $ 0 $. Distinguishing "the limit isn't $ l $" from "there is no limit" is exactly a matter of one more quantifier — which is the theme this section keeps returning to.

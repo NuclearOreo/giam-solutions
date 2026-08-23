@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 580" width="700" height="580" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="580" fill="white"/>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a3b12"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">L(x, y) = "x is in love with y".  Swapping the quantifiers changes the claim; negating swaps ∀ ↔ ∃ and negates inside.</text>
+
+  <!-- table of four -->
+  <g font-size="12" font-weight="bold" fill="#222">
+    <text x="34"  y="52">statement</text>
+    <text x="200" y="52">reads as</text>
+    <text x="430" y="52">negation</text>
+  </g>
+  <line x1="24" y1="60" x2="676" y2="60" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="12">
+    <text x="34"  y="84" fill="#1a3a63" font-weight="bold">(a) ∀x ∃y L(x,y)</text>
+    <text x="200" y="84" fill="#222">everybody loves somebody</text>
+    <text x="430" y="84" fill="#8a3b12">∃x ∀y ¬L(x,y)</text>
+    <text x="200" y="100" font-size="10.5" font-style="italic" fill="#777">(each person has someone — possibly different)</text>
+    <text x="430" y="100" font-size="10.5" font-style="italic" fill="#777">somebody loves nobody</text>
+
+    <text x="34"  y="132" fill="#1a3a63" font-weight="bold">(b) ∃x ∀y L(x,y)</text>
+    <text x="200" y="132" fill="#222">somebody loves everybody</text>
+    <text x="430" y="132" fill="#8a3b12">∀x ∃y ¬L(x,y)</text>
+    <text x="200" y="148" font-size="10.5" font-style="italic" fill="#777">(one universal lover)</text>
+    <text x="430" y="148" font-size="10.5" font-style="italic" fill="#777">everybody fails to love someone</text>
+
+    <text x="34"  y="180" fill="#1a3a63" font-weight="bold">(c) ∀x ∀y L(x,y)</text>
+    <text x="200" y="180" fill="#222">everybody loves everybody</text>
+    <text x="430" y="180" fill="#8a3b12">∃x ∃y ¬L(x,y)</text>
+    <text x="200" y="196" font-size="10.5" font-style="italic" fill="#777">(the strongest claim)</text>
+    <text x="430" y="196" font-size="10.5" font-style="italic" fill="#777">somebody doesn't love somebody</text>
+
+    <text x="34"  y="228" fill="#1a3a63" font-weight="bold">(d) ∃x ∃y L(x,y)</text>
+    <text x="200" y="228" fill="#222">somebody loves somebody</text>
+    <text x="430" y="228" fill="#8a3b12">∀x ∀y ¬L(x,y)</text>
+    <text x="200" y="244" font-size="10.5" font-style="italic" fill="#777">(the weakest claim)</text>
+    <text x="430" y="244" font-size="10.5" font-style="italic" fill="#777">nobody loves anybody</text>
+  </g>
+  <line x1="24" y1="258" x2="676" y2="258" stroke="#999" stroke-width="0.9"/>
+
+  <!-- the two separating models -->
+  <text x="350" y="284" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">(a) and (b) are incomparable — a two-person world settles it each way</text>
+
+  <rect x="30" y="296" width="310" height="146" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="185" y="316" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">both love P — so (a) holds, (b) fails</text>
+  <circle cx="140" cy="372" r="18" fill="#eaf1fb" stroke="#2a5db0"/><text x="140" y="377" font-size="13" text-anchor="middle">P</text>
+  <circle cx="250" cy="372" r="18" fill="#eaf1fb" stroke="#2a5db0"/><text x="250" y="377" font-size="13" text-anchor="middle">Q</text>
+  <path d="M132,356 C110,320 170,320 148,356" fill="none" stroke="#8a3b12" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="232" y1="372" x2="160" y2="372" stroke="#8a3b12" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="185" y="414" font-size="10.5" fill="#333" text-anchor="middle">each person loves someone (namely P),</text>
+  <text x="185" y="430" font-size="10.5" fill="#333" text-anchor="middle">but nobody loves <tspan font-style="italic">both</tspan> P and Q</text>
+
+  <rect x="360" y="296" width="310" height="146" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="515" y="316" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">P loves all — so (b) holds, (a) fails</text>
+  <circle cx="470" cy="372" r="18" fill="#eaf1fb" stroke="#2a5db0"/><text x="470" y="377" font-size="13" text-anchor="middle">P</text>
+  <circle cx="580" cy="372" r="18" fill="#eaf1fb" stroke="#2a5db0"/><text x="580" y="377" font-size="13" text-anchor="middle">Q</text>
+  <path d="M462,356 C440,320 500,320 478,356" fill="none" stroke="#8a3b12" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="488" y1="372" x2="560" y2="372" stroke="#8a3b12" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="515" y="414" font-size="10.5" fill="#333" text-anchor="middle">P loves both P and Q,</text>
+  <text x="515" y="430" font-size="10.5" fill="#333" text-anchor="middle">but Q loves nobody at all</text>
+
+  <!-- implication lattice -->
+  <rect x="30" y="456" width="310" height="106" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="185" y="476" font-size="11.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">what does imply what</text>
+  <text x="185" y="502" font-size="13" fill="#222" text-anchor="middle">(c)  ⟹  (a)   and   (c)  ⟹  (b)</text>
+  <text x="185" y="524" font-size="13" fill="#222" text-anchor="middle">(a)  ⟹  (d)   and   (b)  ⟹  (d)</text>
+  <text x="185" y="548" font-size="11" font-style="italic" fill="#8a3b12" text-anchor="middle">but (a) and (b) imply nothing about each other</text>
+
+  <rect x="360" y="456" width="310" height="106" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="515" y="476" font-size="11.5" font-weight="bold" fill="#8a3b12" text-anchor="middle">the one genuine swap law</text>
+  <text x="515" y="502" font-size="13" fill="#222" text-anchor="middle">∃x ∀y L(x,y)   ⟹   ∀y ∃x L(x,y)</text>
+  <text x="515" y="524" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">"someone loves everyone" ⟹ "everyone is loved"</text>
+  <text x="515" y="546" font-size="10.5" font-style="italic" fill="#8a3b12" text-anchor="middle">note the variables also swap — this is not (b) ⟹ (a)</text>
+</svg>

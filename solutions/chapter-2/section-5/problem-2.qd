@@ -1,0 +1,99 @@
+.docname {Solution — GIAM 2.5 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 2.5 Problem 2
+
+## Problem
+
+The order in which quantifiers appear is important. Let $ L(x,y) $ be the open sentence "$ x $ is in love with $ y $." Discuss the meanings of the following quantified statements and find their negations.
+
+- *(a)* $ \forall x\,\exists y\ L(x,y) $
+- *(b)* $ \exists x\,\forall y\ L(x,y) $
+- (*c*) $ \forall x\,\forall y\ L(x,y) $
+- *(d)* $ \exists x\,\exists y\ L(x,y) $
+
+## The Negation Rule
+
+To negate, push $ \lnot $ inward past each quantifier in turn, flipping it as it goes:
+
+$$$
+\lnot\forall x\, Q \;\cong\; \exists x\,\lnot Q, \qquad\qquad \lnot\exists x\, Q \;\cong\; \forall x\,\lnot Q.
+$$$
+
+So the whole pattern reverses: every $ \forall $ becomes $ \exists $, every $ \exists $ becomes $ \forall $, and the innermost sentence is negated. The **order is preserved** — only the symbols change.
+
+## Meanings and Negations
+
+$$$
+\begin{aligned}
+\textbf{(a)}\;\;& \forall x\,\exists y\ L(x,y) &&\quad\text{everybody loves somebody} \\
+\lnot\;& \exists x\,\forall y\ \lnot L(x,y)    &&\quad\text{somebody loves nobody} \\[10pt]
+\textbf{(b)}\;\;& \exists x\,\forall y\ L(x,y) &&\quad\text{somebody loves everybody} \\
+\lnot\;& \forall x\,\exists y\ \lnot L(x,y)    &&\quad\text{everybody fails to love someone} \\[10pt]
+\textbf{(c)}\;\;& \forall x\,\forall y\ L(x,y) &&\quad\text{everybody loves everybody} \\
+\lnot\;& \exists x\,\exists y\ \lnot L(x,y)    &&\quad\text{somebody doesn't love somebody} \\[10pt]
+\textbf{(d)}\;\;& \exists x\,\exists y\ L(x,y) &&\quad\text{somebody loves somebody} \\
+\lnot\;& \forall x\,\forall y\ \lnot L(x,y)    &&\quad\text{nobody loves anybody}
+\end{aligned}
+$$$
+
+## Discussion — Why the Order Matters
+
+!(94%)[The four statements with readings and negations, two separating models, and the implication structure](problem-2-order.svg "A table of the four statements with English readings and negations. (a) for-all x exists y L(x,y) reads 'everybody loves somebody', each person has someone possibly different; its negation is exists x for-all y not-L, 'somebody loves nobody'. (b) exists x for-all y L reads 'somebody loves everybody', one universal lover; negation for-all x exists y not-L, 'everybody fails to love someone'. the third, for-all x for-all y L, reads 'everybody loves everybody', the strongest claim; negation exists x exists y not-L, 'somebody doesn't love somebody'. (d) exists x exists y L reads 'somebody loves somebody', the weakest claim; negation for-all x for-all y not-L, 'nobody loves anybody'. Below, two two-person worlds show (a) and (b) are incomparable. In the first, both P and Q love P: each person loves someone so (a) holds, but nobody loves both P and Q so (b) fails. In the second, P loves both P and Q while Q loves nobody: (b) holds but (a) fails. Finally the implication structure: the third implies (a) and implies (b); (a) implies (d) and (b) implies (d); but (a) and (b) imply nothing about each other. And the one genuine swap law: exists x for-all y L implies for-all y exists x L — someone loves everyone implies everyone is loved — noting the variables also swap, so this is not (b) implies (a).")
+
+The heart of the exercise is the contrast between **(a)** and **(b)**, which differ only in the order of two quantifiers:
+
+- In **(a)** $ \forall x\,\exists y $, the $ y $ is chosen *after* $ x $, so it may **depend on** $ x $. Different people may love different people.
+- In **(b)** $ \exists x\,\forall y $, the $ x $ is chosen *first* and must work for **every** $ y $. One single person must love everyone.
+
+Neither implies the other. Two people suffice to show it:
+
+- **(a) true, (b) false.** Both $ P $ and $ Q $ love $ P $. Every person loves someone ✓, but no one person loves *both* $ P $ and $ Q $ ✗.
+- **(b) true, (a) false.** $ P $ loves both $ P $ and $ Q $, while $ Q $ loves no one. Someone loves everybody ✓, but $ Q $ loves nobody, so not everybody loves somebody ✗.
+
+The remaining relationships, verified over all $ 2 $-element models, are exactly
+
+$$$
+\text{(c)} \Rightarrow \text{(a)}, \qquad \text{(c)} \Rightarrow \text{(b)}, \qquad \text{(a)} \Rightarrow \text{(d)}, \qquad \text{(b)} \Rightarrow \text{(d)},
+$$$
+
+with the third the strongest claim, (d) the weakest, and (a), (b) incomparable in between.
+
+## Remark — Negation Preserves the Order
+
+A useful sanity check: negating never *reorders* the quantifiers, it only flips each one. So the negation of $ \forall x\exists y $ is $ \exists x\forall y $ — the $ x $-quantifier stays outermost. This is why the negation of (a) is the *shape* of (b) (with $ \lnot L $ inside) and vice versa, even though (a) and (b) themselves are unrelated. Confusing "the negation of (a) looks like (b)" with "(a) and (b) are opposites" is a common slip: $ \lnot $(a) is $ \exists x\forall y\,\lnot L $, which is not (b) at all, because of that inner negation.
+
+## Remark — The One Swap That *Is* Valid
+
+Although the two orders are generally inequivalent, there is one implication that always holds:
+
+$$$
+\exists x\,\forall y\ L(x,y) \;\Longrightarrow\; \forall y\,\exists x\ L(x,y).
+$$$
+
+If some single $ x_0 $ works for every $ y $, then given any $ y $ we can produce a witness — namely that same $ x_0 $. In words: "someone loves everyone" does imply "everyone is loved by someone." Note carefully that the **variables swap too**: the conclusion is $ \forall y\exists x $, i.e. "everyone is *loved*," not $ \forall x\exists y $, i.e. "everyone *loves*." That is exactly why this valid law does not give (b) $ \Rightarrow $ (a). The converse fails in general — different $ y $ may need different lovers.
+
+## Remark — Dependence Is What the Order Encodes
+
+The general principle: in a nested $ \forall x\,\exists y $, the choice of $ y $ is a **function of** $ x $; in $ \exists x\,\forall y $, the $ x $ is a single constant that must serve all $ y $ at once. This is the same distinction that separates **pointwise** from **uniform** properties throughout analysis. "For every $ \varepsilon $ there is a $ \delta $" (continuity) allows $ \delta $ to depend on the point; "there is a $ \delta $ that works for every point" (uniform continuity) does not. Getting the order wrong is not a stylistic error — it changes which theorem you have stated, and the love example makes the gap vivid enough to remember.
+
+## Remark — Statements (*c*) and (d) Are the Extremes
+
+Statements (*c*) and (d) have no order subtlety at all, because **adjacent like quantifiers commute**:
+
+$$$
+\forall x\,\forall y\ L \;\cong\; \forall y\,\forall x\ L, \qquad \exists x\,\exists y\ L \;\cong\; \exists y\,\exists x\ L.
+$$$
+
+Two universals can be read in either order (both say "all pairs"), and likewise two existentials ("some pair"). Order only matters when the quantifiers **differ**. That is why (*c*) and (d) sit at the top and bottom of the implication picture as the strongest and weakest of the four: (*c*) demands every pair, (d) only one pair.
+
+## Remark — The Empty-Universe Caveat
+
+Every implication above assumes the universe is **nonempty**. In an empty world, all four statements behave oddly: (a) and (*c*) are *vacuously true* (there are no people to check), while (b) and (d) are false (there is no witness to produce). So (*c*) $ \Rightarrow $ (d) actually fails on the empty universe — true implies false. Standard first-order logic sidesteps this by assuming nonempty domains, which is why textbooks state these implications without caveat. Since "the set of all people" is safely nonempty, the reading above is the intended one; but it is worth knowing that the assumption is doing work.

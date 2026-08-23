@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 580" width="700" height="580" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="580" fill="white"/>
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a3b12"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Push ¬ inward one quantifier at a time. Each ∀ becomes ∃, each ∃ becomes ∀, and the conditional becomes a conjunction.</text>
+
+  <!-- negation chain -->
+  <rect x="24" y="36" width="652" height="152" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <g font-size="12.5" fill="#222">
+    <text x="40" y="60">¬ ∀ε&gt;0 ∃δ&gt;0 ∀x [ |x−c| &lt; δ  ⟹  |f(x)−ℓ| &lt; ε ]</text>
+    <text x="40" y="86" fill="#8a3b12">≅  ∃ε&gt;0 ¬ ∃δ&gt;0 ∀x [ … ]</text>
+    <text x="380" y="86" font-size="10.5" font-style="italic" fill="#777">flip the outer ∀</text>
+    <text x="40" y="112" fill="#8a3b12">≅  ∃ε&gt;0 ∀δ&gt;0 ¬ ∀x [ … ]</text>
+    <text x="380" y="112" font-size="10.5" font-style="italic" fill="#777">flip the ∃</text>
+    <text x="40" y="138" fill="#8a3b12">≅  ∃ε&gt;0 ∀δ&gt;0 ∃x ¬[ |x−c| &lt; δ  ⟹  |f(x)−ℓ| &lt; ε ]</text>
+    <text x="380" y="138" font-size="10.5" font-style="italic" fill="#777">flip the inner ∀</text>
+  </g>
+  <rect x="40" y="150" width="620" height="30" fill="#dfeadd"/>
+  <text x="350" y="170" font-size="13.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">≅   ∃ε&gt;0  ∀δ&gt;0  ∃x  ( |x−c| &lt; δ   ∧   |f(x)−ℓ| ≥ ε )</text>
+
+  <text x="350" y="208" font-size="12" fill="#222" text-anchor="middle">"There is a tolerance ε that <tspan font-weight="bold">no</tspan> δ can meet: however small the window, some x inside it is thrown ε away from ℓ."</text>
+
+  <!-- ============ the picture ============ -->
+  <text x="350" y="240" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Why it is the right criterion: the unit step at c = 0, with the false claim ℓ = 0</text>
+
+  <!-- band first (behind everything) : eps=0.5 -> 30px -->
+  <rect x="130" y="390" width="490" height="60" fill="#dfeadd" opacity="0.8"/>
+  <line x1="130" y1="390" x2="620" y2="390" stroke="#1b5e20" stroke-width="1" stroke-dasharray="5 4"/>
+  <line x1="130" y1="450" x2="620" y2="450" stroke="#1b5e20" stroke-width="1" stroke-dasharray="5 4"/>
+  <text x="624" y="394" font-size="11" fill="#1b5e20">ℓ + ε</text>
+  <text x="624" y="454" font-size="11" fill="#1b5e20">ℓ − ε</text>
+
+  <!-- axes -->
+  <line x1="130" y1="420" x2="628" y2="420" stroke="#666" stroke-width="1"/>
+  <line x1="350" y1="330" x2="350" y2="500" stroke="#666" stroke-width="1"/>
+  <text x="636" y="424" font-size="12" font-style="italic" fill="#555">x</text>
+  <text x="356" y="338" font-size="12" font-style="italic" fill="#555">y</text>
+  <text x="342" y="416" font-size="11" fill="#1b5e20" text-anchor="end">ℓ = 0</text>
+
+  <!-- the step function -->
+  <line x1="130" y1="420" x2="346" y2="420" stroke="#2a5db0" stroke-width="2.8"/>
+  <line x1="354" y1="360" x2="620" y2="360" stroke="#2a5db0" stroke-width="2.8"/>
+  <circle cx="350" cy="420" r="4.5" fill="white" stroke="#2a5db0" stroke-width="2"/>
+  <circle cx="350" cy="360" r="4.5" fill="#2a5db0"/>
+  <text x="628" y="364" font-size="12" font-style="italic" fill="#2a5db0">f</text>
+  <text x="612" y="350" font-size="10.5" fill="#2a5db0" text-anchor="end">f = 1 here — outside the band</text>
+
+  <!-- three shrinking delta windows, below the band -->
+  <g stroke="#8a3b12" stroke-width="2">
+    <line x1="350" y1="470" x2="470" y2="470"/><line x1="470" y1="464" x2="470" y2="476"/><line x1="350" y1="464" x2="350" y2="476"/>
+    <line x1="350" y1="486" x2="410" y2="486"/><line x1="410" y1="480" x2="410" y2="492"/><line x1="350" y1="480" x2="350" y2="492"/>
+    <line x1="350" y1="502" x2="380" y2="502"/><line x1="380" y1="496" x2="380" y2="508"/><line x1="350" y1="496" x2="350" y2="508"/>
+  </g>
+  <g font-size="10.5" fill="#8a3b12">
+    <text x="478" y="474">δ₁</text><text x="418" y="490">δ₂</text><text x="388" y="506">δ₃</text>
+  </g>
+
+  <!-- the escaping points, with drop-lines to their windows -->
+  <g stroke="#8a3b12" stroke-width="1" stroke-dasharray="3 3" fill="none">
+    <line x1="410" y1="470" x2="410" y2="368" marker-end="url(#a3)"/>
+    <line x1="380" y1="486" x2="380" y2="368" marker-end="url(#a3)"/>
+    <line x1="365" y1="502" x2="365" y2="368" marker-end="url(#a3)"/>
+  </g>
+  <circle cx="410" cy="360" r="4.5" fill="#8a3b12"/>
+  <circle cx="380" cy="360" r="4.5" fill="#8a3b12"/>
+  <circle cx="365" cy="360" r="4.5" fill="#8a3b12"/>
+
+  <text x="350" y="528" font-size="11" fill="#333" text-anchor="middle">c = 0, at the left end of each window</text>
+
+  <!-- closing notes -->
+  <text x="350" y="550" font-size="11.5" fill="#8a3b12" text-anchor="middle">Take ε = ½. Whatever δ is offered, x = δ/2 lies inside the window yet sits a full unit from ℓ — outside the band.</text>
+  <text x="350" y="568" font-size="11.5" fill="#1b5e20" text-anchor="middle">One stubborn ε, plus a bad x for <tspan font-weight="bold">every</tspan> δ — exactly what the negation demands.</text>
+</svg>

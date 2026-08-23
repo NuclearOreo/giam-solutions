@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Every claim can be read straight off the tray table: ∀ means "every row/column", ∃ means "at least one".</text>
+
+  <!-- column group headers -->
+  <text x="228" y="50" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">entrees</text>
+  <text x="410" y="50" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">beverages</text>
+  <text x="576" y="50" font-size="11.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">desserts</text>
+  <line x1="150" y1="56" x2="306" y2="56" stroke="#c3d3ea" stroke-width="1.5"/>
+  <line x1="318" y1="56" x2="502" y2="56" stroke="#c3d3ea" stroke-width="1.5"/>
+  <line x1="514" y1="56" x2="638" y2="56" stroke="#c3d3ea" stroke-width="1.5"/>
+
+  <!-- column labels -->
+  <g font-size="10.5" fill="#222" text-anchor="middle">
+    <text x="176" y="74">turkey</text><text x="228" y="74">veggie</text><text x="280" y="74">pizza</text>
+    <text x="344" y="74">soda</text><text x="388" y="74">water</text><text x="432" y="74">coffee</text><text x="476" y="74">milk</text>
+    <text x="546" y="74">pie</text><text x="606" y="74">pudding</text>
+  </g>
+  <line x1="60" y1="82" x2="640" y2="82" stroke="#999" stroke-width="0.9"/>
+
+  <!-- rows -->
+  <g font-size="12" font-weight="bold" fill="#222"><text x="70" y="108">Alvin</text><text x="70" y="140">Betty</text><text x="70" y="172">Charlie</text></g>
+
+  <!-- soda column shaded (the (f) witness) -->
+  <rect x="326" y="86" width="36" height="98" fill="#dfeadd"/>
+
+  <g font-size="14" text-anchor="middle" fill="#1b5e20">
+    <!-- Alvin: turkey, soda, pie -->
+    <text x="176" y="112">✓</text><text x="344" y="112">✓</text><text x="546" y="112">✓</text>
+    <!-- Betty: veggie, soda, pie -->
+    <text x="228" y="144">✓</text><text x="344" y="144">✓</text><text x="546" y="144">✓</text>
+    <!-- Charlie: pizza, soda -->
+    <text x="280" y="176">✓</text><text x="344" y="176">✓</text>
+  </g>
+  <!-- Charlie's empty dessert cells flagged -->
+  <rect x="514" y="160" width="124" height="24" fill="#fbe4da"/>
+  <text x="576" y="177" font-size="10" fill="#8a3b12" text-anchor="middle">no dessert at all</text>
+
+  <line x1="60" y1="190" x2="640" y2="190" stroke="#999" stroke-width="0.9"/>
+
+  <!-- verdicts -->
+  <g font-size="11.5">
+    <text x="60" y="222" font-weight="bold" fill="#1a3a63">(a)</text>
+    <text x="96" y="222" fill="#222">∀ people ∃ dessert they took — every <tspan font-style="italic">row</tspan> must have a dessert tick</text>
+    <text x="620" y="222" font-weight="bold" fill="#8a3b12" text-anchor="end">FALSE</text>
+    <text x="96" y="238" font-size="10" font-style="italic" fill="#777">Charlie's dessert cells are empty</text>
+
+    <text x="60" y="268" font-weight="bold" fill="#1a3a63">(b)</text>
+    <text x="96" y="268" fill="#222">∃ person with <tspan font-style="italic">no</tspan> dessert — some row is blank across desserts</text>
+    <text x="620" y="268" font-weight="bold" fill="#1b5e20" text-anchor="end">TRUE</text>
+    <text x="96" y="284" font-size="10" font-style="italic" fill="#777">Charlie is the witness</text>
+
+    <text x="60" y="314" font-weight="bold" fill="#1a3a63">(c)</text>
+    <text x="96" y="314" fill="#222">∀ entrees ∃ someone who took it — every entree <tspan font-style="italic">column</tspan> has a tick</text>
+    <text x="620" y="314" font-weight="bold" fill="#1b5e20" text-anchor="end">TRUE</text>
+    <text x="96" y="330" font-size="10" font-style="italic" fill="#777">turkey→Alvin, veggie→Betty, pizza→Charlie</text>
+
+    <text x="60" y="360" font-weight="bold" fill="#1a3a63">(d)</text>
+    <text x="96" y="360" fill="#222">∃ entree everyone took — some entree column is <tspan font-style="italic">full</tspan></text>
+    <text x="620" y="360" font-weight="bold" fill="#8a3b12" text-anchor="end">FALSE</text>
+    <text x="96" y="376" font-size="10" font-style="italic" fill="#777">each entree column holds exactly one tick</text>
+
+    <text x="60" y="406" font-weight="bold" fill="#1a3a63">(e)</text>
+    <text x="96" y="406" fill="#222">∀ people: took a dessert  ⟺  took no pizza</text>
+    <text x="620" y="406" font-weight="bold" fill="#1b5e20" text-anchor="end">TRUE</text>
+    <text x="96" y="422" font-size="10" font-style="italic" fill="#777">Alvin T⟺T, Betty T⟺T, Charlie F⟺F — all three sides match</text>
+  </g>
+
+  <!-- (f) -->
+  <rect x="50" y="440" width="600" height="30" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="350" y="459" font-size="12" fill="#1b5e20" text-anchor="middle"><tspan font-weight="bold">(f)</tspan>  change "entree" to <tspan font-weight="bold">"beverage"</tspan> in (d) — the shaded soda column <tspan font-style="italic">is</tspan> full, so it becomes true</text>
+
+  <!-- (g) -->
+  <rect x="50" y="478" width="600" height="34" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="496" font-size="12" fill="#1a3a63" text-anchor="middle"><tspan font-weight="bold">(g)</tspan>  ¬(a) is "∃ person p such that ∀ desserts d, p did not take d" — which is exactly (b).</text>
+  <text x="350" y="508" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">So (a) and (b) must have opposite truth values. FALSE and TRUE — the answers were consistent all along.</text>
+</svg>
