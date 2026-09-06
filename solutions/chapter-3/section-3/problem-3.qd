@@ -1,0 +1,123 @@
+.docname {Solution — GIAM 3.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 3
+
+## Problem
+
+Prove (by contradiction) that there is no largest integer.
+
+## Formalising the Claim
+
+“$ N $ is the largest integer” means $ N\in\mathbb{Z} $ and every integer is at most $ N $. So the theorem is
+
+$$$
+\lnot\,\Big(\exists N\in\mathbb{Z},\;\forall x\in\mathbb{Z},\; x \le N\Big),
+$$$
+
+whose negation — the thing we assume for contradiction — is
+
+$$$
+\exists N\in\mathbb{Z},\;\forall x\in\mathbb{Z},\; x \le N .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{No such } N \text{ exists: } N+1 \text{ is an integer exceeding } N .\;}
+$$$
+
+## Proof
+
+> **Theorem.** There is no largest integer.
+>
+> **Proof.** Suppose, to the contrary, that there is a largest integer. Call it $ N $. Then $ N\in\mathbb{Z} $, and
+>
+> $ \forall x\in\mathbb{Z},\quad x \le N . $
+>
+> Since $ N $ and $ 1 $ are integers and $ \mathbb{Z} $ is closed under addition, $ N+1 $ is an integer. So $ N+1 $ is a legitimate choice for $ x $ in the statement above, giving
+>
+> $ N + 1 \le N . $
+>
+> Subtracting $ N $ from both sides yields $ 1 \le 0 $, which is false.
+>
+> The supposition that a largest integer exists leads to a contradiction, so there is no largest integer. $ \blacksquare $
+
+## The Picture
+
+!(96%)[The supposed largest integer N with N+1 sitting one step to its right](problem-3-nolargest.svg "A diagram in five bands. The first states what is to be proved — there is no N in the integers with x at most N for every integer x — and then the supposition otherwise, that such an N exists, noting that negating 'no such N' produces a concrete N to work with, which is the whole point of the method. The second band shows a number line marked N minus 2, N minus 1, N, N plus 1, N plus 2, with N in red flagged 'supposed to be the largest' and N plus 1 in green flagged 'an integer too — and bigger'. Below it: since N plus 1 is an integer, the supposition applies to it, giving N plus 1 at most N, hence 1 at most 0; that is false, so no such N exists. The third band lists everything the proof leans on, only two facts: first, the integers are closed under addition, so N and 1 being integers forces N plus 1 to be an integer; second, the order respects addition, so 0 less than 1 forces N less than N plus 1. Drop either one and the theorem dies. The fourth band shows what happens when one ingredient changes: the integers have no largest element and both facts hold so the proof runs; any finite non-empty set of integers has a largest, because closure fails since N plus 1 need not be in the set; a computer's 64-bit integer type has a largest, 2 to the 63 minus 1, because closure fails as max plus one wraps to minus 2 to the 63; and the extended reals with plus and minus infinity have a largest, plus infinity, because the order fails as infinity plus one equals infinity and so is not bigger. Wrap-around confirmed: in 64-bit arithmetic 9223372036854775807 plus 1 evaluates to minus 9223372036854775808. The fifth band notes a distinction the proof does not settle: having no largest element is weaker than being unbounded, since the rationals whose square is less than 2 have no largest element either yet all lie below 2, and showing the integers are unbounded takes a further axiom.")
+
+## Remark — This "Proof by Contradiction" Is Barely One
+
+The problem asks for contradiction, and the proof above obliges. But look at what actually happens: from the supposed $ N $ we build $ N+1 $ and observe it is bigger. No feature of the contradiction framework is doing any work — the argument constructs an explicit witness.
+
+Stripping the wrapper off gives a *direct* proof of the same thing:
+
+> **Proof (direct).** Let $ N $ be any integer. Then $ N+1 $ is an integer with $ N+1 > N $, so $ N $ is not the largest. Since $ N $ was arbitrary, no integer is the largest. $ \blacksquare $
+
+The two are the same three lines. What changed is the logical form: "there is no largest" is a negated existential, and
+
+$$$
+\lnot\exists N\,\forall x\,(x\le N) \;\cong\; \forall N\,\exists x\,(x > N),
+$$$
+
+which is a universally quantified *existence* claim — exactly the sort of thing a direct proof handles by exhibiting the witness $ x = N+1 $.
+
+This is a useful thing to notice generally. Many proofs presented as "by contradiction" are direct proofs of the contrapositive or of an equivalent positive statement, dressed up. A genuine proof by contradiction is one where the supposition is used *twice* — once to build something and once to collide with it — as in Euclid's infinitude of primes, where $ N = 1 + \prod p_k $ is constructed *from* the assumed finite list.
+
+## Remark — Every Ingredient the Proof Uses
+
+The argument is short enough that its dependencies can be listed exhaustively:
+
+- **$ \mathbb{Z} $ is closed under addition.** This is what makes $ N+1 $ an integer, and hence a legal value to substitute for $ x $. Without it, $ N+1 $ might live outside the set and the supposition would say nothing about it.
+- **The order is compatible with addition,** together with $ 0 < 1 $. This is what makes $ N+1 $ strictly bigger than $ N $.
+
+That is all. Notice in particular that *nothing about the integers specifically* is used — the same proof shows $ \mathbb{Q} $, $ \mathbb{R} $, and the even integers have no largest element, and indeed:
+
+> Any ordered set closed under $ y \mapsto y+1 $ (or under any operation that strictly increases its input) has no largest element.
+
+## Remark — Where a Largest Element Does Appear
+
+The clean way to appreciate a proof is to see what breaks it. Each of the two ingredients can fail, and each failure produces a set with a genuine maximum:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{setting} & \textbf{largest?} & \textbf{what failed} \\ \hline
+\mathbb{Z} & \text{none} & \text{--- both hold} \\
+\text{finite } S\subset\mathbb{Z} & \text{yes} & \text{closure: } N{+}1 \text{ may leave } S \\
+\text{64-bit machine integers} & 2^{63}-1 & \text{closure: } \max + 1 \text{ wraps around} \\
+\mathbb{R}\cup\{\pm\infty\} & +\infty & \text{order: } \infty + 1 = \infty
+\end{array}
+$$$
+
+The machine-integer row is the most concrete: in 64-bit arithmetic, $ 9223372036854775807 + 1 $ evaluates to $ -9223372036854775808 $, which is confirmed by running it. There *is* a largest `int64`, precisely because the set is not closed under adding one. Arbitrary-precision integers behave like $ \mathbb{Z} $, and the $ N+1 $ witness works at any size.
+
+The extended-reals row fails differently and is worth pausing on: $ \mathbb{R}\cup\{\pm\infty\} $ *is* closed under adding $ 1 $, but $ \infty + 1 = \infty $, so the successor is not strictly larger. Both ingredients really are needed.
+
+## Remark — No Maximum Versus Unbounded
+
+It is tempting to read this theorem as "the integers go on forever", but strictly it says something weaker. Compare:
+
+$$$
+\begin{array}{l|l}
+\text{no largest element} & \text{no } N\in S \text{ with } x\le N \text{ for all } x\in S \\
+\text{unbounded above} & \text{no } B \text{ at all with } x\le B \text{ for all } x\in S
+\end{array}
+$$$
+
+The second is stronger, because the bound $ B $ need not belong to $ S $. A set can miss its own ceiling:
+
+$$$
+S = \left\{q\in\mathbb{Q} : q^2 < 2\right\}
+$$$
+
+has no largest element — for any $ q\in S $ there is a larger rational still in $ S $ — yet every element is below $ 2 $. Being maximum-free is not the same as being boundless.
+
+For $ \mathbb{Z} $ inside $ \mathbb{R} $ the stronger statement *is* true, but it needs more than the $ N+1 $ trick: it is the **Archimedean property**, which follows from the completeness of $ \mathbb{R} $ (a bounded $ \mathbb{Z} $ would have a least upper bound $ s $, and $ s-1 $ would fail to be one). In a non-Archimedean ordered field — the hyperreals, say — some element exceeds every integer, so there $ \mathbb{Z} $ has no largest element yet *is* bounded above. The theorem survives; the intuitive reading of it does not.

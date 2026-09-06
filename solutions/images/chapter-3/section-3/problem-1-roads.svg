@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 600" width="720" height="600" font-family="Georgia, serif">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#555"/>
+    </marker>
+    <marker id="arg" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1f6b34"/>
+    </marker>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#9b2c2c"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="720" height="600" fill="#ffffff"/>
+
+  <!-- goal -->
+  <rect x="196" y="14" width="328" height="46" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.4"/>
+  <text x="360" y="33" font-size="11.5" fill="#3b5b9b" text-anchor="middle" font-style="italic">to prove, for every integer x</text>
+  <text x="360" y="51" font-size="14.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">x&#179; is odd  &#8658;  x is odd</text>
+
+  <!-- fork -->
+  <path d="M300,60 L180,92" fill="none" stroke="#9b2c2c" stroke-width="1.6" marker-end="url(#arr)"/>
+  <path d="M420,60 L540,92" fill="none" stroke="#1f6b34" stroke-width="1.6" marker-end="url(#arg)"/>
+  <text x="212" y="80" font-size="10.5" fill="#9b2c2c" font-style="italic" text-anchor="end">attack it head-on</text>
+  <text x="508" y="80" font-size="10.5" fill="#1f6b34" font-style="italic">flip it first</text>
+
+  <!-- ================= LEFT: direct road, blocked ================= -->
+  <rect x="18" y="98" width="322" height="216" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.3"/>
+  <text x="30" y="117" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE DIRECT ROAD</text>
+  <text x="330" y="117" font-size="10.5" fill="#9b2c2c" font-style="italic" text-anchor="end">blocked</text>
+
+  <text x="34" y="142" font-size="12" fill="#333">Assume x&#179; is odd, so  x&#179; = 2k + 1.</text>
+  <text x="34" y="166" font-size="12" fill="#333">The only way to reach x from x&#179; is</text>
+  <text x="180" y="196" font-size="16" fill="#333" text-anchor="middle">x = &#8731;(2k + 1)</text>
+
+  <line x1="120" y1="212" x2="240" y2="212" stroke="#9b2c2c" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="180" y="232" font-size="11.5" fill="#9b2c2c" text-anchor="middle" font-style="italic">and there the road ends.</text>
+
+  <text x="34" y="258" font-size="11" fill="#555">A cube root is not built from + and &#215;, so</text>
+  <text x="34" y="274" font-size="11" fill="#555">nothing can be factored out of it. There is</text>
+  <text x="34" y="290" font-size="11" fill="#555">no  2&#183;(something)  or  2&#183;(something) + 1</text>
+  <text x="34" y="306" font-size="11" fill="#555">form to read the parity of x off of.</text>
+
+  <!-- ================= RIGHT: contrapositive road ================= -->
+  <rect x="380" y="98" width="322" height="216" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="392" y="117" font-size="11.5" fill="#1f6b34" font-weight="bold">THE CONTRAPOSITIVE ROAD</text>
+  <text x="692" y="117" font-size="10.5" fill="#1f6b34" font-style="italic" text-anchor="end">clear</text>
+
+  <text x="396" y="141" font-size="11.5" fill="#555">prove this equivalent statement instead:</text>
+  <text x="541" y="164" font-size="14" fill="#1f3a68" text-anchor="middle" font-weight="bold">x is even  &#8658;  x&#179; is even</text>
+
+  <text x="396" y="192" font-size="12" fill="#333">Assume x is even, so  x = 2m.</text>
+  <text x="541" y="220" font-size="15" fill="#333" text-anchor="middle">x&#179; = (2m)&#179; = 8m&#179; = 2&#183;(4m&#179;)</text>
+  <text x="396" y="246" font-size="12" fill="#333">and 4m&#179; is an integer, so x&#179; is even. &#9632;</text>
+
+  <text x="396" y="274" font-size="11" fill="#555">Here the hypothesis hands us an equation</text>
+  <text x="396" y="290" font-size="11" fill="#555">we can cube, and cubing is exactly the</text>
+  <text x="396" y="306" font-size="11" fill="#555">operation the statement is about.</text>
+
+  <!-- ============ why the flip is legal ============ -->
+  <rect x="18" y="330" width="684" height="88" rx="6" fill="#f7f7f9" stroke="#888" stroke-width="1.1"/>
+  <text x="360" y="350" font-size="11.5" fill="#333" text-anchor="middle" font-weight="bold">Why the flip is legal &#8212; two separate facts</text>
+
+  <line x1="360" y1="360" x2="360" y2="410" stroke="#ccc" stroke-width="1"/>
+
+  <text x="34" y="372" font-size="11" fill="#3b5b9b" font-weight="bold">1. contraposition</text>
+  <text x="34" y="390" font-size="12" fill="#333">P &#8658; Q   is logically equivalent to</text>
+  <text x="34" y="408" font-size="12" fill="#333">&#172;Q &#8658; &#172;P.  Prove either, get both.</text>
+
+  <text x="378" y="372" font-size="11" fill="#3b5b9b" font-weight="bold">2. the parity dichotomy</text>
+  <text x="378" y="390" font-size="12" fill="#333">Every integer is even or odd and never</text>
+  <text x="378" y="408" font-size="12" fill="#333">both, so &#8220;not odd&#8221; may be read as &#8220;even&#8221;.</text>
+
+  <!-- ============ evidence strip ============ -->
+  <text x="34" y="446" font-size="11" fill="#555" font-style="italic">Parity of x and of x&#179; agree at every integer &#8212; checked for all x from &#8722;2000 to 2000:</text>
+
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="34" y="456" width="668" height="24" fill="#fafafa" stroke="#ddd"/>
+    <line x1="34" y1="480" x2="702" y2="480" stroke="#ddd"/>
+    <rect x="34" y="480" width="668" height="24" fill="#ffffff" stroke="#ddd"/>
+    <text x="70" y="472" fill="#555" font-weight="bold">x</text>
+    <text x="70" y="496" fill="#555" font-weight="bold">x&#179;</text>
+  </g>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="150" y="472" fill="#9b2c2c">&#8722;4</text><text x="150" y="496" fill="#9b2c2c">&#8722;64</text>
+    <text x="222" y="472" fill="#1f6b34">&#8722;3</text><text x="222" y="496" fill="#1f6b34">&#8722;27</text>
+    <text x="294" y="472" fill="#9b2c2c">&#8722;2</text><text x="294" y="496" fill="#9b2c2c">&#8722;8</text>
+    <text x="366" y="472" fill="#1f6b34">&#8722;1</text><text x="366" y="496" fill="#1f6b34">&#8722;1</text>
+    <text x="438" y="472" fill="#9b2c2c">0</text><text x="438" y="496" fill="#9b2c2c">0</text>
+    <text x="510" y="472" fill="#1f6b34">1</text><text x="510" y="496" fill="#1f6b34">1</text>
+    <text x="582" y="472" fill="#9b2c2c">2</text><text x="582" y="496" fill="#9b2c2c">8</text>
+    <text x="654" y="472" fill="#1f6b34">3</text><text x="654" y="496" fill="#1f6b34">27</text>
+  </g>
+  <text x="34" y="522" font-size="10.5" fill="#1f6b34">green = odd</text>
+  <text x="120" y="522" font-size="10.5" fill="#9b2c2c">red = even</text>
+  <text x="702" y="522" font-size="10.5" fill="#555" font-style="italic" text-anchor="end">a column is never one colour on top and the other below</text>
+
+  <!-- ============ bonus ============ -->
+  <rect x="18" y="536" width="684" height="50" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.1"/>
+  <text x="34" y="555" font-size="11" fill="#1f3a68" font-weight="bold">The proof gives more than it was asked for:</text>
+  <text x="34" y="574" font-size="11.5" fill="#333">x&#179; = 8m&#179; is not merely even, it is divisible by 8 &#8212; so an even cube is always a multiple of 8, and 2 | x&#179; already forces 8 | x&#179;.</text>
+</svg>

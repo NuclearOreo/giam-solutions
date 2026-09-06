@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 3.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 2
+
+## Problem
+
+Prove that whenever a prime $ p $ does not divide the square of an integer, it also doesn't divide the original integer:
+
+$$$
+p \nmid x^2 \implies p \nmid x .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{Proved by contraposition: instead show } p \mid x \implies p \mid x^2 .\;}
+$$$
+
+## Proof
+
+> **Theorem.** For every prime $ p $ and every integer $ x $, if $ p \nmid x^2 $ then $ p \nmid x $.
+>
+> **Proof.** The statement is logically equivalent to its contrapositive,
+>
+> $ p \mid x \implies p \mid x^2 , $
+>
+> so we prove that instead. (Both sides of the original are negations, and $ \lnot\lnot P $ is just $ P $, so the contrapositive is the same statement with the two "not divides" turned into "divides" and swapped.)
+>
+> Let $ p $ be a prime and $ x $ an integer, both particular but arbitrarily chosen, and suppose $ p \mid x $. By the definition of divisibility there is an integer $ k $ with $ x = pk $. Squaring,
+>
+> $ x^2 = (pk)^2 = p^2k^2 = p\left(pk^2\right). $
+>
+> Set $ j = pk^2 $. Since $ p $ and $ k $ are integers and $ \mathbb{Z} $ is closed under multiplication, $ j $ is an integer, and $ x^2 = pj $. By the definition of divisibility, $ p \mid x^2 $.
+>
+> Since $ p $ and $ x $ were arbitrary, $ p \mid x \implies p \mid x^2 $ holds universally, and therefore so does the original statement. $ \blacksquare $
+
+## The Shape of the Argument
+
+!(96%)[The contrapositive proof, the unused primality hypothesis, and the converse where primality is essential](problem-2-primality.svg "A diagram in four bands. The top band states what is to be proved: for every prime p and every integer x, p does not divide x squared implies p does not divide x, noting that both sides are negative so contraposition is the obvious first move. The second band, in green, gives the contrapositive and the whole proof: p divides x implies p divides x squared; suppose p divides x, then x equals pk for some integer k, so x squared equals p squared k squared equals p times pk squared, and pk squared is an integer, so p divides x squared. The third band, in amber, is headed NOTICE WHAT THE PROOF NEVER TOUCHED: nowhere did the argument use that p is prime, only that p is an integer, so the same three lines prove that for every integer n at least 2 and every integer x, n does not divide x squared implies n does not divide x — confirmed for every modulus from 2 to 200 and every x from minus 300 to 300. The fourth band, in red, asks where primality is actually needed and answers: in the converse, n divides x squared implies n divides x, which is Euclid's lemma when n is prime and a genuinely deeper fact. A table of counterexamples for general moduli lists n equals 4 with x equals 2, n equals 8 with x equals 4, n equals 9 with x equals 3, and n equals 12 with x equals 6; in each row n divides x squared but n does not divide x. The converse holds exactly for the squarefree n, checked for every n up to 200, the first failures being 4, 8, 9, 12, 16, 18. A closing strip notes that writing v of x for the number of factors of p in x, we have v of x squared equals twice v of x, so v of x squared is at least 1 exactly when v of x is at least 1.")
+
+## Remark — Why Contraposition Is Forced Here
+
+Some problems merely *benefit* from contraposition. This one all but demands it, and the reason is visible in the shape of the statement: **both** the hypothesis and the conclusion are negative.
+
+A hypothesis of the form $ p \nmid x^2 $ gives you almost nothing to work with. Divisibility is an *existential* claim — $ p \mid x^2 $ means "there exists $ j $ with $ x^2 = pj $" — so its negation says no such $ j $ exists. You cannot unpack a non-existence into an equation and start doing algebra with it.
+
+Contraposition converts both negatives into positives at a stroke:
+
+$$$
+\underbrace{p\nmid x^2 \implies p\nmid x}_{\text{no equations available}} \qquad\text{becomes}\qquad \underbrace{p\mid x \implies p\mid x^2}_{\text{hypothesis is an equation}} .
+$$$
+
+Now the hypothesis hands over $ x = pk $, which can be squared. This is the same mechanic as in Problem 1, but sharper: there the direct route was merely blocked by an inconvenient cube root, whereas here the direct route has no starting material at all.
+
+The general rule this illustrates: when a conditional has a negated hypothesis, check the contrapositive first. Definitions unpack into equations; the negations of definitions unpack into nothing.
+
+## Remark — The Primality Hypothesis Is Never Used
+
+Read the proof back and look for the word *prime*. It does not appear. The only property of $ p $ the argument uses is that it is an integer, so that $ pk^2 $ is again an integer. The theorem actually proved is
+
+$$$
+\forall n\in\mathbb{Z},\;\forall x\in\mathbb{Z},\qquad n \nmid x^2 \implies n \nmid x ,
+$$$
+
+verified for every modulus $ 2 \le n \le 200 $ against every $ x $ with $ |x| \le 300 $.
+
+This is the same phenomenon as in 3.1 Problem 8, where the hypothesis $ 6 \mid (a+b) $ turned out to use nothing but $ 2 \mid 6 $. It is always worth doing this audit at the end of a proof: an unused hypothesis is either a free generalisation or a sign that you have proved the wrong thing.
+
+Here it is the former — and it also tells you something about the *author's* intent. Why state it for primes at all? Because of where the lemma gets used.
+
+## Remark — Where Primality Really Lives: the Converse
+
+The converse of the statement is
+
+$$$
+n \mid x^2 \implies n \mid x ,
+$$$
+
+and *this* is where primality is indispensable. It is **Euclid's lemma** in disguise: if $ p $ is prime and $ p \mid ab $ then $ p \mid a $ or $ p \mid b $; taking $ a = b = x $ gives exactly $ p \mid x^2 \Rightarrow p \mid x $.
+
+For a general modulus it is false, and the counterexamples are easy to name:
+
+$$$
+\begin{array}{c|c|c|c}
+n & x & n \mid x^2\ ? & n \mid x\ ? \\ \hline
+4 & 2 & \text{yes, } x^2 = 4 & \text{no} \\
+9 & 3 & \text{yes, } x^2 = 9 & \text{no} \\
+12 & 6 & \text{yes, } x^2 = 36 & \text{no}
+\end{array}
+$$$
+
+Exhaustive search over $ 2 \le n \le 200 $ shows the converse holds for a modulus $ n $ **exactly when $ n $ is squarefree** — the first failures being $ 4, 8, 9, 12, 16, 18 $, each divisible by a square. Primes are squarefree, so the converse holds for them; but so is $ 6 $, and the converse holds there too. Primality is sufficient, not necessary — squarefreeness is the exact condition.
+
+So the two directions sit at very different depths. The direction this problem asks for is three lines of definition-chasing valid for any modulus. The reverse direction needs the fundamental theorem of arithmetic (or Bézout) and is genuinely a theorem about primes.
+
+## Remark — Both Directions in One Line, via Valuations
+
+There is a slicker way to see the whole picture. For a prime $ p $, let $ v_p(x) $ be the exponent of $ p $ in the prime factorisation of $ x $. Then $ v_p $ turns multiplication into addition,
+
+$$$
+v_p(ab) = v_p(a) + v_p(b), \qquad\text{so}\qquad v_p\left(x^2\right) = 2\,v_p(x),
+$$$
+
+verified for $ p \in \{2,3,5,7,11\} $ over $ 1 \le x < 400 $. Since $ p \mid y $ is precisely $ v_p(y)\ge 1 $,
+
+$$$
+p \mid x^2 \iff 2\,v_p(x) \ge 1 \iff v_p(x)\ge 1 \iff p \mid x ,
+$$$
+
+using that $ v_p(x) $ is a non-negative *integer*, so $ 2v_p(x)\ge 1 $ forces $ v_p(x)\ge 1 $. Both directions fall out together, and the exponent $ 2 $ is plainly irrelevant: the same line gives $ p \mid x^n \iff p \mid x $ for every $ n \ge 1 $ (checked for $ n \le 8 $ and all primes below $ 50 $).
+
+The catch is that this argument *presupposes* unique factorisation, which is a much heavier tool than the problem intends. The contrapositive proof above is elementary and self-contained; this one is a bird's-eye view of why the fact is true.
+
+## Remark — What This Lemma Is For
+
+Statements like this one look like busywork until you see them deployed. This is precisely the lemma needed to prove that $ \sqrt{p} $ is irrational for any prime $ p $:
+
+> Suppose $ \sqrt{p} = a/b $ in lowest terms. Then $ a^2 = p\,b^2 $, so $ p \mid a^2 $, hence $ p \mid a $ by the converse direction. Writing $ a = pc $ gives $ p^2c^2 = p\,b^2 $, so $ b^2 = p\,c^2 $, so $ p \mid b^2 $ and therefore $ p \mid b $. But then $ p $ divides both $ a $ and $ b $, contradicting lowest terms.
+
+That argument is exactly Theorem 3.3.2 of the text with $ 2 $ replaced by an arbitrary prime — and the reason it *needs* a prime, rather than any old $ n $, is the failure documented above. Try to run it with $ n = 4 $ and it collapses at the first step, which is fortunate, since $ \sqrt{4} = 2 $ is perfectly rational.

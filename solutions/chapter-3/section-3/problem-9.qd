@@ -1,0 +1,111 @@
+.docname {Solution — GIAM 3.3 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 9
+
+## Problem
+
+Suppose you have 2 pairs of positive real numbers whose products are 1. That is, you have $ (a,b) $ and $ (c,d) $ in $ \mathbb{R}^2 $ satisfying $ ab = cd = 1 $. Prove that $ a < c $ implies that $ b > d $.
+
+## Answer
+
+$$$
+\boxed{\;b = \tfrac1a,\; d = \tfrac1c, \text{ and } x\mapsto \tfrac1x \text{ strictly decreases on } (0,\infty).\;}
+$$$
+
+## Proof
+
+> **Theorem.** Let $ a,b,c,d $ be positive reals with $ ab = cd = 1 $. If $ a < c $ then $ b > d $.
+>
+> **Proof.** Suppose, to the contrary, that $ a < c $ and $ b \le d $.
+>
+> Since $ a > 0 $, multiplying the inequality $ b \le d $ by $ a $ preserves it:
+>
+> $ ab \le ad . $
+>
+> Since $ d > 0 $, multiplying the inequality $ a < c $ by $ d $ preserves it and keeps it strict:
+>
+> $ ad < cd . $
+>
+> Chaining the two and substituting $ ab = 1 $ and $ cd = 1 $,
+>
+> $ 1 = ab \le ad < cd = 1 , $
+>
+> so $ 1 < 1 $, which is false. Hence no such configuration exists, and $ a < c $ forces $ b > d $. $ \blacksquare $
+
+A direct proof is equally short. From $ ab = 1 $ and $ a>0 $ we get $ b = 1/a $, and likewise $ d = 1/c $. Since $ 0 < a < c $ and reciprocation strictly reverses order on the positive reals,
+
+$$$
+b = \frac1a > \frac1c = d .
+$$$
+
+## The Picture
+
+The theorem is a statement about the hyperbola $ xy=1 $: on its positive branch, moving right forces you down. The diagram shows that, the three ways of writing the proof, and what happens if the positivity hypothesis is dropped.
+
+!(92%)[The positive branch of xy=1 falling, and the counterexample when negatives are allowed](problem-9-hyperbola.svg "A diagram in four parts. The top band states what is to be proved: ab equals cd equals 1 with a, b, c, d positive and a less than c implies b greater than d, noting that both pairs sit on the hyperbola xy equals 1 and the claim is that its positive branch falls as you move right. The second band gives three routes, all short. Direct: b equals 1 over a and d equals 1 over c; since 0 is less than a is less than c and the map x to 1 over x is strictly decreasing on the positives, 1 over a is greater than 1 over c. Contraposition: assume b at most d, multiply by a positive to get 1 equals ab at most ad, divide by d positive to get 1 over d at most a, and since 1 over d equals c, conclude c at most a. Contradiction: assume a less than c and b at most d; then 1 equals ab at most ad less than cd equals 1, so 1 is less than 1; each step needs a positive factor. Below on the left is a plot of the positive branch of the hyperbola xy equals 1, with the point (a, b) at one half and 2 marked in green and the point (c, d) at 2 and one half marked in red, with dashed guide lines to both axes; moving right from a to c the curve must drop, so b is greater than d. On the right is a plot of both branches of xy equals 1, the first-quadrant branch in blue and the third-quadrant branch in amber, with the point (c, d) equal to (1, 1) on the blue branch and the point (a, b) equal to (minus 1, minus 1) on the amber branch. Both satisfy xy equals 1, and a equals minus 1 is less than 1 equals c, yet b equals minus 1 is less than 1 equals d; the two points are on different branches. The bottom band lists where positivity is spent, three separate times: a and c positive make b equal to 1 over a and d equal to 1 over c legal and put both points on the same branch; a positive lets us multiply b at most d by a without flipping the inequality; d positive lets us multiply a less than c by d without flipping it. Remove any one and the argument collapses, since multiplying an inequality by a negative reverses it, which is exactly what the counterexample exploits.")
+
+## Remark — Three Proofs, One Computation
+
+The problem sits in a section on indirect proof, but this statement is agreeable enough to yield to all three standard forms. It is worth laying them side by side, because the differences are entirely presentational:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{form} & \textbf{assume} & \textbf{derive} \\ \hline
+\text{direct} & a < c & b = 1/a > 1/c = d \\
+\text{contraposition} & b \le d & a \ge c \\
+\text{contradiction} & a< c \text{ and } b \le d & 1 < 1
+\end{array}
+$$$
+
+All three rest on the same fact — multiplying an inequality by a positive number preserves it — used once or twice depending on the packaging. The contradiction version is the tidiest to *write*, because the two hypotheses can be multiplied together to produce the chain $ 1 = ab \le ad < cd = 1 $ in a single line. The direct version is the most informative, because it names the actual mechanism: reciprocation reverses order.
+
+Note that the strictness bookkeeping matters. The chain mixes $ \le $ and $ < $, and the conclusion $ 1 < 1 $ needs the strict link — which comes from $ a < c $ being strict, not from $ b \le d $.
+
+## Remark — Positivity Is Used Three Separate Times
+
+The hypothesis “positive real numbers” is not decoration; the proof spends it repeatedly.
+
+- **To form the reciprocals.** From $ ab=1 $ one gets $ b = 1/a $ only because $ a \ne 0 $, and $ a>0 $ additionally guarantees $ b>0 $.
+- **To multiply $ b\le d $ by $ a $.** If $ a $ were negative this would flip to $ ab \ge ad $ and the chain would break.
+- **To multiply $ a< c $ by $ d $.** Likewise.
+
+Dropping positivity genuinely destroys the theorem. Take
+
+$$$
+(a,b) = (-1,-1), \qquad (c,d) = (1,1) .
+$$$
+
+Both satisfy $ xy = 1 $, and $ a = -1 < 1 = c $ — yet $ b = -1 < 1 = d $, the opposite of what the theorem claims. The two points sit on *different branches* of the hyperbola, and no monotonicity statement can bridge them.
+
+Restricting to the third quadrant restores the result: with $ (a,b)=(-2,-\tfrac12) $ and $ (c,d)=(-\tfrac12,-2) $ we have $ a< c $ and $ b>d $, as checked. So the real hypothesis is not “positive” but “both on the same branch”; positivity is the simplest way to guarantee it.
+
+## Remark — What the Statement Says Geometrically
+
+Every pair with $ ab=1 $, $ a>0 $ is a point on the graph of
+
+$$$
+y = \frac{1}{x}, \qquad x > 0 ,
+$$$
+
+and the theorem is exactly the assertion that this function is **strictly decreasing**. Read that way, the algebra is a hand-verification of a fact one can also get from calculus — $ \frac{d}{dx}x^{-1} = -x^{-2} < 0 $ for all $ x\ne0 $ — though the derivative argument is heavier machinery and, notably, its conclusion is *local*: a negative derivative on a connected interval gives decrease, but $ (-\infty,0)\cup(0,\infty) $ is not connected, which is precisely why the two-branch counterexample above is possible. The elementary proof and the calculus proof fail in the same place, for the same reason.
+
+Two further readings of the same picture:
+
+- $ x\mapsto 1/x $ is an **involution** on $ (0,\infty) $: applying it twice returns you to where you started. Combined with strict decrease, this makes it an order-reversing bijection of $ (0,\infty) $ with itself, exchanging $ (0,1) $ and $ (1,\infty) $ and fixing only $ x=1 $.
+- The constraint $ ab=1 $ with $ a,b>0 $ forces $ a+b\ge2 $, with equality only at $ a=b=1 $ — the AM–GM inequality, confirmed numerically. So among all pairs on this branch, $ (1,1) $ is the one closest to the origin along the line $ x=y $.
+
+## Remark — How Far the Result Generalises
+
+The value $ 1 $ plays no role. If $ ab = cd = k $ for a fixed $ k>0 $ and all four numbers are positive, then $ b = k/a $ and $ d = k/c $, and the identical argument gives $ a< c \Rightarrow b>d $ — verified for $ k = \tfrac14, 1, 7, 100 $.
+
+For $ k<0 $ the conclusion **reverses**. With $ ab=cd=-1 $ and $ a,c>0 $ we have $ b=-1/a $ and $ d=-1/c $, so $ a< c $ gives $ 1/a>1/c $ and hence $ b< d $. Checked at $ a=0.3 $, $ c=4 $: the inequality flips, exactly as the extra minus sign predicts.
+
+More generally, the whole phenomenon is that of a **strictly monotone constraint**. If $ f $ is any strictly increasing function and $ a,b $ are tied by $ f(a) + g(b) = \text{const} $ with $ g $ strictly increasing, then raising $ a $ must lower $ b $. Writing $ ab=1 $ as $ \ln a + \ln b = 0 $ puts this problem in exactly that form, and the hyperbola becomes a straight line of slope $ -1 $ in log coordinates — which is perhaps the clearest way to see why the trade-off is forced.

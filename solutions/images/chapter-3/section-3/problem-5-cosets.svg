@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 660" width="720" height="660" font-family="Georgia, serif">
+  <defs>
+    <marker id="d1" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#3b5b9b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="660" fill="#ffffff"/>
+
+  <!-- band 1 -->
+  <rect x="18" y="14" width="684" height="76" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">TO PROVE</text>
+  <text x="400" y="33" font-size="13.5" fill="#1f3a68" text-anchor="middle">if r is rational and x is irrational, then r + x is irrational</text>
+  <line x1="34" y1="44" x2="686" y2="44" stroke="#c3cee4"/>
+  <text x="34" y="63" font-size="11.5" fill="#9b2c2c" font-weight="bold">SUPPOSE OTHERWISE</text>
+  <text x="400" y="63" font-size="13.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">r + x is rational &#8212; call it s</text>
+  <text x="400" y="81" font-size="11" fill="#555" text-anchor="middle" font-style="italic">now two of the three quantities are rational, and the third is forced</text>
+
+  <!-- band 2: the chain -->
+  <rect x="18" y="100" width="684" height="150" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="120" font-size="11.5" fill="#1f6b34" font-weight="bold">THE CHAIN &#8212; one line of algebra, one closure fact</text>
+
+  <rect x="46" y="134" width="180" height="46" rx="5" fill="#ffffff" stroke="#9bb8a5"/>
+  <text x="136" y="152" font-size="12.5" fill="#333" text-anchor="middle">r + x = s</text>
+  <text x="136" y="170" font-size="10.5" fill="#666" text-anchor="middle" font-style="italic">r, s both rational</text>
+
+  <path d="M230,157 L268,157" fill="none" stroke="#3b5b9b" stroke-width="1.4" marker-end="url(#d1)"/>
+  <text x="249" y="149" font-size="9.5" fill="#3b5b9b" text-anchor="middle">rearrange</text>
+
+  <rect x="272" y="134" width="180" height="46" rx="5" fill="#ffffff" stroke="#9bb8a5"/>
+  <text x="362" y="152" font-size="12.5" fill="#333" text-anchor="middle">x = s &#8722; r</text>
+  <text x="362" y="170" font-size="10.5" fill="#666" text-anchor="middle" font-style="italic">a difference of rationals</text>
+
+  <path d="M456,157 L494,157" fill="none" stroke="#3b5b9b" stroke-width="1.4" marker-end="url(#d1)"/>
+  <text x="475" y="149" font-size="9.5" fill="#3b5b9b" text-anchor="middle">closure</text>
+
+  <rect x="498" y="134" width="176" height="46" rx="5" fill="#fdf3f3" stroke="#9b2c2c"/>
+  <text x="586" y="152" font-size="12.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">x is rational</text>
+  <text x="586" y="170" font-size="10.5" fill="#9b2c2c" text-anchor="middle" font-style="italic">but x was irrational</text>
+
+  <text x="360" y="206" font-size="12" fill="#333" text-anchor="middle">Explicitly: if r = a/b and s = c/d with b, d nonzero, then&#160; x = s &#8722; r = (cb &#8722; ad)/(bd),&#160; a ratio of integers.</text>
+  <text x="360" y="228" font-size="12.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">A number cannot be both rational and irrational, so r + x is irrational. &#9632;</text>
+
+  <!-- band 3: coset picture -->
+  <rect x="18" y="264" width="684" height="200" rx="6" fill="#fafbfd" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="284" font-size="11.5" fill="#3b5b9b" font-weight="bold">WHY IT IS REALLY OBVIOUS &#8212; adding an irrational slides &#8474; clean off itself</text>
+  <text x="34" y="306" font-size="11.5" fill="#333">The rationals form a group under addition. The theorem says the shifted copy&#160; x + &#8474;&#160; misses &#8474; entirely &#8212; which is just</text>
+  <text x="34" y="322" font-size="11.5" fill="#333">the statement that two cosets are either identical or disjoint, and x + &#8474; = &#8474; would force x itself to be rational.</text>
+
+  <text x="34" y="352" font-size="11" fill="#3b5b9b" font-weight="bold">&#8474;&#160; (upper ticks)</text>
+  <text x="34" y="370" font-size="11" fill="#1f6b34" font-weight="bold">&#8730;2 + &#8474;&#160; (lower ticks)</text>
+  <text x="686" y="352" font-size="10.5" fill="#555" text-anchor="end" font-style="italic">shown for denominators up to 3</text>
+  <text x="686" y="370" font-size="10.5" fill="#555" text-anchor="end" font-style="italic">no tick ever lands on a tick</text>
+
+  <line x1="60.0" y1="404" x2="680.0" y2="404" stroke="#555" stroke-width="1.3"/>
+  <line x1="60.0" y1="392" x2="60.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="101.3" y1="392" x2="101.3" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="122.0" y1="392" x2="122.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="142.7" y1="392" x2="142.7" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="184.0" y1="392" x2="184.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="225.3" y1="392" x2="225.3" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="246.0" y1="392" x2="246.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="266.7" y1="392" x2="266.7" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="308.0" y1="392" x2="308.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="349.3" y1="392" x2="349.3" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="370.0" y1="392" x2="370.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="390.7" y1="392" x2="390.7" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="432.0" y1="392" x2="432.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="473.3" y1="392" x2="473.3" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="494.0" y1="392" x2="494.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="514.7" y1="392" x2="514.7" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="556.0" y1="392" x2="556.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="597.3" y1="392" x2="597.3" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="618.0" y1="392" x2="618.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="638.7" y1="392" x2="638.7" y2="404" stroke="#3b5b9b" stroke-width="1.3"/><line x1="680.0" y1="392" x2="680.0" y2="404" stroke="#3b5b9b" stroke-width="1.3"/>
+  <line x1="235.4" y1="404" x2="235.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="276.7" y1="404" x2="276.7" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="297.4" y1="404" x2="297.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="318.0" y1="404" x2="318.0" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="359.4" y1="404" x2="359.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="400.7" y1="404" x2="400.7" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="421.4" y1="404" x2="421.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="442.0" y1="404" x2="442.0" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="483.4" y1="404" x2="483.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="524.7" y1="404" x2="524.7" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="545.4" y1="404" x2="545.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="566.0" y1="404" x2="566.0" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="607.4" y1="404" x2="607.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="648.7" y1="404" x2="648.7" y2="416" stroke="#1f6b34" stroke-width="1.3"/><line x1="669.4" y1="404" x2="669.4" y2="416" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="60.0" y="434" font-size="10" fill="#666" text-anchor="middle">0</text><text x="184.0" y="434" font-size="10" fill="#666" text-anchor="middle">1</text><text x="308.0" y="434" font-size="10" fill="#666" text-anchor="middle">2</text><text x="432.0" y="434" font-size="10" fill="#666" text-anchor="middle">3</text><text x="556.0" y="434" font-size="10" fill="#666" text-anchor="middle">4</text><text x="680.0" y="434" font-size="10" fill="#666" text-anchor="middle">5</text>
+  <text x="360" y="454" font-size="11" fill="#555" text-anchor="middle" font-style="italic">every green mark is a rational plus &#8730;2, so by the theorem every one of them is irrational &#8212; the two rows can never coincide</text>
+
+  <!-- band 4: siblings -->
+  <rect x="18" y="478" width="684" height="168" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="498" font-size="11.5" fill="#b06a10" font-weight="bold">THE THREE SIBLING STATEMENTS &#8212; only one more of them is a theorem</text>
+  <g font-size="11.5">
+    <rect x="40" y="508" width="640" height="24" fill="#ffffff" stroke="#e0cba8"/>
+    <rect x="40" y="532" width="640" height="96" fill="#fffdf8" stroke="#e0cba8"/>
+    <line x1="40" y1="532" x2="680" y2="532" stroke="#d3b98e"/>
+    <line x1="40" y1="556" x2="680" y2="556" stroke="#f0e4cd"/>
+    <line x1="40" y1="580" x2="680" y2="580" stroke="#f0e4cd"/>
+    <line x1="40" y1="604" x2="680" y2="604" stroke="#f0e4cd"/>
+    <line x1="280" y1="508" x2="280" y2="628" stroke="#e0cba8"/>
+    <line x1="420" y1="508" x2="420" y2="628" stroke="#e0cba8"/>
+
+    <text x="50" y="525" fill="#7a4a08" font-weight="bold">combination</text>
+    <text x="290" y="525" fill="#7a4a08" font-weight="bold">always irrational?</text>
+    <text x="430" y="525" fill="#7a4a08" font-weight="bold">evidence</text>
+
+    <text x="50" y="549" fill="#333">rational + irrational</text>
+    <text x="290" y="549" fill="#1f6b34">yes &#8212; this problem</text>
+    <text x="430" y="549" fill="#555">&#8474; is closed under subtraction</text>
+
+    <text x="50" y="573" fill="#333">nonzero rational &#215; irrational</text>
+    <text x="290" y="573" fill="#1f6b34">yes</text>
+    <text x="430" y="573" fill="#555">&#8474;\{0} is closed under division</text>
+
+    <text x="50" y="597" fill="#333">irrational + irrational</text>
+    <text x="290" y="597" fill="#9b2c2c">no</text>
+    <text x="430" y="597" fill="#555">&#8730;2 + (&#8722;&#8730;2) = 0,&#160; but &#8730;2 + &#8730;2 = 2&#8730;2</text>
+
+    <text x="50" y="621" fill="#333">irrational &#215; irrational</text>
+    <text x="290" y="621" fill="#9b2c2c">no</text>
+    <text x="430" y="621" fill="#555">&#8730;2 &#183; &#8730;2 = 2,&#160; but &#8730;2 &#183; &#8730;3 = &#8730;6</text>
+  </g>
+  <text x="360" y="641" font-size="10.5" fill="#555" text-anchor="middle" font-style="italic">and the word &#8220;nonzero&#8221; in row two is not decoration: 0 &#215; &#8730;2 = 0, which is rational</text>
+</svg>

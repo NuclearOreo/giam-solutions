@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 636" width="720" height="636" font-family="Georgia, serif">
+  <defs>
+    <marker id="b1" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#9b2c2c"/>
+    </marker>
+    <marker id="b2" markerWidth="8" markerHeight="8" refX="6.5" refY="2.9" orient="auto">
+      <path d="M0,0 L6.5,2.9 L0,5.8 z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="636" fill="#ffffff"/>
+
+  <!-- band 1 -->
+  <rect x="18" y="14" width="684" height="76" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">TO PROVE</text>
+  <text x="380" y="33" font-size="13.5" fill="#1f3a68" text-anchor="middle">there is no N in &#8484; with x &#8804; N for every x in &#8484;</text>
+  <line x1="34" y1="44" x2="686" y2="44" stroke="#c3cee4"/>
+  <text x="34" y="63" font-size="11.5" fill="#9b2c2c" font-weight="bold">SUPPOSE OTHERWISE</text>
+  <text x="380" y="63" font-size="13.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">there is an N in &#8484; with x &#8804; N for every x in &#8484;</text>
+  <text x="380" y="81" font-size="11" fill="#555" text-anchor="middle" font-style="italic">negating &#8220;no such N&#8221; produces a concrete N to work with &#8212; that is the whole point of the method</text>
+
+  <!-- band 2: number line -->
+  <rect x="18" y="100" width="684" height="164" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.3"/>
+  <text x="34" y="120" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE ONE-STEP CONTRADICTION</text>
+
+  <line x1="70" y1="176" x2="650" y2="176" stroke="#555" stroke-width="1.4" marker-end="url(#b2)"/>
+  <line x1="70" y1="176" x2="46" y2="176" stroke="#555" stroke-width="1.4"/>
+  <text x="40" y="180" font-size="12" fill="#555" text-anchor="end">&#8230;</text>
+
+  <g stroke="#555" stroke-width="1.2">
+    <line x1="150" y1="170" x2="150" y2="182"/>
+    <line x1="260" y1="170" x2="260" y2="182"/>
+    <line x1="370" y1="168" x2="370" y2="184"/>
+    <line x1="480" y1="168" x2="480" y2="184"/>
+    <line x1="590" y1="170" x2="590" y2="182"/>
+  </g>
+  <g font-size="12.5" text-anchor="middle" fill="#333">
+    <text x="150" y="200">N &#8722; 2</text>
+    <text x="260" y="200">N &#8722; 1</text>
+    <text x="370" y="200" font-weight="bold" fill="#9b2c2c">N</text>
+    <text x="480" y="200" font-weight="bold" fill="#1f6b34">N + 1</text>
+    <text x="590" y="200">N + 2</text>
+  </g>
+
+  <circle cx="370" cy="176" r="5" fill="#9b2c2c"/>
+  <circle cx="480" cy="176" r="5" fill="#1f6b34"/>
+
+  <text x="370" y="144" font-size="11.5" fill="#9b2c2c" text-anchor="middle" font-style="italic">supposed to be the largest</text>
+  <path d="M370,148 L370,166" fill="none" stroke="#9b2c2c" stroke-width="1.2" marker-end="url(#b1)"/>
+  <text x="530" y="144" font-size="11.5" fill="#1f6b34" font-style="italic">an integer too &#8212; and bigger</text>
+  <path d="M524,148 L486,166" fill="none" stroke="#1f6b34" stroke-width="1.2"/>
+
+  <text x="360" y="228" font-size="12.5" fill="#333" text-anchor="middle">Since N + 1 is an integer, the supposition applies to it:&#160; N + 1 &#8804; N,&#160; hence&#160; 1 &#8804; 0.</text>
+  <text x="360" y="250" font-size="12.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">That is false, so no such N exists. &#9632;</text>
+
+  <!-- band 3: what is used -->
+  <rect x="18" y="276" width="684" height="88" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="296" font-size="11.5" fill="#1f6b34" font-weight="bold">EVERYTHING THE PROOF LEANS ON &#8212; only two facts</text>
+  <text x="40" y="320" font-size="12" fill="#333">1.&#160; &#8484; is closed under addition:&#160; N &#8712; &#8484;  and  1 &#8712; &#8484;&#160; force&#160; N + 1 &#8712; &#8484;.</text>
+  <text x="40" y="342" font-size="12" fill="#333">2.&#160; the order respects addition:&#160; 0 &lt; 1&#160; forces&#160; N &lt; N + 1.</text>
+  <text x="686" y="356" font-size="10.5" fill="#555" text-anchor="end" font-style="italic">drop either one and the theorem dies</text>
+
+  <!-- band 4: where a largest does exist -->
+  <rect x="18" y="378" width="684" height="176" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="398" font-size="11.5" fill="#b06a10" font-weight="bold">CHANGE ONE INGREDIENT AND A LARGEST ELEMENT APPEARS</text>
+
+  <g font-size="11.5">
+    <rect x="40" y="408" width="640" height="24" fill="#ffffff" stroke="#e0cba8"/>
+    <rect x="40" y="432" width="640" height="96" fill="#fffdf8" stroke="#e0cba8"/>
+    <line x1="40" y1="432" x2="680" y2="432" stroke="#d3b98e"/>
+    <line x1="40" y1="456" x2="680" y2="456" stroke="#f0e4cd"/>
+    <line x1="40" y1="480" x2="680" y2="480" stroke="#f0e4cd"/>
+    <line x1="40" y1="504" x2="680" y2="504" stroke="#f0e4cd"/>
+    <line x1="250" y1="408" x2="250" y2="528" stroke="#e0cba8"/>
+    <line x1="380" y1="408" x2="380" y2="528" stroke="#e0cba8"/>
+
+    <text x="50" y="425" fill="#7a4a08" font-weight="bold">setting</text>
+    <text x="260" y="425" fill="#7a4a08" font-weight="bold">largest element?</text>
+    <text x="390" y="425" fill="#7a4a08" font-weight="bold">which ingredient failed</text>
+
+    <text x="50" y="449" fill="#333">the integers &#8484;</text>
+    <text x="260" y="449" fill="#9b2c2c">none</text>
+    <text x="390" y="449" fill="#555">&#8212; both hold, so the proof runs</text>
+
+    <text x="50" y="473" fill="#333">any finite non-empty set of integers</text>
+    <text x="260" y="473" fill="#1f6b34">yes</text>
+    <text x="390" y="473" fill="#555">closure: N + 1 need not be in the set</text>
+
+    <text x="50" y="497" fill="#333">a computer&#8217;s 64-bit integer type</text>
+    <text x="260" y="497" fill="#1f6b34">yes, 2&#8310;&#179; &#8722; 1</text>
+    <text x="390" y="497" fill="#555">closure: max + 1 wraps to &#8722;2&#8310;&#179;</text>
+
+    <text x="50" y="521" fill="#333">the extended reals &#8477; &#8746; {&#177;&#8734;}</text>
+    <text x="260" y="521" fill="#1f6b34">yes, +&#8734;</text>
+    <text x="390" y="521" fill="#555">order: &#8734; + 1 = &#8734;, so it is not bigger</text>
+  </g>
+  <text x="360" y="546" font-size="10.5" fill="#555" text-anchor="middle" font-style="italic">wrap-around confirmed: in 64-bit arithmetic 9223372036854775807 + 1 evaluates to &#8722;9223372036854775808</text>
+
+  <!-- band 5 -->
+  <rect x="18" y="566" width="684" height="56" rx="6" fill="#f7f7f9" stroke="#888" stroke-width="1.1"/>
+  <text x="34" y="585" font-size="11" fill="#3b5b9b" font-weight="bold">A distinction the proof does not settle:</text>
+  <text x="34" y="603" font-size="11.5" fill="#333">&#8220;has no largest element&#8221; is weaker than &#8220;is unbounded&#8221;. The rationals q with q&#178; &lt; 2 have no largest element either,</text>
+  <text x="34" y="617" font-size="11.5" fill="#333">yet every one of them is below 2. Showing &#8484; itself is unbounded takes a further axiom.</text>
+</svg>

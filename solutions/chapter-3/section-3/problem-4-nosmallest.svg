@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 640" width="720" height="640" font-family="Georgia, serif">
+  <defs>
+    <marker id="c1" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#9b2c2c"/>
+    </marker>
+    <marker id="c2" markerWidth="8" markerHeight="8" refX="6.5" refY="2.9" orient="auto">
+      <path d="M0,0 L6.5,2.9 L0,5.8 z" fill="#555"/>
+    </marker>
+    <marker id="c3" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#1f6b34"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="720" height="640" fill="#ffffff"/>
+
+  <!-- band 1 -->
+  <rect x="18" y="14" width="684" height="76" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">TO PROVE</text>
+  <text x="390" y="33" font-size="13.5" fill="#1f3a68" text-anchor="middle">there is no &#949; &gt; 0 with &#949; &#8804; x for every real x &gt; 0</text>
+  <line x1="34" y1="44" x2="686" y2="44" stroke="#c3cee4"/>
+  <text x="34" y="63" font-size="11.5" fill="#9b2c2c" font-weight="bold">SUPPOSE OTHERWISE</text>
+  <text x="390" y="63" font-size="13.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">there is an &#949; &gt; 0 with &#949; &#8804; x for every real x &gt; 0</text>
+  <text x="390" y="81" font-size="11" fill="#555" text-anchor="middle" font-style="italic">and then halve it</text>
+
+  <!-- band 2: number line -->
+  <rect x="18" y="100" width="684" height="192" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.3"/>
+  <text x="34" y="120" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE HALVING CASCADE &#8212; every step is still positive, and still smaller</text>
+
+  <line x1="80" y1="192" x2="680" y2="192" stroke="#555" stroke-width="1.4" marker-end="url(#c2)"/>
+  <line x1="80" y1="184" x2="80" y2="200" stroke="#333" stroke-width="2"/>
+  <text x="80" y="216" font-size="12.5" fill="#333" text-anchor="middle" font-weight="bold">0</text>
+  <text x="80" y="232" font-size="10" fill="#555" text-anchor="middle" font-style="italic">never reached</text>
+
+  <g stroke="#9b2c2c" stroke-width="1.2">
+    <line x1="620" y1="184" x2="620" y2="200"/>
+  </g>
+  <circle cx="620" cy="192" r="5" fill="#9b2c2c"/>
+  <text x="620" y="216" font-size="12.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">&#949;</text>
+  <text x="620" y="164" font-size="11" fill="#9b2c2c" text-anchor="middle" font-style="italic">supposed smallest</text>
+  <path d="M620,168 L620,182" fill="none" stroke="#9b2c2c" stroke-width="1.1" marker-end="url(#c1)"/>
+
+  <circle cx="350" cy="192" r="5" fill="#1f6b34"/>
+  <line x1="350" y1="184" x2="350" y2="200" stroke="#1f6b34" stroke-width="1.2"/>
+  <text x="350" y="216" font-size="12.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">&#949;/2</text>
+  <text x="350" y="164" font-size="11" fill="#1f6b34" text-anchor="middle" font-style="italic">positive, and smaller</text>
+  <path d="M350,168 L350,182" fill="none" stroke="#1f6b34" stroke-width="1.1" marker-end="url(#c3)"/>
+
+  <g fill="#7a9c86">
+    <circle cx="215" cy="192" r="3.4"/>
+    <circle cx="147" cy="192" r="3"/>
+    <circle cx="114" cy="192" r="2.6"/>
+    <circle cx="97" cy="192" r="2.2"/>
+    <circle cx="88" cy="192" r="1.8"/>
+    <circle cx="84" cy="192" r="1.5"/>
+  </g>
+  <text x="215" y="180" font-size="10" fill="#5c7d68" text-anchor="middle">&#949;/4</text>
+  <text x="147" y="180" font-size="9.5" fill="#5c7d68" text-anchor="middle">&#949;/8</text>
+  <text x="112" y="180" font-size="9" fill="#5c7d68" text-anchor="middle">&#8230;</text>
+
+  <text x="360" y="256" font-size="12.5" fill="#333" text-anchor="middle">&#949; &gt; 0 gives &#949;/2 &gt; 0, so the supposition applies to &#949;/2:&#160; &#949; &#8804; &#949;/2,&#160; hence&#160; 2&#949; &#8804; &#949;,&#160; hence&#160; &#949; &#8804; 0.</text>
+  <text x="360" y="278" font-size="12.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">But &#949; &gt; 0. So no such &#949; exists. &#9632;</text>
+
+  <!-- band 3 -->
+  <rect x="18" y="304" width="684" height="86" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="324" font-size="11.5" fill="#1f6b34" font-weight="bold">WHAT MAKES &#949;/2 A LEGAL WITNESS &#8212; again just two facts</text>
+  <text x="40" y="347" font-size="12" fill="#333">1.&#160; &#8477; is closed under halving, and halving a positive number keeps it positive.</text>
+  <text x="40" y="369" font-size="12" fill="#333">2.&#160; 1 &lt; 2, so dividing by 2 strictly decreases:&#160; &#949;/2 &lt; &#949;.</text>
+  <text x="686" y="383" font-size="10.5" fill="#555" text-anchor="end" font-style="italic">the mirror image of N + 1 in the previous problem</text>
+
+  <!-- band 4 -->
+  <rect x="18" y="404" width="684" height="152" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="424" font-size="11.5" fill="#b06a10" font-weight="bold">WHERE A SMALLEST POSITIVE ELEMENT DOES EXIST</text>
+  <g font-size="11.5">
+    <rect x="40" y="434" width="640" height="24" fill="#ffffff" stroke="#e0cba8"/>
+    <rect x="40" y="458" width="640" height="72" fill="#fffdf8" stroke="#e0cba8"/>
+    <line x1="40" y1="458" x2="680" y2="458" stroke="#d3b98e"/>
+    <line x1="40" y1="482" x2="680" y2="482" stroke="#f0e4cd"/>
+    <line x1="40" y1="506" x2="680" y2="506" stroke="#f0e4cd"/>
+    <line x1="270" y1="434" x2="270" y2="530" stroke="#e0cba8"/>
+    <line x1="410" y1="434" x2="410" y2="530" stroke="#e0cba8"/>
+
+    <text x="50" y="451" fill="#7a4a08" font-weight="bold">the positive elements of</text>
+    <text x="280" y="451" fill="#7a4a08" font-weight="bold">smallest one?</text>
+    <text x="420" y="451" fill="#7a4a08" font-weight="bold">what happens to &#949;/2</text>
+
+    <text x="50" y="475" fill="#333">&#8477;, and also &#8474;</text>
+    <text x="280" y="475" fill="#9b2c2c">none</text>
+    <text x="420" y="475" fill="#555">stays inside, stays positive</text>
+
+    <text x="50" y="499" fill="#333">&#8484; &#8212; the positive integers</text>
+    <text x="280" y="499" fill="#1f6b34">yes, it is 1</text>
+    <text x="420" y="499" fill="#555">leaves the set: &#189; is not an integer</text>
+
+    <text x="50" y="523" fill="#333">64-bit floating point numbers</text>
+    <text x="280" y="523" fill="#1f6b34">yes, 5&#215;10&#8315;&#179;&#178;&#8308;</text>
+    <text x="420" y="523" fill="#555">rounds to 0, so it is not positive</text>
+  </g>
+  <text x="360" y="548" font-size="10.5" fill="#555" text-anchor="middle" font-style="italic">confirmed: halving 1.0 repeatedly in double precision reaches 0 after 1074 steps, the last non-zero value being 5&#215;10&#8315;&#179;&#178;&#8308;</text>
+
+  <!-- band 5 -->
+  <rect x="18" y="570" width="684" height="56" rx="6" fill="#f7f7f9" stroke="#888" stroke-width="1.1"/>
+  <text x="34" y="589" font-size="11" fill="#3b5b9b" font-weight="bold">The set does have a floor &#8212; it just does not contain it:</text>
+  <text x="34" y="607" font-size="11.5" fill="#333">0 is a lower bound for the positive reals, and the greatest one, so inf (0,&#8734;) = 0. But 0 is not positive, so it is not</text>
+  <text x="34" y="621" font-size="11.5" fill="#333">a minimum. An infimum is a property of the surrounding line; a minimum has to be a member of the set.</text>
+</svg>

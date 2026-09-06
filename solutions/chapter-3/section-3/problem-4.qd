@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 3.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 4
+
+## Problem
+
+Prove (by contradiction) that there is no smallest positive real number.
+
+## Formalising the Claim
+
+“$ \varepsilon $ is the smallest positive real” means $ \varepsilon $ is itself positive and no positive real is below it. Writing $ \mathbb{R}^{+} $ for the set of positive reals, the theorem is
+
+$$$
+\lnot\,\Big(\exists\,\varepsilon\in\mathbb{R}^{+},\;\forall x\in\mathbb{R}^{+},\; \varepsilon \le x\Big),
+$$$
+
+so the supposition to be contradicted is
+
+$$$
+\exists\,\varepsilon\in\mathbb{R}^{+},\;\forall x\in\mathbb{R}^{+},\; \varepsilon \le x .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{No such } \varepsilon \text{ exists: } \varepsilon/2 \text{ is a positive real below } \varepsilon .\;}
+$$$
+
+## Proof
+
+> **Theorem.** There is no smallest positive real number.
+>
+> **Proof.** Suppose, to the contrary, that there is one; call it $ \varepsilon $. Then $ \varepsilon > 0 $ and
+>
+> $ \forall x\in\mathbb{R},\quad x > 0 \implies \varepsilon \le x . $
+>
+> Consider $ \varepsilon/2 $. Since $ \mathbb{R} $ is closed under division by the non-zero real $ 2 $, this is a real number, and since $ \varepsilon > 0 $ and $ 2 > 0 $ we have $ \varepsilon/2 > 0 $. So $ \varepsilon/2 $ is a legitimate choice for $ x $, giving
+>
+> $ \varepsilon \le \frac{\varepsilon}{2} . $
+>
+> Multiplying both sides by $ 2 $ (a positive number, so the inequality is preserved) yields $ 2\varepsilon \le \varepsilon $, and subtracting $ \varepsilon $ from both sides gives $ \varepsilon \le 0 $.
+>
+> This contradicts $ \varepsilon > 0 $. Hence no smallest positive real number exists. $ \blacksquare $
+
+## The Picture
+
+!(96%)[The supposed smallest positive real and the halving cascade beneath it](problem-4-nosmallest.svg "A diagram in five bands. The first states what is to be proved — there is no epsilon greater than zero with epsilon at most x for every real x greater than zero — then the supposition otherwise, that such an epsilon exists, and then: and then halve it. The second band shows a number line with 0 at the left marked 'never reached' and epsilon at the right marked 'supposed smallest'; halfway between sits epsilon over 2, marked 'positive, and smaller', followed by progressively smaller dots at epsilon over 4, epsilon over 8 and beyond, piling up towards 0 without arriving. Below it: epsilon greater than zero gives epsilon over 2 greater than zero, so the supposition applies to epsilon over 2, giving epsilon at most epsilon over 2, hence 2 epsilon at most epsilon, hence epsilon at most 0; but epsilon is greater than zero, so no such epsilon exists. The third band lists what makes epsilon over 2 a legal witness, again just two facts: the reals are closed under halving and halving a positive number keeps it positive; and 1 is less than 2, so dividing by 2 strictly decreases. It is the mirror image of N plus 1 in the previous problem. The fourth band shows where a smallest positive element does exist: for the positive reals and also the positive rationals there is none, since epsilon over 2 stays inside and stays positive; for the positive integers the smallest is 1, because epsilon over 2 leaves the set as one half is not an integer; and for 64-bit floating point numbers there is a smallest, 5 times 10 to the minus 324, because epsilon over 2 rounds to 0 and so is not positive. Confirmed: halving 1.0 repeatedly in double precision reaches 0 after 1074 steps, the last non-zero value being 5 times 10 to the minus 324. The fifth band notes that the set does have a floor it does not contain: 0 is a lower bound for the positive reals and the greatest one, so the infimum of the open interval from 0 to infinity is 0, but 0 is not positive so it is not a minimum. An infimum is a property of the surrounding line; a minimum has to be a member of the set.")
+
+## Remark — The Mirror of Problem 3, With One Change
+
+The two problems have the same skeleton. Suppose the extreme element exists, produce a witness that beats it, collide. Only the witness differs:
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{no largest integer} & \textbf{no smallest positive real} \\ \hline
+\text{supposed extreme} & N & \varepsilon \\
+\text{witness} & N+1 & \varepsilon/2 \\
+\text{operation used} & \text{add } 1 & \text{divide by } 2 \\
+\text{why it stays in the set} & \mathbb{Z} \text{ closed under } + & \mathbb{R}^{+} \text{ closed under } \div 2 \\
+\text{why it beats the extreme} & 0 < 1 & 1 < 2
+\end{array}
+$$$
+
+The change of operation is not cosmetic. Adding $ 1 $ would be useless here — $ \varepsilon + 1 $ is *bigger*, and $ \varepsilon - 1 $ may well be negative and so outside $ \mathbb{R}^{+} $. What is needed is an operation that shrinks a positive number while keeping it positive, and multiplication by a factor strictly between $ 0 $ and $ 1 $ is exactly that. Halving is the obvious choice, but $ \varepsilon/3 $, $ \varepsilon/\pi $, or $ \dfrac{\varepsilon}{1+\varepsilon} $ all serve.
+
+One tempting witness that does **not** always work is $ \varepsilon^2 $. It is smaller than $ \varepsilon $ only when $ \varepsilon < 1 $: for $ \varepsilon = 2 $ we get $ \varepsilon^2 = 4 $, which is larger. A witness has to work for *every* $ \varepsilon $ the supposition could hand you, not just the small ones you were picturing.
+
+## Remark — Where the Two Problems Come Apart
+
+Problem 3 and this one look symmetric, but the underlying number systems are not. The *positive integers do have a smallest element* — it is $ 1 $ — and that is not an accident, it is the **well-ordering principle**: every non-empty set of positive integers has a least element.
+
+So this pair of exercises quietly marks the boundary between the discrete and the continuous:
+
+- $ \mathbb{Z} $ has no largest element, and no smallest either, but every non-empty subset bounded below *does* have a minimum.
+- $ \mathbb{R}^{+} $ has no smallest element, and no non-empty open subset has one either.
+
+The obstruction in $ \mathbb{Z} $ is precisely that $ \varepsilon/2 $ escapes the set: $ 1/2 $ is not an integer, so the halving argument dies at the first step. Between consecutive integers there is nothing; between any two distinct reals there are infinitely many more. That density is what this proof is really detecting.
+
+## Remark — Infimum Versus Minimum
+
+The set $ \mathbb{R}^{+} = (0,\infty) $ is bounded below — every element exceeds $ 0 $ — so this is another instance of the distinction raised in Problem 3, now on the other side:
+
+$$$
+\inf\,(0,\infty) = 0, \qquad\text{but}\qquad \min\,(0,\infty) \text{ does not exist.}
+$$$
+
+The infimum is the greatest lower bound, and it need not belong to the set; the minimum must. Here $ 0 $ is a perfectly good greatest lower bound, and the entire content of the theorem is that it is not attained.
+
+This is why the completeness axiom for $ \mathbb{R} $ is stated in terms of suprema and infima rather than maxima and minima. Had it been phrased with minima it would be false — $ (0,\infty) $ is non-empty and bounded below, yet has no least element.
+
+## Remark — Why Analysis Is Written With "For All $ \varepsilon > 0 $"
+
+This theorem is the reason every definition in analysis is phrased with a universally quantified $ \varepsilon $. The definition of a limit reads
+
+$$$
+\forall \varepsilon > 0,\;\exists \delta > 0,\;\forall x,\; 0 < |x-a| < \delta \implies |f(x)-L| < \varepsilon ,
+$$$
+
+and one might reasonably ask why it is not simpler to say “$ \lvert f(x)-L\rvert $ is smaller than the smallest positive real”. The answer is that there is no such thing. Since no single $ \varepsilon $ is small enough to be definitive, the definition has to quantify over all of them, and the whole $ \varepsilon $–$ \delta $ apparatus follows from that.
+
+The same theorem also underwrites a standard proof move: **if $ 0 \le a \le \varepsilon $ for every $ \varepsilon > 0 $, then $ a = 0 $.** If $ a $ were positive, taking $ \varepsilon = a/2 $ gives $ a \le a/2 $, the same contradiction as above. Innumerable analysis proofs end this way.
+
+## Remark — On a Computer There Is a Smallest Positive Number
+
+The parallel with the machine-integer remark in Problem 3 is exact. In IEEE 754 double precision there *is* a smallest positive value: the subnormal $ 5\times10^{-324} $, roughly $ 2^{-1074} $. Halving it does not produce a smaller positive number, it produces $ 0 $ — confirmed by running it, and confirmed too by halving $ 1.0 $ repeatedly, which reaches $ 0 $ after exactly $ 1074 $ steps.
+
+So on a machine, both this theorem and the previous one are false, and for the same structural reason in each case: the representable set is finite, and the witness the proof constructs falls out of it. `int64` fails to be closed under $ N+1 $, which wraps around; the doubles fail to be closed under $ \varepsilon/2 $, which flushes to zero. The theorems are statements about $ \mathbb{Z} $ and $ \mathbb{R} $, not about their finite approximations — a distinction with real consequences for anyone writing `while (x > 0) x /= 2;`.

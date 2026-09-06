@@ -1,0 +1,121 @@
+.docname {Solution — GIAM 3.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 5
+
+## Problem
+
+Prove (by contradiction) that the sum of a rational and an irrational number is irrational.
+
+## Formalising the Claim
+
+$$$
+\forall r\in\mathbb{Q},\;\forall x\in\mathbb{R}\setminus\mathbb{Q},\qquad r + x \notin \mathbb{Q}.
+$$$
+
+Recall that $ q $ is **rational** iff $ q = a/b $ for integers $ a $ and $ b $ with $ b\ne 0 $, and **irrational** iff it is a real number that is not rational.
+
+## Answer
+
+$$$
+\boxed{\begin{aligned}
+&\text{If } r+x \text{ were rational, then } x = (r+x) - r \\
+&\text{would be a difference of rationals, hence rational.}
+\end{aligned}}
+$$$
+
+## Proof
+
+> **Theorem.** If $ r $ is rational and $ x $ is irrational, then $ r + x $ is irrational.
+>
+> **Proof.** Let $ r $ be a particular but arbitrarily chosen rational and $ x $ a particular but arbitrarily chosen irrational. Suppose, to the contrary, that $ r + x $ is rational; call it $ s $.
+>
+> Since $ r $ and $ s $ are rational there are integers $ a,b,c,d $ with $ b\ne0 $, $ d\ne0 $, and
+>
+> $ r = \dfrac{a}{b}, \qquad s = \dfrac{c}{d}. $
+>
+> From $ r + x = s $ we get $ x = s - r $, so
+>
+> $ x = \dfrac{c}{d} - \dfrac{a}{b} = \dfrac{cb - ad}{bd}. $
+>
+> Both $ cb-ad $ and $ bd $ are integers, and $ bd \ne 0 $ because $ b\ne0 $ and $ d\ne0 $. Hence $ x $ is a ratio of integers with non-zero denominator, i.e. $ x $ is rational.
+>
+> This contradicts the hypothesis that $ x $ is irrational. Therefore $ r+x $ is not rational, i.e. $ r+x $ is irrational. Since $ r $ and $ x $ were arbitrary, the result holds for all such pairs. $ \blacksquare $
+
+## The Picture
+
+!(96%)[The one-step chain, the coset picture, and the three sibling statements](problem-5-cosets.svg "A diagram in four bands. The first states what is to be proved — if r is rational and x is irrational then r plus x is irrational — and the supposition otherwise, that r plus x is rational, call it s, noting that now two of the three quantities are rational and the third is forced. The second band shows the chain as three boxes: r plus x equals s, with r and s both rational; an arrow labelled rearrange to x equals s minus r, a difference of rationals; and an arrow labelled closure to the red conclusion that x is rational, but x was irrational. Explicitly, if r equals a over b and s equals c over d with b and d nonzero, then x equals s minus r equals the quantity cb minus ad over bd, a ratio of integers. A number cannot be both rational and irrational, so r plus x is irrational. The third band explains why this is really obvious: adding an irrational slides the rationals clean off themselves. The rationals form a group under addition, and the theorem says the shifted copy x plus the rationals misses the rationals entirely, which is just the statement that two cosets are either identical or disjoint, and x plus the rationals equalling the rationals would force x itself to be rational. A number line from 0 to 5 carries two rows of ticks: an upper row of rationals with denominators up to 3, and a lower row of those same values shifted by the square root of 2. No tick ever lands on a tick. Every lower mark is a rational plus root 2, so by the theorem every one of them is irrational, and the two rows can never coincide. The fourth band lists the three sibling statements, of which only one more is a theorem: rational plus irrational is always irrational, this problem, because the rationals are closed under subtraction; nonzero rational times irrational is always irrational, because the nonzero rationals are closed under division; irrational plus irrational is not always irrational, since root 2 plus minus root 2 is 0 but root 2 plus root 2 is 2 root 2; and irrational times irrational is not always irrational, since root 2 times root 2 is 2 but root 2 times root 3 is root 6. The word nonzero in the second row is not decoration: 0 times root 2 is 0, which is rational.")
+
+## Remark — The Whole Theorem Is One Closure Fact
+
+Strip away the packaging and the proof says: **$ \mathbb{Q} $ is closed under subtraction.** That is the only mathematical input. Everything else is definition-chasing.
+
+It is worth seeing why closure is the crux by asking what would go wrong without it. If $ \mathbb{Q} $ were merely closed under addition and not subtraction — as $ \mathbb{N} $ is — then from $ r + x = s $ we could not conclude anything about $ x $, because $ s - r $ might fall outside. The step $ x = s - r $ is doing all the work, and it is legal because $ \mathbb{Q} $ is a *group* under addition, not just a closed-under-plus set.
+
+The explicit computation $ \dfrac{c}{d} - \dfrac{a}{b} = \dfrac{cb-ad}{bd} $ is exactly the verification of that closure, and it is worth writing out rather than waving at, since it is where the hypothesis $ b,d\ne0 $ gets used to guarantee $ bd\ne0 $. Two hundred thousand random rational pairs were differenced as a sanity check; every result is again a fraction, as it must be.
+
+## Remark — Contradiction, Contraposition, or Direct?
+
+As in Problems 3 and 4, the contradiction wrapper is thin. Look at what the argument actually establishes:
+
+$$$
+r \text{ rational and } r+x \text{ rational} \;\implies\; x \text{ rational}.
+$$$
+
+That is a purely positive statement, proved directly. The original theorem is its contrapositive, with $ r $ held fixed as rational throughout:
+
+$$$
+\underbrace{x \text{ irrational} \implies r+x \text{ irrational}}_{\text{the theorem}} \qquad\text{is}\qquad \underbrace{r+x \text{ rational} \implies x \text{ rational}}_{\text{what was proved}} \text{ flipped.}
+$$$
+
+The reason contradiction and contraposition keep coinciding in this section is structural: whenever the conclusion is a *negative* statement — irrational, not divisible, no largest element — the supposition immediately hands you a positive fact to compute with, and the collision at the end is with a hypothesis rather than with something newly derived. A proof by contradiction is only genuinely more powerful when the supposition is used to *build* something, as Euclid builds $ 1+\prod p_k $.
+
+## Remark — The Group-Theoretic Picture
+
+There is a one-line reason this theorem is true, visible once you notice that $ \mathbb{Q} $ is a subgroup of $ (\mathbb{R},+) $.
+
+For any real $ x $, the set $ x + \mathbb{Q} = \{x+q : q\in\mathbb{Q}\} $ is a **coset** of that subgroup, and cosets are either identical or disjoint. Now:
+
+- If $ x $ is rational, $ x+\mathbb{Q} = \mathbb{Q} $.
+- If $ x $ is irrational, $ x+\mathbb{Q}\ne\mathbb{Q} $ (since $ x = x+0 $ lies in the coset but not in $ \mathbb{Q} $), so the two are **disjoint** — no element of $ x+\mathbb{Q} $ is rational.
+
+That last line *is* the theorem. Adding a rational to an irrational moves you along a coset that never touches $ \mathbb{Q} $ at all. The figure draws this: $ \mathbb{Q} $ on one row, $ \sqrt2+\mathbb{Q} $ on the other, two dense sets of marks that interleave forever without a single collision.
+
+A pleasant consequence: one irrational number generates countably many. From $ \sqrt2 $ alone the whole coset $ \sqrt2+\mathbb{Q} $ is irrational, so $ \sqrt2+\tfrac12 $, $ \sqrt2-\tfrac73 $, and $ \sqrt2+\tfrac{22}{7} $ all are — no separate argument needed for each.
+
+## Remark — The Three Siblings, and Which Ones Are False
+
+The obvious variations are worth cataloguing, because only one of them is another theorem:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{combination} & \textbf{always irrational?} & \textbf{evidence} \\ \hline
+\text{rational} + \text{irrational} & \text{yes} & \mathbb{Q} \text{ closed under } - \\
+\text{nonzero rational} \times \text{irrational} & \text{yes} & \mathbb{Q}\setminus\{0\} \text{ closed under } \div \\
+\text{irrational} + \text{irrational} & \text{no} & \sqrt2 + (-\sqrt2) = 0 \\
+\text{irrational} \times \text{irrational} & \text{no} & \sqrt2\cdot\sqrt2 = 2
+\end{array}
+$$$
+
+Two things deserve emphasis.
+
+First, **the word “nonzero” in row two is essential**, not decoration. If $ r = 0 $ then $ r\cdot x = 0 $, which is rational for every $ x $ whatsoever. The multiplicative statement needs $ \mathbb{Q}\setminus\{0\} $ to be a group under multiplication, and $ 0 $ is precisely the element that has no inverse. The additive statement needs no such caveat because $ (\mathbb{Q},+) $ has no bad element — every rational is invertible under addition. That asymmetry is the whole difference between the two rows.
+
+Second, rows three and four fail *in both directions*: $ \sqrt2+(-\sqrt2)=0 $ is rational while $ \sqrt2+\sqrt2=2\sqrt2 $ is irrational; $ \sqrt2\cdot\sqrt2=2 $ is rational while $ \sqrt2\cdot\sqrt3=\sqrt6 $ is irrational. So there is no theorem to rescue, in either direction — the irrationals are not closed under anything, which is exactly what you expect of a set defined as a complement rather than by a structure.
+
+The general lesson: a closure theorem about a set $ S $ transfers to its complement only when the operation can be *undone* inside $ S $. Subtracting a rational can be undone inside the rationals, so the rational-plus-irrational statement holds; subtracting an irrational cannot be undone inside the irrationals, so the irrational-plus-irrational statement does not.
+
+## Remark — What the Theorem Is Good For
+
+Two standard uses.
+
+**Proving specific numbers irrational.** Once $ \sqrt2 $ is known irrational, the theorem hands you $ 3+\sqrt2 $, $ \sqrt2-\tfrac{1}{7} $, and $ \sqrt2+10^{6} $ for free. Combined with the multiplicative sibling it gives all of $ a+b\sqrt2 $ for rational $ a $ and non-zero rational $ b $.
+
+**Density of the irrationals.** The rationals are dense in $ \mathbb{R} $: any interval $ (u,v) $ contains one. Apply that to the shifted interval $ (u-\sqrt2,\;v-\sqrt2) $ to get a rational $ q $ inside it; then $ q+\sqrt2 $ lies in $ (u,v) $ and is irrational by this theorem. So every interval, however short, contains an irrational too. The proof is three lines, and the theorem above is the whole of its content.

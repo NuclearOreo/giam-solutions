@@ -1,0 +1,134 @@
+.docname {Solution — GIAM 3.3 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 8
+
+## Problem
+
+A *Pythagorean triple* is a set of three natural numbers $ a $, $ b $ and $ c $ such that $ a^2+b^2=c^2 $. Prove that, in a Pythagorean triple, at least one of $ a $ and $ b $ is even. Use either a proof by contradiction or a proof by contraposition.
+
+## Answer
+
+$$$
+\boxed{\;\text{If } a,b \text{ were both odd then } a^2+b^2\equiv 2 \pmod 4 \text{, but no square is } 2 \bmod 4 .\;}
+$$$
+
+## A Lemma First
+
+> **Lemma.** For every integer $ n $, $ n^2 \equiv 0 $ or $ 1 \pmod 4 $.
+>
+> **Proof.** Every integer is even or odd. If $ n = 2k $ then $ n^2 = 4k^2 \equiv 0 $. If $ n = 2k+1 $ then
+>
+> $ n^2 = 4k^2+4k+1 = 4\left(k^2+k\right)+1 \equiv 1 . $
+>
+> So a square is congruent to $ 0 $ or $ 1 $ mod $ 4 $, and never to $ 2 $ or $ 3 $. $ \blacksquare $
+
+## Proof
+
+> **Theorem.** If $ a,b,c $ are natural numbers with $ a^2+b^2=c^2 $, then $ a $ or $ b $ is even.
+>
+> **Proof.** Suppose, to the contrary, that there is a Pythagorean triple in which $ a $ and $ b $ are **both odd**. (This is the negation of the conclusion: “not ($ a $ even or $ b $ even)” is, by De Morgan, “$ a $ odd and $ b $ odd”.)
+>
+> Then there are integers $ m,n $ with $ a = 2m+1 $ and $ b = 2n+1 $. Squaring and adding,
+>
+> $ a^2+b^2 = \left(4m^2+4m+1\right) + \left(4n^2+4n+1\right) = 4\left(m^2+m+n^2+n\right)+2 . $
+>
+> Writing $ j = m^2+m+n^2+n $, which is an integer, we have $ a^2+b^2 = 4j+2 $, so
+>
+> $ c^2 = a^2+b^2 \equiv 2 \pmod 4 . $
+>
+> But by the Lemma every square is $ 0 $ or $ 1 $ mod $ 4 $. So $ c^2 $ is both $ \equiv 2 $ and $ \not\equiv 2 $ mod $ 4 $, a contradiction.
+>
+> Hence no Pythagorean triple has $ a $ and $ b $ both odd; that is, at least one of $ a $ and $ b $ is even. $ \blacksquare $
+
+## The Picture
+
+The diagram collects the lemma, the collision it produces, and the reason the modulus has to be $ 4 $ rather than $ 2 $.
+
+!(92%)[The squares-mod-4 lemma, the resulting collision, and a sample of triples](problem-8-mod4.svg "A diagram in five bands. The first states what is to be proved — if a squared plus b squared equals c squared with a, b, c natural, then a or b is even — and the supposition otherwise, that a and b are both odd, so write a equals 2m plus 1 and b equals 2n plus 1 and look at what a squared plus b squared can be. The second band gives the lemma that a square is 0 or 1 mod 4, with a table over the four residues: n congruent to 0 gives n squared equal to 16k squared, which is 0 mod 4; n congruent to 1 gives 16k squared plus 8k plus 1, which is 1; n congruent to 2 gives 16k squared plus 16k plus 4, which is 0; n congruent to 3 gives 16k squared plus 24k plus 9, which is 1. No square is ever 2 or 3 mod 4, checked for every n below 4000. The third band shows the collision: a squared equals 4 times the quantity m squared plus m, plus 1; b squared equals 4 times the quantity n squared plus n, plus 1; so a squared plus b squared equals 4 times the quantity m squared plus m plus n squared plus n, plus 2. So c squared is congruent to 2 mod 4, but the lemma forbids that, so a and b cannot both be odd. The fourth band explains why mod 2 is not enough: working mod 2, a and b both odd gives a squared plus b squared congruent to 1 plus 1 congruent to 0, so c squared is even and c is even, which is no contradiction — a perfectly consistent state of affairs as far as mod 2 can see. Mod 4 is finer: it distinguishes even into 0 and 2, and squares only ever land on 0, never on 2. The fifth band tabulates triples: 3, 4, 5 with parities odd and even and sum 25 congruent to 1, primitive; 5, 12, 13 odd and even, 169 congruent to 1, primitive; 8, 15, 17 even and odd, 289 congruent to 1, primitive; 6, 8, 10 with both even, 100 congruent to 0, showing that at least one cannot be sharpened to exactly one; 18, 24, 30 likewise both even, 900 congruent to 0; and any odd-odd pair would give a sum congruent to 2, which is impossible, so no such triple exists. All 294 triples with c at most 400 were enumerated: none has a and b both odd, and in all of them ab is divisible by 12. Among the 63 primitive ones, exactly one of a and b is even and c is always odd.")
+
+## Remark — Why the Modulus Must Be 4
+
+Everything in this proof turns on the choice of modulus, and it is instructive to watch mod $ 2 $ fail.
+
+Suppose $ a $ and $ b $ are both odd and work mod $ 2 $. Then $ a^2 \equiv 1 $, $ b^2 \equiv 1 $, so
+
+$$$
+c^2 = a^2+b^2 \equiv 1+1 \equiv 0 \pmod 2 ,
+$$$
+
+from which $ c $ is even. That is a perfectly consistent conclusion — nothing is contradicted. Mod $ 2 $ simply cannot see the problem, because it lumps every even number into a single class.
+
+Mod $ 4 $ splits “even” into two classes, $ 0 $ and $ 2 $, and the lemma says squares only ever land in the class $ 0 $. Two odd squares sum to $ 2 $ mod $ 4 $, which is even but *the wrong kind of even*. That is the whole argument.
+
+This is a technique worth internalising. When a parity argument stalls, the next thing to try is a finer modulus. Mod $ 4 $ and mod $ 8 $ are the usual next stops for problems about squares, because
+
+$$$
+\text{squares mod } 4 \in \{0,1\}, \qquad \text{odd squares mod } 8 \equiv 1
+$$$
+
+(the second verified for all odd $ n < 4000 $), and both facts rule out a great many equations at a glance.
+
+## Remark — “At Least One” Cannot Be Sharpened
+
+The problem is carefully worded. It would be natural to guess that *exactly* one of $ a,b $ is even, but that is false:
+
+$$$
+6^2 + 8^2 = 36+64 = 100 = 10^2 ,
+$$$
+
+with $ a=6 $ and $ b=8 $ both even. Enumerating all $ 294 $ triples with $ c\le400 $ turns up many more — $ (12,16,20) $, $ (10,24,26) $, $ (18,24,30) $, $ (16,30,34) $ — every one of them a multiple of a smaller triple.
+
+The sharper statement holds only for **primitive** triples, those with $ \gcd(a,b,c)=1 $. Among the $ 63 $ primitive triples with $ c\le400 $, exactly one of $ a,b $ is even and $ c $ is always odd — both confirmed. The reason $ a,b $ cannot both be even in a primitive triple is immediate: $ 2\mid a $ and $ 2\mid b $ force $ 4\mid c^2 $, hence $ 2\mid c $, contradicting $ \gcd=1 $.
+
+So the full parity picture is:
+
+$$$
+\begin{array}{l|l}
+\text{any triple} & \text{at least one of } a,b \text{ even} \\
+\text{primitive triple} & \text{exactly one of } a,b \text{ even, and } c \text{ odd}
+\end{array}
+$$$
+
+and the problem asks for precisely the statement that survives without the primitivity hypothesis.
+
+## Remark — What Else Falls Out of the Same Method
+
+The mod-$ 4 $ argument is the first of a family. Running the same style of check at other moduli gives more divisibility constraints, all confirmed across every triple with $ c\le400 $:
+
+$$$
+4 \mid ab, \qquad 3 \mid ab, \qquad 12 \mid ab, \qquad 60 \mid abc .
+$$$
+
+The mod-$ 3 $ statement comes out the same way: squares are $ 0 $ or $ 1 $ mod $ 3 $, so if neither $ a $ nor $ b $ were divisible by $ 3 $ then $ c^2 \equiv 1+1 \equiv 2 $, which no square is. The mod-$ 5 $ version needs one extra case (squares mod $ 5 $ are $ 0,1,4 $) and yields $ 5\mid abc $.
+
+That $ 4\mid ab $ rather than merely $ 2\mid ab $ is a genuine strengthening of this problem's conclusion, and it is the reason the smallest triple is $ (3,4,5) $ and not something with an even leg equal to $ 2 $.
+
+## Remark — The Constructive View
+
+There is a completely different way to see the theorem, which explains rather than merely verifies it. Every primitive Pythagorean triple has the form
+
+$$$
+a = m^2-n^2, \qquad b = 2mn, \qquad c = m^2+n^2
+$$$
+
+for coprime integers $ m > n > 0 $ of opposite parity (Euclid's formula), and the general triple is a multiple of one of these. The even leg is right there in the parametrisation: $ b = 2mn $ carries a factor of $ 2 $ by construction — and since $ m,n $ have opposite parity, one of them is even, so in fact $ 4\mid b $.
+
+The two arguments answer different questions. The mod-$ 4 $ proof shows that an all-odd triple is *impossible*, using nothing but the equation. Euclid's formula shows *where the even leg comes from*, but requires knowing the classification first. For an exercise asking only for impossibility, the congruence argument is the right tool: it is three lines and assumes nothing.
+
+## Remark — The Same Idea Rules Out Much More
+
+The lemma is more powerful than this one application suggests. Because a square is never $ 2 $ or $ 3 $ mod $ 4 $:
+
+- No integer $ \equiv 3 \pmod 4 $ is a sum of two squares — the possible sums $ 0+0,\,0+1,\,1+1 $ give only $ 0,1,2 $ mod $ 4 $. (This is the first step toward Fermat's two-square theorem.)
+- $ a^2+b^2=c^2 $ with $ a,b $ both odd is impossible, which is this problem.
+- $ a^2 + b^2 = 3c^2 $ has no non-zero integer solutions, by a mod-$ 4 $ descent of the same flavour.
+
+A single fact about residues, established in two lines, closes off an entire class of equations. That leverage is why congruence arguments are usually the first thing to try on a Diophantine problem.

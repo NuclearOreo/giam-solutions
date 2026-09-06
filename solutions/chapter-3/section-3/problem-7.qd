@@ -1,0 +1,133 @@
+.docname {Solution — GIAM 3.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.3 Problem 7
+
+## Problem
+
+Prove (by contraposition) that for all real numbers $ a $ and $ b $, if $ ab $ is irrational, then $ a $ is irrational or $ b $ is irrational.
+
+## Forming the Contrapositive
+
+The conclusion is a disjunction, so negating it calls for De Morgan:
+
+$$$
+\begin{aligned}
+\lnot\big(a \text{ irrational} \;\lor\; b \text{ irrational}\big)
+&\;\cong\; \lnot\big(a \text{ irrational}\big) \;\land\; \lnot\big(b \text{ irrational}\big) \\
+&\;\cong\; a \text{ rational} \;\land\; b \text{ rational} .
+\end{aligned}
+$$$
+
+So the contrapositive to prove is
+
+$$$
+\forall a,b\in\mathbb{R},\qquad a\in\mathbb{Q} \;\land\; b\in\mathbb{Q} \implies ab\in\mathbb{Q} .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{Contrapositive: if } a = p/q \text{ and } b = r/s \text{ then } ab = pr/qs \text{, which is rational.}\;}
+$$$
+
+## Proof
+
+> **Theorem.** For all real $ a $ and $ b $, if $ ab $ is irrational then $ a $ is irrational or $ b $ is irrational.
+>
+> **Proof.** By contraposition it suffices to prove that if $ a $ and $ b $ are both rational, then $ ab $ is rational. (The negation of a disjunction is the conjunction of the negations, and “not irrational” is “rational”, since every real is exactly one of the two.)
+>
+> Let $ a $ and $ b $ be particular but arbitrarily chosen rationals. By the definition of rational there are integers $ p,q,r,s $ with $ q\ne0 $, $ s\ne0 $, and
+>
+> $ a = \dfrac{p}{q}, \qquad b = \dfrac{r}{s} . $
+>
+> Multiplying,
+>
+> $ ab = \dfrac{p}{q}\cdot\dfrac{r}{s} = \dfrac{pr}{qs} . $
+>
+> Both $ pr $ and $ qs $ are integers, and $ qs\ne0 $ since $ q\ne0 $ and $ s\ne0 $. So $ ab $ is a ratio of integers with non-zero denominator, i.e. $ ab $ is rational.
+>
+> Since $ a $ and $ b $ were arbitrary, the contrapositive holds universally, and therefore so does the original statement. $ \blacksquare $
+
+## The Picture
+
+The diagram below traces the two-step conversion — contrapose, then De Morgan — and then lays out all four combinations of rational and irrational factors. The point of the grid is that exactly one of the four cells rules out an irrational product, so learning that $ ab $ is irrational eliminates that cell and nothing else.
+
+!(92%)[The two-step flip, and the four rational/irrational cases for a and b](problem-7-grid.svg "A diagram in four bands. The first states what is to be proved — for all reals a and b, ab irrational implies a irrational or b irrational — noting that the conclusion is a disjunction of two negatives, about as unhelpful a target as one can be handed. The second band shows the flip in two steps: contraposing gives not-a-irrational-or-b-irrational implies not-ab-irrational; De Morgan converts that to not-a-irrational and not-b-irrational implies not-ab-irrational, so an or became an and; and the rational-irrational dichotomy converts it to a and b both rational implies ab rational, giving two usable hypotheses. Then: a equals p over q and b equals r over s with q and s nonzero implies ab equals pr over qs, a ratio of integers with nonzero denominator, so ab is rational. The third band is a two-by-two grid over whether a is rational or irrational and whether b is rational or irrational. The rational-rational cell is outlined in green: ab is always rational, since p over q times r over s equals pr over qs; this cell is the contrapositive and the whole proof. The rational-irrational cell says either is possible, since 0 times root 2 is 0 which is rational while 2 times root 2 is 2 root 2 which is irrational, and only a equals 0 spoils it. The irrational-rational cell is the mirror of that. The irrational-irrational cell also says either is possible, since root 2 times root 2 is 2 which is rational while root 2 times root 3 is root 6 which is irrational, with no pattern at all. Exactly one cell forbids an irrational product, so ab irrational rules out that one cell and nothing more, which is precisely the statement that a or b is irrational. The fourth band shows the or is exactly right and every nearby strengthening is false: ab irrational implies a or b irrational is true, the theorem; ab irrational implies both a and b irrational is false, since a equals root 2 and b equals 2 gives ab equal to 2 root 2 while b is rational; and a or b irrational implies ab irrational is false, since a equals b equals root 2 gives ab equal to 2, which is rational. Nor can or be read exclusively: a equals root 2 and b equals root 3 gives ab equal to root 6, irrational with both factors irrational.")
+
+## Remark — De Morgan Is the Step That Makes This Work
+
+The contrapositive here is not just a flip; it is a flip *followed by a rewrite*, and the rewrite is where the difficulty dissolves.
+
+Consider what the original statement offers. The conclusion “$ a $ is irrational **or** $ b $ is irrational” is a disjunction, and disjunctions are awkward conclusions: to prove one directly you must either commit to a specific disjunct — impossible here, since which one holds depends on $ a $ and $ b $ — or run a case analysis. Worse, both disjuncts are *negative* statements, which give nothing to compute with.
+
+Contraposition alone would leave you with $ \lnot(a\text{ irr}\lor b\text{ irr}) $ as a hypothesis, which is scarcely better. De Morgan is what turns it into something usable:
+
+$$$
+\lnot(P \lor Q) \;\cong\; \lnot P \land \lnot Q .
+$$$
+
+A negated *or* becomes a plain *and*. Where the original had one unhelpful conclusion, the contrapositive now has **two** concrete hypotheses — $ a $ rational and $ b $ rational — each of which unpacks into an equation. The proof writes itself from there.
+
+This is the general pattern for proving a disjunction: negate it, use De Morgan, and discover you have been handed two assumptions instead of asked for one conclusion. The same trick reads in reverse for a conjunctive conclusion — negating $ P \land Q $ yields $ \lnot P \lor \lnot Q $, a disjunctive hypothesis, which is exactly the setup for a proof by cases.
+
+## Remark — The Whole Content Is Closure Under Multiplication
+
+As in Problem 5, the mathematical input is a single closure fact: $ \mathbb{Q} $ is closed under multiplication. The explicit computation
+
+$$$
+\frac{p}{q}\cdot\frac{r}{s} = \frac{pr}{qs}
+$$$
+
+is that closure, verified, and it is where the hypotheses $ q\ne0 $ and $ s\ne0 $ earn their keep — they are exactly what guarantees $ qs\ne0 $ so the result is a legitimate fraction. Two hundred thousand random rational pairs were multiplied as a check; every product is again a fraction.
+
+Compare the two problems side by side:
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{3.3 Problem 5} & \textbf{this problem} \\ \hline
+\text{operation} & + & \times \\
+\text{closure used} & \mathbb{Q} \text{ closed under } - & \mathbb{Q} \text{ closed under } \times \\
+\text{shape of statement} & \text{rational} + \text{irrational is irrational} & ab \text{ irr.} \Rightarrow a \text{ or } b \text{ irr.} \\
+\text{caveat needed} & \text{none} & \text{see below}
+\end{array}
+$$$
+
+## Remark — Why This One Needs No Non-Zero Caveat, Though Its Sibling Does
+
+Problem 5's multiplicative sibling — *a non-zero rational times an irrational is irrational* — carries a hypothesis that $ 0\cdot\sqrt2 = 0 $ makes unavoidable. It is worth noticing that **the present theorem needs no such caveat**, and seeing why.
+
+The difference is the direction of the implication. The statement here runs from a fact about the *product* to a fact about the factors. If $ ab $ is irrational then $ ab\ne0 $, so neither factor can be zero — the troublesome case is excluded automatically by the hypothesis. Nothing has to be assumed, because the hypothesis already rules it out.
+
+The same observation makes an alternative proof available. A conditional with a disjunctive conclusion satisfies
+
+$$$
+P \implies (Q \lor R) \qquad\cong\qquad (P \land \lnot Q) \implies R ,
+$$$
+
+so one may instead prove: *if $ ab $ is irrational and $ a $ is rational, then $ b $ is irrational.* Here $ a\ne0 $ (else $ ab=0 $ would be rational), so $ b = (ab)/a $ makes sense, and if $ b $ were rational then $ ab = a\cdot b $ would be a product of rationals, hence rational — contradiction. That route works, but note how the division step forces you to stop and argue $ a\ne0 $. The contrapositive proof never divides and never needs the case.
+
+## Remark — Every Nearby Strengthening Is False
+
+The theorem is exactly as strong as it can be. Each obvious sharpening fails:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{statement} & \textbf{true?} & \textbf{witness} \\ \hline
+ab \text{ irr.} \Rightarrow a \text{ or } b \text{ irr.} & \text{yes} & \text{the theorem} \\
+ab \text{ irr.} \Rightarrow a \text{ and } b \text{ irr.} & \textbf{no} & a=\sqrt2,\; b=2,\; ab=2\sqrt2 \\
+ab \text{ irr.} \Rightarrow \text{exactly one irr.} & \textbf{no} & a=\sqrt2,\; b=\sqrt3,\; ab=\sqrt6 \\
+a \text{ or } b \text{ irr.} \Rightarrow ab \text{ irr.} & \textbf{no} & a=b=\sqrt2,\; ab=2
+\end{array}
+$$$
+
+The last row is the converse, and its failure is the familiar one: $ \sqrt2\cdot\sqrt2 = 2 $. So the implication is strictly one-way, and the “or” is inclusive and irreducible — it cannot be tightened to “and”, nor read as “exactly one”.
+
+The four-cell grid in the figure explains why in one glance. Of the four combinations of rational and irrational factors, only **rational $ \times $ rational** forbids an irrational product; the other three cells contain examples of both kinds. So knowing $ ab $ is irrational eliminates exactly one cell — which is precisely the assertion that $ a $ or $ b $ is irrational, no more and no less.
