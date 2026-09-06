@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a3b12"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Compounding multiplies by the same factor each month — so the balances form a geometric sequence.</text>
+
+  <!-- the three statements -->
+  <g font-size="13" text-anchor="middle">
+    <rect x="60" y="44" width="150" height="54" fill="#eaf1fb" stroke="#2a5db0"/>
+    <text x="135" y="64" font-size="12" fill="#1a3a63" font-weight="bold">July</text>
+    <text x="135" y="86" font-size="14" fill="#222">$2104.87</text>
+
+    <rect x="275" y="44" width="150" height="54" fill="#dfeadd" stroke="#1b5e20" stroke-width="2"/>
+    <text x="350" y="64" font-size="12" fill="#1b5e20" font-weight="bold">August</text>
+    <text x="350" y="86" font-size="14" fill="#1b5e20" font-weight="bold">?</text>
+
+    <rect x="490" y="44" width="150" height="54" fill="#eaf1fb" stroke="#2a5db0"/>
+    <text x="565" y="64" font-size="12" fill="#1a3a63" font-weight="bold">September</text>
+    <text x="565" y="86" font-size="14" fill="#222">$2125.97</text>
+  </g>
+  <g stroke="#8a3b12" stroke-width="1.6" marker-end="url(#ar)">
+    <line x1="212" y1="71" x2="271" y2="71"/>
+    <line x1="427" y1="71" x2="486" y2="71"/>
+  </g>
+  <text x="242" y="62" font-size="10.5" fill="#8a3b12" text-anchor="middle">×(1+r)</text>
+  <text x="457" y="62" font-size="10.5" fill="#8a3b12" text-anchor="middle">×(1+r)</text>
+
+  <!-- the derivation -->
+  <rect x="24" y="114" width="652" height="96" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="134" font-size="11.5" fill="#1a3a63" font-weight="bold">Eliminate the unknown rate</text>
+  <text x="60" y="156" font-size="12" fill="#222">Aug = July·(1+r)</text>
+  <text x="330" y="156" font-size="12" fill="#222">Sep = Aug·(1+r) = July·(1+r)²</text>
+  <text x="350" y="182" font-size="13.5" fill="#222" text-anchor="middle">July · Sep  =  July · [ July(1+r)² ]  =  [ July(1+r) ]²  =  Aug²</text>
+  <text x="350" y="202" font-size="12.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">Aug = √( July · Sep )   —  the geometric mean</text>
+
+  <!-- the number -->
+  <rect x="160" y="224" width="380" height="56" fill="#1b5e20"/>
+  <text x="350" y="248" font-size="14" fill="white" text-anchor="middle">√( 2104.87 × 2125.97 ) = √4474890.4739</text>
+  <text x="350" y="270" font-size="16" fill="white" text-anchor="middle" font-weight="bold">= $2115.39</text>
+
+  <!-- AM vs GM -->
+  <text x="350" y="314" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Why not just average the two? Because the growth is multiplicative, not additive.</text>
+
+  <rect x="40" y="326" width="300" height="94" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="190" y="346" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">arithmetic mean — wrong here</text>
+  <text x="190" y="370" font-size="12" fill="#222" text-anchor="middle">(2104.87 + 2125.97) / 2</text>
+  <text x="190" y="392" font-size="13.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">= $2115.42</text>
+  <text x="190" y="410" font-size="10" font-style="italic" fill="#666" text-anchor="middle">this is the answer if the balance grew by a fixed AMOUNT</text>
+
+  <rect x="360" y="326" width="300" height="94" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="510" y="346" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">geometric mean — correct</text>
+  <text x="510" y="370" font-size="12" fill="#222" text-anchor="middle">√(2104.87 × 2125.97)</text>
+  <text x="510" y="392" font-size="13.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">= $2115.39</text>
+  <text x="510" y="410" font-size="10" font-style="italic" fill="#666" text-anchor="middle">correct when the balance grows by a fixed RATE</text>
+
+  <text x="350" y="440" font-size="11.5" fill="#8a3b12" text-anchor="middle">The gap is <tspan font-weight="bold">2.6 cents</tspan>, and the arithmetic mean is the larger — exactly as AM ≥ GM promises.</text>
+
+  <!-- the implied rate -->
+  <rect x="24" y="456" width="652" height="68" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="350" y="476" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">Sanity check: what rate does this imply?</text>
+  <text x="350" y="496" font-size="11.5" fill="#222" text-anchor="middle">r = √(2125.97 / 2104.87) − 1 = 0.00499969 ≈ <tspan font-weight="bold">0.5% per month</tspan>, i.e. a 6% nominal APR</text>
+  <text x="350" y="514" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">and 2104.87 × 1.005 = 2115.394…, 2115.394… × 1.005 = 2125.971… — both statements reproduced to the cent</text>
+</svg>

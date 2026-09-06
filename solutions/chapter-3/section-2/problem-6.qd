@@ -1,0 +1,83 @@
+.docname {Solution — GIAM 3.2 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 6
+
+## Problem
+
+Prove that for all real numbers $ a, b, c $: if $ ac < 0 $, then the quadratic equation $ ax^2+bx+c = 0 $ has two real solutions.
+
+**Hint.** The equation $ ax^2+bx+c=0 $ has two real solutions if and only if $ b^2-4ac > 0 $ **and** $ a \ne 0 $.
+
+## Proof
+
+> **Proof.** Suppose $ ac < 0 $. By the hint there are two things to establish.
+>
+> **First, $ a \ne 0 $.** Suppose instead that $ a = 0 $. Then $ ac = 0\cdot c = 0 $, which is not less than $ 0 $ — contradicting the hypothesis. Hence $ a \ne 0 $.
+>
+> **Second, $ b^2 - 4ac > 0 $.** Since $ ac < 0 $ and $ -4 $ is negative, multiplying reverses the inequality:
+>
+> $ -4ac > 0 $.
+>
+> Also $ b $ is real, so $ b^2 \ge 0 $. Adding,
+>
+> $ b^2 - 4ac \;=\; \underbrace{b^2}_{\ge\,0} + \underbrace{(-4ac)}_{>\,0} \;>\; 0 $.
+>
+> Both clauses of the criterion hold, so the equation has two real solutions. $ \blacksquare $
+
+## Two Clauses, Two Obligations
+
+!(94%)[The two-clause criterion, the two obligations discharged separately, worked examples, and the link to Problem 2](problem-6-twoparts.svg "Top: the criterion — two real solutions if and only if b squared minus 4ac is positive AND a is nonzero — noting both clauses are required and missing either leaves the proof incomplete. Two green panels below. Obligation 1, a nonzero: suppose a were 0; then ac equals 0 times c equals 0, which is not less than 0, a contradiction, so a is nonzero. Obligation 2, b squared minus 4ac positive: ac is negative so minus 4ac is positive; b is real so b squared is at least zero; hence b squared minus 4ac is a non-negative plus a positive, which is positive. A green banner: both clauses hold, so there are two real solutions. A table of worked examples: a, b, c equal 1, 0, minus 4 gives ac equal minus 4, a nonzero yes, discriminant 16, roots plus and minus 2; minus 2, 3, 5 gives ac minus 10, discriminant 49, roots minus 1 and 2.5; and 3, minus 1, minus 2 gives ac minus 6, discriminant 25, roots 1 and minus two thirds. A closing panel: this is the same theorem as Problem 2 stated more carefully — 'a and c have different signs' is literally the same condition as ac less than zero, and what changed is the criterion, since Problem 2 omitted the a nonzero clause so a careful solver had to notice the gap, whereas the hint now supplies it.")
+
+The structure worth noticing is that the criterion is a **conjunction**, so proving it requires proving *both* conjuncts. A proof that establishes only $ b^2-4ac > 0 $ is incomplete, however convincing it looks.
+
+## Remark — This Is Problem 2, Stated Correctly
+
+The hypothesis here, $ ac < 0 $, is *literally the same condition* as Problem 2's "$ a $ and $ c $ have different signs" — a product of two reals is negative exactly when the factors have opposite signs (checked over $ [-20,20]^2 $). So the two problems state the same theorem.
+
+What changed is the **criterion**. Problem 2 quoted it as "two real solutions iff $ b^2-4ac $ is positive," omitting $ a\ne 0 $. That version is strictly false: $ 0x^2 + 1x + (-1) = 0 $ has discriminant $ 1 > 0 $ but is the linear equation $ x = 1 $, with **one** solution, not two.
+
+Problem 2's solution flagged this in passing; here the hint promotes it to a required step. That is the pedagogical point of restating the problem — the same mathematics, but now you cannot get full credit without noticing the second clause.
+
+## Remark — Why $ a \ne 0 $ Comes Free
+
+The first obligation is discharged in one line because "having a sign" and "being nonzero" are the same thing. Formally: $ ac < 0 $ implies $ ac \ne 0 $, and a product of reals is nonzero only if both factors are — so $ a \ne 0 $ (and $ c\ne 0 $ too, though that is not needed).
+
+This is the "no zero divisors" property that has recurred throughout — in Problem 3.1.3 it guaranteed $ bd\ne 0 $, and in Problem 3.1.13 it licensed cancellation. Here it is used in its contrapositive form: a nonzero product forces nonzero factors.
+
+## Remark — The Argument Is Insensitive to $ b $
+
+Notice $ b $ appears in the proof exactly once, contributing only the inequality $ b^2 \ge 0 $. Nothing about its size, sign, or whether it is zero matters.
+
+That is unusual and worth appreciating: the theorem holds for *every* real $ b $ simultaneously. Geometrically (as Problem 2 discussed) $ b $ merely slides the parabola sideways, changing neither the opening direction nor the value at $ x = 0 $ — and those are the only two features the argument uses. The case $ b = 0 $ is included and unremarkable: $ x^2 - 4 = 0 $ has $ ac = -4 < 0 $, discriminant $ 16 $, and roots $ \pm 2 $.
+
+## Remark — What a Two-Part Criterion Demands of a Disproof
+
+Since the criterion is a conjunction, its **negation** is a disjunction (Problem 2.3.5):
+
+$$$
+\lnot\big(b^2-4ac > 0 \;\land\; a\ne 0\big) \;\cong\; \big(b^2-4ac \le 0\big) \;\lor\; \big(a = 0\big).
+$$$
+
+So an equation fails to have two real solutions if *either* the discriminant is non-positive *or* it is not really quadratic. Both failure modes occur:
+
+| example | which clause fails |
+| :--- | :--- |
+| $ x^2+1 = 0 $ | discriminant $ = -4 \le 0 $ |
+| $ x^2-2x+1 = 0 $ | discriminant $ = 0 $ — a repeated root, so *one* solution |
+| $ 0x^2+x-1 = 0 $ | $ a = 0 $ — linear, one solution |
+
+Keeping the two clauses distinct is what lets you say *which* thing went wrong.
+
+## Remark — The Converse Still Fails
+
+As in Problem 2, the implication runs one way only. Take $ a = 1 $, $ b = 5 $, $ c = 1 $: the discriminant is $ 25 - 4 = 21 > 0 $ and $ a\ne 0 $, so there are two real solutions — yet $ ac = 1 > 0 $.
+
+The hypothesis $ ac < 0 $ is a **convenient sufficient condition**: it makes both terms of $ b^2 - 4ac $ non-negative, so no cancellation can occur and the discriminant is positive regardless of $ b $. When $ ac > 0 $, the term $ -4ac $ opposes $ b^2 $ and the outcome depends on which wins. That is exactly the trade the hypothesis is designed to avoid, and it is why the theorem can dispense with any assumption on $ b $.

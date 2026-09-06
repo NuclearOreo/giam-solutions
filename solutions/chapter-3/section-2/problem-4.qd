@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 3.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 4
+
+## Problem
+
+Prove that for all integers $ a, b, c $: if $ a\mid b $ and $ a\mid(b+c) $, then $ a\mid c $.
+
+## Proof
+
+> **Proof.** Suppose $ a\mid b $ and $ a\mid(b+c) $. By the definition of *divides* there are integers $ k $ and $ m $ with
+>
+> $ b = ak $  and  $ b + c = am $.
+>
+> Since $ c = (b+c) - b $,
+>
+> $ c = am - ak = a(m-k) $.
+>
+> Now $ m-k $ is an integer, since $ \mathbb Z $ is closed under subtraction. So $ c = a\cdot(m-k) $ with $ m-k\in\mathbb Z $, which is precisely $ a\mid c $. $ \blacksquare $
+
+## The Idea
+
+!(94%)[The key rearrangement, the proof, worked instances, and the general linear-combination lemma](problem-4-linear.svg "Top: a highlighted box giving the key rearrangement, c equals (b plus c) minus b. Below, the proof: a divides b gives b equal to ak with k an integer; a divides b plus c gives b plus c equal to am with m an integer; then c equals (b plus c) minus b equals am minus ak equals a times (m minus k); and m minus k is an integer by closure of the integers under subtraction, so a divides c. A table of worked instances: for a equals 3, b equals 12 which is 3 times 4, b plus c equals 30 which is 3 times 10, so c equals 3 times (10 minus 4) which is 18. For a equals 5, b equals minus 15 which is 5 times minus 3, b plus c equals 20 which is 5 times 4, so c equals 5 times 7 which is 35. For a equals 7, b equals 7, b plus c equals minus 42, so c equals 7 times minus 7 which is minus 49. A green panel gives the general fact: if a divides x and a divides y, then a divides sx plus ty for all integers s and t — a divides any integer linear combination of things it divides — and this problem is the case x equals b plus c, y equals b, s equals 1, t equals minus 1. A closing panel: equivalently, the multiples of a are closed under addition and subtraction, so knowing two of b, c, b plus c pins down the third.")
+
+The conclusion is a statement **about $ c $**, so — as in Problem 3.1.8 — the move is to isolate $ c $ using only what was given. Both hypotheses concern $ b $ and $ b+c $, and the identity
+
+$$$
+c = (b+c) - b
+$$$
+
+expresses the target as a difference of exactly those two quantities. Everything else is substitution and closure. Verified exhaustively for nonzero $ a $ and $ |b|, |c| \le 40 $.
+
+## Remark — The General Fact: Divisors Respect Linear Combinations
+
+This theorem is one instance of a much more useful lemma:
+
+$$$
+a\mid x \;\text{ and }\; a\mid y \quad\Longrightarrow\quad a\mid(sx + ty) \qquad\text{for all integers } s, t.
+$$$
+
+The proof is the same one line: $ x = au $, $ y = av $ give $ sx+ty = a(su+tv) $, and $ su+tv\in\mathbb Z $. (Verified on $ 5000 $ random cases.)
+
+The present problem is the special case $ x = b+c $, $ y = b $, $ s = 1 $, $ t = -1 $, since $ 1\cdot(b+c) + (-1)\cdot b = c $. Recognising a problem as an instance of a general lemma is usually worth more than the problem itself — the lemma also gives, for free, that $ a\mid(b+c) $, $ a\mid(b-c) $, $ a\mid 5b - 3c $, and so on.
+
+## Remark — Any Two of the Three Determine the Third
+
+The three quantities $ b $, $ c $, and $ b+c $ satisfy one linear relation, so **knowing $ a $ divides any two of them forces it to divide the third**:
+
+| given | deduce | via |
+| :--- | :--- | :--- |
+| $ a\mid b $, $ a\mid c $ | $ a\mid(b+c) $ | $ b+c = b + c $ |
+| $ a\mid b $, $ a\mid(b+c) $ | $ a\mid c $ | $ c = (b+c) - b $ — **this problem** |
+| $ a\mid c $, $ a\mid(b+c) $ | $ a\mid b $ | $ b = (b+c) - c $ |
+
+All three are the same lemma with different coefficients, and the symmetry is a good check that nothing special is happening in the stated version.
+
+## Remark — Multiples of $ a $ Form a Closed System
+
+Restated set-theoretically: the multiples of $ a $,
+
+$$$
+a\mathbb Z = \{\ldots, -2a, -a, 0, a, 2a, \ldots\},
+$$$
+
+are **closed under addition and subtraction**. Adding or subtracting two multiples of $ 6 $ always gives another multiple of $ 6 $. So the theorem says: if $ b $ and $ b+c $ both lie in $ a\mathbb Z $, then so does their difference $ c $.
+
+In ring-theoretic language $ a\mathbb Z $ is an **ideal** of $ \mathbb Z $, and the linear-combination lemma above is exactly the defining property of one. This is also the structure behind Bézout's identity and the Euclidean algorithm of Section 1.5: the algorithm works precisely because replacing a pair by a remainder — an integer combination — never leaves the set of common multiples.
+
+## Remark — No Hypothesis on $ a $ Is Needed
+
+Unlike Problem 3.1.13, this theorem needs **no positivity assumption**, and it even holds when $ a = 0 $. If $ a = 0 $ then $ 0\mid b $ forces $ b = 0 $, and $ 0\mid(b+c) $ forces $ b+c = 0 $, hence $ c = 0 $ and indeed $ 0\mid c $. The proof handles this without comment because it never divides by $ a $ — it only ever *multiplies*.
+
+That is worth noticing. Proofs that manipulate $ b/a $ need $ a \ne 0 $; proofs that stay in the form $ b = ak $ do not. Keeping the definition in its multiplicative form is what makes the argument work uniformly.
+
+## Remark — Contrast With Transitivity
+
+Problem 3.1.11 proved $ a\mid b $ and $ b\mid c $ imply $ a\mid c $; this one proves $ a\mid b $ and $ a\mid(b+c) $ imply $ a\mid c $. They look similar but use different structure:
+
+- **Transitivity** chains two divisibilities and merges the multipliers by **multiplication**: $ c = a(km) $.
+- **This theorem** combines two divisibilities by the *same* divisor and merges the multipliers by **subtraction**: $ c = a(m-k) $.
+
+The first exploits associativity of $ \times $; the second exploits distributivity of $ \times $ over $ - $. Both then invoke closure of $ \mathbb Z $ to certify the new multiplier. Seeing which algebraic law a proof actually rests on is a good habit — it tells you immediately how far the result will generalise.

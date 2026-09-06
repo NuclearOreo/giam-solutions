@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 3.2 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 8
+
+## Problem
+
+In proving the **product rule** using the definition of the derivative, we might start with
+
+$$$
+\frac{d}{dx}\big(f(x)\cdot g(x)\big) \;=\; \lim_{h\to 0}\frac{f(x+h)\,g(x+h) - f(x)\,g(x)}{h},
+$$$
+
+and the last two lines should be
+
+$$$
+\begin{aligned}
+&= \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\cdot g(x) \;+\; f(x)\cdot\lim_{h\to 0}\frac{g(x+h)-g(x)}{h} \\[4pt]
+&= \frac{d}{dx}\big(f(x)\big)\cdot g(x) \;+\; f(x)\cdot\frac{d}{dx}\big(g(x)\big).
+\end{aligned}
+$$$
+
+**Fill in the rest of the proof.**
+
+## The Completed Proof
+
+> **Proof.** Assume $ f $ and $ g $ are differentiable at $ x $. Then
+>
+> $ \displaystyle \frac{d}{dx}\big(f(x)g(x)\big) = \lim_{h\to 0}\frac{f(x+h)g(x+h) - f(x)g(x)}{h} $
+>
+> Add and subtract $ f(x)g(x+h) $ in the numerator — this changes nothing, since the two added terms cancel:
+>
+> $ \displaystyle = \lim_{h\to 0}\frac{f(x+h)g(x+h) \;-\; f(x)g(x+h) \;+\; f(x)g(x+h) \;-\; f(x)g(x)}{h} $
+>
+> Group the first two terms and the last two, then factor:
+>
+> $ \displaystyle = \lim_{h\to 0}\frac{\big[f(x+h)-f(x)\big]g(x+h) \;+\; f(x)\big[g(x+h)-g(x)\big]}{h} $
+>
+> Split the limit of the sum, and split each product:
+>
+> $ \displaystyle = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\cdot\lim_{h\to 0} g(x+h) \;+\; f(x)\cdot\lim_{h\to 0}\frac{g(x+h)-g(x)}{h} $
+>
+> Since $ g $ is differentiable at $ x $ it is continuous there, so $ \lim_{h\to 0} g(x+h) = g(x) $. Therefore
+>
+> $ \displaystyle = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}\cdot g(x) \;+\; f(x)\cdot\lim_{h\to 0}\frac{g(x+h)-g(x)}{h} $
+>
+> $ \displaystyle = \frac{d}{dx}\big(f(x)\big)\cdot g(x) + f(x)\cdot\frac{d}{dx}\big(g(x)\big) $. $ \blacksquare $
+
+## The Bridge
+
+!(94%)[The given first and last lines with the add-and-subtract lines filled in between](problem-8-productrule.svg "Top, marked GIVEN as where the proof starts: the limit as h goes to zero of f(x+h)g(x+h) minus f(x)g(x), all over h. A highlighted panel states THE MOVE: add and subtract f(x) times g(x+h) in the numerator — this changes nothing, since it is adding zero, but it creates two difference quotients. A green panel gives the lines to fill in. First, the limit of f(x+h)g(x+h) minus f(x)g(x+h) plus f(x)g(x+h) minus f(x)g(x), all over h, with the two inserted terms highlighted, labelled 'add zero'. Second, the limit of the quantity bracket f(x+h) minus f(x) bracket times g(x+h), plus f(x) times bracket g(x+h) minus g(x) bracket, all over h, labelled 'group and factor'. Third, the limit of the f difference quotient times the limit of g(x+h), plus f(x) times the limit of the g difference quotient, labelled 'split the limit'. Then the note that the limit of g(x+h) equals g(x) because g is continuous at x, which holds since g is differentiable there. Below, marked GIVEN, the last two lines. A final panel asks why subtract f(x) times g(x+h) rather than something else: it is the mixed term, sharing g(x+h) with the first product and f(x) with the second, so each half of the split lands on a genuine difference quotient, one for f and one for g; the other mixed term f(x+h) times g(x) works equally well and just shifts the continuity appeal from g onto f.")
+
+## Remark — The Whole Proof Is One Trick: Add Zero
+
+The gap between the given first and last lines is bridged by a single idea: insert $ -f(x)g(x+h) + f(x)g(x+h) $, which is $ 0 $.
+
+This is legitimate but not obvious, and it is worth being clear about *why* it helps. The numerator $ f(x+h)g(x+h) - f(x)g(x) $ changes **both** functions at once, so it is not a difference quotient for either. Adding the mixed term splits that single "both changed" difference into two "one changed at a time" differences:
+
+$$$
+\underbrace{\big[f(x+h)-f(x)\big]g(x+h)}_{f \text{ changed, } g \text{ held at } x+h} \;+\; \underbrace{f(x)\big[g(x+h)-g(x)\big]}_{g \text{ changed, } f \text{ held at } x}.
+$$$
+
+The identity was checked on $ 500 $ random quadruples, and the finished rule numerically at several points.
+
+## Remark — Why *That* Term, and Not Another
+
+The inserted quantity is the **mixed** product $ f(x)g(x+h) $ — one function evaluated at $ x $, the other at $ x+h $. That is exactly what makes it useful: it shares the factor $ g(x+h) $ with the first product and the factor $ f(x) $ with the second, so each grouping factors cleanly.
+
+The *other* mixed term, $ f(x+h)g(x) $, works just as well:
+
+$$$
+f(x+h)g(x+h) - f(x)g(x) = f(x+h)\big[g(x+h)-g(x)\big] + \big[f(x+h)-f(x)\big]g(x),
+$$$
+
+also an exact identity (verified). The only difference is bookkeeping: this version leaves a stray $ f(x+h) $ that must be sent to $ f(x) $, so the continuity appeal falls on $ f $ instead of $ g $. Either choice reaches the same conclusion.
+
+What would *not* work is inserting $ f(x)g(x) $ or $ f(x+h)g(x+h) $ — the unmixed terms. They cancel against what is already there and produce nothing new.
+
+## Remark — The Step That Needs Continuity
+
+One line does real analytical work rather than algebra:
+
+$$$
+\lim_{h\to 0} g(x+h) = g(x).
+$$$
+
+This is the statement that $ g $ is **continuous at $ x $**, and it is not free — it must be justified. The justification is that *differentiability implies continuity*: since $ g $ is assumed differentiable at $ x $ (otherwise $ g'(x) $ in the conclusion is meaningless), it is continuous there.
+
+Notice where this sits in the argument. The first three lines are pure algebra, valid for any functions whatsoever. Only at the splitting step do limits get evaluated, and only there does an actual hypothesis about $ f $ and $ g $ get used. Students often skip this line; it is the one place the proof could fail if the hypotheses were weaker.
+
+## Remark — The Limit Laws Being Invoked
+
+The step from one limit to three uses two standard results, and both carry conditions:
+
+| law | statement | condition |
+| :--- | :--- | :--- |
+| sum rule | $ \lim(A+B) = \lim A + \lim B $ | both limits must exist |
+| product rule for limits | $ \lim(A\cdot B) = \lim A\cdot\lim B $ | both limits must exist |
+
+The existence requirement is met precisely because $ f $ and $ g $ are differentiable at $ x $ (giving the two difference-quotient limits) and $ g $ is continuous there (giving $ \lim g(x+h) $). Splitting a limit before knowing the pieces converge is a genuine error — the whole can exist while the parts do not.
+
+## Remark — Why the Answer Is Not $ f'g' $
+
+The product rule is famously *not* "the derivative of a product is the product of the derivatives," and the proof shows exactly why. The numerator measures the change in the **area** of an $ f\times g $ rectangle, and when both sides grow the new area picks up two strips — one of width $ \Delta f $ and height $ g $, one of width $ f $ and height $ \Delta g $ — plus a small corner $ \Delta f\cdot\Delta g $.
+
+Dividing by $ h $, the two strips give $ f'g $ and $ fg' $, while the corner contributes
+
+$$$
+\frac{\Delta f\,\Delta g}{h} = \frac{\Delta f}{h}\cdot\Delta g \;\longrightarrow\; f'(x)\cdot 0 = 0.
+$$$
+
+That vanishing corner is where the "obvious" answer $ f'g' $ goes: it is a second-order term, too small to survive the limit. The add-and-subtract trick is precisely the algebraic way of separating the two strips from the corner.

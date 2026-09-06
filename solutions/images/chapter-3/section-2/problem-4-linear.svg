@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">The conclusion is about c, so write c using only the two things you were given.</text>
+
+  <!-- the key rearrangement -->
+  <rect x="180" y="38" width="340" height="42" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="65" font-size="15" fill="#8a3b12" text-anchor="middle" font-weight="bold">c = (b + c) − b</text>
+
+  <!-- the proof -->
+  <rect x="24" y="94" width="652" height="122" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="114" font-size="11.5" fill="#1a3a63" font-weight="bold">The proof</text>
+  <text x="60" y="136" font-size="12" fill="#222">a | b        ⟹  b = ak,  k ∈ ℤ</text>
+  <text x="380" y="136" font-size="12" fill="#222">a | (b+c)  ⟹  b + c = am,  m ∈ ℤ</text>
+  <text x="350" y="166" font-size="14" fill="#222" text-anchor="middle">c = (b + c) − b = am − ak = a(m − k)</text>
+  <text x="60" y="192" font-size="12" fill="#222">m − k ∈ ℤ  (closure of ℤ under subtraction)</text>
+  <text x="350" y="210" font-size="12" fill="#1b5e20" text-anchor="middle" font-weight="bold">so a | c   ∎</text>
+
+  <!-- worked example -->
+  <text x="350" y="250" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">A worked instance</text>
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="110" y="276">a</text><text x="220" y="276">b = ak</text><text x="350" y="276">b + c = am</text>
+    <text x="500" y="276">c = a(m − k)</text><text x="620" y="276">check</text>
+  </g>
+  <line x1="60" y1="284" x2="660" y2="284" stroke="#999" stroke-width="0.9"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="110" y="304">3</text><text x="220" y="304">12 = 3·4</text><text x="350" y="304">30 = 3·10</text>
+    <text x="500" y="304">3·(10 − 4) = 18</text><text x="620" y="304" fill="#1b5e20">✓</text>
+    <text x="110" y="326">5</text><text x="220" y="326">−15 = 5·(−3)</text><text x="350" y="326">20 = 5·4</text>
+    <text x="500" y="326">5·(4 + 3) = 35</text><text x="620" y="326" fill="#1b5e20">✓</text>
+    <text x="110" y="348">7</text><text x="220" y="348">7 = 7·1</text><text x="350" y="348">−42 = 7·(−6)</text>
+    <text x="500" y="348">7·(−6 − 1) = −49</text><text x="620" y="348" fill="#1b5e20">✓</text>
+  </g>
+  <line x1="60" y1="358" x2="660" y2="358" stroke="#999" stroke-width="0.9"/>
+
+  <!-- the general lemma -->
+  <rect x="24" y="378" width="652" height="106" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="350" y="398" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">The general fact behind it</text>
+  <text x="350" y="422" font-size="13" fill="#222" text-anchor="middle">if  a | x  and  a | y,  then  a | (sx + ty)  for all integers s, t</text>
+  <text x="350" y="444" font-size="11.5" fill="#222" text-anchor="middle">a divides <tspan font-style="italic">any integer linear combination</tspan> of things it divides</text>
+  <text x="350" y="468" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">this problem is the case  x = b+c,  y = b,  s = 1,  t = −1</text>
+
+  <!-- ideal -->
+  <rect x="24" y="496" width="652" height="38" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="520" font-size="11.5" fill="#1a3a63" text-anchor="middle">Equivalently: the multiples of a are closed under addition and subtraction — knowing two of b, c, b+c pins down the third.</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Both sides collapse to the same trinomial coefficient — and both count the same nested pairs.</text>
+
+  <!-- algebraic proof -->
+  <rect x="24" y="38" width="652" height="140" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="58" font-size="11.5" fill="#1a3a63" font-weight="bold">Expand each side into factorials</text>
+
+  <text x="180" y="84" font-size="11.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">left side</text>
+  <text x="180" y="106" font-size="12" fill="#222" text-anchor="middle">n! / (k!(n−k)!)  ·  k! / (r!(k−r)!)</text>
+  <text x="180" y="128" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">the k! cancels</text>
+  <text x="180" y="152" font-size="12.5" fill="#222" text-anchor="middle">= n! / ( r! (k−r)! (n−k)! )</text>
+
+  <text x="520" y="84" font-size="11.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">right side</text>
+  <text x="520" y="106" font-size="12" fill="#222" text-anchor="middle">n! / (r!(n−r)!)  ·  (n−r)! / ((k−r)!(n−k)!)</text>
+  <text x="520" y="128" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">the (n−r)! cancels, and (n−r)−(k−r) = n−k</text>
+  <text x="520" y="152" font-size="12.5" fill="#222" text-anchor="middle">= n! / ( r! (k−r)! (n−k)! )</text>
+
+  <text x="350" y="172" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">identical  ∎</text>
+
+  <!-- the combinatorial proof -->
+  <text x="350" y="208" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Why it is true: both sides count nested pairs  B ⊆ A ⊆ {1, …, n}  with |A| = k, |B| = r</text>
+
+  <!-- left: choose A then B -->
+  <rect x="30" y="222" width="310" height="150" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="185" y="242" font-size="11.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">choose the outer set first</text>
+  <ellipse cx="185" cy="300" rx="118" ry="44" fill="none" stroke="#666" stroke-dasharray="4 3"/>
+  <ellipse cx="185" cy="300" rx="80" ry="30" fill="#cfe0f5" stroke="#2a5db0" stroke-width="1.6"/>
+  <ellipse cx="170" cy="300" rx="38" ry="18" fill="#cfe6cf" stroke="#1b5e20" stroke-width="1.6"/>
+  <text x="170" y="304" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">B  (r)</text>
+  <text x="248" y="304" font-size="11" fill="#2a5db0" text-anchor="middle" font-weight="bold">A  (k)</text>
+  <text x="185" y="264" font-size="10" fill="#666" text-anchor="middle">{1, …, n}</text>
+  <text x="185" y="360" font-size="11.5" fill="#222" text-anchor="middle">pick A from n:  <tspan font-weight="bold">C(n,k)</tspan>,  then B inside A:  <tspan font-weight="bold">C(k,r)</tspan></text>
+
+  <!-- right: choose B then A -->
+  <rect x="360" y="222" width="310" height="150" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="515" y="242" font-size="11.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">choose the inner set first</text>
+  <ellipse cx="515" cy="300" rx="118" ry="44" fill="none" stroke="#666" stroke-dasharray="4 3"/>
+  <ellipse cx="515" cy="300" rx="80" ry="30" fill="#cfe0f5" stroke="#2a5db0" stroke-width="1.6"/>
+  <ellipse cx="500" cy="300" rx="38" ry="18" fill="#cfe6cf" stroke="#1b5e20" stroke-width="1.6"/>
+  <text x="500" y="304" font-size="11" fill="#1b5e20" text-anchor="middle" font-weight="bold">B  (r)</text>
+  <text x="578" y="304" font-size="11" fill="#2a5db0" text-anchor="middle" font-weight="bold">A  (k)</text>
+  <text x="515" y="264" font-size="10" fill="#666" text-anchor="middle">{1, …, n}</text>
+  <text x="515" y="360" font-size="11.5" fill="#222" text-anchor="middle">pick B from n:  <tspan font-weight="bold">C(n,r)</tspan>,  then k−r more from the n−r left:  <tspan font-weight="bold">C(n−r,k−r)</tspan></text>
+
+  <rect x="140" y="386" width="420" height="34" fill="#1b5e20"/>
+  <text x="350" y="408" font-size="12.5" fill="white" text-anchor="middle" font-weight="bold">same collection counted two ways, so the two products are equal</text>
+
+  <!-- three-block reading -->
+  <rect x="24" y="436" width="652" height="66" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="456" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">Equivalently: a nested pair just splits {1, …, n} into three labelled blocks</text>
+  <text x="350" y="478" font-size="11.5" fill="#222" text-anchor="middle">B  (size r)   ·   A minus B  (size k−r)   ·   everything outside A  (size n−k)</text>
+  <text x="350" y="496" font-size="11" font-style="italic" fill="#666" text-anchor="middle">and the number of such splits is the trinomial coefficient  n! / (r! (k−r)! (n−k)!)</text>
+
+  <text x="350" y="524" font-size="11" fill="#8a3b12" text-anchor="middle">Worked check, n = 7, k = 4, r = 2:   C(7,4)·C(4,2) = 35·6 = 210   and   C(7,2)·C(5,2) = 21·10 = 210</text>
+  <text x="350" y="544" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Verified for every valid triple with n ≤ 25 — no mismatches.</text>
+</svg>

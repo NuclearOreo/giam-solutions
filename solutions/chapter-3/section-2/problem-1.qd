@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 3.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 1
+
+## Problem
+
+Suppose you have a savings account which bears interest **compounded monthly**. The July statement shows a balance of $ \$2104.87 $ and the September statement shows $ \$2125.97 $. What would be the balance on the (missing) August statement?
+
+## Answer
+
+$$$
+\boxed{\;\text{August} \;=\; \sqrt{2104.87 \times 2125.97} \;=\; \sqrt{4474890.4739} \;=\; \$2115.39\;}
+$$$
+
+The balance is the **geometric mean** of the two known statements.
+
+## Why the Geometric Mean
+
+Compounding monthly at a fixed rate $ r $ means each month's balance is the previous one multiplied by $ (1+r) $. Writing $ J, A, S $ for the July, August and September balances:
+
+$$$
+A = J(1+r), \qquad S = A(1+r) = J(1+r)^2.
+$$$
+
+The rate $ r $ is unknown, so eliminate it by multiplying the two known balances:
+
+$$$
+J\cdot S \;=\; J\cdot\big[J(1+r)^2\big] \;=\; \big[J(1+r)\big]^2 \;=\; A^2.
+$$$
+
+Hence $ A = \sqrt{JS} $ — no knowledge of $ r $ required. Numerically,
+
+$$$
+A = \sqrt{2104.87\times 2125.97} = \sqrt{4474890.4739} = 2115.3936\ldots \approx \$2115.39.
+$$$
+
+## The Picture
+
+!(94%)[The three statements linked by the monthly factor, the derivation, and the comparison of the two means](problem-1-geomean.svg "Top: three boxes for July at 2104.87 dollars, August unknown, and September at 2125.97 dollars, linked by arrows each labelled times one plus r. Below, the derivation: August equals July times one plus r; September equals August times one plus r, which is July times one plus r squared; so July times September equals July times July times one plus r squared, which equals July times one plus r, all squared, which is August squared. Hence August is the square root of July times September, the geometric mean. A green banner gives the number: the square root of 2104.87 times 2125.97 equals the square root of 4474890.4739, which is 2115.39 dollars. Below, a comparison: the arithmetic mean, wrong here, is 2104.87 plus 2125.97 over 2, equal to 2115.42 dollars, which would be the answer if the balance grew by a fixed amount; the geometric mean, correct, is the square root of the product, equal to 2115.39 dollars, correct when the balance grows by a fixed rate. The gap is 2.6 cents, with the arithmetic mean larger, exactly as the arithmetic-geometric mean inequality promises. A closing panel gives a sanity check: the implied rate is the square root of 2125.97 over 2104.87 minus 1, about 0.005, that is half a percent per month or a 6 percent nominal annual rate — and 2104.87 times 1.005 gives 2115.394, which times 1.005 gives 2125.971, reproducing both statements to the cent.")
+
+## Remark — Why Not Simply Average the Two?
+
+The instinctive move is the **arithmetic mean**:
+
+$$$
+\frac{2104.87 + 2125.97}{2} = \$2115.42,
+$$$
+
+which is *close* but wrong. That number is the correct answer to a different question — the one where the balance grows by a fixed **amount** each month rather than a fixed **rate**. Averaging assumes an arithmetic sequence; compounding produces a geometric one.
+
+The word "compounded" in the problem is the entire signal. It says interest is charged on the interest, so the balances are related by multiplication, and the appropriate notion of "the value in between" is multiplicative too.
+
+## Remark — The Gap Is AM–GM in Miniature
+
+The two candidate answers differ by
+
+$$$
+\$2115.42 - \$2115.39 = \$0.026,
+$$$
+
+and the arithmetic mean is the **larger** one. That is not a coincidence: it is exactly the **arithmetic–geometric mean inequality** of this section,
+
+$$$
+\frac{a+b}{2} \;\ge\; \sqrt{ab} \qquad (a, b \ge 0),
+$$$
+
+with equality only when $ a = b $. Here $ a $ and $ b $ are close but unequal, so the gap is small but strictly positive — under three cents on a balance of two thousand dollars.
+
+That the discrepancy is *tiny* is itself informative. Over one month at a fraction of a percent the two means nearly coincide, which is why the arithmetic average "looks right." Over larger ratios they diverge sharply: for $ a = 1 $ and $ b = 100 $ the arithmetic mean is $ 50.5 $ while the geometric mean is only $ 10 $.
+
+## Remark — The Rate Is Recoverable, and It Is a Round Number
+
+Although the rate was never needed, the data determine it:
+
+$$$
+r = \sqrt{\frac{2125.97}{2104.87}} - 1 = 0.00499969\ldots \approx 0.5\%\ \text{per month},
+$$$
+
+i.e. a $ 6\% $ nominal annual rate (effective APY $ 6.17\% $, since monthly compounding beats simple annual interest). Checking the model forward at exactly $ 0.5\% $:
+
+$$$
+2104.87 \times 1.005 = 2115.394\ldots, \qquad 2115.394\ldots\times 1.005 = 2125.971\ldots,
+$$$
+
+which round to the two printed statements exactly. So the problem was built from a clean $ 6\% $ APR account, and the microscopic deviation from $ 0.005 $ is entirely due to the statements being rounded to the cent.
+
+## Remark — Working Backwards From the Conclusion
+
+This section's theme is the **forwards–backwards method**: when the hypotheses do not obviously lead anywhere, start from what you want and ask what would produce it. That is precisely how one finds the move here.
+
+Working forwards from "the account compounds monthly" gives $ A = J(1+r) $ — stuck, because $ r $ is unknown. Working *backwards* from "I need a formula for $ A $ using only $ J $ and $ S $" prompts the question: what combination of $ J $ and $ S $ kills the $ r $? Since $ r $ appears to the first power in $ A $ and the second in $ S $, multiplying $ J $ by $ S $ produces $ (1+r)^2 $, a perfect square — and taking a square root finishes it. The two directions meet in the middle.
+
+## Remark — Geometric Means Are for Anything That Grows by Ratios
+
+The same reasoning applies wherever a quantity is scaled repeatedly rather than incremented:
+
+| setting | the "in-between" value is |
+| :--- | :--- |
+| account compounding at a fixed rate | geometric mean of the endpoints |
+| population growing at a fixed percentage | geometric mean |
+| an investment's average annual return | geometric mean of the yearly factors |
+| distance covered at a steady speed | arithmetic mean |
+
+A frequently-seen error is reporting an investment's "average return" as the arithmetic mean of the yearly percentages. A fund that gains $ 100\% $ then loses $ 50\% $ has arithmetic mean return $ +25\% $, yet the money is exactly where it started — the geometric mean of the factors, $ \sqrt{2\times 0.5} = 1 $, gives the honest answer of $ 0\% $. Choosing the right mean is a modelling decision, and "which operation moves you from one term to the next?" is the question that settles it.

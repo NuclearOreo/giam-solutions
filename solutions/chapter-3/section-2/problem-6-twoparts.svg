@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">The criterion has two clauses, so the proof has two obligations. The single hypothesis ac &lt; 0 supplies both.</text>
+
+  <!-- the criterion -->
+  <rect x="100" y="38" width="500" height="44" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="58" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">two real solutions   ⟺   b² − 4ac &gt; 0   AND   a ≠ 0</text>
+  <text x="350" y="74" font-size="10" font-style="italic" fill="#666" text-anchor="middle">both clauses are required — miss either and the proof is incomplete</text>
+
+  <text x="350" y="106" font-size="16" fill="#999" text-anchor="middle">↓</text>
+
+  <!-- the two obligations -->
+  <rect x="30" y="118" width="310" height="128" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="185" y="140" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">Obligation 1:  a ≠ 0</text>
+  <text x="185" y="166" font-size="11.5" fill="#222" text-anchor="middle">Suppose a = 0.</text>
+  <text x="185" y="186" font-size="11.5" fill="#222" text-anchor="middle">Then ac = 0 · c = 0,</text>
+  <text x="185" y="206" font-size="11.5" fill="#222" text-anchor="middle">which is not &lt; 0.</text>
+  <text x="185" y="230" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">contradiction, so a ≠ 0 ✓</text>
+
+  <rect x="360" y="118" width="310" height="128" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="515" y="140" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">Obligation 2:  b² − 4ac &gt; 0</text>
+  <text x="515" y="166" font-size="11.5" fill="#222" text-anchor="middle">ac &lt; 0,  so  −4ac &gt; 0</text>
+  <text x="515" y="186" font-size="11.5" fill="#222" text-anchor="middle">b is real,  so  b² ≥ 0</text>
+  <text x="515" y="212" font-size="11.5" fill="#222" text-anchor="middle">b² − 4ac = (≥ 0) + (&gt; 0)</text>
+  <text x="515" y="234" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">&gt; 0 ✓</text>
+
+  <rect x="160" y="260" width="380" height="36" fill="#1b5e20"/>
+  <text x="350" y="284" font-size="13" fill="white" text-anchor="middle" font-weight="bold">both clauses hold ⟹ two real solutions ∎</text>
+
+  <!-- worked examples -->
+  <text x="350" y="326" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">Worked examples</text>
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="130" y="352">a, b, c</text><text x="270" y="352">ac</text>
+    <text x="390" y="352">a ≠ 0 ?</text><text x="500" y="352">b² − 4ac</text><text x="615" y="352">roots</text>
+  </g>
+  <line x1="60" y1="360" x2="660" y2="360" stroke="#999" stroke-width="0.9"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="130" y="380">1, 0, −4</text><text x="270" y="380">−4</text>
+    <text x="390" y="380" fill="#1b5e20">yes</text><text x="500" y="380">16</text><text x="615" y="380">±2</text>
+    <text x="130" y="402">−2, 3, 5</text><text x="270" y="402">−10</text>
+    <text x="390" y="402" fill="#1b5e20">yes</text><text x="500" y="402">49</text><text x="615" y="402">−1, 2.5</text>
+    <text x="130" y="424">3, −1, −2</text><text x="270" y="424">−6</text>
+    <text x="390" y="424" fill="#1b5e20">yes</text><text x="500" y="424">25</text><text x="615" y="424">1, −⅔</text>
+  </g>
+  <line x1="60" y1="434" x2="660" y2="434" stroke="#999" stroke-width="0.9"/>
+
+  <!-- relation to problem 2 -->
+  <rect x="24" y="452" width="652" height="76" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="472" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">Same theorem as Problem 2, stated more carefully</text>
+  <text x="350" y="494" font-size="11.5" fill="#222" text-anchor="middle">"a and c have different signs"   is literally the same condition as   ac &lt; 0</text>
+  <text x="350" y="516" font-size="11" fill="#8a3b12" text-anchor="middle">What changed is the <tspan font-weight="bold">criterion</tspan>: Problem 2 omitted "a ≠ 0", so a careful solver had to notice the gap. The hint now supplies it.</text>
+</svg>

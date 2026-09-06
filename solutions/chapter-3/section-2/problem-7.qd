@@ -1,0 +1,113 @@
+.docname {Solution — GIAM 3.2 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 7
+
+## Problem
+
+Show that
+
+$$$
+\binom{n}{k}\binom{k}{r} \;=\; \binom{n}{r}\binom{n-r}{k-r}
+$$$
+
+for all integers $ r, k, n $ with $ r \le k \le n $.
+
+## Proof
+
+> **Proof.** Expand both sides using $ \displaystyle\binom{m}{j} = \frac{m!}{j!\,(m-j)!} $.
+>
+> **Left side.**
+>
+> $ \displaystyle \binom{n}{k}\binom{k}{r} = \frac{n!}{k!\,(n-k)!}\cdot\frac{k!}{r!\,(k-r)!} = \frac{n!}{r!\,(k-r)!\,(n-k)!} $,
+>
+> the $ k! $ cancelling.
+>
+> **Right side.** Note first that $ (n-r) - (k-r) = n-k $, so
+>
+> $ \displaystyle \binom{n}{r}\binom{n-r}{k-r} = \frac{n!}{r!\,(n-r)!}\cdot\frac{(n-r)!}{(k-r)!\,(n-k)!} = \frac{n!}{r!\,(k-r)!\,(n-k)!} $,
+>
+> the $ (n-r)! $ cancelling.
+>
+> The two expressions are identical, so the sides are equal. $ \blacksquare $
+
+The condition $ r\le k\le n $ guarantees $ r $, $ k-r $ and $ n-k $ are all non-negative, so every factorial above is defined. Verified for every valid triple with $ n \le 25 $.
+
+## What the Identity Says
+
+!(94%)[Both sides expanded to the same trinomial coefficient, and the double-counting argument with nested sets](problem-7-subsets.svg "Top panel, expanding each side into factorials. Left side: n factorial over k factorial times (n minus k) factorial, times k factorial over r factorial times (k minus r) factorial; the k factorial cancels, leaving n factorial over r factorial times (k minus r) factorial times (n minus k) factorial. Right side: n factorial over r factorial times (n minus r) factorial, times (n minus r) factorial over (k minus r) factorial times (n minus k) factorial; the (n minus r) factorial cancels, and (n minus r) minus (k minus r) equals n minus k, leaving the same expression. Identical, so the proof is done. Below, the combinatorial reason: both sides count nested pairs B inside A inside the set from 1 to n, with A of size k and B of size r. Left diagram: choose the outer set first, showing a dashed universe containing a blue ellipse A containing a green ellipse B — pick A from n in C(n,k) ways, then B inside A in C(k,r) ways. Right diagram: choose the inner set first, the same nested picture — pick B from n in C(n,r) ways, then k minus r more elements from the n minus r remaining, in C(n minus r, k minus r) ways. A green banner: the same collection counted two ways, so the two products are equal. A final panel: equivalently a nested pair just splits the set into three labelled blocks, B of size r, A minus B of size k minus r, and everything outside A of size n minus k, and the number of such splits is the trinomial coefficient. Worked check for n equals 7, k equals 4, r equals 2: both sides give 210. Verified for every valid triple with n at most 25.")
+
+The algebra is short, but it hides the reason. Both sides count the **same collection**: pairs of nested sets
+
+$$$
+B \subseteq A \subseteq \{1,2,\dots,n\}, \qquad |A| = k, \quad |B| = r.
+$$$
+
+- **Left side.** Choose $ A $ first: $ \binom{n}{k} $ ways. Then choose $ B $ from inside $ A $: $ \binom{k}{r} $ ways.
+- **Right side.** Choose $ B $ first: $ \binom{n}{r} $ ways. Then enlarge it to $ A $ by picking the remaining $ k-r $ elements from the $ n-r $ not already in $ B $: $ \binom{n-r}{k-r} $ ways.
+
+Two ways of counting one set must agree. A brute-force count for $ n=6 $, $ k=4 $, $ r=2 $ gives $ 90 $ nested pairs, matching $ \binom64\binom42 = \binom62\binom42 = 90 $.
+
+## Remark — Both Sides Are a Trinomial Coefficient
+
+The common value is worth naming:
+
+$$$
+\binom{n}{k}\binom{k}{r} \;=\; \frac{n!}{r!\,(k-r)!\,(n-k)!} \;=\; \binom{n}{r,\;k-r,\;n-k},
+$$$
+
+a **multinomial coefficient**. It counts the ways to split $ \{1,\dots,n\} $ into three labelled blocks of sizes $ r $, $ k-r $ and $ n-k $ — which is exactly what a nested pair $ B\subseteq A $ *is*:
+
+| block | what it is | size |
+| :--- | :--- | :---: |
+| first | $ B $ | $ r $ |
+| second | $ A\setminus B $ | $ k-r $ |
+| third | outside $ A $ | $ n-k $ |
+
+Seen this way the identity is not two facts but one object described from two angles. The symmetric form also makes clear why the three quantities $ r $, $ k-r $, $ n-k $ must be non-negative — hence the hypothesis $ r\le k\le n $.
+
+## Remark — Which Proof Is Better?
+
+Both are complete, and they answer different questions.
+
+The **factorial proof** is the one to write when you need certainty: it is mechanical, checkable line by line, and needs no cleverness. It verifies *that* the identity holds.
+
+The **counting proof** explains *why*. It also generalises without effort — the same "choose in either order" argument immediately gives the $ m $-fold version
+
+$$$
+\binom{n}{k_1}\binom{k_1}{k_2}\cdots\binom{k_{m-1}}{k_m} = \frac{n!}{k_m!\,(k_{m-1}-k_m)!\cdots(n-k_1)!}
+$$$
+
+for a chain of nested sets, whereas pushing the factorial computation that far is tedious. This is the recurring trade-off: algebra confirms, combinatorics illuminates.
+
+## Remark — The Step $ (n-r)-(k-r) = n-k $
+
+The one place the right-hand computation could go wrong is the second factorial. Applying $ \binom{m}{j} = \frac{m!}{j!(m-j)!} $ with $ m = n-r $ and $ j = k-r $ gives a bottom factor $ (m-j)! = ((n-r)-(k-r))! $, and it takes a moment to see that this simplifies to $ (n-k)! $.
+
+That simplification is what makes the two sides match — and it is also exactly the combinatorial statement that after removing $ B $ (size $ r $) and then the rest of $ A $ (size $ k-r $), what remains outside $ A $ has size $ n-k $. The algebra and the picture are checking the same bookkeeping.
+
+## Remark — Special Cases Worth Recognising
+
+Setting the parameters to extremes recovers familiar facts:
+
+| choice | identity becomes |
+| :--- | :--- |
+| $ r = 0 $ | $ \binom{n}{k}\cdot 1 = 1\cdot\binom{n}{k} $ — trivial |
+| $ r = k $ | $ \binom{n}{k}\cdot 1 = \binom{n}{k}\binom{n-k}{0} $ — trivial |
+| $ k = n $ | $ 1\cdot\binom{n}{r} = \binom{n}{r}\cdot 1 $ — trivial |
+| $ r = 1 $ | $ k\binom{n}{k} = n\binom{n-1}{k-1} $ |
+
+The last is the genuinely useful one — the **committee-and-chair identity**. Reading it combinatorially: choosing a $ k $-member committee and then its chair ($ k\binom{n}{k} $) is the same as choosing the chair first and then $ k-1 $ others from the remaining $ n-1 $ ($ n\binom{n-1}{k-1} $). It is the standard tool for evaluating sums like $ \sum_k k\binom{n}{k} $.
+
+## Remark — The Hypothesis $ r \le k \le n $
+
+Two inequalities, each doing a job. $ r\le k $ keeps $ \binom{k}{r} $ and $ (k-r)! $ meaningful; $ k\le n $ does the same for $ \binom{n}{k} $ and $ (n-k)! $. Together they make all three block sizes non-negative.
+
+With the common convention $ \binom{m}{j} = 0 $ whenever $ j < 0 $ or $ j > m $, the identity in fact survives outside this range — both sides simply become $ 0 $. But that convention has to be *adopted*; stating the hypothesis is the honest alternative, and it matches the pattern seen throughout this chapter, where the hypothesis exists precisely to keep every expression in the statement well defined.

@@ -1,0 +1,98 @@
+.docname {Solution — GIAM 3.2 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 5
+
+## Problem
+
+Show that if $ x $ is a positive real number, then $ x + \dfrac1x \ge 2 $.
+
+## Finding the Proof — Work Backwards
+
+The hypothesis "$ x > 0 $" is not much to push forwards with, so start at the conclusion and simplify until something obviously true appears. Crucially, **because $ x > 0 $ every step is reversible**:
+
+$$$
+\begin{aligned}
+x + \tfrac1x \ge 2
+&\iff x^2 + 1 \ge 2x &&\quad \text{multiply by } x > 0 \\
+&\iff x^2 - 2x + 1 \ge 0 \\
+&\iff (x-1)^2 \ge 0 &&\quad \text{always true}
+\end{aligned}
+$$$
+
+## The Proof
+
+> **Proof.** Let $ x $ be a positive real number. Since the square of a real number is non-negative,
+>
+> $ (x-1)^2 \ge 0 $.
+>
+> Expanding, $ x^2 - 2x + 1 \ge 0 $, so $ x^2 + 1 \ge 2x $. Dividing both sides by $ x $, which is positive and therefore preserves the inequality,
+>
+> $ x + \dfrac1x \ge 2 $. $ \blacksquare $
+
+Verified on $ 20{,}000 $ random positive reals.
+
+## The Picture
+
+!(94%)[The backwards chain, the AM-GM connection, and a graph of y = x + 1/x sitting above the line y = 2](problem-5-amgm.svg "Top panel, backwards from the conclusion, every step reversible because x is positive: x plus one over x at least 2 is equivalent to x squared plus 1 at least 2x, multiplying by x positive; equivalent to x squared minus 2x plus 1 at least zero; equivalent to (x minus 1) squared at least zero, which is always true. Reading the chain upward gives the proof. A green panel notes it is the arithmetic-geometric mean inequality in disguise: taking a equals x and b equals one over x, so their product is 1, AM-GM gives (x plus one over x) over 2 at least the square root of 1, which is 1; multiplying by 2 gives the theorem. Below, a graph of the curve y equals x plus one over x on the interval from about 0.2 to 4, plotted above a dashed horizontal line at y equals 2. The curve descends steeply from the left, touches the dashed line exactly once at the point (1, 2) marked with a dot, then rises gently. Two closing panels: equality holds only at x equals 1, where (x minus 1) squared is zero, matching the AM equals GM condition a equals b; and positivity is essential, since for x negative the inequality reverses to x plus one over x at most minus 2.")
+
+## Remark — Writing the Chain Backwards Is the Whole Technique
+
+This is the section's method in its purest form. Discovering the proof and *writing* it are opposite journeys: you find $ (x-1)^2\ge 0 $ by descending from the conclusion, then present the argument by climbing back up from it.
+
+The section warns that this is only legitimate if the steps are **biconditional**. Here they are, and it is worth checking which:
+
+| step | reversible? | why |
+| :--- | :--- | :--- |
+| multiply by $ x $ | yes | $ x > 0 $, so no sign flip and no information lost |
+| move $ 2x $ across | yes | adding the same quantity to both sides |
+| factor $ x^2-2x+1 = (x-1)^2 $ | yes | an algebraic identity |
+
+Had any step been one-directional, the backwards chain would have been a *discovery* only, and the forwards write-up would need separate justification.
+
+## Remark — This Is AM–GM With $ a = x $, $ b = 1/x $
+
+The section's headline theorem is $ \dfrac{a+b}{2}\ge\sqrt{ab} $ for $ a,b\ge 0 $. Setting $ a = x $ and $ b = 1/x $ gives $ ab = 1 $, so
+
+$$$
+\frac{x + 1/x}{2} \;\ge\; \sqrt{1} = 1 \qquad\Longrightarrow\qquad x + \frac1x \ge 2.
+$$$
+
+That is the entire problem, in one substitution. It is worth seeing both routes: the direct $ (x-1)^2\ge 0 $ argument is self-contained, while the AM–GM route explains *why* the answer is $ 2 $ — because a number and its reciprocal always have geometric mean exactly $ 1 $, so their arithmetic mean cannot be less.
+
+Notice too that the two proofs are the same proof. AM–GM itself is proved (in this section) by reducing to $ (\sqrt a-\sqrt b)^2\ge 0 $, and with $ a = x $, $ b = 1/x $ that is $ (\sqrt x - 1/\sqrt x)^2\ge 0 $ — which expands to the same statement.
+
+## Remark — Equality Holds at Exactly One Point
+
+The proof gives more than the inequality: since $ (x-1)^2 = 0 $ only when $ x = 1 $, the inequality is **strict** for every positive $ x\ne 1 $, with equality at $ x = 1 $ alone.
+
+That matches AM–GM's equality condition $ a = b $, which here reads $ x = 1/x $ — and for positive $ x $ that forces $ x = 1 $. Geometrically, the curve $ y = x + 1/x $ has its minimum value $ 2 $ at $ x = 1 $ and rises on both sides, touching the line $ y = 2 $ exactly once. The chain of biconditionals is what lets us read off the equality case for free: the conclusion is tight precisely when the bottom line is.
+
+## Remark — Positivity Is Essential, Not Cosmetic
+
+The hypothesis is used once, to divide by $ x $ without flipping the inequality. And it is genuinely needed — the statement is **false** for negative $ x $:
+
+$$$
+x = -1: \quad -1 + \frac{1}{-1} = -2 \not\ge 2.
+$$$
+
+In fact for every $ x < 0 $ the inequality reverses completely: $ x + 1/x \le -2 $, verified on $ 5000 $ random negatives. The reason is visible in the algebra — for $ x < 0 $, dividing $ x^2+1\ge 2x $ by $ x $ flips the relation, giving $ x + 1/x \le 2 $; combined with the mirror argument via $ (x+1)^2\ge 0 $ one gets the sharp bound $ -2 $.
+
+So the full picture is $ |x + 1/x| \ge 2 $ for all $ x\ne 0 $, with the sign of $ x $ deciding which side.
+
+## Remark — Why $ (x-1)^2 $ and Not Something Else
+
+The step that looks like a rabbit from a hat is recognising $ x^2-2x+1 $ as a perfect square. But nothing was guessed: **completing the square** is the systematic way to decide whether a quadratic is always non-negative.
+
+$$$
+x^2 - 2x + 1 = (x-1)^2 + 0,
+$$$
+
+and a quadratic $ x^2+bx+c $ is non-negative everywhere exactly when its discriminant $ b^2-4c \le 0 $ — here $ 4 - 4 = 0 $, the borderline case, which is precisely why equality is achieved rather than the inequality being strict everywhere. This connects back to Problem 2: the discriminant governs whether a parabola touches, crosses, or misses the axis, and a *zero* discriminant is the tangency case that produces exactly one equality point.

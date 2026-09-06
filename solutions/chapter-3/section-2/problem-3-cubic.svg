@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Both sides say something about x alone: the hypothesis forces x &lt; 1, and the conclusion IS x &lt; 1.</text>
+
+  <!-- backwards from conclusion -->
+  <rect x="24" y="38" width="320" height="106" fill="#eef5ee" stroke="#cde0cd"/>
+  <text x="184" y="58" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">backwards from the conclusion</text>
+  <text x="184" y="82" font-size="12.5" fill="#222" text-anchor="middle">3x + 4 &lt; 7</text>
+  <text x="184" y="102" font-size="12.5" fill="#222" text-anchor="middle">⟺  3x &lt; 3</text>
+  <text x="184" y="122" font-size="12.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">⟺  x &lt; 1</text>
+  <text x="184" y="138" font-size="9.5" font-style="italic" fill="#666" text-anchor="middle">dividing by 3 &gt; 0 keeps the direction</text>
+
+  <!-- forwards from hypothesis -->
+  <rect x="356" y="38" width="320" height="106" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="516" y="58" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">forwards from the hypothesis</text>
+  <text x="516" y="82" font-size="12.5" fill="#222" text-anchor="middle">x³ − x² &lt; 0</text>
+  <text x="516" y="102" font-size="12.5" fill="#222" text-anchor="middle">⟺  x²(x − 1) &lt; 0</text>
+  <text x="516" y="122" font-size="12.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">⟹  x² &gt; 0  and  x − 1 &lt; 0</text>
+  <text x="516" y="138" font-size="9.5" font-style="italic" fill="#666" text-anchor="middle">a negative product of x² and (x−1)</text>
+
+  <!-- meeting -->
+  <rect x="160" y="156" width="380" height="38" fill="#1b5e20"/>
+  <text x="350" y="181" font-size="13" fill="white" text-anchor="middle" font-weight="bold">both meet at  x &lt; 1  —  the proof is complete  ∎</text>
+
+  <!-- the sign analysis -->
+  <text x="350" y="228" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Why x²(x − 1) &lt; 0 forces x &lt; 1</text>
+
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="150" y="254">case</text>
+    <text x="320" y="254">x²</text>
+    <text x="430" y="254">x − 1</text>
+    <text x="570" y="254">product</text>
+  </g>
+  <line x1="70" y1="262" x2="650" y2="262" stroke="#999" stroke-width="0.9"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="150" y="282">x = 0</text><text x="320" y="282">0</text><text x="430" y="282">−1</text>
+    <text x="570" y="282" fill="#8a3b12">0 — not negative</text>
+    <text x="150" y="304">x ≥ 1</text><text x="320" y="304">&gt; 0</text><text x="430" y="304">≥ 0</text>
+    <text x="570" y="304" fill="#8a3b12">≥ 0 — not negative</text>
+    <rect x="70" y="314" width="580" height="24" fill="#dfeadd"/>
+    <text x="150" y="331" font-weight="bold">x &lt; 1, x ≠ 0</text><text x="320" y="331">&gt; 0</text><text x="430" y="331">&lt; 0</text>
+    <text x="570" y="331" fill="#1b5e20" font-weight="bold">&lt; 0 — the only way</text>
+  </g>
+  <line x1="70" y1="342" x2="650" y2="342" stroke="#999" stroke-width="0.9"/>
+
+  <!-- number line comparison -->
+  <text x="350" y="378" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">The hypothesis is very slightly stronger than the conclusion needs</text>
+
+  <text x="60" y="410" font-size="11" fill="#1a3a63" font-weight="bold">hypothesis</text>
+  <line x1="150" y1="406" x2="600" y2="406" stroke="#666" stroke-width="1"/>
+  <rect x="150" y="400" width="230" height="12" fill="#cfe0f5"/>
+  <rect x="390" y="400" width="90" height="12" fill="#cfe0f5"/>
+  <circle cx="385" cy="406" r="4.5" fill="white" stroke="#8a3b12" stroke-width="2"/>
+  <circle cx="480" cy="406" r="4.5" fill="white" stroke="#2a5db0" stroke-width="1.8"/>
+  <text x="385" y="428" font-size="10.5" fill="#8a3b12" text-anchor="middle">0</text>
+  <text x="480" y="428" font-size="10.5" fill="#222" text-anchor="middle">1</text>
+  <text x="620" y="410" font-size="10.5" fill="#1a3a63">(−∞,0) ∪ (0,1)</text>
+
+  <text x="60" y="462" font-size="11" fill="#1b5e20" font-weight="bold">conclusion</text>
+  <line x1="150" y1="458" x2="600" y2="458" stroke="#666" stroke-width="1"/>
+  <rect x="150" y="452" width="330" height="12" fill="#cfe6cf"/>
+  <circle cx="385" cy="458" r="4.5" fill="#1b5e20"/>
+  <circle cx="480" cy="458" r="4.5" fill="white" stroke="#1b5e20" stroke-width="1.8"/>
+  <text x="385" y="480" font-size="10.5" fill="#1b5e20" text-anchor="middle">0</text>
+  <text x="480" y="480" font-size="10.5" fill="#222" text-anchor="middle">1</text>
+  <text x="620" y="462" font-size="10.5" fill="#1b5e20">(−∞, 1)</text>
+
+  <rect x="24" y="494" width="652" height="42" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="512" font-size="11.5" fill="#8a3b12" text-anchor="middle">They differ at exactly one point, x = 0: the conclusion holds there, the hypothesis does not.</text>
+  <text x="350" y="529" font-size="11" font-style="italic" fill="#666" text-anchor="middle">So the converse fails — and only there.</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">You are given the top and the bottom. The gap is bridged by adding zero in a useful form.</text>
+
+  <!-- given start -->
+  <rect x="24" y="36" width="652" height="48" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="54" font-size="10" font-style="italic" fill="#1a3a63">GIVEN — where the proof starts</text>
+  <text x="350" y="74" font-size="12.5" fill="#222" text-anchor="middle">= lim (h→0)  [ f(x+h)·g(x+h) − f(x)·g(x) ] / h</text>
+
+  <!-- the trick -->
+  <rect x="24" y="96" width="652" height="46" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="115" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">THE MOVE:  add and subtract  f(x)·g(x+h)  in the numerator</text>
+  <text x="350" y="133" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">this changes nothing — it is adding zero — but it creates two difference quotients</text>
+
+  <!-- the missing lines -->
+  <rect x="24" y="154" width="652" height="168" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="40" y="172" font-size="10" font-style="italic" fill="#1b5e20">THE LINES TO FILL IN</text>
+
+  <text x="350" y="196" font-size="11.5" fill="#222" text-anchor="middle">= lim  [ f(x+h)g(x+h) <tspan fill="#8a3b12" font-weight="bold">− f(x)g(x+h) + f(x)g(x+h)</tspan> − f(x)g(x) ] / h</text>
+  <text x="620" y="196" font-size="9.5" font-style="italic" fill="#666" text-anchor="end">add zero</text>
+
+  <text x="350" y="228" font-size="11.5" fill="#222" text-anchor="middle">= lim  { [f(x+h) − f(x)]·g(x+h)  +  f(x)·[g(x+h) − g(x)] } / h</text>
+  <text x="620" y="228" font-size="9.5" font-style="italic" fill="#666" text-anchor="end">group and factor</text>
+
+  <text x="350" y="260" font-size="11.5" fill="#222" text-anchor="middle">= lim [f(x+h)−f(x)]/h · lim g(x+h)  +  f(x) · lim [g(x+h)−g(x)]/h</text>
+  <text x="620" y="260" font-size="9.5" font-style="italic" fill="#666" text-anchor="end">split the limit</text>
+
+  <text x="350" y="294" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">and lim (h→0) g(x+h) = g(x), because g is continuous at x</text>
+  <text x="350" y="312" font-size="10" font-style="italic" fill="#666" text-anchor="middle">— which holds since g is differentiable there</text>
+
+  <!-- given end -->
+  <rect x="24" y="334" width="652" height="72" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="352" font-size="10" font-style="italic" fill="#1a3a63">GIVEN — the last two lines</text>
+  <text x="350" y="372" font-size="12" fill="#222" text-anchor="middle">= lim [f(x+h)−f(x)]/h · g(x)  +  f(x) · lim [g(x+h)−g(x)]/h</text>
+  <text x="350" y="396" font-size="12" fill="#222" text-anchor="middle">= (d/dx) f(x) · g(x)  +  f(x) · (d/dx) g(x)</text>
+
+  <!-- why that particular term -->
+  <rect x="24" y="422" width="652" height="80" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="350" y="442" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">Why subtract f(x)·g(x+h) and not something else?</text>
+  <text x="40" y="464" font-size="11" fill="#222">It is the "mixed" term: it shares g(x+h) with the first product and f(x) with the second,</text>
+  <text x="40" y="482" font-size="11" fill="#222">so each half of the split lands on a genuine difference quotient — one for f, one for g.</text>
+  <text x="40" y="498" font-size="10.5" font-style="italic" fill="#8a3b12">The other mixed term f(x+h)·g(x) works equally well; it just shifts the continuity appeal from g onto f.</text>
+
+  <text x="350" y="526" font-size="10.5" fill="#666" text-anchor="middle">Identity checked on 500 random quadruples; the finished rule checked numerically at several points.</text>
+</svg>

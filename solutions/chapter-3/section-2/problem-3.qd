@@ -1,0 +1,92 @@
+.docname {Solution — GIAM 3.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 3
+
+## Problem
+
+Prove that if $ x^3 - x^2 $ is negative then $ 3x + 4 < 7 $.
+
+## Proof
+
+> **Proof.** Suppose $ x^3 - x^2 < 0 $. Factoring,
+>
+> $ x^2(x-1) < 0 $.
+>
+> Since $ x^2 \ge 0 $ for every real $ x $, the product can be negative only if $ x^2 > 0 $ and $ x - 1 < 0 $. (If $ x^2 = 0 $ the product is $ 0 $; if $ x-1 \ge 0 $ the product is $ \ge 0 $.) In particular
+>
+> $ x < 1 $.
+>
+> Multiplying by $ 3 $, which is positive and so preserves the direction, and then adding $ 4 $:
+>
+> $ 3x < 3 $,  hence  $ 3x + 4 < 7 $. $ \blacksquare $
+
+## Forwards and Backwards
+
+!(94%)[The two directions meeting at x less than 1, a sign table, and number lines comparing the two solution sets](problem-3-cubic.svg "Top left, backwards from the conclusion: 3x plus 4 less than 7 is equivalent to 3x less than 3, which is equivalent to x less than 1, dividing by 3 which is positive so the direction is kept. Top right, forwards from the hypothesis: x cubed minus x squared less than zero is equivalent to x squared times (x minus 1) less than zero, which implies x squared is positive and x minus 1 is negative, since the product of x squared and x minus 1 is negative. A green banner: both meet at x less than 1, so the proof is complete. Below, a sign table explaining why x squared times (x minus 1) negative forces x less than 1. Case x equals 0: x squared is 0, x minus 1 is minus 1, product is 0, not negative. Case x at least 1: x squared positive, x minus 1 at least zero, product at least zero, not negative. Case x less than 1 and x nonzero, highlighted: x squared positive, x minus 1 negative, product negative — the only way. Finally two number lines. The hypothesis holds on the union of the interval below zero and the interval from zero to one, with an open circle at zero. The conclusion holds on everything below one, with a filled circle at zero. The two sets differ at exactly one point, x equals 0, where the conclusion holds but the hypothesis does not — so the converse fails, and only there.")
+
+This is a clean illustration of the section's **forwards–backwards** method. Neither end is obviously connected to the other, but each simplifies dramatically on its own:
+
+- **Backwards from the conclusion:** $ 3x+4 < 7 \iff 3x < 3 \iff x < 1 $. So the target is really just "$ x < 1 $."
+- **Forwards from the hypothesis:** $ x^3-x^2 < 0 \iff x^2(x-1) < 0 $, which forces $ x < 1 $.
+
+The two directions meet in the middle, and the proof is finished. Verified on $ 20{,}000 $ random reals.
+
+## Remark — Factoring Is the Only Real Move
+
+Left as $ x^3 - x^2 $, the hypothesis is opaque; factored as $ x^2(x-1) $, it is transparent. The reason is that **a product's sign is determined by its factors' signs**, whereas a sum's is not. Once the expression is a product, the sign analysis is mechanical:
+
+| case | $ x^2 $ | $ x-1 $ | product |
+| :--- | :---: | :---: | :--- |
+| $ x = 0 $ | $ 0 $ | $ -1 $ | $ 0 $ — not negative |
+| $ x \ge 1 $ | $ > 0 $ | $ \ge 0 $ | $ \ge 0 $ — not negative |
+| $ x < 1 $, $ x\ne 0 $ | $ > 0 $ | $ < 0 $ | $ < 0 $ — **the only way** |
+
+Only the third row produces a negative value, so the hypothesis is equivalent to "$ x < 1 $ and $ x\ne 0 $."
+
+## Remark — The Hypothesis Gives Slightly More Than Needed
+
+The analysis above yields **two** facts: $ x < 1 $ *and* $ x \ne 0 $. The conclusion needs only the first. So the hypothesis is very slightly stronger than the theorem requires:
+
+$$$
+\underbrace{(-\infty, 0)\cup(0,1)}_{\text{where }x^3-x^2<0} \;\subsetneq\; \underbrace{(-\infty,1)}_{\text{where }3x+4<7}.
+$$$
+
+The two sets differ at **exactly one point**, $ x = 0 $. There $ x^3-x^2 = 0 $, which is not negative, so the hypothesis fails; yet $ 3(0)+4 = 4 < 7 $, so the conclusion holds. A scan of sampled points confirms $ x = 0 $ is the sole such place.
+
+Consequently the **converse is false**, but only barely — it fails at a single point out of the whole real line. This is a nicer situation than usual: normally a converse fails on a large set, and here one can point to precisely the one number responsible.
+
+## Remark — Where Each Inequality Rule Is Used
+
+The proof performs three inequality manipulations, and each carries a side condition worth naming:
+
+1. **Sign of a product.** $ x^2(x-1) < 0 $ with $ x^2\ge 0 $ forces $ x-1 < 0 $. This uses that a product of a non-negative and a non-negative is non-negative — the contrapositive of which is the step actually taken.
+2. **Multiply by $ 3 $.** Positive multiplier, so $ x < 1 $ gives $ 3x < 3 $ with the direction *preserved* — unlike Problems 3.1.9 and 3.2.2, where a negative multiplier reversed it.
+3. **Add $ 4 $.** Adding the same quantity to both sides always preserves an inequality, with no sign condition at all.
+
+Only step 2 could have gone wrong, and only if the multiplier had been negative. Being able to say *which* steps are risky is the point of naming them.
+
+## Remark — The Cube Term Is Almost a Red Herring
+
+The hypothesis mentions $ x^3 $, which suggests a cubic and perhaps three roots to worry about. In fact the cubic $ x^3-x^2 = x^2(x-1) $ has a **double root at $ 0 $** and a simple root at $ 1 $, and a double root is exactly a place where the curve *touches* the axis without crossing.
+
+That is why the sign of $ x^3-x^2 $ changes only once, at $ x = 1 $: it stays negative straight through $ x = 0 $ except for the single instant it touches zero. Had the factorisation been $ x(x-1) $ instead — two simple roots — the expression would be negative only on $ (0,1) $ and the theorem would be false for, say, $ x = -2 $. The repeated factor is what makes the hypothesis reach all the way to $ -\infty $.
+
+## Remark — Reading the Problem as a Set Containment
+
+There is a compact way to see what a statement like this asserts. Any implication between conditions on $ x $ is a claim of **set containment**:
+
+$$$
+P(x)\Rightarrow Q(x) \quad\text{for all } x \qquad\Longleftrightarrow\qquad \{x : P(x)\} \subseteq \{x : Q(x)\}.
+$$$
+
+So the theorem says the solution set of the hypothesis sits inside that of the conclusion, and the number lines in the figure *are* the proof, once one trusts the two solution sets. The containment is proper, which is the same observation as "the converse fails."
+
+This viewpoint is often the fastest way to check such a claim, and it makes the role of a counterexample vivid: a counterexample is simply a point in the first set that escapes the second.

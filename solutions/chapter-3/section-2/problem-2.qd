@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 3.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.2 Problem 2
+
+## Problem
+
+Recall that a quadratic equation $ ax^2+bx+c = 0 $ has two real solutions **if and only if** the discriminant $ b^2-4ac $ is positive. Prove that if $ a $ and $ c $ have different signs then the quadratic equation has two real solutions.
+
+## Proof
+
+> **Proof.** Suppose $ a $ and $ c $ have different signs. Then their product is negative:
+>
+> $ ac < 0 $.
+>
+> Multiplying by $ -4 $, which is negative and therefore reverses the inequality,
+>
+> $ -4ac > 0 $.
+>
+> Also $ b $ is a real number, so $ b^2 \ge 0 $. Adding the two,
+>
+> $ b^2 - 4ac \;=\; \underbrace{b^2}_{\ge\, 0} + \underbrace{(-4ac)}_{>\, 0} \;>\; 0 $.
+>
+> So the discriminant is positive, and by the stated criterion the equation has two real solutions. $ \blacksquare $
+
+## The Structure
+
+!(94%)[The three-inequality chain, two parabola sketches showing the geometric reason, and a counterexample to the converse](problem-2-discriminant.svg "Top panel, the proof in three inequalities: a and c have different signs implies ac is less than zero, by the definition of different signs; multiplying by minus 4, which is negative so the inequality flips, gives minus 4ac greater than zero; and b is real so b squared is at least zero, noting the sign is at-least rather than strictly-greater since b may be zero. Therefore b squared minus 4ac equals something at least zero plus something strictly positive, which is strictly positive. A green banner concludes the discriminant is positive so there are two real solutions. Below, two parabola sketches. Left: a positive so the curve opens upward, with c negative, so f of zero is below the axis — the curve dips below and must cross twice, with two root markers shown. Right: a negative so the curve opens downward, with c positive, so f of zero is above the axis — the curve rises above and must cross twice. In both cases the curve sits on the opposite side of the axis from where its arms go, so it must cross on the way out, twice. A final red panel: the converse is false, since a equals 1, b equals 5, c equals 1 gives discriminant 21 which is positive, yet ac equals 1 which is positive — so different signs is sufficient for two real roots but not necessary.")
+
+## Remark — The Sign Rule Is the Whole Content
+
+Every step is an inequality manipulation, and the one that does the work is multiplying by $ -4 $. As in Problems 3.1.6 and 3.1.9, multiplying an inequality by a **negative** number reverses it:
+
+$$$
+ac < 0 \quad\xrightarrow{\ \times(-4)\ }\quad -4ac > 0.
+$$$
+
+Getting this backwards would yield $ -4ac < 0 $ and the proof would conclude nothing. Note also the translation at the very start: "$ a $ and $ c $ have different signs" is not a formula, and the first job is converting it into one. The right formalisation is $ ac < 0 $, which packages both cases ($ a > 0 > c $ and $ a < 0 < c $) into a single inequality — avoiding a case split.
+
+## Remark — $ b^2 \ge 0 $, Not $ b^2 > 0 $
+
+A small but genuine trap. The square of a real number is **non-negative**, not positive — $ b $ could be $ 0 $. Writing $ b^2 > 0 $ would be an error.
+
+Happily the proof does not need the strict version. The sum of a *non-negative* quantity and a *strictly positive* one is strictly positive, which is exactly what is required. And the case $ b = 0 $ is not exotic: $ x^2 - 1 = 0 $ has $ a=1 $, $ b=0 $, $ c=-1 $, discriminant $ 0 - 4(1)(-1) = 4 > 0 $, and the two real roots $ x = \pm 1 $. The theorem covers it correctly.
+
+## Remark — The Hypothesis Quietly Guarantees $ a \ne 0 $
+
+For $ ax^2+bx+c = 0 $ to be a *quadratic* at all, one needs $ a \ne 0 $ — otherwise it is linear and the discriminant criterion does not apply. The problem never states this assumption, and it does not have to: **"$ a $ and $ c $ have different signs" already forces both to be nonzero**, since zero has no sign.
+
+This is a pleasant instance of a hypothesis doing double duty. It is worth checking for, because the reverse situation — a theorem quietly requiring something its hypotheses do not supply — is a real gap.
+
+## Remark — Why It Is Obvious Geometrically
+
+The algebra is short, but the picture explains *why* the theorem is true. Note that $ f(0) = c $: the constant term is precisely the height of the parabola at $ x = 0 $. And $ a $ controls which way the arms point.
+
+- If $ a > 0 $ the parabola **opens upward**, so its arms go to $ +\infty $. With $ c < 0 $ the curve is *below* the axis at $ x=0 $. Coming up from below on both sides, it must cross the axis twice.
+- If $ a < 0 $ the parabola **opens downward** with arms heading to $ -\infty $, while $ c > 0 $ puts the curve *above* the axis at $ x = 0 $. Again it must cross twice.
+
+In both cases the curve is caught on the opposite side of the axis from where its arms are going, so two crossings are forced. This is really an appeal to the intermediate value theorem, and it explains why $ b $ never appeared in the argument: $ b $ shifts the parabola sideways but changes neither the opening direction nor the value at $ x = 0 $.
+
+## Remark — The Converse Is False
+
+"Different signs" is **sufficient** for two real roots but not **necessary**. Take $ a = 1 $, $ b = 5 $, $ c = 1 $:
+
+$$$
+b^2 - 4ac = 25 - 4 = 21 > 0,
+$$$
+
+so there are two real roots, yet $ a $ and $ c $ are both positive. The point is that when $ ac > 0 $ the term $ -4ac $ works *against* positivity, and whether the discriminant survives depends on how large $ b^2 $ is. The theorem's hypothesis simply removes that competition by making both terms pull the same way.
+
+So the honest picture is:
+
+| signs of $ a, c $ | $ -4ac $ | conclusion |
+| :--- | :--- | :--- |
+| different | positive | **always** two real roots |
+| same | negative | depends on the size of $ b^2 $ |
+
+## Remark — Working Backwards Found This Proof
+
+In the spirit of the section, notice how the proof would be *discovered*. The goal is $ b^2 - 4ac > 0 $. Working backwards: what would guarantee that? A sum is positive if its pieces are. The piece $ b^2 $ is automatically $ \ge 0 $ for free, so it suffices to make $ -4ac > 0 $ — that is, $ ac < 0 $ — which is exactly the hypothesis.
+
+The forwards direction alone would be harder to steer: from "$ a $ and $ c $ have different signs" one could deduce many things, most of them useless. Fixing the target first tells you *which* consequence to chase. That is the forwards–backwards method the section is teaching, applied to a problem short enough to see the whole of it at once.
