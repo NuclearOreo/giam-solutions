@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Evenness counts the factors of 2. Multiplying numbers adds their counts.</text>
+
+  <!-- the reformulation -->
+  <rect x="24" y="38" width="652" height="76" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="58" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">The useful reformulation of the definition</text>
+  <text x="350" y="82" font-size="12.5" fill="#222" text-anchor="middle">evenness(n) = k   ⟺   n = 2ᵏ · s   with s <tspan font-weight="bold">odd</tspan></text>
+  <text x="350" y="102" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">"2ᵏ divides n but 2ᵏ⁺¹ does not" is exactly "the leftover factor is odd"</text>
+
+  <!-- the theorem -->
+  <rect x="140" y="128" width="420" height="42" fill="#1b5e20"/>
+  <text x="350" y="155" font-size="14" fill="white" text-anchor="middle" font-weight="bold">evenness(mn) = evenness(m) + evenness(n)</text>
+  <text x="350" y="186" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">for all nonzero integers m and n — verified on 3000 random pairs</text>
+
+  <!-- the proof -->
+  <rect x="24" y="200" width="652" height="112" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="40" y="220" font-size="11.5" fill="#1b5e20" font-weight="bold">The proof in three lines</text>
+  <text x="60" y="242" font-size="11.5" fill="#222">write  m = 2ᵃ·s  and  n = 2ᵇ·t   with s, t odd</text>
+  <text x="350" y="266" font-size="13.5" fill="#222" text-anchor="middle">mn = (2ᵃ·s)(2ᵇ·t) = 2ᵃ⁺ᵇ · (st)</text>
+  <text x="60" y="290" font-size="11.5" fill="#222">st is odd (a product of two odd numbers), so evenness(mn) = a + b   <tspan font-weight="bold" fill="#1b5e20">∎</tspan></text>
+
+  <!-- worked examples -->
+  <text x="350" y="342" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">Worked examples</text>
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="120" y="366">m</text><text x="210" y="366">n</text>
+    <text x="310" y="366">ev(m)</text><text x="400" y="366">ev(n)</text>
+    <text x="500" y="366">mn</text><text x="610" y="366" fill="#1b5e20">ev(mn)</text>
+  </g>
+  <line x1="70" y1="374" x2="650" y2="374" stroke="#999" stroke-width="0.9"/>
+  <g font-size="11.5" text-anchor="middle">
+    <text x="120" y="394">12</text><text x="210" y="394">20</text>
+    <text x="310" y="394">2</text><text x="400" y="394">2</text>
+    <text x="500" y="394">240</text><text x="610" y="394" fill="#1b5e20">4 = 2+2</text>
+    <text x="120" y="416">3</text><text x="210" y="416">8</text>
+    <text x="310" y="416">0</text><text x="400" y="416">3</text>
+    <text x="500" y="416">24</text><text x="610" y="416" fill="#1b5e20">3 = 0+3</text>
+    <text x="120" y="438">6</text><text x="210" y="438">48</text>
+    <text x="310" y="438">1</text><text x="400" y="438">4</text>
+    <text x="500" y="438">288</text><text x="610" y="438" fill="#1b5e20">5 = 1+4</text>
+  </g>
+  <line x1="70" y1="448" x2="650" y2="448" stroke="#999" stroke-width="0.9"/>
+
+  <!-- the contrast with sums -->
+  <rect x="24" y="464" width="652" height="88" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="484" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">Sums behave completely differently — no additive law, only an inequality</text>
+  <text x="350" y="506" font-size="12" fill="#222" text-anchor="middle">evenness(m + n)  ≥  min( evenness(m), evenness(n) )</text>
+  <text x="60" y="528" font-size="11" fill="#222">equality when the two evennesses differ:  ev(12)=2, ev(8)=3  →  ev(20) = 2  ✓</text>
+  <text x="60" y="546" font-size="11" fill="#8a3b12">but the value can jump when they agree:  ev(12)=2, ev(20)=2  →  ev(32) = <tspan font-weight="bold">5</tspan>, not 2</text>
+</svg>

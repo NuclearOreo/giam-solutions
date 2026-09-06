@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">One algebraic identity does the whole job — no case analysis required.</text>
+
+  <!-- the slick proof -->
+  <rect x="24" y="38" width="652" height="128" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="350" y="58" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">The one-identity proof</text>
+  <text x="50" y="82" font-size="11.5" fill="#222">assume  x + y  is even:   x + y = 2k   for some k ∈ ℤ</text>
+  <text x="350" y="110" font-size="15" fill="#222" text-anchor="middle">x − y  =  (x + y) − 2y  =  2k − 2y  =  2(k − y)</text>
+  <text x="50" y="136" font-size="11.5" fill="#222">and  k − y ∈ ℤ,  so  x − y = 2m  with  m = k − y ∈ ℤ</text>
+  <text x="350" y="157" font-size="12" fill="#1b5e20" text-anchor="middle" font-weight="bold">hence x − y is even  ∎</text>
+
+  <!-- why no cases -->
+  <rect x="24" y="180" width="652" height="76" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="200" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">Why no case analysis is needed</text>
+  <text x="350" y="222" font-size="12" fill="#222" text-anchor="middle">(x + y) − (x − y) = 2y      and      (x + y) + (x − y) = 2x</text>
+  <text x="350" y="244" font-size="11" fill="#1a3a63" text-anchor="middle">Both are even, so <tspan font-weight="bold">x+y and x−y always have the same parity</tspan> — whatever x and y are.</text>
+
+  <!-- the four cases, shown to be unnecessary -->
+  <text x="350" y="284" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">The parity table confirms it: the two columns are identical</text>
+
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="120" y="312">x</text>
+    <text x="230" y="312">y</text>
+    <text x="360" y="312" fill="#2a5db0">x + y</text>
+    <text x="490" y="312" fill="#8a3b12">x − y</text>
+    <text x="608" y="312">same?</text>
+  </g>
+  <line x1="70" y1="320" x2="650" y2="320" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="11.5" text-anchor="middle">
+    <rect x="70" y="328" width="580" height="24" fill="#dfeadd"/>
+    <text x="120" y="345">even</text><text x="230" y="345">even</text>
+    <text x="360" y="345" fill="#2a5db0" font-weight="bold">even</text><text x="490" y="345" fill="#8a3b12" font-weight="bold">even</text>
+    <text x="608" y="345" fill="#1b5e20">✓</text>
+
+    <text x="120" y="374">even</text><text x="230" y="374">odd</text>
+    <text x="360" y="374" fill="#2a5db0">odd</text><text x="490" y="374" fill="#8a3b12">odd</text>
+    <text x="608" y="374" fill="#1b5e20">✓</text>
+
+    <text x="120" y="400">odd</text><text x="230" y="400">even</text>
+    <text x="360" y="400" fill="#2a5db0">odd</text><text x="490" y="400" fill="#8a3b12">odd</text>
+    <text x="608" y="400" fill="#1b5e20">✓</text>
+
+    <rect x="70" y="410" width="580" height="24" fill="#dfeadd"/>
+    <text x="120" y="427">odd</text><text x="230" y="427">odd</text>
+    <text x="360" y="427" fill="#2a5db0" font-weight="bold">even</text><text x="490" y="427" fill="#8a3b12" font-weight="bold">even</text>
+    <text x="608" y="427" fill="#1b5e20">✓</text>
+  </g>
+  <line x1="70" y1="440" x2="650" y2="440" stroke="#999" stroke-width="0.9"/>
+
+  <text x="350" y="462" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Shaded rows are the ones where the hypothesis holds — and there the conclusion holds too.</text>
+
+  <!-- stronger statement -->
+  <rect x="24" y="478" width="652" height="52" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="498" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">The converse holds too, so the real theorem is a biconditional:</text>
+  <text x="350" y="519" font-size="12.5" fill="#222" text-anchor="middle">x + y even   ⟺   x − y even   ⟺   x and y have the same parity</text>
+</svg>

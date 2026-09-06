@@ -1,0 +1,72 @@
+.docname {Solution — GIAM 3.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 2
+
+## Problem
+
+Prove that $ 129 $ is odd.
+
+## Proof
+
+$$$
+\boxed{\;\text{Let } k = 64. \text{ Then } k\in\mathbb Z \text{ and } 2k+1 = 2(64)+1 = 129. \text{ Hence } 129 \text{ is odd.} \quad\blacksquare\;}
+$$$
+
+That is the complete proof. The definition of *odd* is
+
+$$$
+n \text{ is odd} \quad\Longleftrightarrow\quad \exists k\in\mathbb Z,\ n = 2k+1,
+$$$
+
+so proving "$ 129 $ is odd" requires exactly one thing: **exhibiting an integer $ k $** that works. Producing $ k=64 $ and checking the arithmetic discharges the obligation entirely.
+
+## Why One Line Suffices
+
+!(88%)[The definition unpacked, the witness supplied, and the contrast between existential and universal claims](problem-2-witness.svg "Top: the definition, n is odd if and only if there exists an integer k with n equal to 2k plus 1 — so proving 129 is odd means producing one such k. Below, the witness: take k equal to 64; then 2 times 64 plus 1 equals 128 plus 1 equals 129, and 64 is an integer — both halves must be checked. That is the entire proof. Below that, a two-panel contrast titled 'why one example is enough here but was worthless in Problem 1'. Left panel, EXISTENTIAL, this problem: there exists an integer k with 129 equal to 2k plus 1; one witness settles it completely, so example equals proof, by the rule of existential generalisation. Right panel, UNIVERSAL, Problem 1: for all primes p greater than 3, p is 6k+1 or 6k+5; checking 301 primes proves nothing, so example does not equal proof, and an argument covering every p is needed.")
+
+The rule of inference is **existential generalisation** (Problem 2.7.5): from the particular fact $ 129 = 2(64)+1 $ we infer $ \exists k\in\mathbb Z,\ 129 = 2k+1 $. Nothing more is required, because the statement being proved *is* an existential.
+
+This is worth contrasting sharply with the previous problem. There the claim was **universal** — "every prime $ p > 3 $ has the form $ 6k+1 $ or $ 6k+5 $" — and verifying it for all $ 301 $ primes below $ 2000 $ would have proved *nothing*, because a universal claim ranges over infinitely many cases. Here the claim is **existential**, and a single instance is not merely evidence but a complete proof.
+
+## Remark — Both Halves of the Witness Must Be Checked
+
+The proof has two obligations, and it is easy to notice only the first:
+
+1. **The equation holds:** $ 2(64)+1 = 129 $. ✓
+2. **The witness is in the right set:** $ 64 \in \mathbb{Z} $. ✓
+
+Skipping the second is a genuine error, not pedantry. Every number $ n $ satisfies $ n = 2k+1 $ for *some* real $ k $ — take $ k = (n-1)/2 $ — so without the requirement $ k\in\mathbb Z $ the definition would make every number odd, including $ 128 $ (with $ k = 63.5 $). The integrality condition is the entire content of the definition. This is precisely the point flagged in Problem 2.7.5, where "$ k+j+1 $ is an integer" turned out to be a load-bearing line rather than a fussy one.
+
+## Remark — Trivial Problems Test Whether You Know the Definition
+
+A problem this small can feel like a joke, but it is doing real work: it checks whether you can **write down what a word means** and act on it. A student who cannot prove "$ 129 $ is odd" in one line is usually one who has an *intuition* for oddness ("it doesn't divide evenly," "it ends in $ 9 $") but has not internalised the formal definition $ \exists k\in\mathbb Z,\ n = 2k+1 $.
+
+The intuitions are not wrong, but they are not usable in a proof. "Ends in $ 9 $" is a fact about decimal notation, not about the integer, and would require its own justification. The formal definition is the only version that plugs directly into later arguments — which is why the very first proofs in a course are always of this shape: *unpack the definition, satisfy it literally.*
+
+## Remark — Proving the Negative Would Take More Work
+
+Suppose instead the task were "prove $ 129 $ is **not even**." That is a *universal* claim in disguise — $ \lnot\exists m\in\mathbb Z,\ 129 = 2m $, equivalently $ \forall m\in\mathbb Z,\ 129 \ne 2m $ — so no single witness will do. One would have to argue, for instance:
+
+> If $ 129 = 2m $ for an integer $ m $, then $ m = 64.5 \notin \mathbb Z $, a contradiction. Alternatively, the quotient–remainder theorem gives $ 129 = 2\cdot 64 + 1 $ with remainder $ 1 $, and that remainder is **unique**, so no representation with remainder $ 0 $ exists.
+
+Notice how much heavier this is: it needs either a contradiction or an appeal to a uniqueness theorem. The asymmetry — existentials proved by exhibition, universals needing an argument — is the single most useful structural fact about proofs, and it is why identifying the *shape* of a claim (as Problem 1 asked) comes before choosing a technique.
+
+## Remark — Odd and Even Are Not Opposites by Definition
+
+A closing subtlety. The definitions
+
+$$$
+n \text{ odd} \iff \exists k\in\mathbb Z,\ n = 2k+1, \qquad n \text{ even} \iff \exists m\in\mathbb Z,\ n = 2m
+$$$
+
+are stated independently — nothing in them says a number must be exactly one of the two. That every integer is *either* odd or even (and never both) is a **theorem**, following from the quotient–remainder theorem applied with divisor $ 2 $: the remainder is $ 0 $ or $ 1 $, and it is unique.
+
+So the one-line proof above establishes that $ 129 $ is odd, but it does not by itself establish that $ 129 $ is not even — that needs the extra theorem. The distinction matters because in other settings the analogous dichotomy can fail; among the rationals, for instance, "odd" and "even" are simply not defined. Knowing which convenient facts are definitions and which are earned theorems is exactly the habit Chapter 3 is beginning to build.

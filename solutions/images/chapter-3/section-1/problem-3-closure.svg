@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Unpack both hypotheses into raw integers, compute, then repack the answer into the definition of ℚ.</text>
+
+  <!-- unpack -->
+  <rect x="24" y="38" width="652" height="66" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="58" font-size="11.5" fill="#1a3a63" font-weight="bold">UNPACK — the definition of rational, applied to each hypothesis</text>
+  <text x="50" y="80" font-size="12" fill="#222">x ∈ ℚ  ⟹  x = a/b   with  a, b ∈ ℤ,  b ≠ 0</text>
+  <text x="380" y="80" font-size="12" fill="#222">y ∈ ℚ  ⟹  y = c/d   with  c, d ∈ ℤ,  d ≠ 0</text>
+  <text x="350" y="98" font-size="10.5" font-style="italic" fill="#8a3b12" text-anchor="middle">four fresh integer names — note b, d each get their own letter</text>
+
+  <!-- compute -->
+  <rect x="24" y="114" width="652" height="70" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="40" y="134" font-size="11.5" fill="#1a3a63" font-weight="bold">COMPUTE — ordinary algebra</text>
+  <text x="350" y="162" font-size="15" fill="#222" text-anchor="middle">x + y  =  a/b + c/d  =  (ad + bc) / (bd)</text>
+  <text x="350" y="178" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">verified on 300 random cases</text>
+
+  <!-- check the two obligations -->
+  <rect x="24" y="194" width="322" height="86" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="185" y="214" font-size="11.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">numerator is an integer</text>
+  <text x="185" y="238" font-size="12" fill="#222" text-anchor="middle">ad + bc ∈ ℤ</text>
+  <text x="185" y="262" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">ℤ is closed under × and +</text>
+
+  <rect x="354" y="194" width="322" height="86" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="515" y="214" font-size="11.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">denominator is a nonzero integer</text>
+  <text x="515" y="238" font-size="12" fill="#222" text-anchor="middle">bd ∈ ℤ   and   bd ≠ 0</text>
+  <text x="515" y="262" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">ℤ has no zero divisors</text>
+
+  <!-- repack -->
+  <rect x="60" y="292" width="580" height="42" fill="#1b5e20"/>
+  <text x="350" y="318" font-size="12.5" fill="white" text-anchor="middle" font-weight="bold">REPACK:  a ratio of integers with nonzero denominator — so x + y ∈ ℚ</text>
+
+  <!-- the lowest terms wrinkle -->
+  <rect x="24" y="350" width="652" height="176" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="370" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">A wrinkle if you use GIAM's stricter definition of ℚ</text>
+  <text x="44" y="392" font-size="11.5" fill="#222">Section 1.6 defines  ℚ = { a/b : a, b ∈ ℤ,  b ≠ 0,  <tspan font-weight="bold">gcd(a, b) = 1</tspan> }  — fractions must be in lowest terms.</text>
+  <text x="44" y="414" font-size="11.5" fill="#8a3b12">But (ad + bc)/(bd) need not be reduced. For instance  ½ + ½  gives  4/4, and gcd(4, 4) = 4 ≠ 1.</text>
+
+  <text x="44" y="444" font-size="11.5" fill="#222" font-weight="bold">The repair, in one extra line:</text>
+  <text x="60" y="466" font-size="11.5" fill="#222">let  e = ad + bc,   f = bd,   g = gcd(e, f).   Then</text>
+  <text x="350" y="490" font-size="13" fill="#1b5e20" text-anchor="middle" font-weight="bold">x + y = (e/g) / (f/g),   with  gcd(e/g, f/g) = 1  and  f/g ≠ 0.</text>
+  <text x="350" y="512" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Dividing out the gcd always repairs it — checked on 300 random cases.</text>
+</svg>

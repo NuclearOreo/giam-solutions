@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 3.1 Problem 12}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 12
+
+## Problem
+
+Suppose $ a, b, c, d $ are integers with $ a \ne c $, and $ x $ is a real number satisfying
+
+$$$
+\frac{ax+b}{cx+d} = 1.
+$$$
+
+Show that $ x $ is rational. **Where is the hypothesis $ a\ne c $ used?**
+
+## Proof
+
+> **Proof.** Since the left side is written as a fraction, $ cx+d \ne 0 $. Multiplying both sides by $ cx+d $,
+>
+> $ ax + b = cx + d $.
+>
+> Collecting the $ x $ terms on one side,
+>
+> $ (a-c)\,x = d - b $.
+>
+> Because $ a \ne c $ we have $ a - c \ne 0 $, so we may divide by it:
+>
+> $ x = \dfrac{d-b}{a-c} $.
+>
+> Now $ d-b $ and $ a-c $ are integers ($ \mathbb Z $ is closed under subtraction) and $ a-c\ne 0 $. So $ x $ is a ratio of integers with nonzero denominator, hence $ x\in\mathbb Q $. $ \blacksquare $
+
+## Where the Hypothesis Is Used
+
+$$$
+\boxed{\;a\ne c \text{ is used at exactly one step: it licenses dividing by } a-c.\;}
+$$$
+
+!(94%)[The derivation with the division step flagged, and the two ways the theorem fails without the hypothesis](problem-12-rational.svg "Top: the derivation. From (ax plus b) over (cx plus d) equals 1, multiply by cx plus d which is nonzero to get ax plus b equals cx plus d; collect the x terms to get (a minus c) times x equals d minus b; then divide by a minus c — this step is highlighted as where the hypothesis a not equal to c is used. A green banner gives the answer: x equals (d minus b) over (a minus c), a ratio of integers with nonzero denominator, so x is rational. Below, two panels showing what goes wrong without the hypothesis. First, a equals c but b not equal to d: the equation (a minus c)x equals d minus b becomes 0 equals d minus b, which is false, so no x satisfies the equation — for example a equals c equals 1, b equals 5, d equals 7. Second, a equals c and b equals d: the equation becomes 0 equals 0, true for every x, so x is not pinned down at all — for example a equals c equals 1, b equals d equals 0. A final panel: the second case actually produces an irrational solution, since with a equals c equals 1 and b equals d equals 0 the equation reads x over x equals 1, which holds for every nonzero x including the square root of 2 — so without a not equal to c the conclusion that x is rational is simply false.")
+
+Everything up to $ (a-c)x = d-b $ is valid for *any* integers. The hypothesis is needed only to know that $ a-c $ is a **legal divisor**, and that single step is what converts the equation into a formula for $ x $.
+
+## Remark — The Hypothesis Is Genuinely Necessary
+
+It is not enough to note where a hypothesis is used; one should check the theorem actually *fails* without it. Dropping $ a\ne c $ splits into two cases, and both are instructive.
+
+**Case $ a = c $, $ b \ne d $.** The equation $ (a-c)x = d-b $ becomes $ 0 = d-b $, which is false. So **no** real $ x $ satisfies the original equation — the statement is vacuously true but says nothing. With $ a=c=1 $, $ b=5 $, $ d=7 $, no solutions exist.
+
+**Case $ a = c $, $ b = d $.** Now the equation becomes $ 0 = 0 $, true for *every* $ x $. The original fraction is $ \dfrac{ax+b}{ax+b} = 1 $, which holds for every $ x $ avoiding the pole. Taking $ a=c=1 $, $ b=d=0 $, the equation reads $ x/x = 1 $, satisfied by
+
+$$$
+x = \sqrt 2,
+$$$
+
+which is **irrational** (Section 1.6). So the conclusion is outright false without the hypothesis.
+
+That second case is the decisive one. A hypothesis whose removal merely makes a theorem unprovable is suspicious; a hypothesis whose removal makes it *false* is doing real work.
+
+## Remark — The Hidden Hypothesis $ cx+d \ne 0 $
+
+There is a second assumption the problem never states: for $ \dfrac{ax+b}{cx+d} $ to *be* a number, the denominator must be nonzero. Writing the equation at all presupposes it.
+
+This matters because the first step multiplies both sides by $ cx+d $. Multiplying an equation by zero is always permitted but destroys information — $ 0 = 0 $ follows from anything. Here the multiplication is safe precisely because $ cx+d\ne 0 $ is guaranteed by the expression being well-formed.
+
+Such assumptions are easy to overlook because they are carried by *notation* rather than stated in words. The habit worth building is to ask, of every expression in a hypothesis, what has to be true for it to make sense at all.
+
+## Remark — The Answer Is Already in Lowest Terms? Not Necessarily
+
+The proof produces $ x = \dfrac{d-b}{a-c} $, a legitimate ratio of integers. But if one uses the strict Section 1.6 definition of $ \mathbb Q $ — requiring $ \gcd $ of numerator and denominator to be $ 1 $ — then, exactly as in Problem 3, an extra step is needed: divide both by $ g = \gcd(d-b,\, a-c) $.
+
+For instance $ a=5 $, $ c=1 $, $ b=1 $, $ d=9 $ give $ x = \tfrac{8}{4} $, which is not reduced. Dividing by $ \gcd(8,4)=4 $ gives $ x = \tfrac21 $. The value is right either way; only the *representative* needed fixing. As before, whether this step is required depends on which definition of $ \mathbb Q $ is in force.
+
+## Remark — Every Such Equation Has a Rational Solution
+
+The proof is **constructive**: it does not merely show a rational solution exists, it produces the formula $ x = (d-b)/(a-c) $ explicitly. That is worth noting because the problem only asked to *show $ x $ is rational*, and a non-constructive argument would have sufficed.
+
+The formula also settles more than was asked. Since $ (a-c)x = d-b $ has a *unique* solution when $ a\ne c $, the equation determines $ x $ completely — there is exactly one real number satisfying it (provided it avoids the pole $ cx+d=0 $). So the theorem could be strengthened to "$ x $ is the unique rational $ (d-b)/(a-c) $," and the proof already establishes it. This is the same "read your own witness" point as Problem 7.
+
+## Remark — Why the Equation Being Set to 1 Matters
+
+Setting the fraction equal to $ 1 $ is what makes everything collapse so neatly: cross-multiplying gives a **linear** equation, whose solution is a single quotient.
+
+Had the right side been another rational, say $ \dfrac{ax+b}{cx+d} = \dfrac{p}{q} $, cross-multiplying gives $ q(ax+b) = p(cx+d) $, so $ (qa-pc)x = pd-qb $ and $ x = \dfrac{pd-qb}{qa-pc} $ — still rational, with the hypothesis now being $ qa \ne pc $. The argument is unchanged in shape; only the arithmetic thickens. What would genuinely break it is a right side that is *irrational*: setting the fraction equal to $ \sqrt2 $ gives $ x = \dfrac{d\sqrt2 - b}{a - c\sqrt2} $, which is generally irrational. The rationality of $ x $ traces back entirely to every constant in sight being rational.

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#555"/>
+    </marker>
+    <marker id="arb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a3b12"/>
+    </marker>
+  </defs>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Each hypothesis supplies one multiplier; associativity combines them into a single one.</text>
+
+  <!-- chain diagram -->
+  <g font-size="17" text-anchor="middle">
+    <circle cx="150" cy="80" r="24" fill="#eaf1fb" stroke="#2a5db0"/><text x="150" y="87">a</text>
+    <circle cx="350" cy="80" r="24" fill="#eaf1fb" stroke="#2a5db0"/><text x="350" y="87">b</text>
+    <circle cx="550" cy="80" r="24" fill="#eaf1fb" stroke="#2a5db0"/><text x="550" y="87">c</text>
+  </g>
+  <g stroke="#555" stroke-width="1.8" marker-end="url(#ar)">
+    <line x1="176" y1="80" x2="322" y2="80"/>
+    <line x1="376" y1="80" x2="522" y2="80"/>
+  </g>
+  <text x="250" y="68" font-size="12" fill="#555" text-anchor="middle">a | b</text>
+  <text x="450" y="68" font-size="12" fill="#555" text-anchor="middle">b | c</text>
+  <text x="250" y="102" font-size="10.5" font-style="italic" fill="#777" text-anchor="middle">b = ak</text>
+  <text x="450" y="102" font-size="10.5" font-style="italic" fill="#777" text-anchor="middle">c = bm</text>
+  <path d="M150,110 C150,158 550,158 550,110" fill="none" stroke="#8a3b12" stroke-width="1.8" stroke-dasharray="6 4" marker-end="url(#arb)"/>
+  <rect x="272" y="140" width="156" height="17" fill="white"/>
+  <text x="350" y="153" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">a | c,  with c = a(km)</text>
+
+  <!-- the computation -->
+  <rect x="24" y="176" width="652" height="92" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="40" y="196" font-size="11.5" fill="#1b5e20" font-weight="bold">The whole proof</text>
+  <text x="60" y="218" font-size="12" fill="#222">a | b  ⟹  b = ak,  k ∈ ℤ</text>
+  <text x="380" y="218" font-size="12" fill="#222">b | c  ⟹  c = bm,  m ∈ ℤ</text>
+  <text x="350" y="244" font-size="14" fill="#222" text-anchor="middle">c = bm = (ak)m = a(km)</text>
+  <text x="350" y="262" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">km ∈ ℤ, so a | c  ∎</text>
+
+  <!-- partial order -->
+  <text x="350" y="304" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">This is one of the three properties making divisibility a partial order</text>
+
+  <g font-size="11.5" font-weight="bold" fill="#222">
+    <text x="70"  y="332">property</text>
+    <text x="290" y="332">statement</text>
+    <text x="560" y="332">status</text>
+  </g>
+  <line x1="50" y1="340" x2="660" y2="340" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="11.5">
+    <text x="70" y="362" fill="#333">reflexive</text>
+    <text x="290" y="362" fill="#222">a | a</text>
+    <text x="560" y="362" fill="#1b5e20">holds</text>
+
+    <rect x="50" y="372" width="610" height="24" fill="#dfeadd"/>
+    <text x="70" y="389" fill="#1b5e20" font-weight="bold">transitive</text>
+    <text x="290" y="389" fill="#222" font-weight="bold">a | b and b | c  ⟹  a | c</text>
+    <text x="560" y="389" fill="#1b5e20" font-weight="bold">this problem</text>
+
+    <text x="70" y="414" fill="#333">antisymmetric</text>
+    <text x="290" y="414" fill="#222">a | b and b | a  ⟹  a = b</text>
+    <text x="560" y="414" fill="#8a3b12">needs a, b &gt; 0</text>
+
+    <text x="70" y="440" fill="#333">symmetric?</text>
+    <text x="290" y="440" fill="#222">a | b  ⟹  b | a</text>
+    <text x="560" y="440" fill="#8a3b12">FAILS:  2 | 6, 6 ∤ 2</text>
+  </g>
+  <line x1="50" y1="452" x2="660" y2="452" stroke="#999" stroke-width="0.9"/>
+
+  <rect x="24" y="466" width="652" height="42" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="484" font-size="11.5" fill="#1a3a63" text-anchor="middle">Transitivity is what lets divisibility chains compose:   2 | 6 | 12 | 60   gives   2 | 60.</text>
+  <text x="350" y="500" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">It is also the step used silently in Problem 8, where 2 | 6 and 6 | (a+b) gave 2 | (a+b).</text>
+</svg>

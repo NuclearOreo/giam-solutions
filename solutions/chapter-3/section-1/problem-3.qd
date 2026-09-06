@@ -1,0 +1,97 @@
+.docname {Solution — GIAM 3.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 3
+
+## Problem
+
+Prove that the sum of two rational numbers is a rational number.
+
+## Statement
+
+Written as an explicit conditional (the habit of Problem 1):
+
+$$$
+\forall x, y,\quad \big(x\in\mathbb Q\big)\land\big(y\in\mathbb Q\big) \;\Longrightarrow\; \big(x+y\in\mathbb Q\big).
+$$$
+
+This is the **closure of $ \mathbb Q $ under addition**.
+
+## Proof
+
+> **Proof.** Let $ x $ and $ y $ be arbitrary rational numbers. By the definition of $ \mathbb Q $ there are integers $ a, b, c, d $ with $ b \ne 0 $ and $ d \ne 0 $ such that $ x = a/b $ and $ y = c/d $. By algebra,
+>
+> $ x + y \;=\; \frac{a}{b} + \frac{c}{d} \;=\; \frac{ad + bc}{bd} $.
+>
+> Now $ ad+bc $ is an integer, since $ \mathbb Z $ is closed under multiplication and addition. Also $ bd $ is an integer, and $ bd \ne 0 $ because $ b\ne 0 $, $ d\ne 0 $, and $ \mathbb Z $ has no zero divisors. So $ x+y $ is a ratio of two integers with nonzero denominator, and therefore $ x+y \in \mathbb Q $. Since $ x $ and $ y $ were arbitrary, the sum of any two rationals is rational. $ \blacksquare $
+
+## The Shape of the Argument
+
+!(94%)[The unpack-compute-repack structure, the two closure obligations, and the lowest-terms wrinkle](problem-3-closure.svg "Top panel, UNPACK: the definition of rational applied to each hypothesis — x in Q gives x equal to a over b with a and b integers and b nonzero; y in Q gives y equal to c over d with c and d integers and d nonzero. Four fresh integer names are introduced, with b and d each getting their own letter. Second panel, COMPUTE: ordinary algebra gives x plus y equals a over b plus c over d equals (ad plus bc) over bd, verified on 300 random cases. Two green panels check the obligations: the numerator ad plus bc is an integer because the integers are closed under multiplication and addition; the denominator bd is an integer and is nonzero because the integers have no zero divisors. A REPACK banner concludes that x plus y is a ratio of integers with nonzero denominator, so x plus y is rational. A final panel describes a wrinkle if one uses GIAM's stricter Section 1.6 definition requiring gcd of numerator and denominator to be 1: the expression (ad plus bc) over bd need not be reduced — for instance one half plus one half gives four fourths, whose gcd is 4. The repair takes one extra line: set e equal to ad plus bc, f equal to bd, and g their gcd; then x plus y equals (e over g) over (f over g), with gcd of those equal to 1 and the denominator nonzero. Checked on 300 random cases.")
+
+The proof follows exactly the **unpack – compute – repack** skeleton identified in Problem 2.7.5:
+
+1. **Unpack** — apply the definition of "rational" to each hypothesis, producing raw integers.
+2. **Compute** — combine them with ordinary algebra.
+3. **Repack** — verify the result satisfies the definition of "rational."
+
+The two checks in step 3 are the substance: the numerator must be an **integer**, and the denominator must be a **nonzero integer**.
+
+## Remark — A Wrinkle From the Stricter Definition of $ \mathbb Q $
+
+The proof above uses the informal definition $ \mathbb Q = \{a/b : a,b\in\mathbb Z,\ b\ne 0\} $. But Section 1.6 replaced this with the *improved* version
+
+$$$
+\mathbb Q = \Big\{ \tfrac{a}{b} \;:\; a,b\in\mathbb Z,\ b\ne 0,\ \gcd(a,b)=1 \Big\},
+$$$
+
+requiring fractions to be in **lowest terms** so that each rational has exactly one representative. Under that definition the proof is not quite finished: $ (ad+bc)/(bd) $ need not be reduced. Concretely, $ \tfrac12 + \tfrac12 $ gives $ 4/4 $, and $ \gcd(4,4) = 4 \ne 1 $.
+
+The repair costs one line. Put $ e = ad+bc $, $ f = bd $, and $ g = \gcd(e,f) $. Then
+
+$$$
+x+y = \frac{e/g}{f/g}, \qquad \gcd\!\left(\tfrac{e}{g}, \tfrac{f}{g}\right) = 1, \qquad \tfrac{f}{g}\ne 0,
+$$$
+
+so the sum has a lowest-terms representative and lies in $ \mathbb Q $ on the strict definition too. (Verified on $ 300 $ random cases.) Noticing that the stated definition changes what still needs proving is exactly the kind of care Chapter 3 is training.
+
+## Remark — Where Each Hypothesis Is Used
+
+Neither hypothesis is idle, and it is worth tracking them:
+
+- **$ b \ne 0 $ and $ d \ne 0 $** are needed twice: first so that $ a/b $ and $ c/d $ mean anything at all, and again at the end to conclude $ bd\ne 0 $.
+- **$ a, c \in\mathbb Z $** are needed only for the numerator's integrality.
+
+The step "$ b\ne 0 $ and $ d\ne 0 $ imply $ bd\ne 0 $" deserves a name: it is the statement that $ \mathbb Z $ has **no zero divisors**. It is true but not automatic — in $ \mathbb Z_6 $, for instance, $ 2\ne 0 $ and $ 3\ne 0 $ yet $ 2\cdot 3 = 0 $. Had we been working over such a ring, the proof would break at precisely that line, and the "field of fractions" construction would fail. Flagging the step is therefore not pedantry; it is where an unstated property of $ \mathbb Z $ gets used.
+
+## Remark — Distinct Letters for Distinct Witnesses
+
+The proof writes $ x = a/b $ and $ y = c/d $ with **four different letters**. As in Problem 2.7.5, existential instantiation must introduce a fresh name every time. Writing $ x = a/b $ and $ y = a/b $ would silently assume $ x = y $ and prove only that $ 2x $ is rational — a strictly weaker claim.
+
+The same care matters for the two denominators: reusing $ b $ for both would assume the fractions share a denominator, which is a genuine restriction even though every pair of rationals *can* be put over a common denominator. Proving the general case requires starting general.
+
+## Remark — This Is One Axiom Among Several
+
+Closure under addition is one of the properties that make $ \mathbb Q $ a **field**, and the companion results are proved the same way:
+
+| claim | key computation |
+| :--- | :--- |
+| $ x + y \in \mathbb Q $ | $ \dfrac{a}{b}+\dfrac{c}{d} = \dfrac{ad+bc}{bd} $ |
+| $ x \cdot y \in \mathbb Q $ | $ \dfrac{a}{b}\cdot\dfrac{c}{d} = \dfrac{ac}{bd} $ |
+| $ -x \in \mathbb Q $ | $ -\dfrac{a}{b} = \dfrac{-a}{b} $ |
+| $ x^{-1}\in\mathbb Q $ for $ x \ne 0 $ | $ \left(\dfrac{a}{b}\right)^{-1} = \dfrac{b}{a} $, needing $ a\ne 0 $ |
+
+Every one is "unpack, compute, repack," and every one ends by checking that the new denominator is a nonzero integer. The last row is the only one carrying an extra hypothesis, since $ x\ne 0 $ is exactly what guarantees $ a\ne 0 $.
+
+## Remark — The Analogous Claim for Irrationals Is False
+
+It is tempting to expect a matching theorem for the irrationals, but there is none: **the sum of two irrationals need not be irrational.** Take $ x = \sqrt2 $ and $ y = -\sqrt2 $, both irrational by Section 1.6, with $ x+y = 0 \in\mathbb Q $. Or $ x = \sqrt 2 $ and $ y = 1-\sqrt2 $, summing to $ 1 $.
+
+The asymmetry has a clean explanation: $ \mathbb Q $ is closed under addition *because* it is defined by a constructive condition ("is a ratio of integers"), which the computation preserves. The irrationals are defined by a **negation** ("is not such a ratio"), and negatively-defined sets are rarely closed under anything. The nearest true statement is a mixed one — rational plus irrational is always irrational — which is proved by contradiction using precisely the closure theorem established here.

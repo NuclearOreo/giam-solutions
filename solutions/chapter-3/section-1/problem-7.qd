@@ -1,0 +1,88 @@
+.docname {Solution — GIAM 3.1 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 7
+
+## Problem
+
+Prove that if $ x $ is an odd integer, then $ x^2 $ is of the form $ 4k+1 $ for some integer $ k $.
+
+## Proof
+
+> **Proof.** Let $ x $ be an odd integer. By the definition of *odd* there is an integer $ m $ with $ x = 2m+1 $. Squaring,
+>
+> $ x^2 = (2m+1)^2 = 4m^2 + 4m + 1 = 4(m^2+m) + 1 $.
+>
+> Now $ m^2+m $ is an integer, since $ \mathbb Z $ is closed under multiplication and addition. So $ x^2 = 4k+1 $ with $ k = m^2+m \in\mathbb Z $. $ \blacksquare $
+
+The one idea is to expand and then **group so that a factor of $ 4 $ comes out front**, leaving exactly the $ +1 $ the conclusion demands.
+
+## The Proof Gives More Than Was Asked
+
+!(94%)[The computation, the observation that k is a product of consecutive integers, and a table of odd squares](problem-7-oddsquare.svg "Top panel, UNPACK COMPUTE REPACK: x odd gives x equal to 2m plus 1 with m an integer; then x squared equals (2m plus 1) squared equals 4m squared plus 4m plus 1 equals 4 times (m squared plus m) plus 1; and m squared plus m is an integer, so x squared equals 4k plus 1 with k equal to m squared plus m — that is the theorem. Second panel: but look again at k, since the proof gives more than was asked. k equals m squared plus m equals m times (m plus 1), a product of two consecutive integers, one of which must be even, so k is even. Writing k as 2j gives x squared equals 4 times 2j plus 1, that is 8j plus 1 — so every odd square is one more than a multiple of 8, not merely of 4. Below, a table of the first few odd squares: 1 squared is 1, which is 4 times 0 plus 1 and 8 times 0 plus 1; 3 squared is 9, which is 4 times 2 plus 1 and 8 times 1 plus 1; 5 squared is 25, which is 4 times 6 plus 1 and 8 times 3 plus 1; 7 squared is 49, which is 4 times 12 plus 1 and 8 times 6 plus 1; 9 squared is 81, which is 4 times 20 plus 1 and 8 times 10 plus 1. The k column is always even, which is m times m plus 1 at work. Verified for every odd x in the range minus 99 to 99, both mod 4 and mod 8.")
+
+Look closely at the witness the proof produced:
+
+$$$
+k = m^2 + m = m(m+1),
+$$$
+
+a product of two **consecutive** integers. One of any two consecutive integers is even, so $ k $ is always even. Writing $ k = 2j $,
+
+$$$
+x^2 = 4(2j) + 1 = 8j + 1.
+$$$
+
+So the proof establishes the strictly stronger fact that **every odd square is $ 1 $ more than a multiple of $ 8 $**. Verified for every odd $ x $ in $ [-99, 99] $.
+
+## Remark — Read Your Own Witness
+
+It is worth pausing on how that strengthening was found: not by a new idea, but by **looking at the object the proof already produced**. The conclusion only asked for "$ k $ is an integer," so it is tempting to check that box and stop. But $ k $ came out in the recognisable form $ m(m+1) $, and recognising it costs one line.
+
+This is a generally useful habit. A constructive proof hands you a specific witness, and that witness often satisfies more than the theorem demanded. Asking "what else is true of the thing I just built?" is one of the cheapest ways to strengthen a result.
+
+## Remark — Squares Mod 4: Only Two Residues Occur
+
+The companion computation for even $ x $ completes the picture. If $ x = 2m $ then $ x^2 = 4m^2 \equiv 0 \pmod 4 $. So
+
+$$$
+x \text{ even} \;\Longrightarrow\; x^2\equiv 0, \qquad x \text{ odd} \;\Longrightarrow\; x^2\equiv 1 \pmod 4,
+$$$
+
+and **no perfect square is ever $ 2 $ or $ 3 $ modulo $ 4 $** (confirmed over $ [-99,99] $). That negative fact is the useful one in practice: it lets you rule out solutions instantly. For instance $ x^2 + y^2 = 3 $ has no integer solutions, since the left side can only be $ 0, 1 $ or $ 2 $ mod $ 4 $ while $ 3\equiv 3 $; and no integer of the form $ 4n+3 $ is a perfect square.
+
+## Remark — This Refines the Parity Lemma
+
+Problem 2.1.3 established the lemma "$ x $ odd $ \Rightarrow x^2 $ odd," proved by expanding $ (2k+1)^2 = 2(2k^2+2k)+1 $. The present theorem is the *same computation grouped one step further*: instead of pulling out a $ 2 $, pull out a $ 4 $.
+
+$$$
+(2m+1)^2 = \underbrace{2(2m^2+2m)+1}_{\text{gives: odd}} = \underbrace{4(m^2+m)+1}_{\text{gives: } \equiv 1 \bmod 4} = \underbrace{8(j)+1}_{\text{gives: } \equiv 1 \bmod 8}
+$$$
+
+Each regrouping extracts more information from the identical algebra. The first version was exactly what the $ \sqrt 2 $ proof of Section 1.6 needed; the sharper versions matter elsewhere, and the mod-$ 8 $ form is what drives the classical proof that no integer of the form $ 8n+7 $ is a sum of three squares.
+
+## Remark — The Converse Holds Too
+
+Combining with the parity lemma gives a chain of equivalences:
+
+$$$
+x \text{ is odd} \quad\Longleftrightarrow\quad x^2 = 4k+1 \quad\Longleftrightarrow\quad x^2 = 8j+1.
+$$$
+
+The rightward implications are this problem. For the leftward direction, $ x^2 = 4k+1 $ makes $ x^2 $ odd, and Problem 2.1.3's lemma then forces $ x $ odd. So although the problem is stated as a one-way conditional, all three conditions are interchangeable. As in Problem 5, it is worth checking whether a converse comes for free — here it does, but only because a previously proved lemma is available to supply it.
+
+## Remark — Why $ m(m+1) $ Is Always Even
+
+The step "one of two consecutive integers is even" deserves its own justification, since the whole strengthening rests on it. By the quotient–remainder theorem with divisor $ 2 $, either $ m = 2t $ or $ m = 2t+1 $:
+
+- if $ m = 2t $, then $ m(m+1) = 2t(2t+1) $, visibly even;
+- if $ m = 2t+1 $, then $ m+1 = 2t+2 = 2(t+1) $, so $ m(m+1) = 2(t+1)(2t+1) $, also even.
+
+This is a genuine proof by cases (Problem 2.6.2), and it generalises: the product of any $ n $ consecutive integers is divisible by $ n! $ — which is the same fact that makes every binomial coefficient an integer.

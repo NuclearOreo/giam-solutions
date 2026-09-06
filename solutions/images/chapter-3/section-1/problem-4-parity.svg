@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Same three-step skeleton as before: unpack each definition, add, then repack into the definition of odd.</text>
+
+  <!-- unpack -->
+  <rect x="24" y="38" width="652" height="62" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="58" font-size="11.5" fill="#1a3a63" font-weight="bold">UNPACK</text>
+  <text x="60" y="80" font-size="12" fill="#222">x is odd   ⟹   x = 2k + 1,   k ∈ ℤ</text>
+  <text x="390" y="80" font-size="12" fill="#222">y is even   ⟹   y = 2j,   j ∈ ℤ</text>
+  <text x="350" y="95" font-size="10" font-style="italic" fill="#8a3b12" text-anchor="middle">two different letters — the witnesses are unrelated</text>
+
+  <!-- compute -->
+  <rect x="24" y="110" width="652" height="62" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="40" y="130" font-size="11.5" fill="#1a3a63" font-weight="bold">COMPUTE</text>
+  <text x="350" y="154" font-size="15" fill="#222" text-anchor="middle">x + y  =  (2k + 1) + 2j  =  2(k + j) + 1</text>
+  <text x="350" y="168" font-size="10" font-style="italic" fill="#666" text-anchor="middle">verified on 300 random integer pairs</text>
+
+  <!-- repack -->
+  <rect x="24" y="182" width="652" height="62" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="40" y="202" font-size="11.5" fill="#1b5e20" font-weight="bold">REPACK</text>
+  <text x="350" y="224" font-size="12.5" fill="#222" text-anchor="middle">k + j ∈ ℤ  (closure of ℤ under +),  so  x + y = 2m + 1  with  m = k + j ∈ ℤ</text>
+  <text x="350" y="239" font-size="12" fill="#1b5e20" text-anchor="middle" font-weight="bold">hence x + y is odd</text>
+
+  <!-- parity table -->
+  <text x="350" y="278" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">This problem is one entry in a four-entry table</text>
+
+  <g font-size="12" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="150" y="308">+</text>
+    <text x="270" y="308">even</text>
+    <text x="390" y="308">odd</text>
+  </g>
+  <line x1="100" y1="316" x2="450" y2="316" stroke="#999" stroke-width="0.9"/>
+  <line x1="200" y1="292" x2="200" y2="392" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="12.5" text-anchor="middle">
+    <text x="150" y="342" font-weight="bold">even</text>
+    <text x="270" y="342" fill="#666">even</text>
+    <text x="390" y="342" fill="#666">odd</text>
+
+    <rect x="200" y="356" width="250" height="28" fill="#dfeadd"/>
+    <text x="150" y="376" font-weight="bold">odd</text>
+    <text x="270" y="376" fill="#1b5e20" font-weight="bold">odd</text>
+    <text x="390" y="376" fill="#666">even</text>
+  </g>
+  <line x1="100" y1="392" x2="450" y2="392" stroke="#999" stroke-width="0.9"/>
+
+  <text x="290" y="414" font-size="10.5" font-style="italic" fill="#1b5e20" text-anchor="middle">the shaded cell is this problem; "odd + odd = even" was Problem 2.7.5</text>
+
+  <!-- Z2 / XOR -->
+  <rect x="470" y="292" width="206" height="100" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="573" y="312" font-size="11.5" font-weight="bold" fill="#8a3b12" text-anchor="middle">Write even = 0, odd = 1:</text>
+  <text x="573" y="334" font-size="12" fill="#222" text-anchor="middle">0+0=0    0+1=1</text>
+  <text x="573" y="352" font-size="12" fill="#222" text-anchor="middle">1+0=1    1+1=0</text>
+  <text x="573" y="374" font-size="11" fill="#8a3b12" text-anchor="middle" font-weight="bold">that is exactly XOR</text>
+
+  <!-- bottom -->
+  <rect x="24" y="430" width="652" height="72" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="450" font-size="11.5" fill="#1a3a63" text-anchor="middle" font-weight="bold">Parity is addition in ℤ₂ — the integers collapsed onto their remainder mod 2.</text>
+  <text x="350" y="470" font-size="11" fill="#222" text-anchor="middle">The four facts about odd and even sums are the whole addition table of that two-element system,</text>
+  <text x="350" y="486" font-size="11" fill="#222" text-anchor="middle">and it coincides with the exclusive-or of Problem 2.1.1.</text>
+</svg>

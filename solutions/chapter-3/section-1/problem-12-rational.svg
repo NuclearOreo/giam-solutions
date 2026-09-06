@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Clear the fraction, collect the x terms, then divide — and the division is where the hypothesis lives.</text>
+
+  <!-- the derivation -->
+  <rect x="24" y="38" width="652" height="140" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="60" font-size="13" fill="#222" text-anchor="middle">(ax + b) / (cx + d) = 1</text>
+  <text x="350" y="80" font-size="15" fill="#999" text-anchor="middle">↓</text>
+  <text x="350" y="98" font-size="13" fill="#222" text-anchor="middle">ax + b = cx + d</text>
+  <text x="560" y="98" font-size="10" font-style="italic" fill="#777">multiply by cx + d ≠ 0</text>
+  <text x="350" y="118" font-size="15" fill="#999" text-anchor="middle">↓</text>
+  <text x="350" y="136" font-size="13" fill="#222" text-anchor="middle">(a − c) x = d − b</text>
+  <text x="560" y="136" font-size="10" font-style="italic" fill="#777">collect the x terms</text>
+  <text x="350" y="156" font-size="15" fill="#8a3b12" text-anchor="middle">↓</text>
+  <rect x="200" y="160" width="300" height="14" fill="#fbe4da"/>
+  <text x="350" y="171" font-size="10.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">divide by a − c   ←  THIS is where a ≠ c is used</text>
+
+  <!-- the answer -->
+  <rect x="180" y="190" width="340" height="52" fill="#1b5e20"/>
+  <text x="350" y="212" font-size="15" fill="white" text-anchor="middle" font-weight="bold">x = (d − b) / (a − c)</text>
+  <text x="350" y="232" font-size="11" fill="white" text-anchor="middle">a ratio of integers with nonzero denominator, so x ∈ ℚ</text>
+
+  <!-- what goes wrong without the hypothesis -->
+  <text x="350" y="276" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Drop the hypothesis and the theorem collapses — in two different ways</text>
+
+  <rect x="30" y="290" width="310" height="118" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="185" y="310" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">a = c  but  b ≠ d</text>
+  <text x="185" y="332" font-size="11.5" fill="#222" text-anchor="middle">(a−c)x = d−b becomes  0 = d−b</text>
+  <text x="185" y="352" font-size="11.5" fill="#222" text-anchor="middle">which is false</text>
+  <text x="185" y="378" font-size="11.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">no x satisfies the equation</text>
+  <text x="185" y="396" font-size="10" font-style="italic" fill="#666" text-anchor="middle">e.g. a = c = 1, b = 5, d = 7</text>
+
+  <rect x="360" y="290" width="310" height="118" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="515" y="310" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">a = c  and  b = d</text>
+  <text x="515" y="332" font-size="11.5" fill="#222" text-anchor="middle">(a−c)x = d−b becomes  0 = 0</text>
+  <text x="515" y="352" font-size="11.5" fill="#222" text-anchor="middle">which is true for every x</text>
+  <text x="515" y="378" font-size="11.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">x is not pinned down at all</text>
+  <text x="515" y="396" font-size="10" font-style="italic" fill="#666" text-anchor="middle">e.g. a = c = 1, b = d = 0</text>
+
+  <!-- the killer counterexample -->
+  <rect x="24" y="424" width="652" height="98" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="444" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">The second case actually produces an irrational solution</text>
+  <text x="350" y="468" font-size="13" fill="#222" text-anchor="middle">take a = c = 1, b = d = 0:   the equation reads   x / x = 1</text>
+  <text x="350" y="490" font-size="12.5" fill="#222" text-anchor="middle">which holds for every x ≠ 0 — including  x = √2</text>
+  <text x="350" y="512" font-size="11.5" fill="#8a3b12" text-anchor="middle" font-weight="bold">so without a ≠ c the conclusion "x is rational" is simply false</text>
+</svg>

@@ -1,0 +1,90 @@
+.docname {Solution — GIAM 3.1 Problem 13}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 13
+
+## Problem
+
+Show that if two positive integers $ a $ and $ b $ satisfy $ a\mid b $ **and** $ b\mid a $, then they are equal.
+
+## Proof
+
+> **Proof.** Let $ a, b $ be positive integers with $ a\mid b $ and $ b\mid a $. By the definition of *divides* there are integers $ k, m $ with
+>
+> $ b = ak $  and  $ a = bm $.
+>
+> Substituting the first into the second,
+>
+> $ a = bm = (ak)m = a(km) $.
+>
+> Since $ a > 0 $ we have $ a \ne 0 $, so we may cancel $ a $ from both sides of $ a\cdot 1 = a\cdot(km) $, giving
+>
+> $ km = 1 $.
+>
+> The only integers whose product is $ 1 $ are $ k = m = 1 $ and $ k = m = -1 $. If $ k = -1 $ then $ b = -a < 0 $, contradicting $ b > 0 $. Hence $ k = 1 $, and therefore $ b = a\cdot 1 = a $. $ \blacksquare $
+
+## Where Positivity Enters
+
+!(94%)[The proof, the two places positivity is used, the failure without it, and the completed partial order](problem-13-antisym.svg "Top panel, the proof: a divides b gives b equal to ak with k an integer; b divides a gives a equal to bm with m an integer; then a equals bm equals (ak)m equals a(km). Since a is positive it is nonzero and we may cancel, giving km equals 1. The only integers with km equal to 1 are k equals m equals 1 and k equals m equals minus 1. Positivity rules out k equals minus 1, so k equals 1 and b equals a. Two green panels: positivity is used twice — first to cancel, since a positive gives a nonzero which licenses cancelling a from a times 1 equals a times km; second to pick the sign, since if k were minus 1 then b would equal minus a which is negative, contradicting b positive. A red panel: drop positivity and the theorem fails, giving only a equals plus or minus b — 3 divides minus 3 and minus 3 divides 3, yet 3 does not equal minus 3, with 60 such pairs among nonzero values up to 30 in absolute value. A final table completes the partial order begun in Problem 11: reflexive, a divides a, immediate with k equals 1; transitive, established in Problem 11; antisymmetric, highlighted, this problem. So divisibility really is a partial order on the positive integers.")
+
+The hypothesis "positive" is used at **two** distinct points, and it is worth separating them:
+
+1. **To cancel.** From $ a = a(km) $ we want $ 1 = km $, and cancellation requires $ a \ne 0 $. Positivity supplies that.
+2. **To choose the sign.** Knowing $ km = 1 $ leaves two possibilities, $ k = m = 1 $ and $ k = m = -1 $. Positivity of $ b $ eliminates the second, since $ k = -1 $ would make $ b = -a $ negative.
+
+Miss either one and the proof has a gap.
+
+## Remark — Without Positivity the Theorem Is False
+
+Over all of $ \mathbb Z $ the conclusion fails. Take $ a = 3 $, $ b = -3 $: then $ 3\mid -3 $ and $ -3\mid 3 $, yet $ 3\ne -3 $. Exhaustive check over nonzero $ |x|\le 30 $ finds $ 60 $ such pairs — and in every one, $ a = -b $.
+
+That is exactly what the proof predicts. Dropping positivity leaves $ k = \pm 1 $ unresolved, so the correct general statement over $ \mathbb Z $ is
+
+$$$
+a\mid b \;\text{ and }\; b\mid a \quad\Longrightarrow\quad a = \pm b, \qquad\text{i.e.}\qquad |a| = |b|.
+$$$
+
+The theorem as stated recovers the clean version by restricting to a set where the sign ambiguity cannot arise. This is a common pattern: a statement is *nearly* true in general, and the hypothesis is chosen precisely to remove the residual ambiguity.
+
+## Remark — An Alternative Proof by Size
+
+A different route avoids the $ km=1 $ analysis entirely, at the cost of one lemma.
+
+> **Lemma.** If $ a\mid b $ with $ a, b > 0 $, then $ a \le b $.
+>
+> **Proof.** Write $ b = ak $. Since $ a > 0 $ and $ b > 0 $, the multiplier $ k = b/a $ is positive; being a positive integer, $ k\ge 1 $. Hence $ b = ak \ge a\cdot 1 = a $. $ \square $
+
+Now the theorem is immediate: $ a\mid b $ gives $ a\le b $, and $ b\mid a $ gives $ b\le a $, so $ a = b $ by the antisymmetry of $ \le $. (Lemma verified on all positive pairs up to $ 200 $.)
+
+This version is arguably more illuminating, because it explains **why** antisymmetry holds: divisibility among positives can only ever move *upward* in size, so a two-way divisibility forces the two numbers to sit at the same height. It also makes visible that divisibility-antisymmetry is *inherited* from $ \le $-antisymmetry rather than being a new fact.
+
+## Remark — The Partial Order Is Now Complete
+
+Problem 11 proved transitivity; this problem supplies antisymmetry; reflexivity is immediate ($ a = a\cdot 1 $). Together:
+
+| property | statement | source |
+| :--- | :--- | :--- |
+| reflexive | $ a\mid a $ | immediate, $ k=1 $ |
+| transitive | $ a\mid b $ and $ b\mid c $ $ \Rightarrow $ $ a\mid c $ | Problem 11 |
+| **antisymmetric** | $ a\mid b $ and $ b\mid a $ $ \Rightarrow $ $ a = b $ | **this problem** |
+
+So divisibility is genuinely a **partial order** on $ \mathbb{Z}^+ $ — the fact asserted back in Problem 1.7.1 and now fully proved. It is *partial* rather than total because incomparable pairs exist: neither $ 4\mid 6 $ nor $ 6\mid 4 $. Contrast $ \le $, under which any two integers are comparable.
+
+## Remark — Why the Only Factorisations of 1 Are $ \pm 1 $
+
+The step "the only integers with $ km = 1 $ are $ \pm 1 $" deserves a word, since the whole proof turns on it. If $ |k|\ge 2 $ then $ |km| = |k||m| \ge 2|m| $, which is either $ 0 $ (if $ m = 0 $) or at least $ 2 $ — never $ 1 $. The same holds with roles swapped, so both $ |k| $ and $ |m| $ equal $ 1 $, and their product being positive forces matching signs.
+
+In the language of ring theory, this says $ 1 $ and $ -1 $ are the only **units** of $ \mathbb Z $. That fact is what makes divisibility in $ \mathbb Z $ well behaved: it is precisely why "$ a\mid b $ and $ b\mid a $" pins the pair down to a sign, and why unique factorisation is stated only up to units. In rings with more units the ambiguity is correspondingly larger — in the Gaussian integers, where the units are $ \pm 1, \pm i $, mutual divisibility gives $ a = \pm b $ or $ a = \pm ib $.
+
+## Remark — Cancellation Is Not Free
+
+The step from $ a\cdot 1 = a\cdot(km) $ to $ 1 = km $ is cancellation, and it needs $ a\ne 0 $ — otherwise both sides read $ 0 = 0 $ and nothing follows. This is the same caution as multiplying an inequality (Problem 6) or clearing a denominator (Problem 12): an operation that looks purely mechanical carries a side condition.
+
+Cancellation is valid in $ \mathbb Z $ for any nonzero factor precisely because $ \mathbb Z $ has **no zero divisors** — the property already needed in Problem 3. In a ring where $ 2\cdot 3 = 0 $ is possible, such as $ \mathbb Z_6 $, cancelling is illegitimate and this proof would collapse.

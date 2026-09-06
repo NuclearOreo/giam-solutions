@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="520" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Scaling by 12 sends the interval (2/3, 3/4) exactly onto (8, 9), where the floor is pinned to 8.</text>
+
+  <!-- the x line -->
+  <text x="60" y="76" font-size="12" font-weight="bold" fill="#2a5db0">x</text>
+  <line x1="120" y1="72" x2="600" y2="72" stroke="#666" stroke-width="1.2"/>
+  <rect x="240" y="65" width="200" height="14" fill="#cfe0f5"/>
+  <circle cx="240" cy="72" r="5.5" fill="white" stroke="#2a5db0" stroke-width="1.8"/>
+  <circle cx="440" cy="72" r="5.5" fill="white" stroke="#2a5db0" stroke-width="1.8"/>
+  <text x="240" y="98" font-size="11.5" fill="#222" text-anchor="middle">2/3</text>
+  <text x="440" y="98" font-size="11.5" fill="#222" text-anchor="middle">3/4</text>
+  <text x="340" y="58" font-size="11" fill="#2a5db0" text-anchor="middle">the hypothesis</text>
+
+  <!-- arrow -->
+  <text x="350" y="128" font-size="13" fill="#8a3b12" text-anchor="middle" font-weight="bold">multiply by 12  —  positive, so the inequalities keep their direction</text>
+  <text x="350" y="148" font-size="16" fill="#999" text-anchor="middle">↓</text>
+
+  <!-- the 12x line -->
+  <text x="52" y="186" font-size="12" font-weight="bold" fill="#1b5e20">12x</text>
+  <line x1="120" y1="182" x2="600" y2="182" stroke="#666" stroke-width="1.2"/>
+  <rect x="240" y="175" width="200" height="14" fill="#cfe6cf"/>
+  <circle cx="240" cy="182" r="5.5" fill="white" stroke="#1b5e20" stroke-width="1.8"/>
+  <circle cx="440" cy="182" r="5.5" fill="white" stroke="#1b5e20" stroke-width="1.8"/>
+  <text x="240" y="208" font-size="12" fill="#222" text-anchor="middle" font-weight="bold">8</text>
+  <text x="440" y="208" font-size="12" fill="#222" text-anchor="middle" font-weight="bold">9</text>
+  <text x="340" y="168" font-size="11" fill="#1b5e20" text-anchor="middle">8 &lt; 12x &lt; 9</text>
+
+  <!-- floor characterisation -->
+  <rect x="24" y="228" width="652" height="70" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="350" y="248" font-size="12" font-weight="bold" fill="#1a3a63" text-anchor="middle">the floor, by definition:   ⌊t⌋ = n   ⟺   n ≤ t &lt; n + 1</text>
+  <text x="350" y="270" font-size="11.5" fill="#222" text-anchor="middle">we have 8 &lt; 12x &lt; 9, which certainly gives  8 ≤ 12x &lt; 9,  so ⌊12x⌋ = 8  ∎</text>
+  <text x="350" y="290" font-size="10.5" font-style="italic" fill="#8a3b12" text-anchor="middle">that weakening of &lt; to ≤ is exactly the disjunctive addition of Problem 2.7.6</text>
+
+  <!-- endpoint analysis -->
+  <text x="350" y="330" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Is the hypothesis tight? Test both endpoints.</text>
+
+  <rect x="40" y="342" width="300" height="86" fill="#dfeadd" stroke="#bcd9bc"/>
+  <text x="190" y="362" font-size="12" font-weight="bold" fill="#1b5e20" text-anchor="middle">left endpoint  x = 2/3</text>
+  <text x="190" y="386" font-size="12" fill="#222" text-anchor="middle">12x = 8,   ⌊8⌋ = 8  ✓</text>
+  <text x="190" y="410" font-size="11" fill="#1b5e20" text-anchor="middle">still works — the strict &lt; is not needed here</text>
+
+  <rect x="360" y="342" width="300" height="86" fill="#fbe4da" stroke="#e0b8a6"/>
+  <text x="510" y="362" font-size="12" font-weight="bold" fill="#8a3b12" text-anchor="middle">right endpoint  x = 3/4</text>
+  <text x="510" y="386" font-size="12" fill="#222" text-anchor="middle">12x = 9,   ⌊9⌋ = 9  ✗</text>
+  <text x="510" y="410" font-size="11" fill="#8a3b12" text-anchor="middle">fails — the strict &lt; is essential here</text>
+
+  <!-- sharp version -->
+  <rect x="24" y="444" width="652" height="60" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="350" y="464" font-size="12" fill="#8a3b12" text-anchor="middle" font-weight="bold">So the hypothesis is sufficient but not necessary. The sharp statement is an equivalence:</text>
+  <text x="350" y="488" font-size="13" fill="#222" text-anchor="middle">⌊12x⌋ = 8   ⟺   2/3 ≤ x &lt; 3/4</text>
+</svg>

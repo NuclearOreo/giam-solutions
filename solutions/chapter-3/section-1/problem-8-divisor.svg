@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 540" width="700" height="540" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="540" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Two hypotheses, both unpacked into equations; then solve for b and group to expose a factor of 2.</text>
+
+  <!-- the direct proof -->
+  <rect x="24" y="38" width="652" height="126" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="58" font-size="11.5" fill="#1a3a63" font-weight="bold">The direct proof</text>
+  <text x="60" y="80" font-size="12" fill="#222">a is odd     ⟹  a = 2m + 1,  m ∈ ℤ</text>
+  <text x="380" y="80" font-size="12" fill="#222">6 | (a + b)  ⟹  a + b = 6n,  n ∈ ℤ</text>
+  <text x="350" y="110" font-size="14" fill="#222" text-anchor="middle">b = 6n − a = 6n − (2m + 1) = 2(3n − m − 1) + 1</text>
+  <text x="60" y="136" font-size="12" fill="#222">3n − m − 1 ∈ ℤ,  so  b = 2k + 1  with  k = 3n − m − 1</text>
+  <text x="350" y="156" font-size="11.5" fill="#1b5e20" text-anchor="middle" font-weight="bold">hence b is odd  ∎</text>
+
+  <!-- the structural view -->
+  <rect x="24" y="180" width="652" height="106" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="350" y="200" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">The same proof, read structurally</text>
+  <text x="60" y="224" font-size="11.5" fill="#222">2 | 6   and   6 | (a + b)     ⟹   2 | (a + b)</text>
+  <text x="430" y="224" font-size="10.5" font-style="italic" fill="#666">transitivity of divisibility</text>
+  <text x="60" y="248" font-size="11.5" fill="#222">so a + b is even, and a is odd</text>
+  <text x="60" y="272" font-size="11.5" fill="#1b5e20" font-weight="bold">from the parity table: odd + even = odd, so for an even sum b must be odd</text>
+
+  <!-- how much of the hypothesis matters -->
+  <text x="350" y="318" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">Which divisors would work in place of 6?</text>
+
+  <g font-size="11.5" font-weight="bold" fill="#222" text-anchor="middle">
+    <text x="150" y="344">divisor d</text>
+    <text x="330" y="344">is d even?</text>
+    <text x="530" y="344">does the theorem hold?</text>
+  </g>
+  <line x1="70" y1="352" x2="640" y2="352" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="11.5" text-anchor="middle">
+    <text x="150" y="372">2</text><text x="330" y="372" fill="#1b5e20">yes</text><text x="530" y="372" fill="#1b5e20">holds</text>
+    <text x="150" y="392">3</text><text x="330" y="392" fill="#8a3b12">no</text><text x="530" y="392" fill="#8a3b12">fails —  a = 1, b = 2</text>
+    <text x="150" y="412">4</text><text x="330" y="412" fill="#1b5e20">yes</text><text x="530" y="412" fill="#1b5e20">holds</text>
+    <text x="150" y="432">5</text><text x="330" y="432" fill="#8a3b12">no</text><text x="530" y="432" fill="#8a3b12">fails</text>
+    <rect x="70" y="442" width="570" height="22" fill="#dfeadd"/>
+    <text x="150" y="458" font-weight="bold">6</text><text x="330" y="458" fill="#1b5e20" font-weight="bold">yes</text><text x="530" y="458" fill="#1b5e20" font-weight="bold">holds — this problem</text>
+    <text x="150" y="480">7</text><text x="330" y="480" fill="#8a3b12">no</text><text x="530" y="480" fill="#8a3b12">fails</text>
+    <text x="150" y="500">8</text><text x="330" y="500" fill="#1b5e20">yes</text><text x="530" y="500" fill="#1b5e20">holds</text>
+  </g>
+  <line x1="70" y1="510" x2="640" y2="510" stroke="#999" stroke-width="0.9"/>
+
+  <text x="350" y="530" font-size="11" fill="#8a3b12" text-anchor="middle">Only the factor of 2 in the divisor does any work — the 3 in 6 is never used.</text>
+</svg>

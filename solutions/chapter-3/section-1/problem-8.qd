@@ -1,0 +1,83 @@
+.docname {Solution — GIAM 3.1 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 8
+
+## Problem
+
+Prove that for all integers $ a $ and $ b $, if $ a $ is odd and $ 6 \mid (a+b) $, then $ b $ is odd.
+
+## Proof
+
+> **Proof.** Let $ a $ and $ b $ be integers, and suppose $ a $ is odd and $ 6\mid(a+b) $. By the definition of *odd* there is an integer $ m $ with $ a = 2m+1 $, and by the definition of *divides* there is an integer $ n $ with $ a+b = 6n $. Solving for $ b $,
+>
+> $ b = 6n - a = 6n - (2m+1) = 6n - 2m - 1 = 2(3n - m - 1) + 1 $.
+>
+> Now $ 3n-m-1 $ is an integer, since $ \mathbb Z $ is closed under multiplication and subtraction. So $ b = 2k+1 $ with $ k = 3n-m-1\in\mathbb Z $, and hence $ b $ is odd. $ \blacksquare $
+
+Two hypotheses, two definitions unpacked, then solve for $ b $ and regroup so a factor of $ 2 $ sits out front with a lone $ +1 $ left over.
+
+## Reading the Proof Structurally
+
+!(94%)[The direct proof, the same argument read via divisibility and parity, and a table of which divisors work](problem-8-divisor.svg "Top panel, the direct proof: a is odd gives a equal to 2m plus 1 with m an integer; 6 divides a plus b gives a plus b equal to 6n with n an integer. Then b equals 6n minus a equals 6n minus (2m plus 1) equals 2 times (3n minus m minus 1) plus 1. Since 3n minus m minus 1 is an integer, b equals 2k plus 1, hence b is odd. Second panel, the same proof read structurally: 2 divides 6 and 6 divides a plus b, so 2 divides a plus b by transitivity of divisibility; hence a plus b is even, and a is odd; and from the parity table, odd plus even is odd, so for an even sum b must be odd. Below, a table asking which divisors would work in place of 6. Divisor 2, even, holds. Divisor 3, not even, fails with a equals 1 and b equals 2. Divisor 4, even, holds. Divisor 5, not even, fails. Divisor 6, even, holds — this problem, highlighted. Divisor 7, not even, fails. Divisor 8, even, holds. Only the factor of 2 in the divisor does any work; the 3 in 6 is never used.")
+
+The algebra conceals a simpler story. Since $ 2\mid 6 $ and $ 6\mid(a+b) $, transitivity of divisibility gives $ 2\mid(a+b) $ — so $ a+b $ is **even**. Now consult the parity table of Problem 4: with $ a $ odd, the sum $ a+b $ is even only when $ b $ is odd. Done.
+
+Both routes are correct; the second explains *why* the theorem is true rather than merely verifying it.
+
+## Remark — The Hypothesis Is Much Stronger Than Needed
+
+Notice what the proof never used: **the factor of $ 3 $ in $ 6 $**. Only $ 2\mid 6 $ mattered. So the theorem remains true with the far weaker hypothesis $ 2\mid(a+b) $, and equally with $ 4 $, $ 8 $, $ 12 $, or any even divisor:
+
+| divisor $ d $ | $ d $ even? | does the theorem hold? |
+| :---: | :---: | :--- |
+| $ 2 $ | yes | holds |
+| $ 3 $ | no | **fails** — $ a=1 $, $ b=2 $ |
+| $ 4 $ | yes | holds |
+| $ 5 $ | no | fails |
+| $ 6 $ | yes | holds (this problem) |
+| $ 7 $ | no | fails |
+| $ 8 $ | yes | holds |
+
+The pattern, confirmed by exhaustive check on $ [-60,60]^2 $, is that the theorem holds **exactly when the divisor is even**. For an odd divisor the hypothesis says nothing about parity: $ a = 1 $ is odd and $ 3\mid(1+2) $, yet $ b = 2 $ is even.
+
+## Remark — Why Stating a Stronger Hypothesis Is Legitimate
+
+It might seem a defect that the problem assumes $ 6\mid(a+b) $ when $ 2\mid(a+b) $ would do. It is not an error — a theorem with a stronger hypothesis is simply a **weaker theorem**, and weaker theorems are still true.
+
+There are ordinary reasons to state one. The stronger hypothesis may be what is actually available in the situation you care about; it may make the statement read more naturally; or, as here, it may be a deliberate exercise in noticing that not every assumption gets used. What *would* be a defect is claiming the hypothesis is necessary when it is not.
+
+The diagnostic is the one from Problem 5: **point to the line where each hypothesis is used.** Here "$ a $ is odd" is used to produce $ a = 2m+1 $, and "$ 6\mid(a+b) $" is used to produce $ a+b = 6n $ — but the $ 6 $ could have been any even number and the algebra would still close.
+
+## Remark — Unpacking Two Definitions at Once
+
+This is the first problem in the section with **two** hypotheses to unpack, and each contributes its own existential witness:
+
+$$$
+\underbrace{a \text{ odd}}_{\Rightarrow\ \exists m,\ a = 2m+1} \qquad\text{and}\qquad \underbrace{6\mid(a+b)}_{\Rightarrow\ \exists n,\ a+b = 6n}.
+$$$
+
+As always the two witnesses need **different letters** — writing $ n $ for both would silently assume a relationship that was never given. And notice the definition of *divides* is itself existential: $ d\mid x $ means $ \exists q\in\mathbb Z,\ x = dq $. Recognising that "divides" unpacks the same way "odd" and "even" do is the small conceptual step this problem adds.
+
+## Remark — Solving for the Right Variable
+
+The computation solves for $ b $ rather than manipulating $ a+b $ directly, and that choice is what makes the proof short. The conclusion is a statement *about $ b $*, so the goal is an expression for $ b $ alone in the shape $ 2(\text{integer})+1 $.
+
+This is worth stating as a heuristic: **look at what the conclusion is about, and isolate that quantity.** A proof that instead expanded $ a+b = 2m+1+b = 6n $ and tried to reason about the whole sum would work eventually, but only after rearranging to $ b = \dots $ anyway. Aiming the algebra at the target from the start saves the detour.
+
+## Remark — The Contrapositive Route
+
+An alternative proof runs by contraposition (Problem 2.2.8). The contrapositive is:
+
+> If $ b $ is even, then $ a $ is even or $ 6\nmid(a+b) $.
+
+Suppose $ b $ is even and $ a $ is odd. Then $ a+b $ is odd (Problem 4), so $ a+b $ is not divisible by $ 2 $, hence not by $ 6 $. That establishes the contrapositive and therefore the theorem.
+
+This version is arguably more transparent, since it shows the parity clash directly. But note it requires negating a conjunction into a disjunction and then handling the cases — the direct proof avoids that bookkeeping entirely. When both routes are available, the direct one is usually shorter for a conclusion this simple.

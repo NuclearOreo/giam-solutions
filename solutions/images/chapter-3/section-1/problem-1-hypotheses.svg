@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" font-family="Georgia, 'Times New Roman', serif">
+  <rect width="700" height="560" fill="white"/>
+
+  <text x="350" y="22" font-size="12.5" font-style="italic" fill="#444" text-anchor="middle">Rewrite the theorem as a conditional. Whatever sits to the left of the arrow is what you get to assume.</text>
+
+  <!-- restated as conditional -->
+  <rect x="24" y="38" width="652" height="92" fill="#eef2f8" stroke="#c3d3ea"/>
+  <text x="40" y="58" font-size="11" font-style="italic" fill="#666">as stated:</text>
+  <text x="120" y="58" font-size="11.5" fill="#222">"Every prime number greater than 3 is of the form 6k+1 or 6k+5."</text>
+  <text x="40" y="82" font-size="11" font-style="italic" fill="#666">rewritten:</text>
+  <text x="120" y="82" font-size="11.5" fill="#222">For all integers p,  if  p is prime  <tspan font-weight="bold">and</tspan>  p &gt; 3,</text>
+  <text x="120" y="102" font-size="11.5" fill="#222">then  p = 6k+1  or  p = 6k+5  for some integer k.</text>
+  <text x="120" y="122" font-size="10.5" font-style="italic" fill="#8a3b12">the "every … is" phrasing hides both a ∀ and an ⟹</text>
+
+  <!-- hypotheses vs conclusion -->
+  <rect x="24" y="144" width="320" height="96" fill="#dfeadd" stroke="#8ab88a" stroke-width="1.5"/>
+  <text x="184" y="164" font-size="12.5" font-weight="bold" fill="#1b5e20" text-anchor="middle">HYPOTHESES — what you assume</text>
+  <text x="184" y="190" font-size="13" fill="#222" text-anchor="middle">1.  p is prime</text>
+  <text x="184" y="212" font-size="13" fill="#222" text-anchor="middle">2.  p &gt; 3</text>
+  <text x="184" y="232" font-size="10.5" font-style="italic" fill="#1b5e20" text-anchor="middle">both are needed — see below</text>
+
+  <rect x="356" y="144" width="320" height="96" fill="#f7f9fc" stroke="#c3d3ea"/>
+  <text x="516" y="164" font-size="12.5" font-weight="bold" fill="#1a3a63" text-anchor="middle">CONCLUSION — what you must reach</text>
+  <text x="516" y="192" font-size="12.5" fill="#222" text-anchor="middle">∃k ∈ ℤ  such that</text>
+  <text x="516" y="214" font-size="12.5" fill="#222" text-anchor="middle">p = 6k+1  or  p = 6k+5</text>
+
+  <!-- the extra tool -->
+  <rect x="24" y="252" width="652" height="52" fill="#fdf2ee" stroke="#ecccbf"/>
+  <text x="40" y="272" font-size="11.5" fill="#8a3b12" font-weight="bold">One more ingredient, not a hypothesis but a known theorem you may cite:</text>
+  <text x="40" y="294" font-size="11.5" fill="#222">the <tspan font-weight="bold">quotient–remainder theorem</tspan> — every integer p is p = 6k + r with r ∈ {0, 1, 2, 3, 4, 5}.</text>
+
+  <!-- case elimination -->
+  <text x="350" y="330" font-size="12.5" font-weight="bold" fill="#222" text-anchor="middle">How the hypotheses get used: six cases, four eliminated</text>
+
+  <g font-size="11.5" font-weight="bold" fill="#222">
+    <text x="60"  y="356">r</text>
+    <text x="130" y="356">p = 6k + r</text>
+    <text x="300" y="356">what rules it out</text>
+    <text x="600" y="356">uses</text>
+  </g>
+  <line x1="44" y1="364" x2="660" y2="364" stroke="#999" stroke-width="0.9"/>
+
+  <g font-size="11.5">
+    <text x="60" y="384">0</text><text x="130" y="384" fill="#333">6k</text>
+    <text x="300" y="384" fill="#8a3b12">even, and p &gt; 2, so composite</text>
+    <text x="600" y="384" font-size="10" fill="#1b5e20">both</text>
+
+    <rect x="44" y="394" width="616" height="22" fill="#dfeadd"/>
+    <text x="60" y="410" font-weight="bold">1</text><text x="130" y="410" font-weight="bold">6k+1</text>
+    <text x="300" y="410" fill="#1b5e20" font-weight="bold">nothing — survives</text>
+
+    <text x="60" y="434">2</text><text x="130" y="434" fill="#333">6k+2</text>
+    <text x="300" y="434" fill="#8a3b12">even, and p &gt; 2, so composite</text>
+    <text x="600" y="434" font-size="10" fill="#1b5e20">both</text>
+
+    <text x="60" y="456">3</text><text x="130" y="456" fill="#333">6k+3 = 3(2k+1)</text>
+    <text x="300" y="456" fill="#8a3b12">a multiple of 3, and p &gt; 3, so composite</text>
+    <text x="600" y="456" font-size="10" fill="#1b5e20">both</text>
+
+    <text x="60" y="478">4</text><text x="130" y="478" fill="#333">6k+4</text>
+    <text x="300" y="478" fill="#8a3b12">even, and p &gt; 2, so composite</text>
+    <text x="600" y="478" font-size="10" fill="#1b5e20">both</text>
+
+    <rect x="44" y="488" width="616" height="22" fill="#dfeadd"/>
+    <text x="60" y="504" font-weight="bold">5</text><text x="130" y="504" font-weight="bold">6k+5</text>
+    <text x="300" y="504" fill="#1b5e20" font-weight="bold">nothing — survives</text>
+  </g>
+  <line x1="44" y1="516" x2="660" y2="516" stroke="#999" stroke-width="0.9"/>
+
+  <text x="350" y="538" font-size="11" fill="#222" text-anchor="middle">Every elimination needs <tspan font-weight="bold">both</tspan> hypotheses: "prime" to say a factorisation is fatal, "p &gt; 3" to rule out p = 2 and p = 3.</text>
+  <text x="350" y="554" font-size="10.5" font-style="italic" fill="#666" text-anchor="middle">Checked: all 301 primes between 3 and 2000 are 1 or 5 mod 6, and both forms occur.</text>
+</svg>

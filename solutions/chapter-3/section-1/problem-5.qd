@@ -1,0 +1,83 @@
+.docname {Solution — GIAM 3.1 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 5
+
+## Problem
+
+Prove that if the sum of two integers is even, then so is their difference.
+
+## Statement
+
+$$$
+\forall x, y \in \mathbb Z,\quad \big(x+y \text{ is even}\big) \;\Longrightarrow\; \big(x-y \text{ is even}\big).
+$$$
+
+## Proof
+
+> **Proof.** Let $ x $ and $ y $ be integers and suppose $ x+y $ is even. By the definition of *even*, there is an integer $ k $ with $ x+y = 2k $. By algebra,
+>
+> $ x - y = (x+y) - 2y = 2k - 2y = 2(k-y) $.
+>
+> Now $ k - y $ is an integer, since $ \mathbb Z $ is closed under subtraction. So $ x-y = 2m $ with $ m = k-y \in\mathbb Z $, and hence $ x-y $ is even. $ \blacksquare $
+
+The whole proof rests on the identity $ x-y = (x+y)-2y $, which converts the *hypothesis* directly into the *conclusion*.
+
+## Why No Case Analysis Is Needed
+
+!(94%)[The one-identity proof, the reason parities always agree, and the four-row parity table](problem-5-sumdiff.svg "Top panel, the one-identity proof: assume x plus y is even, so x plus y equals 2k for some integer k; then x minus y equals (x plus y) minus 2y equals 2k minus 2y equals 2 times (k minus y); and k minus y is an integer, so x minus y equals 2m with m an integer, hence x minus y is even. Second panel, why no case analysis is needed: (x plus y) minus (x minus y) equals 2y, and (x plus y) plus (x minus y) equals 2x — both are even, so x plus y and x minus y always have the same parity, whatever x and y are. Below, a four-row parity table with columns x, y, x plus y, x minus y, and 'same?'. Row even-even: sum even, difference even, same. Row even-odd: sum odd, difference odd, same. Row odd-even: sum odd, difference odd, same. Row odd-odd: sum even, difference even, same. The two shaded rows are those where the hypothesis holds, and there the conclusion holds too. A closing panel notes the converse holds as well, so the real theorem is a biconditional: x plus y even if and only if x minus y even if and only if x and y have the same parity.")
+
+A tempting first approach is to split into cases — "both $ x $ and $ y $ even" and "both odd" — since those are the two ways a sum can be even. That works, but it is unnecessary. The reason is the pair of identities
+
+$$$
+(x+y) - (x-y) = 2y, \qquad (x+y) + (x-y) = 2x.
+$$$
+
+Both right-hand sides are even, so $ x+y $ and $ x-y $ **always differ by an even number** — meaning they always have the *same parity*, regardless of $ x $ and $ y $. The theorem is then immediate. Checked exhaustively on $ [-40,40]^2 $: no counterexamples.
+
+## Remark — The Case Proof Also Works
+
+For comparison, here is the case-analysis version, which is perfectly correct but longer.
+
+Since $ x+y $ is even, $ x $ and $ y $ have the same parity (a fact needing its own justification — see Problem 4's table).
+
+- **Both even:** $ x = 2a $, $ y = 2b $, so $ x-y = 2a-2b = 2(a-b) $, even.
+- **Both odd:** $ x = 2a+1 $, $ y = 2b+1 $, so $ x-y = (2a+1)-(2b+1) = 2(a-b) $, even.
+
+Both branches conclude "even," so the result follows by **proof by cases** — the constructive-dilemma pattern of Problem 2.6.2. Notice, though, that this version needs an extra lemma ("even sum implies matching parity") that the one-identity proof never touches. Preferring the shorter route is not just aesthetics: fewer steps means fewer places to make a mistake, and no auxiliary result to prove first.
+
+## Remark — The Converse Is Also True
+
+The hypothesis and conclusion are interchangeable here. Running the same identity backwards, $ x+y = (x-y) + 2y $, shows that if $ x-y $ is even then so is $ x+y $. So the honest theorem is a **biconditional**:
+
+$$$
+x+y \text{ is even} \quad\Longleftrightarrow\quad x-y \text{ is even} \quad\Longleftrightarrow\quad x \text{ and } y \text{ have the same parity}.
+$$$
+
+Verified exhaustively: neither direction has a counterexample on $ [-40,40]^2 $. This is worth flagging because, as Problem 2.2.9 stressed, a converse normally has to be *earned* — most conditionals are one-way. Here it comes essentially free, since the proof was a reversible algebraic rearrangement rather than a one-directional deduction.
+
+## Remark — Where the Hypothesis Is Actually Used
+
+The hypothesis "$ x+y $ is even" enters at exactly one point: it supplies the integer $ k $ with $ x+y = 2k $. Everything after that is algebra plus closure. This is a good habit to check on any proof — if you cannot point to the line where a hypothesis was used, either the hypothesis is unnecessary or the proof is wrong.
+
+Here the hypothesis is genuinely needed. Without it there is no reason for $ x-y $ to be even: take $ x = 5 $, $ y = 2 $, where $ x+y = 7 $ is odd and $ x-y = 3 $ is odd too. The theorem says nothing about that case, and correctly so.
+
+## Remark — The General Pattern: Two Expressions Differing by an Even Amount
+
+The technique generalises well beyond this problem. To show two quantities share a parity, it suffices to show their **difference is even** — you never need to determine either parity individually. Some instances:
+
+| claim | difference | why even |
+| :--- | :--- | :--- |
+| $ x+y $ and $ x-y $ | $ 2y $ | visibly a multiple of $ 2 $ |
+| $ n $ and $ n+2 $ | $ 2 $ | consecutive same-parity integers |
+| $ n $ and $ n^2 $ | $ n^2-n = n(n-1) $ | product of consecutive integers |
+| $ n $ and $ n^3 $ | $ n^3-n = (n-1)n(n+1) $ | product of three consecutive integers |
+
+The last two are the reason $ n $, $ n^2 $, and $ n^3 $ always share a parity — a fact used constantly, and proved each time by the same "their difference is even" move rather than by splitting into cases.

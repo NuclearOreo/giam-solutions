@@ -1,0 +1,83 @@
+.docname {Solution — GIAM 3.1 Problem 11}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 11
+
+## Problem
+
+Suppose that $ a $, $ b $ and $ c $ are integers such that $ a\mid b $ and $ b\mid c $. Prove that $ a\mid c $.
+
+## Proof
+
+> **Proof.** Suppose $ a\mid b $ and $ b\mid c $. By the definition of *divides* there are integers $ k $ and $ m $ with
+>
+> $ b = ak $  and  $ c = bm $.
+>
+> Substituting the first into the second and regrouping,
+>
+> $ c = bm = (ak)m = a(km) $.
+>
+> Now $ km $ is an integer, since $ \mathbb Z $ is closed under multiplication. So $ c = a\cdot(km) $ with $ km\in\mathbb Z $, which is exactly the statement $ a\mid c $. $ \blacksquare $
+
+Each hypothesis contributes one multiplier, and **associativity of multiplication** fuses them into the single multiplier $ km $ that the conclusion requires.
+
+## The Structure
+
+!(94%)[The divisibility chain a to b to c with the derived link, the proof, and the partial-order properties](problem-11-transitive.svg "Top: three circles labelled a, b, c with solid arrows a to b labelled 'a divides b, b equals ak' and b to c labelled 'b divides c, c equals bm', plus a dashed arrow curving from a directly to c labelled 'a divides c, with c equals a times km'. Below, a green panel giving the whole proof: a divides b gives b equal to ak with k an integer; b divides c gives c equal to bm with m an integer; then c equals bm equals (ak)m equals a(km); and km is an integer, so a divides c. Below that, a table of the properties making divisibility a partial order. Reflexive: a divides a — holds. Transitive, highlighted: a divides b and b divides c implies a divides c — this problem. Antisymmetric: a divides b and b divides a implies a equals b — needs a and b positive. Symmetric: a divides b implies b divides a — FAILS, since 2 divides 6 but 6 does not divide 2. A closing panel notes transitivity is what lets divisibility chains compose, so 2 divides 6 divides 12 divides 60 gives 2 divides 60, and that this is the step used silently in Problem 8 where 2 divides 6 and 6 divides a plus b gave 2 divides a plus b.")
+
+## Remark — Divisibility Is a Partial Order
+
+This theorem is the **transitivity** clause of a larger fact, first noticed in Problem 1.7.1: on the positive integers, divisibility is a **partial order**. The three defining properties:
+
+| property | statement | status |
+| :--- | :--- | :--- |
+| reflexive | $ a\mid a $ | holds — take $ k=1 $ |
+| **transitive** | $ a\mid b $ and $ b\mid c $ $ \Rightarrow $ $ a\mid c $ | **this problem** |
+| antisymmetric | $ a\mid b $ and $ b\mid a $ $ \Rightarrow $ $ a = b $ | holds for $ a,b > 0 $ |
+
+Divisibility is emphatically **not** symmetric: $ 2\mid 6 $ but $ 6\nmid 2 $. That asymmetry is what makes it an *order* rather than an equivalence, and it is why the divisibility grid of Problem 1.7.1 sat entirely on one side of the diagonal.
+
+## Remark — Antisymmetry Needs Positivity
+
+Worth flagging, since the present theorem needs no such restriction. Over all of $ \mathbb Z $, antisymmetry **fails**: $ 3\mid -3 $ and $ -3\mid 3 $, yet $ 3\ne -3 $. The correct statement over $ \mathbb Z $ is that $ a\mid b $ and $ b\mid a $ force $ a = \pm b $.
+
+Transitivity, by contrast, holds for *all* integers including negatives and zero — the proof never assumed a sign. Checking $ a = 5 $, $ b = -15 $, $ c = 45 $: indeed $ 5\mid -15 $, $ -15\mid 45 $, and $ 5\mid 45 $. Verified exhaustively over all nonzero $ |x|\le 40 $.
+
+## Remark — This Was Used Silently in Problem 8
+
+Problem 8's structural reading opened with "since $ 2\mid 6 $ and $ 6\mid(a+b) $, transitivity of divisibility gives $ 2\mid(a+b) $." That step is exactly this theorem, cited before it was proved.
+
+This is common in a problem set and worth being alert to: an argument may lean on a fact that *feels* obvious but has not yet been established. Having now proved it, that earlier appeal is fully licensed. The general habit is to notice when you are using an unproved lemma and either prove it or flag it — the difference between a proof and a plausible sketch is often exactly this bookkeeping.
+
+## Remark — Chains of Any Length
+
+Applying the theorem repeatedly extends it to arbitrary chains:
+
+$$$
+a_1 \mid a_2 \mid a_3 \mid \cdots \mid a_n \quad\Longrightarrow\quad a_1 \mid a_n.
+$$$
+
+For instance $ 2\mid 6\mid 12\mid 60 $ gives $ 2\mid 60 $. Each application fuses two multipliers into one, so after $ n-1 $ steps the single multiplier is the product $ k_1k_2\cdots k_{n-1} $. This is the same "chaining" structure as hypothetical syllogism in Problem 2.6.1 — a relation that composes lets you traverse arbitrarily long paths, which is precisely what makes both proofs and divisibility lattices workable.
+
+## Remark — Why Associativity Is the Load-Bearing Step
+
+The regrouping $ (ak)m = a(km) $ looks like nothing, but it is where the theorem happens. The hypotheses hand you $ c $ as "$ a $ multiplied by $ k $, then multiplied by $ m $" — two separate scalings. The conclusion demands $ c $ as "$ a $ multiplied by a **single** integer." Associativity is exactly the licence to re-bracket, and closure of $ \mathbb Z $ under multiplication is what guarantees the fused multiplier is still an integer.
+
+Both ingredients are needed. Over a set closed under multiplication but *not* associative, the argument would not go through — the two multipliers could not be merged. This is the same pattern as Problems 3.1.3 and 3.1.4: an algebraic identity rearranges the expression into the shape the definition demands, and a closure property certifies the resulting witness is legal.
+
+## Remark — The Same Theorem in Evenness Language
+
+Problem 10's valuation gives an alternative view. Since $ a\mid b $ means every prime's exponent in $ a $ is at most its exponent in $ b $, transitivity becomes the transitivity of $ \le $ applied prime by prime:
+
+$$$
+v_p(a)\le v_p(b) \;\text{ and }\; v_p(b)\le v_p(c) \quad\Longrightarrow\quad v_p(a)\le v_p(c) \quad\text{for every prime } p.
+$$$
+
+This is a nice illustration of a recurring theme: divisibility questions often become *inequality* questions about exponents (Problem 1.5.3 did the same for gcd and lcm). The exponent view explains **why** divisibility is a partial order — it inherits the structure of $ \le $ on $ \mathbb{N} $, coordinate-wise across all primes at once.

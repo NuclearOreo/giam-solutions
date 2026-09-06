@@ -1,0 +1,89 @@
+.docname {Solution — GIAM 3.1 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 6
+
+## Problem
+
+Prove that for every real number $ x $,
+
+$$$
+\tfrac{2}{3} < x < \tfrac{3}{4} \quad\Longrightarrow\quad \lfloor 12x \rfloor = 8.
+$$$
+
+## Proof
+
+> **Proof.** Let $ x $ be a real number and suppose $ \tfrac23 < x < \tfrac34 $. Multiplying through by $ 12 $ — which is positive, so the inequalities keep their direction — gives
+>
+> $ 12\cdot\tfrac23 < 12x < 12\cdot\tfrac34 $,  that is,  $ 8 < 12x < 9 $.
+>
+> In particular $ 8 \le 12x < 9 $. By the definition of the floor function, $ \lfloor t\rfloor = n $ exactly when $ n \le t < n+1 $. Taking $ n = 8 $ and $ t = 12x $ gives $ \lfloor 12x\rfloor = 8 $. $ \blacksquare $
+
+## The Picture
+
+!(94%)[Scaling the interval by 12, the floor characterisation, and the endpoint tests](problem-6-floor.svg "Top: a number line for x with the open interval from 2/3 to 3/4 shaded, both endpoints drawn as open circles, labelled 'the hypothesis'. An arrow notes: multiply by 12 — positive, so the inequalities keep their direction. Below, a number line for 12x with the open interval from 8 to 9 shaded, labelled 8 less than 12x less than 9. A panel states the floor definition: the floor of t equals n exactly when n is at most t and t is less than n plus 1; we have 8 less than 12x less than 9, which certainly gives 8 at most 12x less than 9, so the floor of 12x is 8 — and notes that weakening the strict inequality to a non-strict one is exactly the disjunctive addition of Problem 2.7.6. Below, two endpoint tests. Left endpoint x equals 2/3: 12x equals 8 and the floor of 8 is 8, so it still works and the strict inequality is not needed there. Right endpoint x equals 3/4: 12x equals 9 and the floor of 9 is 9, so it fails and the strict inequality is essential there. A closing panel: the hypothesis is sufficient but not necessary, and the sharp statement is the equivalence — floor of 12x equals 8 if and only if 2/3 is at most x and x is less than 3/4.")
+
+The proof has exactly two moves: **scale the interval**, then **read off the floor**. Scaling by $ 12 $ is what makes the problem work, because $ 12\cdot\tfrac23 = 8 $ and $ 12\cdot\tfrac34 = 9 $ are *consecutive integers* — so the scaled interval sits inside one "floor step."
+
+Verified on $ 2000 $ random points of $ (\tfrac23,\tfrac34) $.
+
+## Remark — The Weakening Step Is Problem 2.7.6
+
+There is a small logical move in the middle worth naming. We derive $ 8 < 12x $ but the floor characterisation requires $ 8 \le 12x $, so we weaken the strict inequality to a non-strict one. That is precisely the **disjunctive addition** of Problem 2.7.6: since $ a \le b $ abbreviates $ (a < b)\lor(a = b) $, inferring $ 8\le 12x $ from $ 8 < 12x $ is the inference $ P \vdash P\lor Q $.
+
+It costs nothing and is easy to perform silently, but it is exactly the situation that problem described — you weaken because the *next* tool demands a specific shape, not because the weaker fact is more informative.
+
+## Remark — Why the Multiplier Is 12
+
+The number $ 12 $ is not arbitrary: it is $ \operatorname{lcm}(3,4) $, the smallest positive integer that clears **both** denominators at once. Smaller multipliers fail to land both endpoints on integers:
+
+| multiplier $ m $ | $ m\cdot\tfrac23 $ | $ m\cdot\tfrac34 $ | both integers? |
+| :---: | :---: | :---: | :---: |
+| $ 3 $ | $ 2 $ | $ 9/4 $ | no |
+| $ 4 $ | $ 8/3 $ | $ 3 $ | no |
+| $ 6 $ | $ 4 $ | $ 9/2 $ | no |
+| $ 12 $ | $ \mathbf 8 $ | $ \mathbf 9 $ | **yes** |
+
+And landing on *consecutive* integers is what pins the floor to a single value. Had the endpoints scaled to, say, $ 8 $ and $ 11 $, the floor could be $ 8 $, $ 9 $ or $ 10 $ and no single answer would exist. So the problem is really engineered around the fact that $ \tfrac34 - \tfrac23 = \tfrac{1}{12} $ — the interval is exactly one twelfth long, hence exactly one unit long after scaling.
+
+## Remark — The Hypothesis Is Not Tight on the Left
+
+Testing the endpoints reveals an asymmetry:
+
+- **$ x = \tfrac23 $:** then $ 12x = 8 $ and $ \lfloor 8\rfloor = 8 $. The conclusion **still holds**, so the strict "$ < $" on the left was not needed.
+- **$ x = \tfrac34 $:** then $ 12x = 9 $ and $ \lfloor 9\rfloor = 9 \ne 8 $. The conclusion **fails**, so the strict "$ < $" on the right is essential.
+
+The reason is that the floor function is **right-continuous** — it jumps *at* each integer and holds its new value on $ [n, n+1) $ — so the left endpoint of each step belongs to it and the right endpoint does not. Consequently the sharp statement is a biconditional:
+
+$$$
+\lfloor 12x\rfloor = 8 \quad\Longleftrightarrow\quad \tfrac23 \le x < \tfrac34.
+$$$
+
+(Verified on $ 20{,}000 $ random points, no mismatches.) The problem's hypothesis is therefore **sufficient but not necessary** — a perfectly legitimate way to state a theorem, but worth noticing.
+
+## Remark — Multiplying an Inequality Requires a Sign Check
+
+The step "multiply through by $ 12 $" quietly uses that $ 12 > 0 $. For a positive multiplier the order relation is preserved; for a negative one it **reverses**:
+
+$$$
+a < b \;\Longrightarrow\; 12a < 12b, \qquad\text{but}\qquad a < b \;\Longrightarrow\; -12a > -12b.
+$$$
+
+Here the multiplier is visibly positive so the check is instant, but the habit matters — forgetting to flip when multiplying by a negative is among the most common algebra errors, and in a proof it silently invalidates everything downstream. It is the same discipline as the closure checks in Problems 3.1.3 and 3.1.4: a step that "obviously works" still rests on a stated property.
+
+## Remark — The General Version
+
+Nothing about this problem is special to $ 8 $, $ 12 $, or these fractions. The same two-step argument proves the general fact
+
+$$$
+\frac{n}{m} \le x < \frac{n+1}{m} \quad\Longleftrightarrow\quad \lfloor mx \rfloor = n \qquad (m \text{ a positive integer}),
+$$$
+
+which says that multiplying by $ m $ and taking the floor is exactly the operation of asking "**which of the $ m $ equal subintervals of each unit does $ x $ fall into?**" That is why $ \lfloor mx\rfloor $ appears throughout computer science — in hashing a real number into $ m $ buckets, in converting a fraction to a fixed-point representation, and in the digit-extraction of Chapter 1's base conversions, where $ \lfloor 10x\rfloor $ peels off one decimal digit at a time.

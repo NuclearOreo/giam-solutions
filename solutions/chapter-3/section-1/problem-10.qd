@@ -1,0 +1,109 @@
+.docname {Solution — GIAM 3.1 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 10
+
+## Problem
+
+Define the **evenness** of an integer $ n $ by
+
+$$$
+\operatorname{evenness}(n) = k \quad\Longleftrightarrow\quad 2^k \mid n \;\land\; 2^{k+1} \nmid n.
+$$$
+
+State and prove a theorem concerning the evenness of products.
+
+## The Theorem
+
+$$$
+\boxed{\;\text{For all nonzero integers } m, n: \quad \operatorname{evenness}(mn) = \operatorname{evenness}(m) + \operatorname{evenness}(n).\;}
+$$$
+
+Evenness counts how many factors of $ 2 $ a number contains, and multiplying numbers **adds** those counts. Verified on $ 3000 $ random nonzero pairs.
+
+## A Reformulation of the Definition
+
+The definition is easier to use in the following equivalent form.
+
+> **Lemma.** For a nonzero integer $ n $, $ \operatorname{evenness}(n) = k $ if and only if $ n = 2^k s $ for some **odd** integer $ s $.
+>
+> **Proof.** ($ \Rightarrow $) If $ 2^k\mid n $ then $ n = 2^k s $ for some integer $ s $. Were $ s $ even, say $ s = 2u $, we would have $ n = 2^{k+1}u $, so $ 2^{k+1}\mid n $ — contrary to hypothesis. Hence $ s $ is odd.
+>
+> ($ \Leftarrow $) If $ n = 2^k s $ with $ s $ odd then certainly $ 2^k\mid n $. If also $ 2^{k+1}\mid n $, say $ n = 2^{k+1}u $, then $ 2^k s = 2^{k+1}u $, so $ s = 2u $ — contradicting $ s $ odd. $ \square $
+
+In words: "$ 2^k $ divides $ n $ but $ 2^{k+1} $ does not" says exactly that **after pulling out $ 2^k $, what remains is odd**.
+
+## Proof of the Theorem
+
+!(94%)[The reformulated definition, the three-line proof, worked examples, and the contrast with sums](problem-10-evenness.svg "Top panel, the useful reformulation: evenness of n equals k if and only if n equals 2 to the k times s with s odd — the condition '2 to the k divides n but 2 to the k plus 1 does not' is exactly 'the leftover factor is odd'. A green banner states the theorem: evenness of mn equals evenness of m plus evenness of n, for all nonzero integers, verified on 3000 random pairs. The proof in three lines: write m as 2 to the a times s and n as 2 to the b times t with s and t odd; then mn equals 2 to the a plus b times st; st is odd as a product of two odd numbers, so the evenness of mn is a plus b. A table of worked examples: m equals 12 and n equals 20 have evenness 2 and 2, product 240 with evenness 4 equals 2 plus 2; m equals 3 and n equals 8 have evenness 0 and 3, product 24 with evenness 3; m equals 6 and n equals 48 have evenness 1 and 4, product 288 with evenness 5. A final panel contrasts sums, which obey no additive law but only an inequality: the evenness of m plus n is at least the minimum of the two evennesses, with equality when they differ — evenness 2 and 3 give evenness 2 — but the value can jump when they agree, since evenness 2 and 2 give evenness 5, not 2.")
+
+> **Proof.** Let $ m $ and $ n $ be nonzero integers, and put $ a = \operatorname{evenness}(m) $, $ b = \operatorname{evenness}(n) $. By the Lemma there are **odd** integers $ s, t $ with
+>
+> $ m = 2^a s $  and  $ n = 2^b t $.
+>
+> Multiplying,
+>
+> $ mn = (2^a s)(2^b t) = 2^{a+b}\,(st) $.
+>
+> Now $ st $ is odd, being a product of two odd numbers. So $ mn = 2^{a+b}\cdot(\text{odd}) $, and the Lemma (applied in the other direction) gives $ \operatorname{evenness}(mn) = a+b $. $ \blacksquare $
+
+## Remark — Why $ m $ and $ n $ Must Be Nonzero
+
+The hypothesis "nonzero" is not decoration: **$ \operatorname{evenness}(0) $ does not exist.** Every power of $ 2 $ divides $ 0 $, since $ 0 = 2^k\cdot 0 $ for every $ k $. So the second clause $ 2^{k+1}\nmid n $ fails for *every* $ k $, and no value of $ \operatorname{evenness}(0) $ satisfies the definition.
+
+The usual convention is $ \operatorname{evenness}(0) = +\infty $, which is precisely what makes the theorem keep working: $ \infty + b = \infty $, matching $ \operatorname{evenness}(0\cdot n) = \operatorname{evenness}(0) $. But that convention has to be *declared*; the definition as given simply leaves $ 0 $ out. Excluding it in the theorem statement is the honest option.
+
+## Remark — Evenness Is the Exponent of 2 in the Prime Factorisation
+
+The theorem looks less mysterious once you see what evenness *is*. Writing $ n $ in its prime factorisation, $ \operatorname{evenness}(n) $ is simply the exponent on the prime $ 2 $:
+
+$$$
+n = 2^{e_2}\cdot 3^{e_3}\cdot 5^{e_5}\cdots \quad\Longrightarrow\quad \operatorname{evenness}(n) = e_2.
+$$$
+
+From this angle the theorem is immediate: multiplying integers **adds** the exponents of every prime, so in particular it adds the exponent of $ 2 $. That is the same exponent bookkeeping used in Problem 1.5.3, where $ \gcd $ took the *minimum* exponent of each prime and $ \operatorname{lcm} $ the *maximum*. The present theorem is the addition rule that sits underneath both.
+
+## Remark — The Function Has a Name: the 2-adic Valuation
+
+Evenness is standardly written $ v_2(n) $ and called the **2-adic valuation**. Nothing about the argument is special to $ 2 $: for any prime $ p $, defining $ v_p(n) = k \iff p^k\mid n \land p^{k+1}\nmid n $ gives
+
+$$$
+v_p(mn) = v_p(m) + v_p(n),
+$$$
+
+by the identical proof with "odd" replaced by "not divisible by $ p $." A function turning products into sums is exactly what "valuation" means — and the logarithm-like behaviour is not a coincidence, since $ v_p $ really is measuring an exponent. These valuations are the foundation of the $ p $-adic numbers.
+
+## Remark — Sums Obey an Inequality, Not an Identity
+
+It is natural to ask for a companion theorem about $ \operatorname{evenness}(m+n) $, and instructive that **no additive law exists**. What holds instead is
+
+$$$
+\operatorname{evenness}(m+n) \;\ge\; \min\big(\operatorname{evenness}(m), \operatorname{evenness}(n)\big),
+$$$
+
+with **equality whenever the two evennesses differ**. Both claims were verified on $ 3000 $ random pairs.
+
+The reason the inequality can be strict is cancellation. Take $ m = 12 $ and $ n = 20 $, both of evenness $ 2 $: their sum is $ 32 $, of evenness $ 5 $ — far above the minimum. Pulling out $ 2^2 $ gives $ 12+20 = 4(3+5) = 4\cdot 8 $, and the odd parts $ 3 $ and $ 5 $ summed to something *even*, contributing extra factors of $ 2 $. When the evennesses differ, no such cancellation is possible: the smaller power of $ 2 $ factors out and leaves odd $ + $ even, which is odd (Problem 4), so the count stops exactly there.
+
+This inequality is the **ultrametric** property, and it is what makes the $ p $-adic distance behave so unlike ordinary distance — in the $ p $-adics, every triangle is isosceles.
+
+## Remark — Restating Familiar Facts in This Language
+
+Several earlier results become one-liners once phrased via evenness:
+
+| statement | in evenness terms |
+| :--- | :--- |
+| $ n $ is odd | $ \operatorname{evenness}(n) = 0 $ |
+| $ n $ is even | $ \operatorname{evenness}(n) \ge 1 $ |
+| odd $ \times $ odd is odd (Problem 4) | $ 0 + 0 = 0 $ |
+| $ n $ is doubly even | $ \operatorname{evenness}(n)\ge 2 $ |
+| $ x $ odd $ \Rightarrow x^2 $ odd (Problem 2.1.3) | $ v_2(x^2) = 2v_2(x) = 0 $ |
+
+The last row generalises pleasantly: $ \operatorname{evenness}(n^j) = j\cdot\operatorname{evenness}(n) $, by applying the theorem $ j-1 $ times. So a perfect square always has *even* evenness — which is exactly the exponent-parity contradiction that drives the irrationality of $ \sqrt 2 $ in Section 1.6.

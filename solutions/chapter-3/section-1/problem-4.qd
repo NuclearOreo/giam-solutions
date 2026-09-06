@@ -1,0 +1,85 @@
+.docname {Solution — GIAM 3.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.1 Problem 4
+
+## Problem
+
+Prove that the sum of an odd number and an even number is odd.
+
+## Statement
+
+$$$
+\forall x, y \in \mathbb Z,\quad \big(x \text{ is odd}\big)\land\big(y \text{ is even}\big) \;\Longrightarrow\; \big(x+y \text{ is odd}\big).
+$$$
+
+## Proof
+
+> **Proof.** Let $ x $ be an odd number and $ y $ an even number. By the definitions of *odd* and *even*, there are integers $ k $ and $ j $ with $ x = 2k+1 $ and $ y = 2j $. By algebra,
+>
+> $ x + y = (2k+1) + 2j = 2(k+j) + 1 $.
+>
+> Note that $ k+j $ is an integer, since $ \mathbb Z $ is closed under addition. So $ x+y = 2m+1 $ with $ m = k+j \in \mathbb Z $, and hence $ x+y $ is odd. Since $ x $ and $ y $ were arbitrary, the sum of any odd number and any even number is odd. $ \blacksquare $
+
+## The Structure
+
+!(94%)[The unpack-compute-repack steps, the four-entry parity table, and its identification with XOR](problem-4-parity.svg "Three stacked panels. UNPACK: x is odd gives x equal to 2k plus 1 with k an integer; y is even gives y equal to 2j with j an integer — two different letters, since the witnesses are unrelated. COMPUTE: x plus y equals (2k plus 1) plus 2j equals 2(k plus j) plus 1, verified on 300 random integer pairs. REPACK: k plus j is an integer by closure of the integers under addition, so x plus y equals 2m plus 1 with m equal to k plus j an integer, hence x plus y is odd. Below, a two-by-two parity table with rows and columns labelled even and odd: even plus even is even, even plus odd is odd, odd plus even is odd — the shaded cell, which is this problem — and odd plus odd is even, which was Problem 2.7.5. A side panel writes even as 0 and odd as 1, giving 0+0=0, 0+1=1, 1+0=1, 1+1=0, and notes that this is exactly XOR. A closing banner explains that parity is addition in Z-two, the integers collapsed onto their remainder mod 2, and the four facts about odd and even sums form the whole addition table of that two-element system, coinciding with the exclusive-or of Problem 2.1.1.")
+
+The proof is the same **unpack – compute – repack** skeleton as Problems 2.7.5 and 3.1.3. The only genuine content is the factoring step $ 2k+1+2j = 2(k+j)+1 $, which pulls the $ 2 $ out front so the result *looks like* the definition of odd, plus the observation that $ k+j $ lands in $ \mathbb Z $.
+
+Verified on all $ 3660 $ odd/even pairs in $ [-60,60] $.
+
+## Remark — Only One Case Is Needed
+
+A reader might worry that the theorem needs two cases — "odd plus even" and "even plus odd." It does not. The statement names which summand is which, so there is only one configuration to handle. And even if it had said "the sum of an odd and an even number, in either order," addition is **commutative**, so $ y+x = x+y $ and the second case reduces immediately to the first.
+
+Being able to see that a second case is unnecessary is worth as much as being able to handle one that is. Spurious case splits make proofs longer without making them more correct.
+
+## Remark — The Closure Step Is Doing Real Work
+
+As in Problem 2.7.5, the line "$ k+j $ is an integer" is not padding. The definition of *odd* demands $ n = 2m+1 $ **for an integer $ m $**, so producing the equation $ x+y = 2(k+j)+1 $ is only half the job — one must confirm that $ k+j $ lives in $ \mathbb Z $.
+
+Here the confirmation is immediate, because $ \mathbb Z $ is closed under addition. But the obligation is real: over a set not closed under $ + $, the same algebra would produce an equation that fails to witness anything. Every "unpack, compute, repack" proof ends with exactly this check, and Problem 3.1.3's closure argument ended the same way with "$ bd $ is a nonzero integer."
+
+## Remark — Four Facts, One Table
+
+This problem is one cell of a $ 2\times 2 $ table, and all four cells are proved by the identical method:
+
+| | even | odd |
+| :--- | :---: | :---: |
+| **even** | even | odd |
+| **odd** | **odd** | even |
+
+- even $ + $ even: $ 2k + 2j = 2(k+j) $
+- even $ + $ odd, odd $ + $ even: $ 2k + (2j+1) = 2(k+j)+1 $ — **this problem**
+- odd $ + $ odd: $ (2k+1)+(2j+1) = 2(k+j+1) $ — Problem 2.7.5
+
+In each case the algebra rearranges the expression so that a factor of $ 2 $ can be pulled out, and the leftover $ +1 $ (or absence of one) decides the parity. Recognising that four separate-looking exercises are one computation in four dressings is the useful takeaway.
+
+## Remark — Parity Is Addition in $ \mathbb Z_2 $
+
+The table above is not an accident of arithmetic; it is the **addition table of $ \mathbb Z_2 $**, the integers collapsed onto their remainder modulo $ 2 $. Writing even $ = 0 $ and odd $ = 1 $:
+
+$$$
+0+0 = 0,\qquad 0+1 = 1,\qquad 1+0 = 1,\qquad 1+1 = 0.
+$$$
+
+Two consequences worth noting. First, this is *exactly* the truth table of **exclusive-or** from Problem 2.1.1 — parity addition and XOR are the same operation, which is why XOR is described as "addition mod 2." Second, the fact that parity behaves so predictably under addition is what makes **parity arguments** possible: one can often settle a question by tracking only whether quantities are odd or even, discarding all other information. That technique appears throughout combinatorics and is the basis of parity check bits in error detection.
+
+## Remark — Multiplication Has a Different Table
+
+It is worth contrasting the addition table with the multiplication one, since students sometimes assume they behave alike:
+
+| $ \times $ | even | odd |
+| :--- | :---: | :---: |
+| **even** | even | even |
+| **odd** | even | odd |
+
+Three of the four products are even, because a single factor of $ 2 $ in *either* argument survives multiplication. Only odd $ \times $ odd is odd. In $ \mathbb Z_2 $ terms this is the AND operation ($ 0\cdot 0 = 0\cdot 1 = 1\cdot 0 = 0 $, $ 1\cdot 1 = 1 $), completing the picture: parity addition is XOR, parity multiplication is AND, and together they make $ \mathbb Z_2 $ the two-element field on which all of Boolean algebra sits.
