@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 832" width="720" height="832" font-family="Georgia, serif">
+  <rect x="0" y="0" width="720" height="832" fill="#ffffff"/>
+
+  <rect x="18" y="14" width="684" height="52" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE CLAIM</text>
+  <text x="410" y="34" font-size="13.5" fill="#1f3a68" text-anchor="middle">there are two irrational numbers whose product is rational</text>
+  <text x="410" y="55" font-size="16" fill="#1f6b34" text-anchor="middle" font-weight="bold">TRUE</text>
+
+  <rect x="18" y="76" width="684" height="106" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.4"/>
+  <text x="34" y="96" font-size="11.5" fill="#1f6b34" font-weight="bold">THE WITNESS</text>
+  <text x="360" y="128" font-size="20" fill="#1f6b34" text-anchor="middle" font-weight="bold">&#8730;2 &#183; &#8730;2 = 2</text>
+  <text x="360" y="156" font-size="12" fill="#333" text-anchor="middle">&#8730;2 is irrational, and 2 is rational. Since an existential claim is settled by one instance,</text>
+  <text x="360" y="174" font-size="12" fill="#333" text-anchor="middle">and the two numbers need not differ, this is the entire proof.</text>
+
+  <text x="34" y="226" font-size="11.5" fill="#3b5b9b" font-weight="bold">FOUR PROBLEMS, TWO WITNESSES</text>
+  <text x="34" y="244" font-size="11" fill="#555">Problems 5&#8211;8 of this section form a 2 &#215; 2 grid: two operations, each asked as a &#8704; and as its &#8707; negation.</text>
+  <text x="438" y="244" font-size="11" fill="#3b5b9b" text-anchor="middle" font-weight="bold"></text>
+  <text x="176" y="298.0" font-size="11.5" fill="#444" text-anchor="middle" transform="rotate(-90 176 298.0)">addition</text>
+  <text x="176" y="410.0" font-size="11.5" fill="#444" text-anchor="middle" transform="rotate(-90 176 410.0)">multiplication</text>
+  <rect x="190" y="250" width="240" height="96" rx="5" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.6"/><text x="310.0" y="270" font-size="11.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">Problem 5&#160;&#160;&#8212;&#160;&#160;FALSE</text><text x="310.0" y="290" font-size="11" fill="#333" text-anchor="middle">&#8704;: every sum is irrational</text><text x="310.0" y="308" font-size="11" fill="#333" text-anchor="middle">refuted by &#8730;2 + (&#8722;&#8730;2) = 0</text><text x="310.0" y="326" font-size="11" fill="#333" text-anchor="middle">two <tspan font-style='italic'>different</tspan> numbers needed</text><rect x="446" y="250" width="240" height="96" rx="5" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.6"/><text x="566.0" y="270" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">Problem 6&#160;&#160;&#8212;&#160;&#160;TRUE</text><text x="566.0" y="290" font-size="11" fill="#333" text-anchor="middle">&#8707;: some sum is rational</text><text x="566.0" y="308" font-size="11" fill="#333" text-anchor="middle">witnessed by &#8730;2 + (&#8722;&#8730;2) = 0</text><text x="566.0" y="326" font-size="11" fill="#333" text-anchor="middle">the same pair, promoted</text><rect x="190" y="362" width="240" height="96" rx="5" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.6"/><text x="310.0" y="382" font-size="11.5" fill="#9b2c2c" text-anchor="middle" font-weight="bold">Problem 7&#160;&#160;&#8212;&#160;&#160;FALSE</text><text x="310.0" y="402" font-size="11" fill="#333" text-anchor="middle">&#8704;: every product is irrational</text><text x="310.0" y="420" font-size="11" fill="#333" text-anchor="middle">refuted by &#8730;2 &#183; &#8730;2 = 2</text><text x="310.0" y="438" font-size="11" fill="#333" text-anchor="middle">one number, used twice</text><rect x="446" y="362" width="240" height="96" rx="5" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.6"/><text x="566.0" y="382" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">Problem 8&#160;&#160;&#8212;&#160;&#160;TRUE</text><text x="566.0" y="402" font-size="11" fill="#333" text-anchor="middle">&#8707;: some product is rational</text><text x="566.0" y="420" font-size="11" fill="#333" text-anchor="middle">witnessed by &#8730;2 &#183; &#8730;2 = 2</text><text x="566.0" y="438" font-size="11" fill="#333" text-anchor="middle">the same pair, promoted</text>
+
+  <rect x="18" y="488" width="684" height="96" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="508" font-size="11.5" fill="#b06a10" font-weight="bold">A WHOLE FAMILY OF WITNESSES</text>
+  <text x="40" y="530" font-size="11.5" fill="#333">For any irrational x and any nonzero rational q, the pair ( x, q/x ) works: q/x is irrational, since q/x = s</text>
+  <text x="40" y="548" font-size="11.5" fill="#333">rational would give x = q/s rational, and the product is q.</text>
+  <text x="40" y="572" font-size="11.5" fill="#333">&#8730;2 &#183; (1/&#8730;2) = 1&#160;&#160;&#160;&#160;&#8730;2 &#183; (7/&#8730;2) = 7&#160;&#160;&#160;&#160;&#960; &#183; (1/&#960;) = 1&#160;&#160;&#160;&#160;e &#183; (5/e) = 5&#160;&#160;&#160;&#160;&#8730;2 &#183; (&#8722;3/(5&#8730;2)) = &#8722;3/5</text>
+
+  <rect x="18" y="600" width="684" height="112" rx="6" fill="#fafbfd" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="620" font-size="11.5" fill="#3b5b9b" font-weight="bold">ONE PAIR THAT SETTLES PROBLEM 6 AND PROBLEM 8 AT ONCE</text>
+  <text x="360" y="646" font-size="15" fill="#1f3a68" text-anchor="middle" font-weight="bold">a = 1 + &#8730;2&#160;&#160;&#160;&#160;&#160;&#160;b = 1 &#8722; &#8730;2</text>
+  <text x="360" y="670" font-size="12.5" fill="#333" text-anchor="middle">a + b = 2&#160;&#160;&#160;&#160;and&#160;&#160;&#160;&#160;a &#183; b = &#8722;1&#160;&#160;&#8212;&#160; both rational, both factors irrational</text>
+  <text x="360" y="694" font-size="11" fill="#555" text-anchor="middle" font-style="italic">no coincidence: a and b are the two roots of x&#178; &#8722; 2x &#8722; 1 = 0, so their sum and product are its coefficients</text>
+
+  <rect x="18" y="728" width="684" height="88" rx="6" fill="#f7f7f9" stroke="#888" stroke-width="1.2"/>
+  <text x="34" y="748" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE PHENOMENON IS NOT ABOUT SQUARE ROOTS</text>
+  <text x="40" y="770" font-size="11.5" fill="#333">&#960; &#183; (1/&#960;) = 1 with both factors transcendental, so it is not confined to algebraic numbers. Nor does squaring</text>
+  <text x="40" y="788" font-size="11.5" fill="#333">always rescue an irrational: the fourth root of 2, about 1.1892, squares to &#8730;2, which is still irrational.</text>
+  <text x="40" y="808" font-size="11" fill="#555" font-style="italic">What is really at work is only that the irrationals are a complement, with nothing to prevent cancellation.</text>
+</svg>

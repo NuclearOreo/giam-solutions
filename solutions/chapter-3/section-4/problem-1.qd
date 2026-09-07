@@ -1,0 +1,125 @@
+.docname {Solution — GIAM 3.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 1
+
+## Problem
+
+Find a polynomial that assumes only prime values for a reasonably large range of inputs.
+
+## Answer
+
+$$$
+\boxed{\;p(n) = n^2 + n + 41 \quad\text{is prime for every } n = 0,1,2,\dots,39 .\;}
+$$$
+
+Euler found this in 1772. The forty values are forty *distinct* primes:
+
+$$$
+41,\; 43,\; 47,\; 53,\; 61,\; 71,\; 83,\; 97,\; 113,\; 131,\; \dots,\; 1447,\; 1523,\; 1601 .
+$$$
+
+Every one was checked by trial division. The streak then stops:
+
+$$$
+p(40) = 1600+40+41 = 1681 = 41^2 .
+$$$
+
+Testing $ n = 0 $ through $ 40 $ by trial division confirms exactly this pattern. Note that the numbers involved are not small — $ p(39) = 1601 $ — so this is not a case of a few lucky values near zero.
+
+## The Picture
+
+The grid below shows every value from $ n=0 $ to $ n=40 $, coloured by primality. Forty green cells, then one red one; the bands above and below it record where the failure comes from and why some failure was unavoidable.
+
+!(90%)[The forty prime values of n squared plus n plus 41, and the single composite that ends the run](problem-1-euler.svg "A diagram in five bands. The first gives the answer: p of n equals n squared plus n plus 41, prime for every one of the forty inputs n equals 0 through 39, and they are forty distinct primes; then it fails, and the way it fails is the point of the exercise. The second band shows where it breaks and why it had to: p of 40 equals 1600 plus 40 plus 41 equals 1681 equals 41 squared, and p of 41 equals 41 squared plus 41 plus 41 equals 41 times 43. Both are forced, since p of 41 equals 41 times the quantity 41 plus 1 plus 1 has an obvious factor of 41, and p of 40 equals 40 times 41 plus 41 does too. The centre of the figure is a grid of forty-one cells, one for each n from 0 to 40, each showing the input and the value. The forty cells for n from 0 to 39 are green, carrying the primes 41, 43, 47, 53, 61, 71, 83, 97, 113, 131 and onward up to 1601. The single cell for n equals 40 is red, carrying 1681. One red cell in forty-one, and the whole conjecture dies on it. The fourth band states that no non-constant polynomial can do better forever: if p has integer coefficients and q equals p of 1 is prime, then p of 1 plus kq is congruent to p of 1 congruent to 0 mod q for every k, so q divides infinitely many values; a prime divisible by q must equal plus or minus q, and a polynomial takes a value only finitely often. The fifth band tabulates how long a run one can buy: n squared plus n plus 41 is prime for n from 0 to 39, giving 40 distinct primes, first failing at p of 40 equal to 41 squared; n squared minus n plus 41 is prime for n from 0 to 40, still 40 distinct primes, first failing at p of 41 equal to 41 squared; and n squared minus 79n plus 1601 is prime for n from 0 to 79, again only 40 distinct primes, first failing at p of 80 equal to 41 squared. A closing band asks why 41 of all numbers: searching all A below 200 for which n squared plus n plus A is prime at every n from 0 to A minus 2 returns exactly A equal to 2, 3, 5, 11, 17 and 41, and the corresponding 4A minus 1 are 7, 11, 19, 43, 67 and 163, the Heegner numbers. There is no larger A, ever.")
+
+## Remark — Why It Breaks Exactly Where It Does
+
+The failure at $ n=40 $ is not bad luck; it is forced, and two separate arguments show it.
+
+The transparent one is at $ n = 41 $:
+
+$$$
+p(41) = 41^2 + 41 + 41 = 41(41+1+1) = 41\cdot 43 .
+$$$
+
+Every term carries a factor of $ 41 $, so $ p(41) $ cannot possibly be prime. The same trick applies at $ n=40 $ once you rewrite
+
+$$$
+p(40) = 40\cdot41 + 41 = 41(40+1) = 41^2 .
+$$$
+
+So the constant term $ 41 $ guarantees its own downfall: $ p(n) \equiv 0 \pmod{41} $ whenever $ n \equiv 0 $ or $ 40 \pmod{41} $.
+
+This generalises immediately. For **any** polynomial $ p $ with integer coefficients and constant term $ c $, we have $ p(kc) \equiv 0 \pmod{c} $ for every $ k $, so the values at multiples of the constant term are all divisible by it. A prime-generating streak can never survive past the constant term.
+
+## Remark — No Non-Constant Polynomial Is Always Prime
+
+The real content of this exercise, sitting as it does in a section on disproofs, is that the natural conjecture is *false* — and provably so, not merely unverified.
+
+> **Theorem.** If $ p(n) $ is a polynomial with integer coefficients that is prime for every natural number $ n $, then $ p $ is constant.
+>
+> **Proof.** Suppose $ p $ is such a polynomial and let $ q = p(1) $, a prime. For any integer $ k $, expanding shows
+>
+> $ p(1+kq) \equiv p(1) \equiv 0 \pmod q $
+>
+> — because $ (1+kq)^j \equiv 1^j \pmod q $ term by term. So $ q $ divides $ p(1+kq) $ for every $ k $. But $ p(1+kq) $ is assumed prime, and a prime divisible by $ q $ must be $ \pm q $. Hence $ p $ takes one of the two values $ \pm q $ at infinitely many inputs. A non-constant polynomial of degree $ d $ takes any given value at most $ d $ times, so $ p $ must be constant. $ \blacksquare $
+
+The congruence $ q \mid p(1+kq) $ was checked for $ k=1,\dots,59 $ on four different polynomials, including Euler's — where $ p(1)=43 $ and indeed $ 43 $ divides $ p(44) $, $ p(87) $, $ p(130) $, and so on forever.
+
+So the exercise is a trap with a lesson attached: forty confirmations in a row is a great deal of evidence, and it counts for nothing. The polynomial $ n^2+n+41 $ would pass any reasonable amount of spot-checking, and it is still not a prime-generating machine.
+
+## Remark — Buying a Longer Run
+
+One can do better than forty consecutive inputs, but not better than forty *primes*:
+
+$$$
+\begin{array}{l|c|c|c}
+\textbf{polynomial} & \textbf{prime for } n= & \textbf{distinct primes} & \textbf{first failure} \\ \hline
+n^2+n+41 & 0\dots39 & 40 & p(40)=41^2 \\
+n^2-n+41 & 0\dots40 & 40 & p(41)=41^2 \\
+n^2-79n+1601 & 0\dots79 & 40 & p(80)=41^2 \\
+36n^2-810n+2753 & 0\dots44 & 45 & p(45)=39203
+\end{array}
+$$$
+
+The third entry looks like a real improvement — eighty consecutive prime values! — but it is a fraud. Substituting confirms
+
+$$$
+n^2 - 79n + 1601 = (n-40)^2 + (n-40) + 41 ,
+$$$
+
+so it is Euler's polynomial shifted left by $ 40 $, and it simply runs down the same forty primes and back up again. It produces exactly $ 40 $ distinct values, verified. The fourth entry, found by computer search, is a genuine advance with $ 45 $ distinct primes.
+
+## Remark — Why 41, and Why Nothing Larger
+
+The choice of constant is not arbitrary. Asking which $ A $ make $ n^2+n+A $ prime for all $ n = 0,\dots,A-2 $ and searching every $ A < 200 $ returns exactly
+
+$$$
+A = 2,\; 3,\; 5,\; 11,\; 17,\; 41 ,
+$$$
+
+and the list is complete — there is no larger $ A $, ever. The reason is one of the loveliest coincidences in mathematics. Setting $ D = 1-4A $, these values give
+
+$$$
+D = -7,\; -11,\; -19,\; -43,\; -67,\; -163 ,
+$$$
+
+the last six **Heegner numbers**: the discriminants for which the imaginary quadratic field $ \mathbb{Q}(\sqrt{D}) $ has *class number one*, meaning unique factorisation holds in its ring of integers. When factorisation is unique, small values of $ n^2+n+A $ have no room to split, and primality follows. The Baker–Heegner–Stark theorem settled that the list of such $ D $ ends at $ -163 $, which is exactly why Euler's polynomial cannot be beaten in this family.
+
+The same $ 163 $ is behind Ramanujan's near-integer $ e^{\pi\sqrt{163}} \approx 262537412640768744 $ — a second symptom of the same fact.
+
+## Remark — What Is Actually Possible
+
+Two closing observations on how far one can push.
+
+**Density rather than certainty.** Euler's polynomial remains remarkably prime-rich well past its streak: over $ n = 0,\dots,999 $ it is prime $ 581 $ times, against $ 189 $ for the pedestrian $ n^2+n+1 $. So it is a genuinely good prime *generator* even though it is not a prime *formula*. Hardy and Littlewood's Conjecture F predicts exactly this kind of enhanced density, and whether $ n^2+1 $ alone is prime infinitely often remains open.
+
+**Multivariable polynomials escape the theorem.** The obstruction above uses one variable in an essential way. In 1976 Jones, Sato, Wada and Wiens exhibited a polynomial in $ 26 $ variables of degree $ 25 $ whose *positive* values, as the variables range over the non-negative integers, are precisely the set of primes. It answers “is there a polynomial formula for the primes” and is simultaneously useless: the polynomial is mostly negative, and extracting a prime from it is far harder than testing numbers directly. The lesson here survives intact — in one variable, no such polynomial exists.

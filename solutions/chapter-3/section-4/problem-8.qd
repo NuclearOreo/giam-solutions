@@ -1,0 +1,118 @@
+.docname {Solution — GIAM 3.4 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 8
+
+## Problem
+
+True or false: there are two irrational numbers whose product is rational. Prove your answer.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{True.}\qquad \sqrt2 \;\text{is irrational and}\; \sqrt2\cdot\sqrt2 = 2 \;\text{is rational.}\;}
+$$$
+
+## Proof
+
+The claim is existential,
+
+$$$
+\exists\, x,y\in\mathbb{R}\setminus\mathbb{Q}, \qquad xy \in \mathbb{Q},
+$$$
+
+so one verified instance proves it.
+
+> **Proof.** Let $ x = y = \sqrt2 $. By Theorem 1.6 of the text, $ \sqrt2 $ is irrational, so $ x $ and $ y $ are both irrational numbers. Their product is
+>
+> $ xy = \sqrt2\cdot\sqrt2 = \left(\sqrt2\right)^2 = 2 , $
+>
+> and $ 2 = 2/1 $ is rational. So two irrational numbers with rational product exist. $ \blacksquare $
+
+Nothing in the statement requires $ x \ne y $, so the shortest witness uses one number twice.
+
+## The Picture
+
+The diagram sets this problem beside its three companions, then collects the wider families of witnesses that the single pair $ \left(\sqrt2,\sqrt2\right) $ is only the smallest member of.
+
+!(88%)[The witness, the four-problem grid, and further families of witnesses](problem-8-grid.svg "A diagram in five parts. The first states the claim — there are two irrational numbers whose product is rational — and the verdict, TRUE. The second gives the witness: root 2 times root 2 equals 2. Root 2 is irrational and 2 is rational; since an existential claim is settled by one instance, and the two numbers need not differ, this is the entire proof. The centre is a two-by-two grid showing that Problems 5 through 8 of this section form two operations, each asked as a universal claim and as its existential negation. The top-left cell, Problem 5, is red and FALSE: the universal claim that every sum is irrational, refuted by root 2 plus minus root 2 equals 0, needing two different numbers. The top-right cell, Problem 6, is green and TRUE: the existential claim that some sum is rational, witnessed by the same pair, promoted. The bottom-left cell, Problem 7, is red and FALSE: the universal claim that every product is irrational, refuted by root 2 times root 2 equals 2, using one number twice. The bottom-right cell, Problem 8, is green and TRUE: the existential claim that some product is rational, witnessed by the same pair, promoted. The rows are labelled addition and multiplication. A band below describes a whole family of witnesses: for any irrational x and any nonzero rational q, the pair x and q over x works, since q over x equal to a rational s would give x equal to q over s rational, and the product is q. Instances given are root 2 times one over root 2 equals 1, root 2 times seven over root 2 equals 7, pi times one over pi equals 1, e times five over e equals 5, and root 2 times minus three over five root 2 equals minus three fifths. The next band gives one pair that settles Problems 6 and 8 at once: a equals 1 plus root 2 and b equals 1 minus root 2, whose sum is 2 and whose product is minus 1 — both rational, with both factors irrational. This is no coincidence: a and b are the two roots of x squared minus 2x minus 1 equals 0, so their sum and product are its coefficients. The final band notes the phenomenon is not about square roots: pi times one over pi equals 1 with both factors transcendental, so it is not confined to algebraic numbers, and squaring does not always rescue an irrational, since the fourth root of 2, about 1.1892, squares to root 2, which is still irrational. What is really at work is only that the irrationals are a complement, with nothing to prevent cancellation.")
+
+## Remark — The Four Problems Are Two Problems
+
+Problems 5 through 8 of this section form a $ 2\times2 $ grid: two operations, each asked twice — once as a universal claim, once as its existential negation.
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{universal form} & \textbf{existential form} \\ \hline
+\text{addition} & \text{P5 — every sum irrational} & \text{P6 — some sum rational} \\
+ & \textbf{false} & \textbf{true} \\[2pt]
+\text{multiplication} & \text{P7 — every product irrational} & \text{P8 — some product rational} \\
+ & \textbf{false} & \textbf{true}
+\end{array}
+$$$
+
+Within each row the two statements are exact negations, so the verdicts are forced to be opposite and **the same pair of numbers does both jobs** — counterexample on the left, witness on the right. Only two pieces of mathematics appear across all four exercises:
+
+$$$
+\sqrt2 + \left(-\sqrt2\right) = 0 \qquad\text{and}\qquad \sqrt2\cdot\sqrt2 = 2 .
+$$$
+
+The multiplicative row is the cheaper of the two, for the reason set out in Problem 7: $ x+x $ is rational only when $ x $ is, so the additive witness must use two distinct numbers, whereas the multiplicative one can reuse a single $ \sqrt2 $.
+
+## Remark — A Family of Witnesses
+
+As with Problem 6, the witness is not scarce. For **any** irrational $ x $ and **any** non-zero rational $ q $, the pair
+
+$$$
+\left(\,x,\; \frac{q}{x}\,\right)
+$$$
+
+works. Indeed $ q/x $ is irrational — if $ q/x = s $ for some rational $ s $, then $ s\ne0 $ and $ x = q/s $ would be rational — and the product is $ q $ by construction. Instances:
+
+$$$
+\sqrt2\cdot\frac{1}{\sqrt2} = 1, \qquad \sqrt2\cdot\frac{7}{\sqrt2} = 7, \qquad \pi\cdot\frac1\pi = 1, \qquad e\cdot\frac5e = 5 .
+$$$
+
+Note the requirement $ q\ne0 $, which has no counterpart in the additive family $ (x,\,q-x) $ of Problem 6. The reason is the one identified in Problem 7: $ 0 $ has no multiplicative inverse, and a product of two irrationals can never be $ 0 $ anyway, since every irrational is non-zero.
+
+## Remark — One Pair That Settles Problems 6 and 8 Together
+
+The witnesses above handle sums and products separately. A single pair can do both:
+
+$$$
+a = 1+\sqrt2 \approx 2.41421, \qquad b = 1-\sqrt2 \approx -0.41421 .
+$$$
+
+Both are irrational — if $ 1+\sqrt2 $ were rational then $ \sqrt2 $ would be, and likewise for $ b $ — and
+
+$$$
+a+b = 2, \qquad ab = (1)^2 - \left(\sqrt2\right)^2 = 1-2 = -1 ,
+$$$
+
+both rational, as verified numerically.
+
+This is not a coincidence. $ a $ and $ b $ are the two roots of
+
+$$$
+x^2 - 2x - 1 = 0 ,
+$$$
+
+and by Vieta's formulas the sum and product of the roots of $ x^2+px+q $ are $ -p $ and $ q $ — rational whenever the coefficients are. So **any** irreducible rational quadratic supplies such a pair: its two roots are irrational conjugates whose sum and product are both rational, because the irrational parts $ \pm\sqrt{D} $ cancel additively and multiply to a rational.
+
+That is the general mechanism behind every witness in this section. The pair $ \left(\sqrt2,-\sqrt2\right) $ are the roots of $ x^2-2 $; the pair $ \left(\sqrt2,\sqrt2\right) $ is the degenerate case where one root is used twice.
+
+## Remark — It Is Not About Square Roots
+
+It would be easy to come away thinking the phenomenon depends on radicals cancelling. It does not.
+
+- **Transcendental factors work too.** $ \pi\cdot\frac1\pi = 1 $, with both factors transcendental, hence certainly irrational. So the effect is not confined to algebraic numbers, and no amount of “complicatedness” in the factors prevents a rational product.
+- **Squaring does not always help.** $ \sqrt[4]{2} \approx 1.18921 $ is irrational, and its square is $ \sqrt2 $ — still irrational. One must go to the *fourth* power to reach $ 2 $. So $ x\cdot x $ being rational is a property of the particular $ x $, not of irrationals in general.
+
+What actually drives all of it is structural: $ \mathbb{R}\setminus\mathbb{Q} $ is a complement, not a subgroup, and there is nothing preventing two of its elements from combining back into $ \mathbb{Q} $. Additively that happens for $ x $ and $ -x $; multiplicatively for $ x $ and $ q/x $. Both are guaranteed to exist for every irrational $ x $, which is why witnesses were never going to be hard to find once one thought to look.

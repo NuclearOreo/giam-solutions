@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 652" width="720" height="652" font-family="Georgia, serif">
+  <rect x="0" y="0" width="720" height="652" fill="#ffffff"/>
+
+  <rect x="18" y="14" width="684" height="52" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE CLAIM</text>
+  <text x="410" y="34" font-size="13.5" fill="#1f3a68" text-anchor="middle">the product of any two irrational numbers is irrational</text>
+  <text x="410" y="55" font-size="16" fill="#9b2c2c" text-anchor="middle" font-weight="bold">FALSE</text>
+
+  <rect x="18" y="76" width="684" height="122" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.4"/>
+  <text x="34" y="96" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE COUNTEREXAMPLE &#8212; the shortest one in the section</text>
+  <text x="360" y="128" font-size="20" fill="#9b2c2c" text-anchor="middle" font-weight="bold">&#8730;2 &#183; &#8730;2 = 2</text>
+  <text x="360" y="156" font-size="12" fill="#333" text-anchor="middle">Both factors are irrational &#8212; they are the same irrational number &#8212; and the product is rational.</text>
+  <text x="360" y="176" font-size="11.5" fill="#333" text-anchor="middle">No companion number has to be found, and no closure fact has to be checked about a second factor.</text>
+  <text x="360" y="192" font-size="10.5" fill="#555" text-anchor="middle" font-style="italic">other witnesses: &#8730;2 &#183; &#8730;8 = 4,&#160; &#8730;2 &#183; &#8730;18 = 6,&#160; &#8731;2 &#183; &#8731;4 = 2</text>
+
+  <rect x="18" y="214" width="684" height="120" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="234" font-size="11.5" fill="#1f6b34" font-weight="bold">WHY MULTIPLICATION FAILS MORE EASILY THAN ADDITION</text>
+  <text x="40" y="258" font-size="11.5" fill="#333">Adding a number to itself can <tspan font-style="italic">never</tspan> produce this failure:&#160; x + x = 2x, and if 2x = q is rational then</text>
+  <text x="40" y="276" font-size="11.5" fill="#333">x = q/2 is rational too. So an <tspan font-style="italic">additive</tspan> counterexample must use two different irrationals, as &#8730;2 and &#8722;&#8730;2 are.</text>
+  <text x="40" y="304" font-size="11.5" fill="#333">Multiplying a number by itself can:&#160; x &#183; x = x&#178;, and x&#178; is rational for every square root of a rational</text>
+  <text x="40" y="322" font-size="11.5" fill="#333">non-square. Squaring destroys irrationality; doubling cannot.</text>
+
+  <rect x="18" y="348" width="684" height="104" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="368" font-size="11.5" fill="#b06a10" font-weight="bold">HOW BADLY IT FAILS: EVERY NONZERO REAL IS A PRODUCT OF TWO IRRATIONALS</text>
+  <text x="40" y="390" font-size="11.5" fill="#333">For r &#8800; 0, at least one of r/&#8730;2 and r/&#8730;3 is irrational &#8212; otherwise their quotient &#8730;3/&#8730;2 = &#8730;(3/2) &#8776; 1.2247</text>
+  <text x="40" y="408" font-size="11.5" fill="#333">would be rational, and it is not, being a root of 2x&#178; &#8722; 3. Pair it with &#8730;2 or &#8730;3 and the product is r.</text>
+  <text x="40" y="432" font-size="11.5" fill="#9b2c2c">0 is the sole exception: every irrational is nonzero, since 0 = 0/1 is rational, so no product of two can vanish.</text>
+
+  <rect x="18" y="466" width="684" height="142" rx="6" fill="#fafbfd" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="486" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE COMPLETED PICTURE FOR THIS SECTION</text>
+  <g font-size="11.5">
+    <rect x="40" y="496" width="640" height="22" fill="#ffffff" stroke="#c3cee4"/>
+    <rect x="40" y="518" width="640" height="88" fill="#fcfdff" stroke="#c3cee4"/>
+    <line x1="40" y1="518" x2="680" y2="518" stroke="#9fb2d4"/>
+    <line x1="40" y1="540" x2="680" y2="540" stroke="#e6ecf6"/>
+    <line x1="40" y1="562" x2="680" y2="562" stroke="#e6ecf6"/>
+    <line x1="40" y1="584" x2="680" y2="584" stroke="#e6ecf6"/>
+    <line x1="330" y1="496" x2="330" y2="606" stroke="#c3cee4"/>
+    <line x1="410" y1="496" x2="410" y2="606" stroke="#c3cee4"/>
+
+    <text x="50" y="511" fill="#1f3a68" font-weight="bold">statement</text>
+    <text x="340" y="511" fill="#1f3a68" font-weight="bold">true?</text>
+    <text x="420" y="511" fill="#1f3a68" font-weight="bold">witness or reason</text>
+
+    <text x="50" y="533">rational + rational is rational</text>
+    <text x="340" y="533" fill="#1f6b34">yes</text>
+    <text x="420" y="533" fill="#555">&#8474; is a group under +</text>
+
+    <text x="50" y="555">rational + irrational is irrational</text>
+    <text x="340" y="555" fill="#1f6b34">yes</text>
+    <text x="420" y="555" fill="#555">3.3 Problem 5</text>
+
+    <text x="50" y="577">irrational + irrational is irrational</text>
+    <text x="340" y="577" fill="#9b2c2c">no</text>
+    <text x="420" y="577" fill="#555">&#8730;2 + (&#8722;&#8730;2) = 0&#160;&#160;(3.4 Problem 5)</text>
+
+    <text x="50" y="599">irrational &#215; irrational is irrational</text>
+    <text x="340" y="599" fill="#9b2c2c">no</text>
+    <text x="420" y="599" fill="#555">&#8730;2 &#183; &#8730;2 = 2&#160;&#160;(this problem)</text>
+  </g>
+</svg>

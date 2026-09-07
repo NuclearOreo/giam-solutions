@@ -1,0 +1,131 @@
+.docname {Solution — GIAM 3.4 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 6
+
+## Problem
+
+True or false: there are two irrational numbers whose sum is rational. Prove your answer.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{True.}\qquad \sqrt2 \;\text{and}\; -\sqrt2 \;\text{ are irrational and }\; \sqrt2 + \left(-\sqrt2\right) = 0 .\;}
+$$$
+
+## Proof
+
+The claim is **existential**,
+
+$$$
+\exists\, x,y \in \mathbb{R}\setminus\mathbb{Q}, \qquad x + y \in \mathbb{Q},
+$$$
+
+so it is established by exhibiting one pair and verifying that it qualifies.
+
+> **Proof.** Let $ x = \sqrt2 $ and $ y = -\sqrt2 $.
+>
+> $ x $ is irrational — this is Theorem 1.6 of the text.
+>
+> $ y $ is irrational: suppose instead $ -\sqrt2 = q $ for some $ q\in\mathbb{Q} $. Since $ \mathbb{Q} $ is closed under negation, $ -q $ is rational, and $ \sqrt2 = -q $, contradicting the irrationality of $ \sqrt2 $.
+>
+> Finally,
+>
+> $ x + y = \sqrt2 + \left(-\sqrt2\right) = 0 , $
+>
+> and $ 0 = 0/1 $ is rational.
+>
+> So $ x $ and $ y $ are two irrational numbers whose sum is rational. $ \blacksquare $
+
+## The Picture
+
+!(90%)[The witness, its double role, and the quantifier asymmetry](problem-6-witness.svg "A diagram in five bands. The first states the claim — there are two irrational numbers whose sum is rational — and the verdict, TRUE. The second gives the witness: x equals root 2, y equals minus root 2, and x plus y equals 0. Root 2 is irrational, and so is minus root 2, since minus root 2 equal to a rational q would force root 2 to equal minus q, also rational. Their sum, 0, is rational, and nothing further is required because an existential claim needs one instance. The third band observes that this is Problem 5 wearing a different hat: Problem 5 asked whether every pair of irrationals sums to an irrational, and that statement and this one are exact negations — the negation of for all x and y irrational, x plus y is irrational, is precisely there exist x and y irrational with x plus y rational. So the counterexample that killed Problem 5 is the witness that proves Problem 6: one pair, two jobs. The fourth band tabulates the asymmetry of the two quantifiers. A universal statement is established by a general argument and refuted by one counterexample; an existential statement is established by one witness and refuted by a general argument. Problem 6 is the existential row, so the work is a single exhibited pair, while Problem 5 is the universal row, refuted. The fifth band asks how many such pairs there are and answers: uncountably many. Take any irrational x and any rational q and set y equal to q minus x; then y is irrational, being a rational minus an irrational, and x plus y equals q is rational. Every irrational belongs to such a pair, for every rational target: root 2 and minus root 2 sum to 0, root 2 and 5 minus root 2 sum to 5, pi and 1 minus pi sum to 1, e and minus three sevenths minus e sum to minus three sevenths. The witness is not a rarity that had to be hunted for; the hard part was noticing such pairs exist at all. A final band gives a contrast — an existence proof with no named witness. Claim: there are irrationals a and b with a to the b rational. Consider root 2 raised to the power root 2. If it is rational, take a and b both equal to root 2. If it is irrational, take a to be root 2 raised to root 2 and b to be root 2; then a to the b is root 2 raised to the product of root 2 with itself, which is root 2 squared, which is 2. Either way such a pair exists, yet the argument never says which. Problem 6 is the opposite kind of existence proof: fully explicit, and verifiable in one line.")
+
+## Remark — This Is Problem 5 Wearing a Different Hat
+
+Problems 5 and 6 of this section are the same problem asked twice. Their statements are exact negations of one another:
+
+$$$
+\lnot\underbrace{\Big(\forall x,y\in\mathbb{R}\setminus\mathbb{Q},\; x+y\notin\mathbb{Q}\Big)}_{\text{Problem 5's claim}} \;\;\cong\;\; \underbrace{\exists\, x,y\in\mathbb{R}\setminus\mathbb{Q},\; x+y\in\mathbb{Q}}_{\text{Problem 6's claim}} .
+$$$
+
+Since exactly one of a statement and its negation is true, and Problem 5's claim is false, Problem 6's *must* be true — before any witness is produced. The single pair $ \left(\sqrt2,-\sqrt2\right) $ therefore does two different jobs:
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{Problem 5} & \textbf{Problem 6} \\ \hline
+\text{claim} & \forall\text{-statement} & \exists\text{-statement} \\
+\text{verdict} & \text{false} & \text{true} \\
+\text{role of } \left(\sqrt2,-\sqrt2\right) & \text{counterexample} & \text{witness} \\
+\text{what it does} & \text{destroys the claim} & \text{establishes the claim}
+\end{array}
+$$$
+
+The mathematical content is identical; only the framing changes. Pairing the two exercises is a deliberate lesson: **a counterexample to a universal statement is a witness for its existential negation.** They are the same object described from opposite sides.
+
+## Remark — The Quantifier Asymmetry
+
+The pairing also makes visible how differently the two quantifiers behave:
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{to establish} & \textbf{to refute} \\ \hline
+\forall x,\; P(x) & \text{a general argument} & \text{one counterexample} \\
+\exists x,\; P(x) & \text{one witness} & \text{a general argument}
+\end{array}
+$$$
+
+Each quantifier is cheap in one direction and expensive in the other, and the costs are mirror images. This is why “true or false, prove your answer” is a genuinely different task depending on which way the answer falls: guessing wrong about the verdict means doing entirely the wrong kind of work.
+
+The practical corollary: when a universal claim looks false, hunt for the counterexample rather than a proof — that search is bounded, and proving a false statement is not.
+
+## Remark — Witnesses Are Abundant
+
+The proof needs only one pair, but it is worth knowing the witness was not hard to come by. For **any** irrational $ x $ and **any** rational $ q $, the pair
+
+$$$
+\left(\,x,\; q - x\,\right)
+$$$
+
+works: $ q - x $ is irrational by 3.3 Problem 5 (a rational minus an irrational is irrational), and $ x + (q-x) = q $ is rational. A few instances:
+
+$$$
+\begin{array}{l|l|l}
+x & y = q-x & x+y \\ \hline
+\sqrt2 & -\sqrt2 & 0 \\
+\sqrt2 & 5-\sqrt2 \approx 3.5858 & 5 \\
+\pi & 1-\pi \approx -2.1416 & 1
+\end{array}
+$$$
+
+So every irrational number belongs to such a pair, for every rational target — uncountably many witnesses in total. Problem 5's final remark went further still: *every real number*, rational or not, is a sum of two irrationals.
+
+Given that abundance, why is the claim worth stating? Because the difficulty was never in finding a witness but in noticing one exists — the intuition that irrational plus irrational stays irrational is strong enough that many people accept Problem 5 unchecked.
+
+## Remark — A Contrast: Existence Without a Witness
+
+The proof here is **constructive** — it names $ \sqrt2 $ and $ -\sqrt2 $ and verifies them. Not every existence proof can, and the classic illustration is nearby in spirit.
+
+> **Claim.** There exist irrational numbers $ a,b $ with $ a^b $ rational.
+>
+> **Proof.** Consider $ \sqrt2^{\,\sqrt2} $, which is either rational or irrational.
+>
+> - If it is rational, take $ a = b = \sqrt2 $ and we are done.
+> - If it is irrational, take $ a = \sqrt2^{\,\sqrt2} $ and $ b = \sqrt2 $. Then
+>
+> $ a^b = \left(\sqrt2^{\,\sqrt2}\right)^{\sqrt2} = \sqrt2^{\,\sqrt2\cdot\sqrt2} = \sqrt2^{\,2} = 2 , $
+>
+> which is rational.
+>
+> In either case such a pair exists. $ \blacksquare $
+
+The argument is airtight, yet at its conclusion one still does not know *which* pair works — it splits on a fact it never determines. (Gelfond–Schneider later settles it: $ \sqrt2^{\,\sqrt2} \approx 1.6325 $ is transcendental, so the second branch is live. The proof never needed that.)
+
+This problem's proof is the opposite extreme: the witness is named, the verification is two lines, no cases. Both are valid existence proofs; only one tells you where to look.

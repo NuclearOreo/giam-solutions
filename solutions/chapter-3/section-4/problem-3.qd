@@ -1,0 +1,133 @@
+.docname {Solution — GIAM 3.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 3
+
+## Problem
+
+The alternating sum of factorials provides an interesting example of a sequence of integers:
+
+$$$
+\begin{aligned}
+1! &= 1 \\
+2! - 1! &= 1 \\
+3! - 2! + 1! &= 5 \\
+4! - 3! + 2! - 1! &= 19
+\end{aligned}
+$$$
+
+et cetera. Are they all prime? (After the first two $ 1 $'s.)
+
+## Answer
+
+$$$
+\boxed{\;\text{No. } a(9) = 326\,981 = 79\times 4139 .\;}
+$$$
+
+Writing $ a(n) = n! - (n-1)! + (n-2)! - \cdots \pm 1! $, the terms $ a(3) $ through $ a(8) $ are all prime — six in a row — and then the pattern breaks.
+
+## The Computation
+
+The sequence is easiest to generate from the recurrence
+
+$$$
+a(1) = 1, \qquad a(n) = n! - a(n-1),
+$$$
+
+which follows by pulling $ n! $ off the front and noticing that what remains is $ -\bigl[(n-1)! - (n-2)! + \cdots\bigr] $. This was verified against the direct definition for $ n \le 20 $.
+
+$$$
+\begin{array}{c|r|l}
+n & a(n) & \\ \hline
+3 & 5 & \text{prime} \\
+4 & 19 & \text{prime} \\
+5 & 101 & \text{prime} \\
+6 & 619 & \text{prime} \\
+7 & 4\,421 & \text{prime} \\
+8 & 35\,899 & \text{prime} \\
+9 & 326\,981 & \textbf{composite} = 79\times 4139 \\
+10 & 3\,301\,819 & \text{prime} \\
+11 & 36\,614\,981 & \text{composite} = 13\times 2\,816\,537
+\end{array}
+$$$
+
+Both $ 79 $ and $ 4139 $ are prime, and $ 79 \times 4139 = 326\,981 $ exactly, so $ a(9) $ is a genuine counterexample rather than a rounding artefact.
+
+## The Picture
+
+!(88%)[The first fifteen alternating factorials, with the first composite marked](problem-3-altfact.svg "A diagram in five parts. The first band defines the sequence: a of n equals n factorial minus n minus 1 factorial plus n minus 2 factorial minus and so on, plus or minus 1 factorial; equivalently a of 1 equals 1 and a of n equals n factorial minus a of n minus 1, which is how the values were built. The question, ignoring the two leading ones, is whether every term from a of 3 onward is prime. The second band gives the answer: no — six primes in a row, then a of 9 equals 326981 equals 79 times 4139. The terms a of 3 through a of 8 really are prime, enough of a run to be persuasive and not enough to be true. The centre is a table of every term up to n equals 15, one row each, coloured by status. The rows for n equals 1 and 2 are grey, both equal to 1, neither prime nor composite. The rows for n equals 3 through 8 are green and prime, carrying 5, 19, 101, 619, 4421 and 35899. The row for n equals 9, outlined heavily, is red: 326981, composite, equal to 79 times 4139, marked as the first failure. Row 10 is green with 3301819 prime. Rows 11 through 14 are red and composite, equal to 13 times 2816537, 29 times 15254711, 47 times 123077323 and 23 times 3538854653 respectively. Row 15 is green and prime with 1226280710981. A band below shows how the primes thin out: testing every n up to 120, the prime terms occur at n equal to 3, 4, 5, 6, 7, 8, then 10, 15, 19, 41, 59, 61 and 105 — six consecutive, then almost nothing. A final band explains that it is worse than a few misses, because the primes run out altogether: once n is at least p the term n factorial vanishes mod p, so a of n is congruent to minus a of n minus 1 and the residue just flips sign forever; hence if a single prime p divides a of p minus 1, it divides every later term and the sequence can hold only finitely many primes. No such p exists below 200000, but p equals 3612703 is one, as a direct computation confirms, so the sequence has finitely many primes and every term from a of 3612702 on is composite.")
+
+## Remark — Six in a Row Is Exactly the Trap
+
+This exercise is the companion to Problem 1 of the same section, and the two make the same point from opposite directions.
+
+Euler's polynomial gives forty consecutive primes and then fails. This sequence gives six and then fails. Six is a much shorter run, but it is also much harder to extend by hand: computing $ a(9) = 326\,981 $ and factoring it is real work with pencil and paper, whereas $ p(9) = 131 $ is a glance. Relative to the effort of checking, six terms here is about as persuasive as forty there.
+
+The lesson is the same, and it is the entire subject of Section 3.4:
+
+> A finite run of confirming instances, however long, establishes nothing about a universally quantified claim. A single counterexample settles it.
+
+## Remark — How the Primes Thin Out
+
+The counterexample at $ n=9 $ is not an isolated blemish. Testing every index up to $ 120 $, the terms $ a(n) $ that are prime occur at
+
+$$$
+n = 3,\;4,\;5,\;6,\;7,\;8,\;10,\;15,\;19,\;41,\;59,\;61,\;105 .
+$$$
+
+So the sequence opens with its densest stretch and then becomes sparse very quickly — thirteen primes among $ 118 $ candidates, with a gap of $ 44 $ between $ 61 $ and $ 105 $. Anyone who checked only the first six terms would have sampled precisely the unrepresentative beginning.
+
+This is a recurring hazard with factorial- and exponential-scale sequences: the early terms are small, and small numbers are disproportionately likely to be prime. By $ n=120 $ the terms have $ 199 $ digits, and a random $ 199 $-digit number is prime with probability roughly $ 1/458 $.
+
+## Remark — The Residues Do Something Very Simple
+
+There is more structure here than the raw values suggest. Fix a prime $ p $. As soon as $ n \ge p $, the factorial $ n! $ contains $ p $ as a factor, so $ n!\equiv 0 \pmod p $, and the recurrence collapses to
+
+$$$
+a(n) \equiv -\,a(n-1) \pmod p \qquad (n \ge p).
+$$$
+
+The residue simply alternates in sign from $ a(p-1) $ onward, never doing anything else. Verified for $ p = 3,5,7,11,13,79,101 $ across forty consecutive terms each.
+
+Two consequences follow immediately.
+
+- If $ p \nmid a(p-1) $, then $ p $ divides **no** term $ a(n) $ with $ n\ge p-1 $. For instance $ a(n)\equiv 1,2,1,2,\dots \pmod 3 $ forever, so $ 3 $ never divides a term; and although $ 13 \mid a(11) $, we have $ a(12)\equiv 12 \pmod{13} $, so $ 13 $ divides no later term.
+- If $ p \mid a(p-1) $, then $ p $ divides **every** term $ a(n) $ with $ n\ge p-1 $.
+
+That second case is the interesting one, because a single such prime would settle the fate of the whole sequence.
+
+## Remark — The Primes Run Out Altogether
+
+Suppose some prime $ p $ satisfies $ p \mid a(p-1) $. By the previous remark $ p $ then divides $ a(n) $ for every $ n \ge p-1 $, and since those terms are far larger than $ p $, all of them are composite. The sequence would contain only finitely many primes.
+
+Searching every prime below $ 200\,000 $ turns up no such $ p $ — the obstruction, if it exists, is not small. But it does exist:
+
+$$$
+p = 3\,612\,703 \quad\text{satisfies}\quad p \mid a(p-1),
+$$$
+
+which a direct computation of $ a(n) \bmod p $ confirms, along with $ p \mid a(p) $, $ p\mid a(p+1) $, and so on. This is Živković's theorem (1999): **there are only finitely many prime alternating factorials**, and every term from $ a(3\,612\,702) $ onward is composite.
+
+So the honest answer to the exercise is stronger than “no, not all of them”. The primes in this sequence are not merely sparse; there is a last one. Which term it is remains unknown — the largest currently known corresponds to $ n = 661\,957 $ — but the supply is finite and the proof of that fact is a single divisibility.
+
+## Remark — Where This Sits Among Nearby Sequences
+
+The alternating sum is one of several natural ways to build integers out of factorials, and it is worth seeing that they behave alike:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{sequence} & \textbf{first terms} & \textbf{primality} \\ \hline
+n! + 1 & 2,\,3,\,7,\,25,\,121,\,721 & \text{prime at } n=1,2,3,11,27,\dots \\
+n! - 1 & 0,\,1,\,5,\,23,\,119,\,719 & \text{prime at } n=3,4,6,7,12,\dots \\
+a(n)\ \text{(this problem)} & 1,\,1,\,5,\,19,\,101,\,619 & \text{prime at } n=3,\dots,8,10,15,\dots
+\end{array}
+$$$
+
+In every case the primes are sparse and irregular, and in every case whether infinitely many exist is either open or — as here — settled in the negative by an accidental divisibility. Factorials grow too fast to be prime often, and the interest of these sequences lies precisely in how misleading their opening terms are.

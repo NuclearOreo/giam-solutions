@@ -1,0 +1,129 @@
+.docname {Solution — GIAM 3.4 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 9
+
+## Problem
+
+True or false: whenever an integer $ n $ is a divisor of the square of an integer, $ m^2 $, it follows that $ n $ is a divisor of $ m $ as well. In symbols,
+
+$$$
+\forall n\in\mathbb{Z},\;\forall m\in\mathbb{Z},\qquad n \mid m^2 \implies n\mid m .
+$$$
+
+Prove your answer.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{False.}\qquad n = 4,\; m = 2:\quad 4 \mid 4 = m^2 \;\text{ but }\; 4 \nmid 2 .\;}
+$$$
+
+## Disproof
+
+> **Disproof.** Take $ n = 4 $ and $ m = 2 $, both integers. Then
+>
+> $ m^2 = 4 = 4\cdot 1, \quad\text{so}\quad n \mid m^2 . $
+>
+> But $ n \nmid m $: if $ 4 \mid 2 $ there would be an integer $ k $ with $ 2 = 4k $, forcing $ k = 1/2 $, which is not an integer.
+>
+> So the hypothesis holds and the conclusion fails, and the universal claim is false. $ \blacksquare $
+
+This is the **least** modulus that fails: exhaustive search confirms that $ n=2 $ and $ n=3 $ both satisfy the implication for every $ m $.
+
+## The Picture
+
+The exponent view explains not only that the claim is false but exactly which moduli it fails for, and supplies a witness for each of them.
+
+!(90%)[The counterexample, the exponent leak, and the moduli where the claim survives](problem-9-squarefree.svg "A diagram in five bands. The first states the claim — for all integers n and m, n divides m squared implies n divides m — and the verdict, FALSE. The second gives the minimal counterexample: n equals 4 and m equals 2, since 4 divides 4 which is m squared, but 4 does not divide 2. Both n equals 2 and n equals 3 satisfy the claim, so 4 really is the least modulus that fails. The third band shows where the argument leaks, in the exponents: writing a sub p and b sub p for the exponents of the prime p in n and in m, n divides m squared exactly when a sub p is at most twice b sub p, while n divides m exactly when a sub p is at most b sub p; the first does not give the second as soon as some a sub p is at least 2, which is exactly when n is not squarefree. The centre is a strip of every modulus from 2 to 49, one cell each. Green cells, where the claim holds, are the squarefree moduli. Red cells, where it fails, are the non-squarefree ones, each labelled with a witness m: n equals 4 with m equals 2, n equals 8 with m equals 4, n equals 9 with m equals 3, n equals 12 with m equals 6, n equals 16 with m equals 8, n equals 18 with m equals 6, and so on. The cell for n equals 4 is outlined heavily. A band below states exactly which moduli survive and gives a witness for every other: exhaustive search shows the claim holds for a modulus n exactly when n is squarefree — 121 of the 198 values below 200, about 61 percent — and every other n is refuted by one uniform choice, namely if p squared divides n take m equal to n over p, whereupon n divides m squared while n does not divide m. This was verified for every non-squarefree n below 200; no searching is needed, since the factorisation hands over the witness. The final band gives what is true instead: the conclusion n divides m is too strong, but something always survives. Halving each exponent and rounding up, n divides m squared implies H of n divides m, where H of n is the product of p raised to the ceiling of a sub p over 2. This is sharp: H of n is precisely the greatest common divisor of all m with n dividing m squared, checked for n below 300. H of 4 is 2, H of 8 is 4, H of 9 is 3, H of 12 is 6, H of 72 is 12. For squarefree n, H of n equals n and the original claim is recovered.")
+
+## Remark — Where the Argument Leaks
+
+The cleanest way to see both the failure and its extent is through prime exponents. Write $ a_p $ and $ b_p $ for the exponent of $ p $ in $ n $ and in $ m $. Then divisibility is a comparison of exponents:
+
+$$$
+n \mid m^2 \iff a_p \le 2b_p \text{ for every } p, \qquad n \mid m \iff a_p \le b_p \text{ for every } p .
+$$$
+
+So the claim asserts
+
+$$$
+a_p \le 2b_p \implies a_p \le b_p ,
+$$$
+
+which is false in general — it says a number bounded by *twice* something is bounded by the something. It survives only when $ a_p $ is too small for the doubling to matter: if $ a_p \le 1 $ then $ a_p \le 2b_p $ forces $ b_p\ge 1 \ge a_p $. As soon as some $ a_p \ge 2 $, choosing $ b_p $ strictly between $ a_p/2 $ and $ a_p $ breaks it.
+
+The minimal instance is $ a_p = 2 $, $ b_p = 1 $ with $ p = 2 $ — that is, $ n = 4 $ and $ m = 2 $.
+
+## Remark — Exactly Which Moduli Survive
+
+Exhaustive search over $ 2 \le n < 200 $ shows the implication holds for a modulus $ n $ **exactly when $ n $ is squarefree**, matching the exponent analysis precisely: squarefree means every $ a_p \le 1 $.
+
+That is $ 121 $ of the $ 198 $ moduli, about $ 61\% $ — consistent with the known density $ 6/\pi^2 \approx 0.6079 $ of squarefree integers.
+
+Moreover, every failing modulus has a witness that can be written down without any search:
+
+> If $ p^2 \mid n $, take $ m = n/p $. Then $ m^2 = n^2/p^2 $, and $ n \mid n^2/p^2 $ precisely because $ p^2\mid n $; while $ n\nmid m $ since $ 0 < m < n $.
+
+Verified for every non-squarefree $ n < 200 $. A few instances:
+
+$$$
+\begin{array}{c|c|c|c}
+n & p & m = n/p & m^2 \\ \hline
+4 & 2 & 2 & 4 \\
+8 & 2 & 4 & 16 \\
+9 & 3 & 3 & 9 \\
+12 & 2 & 6 & 36 \\
+50 & 5 & 10 & 100
+\end{array}
+$$$
+
+So the failure is not sporadic. It is structural, it affects roughly two moduli in five, and the factorisation of $ n $ hands over the counterexample directly.
+
+## Remark — What Is True Instead
+
+A false conjecture is more instructive when one asks what the correct statement is. The conclusion $ n \mid m $ is too strong, but the hypothesis is not empty. Halving each exponent and rounding up gives
+
+$$$
+n \mid m^2 \implies H(n) \mid m, \qquad\text{where}\qquad H(n) = \prod_p p^{\lceil a_p/2\rceil} .
+$$$
+
+The proof is immediate from the exponent inequality: $ a_p \le 2b_p $ gives $ b_p \ge a_p/2 $, and $ b_p $ is an integer, so $ b_p \ge \lceil a_p/2\rceil $.
+
+This is **sharp**. Computing the greatest common divisor of all $ m $ satisfying $ n\mid m^2 $ returns exactly $ H(n) $, for every $ n < 300 $ — so no larger divisor can be guaranteed. Some values:
+
+$$$
+H(4)=2, \quad H(8)=4, \quad H(9)=3, \quad H(12)=6, \quad H(72)=12, \quad H(200)=20 .
+$$$
+
+Two things fall out. First, when $ n $ is squarefree every $ \lceil a_p/2 \rceil = a_p = 1 $, so $ H(n)=n $ and the original claim is recovered — the theorem of 3.3 Problem 2. Second, a weaker but memorable consequence: since $ \lceil a_p/2\rceil \ge 1 $ whenever $ p\mid n $,
+
+$$$
+n \mid m^2 \implies \operatorname{rad}(n) \mid m ,
+$$$
+
+where $ \operatorname{rad}(n) $ is the product of the distinct primes dividing $ n $. Verified across all $ n<200 $ and $ m<600 $. In words: **$ m $ must contain every prime of $ n $, just not necessarily to the same multiplicity.**
+
+## Remark — Three Cousins, Three Different Answers
+
+This problem completes a trio that runs through Chapter 3, and it is worth seeing them side by side because the answers are all different:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{statement} & \textbf{holds exactly for} & \textbf{reference} \\ \hline
+n \mid m^2 \implies n \mid m & n \text{ squarefree} & \text{3.3 P2, this problem} \\
+n \mid bc \implies n\mid b \text{ or } n\mid c & n \text{ prime (or } 1) & \text{3.4 P2} \\
+n \mid m \implies n \mid m^2 & \text{all } n & \text{3.3 P2, the easy direction}
+\end{array}
+$$$
+
+The middle row is the strictest because $ b $ and $ c $ are *independent* — any composite can be split as $ n = uv $ and torn apart. In the top row the two factors of $ m^2 $ are forced equal, so only a repeated prime can cause trouble, and squarefree suffices. The bottom row is free: squaring can only increase exponents.
+
+The modulus $ n = 6 $ separates the top two rows: it is squarefree, so $ 6 \mid m^2 \Rightarrow 6\mid m $ holds, yet $ 6 \mid 2\cdot 3 $ while $ 6 $ divides neither factor. Being asked “does divisibility pass to the factors?” is a genuinely different question depending on whether the factors are equal.

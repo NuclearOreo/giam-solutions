@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 3.4 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 4
+
+## Problem
+
+It has been conjectured that whenever $ p $ is prime, $ 2^p - 1 $ is also prime. Find a minimal counterexample.
+
+## Answer
+
+$$$
+\boxed{\;p = 11 : \qquad 2^{11} - 1 = 2047 = 23 \times 89 .\;}
+$$$
+
+## Why It Is Minimal
+
+A *minimal* counterexample requires showing not only that $ p=11 $ fails, but that no smaller prime does. There are four smaller primes, and all four succeed:
+
+$$$
+\begin{array}{c|r|l}
+p & 2^p-1 & \\ \hline
+2 & 3 & \text{prime} \\
+3 & 7 & \text{prime} \\
+5 & 31 & \text{prime} \\
+7 & 127 & \text{prime} \\
+11 & 2047 & \textbf{composite} = 23\times 89
+\end{array}
+$$$
+
+Since $ 23\times 89 = 2047 $ exactly and both factors are prime, $ p=11 $ is a genuine counterexample, and it is the least one.
+
+## The Picture
+
+The table below runs through every prime exponent up to $ 41 $, and the bands around it record the true theorem the conjecture inverts and the congruence that makes the factor of $ 2047 $ easy to find.
+
+!(88%)[Mersenne numbers for prime exponents up to 41, with p = 11 marked](problem-4-mersenne.svg "A diagram in five parts. The first band states the false conjecture: p prime implies 2 to the p minus 1 is prime. The numbers 2 to the p minus 1 are the Mersenne numbers, and the conjecture says a prime exponent always yields one. Minimal means the smallest prime p for which it fails, so the four smaller cases must be checked too. The second band gives the minimal counterexample: p equals 11, and 2 to the eleventh minus 1 equals 2047 equals 23 times 89. It is minimal because 3, 7, 31 and 127 — the values at p equals 2, 3, 5 and 7 — really are prime. The centre is a table of every prime exponent up to 41. Green prime rows: p equals 2 giving 3, p equals 3 giving 7, p equals 5 giving 31, p equals 7 giving 127, p equals 13 giving 8191, p equals 17 giving 131071, p equals 19 giving 524287, and p equals 31 giving 2147483647. Red composite rows: p equals 11 giving 2047 equals 23 times 89, outlined heavily and marked as the minimal counterexample; p equals 23 giving 8388607 equals 47 times 178481; p equals 29 giving 536870911 equals 233 times 1103 times 2089; p equals 37 giving 137438953471 equals 223 times 616318177; and p equals 41 giving 2199023255551 equals 13367 times 164511353. A band below states the true theorem nearby, which points the other way: if n is composite, say n equals ab with a and b at least 2, then 2 to the n minus 1 factors, because 2 to the a minus 1 divides 2 to the ab minus 1. For example 2 to the sixth minus 1 equals 63 equals the product of 2 squared minus 1 and 2 to the fourth plus 2 squared plus 1, that is 3 times 21; verified for all a and b up to 8. So p prime is necessary for 2 to the p minus 1 to be prime, and the conjecture wrongly reads it as sufficient. The next band explains why finding the factor 23 is easier than it looks: for odd prime p, every prime factor q of 2 to the p minus 1 satisfies q congruent to 1 mod 2p and q congruent to plus or minus 1 mod 8. With p equal to 11 that means q congruent to 1 mod 22, and of the fourteen primes below the square root of 2047, about 45, exactly one qualifies: q equals 23, and 2047 divided by 23 is 89, also congruent to 1 mod 22. One trial division instead of fourteen; the congruence was checked against every prime factor for all odd p below 60. The final band shows how rare Mersenne primes are: among the 46 primes below 200, only 12 give one, at p equal to 2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107 and 127. Each one also yields an even perfect number 2 to the p minus 1 times the quantity 2 to the p minus 1: 6, 28, 496, 8128, 33550336 and so on, all checked directly.")
+
+## Remark — The Conjecture Inverts a Real Theorem
+
+There *is* a theorem connecting the primality of $ n $ to that of $ 2^n-1 $, and the conjecture is that theorem read backwards.
+
+> **Theorem.** If $ n $ is composite, then $ 2^n-1 $ is composite.
+>
+> **Proof.** Write $ n = ab $ with $ a,b\ge 2 $. The factorisation
+>
+> $ x^{b}-1 = (x-1)\left(x^{b-1}+x^{b-2}+\cdots+x+1\right) $
+>
+> applied with $ x = 2^{a} $ gives
+>
+> $ 2^{ab}-1 = \left(2^{a}-1\right)\left(2^{a(b-1)}+\cdots+2^{a}+1\right) . $
+>
+> Both factors exceed $ 1 $ because $ a\ge2 $ and $ b\ge2 $, so $ 2^n-1 $ is composite. $ \blacksquare $
+
+For instance $ 2^6-1 = 63 = (2^2-1)(2^4+2^2+1) = 3\times 21 $. The divisibility $ (2^a-1) \mid (2^{ab}-1) $ was verified for all $ a,b\le 8 $.
+
+Contrapositively: **if $ 2^n-1 $ is prime then $ n $ is prime.** That is the true statement. The conjecture in this problem asserts the converse, and the converse of a true implication is a separate claim entirely — precisely the confusion this section is designed to expose. Primality of $ p $ is *necessary* for $ 2^p-1 $ to be prime, not *sufficient*.
+
+## Remark — Finding the Factor Without Guessing
+
+Factoring $ 2047 $ by hand looks like fourteen trial divisions, one for each prime below $ \sqrt{2047}\approx45 $. It is actually one, because the factors of Mersenne numbers are heavily constrained.
+
+> For an odd prime $ p $, every prime factor $ q $ of $ 2^p-1 $ satisfies
+> $$$
+> q \equiv 1 \pmod{2p} \qquad\text{and}\qquad q \equiv \pm1 \pmod 8 .
+> $$$
+
+The first congruence comes from Fermat: $ 2^p \equiv 1 \pmod q $ means the order of $ 2 $ modulo $ q $ divides $ p $, and since the order is not $ 1 $ it equals $ p $; so $ p \mid q-1 $, and $ q-1 $ is even, giving $ 2p \mid q-1 $. The second follows from quadratic reciprocity. Both were checked against every prime factor of $ 2^p-1 $ for all odd primes $ p < 60 $.
+
+With $ p=11 $ this says $ q \equiv 1 \pmod{22} $, so the candidates are $ 23, 67, 89, 199, \dots $ — and below $ 45 $ there is exactly one:
+
+$$$
+q = 23, \qquad 2047 = 23\times 89 ,
+$$$
+
+with the cofactor $ 89 = 4\cdot 22 + 1 $ obeying the same congruence, as it must. This is why Mersenne numbers were the testing ground for primality records long before computers: the search space for factors is tiny, and there is a dedicated primality test for them besides — the Lucas–Lehmer test, which settles $ 2^p-1 $ in about $ p $ squarings and no trial division at all.
+
+## Remark — How Sparse the Mersenne Primes Are
+
+Among the $ 46 $ primes below $ 200 $, only $ 12 $ produce a Mersenne prime:
+
+$$$
+p = 2,\;3,\;5,\;7,\;13,\;17,\;19,\;31,\;61,\;89,\;107,\;127 .
+$$$
+
+So roughly a quarter of small prime exponents work, and the proportion falls away sharply as $ p $ grows. Notice too that the failures are not confined to $ p=11 $: the table shows $ p = 23, 29, 37, 41 $ all failing, with factorisations that grow rapidly in size.
+
+As of writing, only $ 52 $ Mersenne primes are known in total, the largest being $ 2^{136279841}-1 $ — found by the distributed GIMPS project in 2024 and running to over $ 41 $ million digits. Whether there are infinitely many is a long-standing open problem, as is whether infinitely many $ 2^p-1 $ are composite. Both are believed true and neither is proved.
+
+## Remark — Why Anyone Cared: Perfect Numbers
+
+The conjecture was not idle. Mersenne primes are in exact correspondence with the even **perfect numbers** — those equal to the sum of their proper divisors.
+
+> **Euclid–Euler Theorem.** An even number $ N $ is perfect if and only if $ N = 2^{p-1}\left(2^p-1\right) $ with $ 2^p-1 $ prime.
+
+The first few, each verified by summing divisors directly:
+
+$$$
+\begin{array}{c|c|c}
+p & 2^p-1 & N = 2^{p-1}(2^p-1) \\ \hline
+2 & 3 & 6 \\
+3 & 7 & 28 \\
+5 & 31 & 496 \\
+7 & 127 & 8128 \\
+13 & 8191 & 33\,550\,336
+\end{array}
+$$$
+
+Note the gap: there is no perfect number between $ 8128 $ and $ 33\,550\,336 $, and the reason is exactly the counterexample of this problem — $ p=11 $ produces no Mersenne prime, so it produces no perfect number either. The conjecture, had it been true, would have supplied a perfect number for every prime. Its failure at $ 11 $ is directly visible as the missing fifth perfect number in the classical list, a gap that puzzled mathematicians from antiquity until Hudalricus Regius found the factorisation $ 2047 = 23\times 89 $ in 1536.
+
+## Remark — Mersenne's Own List Was Wrong Too
+
+Marin Mersenne asserted in 1644 that $ 2^p-1 $ is prime exactly for
+
+$$$
+p = 2,\,3,\,5,\,7,\,13,\,17,\,19,\,31,\,67,\,127,\,257
+$$$
+
+and composite for all other $ p \le 257 $. He had already dropped $ p=11 $, so he was not making this problem's error. But his list contains two false entries — $ p=67 $ and $ p=257 $ give composites — and omits three genuine ones at $ p = 61, 89, 107 $.
+
+The $ p=67 $ case has a famous coda. In 1903 Frank Nelson Cole gave a lecture to the American Mathematical Society consisting entirely of computing $ 2^{67}-1 $ on one side of a blackboard, then multiplying $ 193\,707\,721 \times 761\,838\,257\,287 $ on the other. The two agreed; he sat down without a word to a standing ovation. It remains the cleanest illustration of what a counterexample is: no argument required, just an instance.

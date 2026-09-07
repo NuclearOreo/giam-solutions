@@ -1,0 +1,114 @@
+.docname {Solution — GIAM 3.4 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 5
+
+## Problem
+
+True or false: the sum of any two irrational numbers is irrational. Prove your answer.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{False.}\qquad \sqrt2 + \left(-\sqrt2\right) = 0 .\;}
+$$$
+
+## Disproof
+
+The claim is universally quantified, so its negation is existential and one instance settles it:
+
+$$$
+\lnot\Big(\forall x,y \in \mathbb{R}\setminus\mathbb{Q},\; x+y\notin\mathbb{Q}\Big) \;\cong\; \exists\, x,y \in \mathbb{R}\setminus\mathbb{Q},\; x+y\in\mathbb{Q} .
+$$$
+
+> **Disproof.** Take $ x = \sqrt2 $ and $ y = -\sqrt2 $.
+>
+> $ \sqrt2 $ is irrational (Theorem 1.6 of the text). And $ -\sqrt2 $ is irrational too: if $ -\sqrt2 = q $ for some rational $ q $, then $ \sqrt2 = -q $, and $ -q $ is rational since $ \mathbb{Q} $ is closed under negation — contradicting the irrationality of $ \sqrt2 $.
+>
+> So $ x $ and $ y $ are both irrational, yet
+>
+> $ x + y = \sqrt2 + \left(-\sqrt2\right) = 0 \in \mathbb{Q} . $
+>
+> The hypothesis of the claim is satisfied and its conclusion fails, so the claim is false. $ \blacksquare $
+
+It is worth stressing that the second sentence is not padding. A counterexample only works if you check that it *is* one, and “$ -\sqrt2 $ is irrational” needs the one-line argument above rather than being assumed.
+
+If the minus sign feels like a trick, an equally valid pair of **positive** irrationals works:
+
+$$$
+\left(2-\sqrt2\right) + \sqrt2 = 2, \qquad\text{with } 2-\sqrt2 \approx 0.5858 .
+$$$
+
+Here $ 2-\sqrt2 $ is irrational by 3.3 Problem 5 — a rational plus an irrational is irrational.
+
+## The Picture
+
+!(90%)[The counterexample, the sparse set of failures, and the closure comparison](problem-5-irrational.svg "A diagram in six bands. The first states the claim — the sum of any two irrational numbers is irrational — and the verdict, FALSE. The second gives the counterexample: root 2 plus minus root 2 equals 0. Root 2 is irrational and so is minus root 2, since minus root 2 equal to a rational q would give root 2 equal to minus q, also rational. Their sum is 0, which is rational; both hypotheses hold and the conclusion fails. If the minus sign feels like cheating, 2 minus root 2 plus root 2 equals 2, and 2 minus root 2, about 0.5858, is a positive irrational. The third band notes that the sum is not always rational either, so there is no theorem in either direction: root 2 plus root 2 is about 2.8284 and irrational, root 2 plus root 3 is about 3.1463 and irrational, while root 2 plus minus root 2 is 0 and 2 minus root 2 plus root 2 is 2, both rational. The irrationals are the complement of a set, not a structure, and a complement is closed under nothing; contrast the rationals, which form a group under addition, which is exactly why 3.3 Problem 5 is a theorem. The fourth band asks how often it fails and answers: almost never. Fixing x equal to root 2, the sum x plus y is rational exactly when y lies in the shifted copy of the rationals minus root 2, drawn as a row of sparse red ticks along a number line from minus 3 to 3 for denominators up to 4 — a countable set inside a continuum, of total length zero. The fifth band says that nonetheless it fails as badly as possible, since every real is a sum of two irrationals: given any real r, at least one of r minus root 2 and r minus root 3 is irrational, because if both were rational their difference root 3 minus root 2, about 0.31784, would be rational, and it is not, being a root of x to the fourth minus 10 x squared plus 1. Pairing that irrational one with root 2 or root 3 gives two irrationals summing to r, so no real number is out of reach. The final band tabulates closure: the rationals are closed under addition because a over b plus c over d equals ad plus bc over bd, while the irrationals are not, since root 2 plus minus root 2 equals 0.")
+
+## Remark — There Is No Theorem in Either Direction
+
+A natural follow-up is whether the claim is at least *reversible* — perhaps the sum of two irrationals is always rational? It is not:
+
+$$$
+\begin{array}{l|l}
+\sqrt2 + \sqrt2 = 2\sqrt2 \approx 2.8284 & \text{irrational} \\
+\sqrt2 + \sqrt3 \approx 3.1463 & \text{irrational} \\
+\sqrt2 + \left(-\sqrt2\right) = 0 & \text{rational} \\
+\left(2-\sqrt2\right) + \sqrt2 = 2 & \text{rational}
+\end{array}
+$$$
+
+So the sum of two irrationals can be anything at all, and no implication holds either way. That is the honest state of affairs, and it is worth saying explicitly: disproving a claim does not automatically establish its opposite.
+
+The structural reason is that the irrationals are defined as a **complement**, $ \mathbb{R}\setminus\mathbb{Q} $, rather than by any closure property. A complement inherits no algebra. Compare 3.3 Problem 5, where *rational plus irrational is irrational* really is a theorem — precisely because $ \mathbb{Q} $ is a group under addition, so subtracting a rational cannot escape it.
+
+## Remark — Why the Claim Feels True: It Almost Always Is
+
+The conjecture is not stupid, and it is worth seeing why. Fix an irrational $ x $. Then
+
+$$$
+x + y \in \mathbb{Q} \iff y \in \mathbb{Q} - x = \{\,q - x : q\in\mathbb{Q}\,\} ,
+$$$
+
+which is a shifted copy of $ \mathbb{Q} $ — a **countable** set. So among the uncountably many irrational $ y $, only countably many produce a rational sum. The failures have Lebesgue measure zero.
+
+Pick two irrationals “at random” in any reasonable sense and the sum is irrational with probability $ 1 $. The claim is true almost everywhere and false nonetheless, which is exactly the situation Section 3.4 exists to warn about: overwhelming statistical support is not proof, and a measure-zero exception refutes a universal statement just as decisively as a common one.
+
+## Remark — How Badly It Fails: Every Real Is a Sum of Two Irrationals
+
+Although failures are rare for a *fixed* $ x $, if both summands are allowed to vary the claim collapses completely.
+
+> **Claim.** Every real number $ r $ is the sum of two irrational numbers.
+>
+> **Proof.** Consider $ r-\sqrt2 $ and $ r-\sqrt3 $. At least one is irrational: if both were rational, their difference
+>
+> $ \left(r-\sqrt2\right) - \left(r-\sqrt3\right) = \sqrt3-\sqrt2 $
+>
+> would be rational, and it is not — $ \sqrt3-\sqrt2 \approx 0.31784 $ is a root of $ x^4-10x^2+1 $, which the rational root theorem shows has no rational roots. If $ r-\sqrt2 $ is irrational, write $ r = \left(r-\sqrt2\right)+\sqrt2 $; otherwise write $ r = \left(r-\sqrt3\right)+\sqrt3 $. Either way $ r $ is a sum of two irrationals. $ \blacksquare $
+
+So the set of achievable sums is not merely “sometimes rational” — it is all of $ \mathbb{R} $. Nothing whatsoever can be concluded about $ x+y $ from the irrationality of $ x $ and $ y $.
+
+## Remark — What Survives, and Where the Line Falls
+
+Gathering the results of this problem and its neighbours gives a complete picture of which combinations are theorems:
+
+$$$
+\begin{array}{l|c|l}
+\textbf{statement} & \textbf{true?} & \textbf{witness or reason} \\ \hline
+\text{rational} + \text{rational is rational} & \text{yes} & \mathbb{Q} \text{ closed under } + \\
+\text{rational} + \text{irrational is irrational} & \text{yes} & \text{3.3 Problem 5} \\
+\text{irrational} + \text{irrational is irrational} & \textbf{no} & \sqrt2 + \left(-\sqrt2\right) = 0 \\
+\text{irrational} \times \text{irrational is irrational} & \textbf{no} & \sqrt2 \cdot \sqrt2 = 2
+\end{array}
+$$$
+
+The pattern is that a statement survives exactly when one operand is drawn from the *structured* set. Mixing a group element with a non-member is controlled; combining two non-members is not, because the two “irrational parts” are free to cancel.
+
+Seen through the coset language of 3.3 Problem 5: adding a rational moves you *along* a coset of $ \mathbb{Q} $, which never returns you to $ \mathbb{Q} $ itself; adding a second irrational moves you to a *different* coset, and one of the available destinations is $ \mathbb{Q} $. Cancellation is not an accident of $ \sqrt2 $ — it is built into the group structure, since $ x $ and $ -x $ always lie in cosets that sum to the identity one.

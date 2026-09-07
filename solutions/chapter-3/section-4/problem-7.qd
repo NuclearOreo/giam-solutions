@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 3.4 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 7
+
+## Problem
+
+True or false: the product of any two irrational numbers is irrational. Prove your answer.
+
+## Answer
+
+$$$
+\boxed{\;\textbf{False.}\qquad \sqrt2 \cdot \sqrt2 = 2 .\;}
+$$$
+
+## Disproof
+
+> **Disproof.** Take $ x = y = \sqrt2 $.
+>
+> By Theorem 1.6 of the text, $ \sqrt2 $ is irrational, so both $ x $ and $ y $ are irrational numbers. Their product is
+>
+> $ x\cdot y = \sqrt2\cdot\sqrt2 = \left(\sqrt2\right)^2 = 2 , $
+>
+> and $ 2 = 2/1 $ is rational.
+>
+> So there exist irrational numbers whose product is rational, and the claim is false. $ \blacksquare $
+
+Nothing in the problem requires the two numbers to be different, and taking them equal makes this the shortest disproof in the section: only one irrationality fact is needed, and no closure argument at all.
+
+Other witnesses, if a pair of distinct numbers is preferred:
+
+$$$
+\sqrt2\cdot\sqrt8 = 4, \qquad \sqrt2\cdot\sqrt{18} = 6, \qquad \sqrt[3]{2}\cdot\sqrt[3]{4} = 2 .
+$$$
+
+## The Picture
+
+!(92%)[The counterexample, the contrast with addition, and the completed closure table](problem-7-product.svg "A diagram in five bands. The first states the claim — the product of any two irrational numbers is irrational — and the verdict, FALSE. The second gives the counterexample, the shortest in the section: root 2 times root 2 equals 2. Both factors are irrational, being the same irrational number, and the product is rational; no companion number has to be found and no closure fact has to be checked about a second factor. Other witnesses are root 2 times root 8 equals 4, root 2 times root 18 equals 6, and cube root of 2 times cube root of 4 equals 2. The third band explains why multiplication fails more easily than addition: adding a number to itself can never produce this failure, since x plus x equals 2x, and if 2x equals a rational q then x equals q over 2 is rational too — so an additive counterexample must use two different irrationals, as root 2 and minus root 2 are. Multiplying a number by itself can, since x times x equals x squared, and x squared is rational for every square root of a rational non-square. Squaring destroys irrationality; doubling cannot. The fourth band shows how badly it fails: every nonzero real is a product of two irrationals. For r nonzero, at least one of r over root 2 and r over root 3 is irrational, otherwise their quotient root 3 over root 2, which is the square root of three halves, about 1.2247, would be rational, and it is not, being a root of 2x squared minus 3. Pair it with root 2 or root 3 and the product is r. Zero is the sole exception, because every irrational is nonzero — 0 equals 0 over 1 is rational — so no product of two irrationals can vanish. The fifth band gives the completed picture for the section: rational plus rational is rational, true, because the rationals form a group under addition; rational plus irrational is irrational, true, by 3.3 Problem 5; irrational plus irrational is irrational, false, since root 2 plus minus root 2 equals 0, from 3.4 Problem 5; and irrational times irrational is irrational, false, since root 2 times root 2 equals 2, from this problem.")
+
+## Remark — Why This Is the Easiest Counterexample of the Three
+
+Compare the three disproofs in this run of exercises. Each needs a witness, but they cost different amounts:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{claim} & \textbf{witness} & \textbf{what must be checked} \\ \hline
+\text{irrational} + \text{irrational is irrational} & \sqrt2,\; -\sqrt2 & \sqrt2 \text{ irrational, } -\sqrt2 \text{ irrational} \\
+\text{irrational} \times \text{irrational is irrational} & \sqrt2,\; \sqrt2 & \sqrt2 \text{ irrational}
+\end{array}
+$$$
+
+The additive case needs a second lemma — that the negative of an irrational is irrational — because the two summands *cannot* be the same number. The multiplicative case needs nothing beyond the irrationality of $ \sqrt2 $, because the two factors can be.
+
+That asymmetry is not an accident of the choice of witness; it is forced.
+
+## Remark — Doubling Cannot Fail, Squaring Can
+
+Here is why the additive counterexample is obliged to use two distinct numbers.
+
+> **Observation.** For a real $ x $, the sum $ x+x $ is rational if and only if $ x $ is rational.
+>
+> **Proof.** If $ x $ is rational so is $ 2x $. Conversely if $ 2x = q\in\mathbb{Q} $, then $ x = q/2 $, and $ \mathbb{Q} $ is closed under division by $ 2 $, so $ x $ is rational. $ \blacksquare $
+
+Doubling is an *invertible* operation on $ \mathbb{Q} $ — you can undo it and stay inside — so it cannot carry an irrational into the rationals. Squaring is not invertible on $ \mathbb{Q} $: the square root of a rational need not be rational, so $ x^2\in\mathbb{Q} $ does **not** force $ x\in\mathbb{Q} $, with $ x=\sqrt2 $ the standard witness. Every rational non-square supplies another — $ \sqrt3,\sqrt5,\sqrt7 $ all square into $ \mathbb{Q} $ while lying outside it.
+
+So the failure here is precisely the failure of square roots to preserve rationality — the very fact that made $ \sqrt2 $ interesting in Chapter 1. The counterexample to this problem *is* the irrationality of $ \sqrt2 $, restated.
+
+## Remark — Products Need Not Be Rational Either
+
+As with the additive version, disproving the claim does not establish its opposite. The product of two irrationals can be either:
+
+$$$
+\sqrt2\cdot\sqrt2 = 2 \;\; \text{(rational)}, \qquad \sqrt2\cdot\sqrt3 = \sqrt6 \approx 2.4495 \;\; \text{(irrational)} .
+$$$
+
+The irrationals are $ \mathbb{R}\setminus\mathbb{Q} $, a complement rather than a structure, so they are closed under nothing. What *is* true is the mixed statement, which is 3.3 Problem 7 read forwards: a **non-zero** rational times an irrational is irrational. The “non-zero” is essential there and has no additive counterpart, since $ 0\cdot\sqrt2 = 0 $ but $ 0+\sqrt2 = \sqrt2 $.
+
+That is the one place the multiplicative story is *more* delicate: $ (\mathbb{Q},+) $ is a group outright, whereas multiplicatively one must discard $ 0 $ first.
+
+## Remark — Every Non-Zero Real Is a Product of Two Irrationals
+
+The failure is as total as it can be, with exactly one exception.
+
+> **Claim.** Every real $ r \ne 0 $ is a product of two irrational numbers, and $ 0 $ is not.
+>
+> **Proof.** Let $ r\ne0 $. At least one of $ r/\sqrt2 $ and $ r/\sqrt3 $ is irrational: if both were rational, so would be their quotient
+>
+> $ \dfrac{r/\sqrt2}{r/\sqrt3} = \dfrac{\sqrt3}{\sqrt2} = \sqrt{\tfrac32} \approx 1.2247 , $
+>
+> which is a root of $ 2x^2-3 $ and has no rational value. If $ r/\sqrt2 $ is irrational, write $ r = \left(r/\sqrt2\right)\cdot\sqrt2 $; otherwise $ r = \left(r/\sqrt3\right)\cdot\sqrt3 $.
+>
+> For $ 0 $: every irrational number is non-zero, since $ 0 = 0/1 $ is rational. A product of two non-zero reals is non-zero, so $ 0 $ is not such a product. $ \blacksquare $
+
+Compare Problem 5, where **every** real without exception is a sum of two irrationals. Multiplication has a single blind spot at $ 0 $, for the same reason the “non-zero” caveat appears above.
+
+## Remark — The Section Completed
+
+Taken together, Problems 5, 6 and 7 of this section, with 3.3 Problems 5 and 7, settle every combination:
+
+$$$
+\begin{array}{l|c|l}
+\textbf{statement} & \textbf{true?} & \textbf{witness or reason} \\ \hline
+\text{rational} + \text{rational is rational} & \text{yes} & (\mathbb{Q},+) \text{ is a group} \\
+\text{rational} \times \text{rational is rational} & \text{yes} & \mathbb{Q} \text{ closed under } \times \\
+\text{rational} + \text{irrational is irrational} & \text{yes} & \text{3.3 Problem 5} \\
+\text{non-zero rational} \times \text{irrational is irrational} & \text{yes} & \text{3.3 Problem 7} \\
+\text{irrational} + \text{irrational is irrational} & \textbf{no} & \sqrt2 + \left(-\sqrt2\right) = 0 \\
+\text{irrational} \times \text{irrational is irrational} & \textbf{no} & \sqrt2\cdot\sqrt2 = 2
+\end{array}
+$$$
+
+The rule that emerges: a statement is a theorem exactly when at least one operand comes from the structured set $ \mathbb{Q} $. Two irrationals are two unconstrained objects, and there is nothing to stop their irrational parts cancelling — additively via $ x $ and $ -x $, multiplicatively via $ x $ and $ 1/x $, or in this case via $ x $ and $ x $ itself.

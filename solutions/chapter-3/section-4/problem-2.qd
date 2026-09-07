@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 3.4 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.4 Problem 2
+
+## Problem
+
+Find a counterexample to the conjecture that
+
+$$$
+\forall a,b,c \in \mathbb{Z},\qquad a \mid bc \implies a\mid b \;\lor\; a\mid c
+$$$
+
+using only powers of $ 2 $.
+
+## Answer
+
+$$$
+\boxed{\;a = 4,\qquad b = 2,\qquad c = 2 .\;}
+$$$
+
+## Verification
+
+All three are powers of $ 2 $, as required. Checking the hypothesis and both halves of the conclusion:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{claim} & \textbf{check} & \\ \hline
+a \mid bc & 4 \mid 2\cdot 2 = 4 & \text{TRUE} \\
+a \mid b & 4 \mid 2 & \text{FALSE} \\
+a \mid c & 4 \mid 2 & \text{FALSE}
+\end{array}
+$$$
+
+The hypothesis holds and the conclusion — a disjunction — fails in both disjuncts. So the universally quantified statement is false, and one instance is all it takes to say so.
+
+## Why One Instance Is Enough
+
+The conjecture is a **universally quantified statement**, so its negation is existential:
+
+$$$
+\lnot\Big(\forall a,b,c,\; P(a,b,c)\Big) \;\cong\; \exists\, a,b,c,\; \lnot P(a,b,c) ,
+$$$
+
+and exhibiting one triple that witnesses $ \lnot P $ *is* a complete proof of the negation. Note also that $ \lnot(Q\lor R) \cong \lnot Q \land \lnot R $, which is why both $ 4\nmid b $ and $ 4\nmid c $ had to be checked — refuting only one disjunct would refute nothing.
+
+## The Picture
+
+Restricting to powers of $ 2 $ makes every divisibility a statement about exponents, and the whole situation becomes visible at once.
+
+!(88%)[The exponent lattice, with the wedge of counterexamples between the two regions](problem-2-lattice.svg "A diagram in five bands. The first states the false conjecture: for all integers a, b, c, a divides bc implies a divides b or a divides c; it is true when a is prime, which is Euclid's lemma, and the conjecture is the careless generalisation of it. To disprove a universal claim, one counterexample suffices. The second band gives the counterexample: a equals 4, b equals 2, c equals 2. Then bc equals 4, so 4 divides bc, but 4 does not divide 2 and 4 does not divide 2. The hypothesis holds, both halves of the conclusion fail, and the claim is dead. The third band explains the exponent picture: write a as 2 to the m, b as 2 to the j, c as 2 to the k; then bc is 2 to the j plus k, and every divisibility becomes a comparison of exponents — a divides bc if and only if j plus k is at least m, a divides b if and only if j is at least m, and a divides c if and only if k is at least m. A six-by-six grid fixes m equal to 4, that is a equals 16, and marks every pair of exponents j and k from 0 to 5. Cells where j plus k is less than m are grey and carry a cross: a does not even divide bc, so the claim says nothing. Cells where a divides bc and the conclusion holds are green with a tick. Cells where a divides bc but a divides neither b nor c are red with a dot; every red cell is a counterexample, and they form a triangular wedge in the middle of the grid. The fourth band explains why the red wedge exists and why primes escape it: a red cell needs j plus k at least m with j less than m and k less than m, so the exponent m must be split into two strictly smaller parts, which is possible exactly when m is at least 2. For m equal to 1 the only option is j equals k equals 0, and 0 plus 0 at least 1 is false, so a equals 2 has no red cells. A prime is precisely a number whose exponent cannot be split, which is Euclid's lemma. The fifth band asks which a do satisfy the claim: exhaustive search over all b and c below 200 finds it holds for a equal to 1, 2, 3, 5, 7, 11, 13, 17, 19, 23 and so on — that is, a equals 1 and the primes, and nothing else. Compare 3.3 Problem 2, where n divides x squared implies n divides x held for every squarefree n; here 6 is squarefree yet fails, since 6 divides 2 times 3.")
+
+## Remark — Everything Becomes Exponent Arithmetic
+
+The restriction to powers of $ 2 $ is not an arbitrary handicap; it is what makes the whole landscape legible. Writing
+
+$$$
+a = 2^m, \qquad b = 2^{\,j}, \qquad c = 2^{\,k},
+$$$
+
+we have $ bc = 2^{\,j+k} $, and since $ 2^s \mid 2^t $ exactly when $ s\le t $, the three divisibility statements collapse into three inequalities:
+
+$$$
+a\mid bc \iff j+k\ge m, \qquad a\mid b \iff j\ge m, \qquad a\mid c \iff k\ge m .
+$$$
+
+The conjecture therefore asserts
+
+$$$
+j+k \ge m \implies j\ge m \;\text{ or }\; k\ge m ,
+$$$
+
+which, stated that baldly, is plainly false — it is the claim that *a sum can only be large if one of its summands is large*. Two medium numbers add to a big one all the time. The smallest instance is $ j=k=1 $, $ m=2 $, which is exactly $ (a,b,c) = (4,2,2) $.
+
+## Remark — Why $ m \ge 2 $ Is Needed, and What That Says About Primes
+
+A counterexample requires
+
+$$$
+j+k \ge m \quad\text{with}\quad j < m \quad\text{and}\quad k < m ,
+$$$
+
+that is, $ m $ must be *split* into two strictly smaller non-negative parts. That is possible precisely when $ m \ge 2 $.
+
+For $ m=1 $ — the case $ a = 2 $ — the constraints $ j<1 $ and $ k<1 $ force $ j=k=0 $, and then $ j+k = 0 \ge 1 $ is false. There is no red cell, confirmed by exhaustive search: $ a=2 $ satisfies the conjecture. Likewise $ m=0 $, the case $ a=1 $, which divides everything.
+
+This is the whole reason primes are special. In the exponent picture, $ p $ prime means the exponent to be reached is $ 1 $, and $ 1 $ cannot be written as a sum of two smaller non-negative integers other than $ 0+1 $ — in which case one of them already equals $ 1 $. **Euclid's lemma is the statement that $ 1 $ is unsplittable.** The failure for $ a=4 $ is the statement that $ 2 = 1+1 $ is not.
+
+## Remark — Exactly Which $ a $ Satisfy the Claim
+
+Beyond powers of $ 2 $, one can ask which moduli make the implication true for *all* $ b,c $. Exhaustive search over $ 0 \le b,c < 200 $ gives
+
+$$$
+a = 1,\; 2,\; 3,\; 5,\; 7,\; 11,\; 13,\; 17,\; 19,\; 23,\; 29,\; \dots
+$$$
+
+— precisely $ 1 $ together with the primes, and nothing else. Every composite $ a $ fails: write $ a = uv $ with $ u $ and $ v $ both strictly between $ 1 $ and $ a $, and then $ a \mid uv $ while $ a\nmid u $ and $ a\nmid v $. The counterexample is built directly out of the factorisation.
+
+It is worth putting this beside 3.3 Problem 2, which asked about $ n \mid x^2 \Rightarrow n\mid x $:
+
+$$$
+\begin{array}{l|l}
+\textbf{statement} & \textbf{holds exactly for} \\ \hline
+n\mid x^2 \implies n\mid x & n \text{ squarefree} \\
+n\mid bc \implies n\mid b \text{ or } n\mid c & n \text{ prime (or } 1) 
+\end{array}
+$$$
+
+The second condition is strictly stronger, and the reason is that $ b $ and $ c $ are *independent*. With $ x^2 $ the two factors are forced equal, so the exponent must split evenly, and only a repeated prime factor can cause trouble — hence squarefree suffices. With $ bc $ the factors can be chosen separately, so any composite $ a $ can be torn apart. The example $ n = 6 $ separates them: $ 6 $ is squarefree, so $ 6\mid x^2 \Rightarrow 6\mid x $ holds, yet $ 6\mid 2\cdot3 $ while $ 6 $ divides neither factor.
+
+## Remark — The Conjecture Is a Real Theorem With Its Hypothesis Removed
+
+Statements like this one are worth recognising as *damaged theorems* rather than random falsehoods. The true version is Euclid's lemma:
+
+> If $ p $ is **prime** and $ p \mid bc $, then $ p\mid b $ or $ p\mid c $.
+
+The conjecture is what is left after deleting the word “prime”. That deletion looks harmless — the letter $ a $ still ranges over integers, the statement still parses — but it is doing all the work, and the counterexample locates the damage precisely.
+
+This is a common shape for a false conjecture, and it suggests a useful reflex when confronted with one: rather than hunting blindly, ask *what true statement is this a corruption of?* The hypothesis that was dropped tells you where to look. Here, dropping primality means looking at a composite, and the smallest composite prime power is $ 4 $.
+
+The same lemma, incidentally, is what makes unique factorisation work. Rings where Euclid's lemma fails for irreducible elements are exactly the rings where factorisation is not unique — in $ \mathbb{Z}[\sqrt{-5}] $, for instance, $ 2 $ is irreducible and divides $ 6 = (1+\sqrt{-5})(1-\sqrt{-5}) $ without dividing either factor, and correspondingly $ 6 = 2\cdot3 $ has a second factorisation. So the failure exhibited in this exercise, transplanted to a different ring, is not a curiosity but the precise obstruction to unique factorisation.

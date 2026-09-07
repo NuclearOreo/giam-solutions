@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 790" width="720" height="790" font-family="Georgia, serif">
+  <rect x="0" y="0" width="720" height="790" fill="#ffffff"/>
+
+  <rect x="18" y="14" width="684" height="76" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE THEOREM (true)</text>
+  <text x="430" y="33" font-size="13" fill="#1f3a68" text-anchor="middle">ac &lt; 0&#160; &#8658; &#160;ax&#178; + bx + c = 0 has two solutions</text>
+  <line x1="34" y1="44" x2="686" y2="44" stroke="#c3cee4"/>
+  <text x="34" y="63" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE CONVERSE (false)</text>
+  <text x="430" y="63" font-size="13" fill="#9b2c2c" text-anchor="middle" font-weight="bold">two solutions&#160; &#8658; &#160;ac &lt; 0</text>
+  <text x="430" y="81" font-size="11" fill="#555" text-anchor="middle" font-style="italic">so the implication cannot be upgraded to a biconditional</text>
+
+  <rect x="18" y="100" width="684" height="86" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.4"/>
+  <text x="34" y="120" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE COUNTEREXAMPLE</text>
+  <text x="360" y="150" font-size="17" fill="#9b2c2c" text-anchor="middle" font-weight="bold">x&#178; &#8722; 3x + 2 = (x &#8722; 1)(x &#8722; 2)</text>
+  <text x="360" y="174" font-size="12" fill="#333" text-anchor="middle">Two solutions, x = 1 and x = 2 &#8212; yet ac = 1 &#183; 2 = 2, which is not negative.</text>
+
+  <text x="34" y="216" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE WHOLE SITUATION IN ONE PLOT</text>
+  <text x="34" y="234" font-size="11" fill="#555">A quadratic has two real solutions exactly when b&#178; &#8722; 4ac &gt; 0, i.e. above the line b&#178; = 4ac.</text>
+
+  <text x="34" y="280" font-size="11" fill="#1f6b34" font-weight="bold">dark green:</text>
+  <text x="34" y="296" font-size="11" fill="#1f6b34">ac &lt; 0.</text>
+  <text x="34" y="312" font-size="11" fill="#1f6b34">All of it lies above</text>
+  <text x="34" y="328" font-size="11" fill="#1f6b34">the line, because</text>
+  <text x="34" y="344" font-size="11" fill="#1f6b34">b&#178; &#8805; 0 &gt; 4ac.</text>
+  <text x="34" y="344" font-size="11" fill="#1f6b34"></text>
+
+  <text x="34" y="376" font-size="11" fill="#3b5b9b" font-weight="bold">pale green:</text>
+  <text x="34" y="392" font-size="11" fill="#3b5b9b">also two solutions,</text>
+  <text x="34" y="408" font-size="11" fill="#3b5b9b">but ac &#8805; 0. Every</text>
+  <text x="34" y="424" font-size="11" fill="#3b5b9b">point here refutes</text>
+  <text x="34" y="440" font-size="11" fill="#3b5b9b">the converse.</text>
+
+  <text x="34" y="468" font-size="11" fill="#777" font-weight="bold">white below line:</text>
+  <text x="34" y="484" font-size="11" fill="#777">no real solutions.</text>
+
+  <rect x="240" y="240" width="420" height="250" fill="#fbfcfe" stroke="#dde3ee"/>
+  <polygon points="240.0,240.0 660.0,240.0 555.0,240.0 408.0,490.0 240.0,490.0" fill="#dff0e2"/>
+  <rect x="240.0" y="240.0" width="168.0" height="250.0" fill="#bfe0c9" opacity="0.75"/>
+  <line x1="408.0" y1="490.0" x2="555.0" y2="240.0" stroke="#1f6b34" stroke-width="2"/>
+  <line x1="408.0" y1="240" x2="408.0" y2="490" stroke="#888" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="559.2" y="250.7" font-size="10.5" fill="#1f6b34" font-weight="bold">b&#178; = 4ac</text>
+  <circle cx="492.0" cy="329.3" r="5" fill="#9b2c2c"/><text x="502.0" y="317.3" font-size="10.5" fill="#9b2c2c" font-weight="bold">x&#178; &#8722; 3x + 2</text><text x="502.0" y="330.3" font-size="9.5" fill="#9b2c2c">roots 1, 2</text><circle cx="408.0" cy="472.1" r="5" fill="#b06a10"/><text x="398.0" y="452.1" font-size="10.5" fill="#b06a10" text-anchor="end" font-weight="bold">x&#178; + x</text><text x="398.0" y="465.1" font-size="9.5" fill="#b06a10" text-anchor="end">roots 0, &#8722;1</text><circle cx="366.0" cy="490.0" r="5" fill="#1f6b34"/><text x="356.0" y="472.0" font-size="10.5" fill="#1f6b34" text-anchor="end" font-weight="bold">x&#178; &#8722; 1</text><text x="356.0" y="485.0" font-size="9.5" fill="#1f6b34" text-anchor="end">roots &#177;1</text><circle cx="450.0" cy="472.1" r="5" fill="#555"/><text x="462.0" y="486.1" font-size="10.5" fill="#555" font-weight="bold">x&#178; + x + 1</text><text x="462.0" y="499.1" font-size="9.5" fill="#555">no real roots</text>
+  <line x1="240.0" y1="490.0" x2="240.0" y2="495.0" stroke="#666"/><text x="240.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">-4</text><line x1="324.0" y1="490.0" x2="324.0" y2="495.0" stroke="#666"/><text x="324.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">-2</text><line x1="408.0" y1="490.0" x2="408.0" y2="495.0" stroke="#666"/><text x="408.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">0</text><line x1="492.0" y1="490.0" x2="492.0" y2="495.0" stroke="#666"/><text x="492.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">2</text><line x1="576.0" y1="490.0" x2="576.0" y2="495.0" stroke="#666"/><text x="576.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">4</text><line x1="660.0" y1="490.0" x2="660.0" y2="495.0" stroke="#666"/><text x="660.0" y="508.0" font-size="10" fill="#666" text-anchor="middle">6</text><line x1="240.0" y1="490.0" x2="235.0" y2="490.0" stroke="#666"/><text x="231.0" y="494.0" font-size="10" fill="#666" text-anchor="end">0</text><line x1="240.0" y1="418.6" x2="235.0" y2="418.6" stroke="#666"/><text x="231.0" y="422.6" font-size="10" fill="#666" text-anchor="end">4</text><line x1="240.0" y1="347.1" x2="235.0" y2="347.1" stroke="#666"/><text x="231.0" y="351.1" font-size="10" fill="#666" text-anchor="end">8</text><line x1="240.0" y1="275.7" x2="235.0" y2="275.7" stroke="#666"/><text x="231.0" y="279.7" font-size="10" fill="#666" text-anchor="end">12</text>
+  <text x="450.0" y="526.0" font-size="11.5" fill="#444" text-anchor="middle">ac</text>
+  <text x="208.0" y="365.0" font-size="11.5" fill="#444" text-anchor="middle" transform="rotate(-90 208.0 365.0)">b&#178;</text>
+
+  <rect x="18" y="542" width="684" height="104" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="562" font-size="11.5" fill="#b06a10" font-weight="bold">WHAT ac &lt; 0 ACTUALLY MEANS</text>
+  <text x="40" y="584" font-size="11.5" fill="#333">The product of the two roots is c/a, so ac &lt; 0 says exactly that <tspan font-style="italic">the roots have opposite signs</tspan> &#8212; verified</text>
+  <text x="40" y="602" font-size="11.5" fill="#333">over every a, b, c from &#8722;8 to 8. That is a real restriction: 1 and 2 are both positive.</text>
+  <text x="40" y="626" font-size="11.5" fill="#333">Geometrically, ac &lt; 0 means the parabola&#8217;s value at x = 0 has the opposite sign to its arms, so it must cross</text>
+  <text x="40" y="642" font-size="11.5" fill="#333">the axis once on each side of the origin. A parabola crossing twice on the same side is invisible to the test.</text>
+
+  <rect x="18" y="660" width="684" height="116" rx="6" fill="#fafbfd" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="680" font-size="11.5" fill="#3b5b9b" font-weight="bold">HOW MUCH THE TEST MISSES</text>
+  <text x="40" y="702" font-size="11.5" fill="#333">Among all integer triples with a &#8800; 0 and &#8722;8 &#8804; a, b, c &#8804; 8, exactly 2832 give two distinct real roots.</text>
+  <text x="40" y="720" font-size="11.5" fill="#333">Of those, 2176 satisfy ac &lt; 0 and 656 do not &#8212; so the sufficient condition catches about 77% of them.</text>
+  <text x="40" y="746" font-size="11.5" fill="#1f3a68" font-weight="bold">The correct biconditional replaces ac &lt; 0 by the discriminant:&#160;&#160; two solutions &#8660; b&#178; &#8722; 4ac &gt; 0.</text>
+  <text x="40" y="766" font-size="11" fill="#555" font-style="italic">ac &lt; 0 survives as a quick sign test needing no arithmetic; b&#178; &#8722; 4ac &gt; 0 is exact but must be computed.</text>
+</svg>
