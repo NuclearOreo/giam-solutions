@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 961" width="720" height="961" font-family="Georgia, serif">
+  <defs><marker id="k1" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+    <path d="M0,0 L7,3.2 L0,6.4 z" fill="#3b5b9b"/></marker></defs>
+  <rect x="0" y="0.0" width="720" height="933" fill="#ffffff"/>
+
+  <rect x="18" y="14.0" width="684" height="52" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33.0" font-size="11.5" fill="#3b5b9b" font-weight="bold">TO PROVE</text>
+  <text x="420" y="36.0" font-size="15" fill="#1f3a68" text-anchor="middle" font-weight="bold">n odd&#160; &#8658; &#160;n&#8308; &#8801; 1 (mod 16)</text>
+
+  <rect x="18" y="76.0" width="684" height="146" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="96.0" font-size="11.5" fill="#1f6b34" font-weight="bold">THE PROOF IN TWO STEPS &#8212; get to mod 8 first, then square</text>
+
+  <rect x="46" y="110.0" width="176" height="52" rx="5" fill="#ffffff" stroke="#9bb8a5"/>
+  <text x="134" y="130.0" font-size="12" fill="#333" text-anchor="middle">n = 2m + 1</text>
+  <text x="134" y="150.0" font-size="10.5" fill="#666" text-anchor="middle" font-style="italic">the definition of odd</text>
+
+  <path d="M228,136 L262,136" fill="none" stroke="#3b5b9b" stroke-width="1.4" marker-end="url(#k1)"/>
+
+  <rect x="268" y="110.0" width="196" height="52" rx="5" fill="#ffffff" stroke="#9bb8a5"/>
+  <text x="366" y="130.0" font-size="12" fill="#333" text-anchor="middle">n&#178; = 4m(m + 1) + 1 = 8j + 1</text>
+  <text x="366" y="150.0" font-size="10.5" fill="#666" text-anchor="middle" font-style="italic">m(m + 1) is even</text>
+
+  <path d="M470,136 L504,136" fill="none" stroke="#3b5b9b" stroke-width="1.4" marker-end="url(#k1)"/>
+
+  <rect x="510" y="110.0" width="164" height="52" rx="5" fill="#dff0e2" stroke="#1f6b34" stroke-width="1.5"/>
+  <text x="592" y="130.0" font-size="12" fill="#1f6b34" text-anchor="middle" font-weight="bold">n&#8308; = 16(4j&#178; + j) + 1</text>
+  <text x="592" y="150.0" font-size="10.5" fill="#1f6b34" text-anchor="middle" font-style="italic">so n&#8308; &#8801; 1 (mod 16)</text>
+
+  <text x="360" y="186.0" font-size="12" fill="#333" text-anchor="middle">Explicitly:&#160; n&#8308; = (8j + 1)&#178; = 64j&#178; + 16j + 1 = 16(4j&#178; + j) + 1.</text>
+  <text x="360" y="208.0" font-size="11" fill="#555" text-anchor="middle" font-style="italic">the only non-formal step is that m(m + 1) is even &#8212; consecutive integers, so one of them is</text>
+
+  <rect x="18" y="232.0" width="684" height="86" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="252.0" font-size="11.5" fill="#b06a10" font-weight="bold">THE SAME THING BY CASES, IF PREFERRED</text>
+  <text x="40" y="274.0" font-size="11.5" fill="#333">Every odd n is 4k + 1 or 4k + 3. In the first case n&#178; = 16k&#178; + 8k + 1 = 8(2k&#178; + k) + 1;</text>
+  <text x="40" y="292.0" font-size="11.5" fill="#333">in the second n&#178; = 16k&#178; + 24k + 9 = 8(2k&#178; + 3k + 1) + 1. Either way n&#178; &#8801; 1 (mod 8), and the rest is as above.</text>
+  <text x="40" y="312.0" font-size="10.5" fill="#555" font-style="italic">The two cases differ only in bookkeeping; neither needs the &#8220;consecutive integers&#8221; observation.</text>
+
+  <text x="60" y="350.0" font-size="11.5" fill="#3b5b9b" font-weight="bold">ALL EIGHT ODD RESIDUES, CHECKED</text>
+  <text x="660" y="350.0" font-size="10.5" fill="#555" text-anchor="end" font-style="italic">n&#178; mod 16 is 1 or 9; both square to 1</text>
+  <rect x="60" y="362.0" width="600" height="24" rx="3" fill="#eef2fa" stroke="#9fb2d4"/><text x="110" y="380.0" font-size="11.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">n mod 16</text><text x="250" y="380.0" font-size="11.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">n&#178; mod 8</text><text x="390" y="380.0" font-size="11.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">n&#178; mod 16</text><text x="530" y="380.0" font-size="11.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">n&#8308; mod 16</text><rect x="60" y="389.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="407.0" font-size="11.5" fill="#333" text-anchor="middle">1</text><text x="250" y="407.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="407.0" font-size="11.5" fill="#b06a10" text-anchor="middle">1</text><text x="530" y="407.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="416.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="434.0" font-size="11.5" fill="#333" text-anchor="middle">3</text><text x="250" y="434.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="434.0" font-size="11.5" fill="#b06a10" text-anchor="middle">9</text><text x="530" y="434.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="443.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="461.0" font-size="11.5" fill="#333" text-anchor="middle">5</text><text x="250" y="461.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="461.0" font-size="11.5" fill="#b06a10" text-anchor="middle">9</text><text x="530" y="461.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="470.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="488.0" font-size="11.5" fill="#333" text-anchor="middle">7</text><text x="250" y="488.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="488.0" font-size="11.5" fill="#b06a10" text-anchor="middle">1</text><text x="530" y="488.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="497.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="515.0" font-size="11.5" fill="#333" text-anchor="middle">9</text><text x="250" y="515.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="515.0" font-size="11.5" fill="#b06a10" text-anchor="middle">1</text><text x="530" y="515.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="524.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="542.0" font-size="11.5" fill="#333" text-anchor="middle">11</text><text x="250" y="542.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="542.0" font-size="11.5" fill="#b06a10" text-anchor="middle">9</text><text x="530" y="542.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="551.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="569.0" font-size="11.5" fill="#333" text-anchor="middle">13</text><text x="250" y="569.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="569.0" font-size="11.5" fill="#b06a10" text-anchor="middle">9</text><text x="530" y="569.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text><rect x="60" y="578.0" width="600" height="24" rx="3" fill="#fbfcfe" stroke="#e3e8f2"/><text x="110" y="596.0" font-size="11.5" fill="#333" text-anchor="middle">15</text><text x="250" y="596.0" font-size="11.5" fill="#1f6b34" text-anchor="middle">1</text><text x="390" y="596.0" font-size="11.5" fill="#b06a10" text-anchor="middle">1</text><text x="530" y="596.0" font-size="11.5" fill="#1f6b34" text-anchor="middle" font-weight="bold">1</text>
+
+  <rect x="18" y="641.0" width="684" height="90" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.3"/>
+  <text x="34" y="661.0" font-size="11.5" fill="#9b2c2c" font-weight="bold">16 IS THE LARGEST MODULUS THAT WORKS</text>
+  <text x="40" y="683.0" font-size="11.5" fill="#333">Mod 32 the statement fails immediately:&#160; 3&#8308; = 81 = 2&#183;32 + 17 &#8801; 17, not 1. Over all odd n, n&#8308; mod 32</text>
+  <text x="40" y="701.0" font-size="11.5" fill="#333">takes both values 1 and 17, so the exponent 4 cannot reach any higher power of two.</text>
+  <text x="40" y="723.0" font-size="11" fill="#555" font-style="italic">Nor is the exponent wasteful: n&#178; &#8801; 9 (mod 16) for n = 3, so squaring once is genuinely not enough.</text>
+
+  <rect x="18" y="745.0" width="684" height="106" rx="6" fill="#fafbfd" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="765.0" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE PATTERN IT BELONGS TO</text>
+  <text x="360" y="791.0" font-size="14" fill="#1f3a68" text-anchor="middle" font-weight="bold">n odd&#160; &#8658; &#160;n^(2&#7503;) &#8801; 1&#160; (mod 2&#7503;&#8314;&#178;)</text>
+  <text x="40" y="815.0" font-size="11.5" fill="#333">k = 1 gives n&#178; &#8801; 1 (mod 8); k = 2 is this problem; k = 3 gives n&#8312; &#8801; 1 (mod 32). Verified for k up to 6,</text>
+  <text x="40" y="833.0" font-size="11.5" fill="#333">and sharp at every stage &#8212; each one fails at the next power of two.</text>
+
+  <rect x="18" y="865.0" width="684" height="80" rx="6" fill="#f7f7f9" stroke="#888" stroke-width="1.2"/>
+  <text x="34" y="885.0" font-size="11.5" fill="#3b5b9b" font-weight="bold">WHY 4 AND NOT 8</text>
+  <text x="40" y="907.0" font-size="11.5" fill="#333">Euler&#8217;s theorem gives only n&#966;&#8317;&#185;&#8310;&#8318; = n&#8312; &#8801; 1 (mod 16). The theorem here is twice as strong, because the group</text>
+  <text x="40" y="925.0" font-size="11.5" fill="#333">of units mod 16 has order 8 but exponent 4: the element orders are 1, 2, 2, 2, 4, 4, 4, 4.</text>
+</svg>

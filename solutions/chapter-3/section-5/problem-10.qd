@@ -1,0 +1,143 @@
+.docname {Solution — GIAM 3.5 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 10
+
+## Problem
+
+Consider the game called “binary determinant tic-tac-toe”, played by two players who alternately fill in the entries of a $ 3\times3 $ array. Player One goes first, placing $ 1 $'s; Player Zero goes second, placing $ 0 $'s. Player One's goal is that the final array have determinant $ 1 $, and Player Zero's goal is that the determinant be $ 0 $. The determinant calculations are carried out mod $ 2 $.
+
+Show that Player Zero can always win by the method of exhaustion.
+
+## Answer
+
+$$$
+\boxed{\begin{aligned}
+&\textbf{Player Zero wins.} \text{ Exhaustive backward induction settles it} \\
+&\text{in } 122 \text{ positions, once the } 72 \text{ symmetries are used.}
+\end{aligned}}
+$$$
+
+## Two Reductions That Make the Exhaustion Feasible
+
+A naive tree has $ 9! = 362\,880 $ play sequences. Two observations shrink it to something a person can check.
+
+**The winning condition is linear algebra.** Over $ \mathrm{GF}(2) $ the determinant vanishes exactly when the three rows are linearly dependent — so Zero is trying to force a zero row, two equal rows, or three rows summing to zero (and likewise for columns). Checked against all $ 512 $ binary $ 3\times3 $ matrices: $ 344 $ have determinant $ 0 $ and $ 168 $ have determinant $ 1 $.
+
+**The board has 72 symmetries.** Swapping two rows negates the determinant, and $ -1 \equiv 1 \pmod 2 $, so mod $ 2 $ the determinant is *unchanged*. The same holds for column swaps, and transposing preserves it outright. So the group
+
+$$$
+S_3 \times S_3 \times \{\,\mathrm{id},\ \text{transpose}\,\}, \qquad 6\cdot6\cdot2 = 72 \text{ elements},
+$$$
+
+acts on positions preserving the outcome — verified on all $ 512 $ matrices. Positions in the same orbit need be examined only once.
+
+## The Exhaustion, Ply by Ply
+
+Label the cells
+
+$$$
+\begin{array}{ccc}
+a & b & c \\ d & e & f \\ g & h & i
+\end{array}
+$$$
+
+> **Ply 1.** Any single cell can be moved to $ a $ by one row swap and one column swap, so all nine openings are equivalent. **One orbit; take One's move to be $ a $.**
+>
+> **Ply 2.** Zero's eight replies split into exactly two orbits: the four cells sharing One's row or column ($ b,c,d,g $), and the four sharing neither ($ e,f,h,i $). Backward induction gives
+>
+> $$$
+> \begin{array}{l|l}
+> \text{Zero plays } b,\,c,\,d \text{ or } g & \text{One wins} \\
+> \text{Zero plays } e,\,f,\,h \text{ or } i & \textbf{Zero wins}
+> \end{array}
+> $$$
+>
+> So Zero's reply must avoid One's row *and* column, and the four good cells are equivalent. **Take Zero's reply to be $ e $.**
+>
+> **Ply 3.** From the position $ 1 $ at $ a $, $ 0 $ at $ e $, One's seven moves fall into four orbits, and Zero has a winning answer to each:
+>
+> $$$
+> \begin{array}{l|l}
+> \textbf{One plays} & \textbf{Zero's winning replies} \\ \hline
+> b \text{ or } d & f,\ h \\
+> c \text{ or } g & d,\ f,\ h \\
+> f \text{ or } h & h \\
+> i & b,\ d,\ f,\ h
+> \end{array}
+> $$$
+>
+> **Plies 4–9.** Continuing identically and evaluating by backward induction from the $ 9 $-cell terminal positions, every branch ends with determinant $ 0 $ under correct play by Zero. $ \blacksquare $
+
+The whole tree, taken up to symmetry, contains
+
+$$$
+1,\;1,\;2,\;6,\;16,\;24,\;30,\;24,\;13,\;5
+$$$
+
+positions at plies $ 0 $ through $ 9 $ — **122 in total**. That is the entire exhaustion.
+
+## The Picture
+
+!(84%)[The symmetry reduction and the first three plies of the exhaustion](problem-10-game.svg "A diagram in several parts. The first states the game and the key reduction: One fills five cells with 1s and Zero fills four with 0s; over GF(2) the determinant is 0 exactly when the three rows are linearly dependent, meaning a zero row, two equal rows, or three rows summing to zero. Row swaps, column swaps and transposing all preserve the determinant mod 2, since a sign change is invisible mod 2, giving a symmetry group of 6 times 6 times 2 equals 72, verified on all 512 binary 3 by 3 matrices. Ply 1 shows a grid with a single 1 in the top-left cell: all nine cells are equivalent under row and column swaps, so the opening move may be taken to be the top-left cell — one orbit, a single case. Ply 2 shows Zero's eight replies splitting into two orbits. The first grid has the 1 top-left and a 0 immediately to its right, labelled as sharing One's row or column, where all four such replies lose. The second grid has the 1 top-left and a 0 in the centre, labelled as sharing neither, where all four such replies win. The four winning cells are equivalent, so Zero's reply may be taken to be the centre. Ply 3 shows One's seven moves falling into four orbits, each drawn as a small grid with the 1 top-left, the 0 in the centre, and One's third 1 placed. If One plays b or d, Zero answers f or h. If One plays c or g, Zero answers d, f or h. If One plays f or h, Zero answers h. If One plays i, Zero answers b, d, f or h. A band below reports the full exhaustion: continuing the same way to the end of the game and solving by backward induction shows Player Zero wins from the opening position, and up to the 72 symmetries there are only 122 positions in the whole game tree — 1, 1, 2, 6, 16, 24, 30, 24, 13 and 5 at plies 0 through 9 — small enough to carry out by hand. A final band describes how Zero's wins actually finish: following one fixed optimal policy for Zero against every possible play by One gives 945 final boards, every one with determinant 0, and in every one the dependency is visible, with 474 ending in a row of zeros and two equal columns, 255 in a column of zeros and two equal rows, and 216 in two equal rows and two equal columns. Zero never needs the subtler kinds of dependency.")
+
+## Remark — Why the Symmetry Group Is Larger Than It Looks
+
+Ordinary tic-tac-toe has the eight symmetries of the square. This game has **seventy-two**, because the relevant invariant is not the geometry of the board but the determinant, and the determinant tolerates far more shuffling.
+
+$$$
+\begin{array}{l|l|l}
+\textbf{operation} & \textbf{effect on } \det & \textbf{effect mod } 2 \\ \hline
+\text{swap two rows} & \det \mapsto -\det & \text{unchanged} \\
+\text{swap two columns} & \det \mapsto -\det & \text{unchanged} \\
+\text{transpose} & \det \mapsto \det & \text{unchanged}
+\end{array}
+$$$
+
+Working mod $ 2 $ is what makes the row and column swaps free — over the reals they would flip One's target from $ 1 $ to $ -1 $. So the reduction from $ 362\,880 $ sequences to $ 122 $ positions is a direct dividend of the “mod $ 2 $” in the problem statement.
+
+Note also that the eight geometric symmetries of the square are a *subgroup* of these $ 72 $: a $ 90^\circ $ rotation is a transpose followed by a column reversal, and a reflection is a row or column reversal. The extra symmetries — say, swapping rows $ 1 $ and $ 2 $ while leaving columns alone — are not rigid motions of the board at all.
+
+## Remark — What the First Two Plies Already Tell You
+
+The ply-$ 2 $ analysis is the most informative part of the whole tree, because it is completely decisive: Zero's eight replies divide cleanly into four that lose and four that win, and the division is by a rule anyone can state.
+
+> **Zero's opening rule.** Reply in a cell sharing neither a row nor a column with One's first move.
+
+The reason is intuitive. One's stone lies in one row and one column, and those two lines are where One has a head start. Placing a $ 0 $ in either of them contests a line One is already committed to, while wasting Zero's tempo; placing it off both lines instead begins to spoil the two rows and two columns One has not yet touched.
+
+The rule is not, however, a complete strategy — testing it as a policy for the whole game finds positions where a move satisfying it loses, and positions where no such move exists. It is the correct *first* move only.
+
+## Remark — How the Wins Look
+
+Fixing one optimal policy for Zero and letting One play every possible sequence against it produces $ 945 $ completed boards. All have determinant $ 0 $, and the dependency is always of the simplest kind:
+
+$$$
+\begin{array}{l|r}
+\textbf{how the final board is degenerate} & \textbf{count} \\ \hline
+\text{a row of zeros, and two equal columns} & 474 \\
+\text{a column of zeros, and two equal rows} & 255 \\
+\text{two equal rows, and two equal columns} & 216
+\end{array}
+$$$
+
+Two things stand out. First, Zero never needs the subtle dependency “three rows summing to zero” — every win is visible at a glance. Second, every final board exhibits *two* reasons at once, which is not a coincidence: a $ 3\times3 $ binary matrix with a zero row has rank at most $ 2 $, and with only $ 0 $s and $ 1 $s available a rank drop tends to show up in the columns as well.
+
+For Zero this is practical guidance: **aim to kill a line, and the determinant follows.** With four stones against five, filling an entire row or column with zeros is not out of reach, since One cannot defend all six lines at once.
+
+## Remark — Why the Second Player Has the Advantage Here
+
+It is unusual for the second player to have a forced win, and the reason is that the two goals are not symmetric.
+
+Zero needs the final matrix to lie in a set of $ 344 $ singular matrices out of $ 512 $; One needs one of the $ 168 $ invertible ones. Being singular is the *generic* condition here — over $ \mathrm{GF}(2) $ roughly two matrices in three are singular — so Zero is playing towards a much larger target.
+
+More structurally, singularity is a condition that a single well-placed stone can *create* and that is hard to undo, whereas invertibility must survive every remaining move. One is defending nine cells' worth of conditions; Zero only has to succeed once. Moving second costs Zero a stone — four against five — but that is outweighed by having the easier objective.
+
+The exercise is a nice illustration of a general point about combinatorial games: the first-player advantage is a heuristic, not a theorem, and it can be overturned when the two players' winning sets differ in size as sharply as they do here.

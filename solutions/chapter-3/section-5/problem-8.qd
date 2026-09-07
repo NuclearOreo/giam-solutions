@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 3.5 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 8
+
+## Problem
+
+Show that there are exactly $ 15 $ numbers $ x $ in the range $ 1 \le x \le 100 $ that can't be represented using fewer than $ 4 $ squares.
+
+## Answer
+
+$$$
+\boxed{\;7,\;15,\;23,\;28,\;31,\;39,\;47,\;55,\;60,\;63,\;71,\;79,\;87,\;92,\;95 .\;}
+$$$
+
+## The Characterisation
+
+By **Legendre's three-square theorem**, a positive integer fails to be a sum of three squares exactly when it has the form
+
+$$$
+4^{a}(8b+7), \qquad a,b \ge 0 \text{ integers.}
+$$$
+
+Since Lagrange's theorem guarantees four squares always suffice, these are precisely the numbers requiring all four. Counting those below $ 101 $ is then a short case analysis on $ a $.
+
+## The Count
+
+> **Case $ a = 0 $.** We need $ 8b+7 \le 100 $, i.e. $ 8b \le 93 $, i.e. $ b \le 11 $. With $ b = 0,1,\dots,11 $ this gives **twelve** numbers:
+>
+> $ 7,\; 15,\; 23,\; 31,\; 39,\; 47,\; 55,\; 63,\; 71,\; 79,\; 87,\; 95 . $
+>
+> **Case $ a = 1 $.** We need $ 4(8b+7)\le100 $, i.e. $ 8b+7 \le 25 $, so $ 8b+7 \in\{7,15,23\} $. This gives **three** numbers:
+>
+> $ 28 = 4\cdot7, \qquad 60 = 4\cdot15, \qquad 92 = 4\cdot23 . $
+>
+> **Case $ a \ge 2 $.** We would need $ 16(8b+7)\le100 $, i.e. $ 8b+7 \le 6.25 $. But $ 8b+7\ge7 $ for every $ b\ge0 $, so there is **nothing** here.
+>
+> The cases are exhaustive and produce distinct numbers, so the total is $ 12+3 = 15 $. $ \blacksquare $
+
+The two families are disjoint because the $ a=0 $ numbers are odd and the $ a=1 $ numbers are multiples of $ 4 $.
+
+## Independent Verification
+
+Computing the minimum number of squares directly for each $ n $ from $ 1 $ to $ 100 $ — by searching all multisets of squares of size $ 1 $, $ 2 $ and $ 3 $ — returns exactly the fifteen numbers listed, with no discrepancy against the Legendre form.
+
+## The Picture
+
+Marking the fifteen on a hundred-square shows the two families at a glance: a regular red stripe every eight, and three amber cells sitting at four times the first three red ones.
+
+!(80%)[The fifteen numbers marked in a hundred-square, coloured by which case produces them](problem-8-fifteen.svg "A diagram in four parts. The first states what is to be shown: exactly 15 numbers in the range 1 to 100 need four squares. By Legendre's three-square theorem these are precisely the numbers of the form 4 to the a times the quantity 8b plus 7, and counting them is a two-case split on a, since a equals 2 already forces the number above 100. The second band gives the count by cases. For a equal to 0, the condition 8b plus 7 at most 100 means b at most 11, giving twelve numbers: 7, 15, 23, 31, 39, 47, 55, 63, 71, 79, 87 and 95. For a equal to 1, the condition 4 times the quantity 8b plus 7 at most 100 means 8b plus 7 at most 25, so 8b plus 7 is 7, 15 or 23, giving three numbers: 28 equals 4 times 7, 60 equals 4 times 15, and 92 equals 4 times 23. For a at least 2 one would need 16 times the quantity 8b plus 7 at most 100, that is 8b plus 7 at most 6, which is impossible. The total is 12 plus 3 equals 15. The centre is a ten-by-ten grid of the numbers 1 through 100. Twelve cells are red, marking the numbers congruent to 7 mod 8, one every eight; three cells are amber, marking 28, 60 and 92, one every 32; the remaining eighty-five are grey, needing three squares or fewer. A band below explains why these two shapes and nothing else. Squares are 0, 1 or 4 mod 8, and three of them can never total 7 mod 8, which rules out every number of the form 8b plus 7. For the factor 4 to the a, squares are 0 or 1 mod 4, so a sum of three squares congruent to 0 mod 4 forces all three to be even; halving each shows that if 4n is a sum of three squares then so is n, and conversely, so the property passes up and down the chain n, 4n, 16n unchanged. The numbers 28, 60 and 92 are exactly 4 times the first three red entries 7, 15 and 23, visible as the amber cells in the grid. The final band records the checks: computing the minimum number of squares directly for every n from 1 to 100 returns exactly this list of fifteen, matching the Legendre form with no discrepancy. The density is 15 out of 100, or 15 percent, close to the asymptotic value one eighth plus one thirty-second plus one one-hundred-twenty-eighth and so on, which sums to one sixth, about 16.7 percent. The smallest entry is 7 and the second is 15, the number treated by hand in the previous problem.")
+
+## Remark — Where the Case Split Comes From
+
+The problem looks like it might require checking a hundred numbers. It does not, because Legendre's condition is a statement about a *shape*, and shapes can be counted rather than enumerated.
+
+The exponent $ a $ is the natural thing to case on, for two reasons. First, each choice of $ a $ turns the condition into a plain inequality in $ b $, which is immediate to solve. Second, the cases terminate quickly: multiplying by $ 4 $ each time, the smallest member of family $ a $ is $ 7\cdot4^a $, and
+
+$$$
+7,\; 28,\; 112 ,
+$$$
+
+so $ a=2 $ overshoots $ 100 $ before $ b $ even leaves zero. Three cases, two of them productive.
+
+This is a different flavour of case analysis from the previous problem. There the cases were the individual candidates and had to be checked one at a time; here each case is an infinite family cut down by an inequality. Both are exhaustive; only one is short.
+
+## Remark — Why $ 4^a(8b+7) $, in Two Halves
+
+The characterisation being used has an easy direction and a hard one, and it is worth separating them.
+
+**The easy half (these numbers do need four squares).** Two observations suffice.
+
+> **Mod 8.** Every square is $ 0 $, $ 1 $ or $ 4 $ mod $ 8 $, and adding three of those can produce any residue except $ 7 $. So no $ 8b+7 $ is a sum of three squares — this is the argument from Problem 7.
+>
+> **The factor $ 4^a $.** Squares are $ 0 $ or $ 1 $ mod $ 4 $. If $ a^2+b^2+c^2 \equiv 0 \pmod 4 $ then the number of odd terms among the three must be $ 0 $, since one, two or three odd squares give $ 1 $, $ 2 $ or $ 3 $ mod $ 4 $. So all three are even, and halving each shows
+>
+> $ 4n \text{ is a sum of three squares} \iff n \text{ is.} $
+>
+> Iterating, $ 4^a m $ is a sum of three squares exactly when $ m $ is — so the $ 4^a $ factor is invisible to the question, and $ 4^a(8b+7) $ fails for the same reason $ 8b+7 $ does.
+
+Both halves were verified: the mod-$ 4 $ enumeration confirms $ (0,0,0) $ is the only pattern summing to $ 0 $.
+
+**The hard half (every other number needs at most three).** That is Legendre's theorem proper, proved in 1797–98 using the theory of ternary quadratic forms. Nothing elementary is known. Fortunately the problem only needs the count, and the fifteen were confirmed independently by direct search — so the answer here does not rest on the unproved direction.
+
+## Remark — The Two Families in the Grid
+
+The picture makes the arithmetic visible. The $ a=0 $ family is an arithmetic progression of common difference $ 8 $:
+
+$$$
+7,\;15,\;23,\;31,\;\dots,\;95 ,
+$$$
+
+which in a $ 10\times10 $ grid drifts steadily leftward two columns per row, since $ 8 \equiv -2 \pmod{10} $. The $ a=1 $ family is $ 28, 60, 92 $ — spacing $ 32 $ — and each is exactly $ 4 $ times one of the first three red entries.
+
+Note that the two families never collide: $ 8b+7 $ is always odd while $ 4(8b+7) $ is a multiple of four. That disjointness is what makes the count a clean $ 12+3 $ rather than an inclusion–exclusion.
+
+## Remark — How Typical Is Fifteen Out of a Hundred?
+
+The fifteen numbers are $ 15\% $ of the range. Asymptotically the density of numbers requiring four squares is
+
+$$$
+\underbrace{\frac18}_{a=0} + \underbrace{\frac{1}{32}}_{a=1} + \underbrace{\frac{1}{128}}_{a=2} + \cdots = \frac{1/8}{1-1/4} = \frac16 \approx 16.7\% ,
+$$$
+
+each term being the density of $ 4^a(8b+7) $, namely $ \frac{1}{8\cdot4^a} $. The observed $ 15\% $ falls slightly short because the range is small: only two of the infinitely many families appear at all, and the $ a=1 $ family contributes just three of its eventual share.
+
+Extending the count confirms the drift upward — of the first $ 299 $ positive integers, $ 48 $ require four squares, or $ 16.05\% $.
+
+One final note tying the section together. The number $ 15 $ appears twice in these two exercises, in unrelated roles: as the integer analysed in Problem 7, and as the *count* here. The coincidence is genuine — nothing connects them beyond both being small.

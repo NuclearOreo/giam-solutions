@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 3.5 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 6
+
+## Problem
+
+A *vampire number* is a $ 2n $-digit number $ v $ that factors as $ v = xy $, where $ x $ and $ y $ are $ n $-digit numbers and the digits of $ v $ are the union of the digits in $ x $ and $ y $ in some order. The numbers $ x $ and $ y $ are the “fangs” of $ v $. To eliminate trivial cases, pairs of trailing zeros are disallowed.
+
+- Show that there are no $ 2 $-digit vampire numbers.
+- Show that there are seven $ 4 $-digit vampire numbers.
+
+## Answer
+
+$$$
+\boxed{\begin{aligned}
+&\text{No } 2\text{-digit ones: } y = 10x/(x-1) \text{ is never a digit.} \\
+&\text{Seven } 4\text{-digit ones: } 1260,\,1395,\,1435,\,1530,\,1827,\,2187,\,6880 .
+\end{aligned}}
+$$$
+
+## Part One: No 2-Digit Vampire Numbers
+
+Here $ n=1 $, so the fangs $ x $ and $ y $ are single digits and $ v $ is a two-digit number whose digits are $ x $ and $ y $.
+
+Neither fang can be $ 0 $, since that would make $ v = 0 $. So $ 1\le x,y\le9 $.
+
+> **Theorem.** There is no $ 2 $-digit vampire number.
+>
+> **Proof.** Suppose $ v = xy $ is one. Its two digits are $ x $ and $ y $, so either $ v = 10x+y $ or $ v = 10y+x $. The product $ xy $ is symmetric in $ x $ and $ y $, so these two possibilities differ only by which fang we call $ x $; **without loss of generality** assume
+>
+> $ v = 10x + y = xy . $
+>
+> If $ x=1 $ this reads $ 10+y=y $, which is impossible. So assume $ x\ge2 $ and rearrange:
+>
+> $ 10x = xy - y = y(x-1), \qquad\text{hence}\qquad y = \dfrac{10x}{x-1} . $
+>
+> Since $ y $ is an integer, $ x-1 $ divides $ 10x $. But $ \gcd(x-1,\,x)=1 $, so $ x-1 $ divides $ 10 $, giving
+>
+> $ x-1 \in \{1,2,5,10\}, \qquad x \in \{2,3,6,11\} . $
+>
+> As $ x $ is a digit, only $ x\in\{2,3,6\} $ survive. Checking each:
+>
+> $ x=2 \Rightarrow y = \tfrac{20}{1} = 20, \qquad x=3 \Rightarrow y = \tfrac{30}{2} = 15, \qquad x=6 \Rightarrow y = \tfrac{60}{5} = 12 . $
+>
+> None of these is a single digit, so every case fails and no such $ v $ exists. $ \blacksquare $
+
+Confirmed independently by testing all $ 81 $ products of two digits.
+
+## Part Two: Exactly Seven 4-Digit Vampire Numbers
+
+Now $ n=2 $, so $ 10\le x,y\le99 $ and $ 1000\le v\le9999 $. Taking $ x\le y $ to avoid counting each pair twice, there are $ \binom{90}{2}+90 = 4095 $ candidate pairs — a finite check. Testing each for the digit condition and discarding pairs where **both** fangs end in $ 0 $ yields exactly seven values of $ v $:
+
+$$$
+\begin{array}{c|c|l}
+v & \textbf{fangs} & \textbf{digit check} \\ \hline
+1260 & 21\times 60 & \{0,1,2,6\} = \{2,1\}\cup\{6,0\} \\
+1395 & 15\times 93 & \{1,3,5,9\} = \{1,5\}\cup\{9,3\} \\
+1435 & 35\times 41 & \{1,3,4,5\} = \{3,5\}\cup\{4,1\} \\
+1530 & 30\times 51 & \{0,1,3,5\} = \{3,0\}\cup\{5,1\} \\
+1827 & 21\times 87 & \{1,2,7,8\} = \{2,1\}\cup\{8,7\} \\
+2187 & 27\times 81 & \{1,2,7,8\} = \{2,7\}\cup\{8,1\} \\
+6880 & 80\times 86 & \{0,6,8,8\} = \{8,0\}\cup\{8,6\}
+\end{array}
+$$$
+
+Each row can be checked by hand: multiply the fangs, then compare the digit multisets. For instance $ 21\times60 = 1260 $, and the digits $ 2,1,6,0 $ of the fangs rearrange to $ 1,2,6,0 $. $ \blacksquare $
+
+## The Picture
+
+!(86%)[The two-digit impossibility argument and the complete list of four-digit vampire numbers](problem-6-vampire.svg "A diagram in four parts. The first states the definition: a 2n-digit number v is a vampire number if v equals x times y with x and y each n digits, and the digits of v are exactly the digits of x together with those of y, rearranged; pairs of fangs both ending in 0 are disallowed. The second part treats Part One, that there are no 2-digit vampire numbers. Here x and y are single digits, so v has digits x and y in one of the two orders; since the product xy is symmetric, the two orders differ only by renaming, and we may assume without loss of generality that 10x plus y equals xy, which gives 10x equals y times x minus 1, so y equals 10x over x minus 1. Since the greatest common divisor of x minus 1 and x is 1, the factor x minus 1 must divide 10, so x minus 1 lies in the set 1, 2, 5, 10 and x lies in 2, 3, 6, 11. Only x at most 9 is allowed, leaving three cases, with x equals 1 handled separately since 10 plus y equals y is absurd. The three cases give x equals 2 with y equals 20, x equals 3 with y equals 15, and x equals 6 with y equals 12. None of these y is a single digit, so no 2-digit vampire number exists, confirmed by checking all 81 products of two digits. The third part is Part Two, exactly seven 4-digit vampire numbers, found from all pairs with x at most y between 10 and 99. A table lists each with its fangs, the digits of v, and the digits of x and y: 1260 equals 21 times 60; 1395 equals 15 times 93; 1435 equals 35 times 41; 1530 equals 30 times 51; 1827 equals 21 times 87; 2187 equals 27 times 81; and 6880 equals 80 times 86. In every row the two digit lists agree. The final band gives three things worth noticing. First, the trailing-zero rule changes nothing here, because fangs 10a and 10b give 100ab, whose digits are those of ab plus two zeros, so it would need ab to be a 2-digit vampire, and Part One says there are none. Second, a single trailing zero is fine, as in 1260 equals 21 times 60 and 1530 equals 30 times 51. Third, each of the seven has exactly one fang pair; ambiguity starts later, since 125460 equals 204 times 615 and also 246 times 510.")
+
+## Remark — The WLOG Is Doing Real Work
+
+Part One is a textbook use of the section's second technique. The two-digit number $ v $ could be $ 10x+y $ or $ 10y+x $, and at first sight both must be examined. The WLOG collapses them into one because of a genuine symmetry:
+
+$$$
+\text{the hypothesis } v = xy \text{ is symmetric in } x \text{ and } y ,
+$$$
+
+so swapping the labels turns any solution of $ v = 10y+x $ into a solution of $ v = 10x+y $ with the names exchanged. Since we are asking only whether a solution *exists*, the relabelled version is just as good.
+
+It is worth stating the check one should always perform before writing “WLOG”: **is the situation genuinely unchanged by the relabelling?** Here it is, because the constraint set — “$ x,y $ are digits” and “$ v=xy $” — is invariant under the swap. Had the problem said something asymmetric, such as $ x < y $, the WLOG would have been illegitimate and both cases would need separate treatment.
+
+## Remark — Why $ x-1 $ Divides $ 10 $
+
+The step from $ y = \frac{10x}{x-1} $ to “$ x-1 $ divides $ 10 $” deserves a second look, since it is where an infinite-looking search becomes four cases.
+
+Because $ y $ is an integer, $ (x-1)\mid 10x $. Now $ x $ and $ x-1 $ are consecutive, hence coprime, so $ x-1 $ shares no factor with $ x $ and must divide the remaining factor $ 10 $. Equivalently, write
+
+$$$
+\frac{10x}{x-1} = \frac{10(x-1)+10}{x-1} = 10 + \frac{10}{x-1} ,
+$$$
+
+which is an integer exactly when $ x-1 \mid 10 $. This second form also shows immediately that $ y = 10 + \frac{10}{x-1} > 10 $ for every $ x \ge 2 $ — so $ y $ can *never* be a digit, and the three cases are not even needed. The theorem could be stated in one line: for $ x\ge2 $ the required $ y $ exceeds $ 10 $, and $ x=1 $ is absurd.
+
+Both routes are legitimate; the case version is more in the spirit of the section, and the inequality version shows why the cases were always going to fail.
+
+## Remark — The Trailing-Zero Rule Is Vacuous at This Size
+
+The definition excludes fangs that both end in $ 0 $, and it is natural to ask what that rule is doing. At $ n=2 $ it is doing nothing at all.
+
+Suppose both fangs end in zero: $ x = 10a $ and $ y = 10b $ with $ a,b $ digits. Then
+
+$$$
+v = 100ab ,
+$$$
+
+so the digits of $ v $ are the digits of $ ab $ followed by two zeros, while the digits of the fangs are $ \{a,0,b,0\} $. Matching them requires $ ab $ to be a two-digit number with digits $ a $ and $ b $ — that is, a **2-digit vampire number**. Part One says there is none, so no such $ v $ exists and the rule excludes nothing. Running the search with and without the rule returns the same seven numbers, confirming this.
+
+The rule earns its keep at larger sizes, where it prevents inflating any vampire number into a longer one by appending zeros to both fangs. Note also that a *single* trailing zero is perfectly acceptable, and two of the seven use one: $ 1260 = 21\times60 $ and $ 1530 = 30\times51 $.
+
+## Remark — What Happens Next
+
+The seven $ 4 $-digit examples are the complete beginning of a sparse and irregular sequence. Extending the same search:
+
+$$$
+\begin{array}{c|c|c}
+\text{digits } 2n & \textbf{vampire numbers} & \textbf{density} \\ \hline
+2 & 0 & 0 \\
+4 & 7 & 7/9000 \approx 0.08\% \\
+6 & 148 & 148/900000 \approx 0.016\%
+\end{array}
+$$$
+
+Both counts were computed directly. So they thin out sharply — unsurprising, since the digit condition is a strong coincidence and products of $ n $-digit numbers spread over a range far larger than the supply of matching digit patterns.
+
+Two further observations from the $ 6 $-digit data. All seven $ 4 $-digit vampires have a *unique* fang pair, but ambiguity appears at six digits: $ 125460 = 204\times615 = 246\times510 $ is the only one below a million with two decompositions. And $ 1260 $, the first entry in the table, is the smallest vampire number of any size — the example Clifford Pickover used when he introduced the notion in 1994.
+
+There is no known formula or characterisation; the sequence is defined by a digit coincidence rather than by arithmetic structure, so exhaustive search remains the only way to produce it. That makes this problem a fair illustration of a case analysis whose cases simply have to be checked — with Part One showing what it looks like when the cases can be reduced to three by algebra first.

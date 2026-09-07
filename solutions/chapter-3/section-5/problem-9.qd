@@ -1,0 +1,120 @@
+.docname {Solution — GIAM 3.5 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 9
+
+## Problem
+
+The *trichotomy property* of the real numbers states that every real number is either positive or negative or zero. Trichotomy can be used to prove many statements by looking at the three cases that it guarantees. Develop a proof (by cases) that the square of any real number is non-negative.
+
+## Answer
+
+$$$
+\boxed{\;\text{Split on } x=0,\; x>0,\; x<0 \text{; the last reduces to the second via } x^2 = (-x)(-x) .\;}
+$$$
+
+## What Is Being Assumed
+
+Two order axioms of $ \mathbb{R} $ are used, together with one purely algebraic identity:
+
+- **(T) Trichotomy.** For every real $ x $, exactly one of $ x>0 $, $ x=0 $, $ x<0 $ holds.
+- **(P) Closure of the positives.** If $ a>0 $ and $ b>0 $ then $ ab>0 $.
+- **(N)** $ (-a)(-b) = ab $ for all reals $ a,b $.
+
+Fact (N) is not an order property at all; it follows from distributivity. Since $ (-a)b + ab = (-a+a)b = 0\cdot b = 0 $, we get $ (-a)b = -(ab) $, and then $ (-a)(-b) = -\bigl(a(-b)\bigr) = -\bigl(-(ab)\bigr) = ab $. This was checked on all integer pairs in $ [-30,30] $.
+
+## Proof
+
+> **Theorem.** For every real number $ x $, $ x^2 \ge 0 $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen real number. By trichotomy (T), exactly one of the following holds.
+>
+> **Case 1: $ x = 0 $.** Then $ x^2 = 0\cdot 0 = 0 $, and $ 0\ge0 $. So $ x^2\ge0 $.
+>
+> **Case 2: $ x > 0 $.** Applying (P) with $ a=b=x $ gives $ x\cdot x > 0 $, that is $ x^2>0 $. Since $ x^2>0 $ implies $ x^2\ge0 $, we are done.
+>
+> **Case 3: $ x < 0 $.** Then $ -x > 0 $. Applying (P) with $ a=b=-x $ gives $ (-x)(-x) > 0 $. By (N), $ (-x)(-x) = x\cdot x = x^2 $, so $ x^2 > 0 $ and hence $ x^2\ge0 $.
+>
+> The three cases are exhaustive by trichotomy, so $ x^2\ge0 $ in every case. As $ x $ was arbitrary, the result holds for all real $ x $. $ \blacksquare $
+
+## The Picture
+
+Trichotomy partitions the line into three pieces, and the proof simply visits each.
+
+!(84%)[The three regions of the number line and the argument in each](problem-9-trichotomy.svg "A diagram in several parts. The first states what is to be proved: x squared is at least 0 for every real x. Trichotomy says every real is positive, negative, or zero — three possibilities, exactly one of which holds — which is precisely a ready-made case split, since proving the statement in each covers the whole real line. A number line follows, shaded red to the left of the origin and green to the right, with an amber dot at 0. The left region is labelled x less than 0, Case 3; the origin is labelled x equals 0, Case 1; and the right region is labelled x greater than 0, Case 2. Three boxes give the arguments. Case 1, x equals 0: x squared equals 0 times 0 equals 0, and 0 is at least 0, so x squared is at least 0; this uses nothing but 0 times 0 equals 0. Case 2, x greater than 0: a product of two positives is positive, so x squared equals x times x is greater than 0, hence at least 0; this uses the closure axiom. Case 3, x less than 0: then minus x is greater than 0, and x squared equals minus x times minus x, which is greater than 0 by the same closure axiom, so x squared is at least 0; this uses the identity that minus a times minus b equals ab as well. The three cases are exhaustive, so x squared is at least 0 for every real x. A band below lists exactly what the proof assumes: first, trichotomy, that every real is exactly one of positive, negative or zero, which supplies the cases; second, that positives are closed under multiplication, so a and b positive forces ab positive, which does Cases 2 and 3; and third, that minus a times minus b equals ab, which is not an order fact at all but a consequence of distributivity. The proof of the third is given: minus a times b plus ab equals the quantity minus a plus a, times b, which equals 0 times b, which is 0, so minus a times b equals minus ab; then minus a times minus b equals minus of a times minus b, which equals minus of minus ab, which is ab. Checked on all integer pairs from minus 30 to 30. Another band notes the proof proves more than it was asked: Cases 2 and 3 both end in x squared strictly greater than 0, and Case 1 gives x squared equal to 0 exactly, so x squared equals 0 if and only if x equals 0 falls out for free. Cases 2 and 3 are also mirror images, since x to minus x swaps them and leaves x squared alone, so one could argue without loss of generality that x is positive. A final band explains where the theorem fails and why that matters: in the complex numbers i squared is minus 1, a square that is negative, so the theorem is not merely unproved there but false; and since the proof uses only ordered-field axioms, the conclusion is that the complex numbers cannot be given any order making them an ordered field. The theorem is thus a test an ordered field must pass, and this is how one shows the complex numbers are not one.")
+
+## Remark — Why Trichotomy Is the Right Thing to Case On
+
+The statement to be proved, $ x^2\ge0 $, is about a *product*, and the only tool available for products is the closure axiom (P) — which applies to positives. So the argument needs to know the sign of $ x $, and trichotomy is exactly the axiom that supplies sign information.
+
+Notice how each case interacts with (P):
+
+$$$
+\begin{array}{l|l}
+\textbf{case} & \textbf{how (P) is reached} \\ \hline
+x = 0 & \text{(P) not needed --- compute directly} \\
+x > 0 & \text{apply (P) to } x \text{ and } x \\
+x < 0 & \text{apply (P) to } -x \text{ and } -x, \text{ then rewrite}
+\end{array}
+$$$
+
+Case 3 is the only one doing real work, and even there the work is to convert the situation into Case 2's. That is the usual pattern: a case analysis is worthwhile when the cases are *not* symmetric in difficulty, and one of them reduces to another.
+
+## Remark — Cases 2 and 3 Are the Same Case
+
+There is a symmetry lurking here worth naming. The map $ x\mapsto -x $ exchanges the sets $ \{x>0\} $ and $ \{x<0\} $, and it leaves the quantity in question untouched:
+
+$$$
+(-x)^2 = x^2 ,
+$$$
+
+verified for every integer in $ [-500,500] $. So the statement “$ x^2\ge0 $” is invariant under negation, and one is entitled to say **without loss of generality $ x>0 $** in place of Case 3 — collapsing the three cases to two.
+
+Whether that is an improvement is a matter of taste. Writing out Case 3 costs one extra line and makes the use of $ (-x)(-x)=x^2 $ explicit; the WLOG hides that line inside the word “symmetry”. Since the section is about both techniques, seeing the same proof both ways is instructive: **WLOG is a case analysis in which one case has been shown to follow from another by a relabelling.**
+
+## Remark — The Proof Gives the Equality Case for Free
+
+The theorem asks only for $ x^2\ge0 $, but the case analysis produces something sharper without extra effort. Cases 2 and 3 both conclude $ x^2 > 0 $, strictly, and Case 1 gives $ x^2 = 0 $. Reading the three together:
+
+$$$
+x^2 = 0 \iff x = 0 , \qquad\text{equivalently}\qquad x\ne0 \implies x^2>0 .
+$$$
+
+This is the more useful form in practice. It is what licenses the standard argument that a sum of squares vanishes only when every term does — if $ a^2+b^2 = 0 $ with $ a,b $ real, then $ a^2 \le 0 $ and $ a^2\ge0 $ force $ a^2 = 0 $, hence $ a=0 $, and similarly $ b=0 $.
+
+Weakening $ > $ to $ \ge $ when stating the theorem is a small loss, but it is a loss, and a case analysis is a good place to notice one: each branch reports its own conclusion, so it is visible when they are stronger than the common statement.
+
+## Remark — The Theorem Fails in $ \mathbb{C} $, and That Is the Point
+
+Nothing in the proof mentions the real numbers specifically. Every step uses only (T), (P) and (N), so the argument establishes:
+
+> In **any** ordered field, every square is non-negative.
+
+That makes the theorem a *test*. Applying it to the complex numbers:
+
+$$$
+i^2 = -1 ,
+$$$
+
+a square that is negative. So $ \mathbb{C} $ does not merely fail to have been given an order — it **cannot** be given one compatible with its field structure. If it could, the argument above would force $ i^2\ge0 $, contradicting $ i^2=-1 $.
+
+The same reasoning rules out an ordered-field structure on $ \mathbb{Z}/p\mathbb{Z} $, and on any field where $ -1 $ is a square. Fields in which $ -1 $ is *not* a sum of squares are called **formally real**, and they are exactly the ones that admit some order — a theorem of Artin and Schreier. This exercise is the first step of that theory.
+
+## Remark — What Rests on This
+
+For a statement with a three-line proof, a remarkable amount depends on it.
+
+- **Sums of squares.** $ a^2+b^2+\cdots \ge 0 $, with equality only when every term is zero.
+- **The AM–GM inequality.** $ (a-b)^2\ge0 $ expands to $ a^2+b^2\ge2ab $, and with $ a=\sqrt u $, $ b=\sqrt v $ this is $ u+v\ge2\sqrt{uv} $.
+- **The discriminant test.** A real quadratic $ ax^2+bx+c $ with $ a>0 $ is non-negative everywhere exactly when $ b^2-4ac\le0 $, proved by completing the square and applying this theorem to the resulting square term.
+- **Cauchy–Schwarz.** The standard proof considers $ \|u - t v\|^2 \ge 0 $ as a quadratic in $ t $ and applies the discriminant test.
+- **Distance and norms.** $ |x| = \sqrt{x^2} $ only makes sense because $ x^2\ge0 $, and the same is true of every Euclidean distance formula.
+
+Each of these inherits its truth from the fact that no real number squares to something negative, which in turn rests on trichotomy plus the closure of the positives. It is a good illustration of how much of analysis is built on very few order axioms.

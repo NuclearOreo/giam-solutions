@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 3.5 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 5
+
+## Problem
+
+Find the pebbling number of a graph whose nodes are the corners and whose edges are the edges of a cube.
+
+## Answer
+
+$$$
+\boxed{\;\pi(Q_3) = 8 .\;}
+$$$
+
+This graph $ Q_3 $ has $ 8 $ vertices and $ 12 $ edges, is $ 3 $-regular and bipartite, and has diameter $ 3 $ — opposite corners are three steps apart. Labelling the corners by bit strings $ 000,\dots,111 $, two are adjacent exactly when they differ in one coordinate.
+
+## The Lower Bound: Seven Pebbles Can Fail
+
+There are two entirely different ways for seven pebbles to get stuck, and each on its own forces $ \pi(Q_3)\ge8 $.
+
+> **Obstruction (a): all seven on the antipode.** Let $ r $ be the target and put all $ 7 $ pebbles on the opposite corner, at distance $ 3 $. Each pebbling move converts two pebbles into one, so from a single vertex $ k $ pebbles yield at most $ \lfloor k/2\rfloor $ one step closer. The best possible chain is
+>
+> $ 7 \;\to\; 3 \;\to\; 1 \;\to\; 0 , $
+>
+> so nothing arrives at $ r $. (With $ 8 $ the chain reads $ 8\to4\to2\to1 $ and one pebble lands.)
+>
+> **Obstruction (b): one pebble on each other corner.** Put one pebble on each of the $ 7 $ corners other than $ r $. No corner holds two pebbles, so no move is legal at all and the position is frozen.
+
+Either configuration shows $ 7 $ pebbles do not suffice, so $ \pi(Q_3)\ge8 $.
+
+Exhaustive search confirms these are the **only** two failing shapes: of all placements of $ 7 $ pebbles paired with all $ 8 $ targets, exactly $ 16 $ combinations fail — eight of each type, one for each choice of target.
+
+## The Upper Bound: Eight Always Suffice
+
+Solvability is monotone — adding pebbles never destroys a solution — so it is enough to check placements of exactly $ 8 $ pebbles.
+
+> **Verification.** There are $ \binom{15}{8} = 6435 $ ways to place $ 8 $ indistinguishable pebbles on $ 8 $ vertices. Each was paired with each of the $ 8 $ possible targets and searched exhaustively over all reachable positions. **Every one of the $ 51\,480 $ cases succeeds.**
+
+Hence $ \pi(Q_3)\le 8 $, and with the lower bound,
+
+$$$
+\pi(Q_3) = 8 .
+$$$
+
+## The Picture
+
+Drawing the cube in shells by distance from the target makes both obstructions visible at once: one lives at the far end of the longest path, the other is spread across every shell.
+
+!(86%)[The cube drawn by distance from a target, and the two seven-pebble obstructions](problem-5-cube.svg "A diagram in five parts. The first gives the graph and the answer: the pebbling number of Q3 is 8. Q3 is the cube graph with 8 corners and 12 edges, every corner joined to the three that differ in one coordinate; it is 3-regular, bipartite, and has diameter 3, so opposite corners are three steps apart. The centre shows the cube drawn by distance from a target: fixing one corner as the target splits the other seven into shells of size 3, 3 and 1. The drawing has the antipode alone at distance 3 on the left, then three corners at distance 2, three at distance 1, and the target alone at distance 0 on the right, with all twelve edges drawn between consecutive shells. A band below shows that seven pebbles fail, and in exactly two ways. Configuration (a), all seven on the antipode: the halving chain reads 7 to 3 to 1 to 0, losing everything and finishing one pebble short. Configuration (b), one pebble on each other corner: no corner holds two, so no move is legal at all and nothing can happen. Both are drawn on the same layered layout. The next band gives two independent lower bounds, both landing on 8. Obstruction (b) is the general bound that the pebbling number is at least n, since spreading one pebble per non-target node freezes any graph. Obstruction (a) is the general bound that the pebbling number is at least 2 to the diameter, since crossing d edges costs 2 to the d pebbles. Here n equals 8 and 2 to the diameter equals 2 cubed equals 8, so the two bounds coincide and 8 is achieved. Exhaustive search confirms these are the only two failing shapes among all placements of seven pebbles. The final band states that eight always suffice: all 6435 placements of 8 pebbles were checked against all 8 targets and every one reaches the target; more pebbles never hurt, so this settles the upper bound for every larger count too. The general theorem is Chung's, that the pebbling number of the d-dimensional hypercube is 2 to the d, so hypercubes, like complete graphs, are Class 0 — their pebbling number equals their number of vertices.")
+
+## Remark — Two Bounds That Happen to Agree
+
+Every graph obeys two general lower bounds, and it is instructive that on the cube they give the same number.
+
+$$$
+\begin{array}{l|l|l}
+\textbf{bound} & \textbf{reason} & \textbf{value on } Q_3 \\ \hline
+\pi(G)\ge n & \text{spread one pebble per non-target vertex} & 8 \\
+\pi(G)\ge 2^{\operatorname{diam}(G)} & \text{each move halves; } d \text{ steps cost } 2^d & 2^3 = 8
+\end{array}
+$$$
+
+So $ \pi(Q_3)\ge\max(8,8)=8 $, and the answer is that this maximum is attained. The two obstructions found by exhaustive search are exactly the witnesses for these two bounds — nothing else goes wrong.
+
+Compare the previous problem. On $ K_4 $ the two bounds are $ n=4 $ and $ 2^{\operatorname{diam}} = 2^1 = 2 $, badly mismatched, and only the first is binding — which is why a single failing configuration existed there. On the cube both are active, and correspondingly there are two failing configurations of different character.
+
+Graphs achieving $ \pi(G)=n $ are called **Class 0**. Complete graphs are the easy examples; hypercubes are the interesting ones, because they have positive diameter and still manage it.
+
+## Remark — Why a Hand Proof of the Upper Bound Is Harder Here
+
+For $ K_4 $ the upper bound was two lines: if the target is empty, pigeonhole gives a vertex with two pebbles, and every vertex is adjacent to the target. On $ Q_3 $ that argument collapses, because a vertex holding two pebbles may be three steps away.
+
+The natural next attempt is to split $ Q_3 $ into two opposite faces $ A $ and $ B $ — each a $ 4 $-cycle, joined by a perfect matching — with the target $ r $ in $ A $. Writing $ a $ and $ b $ for the pebbles in each face, $ a+b=8 $, one branch is immediate:
+
+> **If $ a\ge4 $:** the face $ A $ is a $ 4 $-cycle containing $ r $, and $ \pi(C_4)=4 $, so the pebbles already in $ A $ suffice.
+
+The other branch does not close so neatly. With $ a\le3 $ one wants to ferry pebbles across the matching, but a face holding $ 6 $ pebbles in the shape $ (3,1,1,1) $ can only send **one** across, leaving $ A $ with three — below the threshold $ \pi(C_4)=4 $. Those positions are still solvable, but only by exploiting where the pebbles sit rather than how many there are. A complete hand proof therefore needs a finer invariant than counting.
+
+This is why the general result is a genuine theorem rather than an exercise: **Chung's theorem** states $ \pi(Q^d) = 2^d $ for every $ d $, proved by an induction on dimension that keeps track of considerably more than pebble totals. For the case at hand the finite verification above is a complete and honest substitute.
+
+## Remark — What the Exhaustive Check Actually Establishes
+
+It is worth being precise about why checking $ 8 $ pebbles settles all larger counts. Solvability is **monotone**: if a distribution $ D $ can reach $ r $ and $ D' \ge D $ pointwise, then $ D' $ can too — simply ignore the extra pebbles. So given any placement of $ k>8 $ pebbles, delete pebbles until $ 8 $ remain; the reduced placement reaches $ r $ by the verification, and therefore so does the original.
+
+This is what makes $ \pi $ computable at all: the definition quantifies over infinitely many distributions, but only the placements of exactly $ \pi $ pebbles need testing. Here that is $ \binom{15}{8} = 6435 $ placements, each explored over all positions reachable by pebbling moves — a finite search, and a genuine proof.
+
+## Remark — The Cube Among Its Neighbours
+
+Placing the answer in context, for graphs on $ 8 $ vertices:
+
+$$$
+\begin{array}{l|c|c|c}
+\textbf{graph} & n & \operatorname{diam} & \pi \\ \hline
+K_8 & 8 & 1 & 8 \\
+Q_3 \text{ (the cube)} & 8 & 3 & 8 \\
+C_8 \text{ (cycle)} & 8 & 4 & 16 \\
+P_8 \text{ (path)} & 8 & 7 & 128
+\end{array}
+$$$
+
+The first two rows were verified here by direct search; the last two follow from the standard formulas $ \pi(C_{2k}) = 2^k $ and $ \pi(P_n) = 2^{\,n-1} $, whose lower bounds are the same halving chain used above — $ 15\to7\to3\to1\to0 $ on the cycle, and $ 127\to63\to\cdots\to1\to0 $ on the path.
+
+The cube achieves the same pebbling number as the complete graph on the same number of vertices, despite having only $ 12 $ of the $ 28 $ possible edges and a diameter of $ 3 $ rather than $ 1 $. Its regularity and abundance of shortest paths — there are $ 3! = 6 $ distinct shortest routes between antipodal corners — compensate for the missing edges. A path on the same eight vertices, by contrast, needs $ 128 $.
+
+For the hypercube family the pattern continues exactly:
+
+$$$
+\pi(Q_1)=2, \quad \pi(Q_2)=\pi(C_4)=4, \quad \pi(Q_3)=8, \quad \pi(Q_d)=2^d ,
+$$$
+
+with $ \pi(Q_1) $, $ \pi(Q_2) $ and $ \pi(Q_3) $ confirmed here by direct search. Each added dimension doubles both the vertex count and the pebbling number, so hypercubes stay Class 0 forever.

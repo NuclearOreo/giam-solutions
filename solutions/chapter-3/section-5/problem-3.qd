@@ -1,0 +1,116 @@
+.docname {Solution — GIAM 3.5 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 3
+
+## Problem
+
+Show that the sum of any three consecutive integers is divisible by $ 3 $.
+
+## Answer
+
+$$$
+\boxed{\;\text{Name the middle one } n : \quad (n-1) + n + (n+1) = 3n .\;}
+$$$
+
+## Proof
+
+> **Theorem.** The sum of any three consecutive integers is divisible by $ 3 $.
+>
+> **Proof.** Let the three consecutive integers be given, and let $ n $ denote the middle one. Then the three are $ n-1 $, $ n $ and $ n+1 $, and their sum is
+>
+> $ (n-1) + n + (n+1) = 3n . $
+>
+> Since $ n $ is an integer, $ 3n $ is by definition divisible by $ 3 $. $ \blacksquare $
+
+The sum is not merely a multiple of $ 3 $ — it is exactly **three times the middle integer**, which is a slightly stronger and more useful statement. Verified for every $ n $ with $ |n| \le 500 $.
+
+## The Picture
+
+Below: why the centred naming collapses the algebra, a second proof using only residues, and what becomes of the statement for $ k $ consecutive integers rather than three.
+
+!(84%)[The centred naming, the residue argument, and what happens for k consecutive integers](problem-3-consecutive.svg "A diagram in several parts. The first states what is to be proved: the sum of any three consecutive integers is divisible by 3. The second explains the choice that makes it a one-liner: name the middle integer n rather than the first, so the three are n minus 1, n, and n plus 1, and the outer terms cancel. Starting from the first instead gives n plus n plus 1 plus n plus 2, which is 3n plus 3, equal to 3 times n plus 1 — correct, but one step longer. Same theorem either way; the centred naming is what turns the algebra into nothing. A number line shows three marked points labelled n minus 1, n, and n plus 1, with a bracket beneath spanning all three and the result: the sum equals 3n, because the outer two cancel and three copies of the middle remain. Next comes a second proof without algebra: three consecutive integers occupy the three residue classes mod 3, one each, in some order, shown as three boxes labelled congruent to 0, congruent to 1, and congruent to 2 mod 3; and since 0 plus 1 plus 2 equals 3, which is congruent to 0 mod 3, the sum is divisible by 3 whatever the order. A table then shows what happens for k consecutive integers, whose sum is kn plus k times k minus 1 over 2. For k equals 2 the sum is 2n plus 1, congruent to 1 mod 2, not divisible. For k equals 3 the sum is 3n plus 3, congruent to 0, divisible — this row is outlined. For k equals 4 the sum is 4n plus 6, congruent to 2, not divisible. For k equals 5 the sum is 5n plus 10, congruent to 0, divisible. For k equals 6 the sum is 6n plus 15, congruent to 3, not divisible. For k equals 7 the sum is 7n plus 21, congruent to 0, divisible. A final band states the pattern and a contrast: k divides the sum of every k consecutive integers if and only if k is odd, since for even k the sum is always exactly k over 2 more than a multiple of k, checked to k equals 12. Products behave completely differently: k factorial divides the product of any k consecutive integers, for every k. So three consecutive integers have a sum divisible by 3 and a product divisible by 6.")
+
+## Remark — The Whole Difficulty Is Choosing the Variable
+
+This is a one-line proof, but only after a decision that is easy to get wrong. Compare the two ways of naming the integers:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{naming} & \textbf{sum} & \\ \hline
+n-1,\; n,\; n+1 & 3n & \text{done immediately} \\
+n,\; n+1,\; n+2 & 3n+3 = 3(n+1) & \text{one factorisation step more}
+\end{array}
+$$$
+
+Both are correct, and neither is difficult, but the first is *structurally* cleaner: the $ -1 $ and $ +1 $ cancel against each other, leaving three copies of the middle term and nothing to tidy up. The second obliges you to notice that $ 3n+3 $ factors.
+
+This is a small instance of a habit worth forming. **Introduce the variable at the point of symmetry.** The same move simplifies many computations — writing an arithmetic progression as $ a-d, a, a+d $, or a symmetric interval as $ [c-r,\,c+r] $ — because it makes the cancellation automatic rather than something you have to spot.
+
+## Remark — A Second Proof, Using No Algebra At All
+
+Divisibility by $ 3 $ can be settled by looking at residues, and here the residues do all the work.
+
+> **Proof.** Among any three consecutive integers, the three residues mod $ 3 $ are all distinct: consecutive integers have consecutive residues, and three steps run once through $ \{0,1,2\} $. So the three residues are $ 0 $, $ 1 $, $ 2 $ in some order, and
+>
+> $ 0 + 1 + 2 = 3 \equiv 0 \pmod 3 . $
+>
+> Hence the sum is $ \equiv 0 \pmod 3 $. $ \blacksquare $
+
+Verified: for every $ k $ from $ 2 $ to $ 12 $ and every starting point, $ k $ consecutive integers do hit each residue mod $ k $ exactly once.
+
+The two proofs are genuinely different in flavour. The algebraic one produces the *quotient* — the sum is $ 3n $, so dividing by $ 3 $ returns the middle integer. The residue one produces only the divisibility, but generalises more transparently, as the next remark shows.
+
+## Remark — What Happens for $ k $ Consecutive Integers
+
+The natural generalisation is not what one might guess. Summing $ k $ consecutive integers starting at $ n $:
+
+$$$
+\sum_{i=0}^{k-1}(n+i) = kn + \frac{k(k-1)}{2} .
+$$$
+
+The first term is divisible by $ k $; the second is the question. Reducing mod $ k $:
+
+$$$
+\begin{array}{c|c|c|c}
+k & \textbf{sum} & \textbf{sum} \bmod k & k \mid \textbf{sum?} \\ \hline
+2 & 2n+1 & 1 & \text{no} \\
+3 & 3n+3 & 0 & \textbf{yes} \\
+4 & 4n+6 & 2 & \text{no} \\
+5 & 5n+10 & 0 & \textbf{yes} \\
+6 & 6n+15 & 3 & \text{no} \\
+7 & 7n+21 & 0 & \textbf{yes}
+\end{array}
+$$$
+
+So the criterion is parity:
+
+> $ k $ divides the sum of every $ k $ consecutive integers **if and only if $ k $ is odd.**
+
+The reason is visible in $ \frac{k(k-1)}{2} $. If $ k $ is odd then $ \frac{k-1}{2} $ is an integer and the term is $ k\cdot\frac{k-1}{2} $, a multiple of $ k $. If $ k $ is even then the term is $ \frac{k}{2}\cdot(k-1) \equiv \frac{k}{2}\cdot(-1) \equiv \frac{k}{2} \pmod k $, which is never $ 0 $. Confirmed computationally: for $ k = 2,4,6,8 $ the sum leaves remainder exactly $ 1, 2, 3, 4 $ respectively, always.
+
+The residue proof gives the same criterion at once: the residues sum to $ 0+1+\cdots+(k-1) = \frac{k(k-1)}{2} $, and that is $ \equiv 0 \pmod k $ precisely when $ k $ is odd. Equivalently — and this is perhaps the cleanest way to say it — the average of $ k $ consecutive integers is the middle one when $ k $ is odd, and a half-integer when $ k $ is even.
+
+## Remark — Sums Versus Products
+
+It is worth setting this beside the corresponding statement for products, because the two behave oppositely.
+
+$$$
+\begin{array}{l|l}
+\textbf{sum of } k \text{ consecutive integers} & \text{divisible by } k \text{ exactly when } k \text{ is odd} \\
+\textbf{product of } k \text{ consecutive integers} & \text{divisible by } k! \text{ for every } k
+\end{array}
+$$$
+
+The product statement is far stronger — divisibility by $ k! $ rather than merely $ k $ — and holds without exception, because $ \dfrac{n(n+1)\cdots(n+k-1)}{k!} = \binom{n+k-1}{k} $ is a binomial coefficient, hence an integer. Verified for $ k \le 7 $ over $ 1 \le n < 60 $.
+
+For $ k=3 $ the two statements read: the sum of three consecutive integers is divisible by $ 3 $, and their product is divisible by $ 3! = 6 $. The second is the fact used in Problem 1 of this section, where $ m(m+1) $ being even was the crux of the lemma — the $ k=2 $ case of the product statement.
+
+So consecutive integers are a small machine for manufacturing divisibility, and it is worth knowing which handle produces which guarantee.

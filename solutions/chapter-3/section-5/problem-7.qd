@@ -1,0 +1,137 @@
+.docname {Solution — GIAM 3.5 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 7
+
+## Problem
+
+Lagrange's theorem on representation of integers as sums of squares says that every positive integer can be expressed as the sum of at most $ 4 $ squares. For example, $ 79 = 7^2+5^2+2^2+1^2 $. Show (exhaustively) that $ 15 $ cannot be represented using fewer than $ 4 $ squares.
+
+## Answer
+
+$$$
+\boxed{\;15 = 3^2+2^2+1^2+1^2, \text{ and no sum of } 1, 2 \text{ or } 3 \text{ squares equals } 15 .\;}
+$$$
+
+## Setting Up the Exhaustion
+
+Only positive squares matter, and any square used must be at most $ 15 $. Since $ 4^2 = 16 > 15 $, the only available summands are
+
+$$$
+1^2 = 1, \qquad 2^2 = 4, \qquad 3^2 = 9 .
+$$$
+
+Addition is commutative, so order is irrelevant: for each $ k $ we need only run through the **multisets** of size $ k $ drawn from $ \{1,4,9\} $. That is $ 3 $, $ 6 $ and $ 10 $ cases for $ k=1,2,3 $ — nineteen in total.
+
+## The Exhaustive Check
+
+> **Case $ k=1 $.** The three candidates are $ 1,\;4,\;9 $. None equals $ 15 $.
+>
+> **Case $ k=2 $.** The six sums are
+>
+> $ 1{+}1=2, \quad 1{+}4=5, \quad 1{+}9=10, \quad 4{+}4=8, \quad 4{+}9=13, \quad 9{+}9=18 . $
+>
+> None equals $ 15 $. Note that $ 13 $ and $ 18 $ straddle it.
+>
+> **Case $ k=3 $.** The ten sums are
+>
+> $ 3,\; 6,\; 9,\; 11,\; 12,\; 14,\; 17,\; 19,\; 22,\; 27 , $
+>
+> coming from $ 1{+}1{+}1 $, $ 1{+}1{+}4 $, $ 1{+}4{+}4 $, $ 1{+}1{+}9 $, $ 4{+}4{+}4 $, $ 1{+}4{+}9 $, $ 4{+}4{+}9 $, $ 1{+}9{+}9 $, $ 4{+}9{+}9 $, $ 9{+}9{+}9 $ respectively. None equals $ 15 $, and again the nearest values $ 14 $ and $ 17 $ bracket it.
+>
+> Since these nineteen cases are exhaustive, $ 15 $ is not a sum of fewer than four squares.
+>
+> **Case $ k=4 $.** Of the fifteen multisets of size four, exactly one works:
+>
+> $ 15 = 9+4+1+1 = 3^2+2^2+1^2+1^2 . $
+>
+> So four squares suffice and three do not. $ \blacksquare $
+
+Every count above was confirmed by direct enumeration, including that the four-square representation is unique up to order.
+
+## The Picture
+
+Every case is small enough to display, so the exhaustion can simply be read off.
+
+!(84%)[All nineteen cases for one, two and three squares, and the single four-square representation](problem-7-foursquares.svg "A diagram in four parts. The first states what is to be shown: 15 is not a sum of 1, 2 or 3 squares. Only the positive squares 1, 4 and 9 can appear, since 16 already exceeds 15; order does not matter, so for each k it is enough to run through the multisets of size k drawn from the set containing 1, 4 and 9 — nineteen cases in all for k at most 3. The centre writes out every case as a grid of small boxes. For k equals 1 the three candidates are 1 squared equals 1, 2 squared equals 4, and 3 squared equals 9, none of which is 15. For k equals 2 the six sums are 2, 5, 10, 8, 13 and 18, none of which is 15. For k equals 3 the ten sums are 3, 6, 11, 9, 14, 19, 12, 17, 22 and 27, none of which is 15. For k equals 4 there are fifteen multisets, and exactly one works: 1 squared plus 1 squared plus 2 squared plus 3 squared equals 15, highlighted in green. A band below gives a shortcut that explains the result: work mod 8. Every square is 0, 1 or 4 mod 8, and adding three of those the reachable residues are 0, 1, 2, 3, 4, 5 and 6, but never 7. Since 15 is congruent to 7 mod 8, no three squares can sum to it. This replaces the nineteen checks with one table and proves the same for 7, 23, 31, 39 and so on all at once. The final band asks which numbers really need all four squares and gives Legendre's three-square theorem: n needs four squares exactly when n is 4 to the a times the quantity 8b plus 7. Below 300 these are 7, 15, 23, 28, 31, 39, 47, 55, 60, 63, 71, 79, 87, 92, 95 and 103 and onward — 48 of the first 299 integers, about 16 percent, matching the predicted density one eighth plus one thirty-second and so on, which sums to one sixth. 7 is the smallest such number and 15 is the second; the list was computed directly and agrees with Legendre exactly.")
+
+## Remark — Why the Exhaustion Is Genuinely Short
+
+Exhaustive arguments earn suspicion, because they are only convincing if the case list is provably complete. Two observations make this one airtight and small.
+
+**The summands are bounded.** Any square appearing in a sum totalling $ 15 $ is at most $ 15 $, and $ 4^2 = 16 $ already exceeds that. So the pool is $ \{1,4,9\} $ and nothing else — a finite list forced by the problem, not chosen for convenience.
+
+**Order does not matter.** Counting ordered tuples would give $ 3 + 9 + 27 = 39 $ cases for $ k\le3 $; counting multisets gives $ 3+6+10 = 19 $. The reduction is legitimate because addition is commutative, so $ 1+4+9 $ and $ 9+4+1 $ are the same case.
+
+The general count is $ \binom{k+2}{2} $ multisets of size $ k $ from a $ 3 $-element pool, which is why the numbers come out as $ 3, 6, 10, 15 $ — the triangular numbers.
+
+## Remark — A Two-Line Proof That Explains the Answer
+
+Exhaustion shows *that* $ 15 $ needs four squares but not *why*. A congruence argument supplies the reason.
+
+> **Claim.** No integer $ \equiv 7 \pmod 8 $ is a sum of three squares.
+>
+> **Proof.** Every square is $ \equiv 0,1 $ or $ 4 \pmod 8 $ — immediate from checking $ n \equiv 0,\dots,7 $. Adding three such residues, the possible totals mod $ 8 $ are
+>
+> $ \{0,1,2,3,4,5,6\} , $
+>
+> as one sees by listing the ten combinations. The residue $ 7 $ never occurs. $ \blacksquare $
+
+Since $ 15 = 8\cdot1+7 \equiv 7\pmod 8 $, this settles the problem in one stroke — and simultaneously handles $ 7 $, $ 23 $, $ 31 $, $ 39 $ and every other number in that class.
+
+The fact underneath is the same one used in Problem 1 of this section, where odd squares were pinned to $ 1 \bmod 8 $, and in 3.4 Problem 8, where squares mod $ 4 $ ruled out an all-odd Pythagorean triple. Small powers of two constrain squares severely, and that single observation does a great deal of work across these exercises.
+
+## Remark — Exactly Which Numbers Need Four Squares
+
+Lagrange's theorem guarantees four squares always suffice; **Legendre's three-square theorem** says precisely when three do not:
+
+$$$
+n \text{ requires four squares} \iff n = 4^{a}(8b+7) \quad\text{for some integers } a,b\ge0 .
+$$$
+
+Computing the minimum number of squares for every $ n<300 $ by direct search reproduces exactly the numbers of that form:
+
+$$$
+7,\; 15,\; 23,\; 28,\; 31,\; 39,\; 47,\; 55,\; 60,\; 63,\; 71,\; 79,\; 87,\; 92,\; 95,\; 103,\; \dots
+$$$
+
+So $ 7 $ is the smallest such number and $ 15 $ is the second — which is why the exercise picks it: small enough to exhaust by hand, but not the very first case.
+
+The mod-$ 8 $ argument above covers the $ a=0 $ part of Legendre's condition. The factor $ 4^a $ handles cases like $ 28 = 4\cdot7 $ and $ 60 = 4\cdot 15 $, which are $ \equiv 4 \pmod 8 $ and so invisible to the simple congruence; ruling those out needs the observation that if $ 4n $ is a sum of three squares then so is $ n $, since all three squares must then be even.
+
+Counting: $ 48 $ of the first $ 299 $ positive integers require four squares, about $ 16.1\% $. The predicted asymptotic density is
+
+$$$
+\frac18 + \frac{1}{32} + \frac{1}{128} + \cdots = \frac{1/8}{1-1/4} = \frac16 \approx 16.7\% ,
+$$$
+
+in close agreement.
+
+## Remark — What Lagrange's Theorem Actually Asserts
+
+It is worth separating the two halves of the situation, because the exercise only touches one of them.
+
+$$$
+\begin{array}{l|l|l}
+\textbf{statement} & \textbf{type} & \textbf{difficulty} \\ \hline
+\text{four squares always suffice} & \text{universal} & \text{Lagrange, 1770 — hard} \\
+15 \text{ needs four} & \text{existential (a witness)} & \text{nineteen cases}
+\end{array}
+$$$
+
+Showing that some number needs four squares is a finite verification, of the kind this section is about. Showing that *no* number needs five is Lagrange's theorem, and it resisted Fermat, Euler and others for over a century — Euler supplied the crucial four-square identity
+
+$$$
+\left(a_1^2+a_2^2+a_3^2+a_4^2\right)\left(b_1^2+b_2^2+b_3^2+b_4^2\right) = c_1^2+c_2^2+c_3^2+c_4^2 ,
+$$$
+
+which makes the set of sums of four squares closed under multiplication and reduces the theorem to the case of primes.
+
+So this problem is the easy half, and deliberately so: it establishes that the bound $ 4 $ in Lagrange's theorem cannot be lowered to $ 3 $. Without an example like $ 15 $, the theorem might be true but not sharp.

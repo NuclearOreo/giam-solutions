@@ -1,0 +1,141 @@
+.docname {Solution — GIAM 3.5 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 2
+
+## Problem
+
+Prove that every prime number other than $ 2 $ and $ 3 $ has the form $ 6q+1 $ or $ 6q+5 $ for some integer $ q $.
+
+## Answer
+
+$$$
+\boxed{\;\text{Divide by } 6 \text{: four of the six remainders force a divisor of } 2 \text{ or } 3 .\;}
+$$$
+
+## Proof
+
+> **Theorem.** If $ p $ is prime and $ p > 3 $, then $ p = 6q+1 $ or $ p = 6q+5 $ for some integer $ q $.
+>
+> **Proof.** By the division algorithm, $ p = 6q+r $ for some integers $ q $ and $ r $ with $ 0 \le r < 6 $. There are six cases, and we eliminate four of them.
+>
+> **Case $ r=0 $.** Then $ p = 6q = 2(3q) $, so $ 2\mid p $.
+>
+> **Case $ r=2 $.** Then $ p = 6q+2 = 2(3q+1) $, so $ 2\mid p $.
+>
+> **Case $ r=4 $.** Then $ p = 6q+4 = 2(3q+2) $, so $ 2\mid p $.
+>
+> **Case $ r=3 $.** Then $ p = 6q+3 = 3(2q+1) $, so $ 3\mid p $.
+>
+> In each of these four cases $ p $ has a divisor $ d \in\{2,3\} $ with $ 1 < d < p $ — the inequality $ d < p $ holding because $ p > 3 $ — so $ p $ is not prime, contrary to hypothesis. Each case is therefore impossible.
+>
+> The only remaining possibilities are $ r=1 $ and $ r=5 $, i.e. $ p = 6q+1 $ or $ p = 6q+5 $. $ \blacksquare $
+
+Verified for all $ 9590 $ primes below $ 100\,000 $.
+
+## Where the Contrapositive Enters
+
+The hint mentions contrapositives, and it is worth being explicit about where one is used. Within each eliminated case the argument actually establishes
+
+$$$
+p \equiv 0,2,3,4 \pmod 6 \;\text{ and }\; p>3 \implies p \text{ is composite},
+$$$
+
+and the theorem is its contrapositive together with a case analysis: a prime $ p>3 $ cannot be in any of those four classes, so it must be in one of the other two.
+
+This is the characteristic shape of a “rule out the alternatives” proof. Rather than showing directly that $ p $ *has* one of two forms — which offers nothing to compute with — one shows that each of the other forms *forces* a property incompatible with primality.
+
+## The Picture
+
+The six cases are laid out below with the four eliminations marked, followed by what the two surviving classes do and do not tell you.
+
+!(88%)[The six residue classes, four eliminated, and the consequences of the two that survive](problem-2-wheel.svg "A diagram in six parts. The first states what is to be proved: p prime and greater than 3 implies p equals 6q plus 1 or 6q plus 5. The second describes the method — divide by 6 and eliminate: the division algorithm writes every integer as p equals 6q plus r with r one of 0, 1, 2, 3, 4, 5, six exhaustive cases; four of them force a small divisor on p, which a prime larger than 3 cannot have, and two survive. Each elimination is a contrapositive: rather than showing p has the right form, we show the wrong forms are composite. The centre is a row of six boxes, one per remainder. The boxes for r equals 0, 2 and 4 are red and labelled 2 divides p; the box for r equals 3 is red and labelled 3 divides p; the boxes for r equals 1 and r equals 5, showing the forms 6q plus 1 and 6q plus 5, are green and outlined heavily, labelled survives. Below: r equal to 0, 2 or 4 gives p equal to 2 times the quantity 3q plus r over 2, so 2 divides p; r equal to 3 gives p equal to 3 times 2q plus 1, so 3 divides p. A prime greater than 3 has neither 2 nor 3 as a divisor, so only r equals 1 and r equals 5 remain. Next is a row of the first fourteen primes above 3 — 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53 — each labelled with its form, alternating irregularly between 6q plus 1 and 6q plus 5. A band below headed necessary, not sufficient shows the converse fails: having the form 6q plus or minus 1 does not make a number prime, and the composites of this shape start 25, 35, 49, 55, 65, 77, 85, 91, 95, 115, 119. Each is built from primes that are themselves of the form, so the form is closed under products. Another band gives two things that fall out: writing the forms symmetrically as 6q plus or minus 1, p squared equals 36q squared plus or minus 12q plus 1, which is 12 times q times the quantity 3q plus or minus 1, plus 1, and q times 3q plus or minus 1 is always even, so a prime greater than 3 satisfies p squared congruent to 1 mod 24 — verified for all 9590 primes below 100000. And every twin pair beyond 3 and 5 is 6q minus 1 together with 6q plus 1, so twins always straddle a multiple of 6. The final band describes the same idea at any modulus, the wheel: nothing is special about 6, since a prime p greater than m shares no factor with m and so lands in one of the phi of m classes coprime to m. Taking m equal to 6 leaves 2 classes of 6; m equal to 30 leaves 8 of 30; m equal to 210 leaves 48 of 210. All three verified. This is exactly how wheel factorisation skips candidates when sieving for primes.")
+
+## Remark — Why Six, and Why the Cases Collapse So Neatly
+
+The modulus $ 6 = 2\cdot3 $ is chosen precisely because $ 2 $ and $ 3 $ are the primes being excluded. Working mod $ 6 $ makes divisibility by both visible at once:
+
+$$$
+\begin{array}{c|c|c}
+r & 6q+r \text{ divisible by } 2? & \text{by } 3? \\ \hline
+0 & \text{yes} & \text{yes} \\
+1 & \text{no} & \text{no} \\
+2 & \text{yes} & \text{no} \\
+3 & \text{no} & \text{yes} \\
+4 & \text{yes} & \text{no} \\
+5 & \text{no} & \text{no}
+\end{array}
+$$$
+
+The surviving classes are exactly those coprime to $ 6 $, and there are $ \varphi(6)=2 $ of them. Had we divided by $ 2 $ alone we would only have learned that $ p $ is odd; by $ 3 $ alone, only that $ p\not\equiv0 $. Combining the two moduli into one is what makes the statement crisp.
+
+It is also worth writing the conclusion symmetrically. Since $ 6q+5 = 6(q+1)-1 $, the theorem says
+
+$$$
+p = 6k \pm 1
+$$$
+
+for some integer $ k $ — every prime past $ 3 $ sits immediately beside a multiple of $ 6 $.
+
+## Remark — Necessary, Not Sufficient
+
+The converse is false, and comfortably so. Numbers of the form $ 6q\pm1 $ need not be prime; the composite ones begin
+
+$$$
+25,\; 35,\; 49,\; 55,\; 65,\; 77,\; 85,\; 91,\; 95,\; 115,\; 119,\; \dots
+$$$
+
+with $ 25=5\cdot5 $, $ 35=5\cdot7 $, $ 49=7\cdot7 $. There is a structural reason these appear: the set $ \{6k\pm1\} $ is **closed under multiplication**, since
+
+$$$
+(6a+1)(6b+1) = 6(6ab+a+b)+1, \qquad (6a-1)(6b-1) = 6(6ab-a-b)+1 ,
+$$$
+
+and a product of one of each is $ 6k-1 $. So every product of primes $ >3 $ lands back in the same two classes — the form cannot distinguish primes from their products.
+
+What the theorem does provide is a genuine speed-up for primality testing: to check whether $ n $ is prime, one need only trial-divide by $ 2 $, $ 3 $, and then numbers of the form $ 6k\pm1 $, cutting the candidate divisors by two-thirds.
+
+## Remark — A Consequence, and a Link to Problem 1
+
+Writing $ p = 6q\pm1 $ and squaring gives
+
+$$$
+p^2 = 36q^2 \pm 12q + 1 = 12q(3q\pm1) + 1 .
+$$$
+
+Now $ q(3q\pm1) $ is always even — if $ q $ is even this is clear, and if $ q $ is odd then $ 3q\pm1 $ is even — so $ 12q(3q\pm1) $ is a multiple of $ 24 $ and
+
+$$$
+p > 3 \text{ prime} \implies p^2 \equiv 1 \pmod{24} .
+$$$
+
+Verified for every prime below $ 100\,000 $. This sits neatly beside Problem 1 of the same section, which gave $ n^4 \equiv 1 \pmod{16} $ for odd $ n $; both are instances of small moduli constraining powers very tightly, and both are proved by the same manoeuvre of extracting an even factor from a product of near-consecutive terms.
+
+A second consequence: every pair of **twin primes** beyond $ (3,5) $ has the shape $ (6q-1,\,6q+1) $ — checked for all twin pairs below $ 100\,000 $. Twin primes always straddle a multiple of six, which is why $ (11,13) $, $ (17,19) $, $ (29,31) $ and $ (41,43) $ sit around $ 12 $, $ 18 $, $ 30 $ and $ 42 $.
+
+## Remark — The Wheel
+
+Nothing is special about $ 6 $ beyond its being $ 2\cdot3 $. In general, a prime $ p > m $ shares no factor with $ m $, so it lies in one of the $ \varphi(m) $ residue classes coprime to $ m $:
+
+$$$
+\begin{array}{c|c|c}
+m & \text{surviving classes} & \text{fraction} \\ \hline
+2 & 1 \text{ of } 2 & 50\% \\
+6 & 2 \text{ of } 6 & 33.3\% \\
+30 & 8 \text{ of } 30 & 26.7\% \\
+210 & 48 \text{ of } 210 & 22.9\%
+\end{array}
+$$$
+
+all verified against the primes below $ 100\,000 $. This is **wheel factorisation**: a sieve that skips every candidate outside the surviving classes. The mod-$ 6 $ wheel is the one everybody meets first, and it already discards two-thirds of the integers.
+
+The diminishing returns are visible in the table — the fraction $ \varphi(m)/m = \prod_{p\mid m}(1-1/p) $ decreases only slowly, since the primes' reciprocals sum divergently but slowly. Going from $ m=6 $ to $ m=210 $ multiplies the wheel's size thirty-five-fold to gain about ten percentage points, which is why practical sieves stop at $ 30 $ or $ 210 $.
+
+Finally, a caution the theorem invites. Dirichlet's theorem guarantees that both surviving classes contain infinitely many primes, and in fact they split them almost exactly evenly: below $ 100\,000 $ there are $ 4784 $ primes of the form $ 6q+1 $ and $ 4806 $ of the form $ 6q+5 $, a difference of well under one percent. The residues that survive the elimination are not merely possible — each is heavily populated.

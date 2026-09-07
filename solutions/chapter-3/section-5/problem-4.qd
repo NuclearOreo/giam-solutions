@@ -1,0 +1,133 @@
+.docname {Solution — GIAM 3.5 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 4
+
+## Problem
+
+There is a graph known as $ K_4 $ that has $ 4 $ nodes and there is an edge between every pair of nodes. The pebbling number of $ K_4 $ has to be at least $ 4 $, since it would be possible to put one pebble on each of $ 3 $ nodes and not be able to reach the remaining node using pebbling moves. Show that the pebbling number of $ K_4 $ is actually $ 4 $.
+
+## What Must Be Shown
+
+The lower bound $ \pi(K_4)\ge4 $ is given. What remains is the upper bound:
+
+$$$
+\begin{aligned}
+&\text{from \textbf{any} placement of } 4 \text{ pebbles on } K_4, \text{ and for \textbf{any} target node,} \\
+&\text{a pebble can be moved to the target.}
+\end{aligned}
+$$$
+
+## Answer
+
+$$$
+\boxed{\begin{aligned}
+&\text{Two cases: the target has a pebble, or it does not —} \\
+&\text{and then pigeonhole gives a node holding } 2 .
+\end{aligned}}
+$$$
+
+## Proof
+
+> **Theorem.** $ \pi(K_4) = 4 $.
+>
+> **Proof.** The lower bound $ \pi(K_4)\ge4 $ is as stated in the problem. For the upper bound, let $ D $ be any placement of $ 4 $ pebbles on the nodes of $ K_4 $, and let $ r $ be any node — the target. Write $ D(v) $ for the number of pebbles on node $ v $. There are two cases.
+>
+> **Case 1: $ D(r)\ge1 $.** The target already holds a pebble, so nothing needs to be done.
+>
+> **Case 2: $ D(r)=0 $.** Then all $ 4 $ pebbles lie on the other three nodes. By the pigeonhole principle, some node $ v \ne r $ satisfies
+>
+> $ D(v) \;\ge\; \left\lceil \tfrac43 \right\rceil = 2 . $
+>
+> Since $ K_4 $ is complete, $ v $ is adjacent to $ r $. Remove two pebbles from $ v $ and place one on $ r $: this is a legal pebbling move, and it puts a pebble on the target.
+>
+> The two cases are exhaustive, so every placement of $ 4 $ pebbles reaches every target, giving $ \pi(K_4)\le4 $. Combined with the lower bound, $ \pi(K_4)=4 $. $ \blacksquare $
+
+Confirmed by exhaustive search over all placements of $ 4 $ pebbles and all four choices of target.
+
+## The Picture
+
+The two cases are short enough to draw in full, together with the single distribution that defeats three pebbles.
+
+!(86%)[The failing three-pebble placement and the two-case argument for four](problem-4-pebbling.svg "A diagram in five parts. The first states the rules: a pebbling move removes two pebbles from a node and places one on an adjacent node, so half are lost; and the pebbling number of a graph is the least k such that from every placement of k pebbles, every node is reachable. The second band shows why three pebbles are not enough. A drawing of K4 — four nodes at the corners of a square with all six edges including both diagonals — carries one pebble on each of three nodes and none on the fourth, which is outlined and marked as the target. No node has two pebbles, so no move is legal, and hence the pebbling number is at least 4. An exhaustive check confirms this is the only shape that fails: any other placement of three pebbles, such as three on one node or two and one, reaches every node. The third band shows why four pebbles always suffice, in two cases. Case 1, the target already has a pebble: a K4 drawing with counts two, one, zero and one, the target holding a pebble, so there is nothing to do. Case 2, the target is empty: a K4 drawing with counts two, one, one and zero, four pebbles on three nodes, followed by an arrow labelled one move leading to a second K4 drawing with counts zero, one, one and one, the pebble delivered to the target. In Case 2 the pigeonhole principle applies, since four pebbles on three nodes force some node to hold at least the ceiling of four thirds, which is two; that node is adjacent to the target, as every node is in K4, so one move finishes the job. The fourth band lists Case 2 in full, the four ways to put four pebbles on three nodes: four zero zero, three one zero, two two zero, and two one one. Every one contains an entry of at least two, exactly as the pigeonhole argument guarantees. So the pebbling number is at most 4, and with the lower bound it equals 4, confirmed by exhaustive search. The final band compares with other graphs: the pebbling number of the complete graph on n nodes is n for every n, since the argument never used more than the fact that the busy node is adjacent to the target, verified for n up to 7; and since the pebbling number is always at least n, complete graphs are as efficient as a graph can be. Paths are the opposite extreme, with pebbling number 2 to the n minus 1, so the path on 6 nodes has pebbling number 32 while the complete graph on 6 nodes has 6. Cycles sit between, with pebbling numbers 4, 5 and 8 for cycles on 4, 5 and 6 nodes. All computed by exhaustive search.")
+
+## Remark — Where the Cases Come From
+
+The section is about proofs by cases, and the choice of split is worth examining. The natural instinct is to case on the *shape of the distribution* — there are many ways to place $ 4 $ pebbles on $ 4 $ nodes, and enumerating them is tedious.
+
+The productive split is instead on a single yes/no question about the target:
+
+$$$
+\text{Does } r \text{ already have a pebble?}
+$$$
+
+This is efficient because the two branches are handled by completely different observations, each trivial. Case 1 needs no argument at all — the goal is already met. Case 2 concentrates all four pebbles onto three nodes, which is exactly the situation the pigeonhole principle is built for.
+
+Had we cased on the distribution shape instead, Case 1's placements would all have required separate (and pointless) attention. **Case on what you are trying to achieve, not on the raw data.**
+
+## Remark — Case 2 Enumerated, for Reassurance
+
+The pigeonhole step is quick enough to feel like sleight of hand, so it is worth seeing it discharged concretely. With the target empty, the four pebbles are distributed over three nodes, and up to relabelling there are exactly four ways:
+
+$$$
+(4,0,0), \qquad (3,1,0), \qquad (2,2,0), \qquad (2,1,1) .
+$$$
+
+Every one of these contains an entry of at least $ 2 $ — which is precisely the content of the pigeonhole claim. Note also that no case needs more than a *single* move; there is never a chain of two or more, because every node of $ K_4 $ is one step from every other.
+
+## Remark — The Lower Bound Is Fragile
+
+The problem hands over the lower bound, but its structure deserves a look. With three pebbles, most placements *do* succeed:
+
+$$$
+\begin{array}{l|l}
+\textbf{placement (target last)} & \textbf{reaches the target?} \\ \hline
+(3,0,0,\,0) & \text{yes} — \text{two of the three make one move} \\
+(2,1,0,\,0) & \text{yes} \\
+(1,1,1,\,0) & \textbf{no} \\
+\text{any with a pebble on } r & \text{trivially yes}
+\end{array}
+$$$
+
+Exhaustive search confirms that $ (1,1,1,0) $ is the **only** failing shape. So the lower bound rests on one specific configuration, not on a general shortage of pebbles — three pebbles are plenty unless they are spread as thinly as possible.
+
+That is characteristic of pebbling numbers: they are determined by the single worst distribution, which is why $ \pi $ is defined with a universal quantifier over placements and why proving an upper bound requires covering *every* case rather than exhibiting a good strategy for a typical one.
+
+## Remark — The Proof Never Used the Number 4
+
+Reading the argument back, the only property of $ K_4 $ invoked is that the pigeonholed node $ v $ is adjacent to $ r $. That holds in any complete graph, and the pigeonhole step works just as well with $ n $ pebbles on $ n-1 $ nodes. So the identical proof gives
+
+$$$
+\pi(K_n) \le n \qquad\text{for every } n .
+$$$
+
+The matching lower bound is the same as in the problem statement: place one pebble on each of the $ n-1 $ non-target nodes and no move is legal, so $ \pi(K_n)\ge n $. Hence
+
+$$$
+\pi(K_n) = n ,
+$$$
+
+verified by exhaustive search for $ n \le 7 $.
+
+This is best possible in a strong sense. For *any* connected graph $ G $ on $ n $ nodes, $ \pi(G)\ge n $ by the same spread-thin argument, so complete graphs achieve the minimum. Graphs with $ \pi(G) = n $ are called **Class 0**, and $ K_n $ is the standard example.
+
+## Remark — How Bad Can It Get?
+
+The contrast with other graphs shows how much the completeness is buying. For a path,
+
+$$$
+\pi(P_n) = 2^{\,n-1} ,
+$$$
+
+verified for $ n \le 6 $: $ \pi(P_6) = 32 $, against $ \pi(K_6) = 6 $. The reason is that each pebbling move halves your resources, so crossing a path of length $ n-1 $ from one end costs $ 2^{\,n-1} $ pebbles — the general bound $ \pi(G)\ge 2^{\operatorname{diam}(G)} $ is tight here. Cycles fall in between: $ \pi(C_4)=4 $, $ \pi(C_5)=5 $, $ \pi(C_6)=8 $.
+
+For $ K_4 $ both lower bounds are modest — $ n = 4 $ and $ 2^{\operatorname{diam}} = 2^1 = 2 $ — and the larger of them, $ 4 $, is attained. That is really why the answer is so clean: with diameter $ 1 $ there is no distance to pay for, and the only obstruction left is having enough pebbles somewhere to make a single move.
+
+A final note of caution: it is tempting to think a weight argument settles matters, assigning each pebble weight $ 2^{-d(v,r)} $ and requiring total weight $ \ge 1 $. On $ K_4 $ the failing placement $ (1,1,1,0) $ has weight $ \tfrac12+\tfrac12+\tfrac12 = \tfrac32 \ge 1 $ and yet is stuck. The weight condition is necessary, not sufficient — integrality matters, and that is exactly what the pigeonhole step supplies.

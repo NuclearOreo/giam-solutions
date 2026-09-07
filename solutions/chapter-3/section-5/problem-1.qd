@@ -1,0 +1,135 @@
+.docname {Solution — GIAM 3.5 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.5 Problem 1
+
+## Problem
+
+Prove that if $ n $ is an odd number then $ n^4 \equiv 1 \pmod{16} $.
+
+## Answer
+
+$$$
+\boxed{\;\text{Show first that } n^2 \equiv 1 \pmod 8 , \text{ then square.}\;}
+$$$
+
+## A Lemma
+
+> **Lemma.** If $ n $ is odd then $ n^2 \equiv 1 \pmod 8 $.
+>
+> **Proof.** Since $ n $ is odd, $ n = 2m+1 $ for some integer $ m $. Then
+>
+> $ n^2 = 4m^2+4m+1 = 4m(m+1)+1 . $
+>
+> Now $ m $ and $ m+1 $ are consecutive integers, so one of them is even and their product is even: $ m(m+1) = 2j $ for some integer $ j $. Hence
+>
+> $ n^2 = 8j+1 \equiv 1 \pmod 8 . \qquad \blacksquare $
+
+## Proof
+
+> **Theorem.** If $ n $ is odd then $ n^4 \equiv 1 \pmod{16} $.
+>
+> **Proof.** Let $ n $ be odd. By the Lemma there is an integer $ j $ with $ n^2 = 8j+1 $. Squaring,
+>
+> $ n^4 = \left(n^2\right)^2 = (8j+1)^2 = 64j^2 + 16j + 1 = 16\left(4j^2+j\right) + 1 . $
+>
+> Since $ 4j^2+j $ is an integer, $ n^4 \equiv 1 \pmod{16} $. $ \blacksquare $
+
+Verified for every odd $ n $ up to $ 20\,001 $.
+
+## The Same Result by Cases
+
+The section's method gives an alternative route to the Lemma, replacing the “consecutive integers” observation with a two-case split. Every odd integer is of the form $ 4k+1 $ or $ 4k+3 $.
+
+> **Case 1: $ n = 4k+1 $.** Then $ n^2 = 16k^2+8k+1 = 8\left(2k^2+k\right)+1 \equiv 1 \pmod 8 $.
+>
+> **Case 2: $ n = 4k+3 $.** Then $ n^2 = 16k^2+24k+9 = 8\left(2k^2+3k+1\right)+1 \equiv 1 \pmod 8 $.
+>
+> The cases are exhaustive, so $ n^2\equiv1\pmod8 $ for every odd $ n $, and the theorem follows as before.
+
+One could also case on all eight odd residues mod $ 16 $ directly, but that is eight computations rather than two — the point of choosing the right modulus to split on.
+
+## The Picture
+
+The diagram collects the two-step proof, the case version, and a check of all eight odd residues, together with the two facts that pin the statement down: $ 16 $ cannot be enlarged and the exponent $ 4 $ cannot be reduced.
+
+!(84%)[The two-step proof, all eight odd residues, and the sharpness of the modulus](problem-1-mod16.svg "A diagram in six parts. The first states what is to be proved: n odd implies n to the fourth is congruent to 1 mod 16. The second gives the proof in two steps — get to mod 8 first, then square — as three boxes: n equals 2m plus 1, the definition of odd; then n squared equals 4m times m plus 1, plus 1, which equals 8j plus 1 because m times m plus 1 is even; then n to the fourth equals 16 times the quantity 4j squared plus j, plus 1, so n to the fourth is congruent to 1 mod 16. Explicitly, n to the fourth equals 8j plus 1 all squared, which is 64j squared plus 16j plus 1, which is 16 times 4j squared plus j, plus 1. The only non-formal step is that m times m plus 1 is even, since consecutive integers include an even one. The third band gives the same thing by cases: every odd n is 4k plus 1 or 4k plus 3; in the first case n squared is 16k squared plus 8k plus 1, which is 8 times 2k squared plus k, plus 1; in the second n squared is 16k squared plus 24k plus 9, which is 8 times 2k squared plus 3k plus 1, plus 1. Either way n squared is congruent to 1 mod 8. The centre is a table of all eight odd residues mod 16, listing for each of 1, 3, 5, 7, 9, 11, 13, 15 the values of n squared mod 8, n squared mod 16, and n to the fourth mod 16. The n squared mod 8 column is 1 throughout; the n squared mod 16 column alternates between 1 and 9; the n to the fourth mod 16 column is 1 throughout. A band below shows 16 is the largest modulus that works: mod 32 the statement fails immediately, since 3 to the fourth is 81, which is 2 times 32 plus 17, so congruent to 17 rather than 1; over all odd n, n to the fourth mod 32 takes both values 1 and 17. Nor is the exponent wasteful, since n squared is congruent to 9 mod 16 when n is 3, so squaring once is genuinely not enough. The next band gives the pattern it belongs to: n odd implies n to the power 2 to the k is congruent to 1 mod 2 to the k plus 2. Taking k equal to 1 gives n squared congruent to 1 mod 8; k equal to 2 is this problem; k equal to 3 gives n to the eighth congruent to 1 mod 32. This was verified for k up to 6 and is sharp at every stage, each failing at the next power of two. The last band explains why 4 and not 8: Euler's theorem gives only n to the phi of 16, that is n to the eighth, congruent to 1 mod 16, so the theorem here is twice as strong, because the group of units mod 16 has order 8 but exponent 4, its element orders being 1, 2, 2, 2, 4, 4, 4, 4.")
+
+## Remark — Why Reach mod 8 First
+
+The natural first attempt is to expand $ (2m+1)^4 $ directly:
+
+$$$
+n^4 = 16m^4 + 32m^3 + 24m^2 + 8m + 1 = 16\left(m^4+2m^3\right) + 8m(3m+1) + 1 .
+$$$
+
+Everything reduces mod $ 16 $ except $ 8m(3m+1) $, and finishing requires observing that $ m(3m+1) $ is always even — a small case argument of its own. So the direct expansion works but leaves a loose end at exactly the same place.
+
+Squaring twice avoids the mess. The intermediate statement $ n^2\equiv1\pmod8 $ is genuinely easier than the target, and once it is in hand the second squaring is pure algebra: $ (8j+1)^2 $ has a $ 64j^2 $ term and a $ 16j $ term, both of which vanish mod $ 16 $.
+
+The general shape is worth noting: **squaring a residue $ \equiv 1 $ mod $ 2^k $ produces one $ \equiv 1 $ mod $ 2^{k+1} $**, since $ \left(2^k j + 1\right)^2 = 2^{2k}j^2 + 2^{k+1}j + 1 $. Each squaring buys one more power of two.
+
+## Remark — The Modulus Is Sharp
+
+Sixteen cannot be improved. Mod $ 32 $,
+
+$$$
+3^4 = 81 = 2\cdot32 + 17 \equiv 17 \pmod{32},
+$$$
+
+so the statement fails at the very first non-trivial odd number. Sweeping all odd $ n $, the value of $ n^4 \bmod 32 $ takes both $ 1 $ and $ 17 $ — never settling.
+
+Nor is the fourth power extravagant. Squaring only once is not enough: odd squares mod $ 16 $ take the two values $ \{1,9\} $, with $ 3^2 = 9 $. So $ n^2 \equiv 1 \pmod{16} $ is false, and the exponent $ 4 $ is the smallest that works for this modulus.
+
+Both bounds are visible in the table: the $ n^2 \bmod 16 $ column alternates between $ 1 $ and $ 9 $, while the $ n^4 \bmod 16 $ column is constantly $ 1 $.
+
+## Remark — The Pattern This Belongs To
+
+The result is one rung of an infinite ladder. For every odd $ n $ and every $ k\ge1 $,
+
+$$$
+n^{2^k} \equiv 1 \pmod{2^{\,k+2}} .
+$$$
+
+The proof is the squaring observation above, applied repeatedly from the base case $ n^2\equiv1\pmod 8 $. Verified for $ k \le 6 $, and sharp at every stage — each congruence fails at the next power of two:
+
+$$$
+\begin{array}{c|c|c}
+k & \textbf{holds} & \textbf{fails} \\ \hline
+1 & n^2\equiv1 \ (8) & n^2 \not\equiv 1 \ (16) \\
+2 & n^4\equiv1 \ (16) & n^4 \not\equiv 1 \ (32) \\
+3 & n^8\equiv1 \ (32) & n^8 \not\equiv 1 \ (64)
+\end{array}
+$$$
+
+So the problem is the $ k=2 $ case, and the base case $ n^2\equiv1\pmod8 $ — the Lemma — is the only one requiring an actual argument.
+
+## Remark — Why the Exponent Is 4 and Not 8
+
+There is a group-theoretic reading that explains the numbers. The odd residues mod $ 16 $ form a group under multiplication, the units $ (\mathbb{Z}/16\mathbb{Z})^\times $, of order $ \varphi(16) = 8 $. Euler's theorem therefore gives
+
+$$$
+n^{8} \equiv 1 \pmod{16} \qquad\text{for odd } n,
+$$$
+
+which is true but weaker than what this problem asserts.
+
+The improvement from $ 8 $ to $ 4 $ comes from the group's *shape*. Computing the order of each unit gives
+
+$$$
+\begin{array}{c|cccccccc}
+n & 1 & 3 & 5 & 7 & 9 & 11 & 13 & 15 \\ \hline
+\text{order} & 1 & 4 & 4 & 2 & 2 & 4 & 4 & 2
+\end{array}
+$$$
+
+so the **exponent** of the group — the least common multiple of the orders — is $ 4 $, not $ 8 $. The group is $ \mathbb{Z}/2 \times \mathbb{Z}/4 $ rather than $ \mathbb{Z}/8 $; it is not cyclic, and no element has order $ 8 $.
+
+This is the standard fact that $ (\mathbb{Z}/2^m\mathbb{Z})^\times $ fails to be cyclic for $ m\ge3 $, unlike $ (\mathbb{Z}/p^m\mathbb{Z})^\times $ for odd primes $ p $. Powers of two are the exception, and this exercise is a concrete symptom of it: the exponent is half the order, so the guaranteed power is $ 4 $ rather than $ 8 $, and the table above shows $ 4 $ is attained.
