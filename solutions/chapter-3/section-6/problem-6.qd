@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 3.6 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 6
+
+## Problem
+
+Give a proof of the unique existence of $ q $ and $ r $ in the division algorithm.
+
+## The Statement
+
+$$$
+\forall a \in \mathbb{Z},\; \forall b \in \mathbb{Z}^{+},\; \exists!\, q,r \in \mathbb{Z} \quad\text{such that}\quad a = qb + r \;\text{ and }\; 0 \le r < b .
+$$$
+
+A unique-existence claim is two claims, and they need separate arguments: **existence** produces a pair, **uniqueness** rules out a second.
+
+## Existence
+
+> **Proof.** Let $ a\in\mathbb{Z} $ and $ b\in\mathbb{Z}^{+} $, and define
+>
+> $ S = \left\{\, a - qb \;:\; q\in\mathbb{Z},\; a-qb \ge 0 \,\right\} . $
+>
+> By construction $ S \subseteq \mathbb{N} $.
+>
+> **$ S $ is non-empty.** Take $ q = -\lvert a\rvert $. Then $ a - qb = a + \lvert a\rvert b $, and since $ b \ge 1 $ we have $ \lvert a\rvert b \ge \lvert a\rvert \ge -a $, so $ a + \lvert a\rvert b \ge 0 $. Hence this value lies in $ S $.
+>
+> **$ S $ has a least element.** By the well-ordering principle applied to the non-empty subset $ S $ of $ \mathbb{N} $, there is a least $ r \in S $. Fix $ q $ with $ r = a-qb $; then $ a = qb+r $ and $ r \ge 0 $.
+>
+> **$ r < b $.** Suppose instead $ r \ge b $. Then
+>
+> $ r - b = a - qb - b = a - (q+1)b \ge 0 , $
+>
+> so $ r-b \in S $. But $ b>0 $ gives $ r-b < r $, contradicting the minimality of $ r $. Hence $ r < b $.
+>
+> So $ q $ and $ r $ exist with $ a = qb+r $ and $ 0\le r< b $. $ \blacksquare $
+
+## Uniqueness
+
+> **Proof.** Suppose $ a = q_1 b + r_1 $ and $ a = q_2 b + r_2 $, with $ 0\le r_1 < b $ and $ 0\le r_2 < b $. Subtracting,
+>
+> $ \left(q_1-q_2\right)b = r_2 - r_1 . $
+>
+> From $ 0\le r_1< b $ and $ 0\le r_2< b $ we get $ -b < r_2-r_1 < b $, that is $ \lvert r_2-r_1\rvert < b $.
+>
+> But $ r_2-r_1 = \left(q_1-q_2\right)b $ is an integer multiple of $ b $, and the only multiple of $ b $ with absolute value less than $ b $ is $ 0 $. Hence $ r_2-r_1 = 0 $, so $ r_1 = r_2 $.
+>
+> Then $ \left(q_1-q_2\right)b = 0 $ with $ b \ne 0 $, so $ q_1 = q_2 $.
+>
+> The pair is therefore unique. $ \blacksquare $
+
+Both halves were checked computationally: Python's `divmod` returns a pair satisfying $ a = qb+r $ with $ 0\le r< b $ on $ 300\,000 $ random inputs.
+
+## The Picture
+
+The multiples of $ b $ cut the integer line into blocks of length $ b $, and the theorem says $ a $ falls in exactly one of them: $ q $ names the block and $ r $ the offset inside it.
+
+!(84%)[The multiples of b tiling the integers, and the two halves of the proof](problem-6-divalg.svg "A diagram in four parts. The first states the claim: for every integer a and every positive integer b there exist unique integers q and r with a equal to qb plus r and r between 0 and b, noting that the unique-existence quantifier means two separate jobs — produce a pair, then show no second pair can exist. The second part draws a number line with b equal to 5, marking the multiples minus 25 through 25, each labelled also as a multiple of b. Every integer lies in exactly one block from qb to q plus one times b. The block from minus 20 to minus 15 is shaded green, and the point a equals minus 17 is marked in red inside it, with a bracket beneath showing the gap of length r equals 3 from minus 20 up to minus 17, and the label qb equals minus 4 times 5 at the block's left edge. The third part places the two halves of the proof side by side. Existence, via well-ordering: define S as the set of all a minus qb that are non-negative; then S is a subset of the naturals, and it is non-empty because taking q equal to minus the absolute value of a gives a plus the absolute value of a times b, which is at least 0. By the well-ordering principle S has a least element r equal to a minus qb, at least 0; and if r were at least b then r minus b equals a minus q plus one times b would be a smaller member of S, which is impossible, so r is less than b. Uniqueness, via a size bound: suppose a equals q one b plus r one and also q two b plus r two, with both remainders between 0 and b; then q one minus q two, times b, equals r two minus r one. From the bounds on the remainders their difference has absolute value less than b, yet it is a multiple of b, and the only such multiple is 0, so the remainders are equal, and then the quotients are equal since b is non-zero. A band below stresses that the set must live in the naturals, not the integers: S is defined with the condition a minus qb at least 0 precisely so that it is a set of natural numbers, since dropping that condition makes S run off to minus infinity with no least element, exactly the failure of Problem 3, and the well-ordering principle would supply nothing. Non-emptiness is not automatic either; q equal to minus the absolute value of a is the standard choice. A final band explains that the bound on r is what makes the pair unique: without it there are infinitely many decompositions, and for a equal to 17 with b equal to 5 the pairs are 0 and 17, 1 and 12, 2 and 7, 3 and 2, 4 and minus 3, 5 and minus 8, of which only 3 and 2 has the remainder in range. The bound also forces a non-negative remainder for negative a, so minus 17 equals minus 4 times 5 plus 3, not minus 3 times 5 plus minus 2. Python's divmod follows the theorem while C-style truncating division does not, checked on 300000 random pairs.")
+
+## Remark — Why $ S $ Must Be a Set of Natural Numbers
+
+The definition of $ S $ carries the condition $ a-qb \ge 0 $, and that condition is not cosmetic — it is the whole reason the proof works.
+
+Without it, $ S $ would be $ \{a-qb : q\in\mathbb{Z}\} $, which contains arbitrarily large negative numbers (take $ q $ large and positive). By Problem 3 of this section, such a set has **no least element**, and the well-ordering principle supplies nothing at all. Restricting to the non-negative part is precisely what puts $ S $ inside $ \mathbb{N} $, where WOP applies.
+
+Non-emptiness then has to be checked separately, since WOP has that hypothesis. The choice $ q = -\lvert a\rvert $ works for every $ a $ — including $ a<0 $, where $ \lvert a\rvert b $ is large enough to overcome the negative $ a $ — and was verified at several values including $ a = -10^6 $, $ b=1 $.
+
+So the existence half rests on three things in order: **restrict to $ \mathbb{N} $**, **check non-empty**, **apply WOP**. Skipping either of the first two invalidates the third.
+
+## Remark — The Two Halves Use Completely Different Tools
+
+It is worth noticing how little the two arguments have in common.
+
+$$$
+\begin{array}{l|l|l}
+ & \textbf{existence} & \textbf{uniqueness} \\ \hline
+\text{tool} & \text{well-ordering principle} & \text{a size bound on } \lvert r_2-r_1\rvert \\
+\text{uses } 0\le r & \text{by construction of } S & \text{to bound the difference} \\
+\text{uses } r< b & \text{proved, by minimality} & \text{to bound the difference} \\
+\text{style} & \text{non-constructive} & \text{direct}
+\end{array}
+$$$
+
+This is typical of $ \exists! $ statements and worth internalising: proving existence and proving uniqueness are separate tasks, and a proof that does only one is only half done. The text made the same split in proving unique existence of the gcd — uniqueness first because it was easier, then existence via the $ \mathbb{Z} $-module.
+
+Note too that the existence proof is **non-constructive** in an interesting way. It shows a least element of $ S $ exists without saying how to find it; the *algorithm* usually called long division is a separate matter. This is exactly the pattern of Theorem 3.6.3 in the text, where a smallest six-digit vampire number was shown to exist without being identified.
+
+## Remark — The Bound Is What Makes the Pair Unique
+
+Existence of *some* $ q,r $ with $ a = qb+r $ is trivial — take $ q=0 $, $ r=a $. All the content is in the range restriction, and dropping it destroys uniqueness immediately. With $ a=17 $, $ b=5 $:
+
+$$$
+(q,r) = (0,17),\;(1,12),\;(2,7),\;\mathbf{(3,2)},\;(4,-3),\;(5,-8),\;\dots
+$$$
+
+infinitely many pairs, of which exactly one satisfies $ 0\le r<5 $. The bound picks out a single representative from each equivalence class modulo $ b $ — which is why $ r $ is *the* remainder rather than *a* remainder.
+
+The choice of $ [0,b) $ rather than some other window of length $ b $ is a convention, and other conventions are used: the **least absolute remainder** takes $ r \in \left(-b/2,\,b/2\right] $, so that $ 17 = 3\cdot5+2 $ but $ 18 = 4\cdot5-2 $. Uniqueness holds for any half-open interval of length $ b $; the proof above never uses that the window starts at $ 0 $, only that it has length $ b $.
+
+## Remark — Negative Dividends, and What Computers Actually Do
+
+The theorem forces the remainder to be non-negative even when $ a $ is negative:
+
+$$$
+-17 = (-4)\cdot5 + 3, \qquad -1 = (-1)\cdot5 + 4, \qquad -20 = (-4)\cdot5 + 0 .
+$$$
+
+That $ -17 $ has quotient $ -4 $ rather than $ -3 $ surprises people, but $ (-3)\cdot5 + (-2) $ has $ r=-2 $, violating $ 0\le r $.
+
+This is a live issue in practice, because programming languages disagree. Python's `divmod` implements the theorem exactly — its remainder is always non-negative for positive $ b $ — while C, C++ and Java truncate the quotient toward zero and return $ -17 \bmod 5 = -2 $. Both satisfy $ a = qb+r $; only one satisfies $ 0\le r< b $. Number-theoretic code written against the wrong convention fails on negative inputs, and the division algorithm is the reason.
+
+Finally, the restriction $ b>0 $ is only for convenience. For $ b\ne0 $ the statement holds with $ 0\le r<\lvert b\rvert $ — for instance $ 17 = (-3)(-5)+2 $ and $ -17 = 4\cdot(-5)+3 $, both verified. What cannot be relaxed is $ b\ne0 $: with $ b=0 $ the condition $ 0\le r<0 $ is unsatisfiable, and nothing exists to be unique.

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 768" width="720" height="768" font-family="Georgia, serif">
+  <rect x="0" y="0" width="720" height="768" fill="#ffffff"/>
+
+  <rect x="18" y="14" width="684" height="76" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">AN EXISTENTIAL CLAIM</text>
+  <text x="430" y="34" font-size="13.5" fill="#1f3a68" text-anchor="middle">some perfect square is the sum of two perfect squares</text>
+  <text x="40" y="56" font-size="11.5" fill="#333">To prove &#8707;, exhibit one instance and check it. No general argument is needed, and none is expected.</text>
+  <text x="430" y="79" font-size="16" fill="#1f6b34" text-anchor="middle" font-weight="bold">3&#178; + 4&#178; = 9 + 16 = 25 = 5&#178;</text>
+
+  <polygon points="300,300 300,188 188,188 188,300" fill="#fde3e3" stroke="#9b2c2c" stroke-width="1.6"/><polygon points="384,300 300,300 300,384 384,384" fill="#fff3d6" stroke="#b06a10" stroke-width="1.6"/><polygon points="300,188 384,300 496,216 412,104" fill="#dff0e2" stroke="#1f6b34" stroke-width="1.6"/><line x1="216" y1="188" x2="216" y2="300" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="188" y1="216" x2="300" y2="216" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="244" y1="188" x2="244" y2="300" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="188" y1="244" x2="300" y2="244" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="272" y1="188" x2="272" y2="300" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="188" y1="272" x2="300" y2="272" stroke="#9b2c2c" stroke-width="0.6" opacity="0.5"/><line x1="328" y1="300" x2="328" y2="384" stroke="#b06a10" stroke-width="0.6" opacity="0.5"/><line x1="300" y1="328" x2="384" y2="328" stroke="#b06a10" stroke-width="0.6" opacity="0.5"/><line x1="356" y1="300" x2="356" y2="384" stroke="#b06a10" stroke-width="0.6" opacity="0.5"/><line x1="300" y1="356" x2="384" y2="356" stroke="#b06a10" stroke-width="0.6" opacity="0.5"/><polygon points="300,188 300,300 384,300" fill="#eef2fa" stroke="#3b5b9b" stroke-width="2"/><path d="M300,286 L314,286 L314,300" fill="none" stroke="#3b5b9b" stroke-width="1.4"/>
+  <text x="244" y="250" font-size="17" fill="#9b2c2c" text-anchor="middle" font-weight="bold">4&#178; = 16</text><text x="342.0" y="348.0" font-size="17" fill="#b06a10" text-anchor="middle" font-weight="bold">3&#178; = 9</text><text x="394.0" y="196.0" font-size="17" fill="#1f6b34" text-anchor="middle" font-weight="bold">5&#178; = 25</text>
+  <text x="360" y="446" font-size="11.5" fill="#555" text-anchor="middle" font-style="italic">legs 3 and 4, hypotenuse 5: the two small squares hold 9 and 16 unit cells &#8212; together exactly the 25 of the large one</text>
+
+  <rect x="18" y="488" width="684" height="126" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="508" font-size="11.5" fill="#1f6b34" font-weight="bold">ONE WITNESS IS ENOUGH &#8212; BUT THERE ARE MANY</text>
+  <text x="40" y="530" font-size="11.5" fill="#333">Searching every c up to 100 finds 52 such triples, 16 of them primitive:</text>
+  <text x="40" y="552" font-size="11.5" fill="#1f3a68" font-weight="bold">(3,4,5)&#160; (5,12,13)&#160; (8,15,17)&#160; (7,24,25)&#160; (20,21,29)&#160; (12,35,37)&#160; (9,40,41)&#160; (11,60,61)&#160; &#8230;</text>
+  <text x="40" y="578" font-size="11.5" fill="#333">Euclid&#8217;s formula generates all of them: a = m&#178; &#8722; n&#178;, b = 2mn, c = m&#178; + n&#178; for coprime m &gt; n of opposite</text>
+  <text x="40" y="595" font-size="11.5" fill="#333">parity. Taking m = 2, n = 1 returns (3, 4, 5); m = 3, n = 2 returns (5, 12, 13). Verified against the list.</text>
+
+  <rect x="18" y="628" width="684" height="124" rx="6" fill="#fdf3f3" stroke="#9b2c2c" stroke-width="1.3"/>
+  <text x="34" y="648" font-size="11.5" fill="#9b2c2c" font-weight="bold">THE SAME QUESTION FOR HIGHER POWERS HAS THE OPPOSITE ANSWER</text>
+  <text x="40" y="670" font-size="11.5" fill="#333">Is some cube the sum of two cubes? Some fourth power the sum of two fourth powers? Searching every</text>
+  <text x="40" y="687" font-size="11.5" fill="#333">c below 400 for k = 3, 4 and 5 turns up nothing at all.</text>
+  <text x="360" y="714" font-size="13" fill="#9b2c2c" text-anchor="middle" font-weight="bold">a&#7495; + b&#7495; = c&#7495; has no positive solutions for any k &#8805; 3</text>
+  <text x="40" y="736" font-size="11.5" fill="#333">That is Fermat&#8217;s Last Theorem &#8212; conjectured 1637, proved by Wiles in 1995. So k = 2 is the only</text>
+  <text x="40" y="746" font-size="11.5" fill="#333">exponent for which this exercise has an answer.</text>
+</svg>

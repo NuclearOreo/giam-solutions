@@ -1,0 +1,108 @@
+.docname {Solution — GIAM 3.6 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 3
+
+## Problem
+
+Show that the WOP doesn't hold in the integers. (This is an existence proof — you show that there is a subset of $ \mathbb{Z} $ that doesn't have a smallest element.)
+
+## What Must Be Exhibited
+
+The **Well-Ordering Principle** for $ \mathbb{N} $ states that every non-empty subset of $ \mathbb{N} $ has a least element. The corresponding statement for $ \mathbb{Z} $ would be
+
+$$$
+\forall S \subseteq \mathbb{Z},\quad S \ne \varnothing \implies \exists\, m\in S,\; \forall s\in S,\; m \le s .
+$$$
+
+Its negation is existential:
+
+$$$
+\exists\, S \subseteq \mathbb{Z},\quad S \ne \varnothing \;\land\; \forall m\in S,\; \exists\, s\in S,\; s < m .
+$$$
+
+So one non-empty subset with no least element settles the matter.
+
+## Answer
+
+$$$
+\boxed{\;S = \mathbb{Z} : \quad\text{for every } n\in\mathbb{Z}, \text{ the integer } n-1 \text{ lies in } \mathbb{Z} \text{ and is smaller.}\;}
+$$$
+
+## Proof
+
+> **Theorem.** The Well-Ordering Principle fails in $ \mathbb{Z} $.
+>
+> **Proof.** Take $ S = \mathbb{Z} $, which is a non-empty subset of $ \mathbb{Z} $.
+>
+> Let $ n $ be any element of $ S $. Since $ \mathbb{Z} $ is closed under subtraction, $ n-1 \in \mathbb{Z} = S $, and $ n-1 < n $ because $ 0 < 1 $. So $ n $ is not a least element of $ S $.
+>
+> As $ n $ was arbitrary, no element of $ S $ is least. Hence $ S $ is a non-empty subset of $ \mathbb{Z} $ with no smallest element, and the Well-Ordering Principle does not hold in $ \mathbb{Z} $. $ \blacksquare $
+
+Two other witnesses work equally well: the negative integers $ \{\dots,-3,-2,-1\} $, and the even integers. Each is non-empty, and in each the same $ n \mapsto n-1 $ (or $ n-2 $) move produces a smaller member.
+
+## The Picture
+
+!(84%)[The integers with no left end, and the status of the principle in three settings](problem-3-wop.svg "A diagram in four parts. The first states the existential claim — some subset of the integers has no smallest element — and gives the witness: take the subset of all integers. For any integer n, the integer n minus 1 is also an integer and is smaller, so n is not least. The second part draws a number line with marked points at minus 4 through 4, arrows at both ends, and ellipses continuing in both directions; the left arrow is red and labelled no leftmost point, with the note that whatever n you pick, n minus 1 is further left. The third part shows where the principle stands in three settings, as three boxes. For the natural numbers, in green, the Well-Ordering Principle holds: every non-empty subset has a least element, and this is equivalent to induction. For the integers, in red, it fails: the integers themselves have no least element, and neither do the negatives or the evens, but it is rescued by adding the hypothesis bounded below. For the reals, in amber, it fails badly: the open interval from 0 to infinity is bounded below by 0 and still has no least element, so bounding below does not rescue anything there. A band below gives what survives, the repaired theorem: every non-empty subset of the integers that is bounded below has a least element. The failure is not about the integers being bigger than the naturals but about their having no floor; supply one and the principle returns, because from any starting integer only finitely many strictly smaller ones lie above the bound — from 7 with lower bound minus 3 there are just eleven values available. A final band states two things the witness must be. Infinite, since every finite non-empty set of integers has a least element, so no finite set can serve. And unbounded below, since by the repaired theorem a bounded-below set always has a minimum. Both conditions are met by the integers, by the negative integers, and by the even integers, so any of the three will do.")
+
+## Remark — The Witness Must Be Infinite and Unbounded Below
+
+Before hunting for a witness it is worth knowing what one has to look like. Two conditions are forced.
+
+**It must be infinite.** Every finite non-empty set of integers has a least element — compare the elements pairwise and the smallest survives. So no finite set can serve, and a witness has to be an infinite set.
+
+**It must be unbounded below.** This is the substantive constraint, and it is the content of the next remark: a subset of $ \mathbb{Z} $ bounded below *always* has a minimum. So the witness must extend arbitrarily far to the left.
+
+Together these narrow the search considerably. $ \mathbb{Z} $ itself is the first thing satisfying both, which is why it is the natural choice. Note also what is *not* required: the witness need not be all of $ \mathbb{Z} $, and it may be bounded above — the negative integers are, and they still work.
+
+## Remark — What Survives: the Repaired Theorem
+
+The interesting content is not that the principle fails but *how narrowly*:
+
+> **Theorem.** Every non-empty subset of $ \mathbb{Z} $ that is bounded below has a least element.
+
+The reason is that the integers are **discrete**. Suppose $ S\subseteq\mathbb{Z} $ is non-empty with lower bound $ b $, and pick any $ s_0\in S $. The elements of $ S $ lying in $ [b,\,s_0] $ are among the integers $ b, b+1, \dots, s_0 $ — a *finite* list of at most $ s_0-b+1 $ numbers. A finite non-empty set has a minimum, and that minimum is least in all of $ S $.
+
+For example, starting at $ 7 $ with lower bound $ -3 $, only the eleven values $ 7,6,5,\dots,-3 $ are available, so a strictly decreasing search terminates.
+
+So the failure of the WOP in $ \mathbb{Z} $ is entirely due to the missing floor. The principle is not really about $ \mathbb{N} $ as opposed to $ \mathbb{Z} $; it is about being bounded below, and $ \mathbb{N} $ simply comes with the bound $ 0 $ built in.
+
+## Remark — Boundedness Below Is Not Enough in $ \mathbb{R} $
+
+The repair above works in $ \mathbb{Z} $ and fails completely in $ \mathbb{R} $, which sharpens what discreteness is buying.
+
+$$$
+S = (0,\infty) \subseteq \mathbb{R}
+$$$
+
+is non-empty and bounded below by $ 0 $, yet has no least element — for any $ \varepsilon>0 $ the number $ \varepsilon/2 $ is smaller and still in $ S $. That is exactly 3.3 Problem 4.
+
+Setting the three cases together:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{setting} & \textbf{WOP} & \textbf{with ``bounded below'' added} \\ \hline
+\mathbb{N} & \text{holds} & \text{holds (automatic)} \\
+\mathbb{Z} & \textbf{fails} & \text{holds} \\
+\mathbb{R} & \textbf{fails} & \textbf{still fails}
+\end{array}
+$$$
+
+The middle row is this problem; the bottom row is 3.3 Problem 4. What separates them is that between two distinct integers there are finitely many others, while between two distinct reals there are infinitely many. Well-ordering needs both a floor *and* discreteness, and $ \mathbb{Z} $ has only the second.
+
+## Remark — Why This Matters: WOP and Induction
+
+The Well-Ordering Principle is not a curiosity; over $ \mathbb{N} $ it is **equivalent to mathematical induction**, and it is the engine behind every “least counterexample” argument:
+
+> Suppose some natural number fails property $ P $. Then the set of failures is a non-empty subset of $ \mathbb{N} $, so it has a least element $ m $. Derive a contradiction from the minimality of $ m $.
+
+This exercise shows exactly why such arguments must be run in $ \mathbb{N} $ and not in $ \mathbb{Z} $. Taking “the least integer failing $ P $” is not a legitimate move — the set of failures may have no least element at all, and the proof collapses at its first sentence.
+
+The same warning applies to descent arguments. A proof that repeatedly produces a smaller counterexample terminates in $ \mathbb{N} $ because it cannot descend forever; in $ \mathbb{Z} $ it can, and does. Fermat's method of infinite descent depends on this and is stated for positive integers for precisely this reason.

@@ -1,0 +1,129 @@
+.docname {Solution — GIAM 3.6 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 7
+
+## Problem
+
+A *digraph* is a drawing containing a collection of points connected by arrows. The game known as *scissors-paper-rock* can be represented by a digraph that is *balanced* — each point has the same number of arrows going out as going in. Show that there is a balanced digraph having $ 5 $ points.
+
+## Answer
+
+$$$
+\boxed{\;\text{The } 5\text{-cycle } 0\to1\to2\to3\to4\to0 : \text{ every point has one arrow out and one in.}\;}
+$$$
+
+## Proof
+
+The claim is existential, so exhibiting one digraph and checking the degree condition is the entire proof.
+
+> **Proof.** Take the five points $ 0,1,2,3,4 $ and the five arrows
+>
+> $ 0\to1, \quad 1\to2, \quad 2\to3, \quad 3\to4, \quad 4\to0 . $
+>
+> Each point $ k $ is the tail of exactly one arrow, namely $ k\to k+1 $, so every out-degree is $ 1 $. Each point $ k $ is the head of exactly one arrow, namely $ k-1\to k $, so every in-degree is $ 1 $ (indices mod $ 5 $).
+>
+> Out-degree equals in-degree at every point, so this digraph on $ 5 $ points is balanced. $ \blacksquare $
+
+## A Second Witness, Closer to the Spirit of the Example
+
+The scissors-paper-rock digraph in the problem is a *game*: every pair of options is joined, and each option beats some and loses to others. The five-point analogue exists too — take the same five points and draw
+
+$$$
+k \to k+1 \qquad\text{and}\qquad k \to k+2 \qquad (\text{indices mod } 5).
+$$$
+
+This gives $ 10 $ arrows, one between each pair of points, and every point has out-degree $ 2 $ and in-degree $ 2 $ — verified. It is the familiar **rock–paper–scissors–lizard–Spock**: each option defeats exactly two others and is defeated by exactly two.
+
+$$$
+\begin{array}{c|c|c}
+\textbf{point} & \textbf{out-degree} & \textbf{in-degree} \\ \hline
+0 & 2 & 2 \\
+1 & 2 & 2 \\
+2 & 2 & 2 \\
+3 & 2 & 2 \\
+4 & 2 & 2
+\end{array}
+$$$
+
+## The Picture
+
+Both witnesses drawn side by side: the bare cycle on the left, and on the right the same five points with the diagonals added, turning it into a playable game.
+
+!(84%)[The 5-cycle and the five-option game, both balanced](problem-7-digraph.svg "A diagram in four parts. The first states the existential claim — there is a balanced digraph on 5 points — and explains that balanced means every point has as many arrows leaving as arriving, so exhibiting one such drawing is the whole proof, with two natural candidates, one minimal and one a genuine game. The centre shows two drawings. On the left, in green, the 5-cycle: five points arranged in a pentagon numbered 0 through 4, with a single arrow from each point to the next around the ring, so every point has one arrow out and one in. On the right, in red, the five-option game in which point k sends arrows to k plus 1 and k plus 2 modulo 5, drawn as a pentagon with all ten arrows including the five diagonals, its points labelled rock, paper, scissors, lizard and Spock; every point has two arrows out and two in. A table below lists the degrees in the five-option game, showing out-degree 2 and in-degree 2 at each of the five points. A band explains why 5 is special for the game version: if every pair of options must be joined by exactly one arrow, making a tournament, then balance forces each out-degree to be n minus 1 over 2, which is an integer only when n is odd. So n equals 3 gives rock-paper-scissors, n equals 5 gives the game shown, and n equals 7 works too, but n equals 4 and n equals 6 admit no fair game of this kind at all; the 5-cycle, needing no such condition, works for every n. A final band asks how many witnesses there are: enumerating all 2 to the 20, or 1048576, loopless digraphs on five labelled points, exactly 7736 are balanced, about 0.74 percent, the empty digraph among them trivially. Balance is also exactly the condition for an Eulerian circuit, since a connected digraph has a closed walk using every arrow once precisely when it is balanced.")
+
+## Remark — Two Witnesses, Two Different Points
+
+The problem asks only for existence, so the $ 5 $-cycle finishes it. But the two witnesses are worth distinguishing, because they answer slightly different questions.
+
+$$$
+\begin{array}{l|c|c|l}
+\textbf{witness} & \textbf{arrows} & \textbf{degrees} & \textbf{what it shows} \\ \hline
+5\text{-cycle} & 5 & 1 \text{ out, } 1 \text{ in} & \text{balance is easy to arrange} \\
+k\to k+1,\,k+2 & 10 & 2 \text{ out, } 2 \text{ in} & \text{a genuine 5-option game exists}
+\end{array}
+$$$
+
+The cycle is the cheapest possible non-trivial answer — indeed the empty digraph on five points is balanced too, with all degrees $ 0 $, and technically settles the problem. Mentioning that is worth a moment: **an existential claim can sometimes be satisfied by a degenerate object**, and it is the reader's job to notice whether the statement intended to exclude it. Here it did not, but the cycle is a more honest witness and the game is a more interesting one.
+
+## Remark — Why the Game Version Needs an Odd Number of Options
+
+The scissors-paper-rock picture has an extra property beyond balance: **every pair of points is joined by exactly one arrow**. A digraph like that is called a *tournament*, and it is what makes the picture a game — any two options can be compared.
+
+If a tournament on $ n $ points is balanced, then each point has out-degree $ d $ and in-degree $ d $, so its total degree is $ 2d = n-1 $, giving
+
+$$$
+d = \frac{n-1}{2} .
+$$$
+
+This is an integer only when $ n $ is **odd**. So:
+
+$$$
+\begin{array}{c|c|l}
+n & (n-1)/2 & \\ \hline
+3 & 1 & \text{scissors--paper--rock} \\
+4 & 1.5 & \textbf{impossible} \\
+5 & 2 & \text{the game above} \\
+6 & 2.5 & \textbf{impossible} \\
+7 & 3 & \text{exists}
+\end{array}
+$$$
+
+So there is no fair four-option or six-option game of this kind — a small fact with real consequences for anyone designing one. The number $ 5 $ in the problem is not arbitrary: it is the next size after $ 3 $ at which the game construction works.
+
+The $ 5 $-cycle, by contrast, has no such restriction. Cycles of every length are balanced, so a balanced digraph exists on $ n $ points for every $ n\ge1 $ — the tournament condition is what creates the parity obstruction.
+
+## Remark — Balance Is a Local Refinement of a Global Identity
+
+Every digraph, balanced or not, satisfies
+
+$$$
+\sum_{v} \operatorname{outdeg}(v) \;=\; \sum_{v} \operatorname{indeg}(v) \;=\; \text{number of arrows} ,
+$$$
+
+since each arrow contributes exactly one to each sum. So the *totals* always match; balance is the much stronger demand that they match **at each point separately**.
+
+That distinction is worth keeping in mind because the global identity is free and the local one is not. Enumerating all $ 2^{20} = 1\,048\,576 $ loopless digraphs on five labelled points, exactly $ 7736 $ are balanced — about $ 0.74\% $. Balance is a genuine restriction, not an automatic consequence of counting.
+
+## Remark — What Balance Is Really For
+
+Balance is not merely a curiosity of game diagrams; it is exactly the condition governing Eulerian circuits.
+
+> **Theorem.** A connected digraph has a closed walk traversing every arrow exactly once if and only if it is balanced.
+
+The forward direction is easy and explains the name: such a walk enters and leaves each point the same number of times, so in-degree must equal out-degree. The converse is the substantive half.
+
+Both witnesses here illustrate it. The $ 5 $-cycle's Eulerian circuit is the cycle itself. The five-option game has $ 10 $ arrows, and one closed walk using each exactly once is
+
+$$$
+0\to1\to2\to3\to4\to0\to2\to4\to1\to3\to0 ,
+$$$
+
+alternating the two arrow types. This is why balance turns up wherever one wants to traverse every connection and return home — street-sweeping routes, DNA fragment assembly, and the original bridges of Königsberg.

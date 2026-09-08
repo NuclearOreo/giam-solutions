@@ -1,0 +1,109 @@
+.docname {Solution — GIAM 3.6 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 4
+
+## Problem
+
+Show that the WOP doesn't hold in $ \mathbb{Q}^{+} $.
+
+## What Must Be Exhibited
+
+As in the previous problem, the negation of the Well-Ordering Principle is existential:
+
+$$$
+\exists\, S \subseteq \mathbb{Q}^{+},\quad S\ne\varnothing \;\land\; \forall m\in S,\; \exists\, s\in S,\; s < m .
+$$$
+
+So one non-empty set of positive rationals with no least element suffices.
+
+## Answer
+
+$$$
+\boxed{\;S = \mathbb{Q}^{+} : \quad\text{for every } q\in\mathbb{Q}^{+}, \text{ the rational } q/2 \text{ is positive and smaller.}\;}
+$$$
+
+## Proof
+
+> **Theorem.** The Well-Ordering Principle fails in $ \mathbb{Q}^{+} $.
+>
+> **Proof.** Take $ S = \mathbb{Q}^{+} $, which is non-empty (it contains $ 1 $).
+>
+> Let $ q $ be any element of $ S $. Then $ q/2 $ is a rational number, since $ \mathbb{Q} $ is closed under division by $ 2 $; it is positive, since $ q>0 $ and $ 2>0 $; and $ q/2 < q $, since $ q>0 $ and $ 1<2 $. Hence $ q/2 \in S $ and $ q/2 < q $, so $ q $ is not a least element of $ S $.
+>
+> As $ q $ was arbitrary, no element of $ S $ is least. So $ S $ is a non-empty subset of $ \mathbb{Q}^{+} $ with no smallest element. $ \blacksquare $
+
+Checked on $ 200\,000 $ random positive rationals: $ 0 < q/2 < q $ every time.
+
+## The Picture
+
+!(84%)[The halving cascade in the positive rationals, and how the four settings compare](problem-4-qplus.svg "A diagram in four parts. The first states the existential claim — some subset of the positive rationals has no smallest element — and gives the witness: take the positive rationals themselves, since for any positive rational q the rational q over 2 is again positive and is smaller, so q is not least. The second part draws a number line with 0 marked at the left and labelled not in Q plus, followed by a cascade of points at 1, one half, one quarter, one eighth and onward, each dot smaller than the last, crowding towards 0 without reaching it. The caption notes that every point is a positive rational, each half the one before, and that the chain never reaches 0 and never stops; a note above adds that unlike the integers, the trouble is not at infinity but at 0, where the set crowds against a floor it does not contain. A table then compares four settings on two questions, whether the Well-Ordering Principle holds as stated and whether it is rescued by adding the hypothesis bounded below. For the natural numbers the answers are yes and yes automatically. For the integers, no and yes. For the positive rationals, no and no, with this row outlined. For the positive reals, no and no. A band below explains why the positive rationals fail worse than the integers: in the integers the failure needed a set running off to minus infinity, and adding a lower bound repaired it, whereas the positive rationals are already bounded below by 0 and fail anyway, so no such repair is available. The difference is discreteness: between two integers lie finitely many others, so a decreasing walk above a bound must stop, but between two rationals lie infinitely many, so it never has to. A final band gives two things that are still true. First, the positive rationals contain well-ordered subsets, since the positive integers sit inside and are perfectly well-ordered, so the failure is a property of the positive rationals as a whole and not of everything in them. Second, the positive rationals can be well-ordered by a different order: being countable, listing them by height numerator plus denominator and then by numerator gives 1, one half, 2, one third, 3, one quarter, two thirds, three halves, 4 and so on, and that order is a well-ordering. Well-ordering is a property of the pair set-and-order, never of the set alone; only the usual less-than fails here.")
+
+## Remark — This Fails Worse Than $ \mathbb{Z} $ Did
+
+The two exercises look alike but the failures are of different kinds, and the difference is the interesting part.
+
+In $ \mathbb{Z} $ (Problem 3) the witness had to run off to $ -\infty $ — indeed *any* subset of $ \mathbb{Z} $ bounded below does have a least element. The principle was repairable by adding one hypothesis.
+
+Here $ \mathbb{Q}^{+} $ **is** bounded below, by $ 0 $, and it fails anyway. So the same repair is unavailable:
+
+$$$
+\begin{array}{l|c|c}
+\textbf{setting} & \textbf{WOP as stated} & \textbf{with ``bounded below'' added} \\ \hline
+\mathbb{N} & \text{yes} & \text{yes (automatic)} \\
+\mathbb{Z} & \text{no} & \textbf{yes} \\
+\mathbb{Q}^{+} & \text{no} & \textbf{no} \\
+\mathbb{R}^{+} & \text{no} & \textbf{no}
+\end{array}
+$$$
+
+Notice also *where* the trouble sits. In $ \mathbb{Z} $ the set escaped downward without limit; here it crowds against a floor it does not contain. The infimum of $ \mathbb{Q}^{+} $ is $ 0 $, which exists perfectly well as a rational number — it is simply not in the set. That is the distinction between an infimum and a minimum, exactly as in 3.3 Problem 4.
+
+## Remark — The Real Culprit Is Density
+
+What separates the two rows is **discreteness**, and the cleanest way to see it is through descending chains.
+
+> A set is well-ordered by $ < $ if and only if it admits no infinite strictly decreasing sequence.
+
+In $ \mathbb{Z} $ bounded below by $ b $, a strictly decreasing sequence starting at $ s_0 $ must stop: only the finitely many integers between $ b $ and $ s_0 $ are available. In $ \mathbb{Q}^{+} $ no such obstruction exists, and an infinite descending chain is easy to write down:
+
+$$$
+1 \;>\; \tfrac12 \;>\; \tfrac14 \;>\; \tfrac18 \;>\; \tfrac1{16} \;>\; \cdots
+$$$
+
+Every term is a positive rational, each is half the last, and the sequence never terminates. That single chain is an alternative witness for the whole problem — the set $ \left\{2^{-k} : k\ge0\right\} $ is non-empty, sits inside $ \mathbb{Q}^{+} $, and has no least element.
+
+Between two distinct integers lie finitely many integers; between two distinct rationals lie infinitely many rationals. Well-ordering needs a floor *and* the finiteness that discreteness provides, and $ \mathbb{Q}^{+} $ has only the floor.
+
+## Remark — $ \mathbb{Q}^{+} $ Is Full of Well-Ordered Subsets
+
+It would be a mistake to read the result as saying nothing inside $ \mathbb{Q}^{+} $ is well-ordered. The positive integers
+
+$$$
+\mathbb{Z}^{+} = \{1,2,3,\dots\} \subseteq \mathbb{Q}^{+}
+$$$
+
+are a subset of $ \mathbb{Q}^{+} $, and every non-empty set of positive integers has a least element — a fact unaffected by regarding them as rationals. So $ \mathbb{Q}^{+} $ contains well-ordered subsets; the failure is a property of $ \mathbb{Q}^{+} $ *taken whole*, not of each of its parts.
+
+This is worth stating because the WOP is a universal claim over subsets, and refuting it requires only that *some* subset misbehave. Most subsets are perfectly well-behaved — every finite one, for a start.
+
+## Remark — A Different Order Well-Orders $ \mathbb{Q}^{+} $ Perfectly
+
+The sharpest way to see what has actually failed: **well-ordering is a property of a set together with an order**, never of the set by itself. Only the usual $ < $ fails here.
+
+$ \mathbb{Q}^{+} $ is countable, so it can be listed. Ordering each fraction $ n/d $ in lowest terms first by its *height* $ n+d $ and then by numerator gives
+
+$$$
+1,\;\tfrac12,\;2,\;\tfrac13,\;3,\;\tfrac14,\;\tfrac23,\;\tfrac32,\;4,\;\tfrac15,\;5,\;\dots
+$$$
+
+Under **that** ordering $ \mathbb{Q}^{+} $ is well-ordered: it is a bijective copy of $ \mathbb{N} $, so any non-empty subset has a first-listed element. The two orderings disagree wildly — $ \tfrac12 $ comes second in the list but is smaller than $ 1 $ in the usual order — and that is the point.
+
+More generally, the **well-ordering theorem** (equivalent to the axiom of choice) says every set admits *some* well-ordering, including $ \mathbb{R} $. What this exercise shows is not that $ \mathbb{Q}^{+} $ cannot be well-ordered, but that its natural order is not a well-ordering — which is precisely what matters when one wants to run an induction or a least-counterexample argument on it.

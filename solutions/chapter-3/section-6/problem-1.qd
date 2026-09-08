@@ -1,0 +1,118 @@
+.docname {Solution — GIAM 3.6 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 1
+
+## Problem
+
+Show that there is a perfect square that is the sum of two perfect squares.
+
+## Answer
+
+$$$
+\boxed{\;25 = 9 + 16, \quad\text{that is}\quad 5^2 = 3^2 + 4^2 .\;}
+$$$
+
+## Proof
+
+The claim is existential,
+
+$$$
+\exists\, a,b,c \in \mathbb{Z}^{+}, \qquad a^2 + b^2 = c^2 ,
+$$$
+
+so it is established by producing one triple and verifying it.
+
+> **Proof.** Take $ a=3 $, $ b=4 $, $ c=5 $. These are positive integers, and
+>
+> $ a^2 + b^2 = 9 + 16 = 25 = 5^2 = c^2 . $
+>
+> So $ 25 $ is a perfect square that is the sum of the two perfect squares $ 9 $ and $ 16 $. $ \blacksquare $
+
+Nothing further is required. An existential statement needs a witness, not an argument.
+
+## The Picture
+
+The classical illustration is to erect a square on each side of a right triangle with legs $ 3 $ and $ 4 $.
+
+!(84%)[Squares of area 9, 16 and 25 on the sides of a 3-4-5 right triangle](problem-1-pythag.svg "A diagram in three parts. The first states the existential claim — some perfect square is the sum of two perfect squares — and notes that to prove an existential statement one exhibits a single instance and checks it, with no general argument needed. The instance is 3 squared plus 4 squared equals 9 plus 16 equals 25 equals 5 squared. The centre is the classical picture: a right triangle with a vertical leg of length 4 and a horizontal leg of length 3, the right angle marked, and a square erected on each of the three sides. The square on the leg of length 4 is red and ruled into sixteen unit cells, labelled 4 squared equals 16; the square on the leg of length 3 is amber and ruled into nine unit cells, labelled 3 squared equals 9; the square on the hypotenuse of length 5 is green, labelled 5 squared equals 25. The caption notes that the two small squares hold 16 and 9 unit cells, together exactly the 25 of the large one. A band below observes that one witness is enough but there are many: searching every hypotenuse up to 100 finds 52 such triples, 16 of them primitive, beginning 3 4 5; 5 12 13; 8 15 17; 7 24 25; 20 21 29; 12 35 37; 9 40 41; and 11 60 61. Euclid's formula generates all of them, with a equal to m squared minus n squared, b equal to 2mn, and c equal to m squared plus n squared for coprime m greater than n of opposite parity; taking m equals 2 and n equals 1 returns 3, 4, 5, and m equals 3 with n equals 2 returns 5, 12, 13, verified against the list. A final band notes that the same question for higher powers has the opposite answer: searching every c below 400 for exponents 3, 4 and 5 turns up nothing at all, because a to the k plus b to the k equals c to the k has no positive solutions for any k at least 3. That is Fermat's Last Theorem, conjectured in 1637 and proved by Wiles in 1995, so k equals 2 is the only exponent for which this exercise has an answer.")
+
+## Remark — What an Existential Proof Costs
+
+This is the cheapest kind of proof there is, and it is worth being explicit about why. The statement quantifies existentially:
+
+$$$
+\exists\, a,b,c,\; a^2+b^2=c^2 .
+$$$
+
+To establish it one must supply an object and verify the property. Both steps are finite and mechanical — here, one addition and one comparison. Contrast the two directions:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{statement} & \textbf{to prove} & \textbf{to refute} \\ \hline
+\exists x,\; P(x) & \text{exhibit one } x & \text{a general argument} \\
+\forall x,\; P(x) & \text{a general argument} & \text{exhibit one } x
+\end{array}
+$$$
+
+So the work in an existential problem lies entirely in *finding* the witness, never in justifying it. Here the witness is famous enough to be recalled rather than searched for, but even a blind search over $ a,b,c \le 5 $ would locate it in a few dozen trials.
+
+Note also what the problem does **not** ask. It does not ask how many such squares there are, nor for a characterisation of them, nor whether the analogous statement holds for cubes. Each of those is a strictly harder question, and the last one took three and a half centuries.
+
+## Remark — Witnesses Are Abundant
+
+The single triple $ (3,4,5) $ discharges the problem, but it is far from isolated. Searching every hypotenuse $ c \le 100 $ turns up **52** Pythagorean triples, of which **16** are primitive (no common factor):
+
+$$$
+\begin{aligned}
+&(3,4,5),\;\;(5,12,13),\;\;(8,15,17),\;\;(7,24,25), \\
+&(20,21,29),\;\;(12,35,37),\;\;(9,40,41),\;\;(11,60,61),\;\;\dots
+\end{aligned}
+$$$
+
+The remaining $ 36 $ are multiples of these, such as $ (6,8,10) $ and $ (9,12,15) $ — each supplying another perfect square that is a sum of two.
+
+Every primitive triple arises from **Euclid's parametrisation**: for coprime integers $ m>n>0 $ of opposite parity,
+
+$$$
+a = m^2-n^2, \qquad b = 2mn, \qquad c = m^2+n^2 ,
+$$$
+
+which satisfies $ a^2+b^2 = (m^2+n^2)^2 = c^2 $ identically. Running $ m $ up to $ 11 $ reproduces exactly the sixteen primitive triples found by brute search. Taking $ m=2 $, $ n=1 $ gives the witness used above.
+
+Since there are infinitely many admissible $ (m,n) $, there are infinitely many such squares — a much stronger statement than the one asked for, and available almost for free once the parametrisation is known.
+
+## Remark — Why the Even Leg Is Always There
+
+The formula makes visible something proved by congruences in 3.4 Problem 8: in any Pythagorean triple, at least one of $ a,b $ is even. Here the leg $ b = 2mn $ carries a factor of $ 2 $ by construction, and since $ m $ and $ n $ have opposite parity one of them is even, so in fact $ 4\mid b $.
+
+The two arguments answer different questions. The mod-$ 4 $ proof of 3.4 Problem 8 shows an all-odd triple is *impossible*, using nothing but the equation. Euclid's formula shows *where the even leg comes from*, but presupposes the classification. For the witness $ (3,4,5) $: $ m=2 $, $ n=1 $, and indeed $ b = 4 $ is divisible by $ 4 $.
+
+## Remark — The Same Question for Cubes
+
+The natural sequel is to ask whether some cube is the sum of two cubes, or some fourth power the sum of two fourth powers. Searching every $ c<400 $ for $ k = 3,4,5 $ finds **nothing**, and this is not an artefact of the range:
+
+$$$
+a^k + b^k = c^k \quad\text{has no solution in positive integers for any } k\ge3 .
+$$$
+
+That is **Fermat's Last Theorem** — asserted in a margin in 1637 and finally proved by Andrew Wiles in 1995. So the exponent $ 2 $ is the *only* one for which this exercise has an answer at all, and the contrast is stark:
+
+$$$
+\begin{array}{l|l|l}
+k & \textbf{solutions} & \textbf{status} \\ \hline
+2 & \text{infinitely many} & \text{Euclid, } \sim300\text{ BCE} \\
+\ge 3 & \text{none} & \text{Wiles, 1995}
+\end{array}
+$$$
+
+There is a lesson in the pairing. Proving the $ k=2 $ case took one line because the answer was *yes* and a witness existed. Proving the $ k\ge3 $ case took centuries because the answer was *no*, and a negative existential is a universal statement in disguise — one must rule out every triple, not exhibit one. The quantifier asymmetry that made this problem trivial is exactly what made Fermat's version hard.
+
+Near misses do exist and are worth seeing, since they show the failure is not obvious: $ 6^3+8^3 = 728 $, one short of $ 9^3 = 729 $.

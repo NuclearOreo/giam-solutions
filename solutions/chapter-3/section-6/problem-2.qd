@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 3.6 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 3.6 Problem 2
+
+## Problem
+
+Show that there is a perfect cube that is the sum of three perfect cubes.
+
+## Answer
+
+$$$
+\boxed{\;216 = 27+64+125, \quad\text{that is}\quad 6^3 = 3^3+4^3+5^3 .\;}
+$$$
+
+## Proof
+
+The claim is existential,
+
+$$$
+\exists\, a,b,c,d \in \mathbb{Z}^{+}, \qquad a^3+b^3+c^3 = d^3 ,
+$$$
+
+so one verified instance settles it.
+
+> **Proof.** Take $ a=3 $, $ b=4 $, $ c=5 $, $ d=6 $. All are positive integers, and
+>
+> $ a^3+b^3+c^3 = 27+64+125 = 216 = 6^3 = d^3 . $
+>
+> So $ 216 $ is a perfect cube that is the sum of the three perfect cubes $ 27 $, $ 64 $ and $ 125 $. $ \blacksquare $
+
+## The Picture
+
+Three cubes of sides $ 3 $, $ 4 $ and $ 5 $ contain $ 216 $ unit cells between them — exactly the contents of a $ 6\times6\times6 $ cube.
+
+!(84%)[Cubes of side 3, 4, 5 and 6 with their volumes, and the first few solutions](problem-2-cubes.svg "A diagram in four parts. The first states the existential claim — some perfect cube is the sum of three perfect cubes — with the instance 3 cubed plus 4 cubed plus 5 cubed equals 27 plus 64 plus 125 equals 216 equals 6 cubed, noting that 3, 4, 5 and 6 are consecutive, the exact analogue of 3 squared plus 4 squared equals 5 squared from the previous problem. The centre shows four cubes drawn in isometric projection and ruled into unit cells: a red cube of side 3 labelled 3 cubed equals 27, an amber cube of side 4 labelled 4 cubed equals 64, a blue cube of side 5 labelled 5 cubed equals 125, and a green cube of side 6 labelled 6 cubed equals 216, arranged as the first three plus signs then equals the fourth. The caption notes that three cubes of sides 3, 4 and 5 hold 27 plus 64 plus 125 equals 216 unit cells between them, exactly a 6 by 6 by 6 cube. A table lists the first few primitive solutions: 3, 4, 5 summing to 216 equals 6 cubed, highlighted; 1, 6, 8 summing to 729 equals 9 cubed; 3, 10, 18 summing to 6859 equals 19 cubed; 7, 14, 17 summing to 8000 equals 20 cubed; 18, 19, 21 summing to 21952 equals 28 cubed; and 11, 15, 27 summing to 24389 equals 29 cubed. There are 36 solutions with d at most 60, of which 15 are primitive. A band below explains that two cubes cannot but three can: Fermat's Last Theorem forbids a cubed plus b cubed equals c cubed entirely, so the previous problem's pattern does not survive a change of exponent with the number of terms held fixed, but adding a third cube brings solutions back at once. The suggestive rule is that it takes k k-th powers to make a k-th power — two squares make a square, three cubes make a cube — and Euler conjectured in 1769 that k minus 1 of them never suffice. A final band records that Euler's conjecture is false: it survived nearly two centuries and then failed twice, at k equals 5 and at k equals 4. Lander and Parkin in 1966 found 27 to the fifth plus 84 to the fifth plus 110 to the fifth plus 133 to the fifth equals 144 to the fifth; Elkies in 1988 found 2682440 to the fourth plus 15365639 to the fourth plus 18796760 to the fourth equals 20615673 to the fourth. Both identities were checked exactly, so the tidy pattern this problem seems to begin does not continue, and no amount of evidence at k equals 2 and k equals 3 was going to settle it.")
+
+## Remark — The Witness Is the Previous Problem's, Shifted
+
+Set the two exercises side by side:
+
+$$$
+3^2 + 4^2 = 5^2 , \qquad\qquad 3^3+4^3+5^3 = 6^3 .
+$$$
+
+Both use **consecutive integers** starting at $ 3 $, one more term on the left each time and the right-hand side one larger. That is a genuine pattern in the sense that both identities are true, but it is worth checking whether it continues. It does not:
+
+$$$
+3^4+4^4+5^4+6^4 = 81+256+625+1296 = 2258 , \qquad 7^4 = 2401 .
+$$$
+
+So the coincidence stops at the third step. Both identities are real, and neither is an instance of a general law about consecutive integers — they are two separate small facts that happen to look alike.
+
+The $ 3^3+4^3+5^3=6^3 $ identity has been known since antiquity and is sometimes called *Plato's number* for $ 216 $, though the attribution is shaky. What is certain is that it is the smallest solution: no $ d<6 $ works.
+
+## Remark — Witnesses Are Abundant Here Too
+
+The single identity discharges the problem, but solutions are plentiful. Searching every $ d\le60 $ finds **36** solutions with $ a\le b\le c < d $, of which **15** are primitive:
+
+$$$
+\begin{array}{c|c}
+\textbf{solution} & \textbf{cube} \\ \hline
+3^3+4^3+5^3 & 6^3 \\
+1^3+6^3+8^3 & 9^3 \\
+3^3+10^3+18^3 & 19^3 \\
+7^3+14^3+17^3 & 20^3 \\
+18^3+19^3+21^3 & 28^3 \\
+11^3+15^3+27^3 & 29^3
+\end{array}
+$$$
+
+The non-primitive ones are scalings: $ (3n)^3+(4n)^3+(5n)^3 = (6n)^3 $ for every $ n $, verified up to $ n=49 $, so a single solution already generates infinitely many.
+
+Some cubes admit more than one decomposition. Both $ 41^3 $ and $ 46^3 $ appear twice in the list:
+
+$$$
+41^3 = 2^3+17^3+40^3 = 6^3+32^3+33^3 , \qquad 46^3 = 3^3+36^3+37^3 = 27^3+30^3+37^3 .
+$$$
+
+## Remark — Two Cubes Cannot, Three Can
+
+The contrast with the previous problem is sharper than it first appears. There the statement was about **two** squares summing to a square, and it held. Change the exponent to $ 3 $ while keeping two terms and the statement becomes false — that is Fermat's Last Theorem. Add a third term and solutions reappear immediately.
+
+$$$
+\begin{array}{l|l|l}
+\textbf{equation} & \textbf{solutions?} & \\ \hline
+a^2+b^2=c^2 & \text{infinitely many} & \text{3.6 Problem 1} \\
+a^3+b^3=c^3 & \textbf{none} & \text{Fermat's Last Theorem} \\
+a^3+b^3+c^3=d^3 & \text{infinitely many} & \text{this problem}
+\end{array}
+$$$
+
+So neither the exponent nor the number of terms determines the answer alone; it is the *relationship* between them. The suggestive rule is that $ k $ many $ k $-th powers suffice to make a $ k $-th power, and fewer do not — two squares, three cubes.
+
+## Remark — The Pattern Breaks, and It Took Two Centuries to Find Out
+
+The rule above is exactly what **Euler conjectured in 1769**: that $ k-1 $ many $ k $-th powers never sum to a $ k $-th power. For $ k=3 $ this is Fermat's theorem and true. For larger $ k $ it is false, and the counterexamples are spectacular.
+
+$$$
+\begin{array}{l|l}
+\textbf{Lander \& Parkin, 1966} & 27^5+84^5+110^5+133^5 = 144^5 \\
+\textbf{Elkies, 1988} & 2682440^4+15365639^4+18796760^4 = 20615673^4
+\end{array}
+$$$
+
+Both identities were verified exactly here. The first was found by an early computer search; the second required genuine machinery from the arithmetic of elliptic curves, and the smallest fourth-power counterexample — found by Frye shortly afterwards — is $ 95800^4+217519^4+414560^4 = 422481^4 $.
+
+Two points are worth drawing out.
+
+First, the conjecture was reasonable. It fits $ k=3 $ exactly, and no counterexample exists below several million for $ k=4 $ — a search of any range a person could check by hand would have supported it. This is the same lesson as the false conjectures of Section 3.4, at industrial scale.
+
+Second, and more to the point of *this* section: refuting Euler's conjecture is itself an **existential** problem. Elkies did not argue that counterexamples must exist in the abstract — he produced one, and after that no further argument was needed. The gulf between this exercise and his is entirely a matter of how hard the witness was to find, not of what kind of proof was required.
