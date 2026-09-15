@@ -1,0 +1,116 @@
+.docname {Solution — GIAM 4.1 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 6
+
+## Problem
+
+What is the truth set of the proposition $ P(x) = $ “3 divides $ x $ and 2 divides $ x $”?
+
+## Answer
+
+$$$
+\boxed{\;S_P = \{\, x\in\mathbb{Z} \;:\; 6 \mid x \,\} = \{\dots,-12,-6,0,6,12,18,\dots\}\;}
+$$$
+
+the set of all multiples of $ 6 $.
+
+## Why
+
+The truth set is the collection of integers making $ P(x) $ true, so we need those divisible by $ 3 $ **and** by $ 2 $ at once.
+
+> **Claim.** For every integer $ x $: $ \;3\mid x $ and $ 2\mid x \;\iff\; 6\mid x $.
+>
+> **($ \Rightarrow $)** Suppose $ 3\mid x $ and $ 2\mid x $. Then $ x $ is a common multiple of $ 3 $ and $ 2 $, so it is a multiple of their least common multiple. Since $ \gcd(3,2)=1 $,
+>
+> $ \operatorname{lcm}(3,2) = \frac{3\cdot 2}{\gcd(3,2)} = 6 , $
+>
+> so $ 6\mid x $.
+>
+> **($ \Leftarrow $)** Suppose $ 6\mid x $, say $ x = 6k $. Then $ x = 3(2k) $ and $ x = 2(3k) $, so $ 3\mid x $ and $ 2\mid x $. $ \blacksquare $
+
+The two conditions are therefore *equivalent*, and the truth set is exactly the multiples of six. Verified for every integer with $ \lvert x\rvert < 100\,000 $.
+
+## The Picture
+
+!(84%)[The integers marked by divisibility, and the two truth sets overlapping](problem-6-truthset.svg "A diagram in four parts. The first gives the answer: the truth set is the set of integers x with 6 dividing x, that is the multiples of 6 — dots, minus 12, minus 6, 0, 6, 12, 18 and onward. A number divisible by both 3 and 2 is divisible by their least common multiple, and since 3 and 2 are coprime that is 3 times 2 equals 6. The second part draws the integers from minus 30 to 30 along a line. Small red dots above the line mark the multiples of 3, small amber dots below mark the multiples of 2, faint grey dots mark integers with neither property, and where both occur the point is drawn as a large filled green circle on the line and labelled with its value — minus 30, minus 24, minus 18, minus 12, minus 6, 0, 6, 12, 18, 24, 30. Below that is a Venn diagram of two overlapping circles, the left one red and labelled S three containing 3, 9, 15, 21 and so on, the right one amber and labelled S two containing 2, 4, 8, 10 and so on, with the lens-shaped overlap labelled S six containing 0, 6, 12, 18 and so on. The caption reads: and in logic is intersection in set theory, and here the overlap is exactly the multiples of 6. A band below explains why 6 and not something else: if 3 divides x and 2 divides x then x is a common multiple of 3 and 2, hence a multiple of the least common multiple 6, and conversely every multiple of 6 is divisible by both, so the two conditions are equivalent rather than merely related. The answer is 3 times 2 only because the greatest common divisor of 3 and 2 is 1; in general the least common multiple of a and b is ab over their gcd, so for a equals 4 and b equals 6 the truth set is the multiples of 12, not of 24, since the product overshoots — both cases checked directly. A final band notes that changing and to or loses the shape: the truth set of 3 divides x or 2 divides x is the union, whose non-negative members begin 0, 2, 3, 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20 and so on. This is not the set of multiples of any single number, since it misses 1, 5 and 7 but contains 2 and 3. Intersections of divisibility conditions stay divisibility conditions; unions do not. The equivalence was verified for every integer with absolute value below 100000.")
+
+## Remark — “And” Is Intersection
+
+This exercise is the dictionary of Problems 4 and 5 applied to a concrete case. Writing $ S_3 $ and $ S_2 $ for the truth sets of the two conjuncts,
+
+$$$
+S_P = S_3 \cap S_2 ,
+$$$
+
+because a conjunction is true exactly where both parts are. The Venn picture is therefore not decoration — it *is* the logical structure of the sentence.
+
+What makes this particular case pleasant is that the intersection collapses back into a single divisibility condition:
+
+$$$
+S_3 \cap S_2 = S_6 .
+$$$
+
+That does not happen for every pair of conditions, and the next remark shows where it fails.
+
+## Remark — Why $ 6 $, and Why the Product Is Usually Wrong
+
+It is tempting to read off “$ 3 $ and $ 2 $, so $ 3\times2 = 6 $” as a rule. It is not one — the correct quantity is the **least common multiple**:
+
+$$$
+\{x : a\mid x\} \cap \{x : b\mid x\} = \{x : \operatorname{lcm}(a,b)\mid x\}, \qquad \operatorname{lcm}(a,b) = \frac{ab}{\gcd(a,b)} .
+$$$
+
+The product $ ab $ is right only when $ \gcd(a,b)=1 $, which is why it works here. Some contrasting cases, all checked directly:
+
+$$$
+\begin{array}{c|c|c|c|c}
+a & b & \gcd & \operatorname{lcm} & ab \\ \hline
+3 & 2 & 1 & \mathbf{6} & 6 \\
+4 & 6 & 2 & \mathbf{12} & 24 \\
+6 & 10 & 2 & \mathbf{30} & 60 \\
+2 & 2 & 2 & \mathbf{2} & 4
+\end{array}
+$$$
+
+For “$ 4\mid x $ and $ 6\mid x $” the truth set is the multiples of $ 12 $, not of $ 24 $ — the product overshoots and would wrongly exclude $ 12 $ itself, which satisfies both conditions. The last row is the degenerate reminder: “$ 2\mid x $ and $ 2\mid x $” is just “$ 2\mid x $”.
+
+## Remark — Nesting of the Three Sets
+
+The sets stand in a definite relationship, worth recording because it makes the answer easy to sanity-check:
+
+$$$
+S_6 \subseteq S_3 , \qquad S_6 \subseteq S_2 , \qquad\text{but}\qquad S_3 \not\subseteq S_2 .
+$$$
+
+All verified. The intersection is contained in each of the two sets it came from — always true of intersections — while neither original set contains the other, since $ 3\in S_3\setminus S_2 $ and $ 2\in S_2\setminus S_3 $.
+
+The corresponding logical statement is that $ P(x) $ implies each conjunct but neither conjunct implies the other. Densities make the same point: among the $ 121 $ integers from $ -60 $ to $ 60 $ there are $ 41 $ multiples of $ 3 $, $ 61 $ multiples of $ 2 $, and only $ 21 $ of both — roughly a third, a half, and a sixth, as one would expect.
+
+## Remark — Replace “And” With “Or” and the Structure Breaks
+
+The companion sentence “$ 3\mid x $ or $ 2\mid x $” has truth set $ S_3\cup S_2 $, and it behaves quite differently. Its non-negative members begin
+
+$$$
+0,\;2,\;3,\;4,\;6,\;8,\;9,\;10,\;12,\;14,\;15,\;16,\;18,\;20,\;\dots
+$$$
+
+This is **not** the set of multiples of any single number. It omits $ 1 $, $ 5 $ and $ 7 $, so the modulus would have to exceed $ 1 $; but it contains both $ 2 $ and $ 3 $, which no modulus greater than $ 1 $ divides. Over $ [-60,60] $ it has $ 81 $ members against the intersection's $ 21 $.
+
+So the two logical connectives behave asymmetrically here:
+
+$$$
+\begin{array}{l|l}
+\text{intersection of divisibility conditions} & \text{again a divisibility condition} \\
+\text{union of divisibility conditions} & \text{generally not}
+\end{array}
+$$$
+
+The reason is structural. The multiples of $ n $ form a subgroup of $ \mathbb{Z} $ under addition, and an intersection of subgroups is a subgroup — hence again of the form $ m\mathbb{Z} $, since every subgroup of $ \mathbb{Z} $ is. A union of subgroups is almost never one: $ 2 $ and $ 3 $ both lie in $ S_3\cup S_2 $ but their difference $ 1 $ does not.

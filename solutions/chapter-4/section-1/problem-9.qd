@@ -1,0 +1,122 @@
+.docname {Solution — GIAM 4.1 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 9
+
+## Problem
+
+How many $ 8 $-element subsets are there in $ \mathcal{P}\bigl(\{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p\}\bigr) $?
+
+## Answer
+
+$$$
+\boxed{\;\binom{16}{8} = 12\,870\;}
+$$$
+
+## Why
+
+The set has $ 16 $ elements, and we are counting subsets of size $ 8 $.
+
+> Building an $ 8 $-element subset one letter at a time, there are $ 16 $ choices for the first, $ 15 $ for the second, and so on down to $ 9 $ for the eighth:
+>
+> $ 16\cdot15\cdot14\cdot13\cdot12\cdot11\cdot10\cdot9 = 518\,918\,400 . $
+>
+> But this counts **ordered** selections, and a set does not record order. Each $ 8 $-element subset arises from $ 8! = 40\,320 $ different orderings of the same eight letters, so every subset has been counted $ 8! $ times. Dividing,
+>
+> $ \binom{16}{8} = \frac{518\,918\,400}{40\,320} = 12\,870 . $
+
+This is exactly the correction made in the previous problem, where $ 5\times4 $ ordered pairs became $ 10 $ doubletons after dividing by $ 2! $. Here the divisor is $ 8! $ rather than $ 2! $.
+
+## The Picture
+
+!(84%)[Row 16 of Pascal's triangle as a bar chart, with the central entry marked](problem-9-binomial.svg "A diagram in four parts. The first gives the answer: C of 16 and 8 equals 12870. Choose 8 of the 16 letters; order does not matter, so divide the 16 times 15 and so on down to 9 ordered choices by the 8 factorial rearrangements that give the same subset. The second part draws row 16 of Pascal's triangle as a bar chart, with one bar per subset size from 0 to 16. The bars rise from height 1 at size 0 through 16, 120, 560, 1820, 4368, 8008 and 11440, peak at 12870 for size 8 where the bar is coloured green, then fall symmetrically back to 1 at size 16. Selected values are labelled above their bars. A table then shows the climb to the middle, listing k equal to 5, 6, 7 and 8 with the values 4368, 8008, 11440 and 12870, alongside the step factor 16 minus k over k plus 1, which is 1.833, 1.429, 1.125 and 0.889 respectively, and whether the sequence is still growing — yes for the first three, and no, peak passed, at k equals 8. A band below explains why the middle is the peak: consecutive entries satisfy C of 16 and k plus 1 equals C of 16 and k times the quantity 16 minus k over k plus 1, and that factor exceeds 1 while k is below 7.5 and drops below 1 afterwards, so the row rises to k equals 8 and then falls. The row is also symmetric because complementation matches each k-element subset with a unique one of size 16 minus k, and a symmetric sequence with a single peak peaks in the middle. Every entry was computed directly; the row is symmetric and sums to 65536. A final band asks how big a share this is: the full power set has 2 to the sixteenth, or 65536, elements, so the 8-element subsets are 12870 out of 65536, about 19.6 percent — the single most populous size, yet still under a fifth, with the other sixteen sizes sharing the remaining 80 percent.")
+
+## Remark — This Is the Largest Entry in Its Row
+
+Row $ 16 $ of Pascal's triangle, computed in full:
+
+$$$
+1,\;16,\;120,\;560,\;1820,\;4368,\;8008,\;11440,\;\mathbf{12870},\;11440,\;8008,\;4368,\;1820,\;560,\;120,\;16,\;1
+$$$
+
+The answer sits at the centre, and it is the biggest number in the row. Two facts explain that.
+
+**The row is symmetric.** $ \binom{16}{k} = \binom{16}{16-k} $, because complementation $ T\mapsto S\setminus T $ pairs each $ k $-element subset with exactly one of size $ 16-k $. Verified: the list reads the same backwards.
+
+**The row has a single peak.** Consecutive entries satisfy
+
+$$$
+\binom{16}{k+1} = \binom{16}{k}\cdot\frac{16-k}{k+1} ,
+$$$
+
+and the factor $ \frac{16-k}{k+1} $ exceeds $ 1 $ precisely when $ k < 7.5 $. So the entries strictly increase up to $ k=8 $ and strictly decrease after:
+
+$$$
+\begin{array}{c|c|c}
+k & \binom{16}{k} & \text{step factor} \\ \hline
+6 & 8008 & 1.429 \\
+7 & 11440 & 1.125 \\
+8 & \mathbf{12870} & 0.889 \\
+\end{array}
+$$$
+
+A symmetric sequence with one peak must peak at the middle, which is why the answer to “how many subsets of size $ 8 $” is the largest such count available.
+
+## Remark — How Much of the Power Set Is This?
+
+The whole power set has $ 2^{16} = 65\,536 $ elements, so the $ 8 $-element subsets make up
+
+$$$
+\frac{12\,870}{65\,536} \approx 19.64\% .
+$$$
+
+Under a fifth — which is worth noticing, because “most common size” is easily misread as “most of them”. The row sums to $ 65\,536 $ exactly, confirming that the seventeen sizes account for everything, with the remaining sixteen sizes sharing about $ 80\% $.
+
+The share also shrinks as the set grows. The central binomial coefficient satisfies
+
+$$$
+\binom{2n}{n} \sim \frac{4^{n}}{\sqrt{\pi n}} ,
+$$$
+
+so its share of $ 2^{2n} = 4^n $ is roughly $ 1/\sqrt{\pi n} $, which tends to $ 0 $. At $ n=8 $ the approximation gives $ 13\,072.5 $ against the true $ 12\,870 $ — within $ 1.6\% $ — and predicts a share of $ 1/\sqrt{8\pi} \approx 20.0\% $, close to the observed $ 19.64\% $.
+
+## Remark — Why Not Just List Them
+
+The previous problem listed all $ 5 $ singletons and all $ 10 $ doubletons. That is not an option here, and the jump is instructive.
+
+$$$
+\begin{array}{l|r}
+\text{singletons of a 5-set} & 5 \\
+\text{doubletons of a 5-set} & 10 \\
+8\text{-element subsets of a 16-set} & 12\,870
+\end{array}
+$$$
+
+Listing $ 12\,870 $ subsets would fill many pages and demonstrate nothing. This is the point at which a counting *formula* stops being a convenience and becomes the only practical method — and it is why the binomial coefficient is worth having as an object in its own right rather than as shorthand for a tally.
+
+Note also that the formula answers the question without ever constructing a single subset. That distinguishes it from the exhaustive arguments of Chapter 3, where the objects had to be produced and inspected one by one.
+
+## Remark — Three Ways to Compute It
+
+The same number can be reached by three routes, which is a useful check.
+
+**By the formula.** $ \binom{16}{8} = \dfrac{16!}{8!\,8!} = \dfrac{518\,918\,400}{40\,320} = 12\,870 $.
+
+**By cancelling first.** Writing the quotient before multiplying keeps the numbers small:
+
+$$$
+\frac{16}{8}\cdot\frac{15}{7}\cdot\frac{14}{6}\cdot\frac{13}{5}\cdot\frac{12}{4}\cdot\frac{11}{3}\cdot\frac{10}{2}\cdot\frac{9}{1} ,
+$$$
+
+which is how one would do it by hand — $ 16!\ $ itself is over $ 2\times10^{13} $ and needlessly large.
+
+**By Pascal's rule.** $ \binom{16}{8} = \binom{15}{7} + \binom{15}{8} = 6435 + 6435 = 12\,870 $, splitting on whether a fixed letter is in the subset. The two halves are equal here, which is another way of seeing the central symmetry.
+
+All three agree, and the row was generated independently to confirm the value.

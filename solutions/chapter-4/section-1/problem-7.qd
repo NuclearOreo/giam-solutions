@@ -1,0 +1,138 @@
+.docname {Solution — GIAM 4.1 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 7
+
+## Problem
+
+Find a logical open sentence such that $ \{0,1,4,9,\dots\} $ is its truth set.
+
+## Answer
+
+$$$
+\boxed{\;P(x) = \text{``}\exists\, y\in\mathbb{N} \text{ such that } x = y^2\text{''}\;}
+$$$
+
+in words, “$ x $ is a perfect square”. Working in the universe $ \mathbb{N} $,
+
+$$$
+S_P = \{\, x\in\mathbb{N} \;:\; \exists\, y\in\mathbb{N},\ x=y^2 \,\} = \{0,1,4,9,16,25,\dots\} .
+$$$
+
+## Reading the Pattern
+
+The listed elements are
+
+$$$
+0 = 0^2, \qquad 1 = 1^2, \qquad 4 = 2^2, \qquad 9 = 3^2 ,
+$$$
+
+so the intended set is the perfect squares. The ellipsis has to be interpreted, and this is the reading it invites — the next entries would be $ 16, 25, 36 $, and the truth set of $ P $ above is exactly that, verified for every $ x < 400 $.
+
+An equivalent phrasing avoiding the quantifier is
+
+$$$
+Q(x) = \text{``}\sqrt{x} \text{ is an integer''} ,
+$$$
+
+which has the same truth set — also verified. Either answers the question.
+
+## The Picture
+
+!(84%)[The squares inside the naturals, and three candidate sentences](problem-7-squares.svg "A diagram in four parts. The first gives the answer: P of x is the sentence there exists a natural y such that x equals y squared, in words x is a perfect square; its truth set over the naturals is exactly 0, 1, 4, 9, 16, 25 and onward, verified for every x below 400. The second part draws the naturals from 0 to 40 along a line, with the perfect squares 0, 1, 4, 9, 16, 25 and 36 drawn as large filled green circles and labelled, and every other integer as a faint grey dot. Amber arcs join consecutive squares and are labelled with the gaps: plus 1, plus 3, plus 5, plus 7, plus 9, plus 11. A note reads that the gaps are the odd numbers, so n squared equals 1 plus 3 plus 5 and so on up to 2n minus 1. Three candidate sentences follow as cards. The first, in green, headed the standard answer: there exists y in the naturals with x equal to y squared, meaning x is a perfect square, whose truth set is exactly 0, 1, 4, 9, 16 and onward. The second, in blue, headed an equivalent phrasing: the square root of x is an integer, the same truth set verified over 0 to 400, needing no quantifier. The third, in red, headed a subtler characterisation: x has an odd number of divisors, true for 1, 4, 9, 16 and so on but failing at x equal to 0, which has infinitely many divisors. A band below explains why the third fails and why it almost works: divisors of n pair off as d with n over d, and the pairing breaks only when d equals n over d, that is n equals d squared, so a positive integer has an odd number of divisors exactly when it is a square, checked for every n below 400. But 0 is divisible by every integer, so it has infinitely many divisors and the parity test says nothing; the truth set is 1, 4, 9, 16 and onward, correct except for the very first element the problem asks for. A near-miss is still a wrong answer, since truth sets must match exactly, element for element. A final band notes the set is sparse and gets sparser: four squares below 10, or 40 percent; ten below 100, or 10 percent; one hundred below 10000, or 1 percent. In general there are about the square root of N squares below N, so the density tends to zero. The ellipsis in the listed set is doing real work, since a finite list names no pattern and an open sentence is exactly what turns the intended pattern into something checkable.")
+
+## Remark — The Exercise Runs the Dictionary Backwards
+
+Problems 4 through 6 went from a sentence to its truth set. This one goes the other way: a set is given and a sentence must be produced.
+
+$$$
+\begin{array}{l|l}
+\text{Problems 4--6} & P(x) \;\longmapsto\; S_P \\
+\text{this problem} & S \;\longmapsto\; P \text{ with } S_P = S
+\end{array}
+$$$
+
+The backwards direction is genuinely harder, for two reasons. First, the set is presented by a finite list plus an ellipsis, so one must *guess the pattern* — and no finite list determines a pattern uniquely. Second, the answer is not unique even once the pattern is fixed, since many sentences share a truth set. That was the many-to-one observation from Problem 4, and here it works in one's favour: any correct description will do.
+
+It is worth noting that “$ x\in\{0,1,4,9,\dots\} $” is *not* an acceptable answer, even though it is technically a sentence with the right truth set. It names the set rather than describing it, so it explains nothing about which numbers belong. The exercise wants a property, not a re-labelling.
+
+## Remark — A Third Characterisation, and Why It Just Misses
+
+A more interesting description of the squares is available:
+
+> A positive integer has an **odd number of divisors** exactly when it is a perfect square.
+
+The reason is a pairing argument. The divisors of $ n $ come in pairs $ d \leftrightarrow n/d $, which exhausts them; a divisor is left unpaired only when $ d = n/d $, that is when $ n = d^2 $. So the count is even unless $ n $ is a square.
+
+$$$
+\begin{array}{c|l|c|c}
+n & \text{divisors} & \text{count} & \text{square?} \\ \hline
+12 & 1,2,3,4,6,12 & 6 & \text{no} \\
+16 & 1,2,4,8,16 & 5 & \textbf{yes} \\
+36 & 1,2,3,4,6,9,12,18,36 & 9 & \textbf{yes}
+\end{array}
+$$$
+
+Verified for every $ n $ below $ 400 $. And yet as an answer to this exercise it **fails**, because of $ 0 $: every integer divides $ 0 $, so $ 0 $ has infinitely many divisors and the parity test does not apply. The truth set is $ \{1,4,9,16,\dots\} $ — missing precisely the first element the problem lists.
+
+That is worth dwelling on. A description that is right for all but one element is simply a wrong answer here: truth sets must agree element for element, and the boundary cases are where such descriptions usually break. The same caution applied in Problem 4, where “$ x>20 $” had the right truth set only relative to one particular universe.
+
+## Remark — The Universe Matters, and Here It Is Forgiving
+
+Since a truth set depends on the universe of discourse, a complete answer should say what the universe is. The problem implies $ \mathbb{N} $, and the given sentence works there.
+
+Pleasantly, it survives a change: taking the universe to be $ \mathbb{Z} $ and letting $ y $ range over $ \mathbb{Z} $ gives the **same** truth set, since $ y^2 = (-y)^2 $ and no negative integer is a square. Confirmed over $ -50 \le x < 200 $.
+
+It does not survive every change, though. Widening the range of the quantified $ y $ eventually destroys the answer:
+
+$$$
+\begin{array}{l|l}
+y \text{ ranges over} & \text{truth set within } \mathbb{N} \\ \hline
+\mathbb{N} \text{ or } \mathbb{Z} & \text{the squares --- correct} \\
+\mathbb{Q} & \text{still the squares} \\
+\mathbb{R} & \textbf{all of } \mathbb{N} \text{ --- useless}
+\end{array}
+$$$
+
+The $ \mathbb{Q} $ row is not obvious but is true: a rational whose square is a natural number must be an integer, and a search over all non-integer rationals with denominator up to $ 20 $ turns up no counterexample. The $ \mathbb{R} $ row is the failure — every natural $ x $ equals $ \left(\sqrt{x}\right)^2 $, so the sentence becomes vacuously true and its truth set is everything.
+
+So both the universe of $ x $ and the range of $ y $ must be pinned down. The compact phrase “$ x $ is a perfect square” quietly assumes both, which is fine in context but worth noticing.
+
+## Remark — The Squares Are Sparse, and the Gaps Are the Odd Numbers
+
+Two structural facts about the answer set, both visible in the figure.
+
+**The gaps.** Consecutive squares differ by consecutive odd numbers:
+
+$$$
+(n+1)^2 - n^2 = 2n+1 ,
+$$$
+
+so the list $ 0,1,4,9,16,25 $ advances by $ 1,3,5,7,9 $. Summing gives the classical identity
+
+$$$
+n^2 = 1 + 3 + 5 + \cdots + (2n-1) ,
+$$$
+
+verified for $ n < 50 $. So an alternative open sentence is “$ x $ is a sum of consecutive odd numbers starting from $ 1 $” — which does include $ 0 $, as the empty sum.
+
+**The density.** Counting squares below $ N $:
+
+$$$
+\begin{array}{r|r|r}
+N & \text{squares below } N & \text{density} \\ \hline
+10 & 4 & 40\% \\
+100 & 10 & 10\% \\
+1000 & 32 & 3.2\% \\
+10\,000 & 100 & 1\%
+\end{array}
+$$$
+
+There are about $ \sqrt{N} $ of them below $ N $, so the density $ \sqrt{N}/N = 1/\sqrt{N} $ tends to $ 0 $. The truth set is infinite but vanishingly thin — which is exactly why a defining property is more useful than any amount of listing.

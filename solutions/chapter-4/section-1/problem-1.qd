@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 4.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 1
+
+## Problem
+
+What is the power set of $ \varnothing $? *Hint: if you got the last exercise in the chapter you'd know that this power set has $ 2^0 = 1 $ element.*
+
+## Answer
+
+$$$
+\boxed{\;\mathcal{P}(\varnothing) = \{\,\varnothing\,\}\;}
+$$$
+
+a set with exactly **one** element, that element being the empty set.
+
+## Why
+
+By definition, $ \mathcal{P}(A) $ is the set whose elements are all the subsets of $ A $. So the question is: what are the subsets of $ \varnothing $?
+
+> **Claim.** $ \varnothing $ has exactly one subset, namely $ \varnothing $ itself.
+>
+> **Proof.** First, $ \varnothing \subseteq \varnothing $. This holds vacuously: the statement “every element of $ \varnothing $ is an element of $ \varnothing $” quantifies over an empty collection, so there is no element that could violate it.
+>
+> Second, no other set is a subset of $ \varnothing $. If $ S \subseteq \varnothing $ and $ S $ had an element $ x $, then $ x\in\varnothing $, which is impossible. So $ S $ has no elements, i.e. $ S = \varnothing $.
+>
+> Hence the subsets of $ \varnothing $ are exactly $ \varnothing $, and one of them. $ \blacksquare $
+
+Collecting that single subset into a set gives
+
+$$$
+\mathcal{P}(\varnothing) = \{\varnothing\} ,
+$$$
+
+which has $ 1 = 2^0 = 2^{|\varnothing|} $ element, as the hint predicts.
+
+## The Point of the Exercise
+
+!(84%)[The empty set beside the set containing it, and the four statements that distinguish them](problem-1-powerset.svg "A diagram in five parts. The first gives the answer: the power set of the empty set is the set containing the empty set. The power set of A is the set of all subsets of A; the only subset of the empty set is itself, so the power set has exactly one element, matching the formula 2 to the power of the cardinality, which is 2 to the 0 equals 1. The second part draws two boxes side by side with a not-equals sign between them. On the left, in red, a box labelled with the empty set symbol, described as a box with nothing in it, 0 elements, and shown containing the words nothing inside. On the right, in green, a box labelled with the empty set in braces, described as a box containing an empty box, 1 element, and drawn with a smaller dashed empty box inside it. The caption says an empty box is not the same object as a box with an empty box inside it. A table then lists four statements that look alike. The empty set equals the set containing the empty set is false, because the left box is empty and the right is not. The empty set is an element of the set containing the empty set is true, because the empty set is the one element listed. The empty set is a subset of the set containing the empty set is true, vacuously, since the empty set has no element to escape. And the set containing the empty set is an element of itself is false, because its only element is the empty set, not the set containing the empty set. A band below shows the operator iterated, with the cardinalities exploding: the empty set has 0 elements, its power set 1, the second power set 2, the third 4, the fourth 16, and the fifth 65536. Each step doubles the exponent, and the next value has 19729 digits. A final band explains why this is not a trick question: every set A has at least two subsets listed in its power set, the empty set and A itself, and when A is the empty set these coincide, so the list has one entry rather than two — the only case where that happens. Checked for A equal to the empty set, a one-element set, a two-element set and a three-element set, the power sets have 1, 2, 4 and 8 elements and always contain both the empty set and A.")
+
+The exercise is really about a single distinction:
+
+$$$
+\varnothing \;\ne\; \{\varnothing\} .
+$$$
+
+The left-hand side has **no** elements; the right-hand side has **one**. A useful image is a box: $ \varnothing $ is an empty box, while $ \{\varnothing\} $ is a box with an empty box inside it. The second is not empty — it contains something, and that something happens to be empty.
+
+Four statements that are easy to conflate:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{statement} & \textbf{truth} & \textbf{reason} \\ \hline
+\varnothing = \{\varnothing\} & \text{false} & \text{0 elements vs 1 element} \\
+\varnothing \in \{\varnothing\} & \text{true} & \varnothing \text{ is the element listed} \\
+\varnothing \subseteq \{\varnothing\} & \text{true} & \text{vacuously, as } \varnothing \text{ has no elements} \\
+\{\varnothing\} \in \{\varnothing\} & \text{false} & \text{the only element is } \varnothing
+\end{array}
+$$$
+
+Rows two and three are both true but for entirely different reasons, and confusing $ \in $ with $ \subseteq $ is the single most common error at this point in the subject.
+
+## Remark — Where the Hint's Formula Comes From
+
+The formula $ \lvert\mathcal{P}(A)\rvert = 2^{\lvert A\rvert} $ has a clean explanation, and it is worth seeing that the case $ A=\varnothing $ is not an exception to it.
+
+To specify a subset $ S\subseteq A $ one makes, for each element of $ A $, a single independent binary choice: *in $ S $* or *not in $ S $*. With $ \lvert A\rvert = n $ elements that is $ n $ choices, each with $ 2 $ options, so $ 2^n $ subsets in total.
+
+When $ A = \varnothing $ there are **no** choices to make. An empty list of choices can be completed in exactly one way — by making none — so there is exactly one subset. That is the same convention under which an empty product equals $ 1 $, and it is what makes $ 2^0 = 1 $ the right answer rather than a special case.
+
+Verified directly: for $ A = \varnothing, \{1\}, \{1,2\}, \{1,2,3\} $ the power sets have $ 1, 2, 4, 8 $ elements respectively.
+
+## Remark — Every Power Set Contains Two Distinguished Members
+
+For any set $ A $,
+
+$$$
+\varnothing \in \mathcal{P}(A) \qquad\text{and}\qquad A \in \mathcal{P}(A) ,
+$$$
+
+since $ \varnothing $ and $ A $ are always subsets of $ A $. So a power set is never empty — it has at least one element, and at least two whenever $ A\ne\varnothing $.
+
+The case $ A=\varnothing $ is precisely where these two coincide, which is why $ \mathcal{P}(\varnothing) $ has one element instead of two. It is the *only* set for which that happens.
+
+A corollary worth noticing: **$ \mathcal{P}(A) $ is never empty for any $ A $ whatsoever**. In particular there is no set whose power set is $ \varnothing $. The power set operator always produces something.
+
+## Remark — Iterating the Operator
+
+The next exercise asks for $ \mathcal{P}(\mathcal{P}(\varnothing)) $ and beyond, and the answer to this one is the base of that tower:
+
+$$$
+\begin{array}{l|l|c}
+ & \textbf{the set} & \textbf{size} \\ \hline
+\varnothing & \varnothing & 0 \\
+\mathcal{P}(\varnothing) & \{\varnothing\} & 1 \\
+\mathcal{P}^2(\varnothing) & \bigl\{\varnothing,\ \{\varnothing\}\bigr\} & 2 \\
+\mathcal{P}^3(\varnothing) & \bigl\{\varnothing,\ \{\varnothing\},\ \bigl\{\{\varnothing\}\bigr\},\ \bigl\{\varnothing,\{\varnothing\}\bigr\}\bigr\} & 4 \\
+\mathcal{P}^4(\varnothing) & \cdots & 16 \\
+\mathcal{P}^5(\varnothing) & \cdots & 65536
+\end{array}
+$$$
+
+all computed directly. The growth is not merely exponential but *iterated* exponential: the next term, $ \lvert\mathcal{P}^6(\varnothing)\rvert = 2^{65536} $, has $ 19\,729 $ digits.
+
+This tower is not a curiosity. It is how the natural numbers are built in set theory under the **von Neumann construction**, where
+
+$$$
+0 = \varnothing, \qquad 1 = \{\varnothing\} = \{0\}, \qquad 2 = \bigl\{\varnothing,\{\varnothing\}\bigr\} = \{0,1\}, \qquad n = \{0,1,\dots,n-1\} .
+$$$
+
+The first three rows of the table are exactly $ 0 $, $ 1 $ and $ 2 $ under that definition — and the answer to this exercise, $ \{\varnothing\} $, *is* the number $ 1 $. Starting from nothing at all, the power set operator generates something, and repeating it generates arithmetic.

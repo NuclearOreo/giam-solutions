@@ -1,0 +1,100 @@
+.docname {Solution — GIAM 4.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 4
+
+## Problem
+
+What, in Logic, corresponds to the notion $ \varnothing $ in Set theory?
+
+## Answer
+
+$$$
+\boxed{\;\text{A \textbf{contradiction} --- the always-false sentence, written } c .\;}
+$$$
+
+## Why
+
+The correspondence runs through **truth sets**. Given an open sentence $ P(x) $ over a universe of discourse, the text writes
+
+$$$
+S_P = \{\, x \;:\; P(x) \,\} ,
+$$$
+
+the collection of things that make $ P $ true. So to ask which logical notion matches $ \varnothing $ is to ask: *which sentence has nothing in its truth set?*
+
+> $ S_P = \varnothing $ means no $ x $ satisfies $ P(x) $ — that is, $ P(x) $ is **false for every** $ x $.
+>
+> A sentence that is false no matter what is precisely a contradiction, denoted $ c $ in the text (as in $ A \land \lnot A \cong c $).
+
+Checked on the universe $ \{1,\dots,10\} $: the always-false sentence has truth set $ \varnothing $, while “$ x $ is even” has truth set $ \{2,4,6,8,10\} $ and the always-true sentence has all ten.
+
+## The Picture
+
+!(84%)[The truth-set bridge between logic and set theory, with the full dictionary](problem-4-correspondence.svg "A diagram in four parts. The first gives the answer: the empty set corresponds to a contradiction, the always-false sentence c. A set is the collection of things making an open sentence true, and nothing makes c true, so its collection is empty. The second part draws the bridge between the two subjects as two boxes joined by arrows. On the left, in blue, headed LOGIC: an open sentence P of x that is always false, the contradiction c. On the right, in green, headed SET THEORY: its truth set, the set of all x with P of x, namely the empty set. An arrow labelled truth set runs left to right and an arrow labelled membership runs right to left. A table then gives the full dictionary. The contradiction c corresponds to the empty set, meaning always false or no members, and this row is highlighted. The tautology t corresponds to the universal set U, meaning always true or all members. Negation of P corresponds to the complement of the truth set of P, meaning not or complement. P and Q corresponds to the intersection of the truth sets, meaning and or intersection. P or Q corresponds to the union, meaning or or union. P implies Q corresponds to the truth set of P being a subset of the truth set of Q, meaning implies or subset. A note says the first two rows are this exercise and the next. A band below shows that the laws translate too: every identity law about c becomes one about the empty set, with the and symbol reading as intersection and the or symbol as union. A and c equals c becomes A intersect the empty set equals the empty set; A or c equals A becomes A union the empty set equals A; and not c equals t becomes the complement of the empty set equals U. All four were verified on the universe 1 through 10 with A equal to the set 2, 3, 5, 7. A final band notes that many sentences give one set: on that universe both x greater than 20 and x is even and x is odd have empty truth set, so they are different sentences but the same set and the correspondence is many-to-one; only the second is a contradiction outright, while the first is merely false on this particular universe.")
+
+## Remark — This Is the First Entry in a Dictionary
+
+The exercise is a single line of a much larger correspondence. Logic and set theory are two presentations of the same structure, and each logical operation has a set-theoretic mirror:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{Logic} & \textbf{Set theory} & \\ \hline
+c \text{ (contradiction)} & \varnothing & \text{this exercise} \\
+t \text{ (tautology)} & U \text{ (universal set)} & \text{the next exercise} \\
+\lnot P & \text{complement of } S_P & \\
+P \land Q & S_P \cap S_Q & \\
+P \lor Q & S_P \cup S_Q & \\
+P \implies Q & S_P \subseteq S_Q &
+\end{array}
+$$$
+
+The dictionary is worth internalising because it means **every theorem proved in one subject is a theorem in the other**. De Morgan's laws for $ \land $ and $ \lor $ become De Morgan's laws for $ \cap $ and $ \cup $; the distributive laws of Chapter 2 become the distributive laws for sets. Nothing needs to be reproved.
+
+## Remark — The Laws About $ c $ Become Laws About $ \varnothing $
+
+Translating the identity and domination laws of Section 2.3 through the dictionary:
+
+$$$
+\begin{array}{l|l}
+\textbf{logical law} & \textbf{set-theoretic law} \\ \hline
+A \land c \cong c & A \cap \varnothing = \varnothing \\
+A \lor c \cong A & A \cup \varnothing = A \\
+A \land t \cong A & A \cap U = A \\
+A \lor t \cong t & A \cup U = U \\
+\lnot c \cong t & \text{complement of } \varnothing = U
+\end{array}
+$$$
+
+All five were verified on the universe $ \{1,\dots,10\} $ with $ A = \{2,3,5,7\} $.
+
+The two left-hand laws about $ c $ are worth reading aloud. “Anding with a contradiction gives a contradiction” becomes “intersecting with the empty set gives the empty set” — obvious in set language. “Oring with a contradiction changes nothing” becomes “unioning with the empty set changes nothing” — equally obvious. Statements that require a moment's thought in one language can be transparent in the other, which is the practical value of having both.
+
+## Remark — The Correspondence Is Many-to-One
+
+One caution. Different sentences can share a truth set, so the map from sentences to sets is **not** injective. On the universe $ \{1,\dots,10\} $,
+
+$$$
+\text{“} x > 20 \text{”} \qquad\text{and}\qquad \text{“} x \text{ is even and } x \text{ is odd”}
+$$$
+
+both have empty truth set, and were confirmed to do so — yet they are different sentences.
+
+There is a real distinction hiding here. The second is a contradiction **outright**: it is false in every universe, being of the form $ A\land\lnot A $. The first is false only *on this particular universe* — enlarge the universe to all of $ \mathbb{N} $ and its truth set becomes infinite.
+
+So the precise statement is: $ \varnothing $ corresponds to *logical falsity relative to the universe of discourse*, and a genuine contradiction is the case where that falsity holds for every universe. The text's answer, $ c $, is the canonical representative of the class.
+
+## Remark — Why $ \varnothing $ Is Unique, and What That Mirrors
+
+In set theory there is exactly **one** empty set: if $ S $ and $ T $ both have no elements then they have the same elements vacuously, so $ S = T $ by extensionality.
+
+The logical mirror is that all contradictions are logically equivalent. $ A\land\lnot A $, $ B\land\lnot B $ and $ \lnot t $ are different expressions, but they have identical truth tables, so in the sense that matters they are the same object — which is why the single symbol $ c $ suffices.
+
+The pattern recurs throughout the dictionary: uniqueness of a set-theoretic object corresponds to equivalence of the logical expressions denoting it. Extensionality for sets and logical equivalence for sentences are the same idea seen from two sides.

@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 4.1 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 10
+
+## Problem
+
+How many singleton sets are there in the power set of $ \{1,2,3,\dots,n\} $?
+
+## Answer
+
+$$$
+\boxed{\;n\;}
+$$$
+
+equivalently $ \dbinom{n}{1} = n $ — one singleton for each element.
+
+## Why
+
+Write $ S = \{1,2,\dots,n\} $. A singleton subset of $ S $ is a set $ \{x\} $ with $ x\in S $, so the singletons are
+
+$$$
+\{1\},\quad \{2\},\quad \{3\},\quad \dots,\quad \{n\} .
+$$$
+
+To see that this list has no repeats and no omissions, consider the map
+
+$$$
+f : S \longrightarrow \{\text{singletons in } \mathcal{P}(S)\}, \qquad f(x) = \{x\} .
+$$$
+
+> **$ f $ is injective.** If $ f(x)=f(y) $ then $ \{x\}=\{y\} $. Two sets are equal exactly when they have the same elements, and the only element of the left is $ x $ while the only element of the right is $ y $, so $ x=y $.
+>
+> **$ f $ is surjective.** Let $ T $ be any singleton in $ \mathcal{P}(S) $. Then $ T\subseteq S $ and $ T $ has exactly one element, say $ x $; since $ T\subseteq S $ we have $ x\in S $, and $ T=\{x\}=f(x) $.
+
+So $ f $ is a bijection, and the two collections have the same size. Hence there are exactly $ n $ singletons. Confirmed by enumerating every subset for $ n = 0,1,\dots,8 $.
+
+## The Picture
+
+!(78%)[The bijection between elements and singletons, and the count against the power set](problem-10-bijection.svg "A diagram in four parts. The first gives the answer: n, one singleton for each element, equivalently C of n and 1 equals n. The second part draws the bijection as two boxes side by side. The left box, in blue, is headed S equals the set 1, 2, up to n and lists 1, 2, 3, 4, then a vertical ellipsis, then n. The right box, in green, is headed singletons in the power set of S and lists the set containing 1, the set containing 2, the set containing 3, the set containing 4, then a vertical ellipsis, then the set containing n. Arrows run from each element on the left to its singleton on the right. The caption reads: x maps to the set containing x pairs each element with exactly one singleton, and misses none. A table then compares the count against the size of the power set for several n. For n equal to 0 the power set has 1 element and there are 0 singletons, with no share defined; this row is highlighted in red. For n equal to 1 the power set has 2 and there is 1 singleton, a 50 percent share. For n equal to 3, 8 and 3, 37.5 percent. For n equal to 5, 32 and 5, 15.6 percent. For n equal to 10, 1024 and 10, 0.98 percent. For n equal to 20, 1048576 and 20, 0.0019 percent. A band below explains why a bijection settles it: the map x to the set containing x is injective, since if the two singletons are equal then the sets have the same elements so the elements are equal; and it is surjective onto the singletons, since any one-element subset of S is the singleton of its single element. A bijection forces the two collections to have equal size, so the singletons number exactly the size of S, namely n. Confirmed by enumerating every subset for n from 0 through 8. A final band notes that n equals 0 is the case worth checking: if S is empty then its power set is the set containing the empty set, which does have one element, but that element is the empty set and not a singleton, so the singleton count is 0, matching the formula. The trap is confusing the power set having one element with the power set having one singleton, and they differ exactly here.")
+
+## Remark — The Bijection Is the Whole Argument
+
+It would be enough to say “obviously there is one singleton per element”, and for an exercise at this level that is an acceptable answer. But writing the bijection out is worth the trouble, because it isolates exactly what is being used.
+
+$$$
+\begin{array}{l|l}
+\textbf{injectivity of } x\mapsto\{x\} & \text{no two elements give the same singleton} \\
+\textbf{surjectivity} & \text{every singleton comes from an element}
+\end{array}
+$$$
+
+Injectivity rests on **extensionality** — sets are equal precisely when they have the same elements. Without it, $ \{x\} $ and $ \{y\} $ might coincide for distinct $ x,y $ and the count would be smaller. Surjectivity rests on nothing more than the definition of “singleton subset”.
+
+This is also the template for the rest of the counting in this section: $ \binom{n}{k} $ counts $ k $-element subsets because selections and subsets correspond, once one divides out the orderings. Here $ k=1 $ and there is nothing to divide out, which is why the answer is simply $ n $.
+
+## Remark — The Edge Case $ n=0 $
+
+The formula should be tested where it is most likely to break, and that is $ n=0 $, where $ S=\varnothing $.
+
+$$$
+\mathcal{P}(\varnothing) = \{\varnothing\} ,
+$$$
+
+which by Problem 1 of this section has **one** element. It is tempting to conclude that there is one singleton — but the single element of $ \mathcal{P}(\varnothing) $ is $ \varnothing $ itself, which has no elements and so is not a singleton. The correct count is $ 0 $, matching the formula $ n=0 $.
+
+The confusion to avoid is between two different statements:
+
+$$$
+\begin{array}{l|l}
+\lvert\mathcal{P}(\varnothing)\rvert = 1 & \text{the power set has one element} \\
+\#\{\text{singletons in } \mathcal{P}(\varnothing)\} = 0 & \text{none of its elements is a singleton}
+\end{array}
+$$$
+
+These are the only $ n $ for which the two numbers disagree in this direction, and the exercise is a good place to notice it.
+
+## Remark — Singletons Are a Vanishing Fraction
+
+The count $ n $ grows, but the power set grows far faster:
+
+$$$
+\begin{array}{r|r|r|r}
+n & \lvert\mathcal{P}(S)\rvert & \text{singletons} & \text{share} \\ \hline
+1 & 2 & 1 & 50\% \\
+3 & 8 & 3 & 37.5\% \\
+5 & 32 & 5 & 15.6\% \\
+10 & 1024 & 10 & 0.98\% \\
+20 & 1\,048\,576 & 20 & 0.0019\%
+\end{array}
+$$$
+
+all computed directly. The share is $ n/2^n $, which tends to $ 0 $ very quickly — by $ n=50 $ it is around $ 4\times10^{-14} $.
+
+Setting this beside Problem 9 makes the contrast sharp. There the question was about $ 8 $-element subsets of a $ 16 $-element set, and the answer $ 12\,870 $ was about $ 19.6\% $ of the power set — the largest share any single size can claim. Singletons sit at the opposite end of the same row: always present, always few.
+
+## Remark — The Companion Counts
+
+The same reasoning gives the neighbouring entries of the row without extra work:
+
+$$$
+\begin{array}{l|l|l}
+\text{subsets of size} & \text{count} & \\ \hline
+0 & 1 & \text{only } \varnothing \\
+1 & n & \text{this problem} \\
+2 & \dfrac{n(n-1)}{2} & \text{Problem 8 with } n=5 \text{ gave } 10 \\
+n-1 & n & \text{complement of a singleton} \\
+n & 1 & \text{only } S
+\end{array}
+$$$
+
+The symmetry $ \binom{n}{k}=\binom{n}{n-k} $ explains why the count of $ (n-1) $-element subsets is also $ n $: removing one element is the same choice as keeping one. So the answer to this problem doubles as the answer to “how many subsets miss exactly one element”, a reformulation that is sometimes more useful.

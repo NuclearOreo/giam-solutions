@@ -1,0 +1,110 @@
+.docname {Solution — GIAM 4.1 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 5
+
+## Problem
+
+What, in Set theory, corresponds to the notion $ t $ (a tautology) in Logic?
+
+## Answer
+
+$$$
+\boxed{\;\text{The \textbf{universal set} } U \text{ --- the whole universe of discourse.}\;}
+$$$
+
+## Why
+
+This is the mirror image of the previous exercise, read through the same bridge. For an open sentence $ P(x) $, the truth set is
+
+$$$
+S_P = \{\, x \;:\; P(x) \,\} ,
+$$$
+
+so the question is: *which sentence has everything in its truth set?*
+
+> $ S_P = U $ means every $ x $ in the universe satisfies $ P(x) $ — that is, $ P(x) $ is **true for every** $ x $.
+>
+> A sentence true no matter what is precisely a tautology, denoted $ t $ in the text (as in $ A \lor \lnot A \cong t $).
+
+Checked on the universe $ \{1,\dots,10\} $: the sentences “$ x = x $”, “$ x $ is even or $ x $ is odd” and “$ x < 100 $” all have truth set equal to all ten elements, while “$ x $ is even” captures only five.
+
+## The Picture
+
+!(84%)[An ordinary truth set inside the universe, and a tautology filling it](problem-5-tautology.svg "A diagram in four parts. The first gives the answer: t corresponds to the universal set U. A tautology is true of every x in the universe of discourse, so its truth set leaves nothing out and is the whole universe. The second part draws two rectangles each labelled U in the corner. On the left, in blue, an ordinary sentence P has a small oval truth set S sub P sitting inside the rectangle, with most of the rectangle left white; the caption reads S sub P is some part of U. On the right, in green, the tautology t has its truth set shaded across the entire rectangle, labelled S sub t equals U, with the caption S sub t fills U completely. A table then translates t and its laws. The tautology t corresponds to the universal set U, read as true of everything, and this row is highlighted. The contradiction c corresponds to the empty set, read as true of nothing. A and t is equivalent to A, corresponding to A intersect U equals A, an identity law. A or t is equivalent to t, corresponding to A union U equals U, a domination law. Not t is equivalent to c, corresponding to the complement of U being the empty set. And P implies t always, corresponding to the truth set of P always being a subset of U, since everything sits inside U. A band below states that the duality is exact: swapping t with c together with and with or carries each true law to another true law, and on the set side swapping U with the empty set together with intersection and union does the same. Four pairings are shown: A and t equals A pairs with A or c equals A, matching A intersect U equals A paired with A union the empty set equals A; and A or t equals t pairs with A and c equals c, matching A union U equals U paired with A intersect the empty set equals the empty set. A final band notes one asymmetry: U depends on the universe while the empty set does not. There is exactly one empty set whatever the universe of discourse, but U is the universe, so it changes whenever the universe does — 10 elements, or 5, or 1, depending on what is under discussion. Correspondingly, x less than 100 is a tautology on the set 1 through 10 but not on the natural numbers, while x equals x is one everywhere. All truth sets were computed on 1 through 10 and the four laws checked with A equal to the set 2, 3, 5, 7.")
+
+## Remark — The Two Exercises Are One Duality
+
+Problems 4 and 5 are a matched pair, and seeing them together is more useful than either alone:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{Logic} & \textbf{Set theory} & \textbf{truth set} \\ \hline
+c \text{ (contradiction)} & \varnothing & \text{nothing satisfies it} \\
+t \text{ (tautology)} & U & \text{everything satisfies it}
+\end{array}
+$$$
+
+The logical operations $ \land $ and $ \lor $ are themselves dual, and the duality is **exact**: interchanging $ t\leftrightarrow c $ together with $ \land\leftrightarrow\lor $ carries any true law to another true law. On the set side the same swap reads $ U\leftrightarrow\varnothing $ with $ \cap\leftrightarrow\cup $.
+
+$$$
+\begin{array}{l|l|l|l}
+A\land t\cong A & A\lor c\cong A & A\cap U = A & A\cup\varnothing = A \\
+A\lor t\cong t & A\land c\cong c & A\cup U = U & A\cap\varnothing = \varnothing
+\end{array}
+$$$
+
+All four set identities verified on $ \{1,\dots,10\} $ with $ A=\{2,3,5,7\} $. Reading across each row: the same fact, said four ways.
+
+This is why one only needs to remember half of the laws in either subject. Given $ A\cup\varnothing = A $, the dual $ A\cap U = A $ follows by symbol-swapping, with no separate argument.
+
+## Remark — $ U $ Is Where Complementation Lives
+
+The universal set is not merely a curiosity at the top of the lattice; it is what makes **complement** a well-defined operation.
+
+The logical negation $ \lnot P $ is perfectly meaningful on its own. Its set counterpart, though, requires a reference:
+
+$$$
+S_{\lnot P} = U \setminus S_P ,
+$$$
+
+the elements of the universe *not* in $ S_P $. Without a fixed $ U $ there is no such thing as “the complement of $ A $” — one can only speak of $ B\setminus A $ relative to some chosen $ B $.
+
+This is exactly the role $ t $ plays in the logical identities: $ \lnot t \cong c $ becomes “the complement of $ U $ is $ \varnothing $”, and $ A\lor\lnot A\cong t $ becomes
+
+$$$
+A \cup \left(U\setminus A\right) = U ,
+$$$
+
+the statement that a set and its complement exhaust the universe. Both were checked.
+
+## Remark — One Asymmetry Between the Two Answers
+
+The pairing is clean but not perfectly symmetric, and the difference is worth stating.
+
+**There is exactly one empty set.** Whatever universe one works in, $ \varnothing $ is the same object — extensionality forces it, as noted in the previous problem.
+
+**There is no single universal set.** $ U $ *is* the universe of discourse, so it changes as soon as the discussion does. Working over $ \{1,\dots,10\} $ gives a ten-element $ U $; over $ \{1,\dots,5\} $ a five-element one; over $ \mathbb{N} $ an infinite one.
+
+The logical side shows the same asymmetry. Whether a sentence counts as a tautology can depend on the universe: on $ \{1,\dots,10\} $ the sentence “$ x < 100 $” has truth set $ U $ and so qualifies, but on $ \mathbb{N} $ it does not. By contrast “$ x=x $” is a tautology in every universe. Contradictions behave similarly, but the *empty set itself* does not change — only which sentences pick it out.
+
+## Remark — Why There Is No Set of Everything
+
+The text mentions sidestepping foundational issues here, and this exercise is where one of them surfaces.
+
+It is tempting to want a single absolute $ U $ — “the set of all sets” — so that $ t $ would have one canonical truth set. **No such set exists.** If $ U $ contained every set, consider
+
+$$$
+R = \{\, x \in U \;:\; x\notin x \,\} .
+$$$
+
+Asking whether $ R\in R $ gives a contradiction either way: if $ R\in R $ then by definition $ R\notin R $, and if $ R\notin R $ then $ R $ qualifies for membership, so $ R\in R $. This is **Russell's paradox**, and it is why modern set theory always works within some fixed but unspecified universe rather than a universal one.
+
+So the honest form of the answer is: $ t $ corresponds to the universal set *of the universe of discourse currently in play*. The correspondence is perfectly good — it simply comes with a context, in a way that the answer $ \varnothing $ to the previous exercise does not.

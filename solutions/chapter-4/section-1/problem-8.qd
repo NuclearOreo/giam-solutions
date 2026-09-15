@@ -1,0 +1,117 @@
+.docname {Solution — GIAM 4.1 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 8
+
+## Problem
+
+How many singleton sets are there in the power set of $ \{a,b,c,d,e\} $? “Doubleton” sets?
+
+## Answer
+
+$$$
+\boxed{\;5 \text{ singletons} \qquad\qquad 10 \text{ doubletons}\;}
+$$$
+
+## Why
+
+A singleton subset is determined by naming its one element, and a doubleton by naming its two.
+
+> **Singletons.** Each of the $ 5 $ elements gives exactly one singleton, and different elements give different sets:
+>
+> $ \{a\},\quad \{b\},\quad \{c\},\quad \{d\},\quad \{e\} . $
+>
+> That is $ 5 $ in total, one per element.
+>
+> **Doubletons.** A two-element subset is an unordered pair of distinct elements. Listing them in alphabetical order to avoid repeats:
+>
+> $ \{a,b\},\ \{a,c\},\ \{a,d\},\ \{a,e\},\ \{b,c\},\ \{b,d\},\ \{b,e\},\ \{c,d\},\ \{c,e\},\ \{d,e\} , $
+>
+> which is $ 4+3+2+1 = 10 $.
+
+In binomial notation these are $ \binom{5}{1} = 5 $ and $ \binom{5}{2} = 10 $. Both counts were confirmed by enumerating all $ 32 $ subsets directly.
+
+## The Picture
+
+!(84%)[The power set split by subset size, with both families listed in full](problem-8-counts.svg "A diagram in four parts. The first gives the answers: 5 singletons and 10 doubletons, one subset per element and one per unordered pair of distinct elements. The second part breaks the power set down by subset size as a row of six boxes: size 0 holds 1 subset, size 1 holds 5, size 2 holds 10, size 3 holds 10, size 4 holds 5, and size 5 holds 1, each labelled with the corresponding binomial coefficient C of 5 and k. The size 1 box is outlined in green and the size 2 box in red. Below, the note that 1 plus 5 plus 10 plus 10 plus 5 plus 1 equals 32, which is 2 to the fifth, the whole power set sorted by size. Next the five singletons are listed in green boxes — the set containing a, the set containing b, and so on through e — one per element. Then the ten doubletons are listed in red boxes across two rows: a b, a c, a d, a e, b c, then b d, b e, c d, c e, d e — one per unordered pair. A band below explains why 10 and not 20: choosing an ordered pair of distinct letters gives 5 times 4 equals 20 possibilities, but the set a b and the set b a are the same set since order carries no information in a set, so every doubleton was counted twice, and 20 divided by 2 equals 10, which is C of 5 and 2. The singleton count needs no such correction, because with one element there is nothing to reorder, which is why the answer there is simply 5. A final band describes two patterns in the row 1, 5, 10, 10, 5, 1. It sums to 32, because every subset has exactly one size so the six counts partition the power set. And it reads the same backwards, because C of 5 and k equals C of 5 and 5 minus k, since taking complements pairs each k-element subset with a unique subset of size 5 minus k; so there are also 10 three-element subsets. All six counts were obtained by enumerating the 32 subsets directly.")
+
+## Remark — Why the Doubleton Count Is Not $ 20 $
+
+The natural first attempt is to pick the first element ($ 5 $ ways), then a different second element ($ 4 $ ways), giving $ 20 $. That counts too much, and it is worth being precise about why.
+
+The $ 20 $ counts **ordered** pairs. But $ \{a,b\} $ and $ \{b,a\} $ are the same set — a set records only which elements are present, never in what order. So each doubleton appears twice in the list of $ 20 $, and
+
+$$$
+\frac{5\times 4}{2} = 10 = \binom{5}{2} .
+$$$
+
+The singleton count needs no such correction: with a single element there is no order to impose, so $ 5 $ choices give $ 5 $ distinct sets.
+
+This is the entire content of the binomial coefficient $ \binom{n}{k} = \frac{n(n-1)\cdots(n-k+1)}{k!} $ — count ordered selections, then divide by the $ k! $ orderings that produce the same set.
+
+## Remark — The Two Answers Sit in a Row That Sums to $ 32 $
+
+Sorting all $ 32 $ subsets by size gives
+
+$$$
+\begin{array}{c|cccccc}
+\text{size } k & 0 & 1 & 2 & 3 & 4 & 5 \\ \hline
+\text{count} & 1 & \mathbf{5} & \mathbf{10} & 10 & 5 & 1
+\end{array}
+$$$
+
+all verified by direct enumeration. Two things fall out.
+
+**The row sums to $ 2^5 = 32 $.** Every subset has exactly one size, so the six counts partition $ \mathcal{P}(S) $. That is the identity
+
+$$$
+\sum_{k=0}^{n}\binom{n}{k} = 2^{n} ,
+$$$
+
+and it gives a useful check on any answer of this kind: if the sizes do not add to $ 2^n $, something has been miscounted.
+
+**The row is symmetric.** $ \binom{5}{k} = \binom{5}{5-k} $, because complementation $ T \mapsto S\setminus T $ is a bijection pairing each $ k $-element subset with a unique $ (5-k) $-element one. So the answer “$ 10 $ doubletons” immediately gives “$ 10 $ three-element subsets” as well, and the $ 5 $ singletons are matched by $ 5 $ four-element subsets.
+
+## Remark — The General Formulas
+
+Replacing $ 5 $ by $ n $:
+
+$$$
+\#\{\text{singletons}\} = \binom{n}{1} = n , \qquad \#\{\text{doubletons}\} = \binom{n}{2} = \frac{n(n-1)}{2} .
+$$$
+
+Checked for $ n = 1,\dots,8 $. Two consequences are worth noting.
+
+The doubleton count $ \frac{n(n-1)}{2} $ is the $ (n-1) $-st **triangular number** $ 1+2+\cdots+(n-1) $, which is exactly how the listing above was organised: $ 4 $ pairs starting with $ a $, then $ 3 $ starting with $ b $, then $ 2 $, then $ 1 $.
+
+Also, the two counts cross over. For $ n\le2 $ there are at least as many singletons as doubletons; from $ n=3 $ they are equal; and beyond that doubletons win, since $ \frac{n(n-1)}{2} > n $ exactly when $ n>3 $:
+
+$$$
+\begin{array}{c|cccccc}
+n & 1 & 2 & 3 & 4 & 5 & 8 \\ \hline
+\text{singletons} & 1 & 2 & 3 & 4 & 5 & 8 \\
+\text{doubletons} & 0 & 1 & 3 & 6 & 10 & 28
+\end{array}
+$$$
+
+## Remark — The Exercise Is Really About Reading $ \mathcal{P}(S) $
+
+Problem 1 of this section established that $ \lvert\mathcal{P}(S)\rvert = 2^{\lvert S\rvert} $, and the counting argument there was: each element is independently *in or out*. This exercise refines the same argument by asking how many are in.
+
+$$$
+\begin{array}{l|l}
+\text{Problem 1} & \text{how many subsets? --- } 2^n \\
+\text{this problem} & \text{how many of each size? --- } \binom{n}{k}
+\end{array}
+$$$
+
+The refinement matters because the elements of a power set are *sets*, and it is easy to lose track of what one is counting. A useful discipline: $ \mathcal{P}(\{a,b,c,d,e\}) $ has $ 32 $ elements, and $ 5 $ of them happen to be singletons — so the answer $ 5 $ counts *elements of the power set*, not elements of the original set, even though the two coincide numerically here.
+
+That coincidence is exactly why singletons are a natural first case: the map $ x\mapsto\{x\} $ is a bijection from $ S $ to the singletons in $ \mathcal{P}(S) $, which is what makes the count come out as $ n $.

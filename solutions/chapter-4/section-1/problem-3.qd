@@ -1,0 +1,111 @@
+.docname {Solution — GIAM 4.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 3
+
+## Problem
+
+Determine the following cardinalities.
+
+- $ A = \bigl\{1,\,2,\,\{3,4,5\}\bigr\} $, $ \lvert A\rvert = \underline{\qquad} $
+- $ B = \bigl\{\{1,2,3,4,5\}\bigr\} $, $ \lvert B\rvert = \underline{\qquad} $
+
+## Answer
+
+$$$
+\boxed{\;\lvert A\rvert = 3 \qquad\qquad \lvert B\rvert = 1\;}
+$$$
+
+## Why
+
+Cardinality counts the elements a set has **at its top level**. It does not look inside those elements.
+
+> **Part (a).** List the elements of $ A $ one at a time, reading the outermost braces:
+>
+> $ 1, \qquad 2, \qquad \{3,4,5\} . $
+>
+> That is three objects — two numbers and one *set*. The set $ \{3,4,5\} $ is a single element of $ A $, so it contributes $ 1 $ to the count, not $ 3 $. Hence $ \lvert A\rvert = 3 $.
+>
+> **Part (b).** The outermost braces of $ B $ enclose exactly one thing:
+>
+> $ \{1,2,3,4,5\} . $
+>
+> $ B $ is a set whose only element is a five-element set. Hence $ \lvert B\rvert = 1 $.
+
+Both counts were confirmed directly.
+
+## The Picture
+
+!(84%)[The two sets drawn as containers, showing what is at the top level of each](problem-3-cardinality.svg "A diagram in four parts. The first gives the answers: the cardinality of A is 3 and the cardinality of B is 1, noting that cardinality counts elements at the top level only and never looks inside them. The second part draws each set as a container. On the left, in green, the set A equal to 1, 2, and the set 3 4 5: inside the outer box sit two plain circles labelled 1 and 2, and a dashed inner box holding three small circles labelled 3, 4 and 5, marked as one object; the caption reads the cardinality of A is 3, three things at the top level. On the right, in red, the set B equal to the set containing 1 through 5: inside the outer box sits a single dashed inner box holding five small circles labelled 1 through 5, marked as one object; the caption reads the cardinality of B is 1, one thing at the top level. A table then compares three sets built from the same five numbers: the flat set 1 through 5 has cardinality 5, five separate numbers; the set 1, 2, and the set 3 4 5 has cardinality 3, two numbers and one set; and the set containing the set 1 through 5 has cardinality 1, a single set nested once. A band below explains that a brace is a container and the container is one thing: in A the numbers 3, 4 and 5 have been packed into a box, that box is a single element of A so it counts once, and the three numbers inside it count not at all. Membership confirms it, since 1 is an element of A and the set 3 4 5 is an element of A, but 3 is not an element of A — the number 3 is an element of an element of A, which is not the same as being an element of A. A final band notes a consequence worth checking: since cardinality drives the power set, the power set of A has 8 elements while the power set of B has 2, both computed directly along with every membership claim.")
+
+## Remark — The Same Five Numbers, Three Different Sets
+
+The exercise is a calibration check, and the cleanest way to see what it is checking is to line up three sets built from the same raw material:
+
+$$$
+\begin{array}{l|c|l}
+\textbf{set} & \textbf{cardinality} & \textbf{its elements} \\ \hline
+\{1,2,3,4,5\} & 5 & \text{five numbers} \\
+\bigl\{1,2,\{3,4,5\}\bigr\} & 3 & \text{two numbers and one set} \\
+\bigl\{\{1,2,3,4,5\}\bigr\} & 1 & \text{one set}
+\end{array}
+$$$
+
+All three “contain” the numbers $ 1 $ through $ 5 $ in a loose everyday sense, yet their cardinalities are $ 5 $, $ 3 $ and $ 1 $. What differs is only how the braces are nested — the braces are doing real work, not decoration.
+
+A helpful image: a brace is a box. Putting three apples in a box and then putting that box on a shelf leaves **one** thing on the shelf, not three.
+
+## Remark — Membership Does Not Pass Through
+
+The point behind part (a) is that $ \in $ is not transitive. Concretely:
+
+$$$
+1 \in A, \qquad \{3,4,5\} \in A, \qquad\text{but}\qquad 3 \notin A .
+$$$
+
+All three were verified. The number $ 3 $ is an element of an element of $ A $, and that is a different relationship from being an element of $ A $. Compare:
+
+$$$
+3 \in \{3,4,5\} \in A \quad\text{does \textbf{not} give}\quad 3\in A .
+$$$
+
+This contrasts sharply with $ \subseteq $, which **is** transitive: if $ X\subseteq Y $ and $ Y\subseteq Z $ then $ X\subseteq Z $. Mixing the two is the standard error here, and the next section of the text is devoted to keeping them apart.
+
+A related check: $ \{1,2\}\subseteq A $ is true, since both $ 1 $ and $ 2 $ are elements of $ A $. But $ \{3,4,5\}\subseteq A $ is **false** — the elements $ 3 $, $ 4 $, $ 5 $ are not individually in $ A $ — even though $ \{3,4,5\}\in A $ is true. The same object satisfies one relation and fails the other.
+
+## Remark — Part (b) Is the Same Trap as $ \varnothing $ Versus $ \{\varnothing\} $
+
+Part (b) is structurally identical to Problem 1 of this section. There the distinction was between
+
+$$$
+\varnothing \quad(\text{0 elements}) \qquad\text{and}\qquad \{\varnothing\} \quad(\text{1 element}) ,
+$$$
+
+and here it is between $ \{1,2,3,4,5\} $ with five elements and $ \bigl\{\{1,2,3,4,5\}\bigr\} $ with one. In both cases an extra pair of braces collapses a set of any size into a **singleton**.
+
+That is worth stating as a rule: for any set $ S $ whatsoever,
+
+$$$
+\bigl\lvert \{S\} \bigr\rvert = 1 ,
+$$$
+
+regardless of how large $ S $ is. Wrapping something in braces always produces a one-element set. It works equally for $ S=\varnothing $, for $ S=\{1,2,3,4,5\} $, and for $ S=\mathbb{R} $ — the singleton $ \{\mathbb{R}\} $ has exactly one element.
+
+## Remark — A Consequence in the Power Set
+
+Cardinality is not an isolated statistic; it drives everything downstream. Since $ \lvert\mathcal{P}(X)\rvert = 2^{\lvert X\rvert} $,
+
+$$$
+\lvert\mathcal{P}(A)\rvert = 2^3 = 8 , \qquad \lvert\mathcal{P}(B)\rvert = 2^1 = 2 ,
+$$$
+
+both computed directly. So the difference between counting $ 3 $ and counting $ 5 $ for $ A $ is not a minor slip — it would give $ 32 $ instead of $ 8 $, an error of a factor of four, propagating into every later calculation.
+
+Explicitly, $ \mathcal{P}(B) = \Bigl\{\varnothing,\ \bigl\{\{1,2,3,4,5\}\bigr\}\Bigr\} $ — the empty set and $ B $ itself, which is what one expects of a singleton's power set.

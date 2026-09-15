@@ -1,0 +1,125 @@
+.docname {Solution — GIAM 4.1 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.1 Problem 2
+
+## Problem
+
+Try iterating the power set operator. What is $ \mathcal{P}(\mathcal{P}(\varnothing)) $? What is $ \mathcal{P}(\mathcal{P}(\mathcal{P}(\varnothing))) $?
+
+## Answer
+
+$$$
+\boxed{\begin{aligned}
+\mathcal{P}(\mathcal{P}(\varnothing)) &= \bigl\{\,\varnothing,\ \{\varnothing\}\,\bigr\} \\[4pt]
+\mathcal{P}(\mathcal{P}(\mathcal{P}(\varnothing))) &= \Bigl\{\,\varnothing,\ \{\varnothing\},\ \bigl\{\{\varnothing\}\bigr\},\ \bigl\{\varnothing,\{\varnothing\}\bigr\}\,\Bigr\}
+\end{aligned}}
+$$$
+
+with $ 2 $ and $ 4 $ elements respectively. Both were computed directly.
+
+## Working It Out
+
+From the previous exercise, $ \mathcal{P}(\varnothing) = \{\varnothing\} $ — a set with **one** element.
+
+> **Step 1: $ \mathcal{P}(\mathcal{P}(\varnothing)) = \mathcal{P}\bigl(\{\varnothing\}\bigr) $.**
+>
+> We need all subsets of the one-element set $ \{\varnothing\} $. There are $ 2^1 = 2 $ of them: leave the element out, or put it in.
+>
+> $ \varnothing \qquad\text{and}\qquad \{\varnothing\} $
+>
+> Collecting these gives $ \mathcal{P}(\mathcal{P}(\varnothing)) = \bigl\{\varnothing,\ \{\varnothing\}\bigr\} $.
+>
+> **Step 2: $ \mathcal{P}(\mathcal{P}(\mathcal{P}(\varnothing))) = \mathcal{P}\bigl(\bigl\{\varnothing,\{\varnothing\}\bigr\}\bigr) $.**
+>
+> Now the input has **two** elements, call them $ a=\varnothing $ and $ b=\{\varnothing\} $. Each is independently in or out, giving $ 2^2 = 4 $ subsets:
+
+$$$
+\begin{array}{l|l}
+\textbf{choice} & \textbf{subset} \\ \hline
+\text{neither} & \varnothing \\
+a \text{ only} & \{\varnothing\} \\
+b \text{ only} & \bigl\{\{\varnothing\}\bigr\} \\
+\text{both} & \bigl\{\varnothing,\{\varnothing\}\bigr\}
+\end{array}
+$$$
+
+So $ \mathcal{P}^3(\varnothing) = \Bigl\{\varnothing,\ \{\varnothing\},\ \bigl\{\{\varnothing\}\bigr\},\ \bigl\{\varnothing,\{\varnothing\}\bigr\}\Bigr\} $.
+
+The two middle entries are the ones to read carefully: $ \{\varnothing\} $ and $ \bigl\{\{\varnothing\}\bigr\} $ are different sets, the first containing the empty set and the second containing *that*.
+
+## The Picture
+
+!(84%)[Both power sets element by element, and the cardinality ladder](problem-2-iterate.svg "A diagram in five parts. The first gives the two answers: the power set of the power set of the empty set is the set containing the empty set and the set containing the empty set; and applying the operator once more gives a four-element set containing the empty set, the set containing the empty set, the set containing that, and the set containing both. Two elements, then four, each stage being the power set of the one before. The second band works out the two-element case: starting from the one-element set containing the empty set, its subsets are the empty one and the whole thing, drawn as two green boxes labelled the empty subset and the whole set, giving the set containing the empty set and the set containing the empty set. The third band works out the four-element case: starting from the two-element set, each of the two elements is chosen in or out, giving four ways, drawn as four red boxes labelled neither, first only, second only, and both, holding respectively the empty set, the set containing the empty set, the set containing the set containing the empty set, and the set containing both. A ladder of cardinalities follows, each entry being 2 to the power of the previous: the empty set has 0, then 1, 2, 4, 16, 65536, and then 2 to the 65536. A band below notes that the only ingredient ever used is the empty set: nothing is fed in from outside, every brace and symbol is built from the empty set alone, and the operator manufactures structure out of nothing. The nesting is genuine, since each stage is both an element of the next and a subset of it, verified for the first four stages; sets with this property are called transitive. A final band describes a coincidence that stops at two: in the von Neumann construction 0 is the empty set, 1 is the set containing 0, 2 is the set containing 0 and 1, and so on, so the power set of the empty set is exactly the number 1 and the next iterate is exactly the number 2. But the third iterate is not the number 3, since it has four elements while 3 has three; the number 3 is a subset of it but not an element of it, both facts checked directly.")
+
+## Remark — The Cardinalities Are an Exponential Tower
+
+Because $ \lvert\mathcal{P}(A)\rvert = 2^{\lvert A\rvert} $, iterating squares the *exponent* each time:
+
+$$$
+\begin{array}{l|c}
+\textbf{set} & \textbf{size} \\ \hline
+\varnothing & 0 \\
+\mathcal{P}(\varnothing) & 1 \\
+\mathcal{P}^2(\varnothing) & 2 \\
+\mathcal{P}^3(\varnothing) & 4 \\
+\mathcal{P}^4(\varnothing) & 16 \\
+\mathcal{P}^5(\varnothing) & 65\,536 \\
+\mathcal{P}^6(\varnothing) & 2^{65536}
+\end{array}
+$$$
+
+all computed directly through $ \mathcal{P}^4 $. The last entry has $ 19\,729 $ digits — larger than the number of atoms in the observable universe by an incomprehensible margin, after only six applications of an operator that started from nothing.
+
+This is worth pausing on because the *writing* of these sets grows just as fast. $ \mathcal{P}^3(\varnothing) $ fits comfortably on one line; $ \mathcal{P}^4(\varnothing) $, with sixteen elements each a set of sets of sets, would fill a paragraph; $ \mathcal{P}^5(\varnothing) $ could not be written out in a lifetime. The problem stops at three for a good reason.
+
+## Remark — Everything Is Built From Nothing
+
+The striking feature of this tower is that **no material is ever supplied**. There are no numbers, no letters, no objects of any kind — only the empty set and the braces used to collect things. Yet by stage three there are four distinct objects, and by stage five there are $ 65\,536 $.
+
+This is the point of the exercise, and it is a genuine foundational observation: the axioms of set theory need to assert the existence of only one set (the empty set), because the power set operation generates everything else. What looks like an abstract game is the actual mechanism by which mathematics is bootstrapped from nothing.
+
+## Remark — Each Stage Sits Inside the Next, Twice Over
+
+There is more structure here than the list of elements suggests. For every $ k $,
+
+$$$
+\mathcal{P}^k(\varnothing) \in \mathcal{P}^{k+1}(\varnothing) \qquad\text{and}\qquad \mathcal{P}^k(\varnothing) \subseteq \mathcal{P}^{k+1}(\varnothing) ,
+$$$
+
+both verified for $ k = 1,2,3 $. The first holds because every set is a subset of itself, so $ \mathcal{P}^k(\varnothing) $ appears as one of its own subsets, hence as an element of the next power set. The second is a small theorem: the elements of $ \mathcal{P}^k(\varnothing) $ are subsets of $ \mathcal{P}^{k-1}(\varnothing) $, and each of those is also a subset of $ \mathcal{P}^{k}(\varnothing) $, hence an element of $ \mathcal{P}^{k+1}(\varnothing) $.
+
+So the tower is increasing in both senses at once, which is exactly the condition of being a **transitive set** — every element is also a subset. Checking this is a good exercise in keeping $ \in $ and $ \subseteq $ apart, since here both happen to hold and it would be easy to notice one and assume the other.
+
+Concretely, in $ \mathcal{P}^3(\varnothing) $ one can see $ \mathcal{P}^2(\varnothing) = \bigl\{\varnothing,\{\varnothing\}\bigr\} $ listed as the fourth element, and separately observe that both elements of $ \mathcal{P}^2(\varnothing) $ — namely $ \varnothing $ and $ \{\varnothing\} $ — appear as the first and second elements.
+
+## Remark — A Coincidence With the Natural Numbers, and Where It Ends
+
+In the **von Neumann construction** each natural number is the set of all smaller ones:
+
+$$$
+0 = \varnothing, \qquad 1 = \{0\} = \{\varnothing\}, \qquad 2 = \{0,1\} = \bigl\{\varnothing,\{\varnothing\}\bigr\}, \qquad 3 = \{0,1,2\} .
+$$$
+
+Comparing with the tower, the first two iterates land exactly on numbers:
+
+$$$
+\mathcal{P}(\varnothing) = 1 , \qquad \mathcal{P}^2(\varnothing) = 2 .
+$$$
+
+Both confirmed. It is tempting to conclude that $ \mathcal{P}^3(\varnothing) = 3 $, and that is **false**: the third iterate has four elements, while $ 3 = \{0,1,2\} $ has three. Explicitly,
+
+$$$
+\mathcal{P}^3(\varnothing) \ni \bigl\{\{\varnothing\}\bigr\} , \qquad\text{but}\qquad \bigl\{\{\varnothing\}\bigr\} \notin 3 .
+$$$
+
+What *is* true is that $ 3 \subseteq \mathcal{P}^3(\varnothing) $ but $ 3 \notin \mathcal{P}^3(\varnothing) $ — both checked directly. The coincidence is real for two steps and then breaks, which is a fair warning about extrapolating from small cases: the pattern $ 0,1,2 $ matched perfectly and still did not continue.
+
+The reason is a mismatch of growth rates. The von Neumann successor adds *one* element at each step, while the power set operator *doubles* the count. They agree at sizes $ 1 $ and $ 2 $ only because $ 2^1 = 2 $ happens to equal $ 1+1 $.
