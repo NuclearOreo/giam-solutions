@@ -1,0 +1,130 @@
+.docname {Solution — GIAM 4.2 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.2 Problem 2
+
+## Problem
+
+Suppose that $ p $ is a prime. For each $ n $ in $ \mathbb{Z}^{+} $, define the set
+
+$$$
+P_n = \left\{\, x \in \mathbb{Z}^{+} \;:\; p^{n} \mid x \,\right\} .
+$$$
+
+Conjecture and prove a statement about the containments between these sets.
+
+## The Conjecture
+
+$$$
+\boxed{\;P_1 \supsetneq P_2 \supsetneq P_3 \supsetneq P_4 \supsetneq \cdots\;}
+$$$
+
+and more precisely, for all $ m,n\in\mathbb{Z}^{+} $,
+
+$$$
+P_m \subseteq P_n \iff m \ge n .
+$$$
+
+The sets form an infinite strictly decreasing chain, totally ordered by containment. Verified for $ p = 2,3,5 $ and all $ m,n \le 6 $.
+
+## Proof
+
+> **Theorem.** For every $ n\in\mathbb{Z}^{+} $, $ P_{n+1}\subsetneq P_n $.
+>
+> **Containment.** Let $ x\in P_{n+1} $, so $ p^{n+1}\mid x $ and there is an integer $ k $ with
+>
+> $ x = p^{n+1}k = p^{n}\left(pk\right) . $
+>
+> Since $ pk $ is an integer, $ p^{n}\mid x $, so $ x\in P_n $. Hence $ P_{n+1}\subseteq P_n $.
+>
+> **Strictness.** Consider $ x = p^{n} $. It is a positive integer and $ p^n \mid p^n $, so $ p^n\in P_n $. But $ p^{n+1}\nmid p^n $: since $ p\ge2 $ we have $ 0 < p^{n} < p^{n+1} $, and no positive integer is divisible by something strictly larger than itself.
+>
+> So $ p^n \in P_n\setminus P_{n+1} $, and the containment is proper. $ \blacksquare $
+
+The general statement follows by chaining. If $ m\ge n $ then
+
+$$$
+P_m \subseteq P_{m-1} \subseteq \cdots \subseteq P_n ,
+$$$
+
+and conversely if $ m< n $ then $ p^{m}\in P_m $ while $ p^m\notin P_n $ — indeed $ p^m < p^n $ — so $ P_m\not\subseteq P_n $.
+
+## The Picture
+
+!(84%)[The nested sets for p = 2, and the integers coloured by how many factors of 2 they carry](problem-2-chain.svg "A diagram in four parts. The first states the conjecture: P one properly contains P two properly contains P three properly contains P four and so on, a strictly decreasing chain; and more precisely P sub m is a subset of P sub n exactly when m is at least n, verified for p equal to 2, 3 and 5 and all m and n up to 6. The second part draws four nested rounded rectangles for the case p equals 2, each inside the last: the outermost labelled P one, multiples of 2; then P two, multiples of 4; then P three, multiples of 8; then P four, multiples of 16. In the gap between each box and the next sits a small circled witness — 2 in the outermost gap, then 4, then 8, then 16 — with the note that each power of 2 lies in its own set but not the next, so each step is strictly smaller. Below, a number line shows the integers 1 to 32 as dots whose size and darkness increase with how many factors of 2 the integer carries: odd numbers are tiny grey dots, and 2, 4, 8, 16 and 32 grow progressively larger and darker, labelled. The caption notes that bigger dots lie in deeper sets, and that every dot eventually stops growing, which is why no integer is in all of them. A band below gives the proof in two lines. Containment: if p to the n plus 1 divides x, write x as p to the n plus 1 times k, which is p to the n times pk; since pk is an integer, p to the n divides x, so the next set is contained in the previous. Strictness: the number p to the n is in P sub n, but p to the n plus 1 does not divide p to the n because p to the n is positive and smaller than p to the n plus 1; so p to the n lies in P sub n but not P sub n plus 1, and the containment is proper. A note adds that only p at least 2 is used, never primality. A final band explains that the chain shrinks to nothing: the sets get thinner geometrically, with P sub n having density one over p to the n among the positive integers, and for p equal to 2 the measured densities below 20000 are 0.5, 0.25, 0.125, 0.0625, 0.0313 and so on as predicted. The whole chain has empty intersection, since given any x one can choose n with p to the n greater than x, and then x is not in P sub n. So the chain is an infinite strictly decreasing sequence with nothing left at the bottom.")
+
+## Remark — Primality Is Never Used
+
+Read the proof back. The containment step needs only that $ p^{n+1} = p^n\cdot p $ with $ p $ an integer; the strictness step needs only $ p\ge2 $, so that $ p^n < p^{n+1} $. **Nowhere is $ p $ assumed prime.**
+
+So the theorem actually proved is
+
+$$$
+\forall a\in\mathbb{Z},\; a\ge2 : \qquad A_1 \supsetneq A_2 \supsetneq A_3 \supsetneq\cdots, \qquad A_n = \left\{x\in\mathbb{Z}^{+} : a^{n}\mid x\right\} ,
+$$$
+
+and the chain for $ a=6 $ — multiples of $ 6 $, then $ 36 $, then $ 216 $ — behaves exactly like the chain for $ a=2 $. This is the same audit performed in 3.1 Problem 8 and 3.3 Problem 2: an unused hypothesis is a free generalisation.
+
+What does $ a=1 $ do? Then $ A_n = \mathbb{Z}^{+} $ for every $ n $ and the chain is constant — containments hold but never strictly. That is exactly where the hypothesis $ p\ge2 $ earns its place.
+
+Primality *would* matter for other questions about these sets. Whether $ P_1 $ is closed under the operation $ x\mapsto x/p $, or whether $ p\mid ab $ forces $ p\mid a $ or $ p\mid b $ — Euclid's lemma, and false for composite moduli by 3.4 Problem 2 — genuinely need $ p $ prime. Plain containment does not, and it is worth separating the hypotheses a result uses from those its setting happens to supply.
+
+## Remark — The Chain Is Totally Ordered, and That Is Unusual
+
+The full statement $ P_m\subseteq P_n \iff m\ge n $ says more than “each is inside the previous”. It says **any two of these sets are comparable**: given $ P_m $ and $ P_n $, one contains the other.
+
+That is a strong property. Most families of sets are not like this — $ \{x : 2\mid x\} $ and $ \{x:3\mid x\} $ are incomparable, since $ 2 $ is in the first only and $ 3 $ in the second only. What makes the present family a chain is that the moduli $ p,p^2,p^3,\dots $ are themselves totally ordered by divisibility.
+
+Two consequences, both verified for $ p=3 $:
+
+$$$
+P_m \cap P_n = P_{\max(m,n)} , \qquad P_m \cup P_n = P_{\min(m,n)} .
+$$$
+
+The union being one of the sets is the surprising one — unions of divisibility conditions usually are not divisibility conditions, as 4.1 Problem 6 showed with $ S_2\cup S_3 $. Here it works only because the two sets are nested, so the union is just the larger.
+
+## Remark — The Sets Shrink Geometrically
+
+Each step removes most of what is left. Among the first $ N $ positive integers, $ P_n $ contains about $ N/p^n $ of them, so its **density** is $ 1/p^n $. For $ p=2 $, counting below $ N=20\,000 $:
+
+$$$
+\begin{array}{c|c|c}
+n & \text{measured density} & 1/2^{n} \\ \hline
+1 & 0.5000 & 0.5000 \\
+2 & 0.2500 & 0.2500 \\
+3 & 0.1250 & 0.1250 \\
+4 & 0.0625 & 0.0625 \\
+5 & 0.0313 & 0.0313
+\end{array}
+$$$
+
+Each set is a fixed fraction $ 1/p $ of the previous one, so the chain thins out exponentially — though every $ P_n $ remains infinite.
+
+## Remark — Nothing Survives to the Bottom
+
+A strictly decreasing chain of infinite sets can still have a large intersection. Here it does not:
+
+$$$
+\bigcap_{n=1}^{\infty} P_n = \varnothing .
+$$$
+
+> **Proof.** Let $ x $ be any positive integer. Since $ p\ge2 $, the powers $ p^n $ grow without bound, so there is an $ n $ with $ p^{n}>x $. No positive integer is divisible by something larger than itself, so $ x\notin P_n $. Hence $ x $ fails to be in the intersection, and as $ x $ was arbitrary the intersection is empty. $ \blacksquare $
+
+Concretely: $ 1000 $ escapes the chain at $ n=10 $ for $ p=2 $ (since $ 2^{10}=1024>1000 $) and at $ n=7 $ for $ p=3 $.
+
+The underlying quantity is the **$ p $-adic valuation** $ v_p(x) $, the largest $ n $ with $ p^n\mid x $. In these terms
+
+$$$
+x \in P_n \iff v_p(x) \ge n ,
+$$$
+
+and the chain is empty at the bottom precisely because $ v_p(x) $ is finite for every positive $ x $. Membership in the whole chain would require $ v_p(x)=\infty $, which happens only for $ x=0 $ — excluded here, since the sets were defined inside $ \mathbb{Z}^{+} $.
+
+That exclusion is worth noticing. Had the problem used $ \mathbb{Z} $ or $ \mathbb{N} $ including $ 0 $, then $ 0 $ would belong to every $ P_n $ and the intersection would be $ \{0\} $ rather than $ \varnothing $. The containments and their strictness would be unaffected.

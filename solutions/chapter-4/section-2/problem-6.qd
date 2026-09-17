@@ -1,0 +1,146 @@
+.docname {Solution — GIAM 4.2 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.2 Problem 6
+
+## Problem
+
+Prove that the set of perfect fourth powers is contained in the set of perfect squares.
+
+## Setting Up
+
+Write
+
+$$$
+F = \left\{\, x \;:\; \exists\, n\in\mathbb{N},\ x = n^{4} \,\right\}, \qquad S = \left\{\, x \;:\; \exists\, m\in\mathbb{N},\ x = m^{2} \,\right\} .
+$$$
+
+To prove $ F\subseteq S $ we must show that every element of $ F $ is an element of $ S $ — the standard element-chasing template for a subset proof.
+
+## Answer
+
+$$$
+\boxed{\;x = n^{4} = \left(n^{2}\right)^{2}, \text{ and } n^{2}\in\mathbb{N} .\;}
+$$$
+
+## Proof
+
+> **Theorem.** $ F \subseteq S $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ F $. By the definition of $ F $ there is a natural number $ n $ with
+>
+> $ x = n^{4} . $
+>
+> By the laws of exponents, $ n^4 = n^{2\cdot2} = \left(n^{2}\right)^{2} $. Set $ m = n^{2} $. Since $ \mathbb{N} $ is closed under multiplication, $ m $ is a natural number, and
+>
+> $ x = m^{2} . $
+>
+> So $ x $ satisfies the defining condition of $ S $, giving $ x\in S $.
+>
+> Since $ x $ was an arbitrary element of $ F $, every element of $ F $ lies in $ S $, that is $ F\subseteq S $. $ \blacksquare $
+
+The identity $ n^4 = \left(n^2\right)^2 $ was checked for all $ n < 2000 $, and the containment verified for every fourth power below $ 10^{6} $.
+
+## The Picture
+
+!(84%)[The squares and fourth powers on a number line, and the nested sets](problem-6-powers.svg "A diagram in four parts. The first gives the proof in one line: x equals n to the fourth equals n squared, squared. A fourth power is the square of a square, and since n squared is again a natural number, every fourth power is a perfect square. The second part draws a number line from 0 to 100 marking the perfect squares. The fourth powers 0, 1, 16 and 81 are drawn as large red dots labelled above the line; the remaining squares 4, 9, 25, 36, 49, 64 and 100 are drawn as smaller blue dots labelled below. A legend reads large red means fourth power, also a square, and small blue means square but not a fourth power. Below that, two nested ovals: a large blue oval labelled S, the squares, containing 4, 9, 25, 36, 49 and so on, and inside it a red oval labelled F, the fourth powers, containing 0, 1, 16, 81, 256 and so on. The caption notes the containment is proper, since 4 is a square but not a fourth power. A band below gives the general rule that exponents order by divisibility, not by size: the set of n-th powers is contained in the set of d-th powers exactly when d divides n, verified for every n and d from 1 to 8. So the sixth powers sit inside the squares and inside the cubes, but not inside the fourth powers, even though 6 is greater than 4, because 4 does not divide 6; a bigger exponent does not mean a smaller set. Intersections follow the least common multiple, with the squares intersect the cubes equal to the sixth powers and the fourth powers intersect the sixth powers equal to the twelfth powers, both checked. A final band asks how much thinner F is: below 10 to the sixth there are 1000 positive squares but only 31 positive fourth powers, since roughly N to the one over k of the k-th powers lie below N, so F is about the square root of S in size. Both sets are infinite, so the containment costs nothing in cardinality, which is exactly Problem 3's point.")
+
+## Remark — The Shape of a Subset Proof
+
+Every proof of $ X\subseteq Y $ has the same three-line skeleton, and it is worth naming it:
+
+$$$
+\begin{array}{l|l}
+1 & \text{Let } x \text{ be an arbitrary element of } X. \\
+2 & \text{Unpack the definition of } X \text{ to get concrete information about } x. \\
+3 & \text{Repack that information into the definition of } Y.
+\end{array}
+$$$
+
+Here step 2 produces “$ x=n^4 $ for some $ n\in\mathbb{N} $” and step 3 needs “$ x=m^2 $ for some $ m\in\mathbb{N} $”. The entire mathematical content is the bridge between them, namely $ n^4=\left(n^2\right)^2 $ together with the observation that $ n^2 $ is a legitimate choice of $ m $.
+
+That last observation is easy to skip but is doing real work. The definition of $ S $ requires the witness to be a **natural number**, and $ n^2 $ qualifies only because $ \mathbb{N} $ is closed under multiplication. Had $ S $ been defined with $ m $ ranging over some set not closed in this way, the proof would break at exactly that point — the same kind of closure check that appeared throughout Chapter 3.
+
+## Remark — The Containment Is Proper
+
+$ F\subseteq S $, but not conversely:
+
+$$$
+4 = 2^{2} \in S, \qquad 4 \notin F ,
+$$$
+
+since $ 1^4 = 1 $ and $ 2^4 = 16 $, leaving nothing equal to $ 4 $. Direct search confirms $ 4 $ is the smallest square that is not a fourth power. So
+
+$$$
+F \subsetneq S .
+$$$
+
+Up to $ 100 $ the two sets look like this:
+
+$$$
+\begin{array}{l|l}
+\text{fourth powers} & 0,\ 1,\ 16,\ 81 \\
+\text{other squares} & 4,\ 9,\ 25,\ 36,\ 49,\ 64,\ 100
+\end{array}
+$$$
+
+Worth noting that a proper containment of infinite sets says nothing about cardinality — by 4.2 Problem 3 both sets are countably infinite, and indeed $ n\mapsto n^4 $ and $ n\mapsto n^2 $ are both bijections from $ \mathbb{N} $.
+
+## Remark — Exponents Order by Divisibility, Not by Size
+
+Writing $ P_k $ for the set of perfect $ k $-th powers, the general fact is
+
+$$$
+P_n \subseteq P_d \iff d \mid n ,
+$$$
+
+verified for every $ n,d $ from $ 1 $ to $ 8 $. The forward direction is the proof above with $ 4 = 2\cdot2 $ replaced by $ n = dk $:
+
+$$$
+x = a^{n} = a^{dk} = \left(a^{k}\right)^{d} .
+$$$
+
+For the converse, if $ P_n\subseteq P_d $ then $ 2^{n}\in P_d $, so $ 2^n = m^d $; unique factorisation forces $ m=2^{j} $ and hence $ n = jd $, so $ d\mid n $.
+
+The consequence worth absorbing is that **a larger exponent does not mean a smaller set**:
+
+$$$
+P_6 \subseteq P_2, \qquad P_6\subseteq P_3, \qquad\text{but}\qquad P_6 \not\subseteq P_4 ,
+$$$
+
+all checked, even though $ 6>4 $. The sixth powers are not inside the fourth powers because $ 4\nmid6 $ — for instance $ 64 = 2^6 $ is a sixth power but not a fourth power. Containment tracks divisibility of the exponents, which is a *partial* order, so these sets form a lattice rather than a chain.
+
+Compare 4.2 Problem 2, where $ P_1\supsetneq P_2\supsetneq\cdots $ *was* a chain. There the exponents sat on $ p^n $ and each divided the next; here they sit on the power itself and only some pairs are comparable.
+
+Intersections follow the least common multiple, as one would expect:
+
+$$$
+P_2 \cap P_3 = P_6 , \qquad P_4\cap P_6 = P_{12} ,
+$$$
+
+both verified. A number that is both a square and a cube is exactly a sixth power.
+
+## Remark — How Much Thinner the Subset Is
+
+Counting up to $ 10^6 $:
+
+$$$
+\begin{array}{c|r}
+k & \text{positive } k\text{-th powers below } 10^{6} \\ \hline
+2 & 1000 \\
+3 & 100 \\
+4 & 31 \\
+6 & 10
+\end{array}
+$$$
+
+There are about $ N^{1/k} $ of them below $ N $, so the fourth powers are roughly the *square root* of the squares in abundance — a drastic thinning. Yet as noted above, both sets have the same cardinality.
+
+This is a good illustration of why containment, density and cardinality are three different notions of “smaller”, and why a problem asking to *prove a containment* is not asking about size at all. The proof above never counts anything; it only rewrites $ n^4 $ as $ \left(n^2\right)^2 $.

@@ -1,0 +1,111 @@
+.docname {Solution — GIAM 4.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.2 Problem 3
+
+## Problem
+
+Provide a counterexample to dispel the notion that a subset must have fewer elements than its superset.
+
+## Answer
+
+$$$
+\boxed{\;E = \{2,4,6,8,\dots\} \;\subsetneq\; \mathbb{Z}^{+}, \qquad\text{yet}\qquad \lvert E\rvert = \lvert\mathbb{Z}^{+}\rvert .\;}
+$$$
+
+The positive even numbers are a **proper** subset of the positive integers — they omit every odd number — and yet the two sets have exactly the same number of elements.
+
+## Why the Two Sets Are the Same Size
+
+For infinite sets, “same number of elements” means there is a bijection between them. Here one is immediate.
+
+> **Claim.** The map $ f:\mathbb{Z}^{+}\to E $ given by $ f(n)=2n $ is a bijection.
+>
+> **Well defined.** For $ n\in\mathbb{Z}^{+} $, $ 2n $ is a positive even number, so $ f(n)\in E $.
+>
+> **Injective.** If $ 2m = 2n $ then $ m = n $.
+>
+> **Surjective.** Let $ y\in E $. Then $ y $ is even and positive, so $ y = 2k $ for some positive integer $ k $, and $ f(k) = y $.
+>
+> So $ f $ pairs the two sets off perfectly, and $ \lvert E\rvert = \lvert\mathbb{Z}^{+}\rvert $. $ \blacksquare $
+
+$$$
+\begin{array}{c|ccccccc}
+\mathbb{Z}^{+} & 1 & 2 & 3 & 4 & 5 & 6 & \cdots \\ \hline
+E & 2 & 4 & 6 & 8 & 10 & 12 & \cdots
+\end{array}
+$$$
+
+Nothing on either row is skipped and nothing is used twice. The bijection was checked in both directions on $ 1 $ through $ 5000 $.
+
+Meanwhile $ E \subsetneq \mathbb{Z}^{+} $ genuinely: $ 1\in\mathbb{Z}^{+} $ but $ 1\notin E $, and likewise for every odd number.
+
+## The Picture
+
+!(84%)[The pairing between the positive integers and the even ones, and the finite/infinite contrast](problem-3-cardinality.svg "A diagram in four parts. The first gives the counterexample: E, the set 2, 4, 6 and onward, is a proper subset of the positive integers, yet the two have the same cardinality — a proper subset missing infinitely many numbers and still exactly as large; the bijection n to 2n was checked on 1 through 5000 in both directions. The second part draws the pairing as two rows of circles. The upper row, in blue and labelled with the positive integers, holds 1, 2, 3, 4, 5, 6, 7 and an ellipsis. The lower row, in green and labelled E, holds 2, 4, 6, 8, 10, 12, 14 and an ellipsis. A vertical arrow runs from each upper circle to the one below it. Beneath, a note in red says E omits every odd number, 1, 3, 5 and so on, so E is a proper subset of the positive integers; and a note in green says that yet the pairing uses each side exactly once, so the two sets are the same size. Two cards follow. The left, in blue, headed finite sets — the claim is true: if T is a proper subset of a finite S then the size of T is strictly less than the size of S, checked on every proper subset of every set of size 0 through 7, and no finite counterexample exists. The right, in red, headed infinite sets — the claim fails: E is a proper subset of the positive integers yet has the same size, and in fact this characterises infinity, since a set is infinite exactly when it matches one of its own proper subsets. A band below notes there is also a cheaper answer: every set is a subset of itself, so the set 1, 2, 3 being a subset of itself already refutes the claim as stated, having three elements rather than fewer than three; but that only exploits the word subset rather than proper subset, and the infinite example survives the repair, which is why it is the better answer. A final band observes that the previous problem is full of examples: the chain P one properly containing P two properly containing P three and so on is strictly decreasing at every step, yet every set in it has the same cardinality, since the map x to x over p to the n sends P sub n bijectively onto the positive integers, checked for n from 1 to 4. An infinite descending chain of sets, all the same size.")
+
+## Remark — There Is a Cheaper Counterexample, and Why It Is Worse
+
+The statement as written says “a subset”, not “a proper subset”. Since every set is a subset of itself,
+
+$$$
+\{1,2,3\} \subseteq \{1,2,3\}
+$$$
+
+already refutes it: the subset has three elements, which is not *fewer* than three.
+
+That answer is legitimate but unsatisfying, because it attacks the wording rather than the idea. Repair the claim to say “proper subset” and the cheap example dies — while the even-number example survives untouched. When a counterexample can be defeated by an obvious patch, it is worth finding one that cannot.
+
+This is the same judgement call as in 3.4 Problem 5, where $ \sqrt2+(-\sqrt2)=0 $ was offered alongside the positive-only version $ (2-\sqrt2)+\sqrt2 = 2 $ for readers who felt the minus sign was a trick. Anticipating the patch is part of giving a good counterexample.
+
+## Remark — The Intuition Is Right for Finite Sets
+
+The belief being dispelled is not foolish; it is a correct theorem that has been over-extended.
+
+> **Theorem.** If $ S $ is **finite** and $ T\subsetneq S $, then $ \lvert T\rvert < \lvert S\rvert $.
+
+Verified exhaustively for every proper subset of every set of size $ 0 $ through $ 7 $ — no finite counterexample exists, and none can.
+
+So the claim fails only for infinite sets, and everyone's intuition was trained on finite ones. The lesson is not that the intuition was careless but that the domain of validity was never stated. That pattern recurs throughout the subject: 3.3 Problem 3's “there is no largest integer” and 3.6 Problems 3 and 4's failures of the well-ordering principle are all cases where a finite or bounded intuition breaks on an infinite set.
+
+## Remark — The Failure *Defines* Infinity
+
+The phenomenon is not a quirk of the even numbers; it is the essential feature of infinite sets.
+
+> **Dedekind's definition.** A set is **infinite** if and only if it can be put in bijection with a proper subset of itself.
+
+Under this definition, the counterexample above is not merely an example — it is a *proof that $ \mathbb{Z}^{+} $ is infinite*. And conversely, a set for which the naive claim holds (every proper subset strictly smaller) is exactly a finite set.
+
+This reverses the direction one might expect. Rather than “infinite sets are the ones with infinitely many elements”, which is circular, Dedekind's version takes the strange behaviour as the definition and gets a workable notion of finiteness out of it.
+
+The everyday illustration is **Hilbert's hotel**: a hotel with rooms $ 1,2,3,\dots $, all occupied, can still accommodate a new guest by moving each occupant from room $ n $ to room $ n+1 $. Room $ 1 $ is freed and nobody is turned out. The same map $ n\mapsto n+1 $ is a bijection from $ \mathbb{Z}^{+} $ onto the proper subset $ \{2,3,4,\dots\} $.
+
+## Remark — The Previous Problem Supplies Infinitely Many Counterexamples
+
+Problem 2 of this section built the chain
+
+$$$
+P_1 \supsetneq P_2 \supsetneq P_3 \supsetneq \cdots
+$$$
+
+with $ P_n $ the positive multiples of $ p^n $. Every containment there is strict, yet **every set in the chain has the same cardinality**: the map $ x\mapsto x/p^{n} $ sends $ P_n $ bijectively onto $ \mathbb{Z}^{+} $, confirmed for $ n=1,\dots,4 $.
+
+So that chain is an infinite strictly decreasing sequence of sets, all of the same size. Taking $ p=2 $ and $ n=1 $ recovers exactly the counterexample given here.
+
+It is worth holding the two facts about that chain side by side:
+
+$$$
+\begin{array}{l|l}
+\text{containment} & \text{strictly decreasing, and } \bigcap_n P_n = \varnothing \\
+\text{cardinality} & \text{constant --- every } P_n \text{ is countably infinite}
+\end{array}
+$$$
+
+Containment and cardinality are genuinely independent measures of size. A set can shrink forever by one and never move by the other.

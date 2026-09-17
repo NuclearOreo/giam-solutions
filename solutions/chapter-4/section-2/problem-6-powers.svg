@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 842" width="720" height="842" font-family="Georgia, serif">
+  <rect x="0" y="0" width="720" height="842" fill="#ffffff"/>
+
+  <rect x="18" y="14" width="684" height="90" rx="6" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.3"/>
+  <text x="34" y="33" font-size="11.5" fill="#3b5b9b" font-weight="bold">THE PROOF IN ONE LINE</text>
+  <text x="400" y="58" font-size="15.5" fill="#1f3a68" text-anchor="middle" font-weight="bold">x = n&#8308; = (n&#178;)&#178;</text>
+  <text x="400" y="82" font-size="11.5" fill="#333" text-anchor="middle">A fourth power is the square of a square. Since n&#178; is again a natural number,</text>
+  <text x="400" y="99" font-size="11.5" fill="#333" text-anchor="middle">every fourth power is a perfect square.</text>
+
+  <line x1="64" y1="222" x2="660" y2="222" stroke="#ccc" stroke-width="1"/><circle cx="64.0" cy="222" r="8" fill="#9b2c2c"/><text x="64.0" y="252" font-size="9.5" fill="#9b2c2c" text-anchor="middle">0</text><circle cx="70.0" cy="222" r="8" fill="#9b2c2c"/><circle cx="87.8" cy="222" r="5" fill="#3b5b9b"/><text x="87.8" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">4</text><circle cx="117.6" cy="222" r="5" fill="#3b5b9b"/><text x="117.6" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">9</text><circle cx="159.4" cy="222" r="8" fill="#9b2c2c"/><text x="159.4" y="206" font-size="11" fill="#9b2c2c" text-anchor="middle" font-weight="bold">16</text><circle cx="213.0" cy="222" r="5" fill="#3b5b9b"/><text x="213.0" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">25</text><circle cx="278.6" cy="222" r="5" fill="#3b5b9b"/><text x="278.6" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">36</text><circle cx="356.0" cy="222" r="5" fill="#3b5b9b"/><text x="356.0" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">49</text><circle cx="445.4" cy="222" r="5" fill="#3b5b9b"/><text x="445.4" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">64</text><circle cx="546.8" cy="222" r="8" fill="#9b2c2c"/><text x="546.8" y="206" font-size="11" fill="#9b2c2c" text-anchor="middle" font-weight="bold">81</text><circle cx="660.0" cy="222" r="5" fill="#3b5b9b"/><text x="660.0" y="244" font-size="10" fill="#3b5b9b" text-anchor="middle">100</text><text x="64" y="178" font-size="11" fill="#9b2c2c" font-weight="bold">large red = fourth power (also a square) &#8212; shown up to 100</text><text x="64" y="268" font-size="11" fill="#3b5b9b" font-weight="bold">small blue = square but not a fourth power</text>
+  <ellipse cx="360" cy="428" rx="220" ry="74" fill="#eef2fa" stroke="#3b5b9b" stroke-width="1.8"/><ellipse cx="422" cy="428" rx="112" ry="52" fill="#fdecec" stroke="#9b2c2c" stroke-width="1.8"/><text x="208" y="388" font-size="13" fill="#3b5b9b" font-weight="bold">S &#8212; squares</text><text x="422" y="398" font-size="13" fill="#9b2c2c" text-anchor="middle" font-weight="bold">F &#8212; fourth powers</text><text x="422" y="434" font-size="11.5" fill="#9b2c2c" text-anchor="middle">0, 1, 16, 81, 256, &#8230;</text><text x="212" y="434" font-size="11.5" fill="#3b5b9b" text-anchor="middle">4, 9, 25,</text><text x="212" y="450" font-size="11.5" fill="#3b5b9b" text-anchor="middle">36, 49, &#8230;</text><text x="360" y="524" font-size="11.5" fill="#333" text-anchor="middle">Containment is <tspan font-style="italic">proper</tspan>: 4 is a square but not a fourth power.</text>
+
+  <rect x="18" y="562" width="684" height="138" rx="6" fill="#f1f8f2" stroke="#1f6b34" stroke-width="1.3"/>
+  <text x="34" y="582" font-size="11.5" fill="#1f6b34" font-weight="bold">THE GENERAL RULE: EXPONENTS ORDER BY DIVISIBILITY, NOT BY SIZE</text>
+  <text x="360" y="610" font-size="14" fill="#1f3a68" text-anchor="middle" font-weight="bold">P&#8345; &#8838; P&#7496;&#160;&#160; &#8660; &#160;&#160;d | n</text>
+  <text x="40" y="636" font-size="11.5" fill="#333">Verified for every n, d from 1 to 8. So P&#8326; &#8838; P&#8322; and P&#8326; &#8838; P&#8323;, but P&#8326; &#8840; P&#8324; &#8212; even though 6 &gt; 4 &#8212;</text>
+  <text x="40" y="654" font-size="11.5" fill="#333">because 4 does not divide 6. A bigger exponent does not mean a smaller set.</text>
+  <text x="40" y="680" font-size="11.5" fill="#333">Intersections follow the least common multiple:&#160; P&#8322; &#8745; P&#8323; = P&#8326;&#160; and&#160; P&#8324; &#8745; P&#8326; = P&#8321;&#8322;. Both checked.</text>
+
+  <rect x="18" y="714" width="684" height="112" rx="6" fill="#fff8ec" stroke="#b06a10" stroke-width="1.3"/>
+  <text x="34" y="734" font-size="11.5" fill="#b06a10" font-weight="bold">HOW MUCH THINNER IS F?</text>
+  <text x="40" y="756" font-size="11.5" fill="#333">Below 10&#8310; there are 1000 positive squares but only 31 positive fourth powers &#8212; roughly N&#185;&#8725;&#7495; of the</text>
+  <text x="40" y="774" font-size="11.5" fill="#333">k-th powers lie below N, so F is about the square root of S in size.</text>
+  <text x="40" y="802" font-size="11.5" fill="#333">Both sets are infinite, so the containment costs nothing in cardinality &#8212; exactly Problem 3&#8217;s point.</text>
+</svg>

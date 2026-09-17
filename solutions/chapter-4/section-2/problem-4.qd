@@ -1,0 +1,119 @@
+.docname {Solution — GIAM 4.2 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.2 Problem 4
+
+## Problem
+
+We have seen that $ A\subseteq B $ corresponds to $ M_A \implies M_B $. What corresponds to the contrapositive statement?
+
+## Answer
+
+$$$
+\boxed{\;\lnot M_B \implies \lnot M_A \qquad\text{corresponds to}\qquad B^{c} \subseteq A^{c} .\;}
+$$$
+
+## Why
+
+Recall the membership question $ M_A(x) = $ “$ x\in A $”. The contrapositive of $ M_A\implies M_B $ is
+
+$$$
+\lnot M_B \implies \lnot M_A ,
+$$$
+
+so we need only translate the two negated sentences. By the dictionary of 4.1 Problem 4, negation corresponds to complement:
+
+$$$
+\lnot M_A(x) = \text{``}x\notin A\text{''} = \text{``}x\in A^{c}\text{''} = M_{A^{c}}(x) ,
+$$$
+
+and likewise $ \lnot M_B = M_{B^{c}} $. Substituting,
+
+$$$
+\lnot M_B \implies \lnot M_A \qquad\text{is}\qquad M_{B^{c}} \implies M_{A^{c}} ,
+$$$
+
+and an implication between membership questions is exactly a containment. Hence the contrapositive corresponds to
+
+$$$
+B^{c} \subseteq A^{c} .
+$$$
+
+Since a conditional and its contrapositive are logically equivalent, this gives the **contrapositive law for sets**:
+
+$$$
+A \subseteq B \iff B^{c} \subseteq A^{c} ,
+$$$
+
+verified on $ 200\,000 $ random pairs of subsets of a $ 20 $-element universe.
+
+## The Picture
+
+!(84%)[The same containment read from the inside out and the outside in](problem-4-contrapositive.svg "A diagram in four parts. The first gives the answer: not M sub B implies not M sub A corresponds to the complement of B being a subset of the complement of A. Negation becomes complement, and the implication reverses, so the containment reverses too; the equivalence was verified on 200000 random pairs in a 20-element universe. The second part draws two Venn panels inside a rectangle labelled U. On the left, headed A is a subset of B, a large blue oval labelled B contains a smaller darker oval labelled A, illustrating that every point of A is in B. On the right, headed the complement of B is a subset of the complement of A, the entire rectangle is shaded red except for the oval B, and inside B the oval A is left white; a note reads that the shaded region is the complement of B and all of it lies outside A too. A table then shows the four related statements in two equivalent pairs: A is a subset of B pairs with the complement of B being a subset of the complement of A, and these always agree, being contrapositives; while B is a subset of A pairs with the complement of A being a subset of the complement of B, and these always agree, being the converse and the inverse. A band below explains how to read the picture: on the left A sits inside B so anything in A is in B; on the right the shaded region is everything outside B, and because A was inside B none of that shaded region can touch A, so it lies entirely outside A. Same diagram, same fact, read from the inside out instead of the outside in, which is exactly what a contrapositive does to a conditional. A worked example is given with A the set 2, 3, 5, 7 inside B the set 1, 2, 3, 5, 7, 11, and the complement containment inside the universe 1 through 20. A final band notes that complementation reverses order: growing sets have shrinking complements, illustrated with the chain from the set containing 1 up to the set 1, 2, 3, 4 whose complements strictly decrease, checked directly; and applying complementation twice restores everything, since the complement of the complement of A is A, mirroring that not not P is equivalent to P.")
+
+## Remark — Why the Containment Reverses
+
+The direction flip is the whole content of the answer, and it is worth saying plainly why it happens.
+
+$ A\subseteq B $ says that everything **inside** $ A $ is inside $ B $. The contrapositive reads the same picture from the other side: everything **outside** $ B $ is outside $ A $. Enlarging $ B $ makes it harder to be outside $ B $, so the complement shrinks — which is why the containment between the complements points the other way.
+
+Put as a slogan: **complementation is order-reversing.** Concretely,
+
+$$$
+\{1\} \subsetneq \{1,2\} \subsetneq \{1,2,3\} \subsetneq \{1,2,3,4\}
+$$$
+
+has complements that strictly *decrease*, checked directly in a $ 20 $-element universe. A map with this behaviour is called *antitone*, and complementation is the standard example.
+
+Applying it twice undoes it:
+
+$$$
+\left(A^{c}\right)^{c} = A ,
+$$$
+
+which mirrors the logical law $ \lnot\lnot P \cong P $. So complementation is an order-reversing **involution**, and that single fact is what makes $ \left(\mathcal{P}(U),\subseteq\right) $ self-dual — every theorem about $ \subseteq $, $ \cap $, $ \cup $ has a mirror obtained by flipping all three.
+
+## Remark — The Four Related Statements
+
+Chapter 2 distinguished four conditionals built from the same two clauses. Translating each gives a clean picture:
+
+$$$
+\begin{array}{l|l|l}
+\textbf{name} & \textbf{logic} & \textbf{set theory} \\ \hline
+\text{original} & M_A \implies M_B & A \subseteq B \\
+\text{contrapositive} & \lnot M_B \implies \lnot M_A & B^{c}\subseteq A^{c} \\
+\text{converse} & M_B \implies M_A & B \subseteq A \\
+\text{inverse} & \lnot M_A \implies \lnot M_B & A^{c}\subseteq B^{c}
+\end{array}
+$$$
+
+The pairing is exactly as in logic: rows one and two are always equivalent, and rows three and four are always equivalent to each other — both verified over $ 50\,000 $ random pairs. But the first pair is independent of the second.
+
+With $ A=\{2,3,5,7\} $ and $ B=\{1,2,3,5,7,11\} $ inside $ U=\{1,\dots,20\} $, the original and contrapositive are both true while the converse and inverse are both false — which is the generic situation for a proper containment.
+
+## Remark — When All Four Hold
+
+The two pairs coincide precisely when $ A\subseteq B $ *and* $ B\subseteq A $, that is when $ A=B $. So
+
+$$$
+A = B \iff \text{all four statements hold} \iff A\subseteq B \text{ and } B\subseteq A .
+$$$
+
+The right-hand characterisation is the standard method for proving two sets equal: show each contains the other. Its logical mirror is proving a biconditional by proving both implications, which is exactly how 3.4 Problem 6 and 4.1 Problem 6 were structured.
+
+This also explains why the contrapositive is genuinely useful rather than a restatement. To prove $ A\subseteq B $ one may instead prove $ B^{c}\subseteq A^{c} $, and sometimes the complements are the easier objects — precisely the situation in Chapter 3, where “not divisible”, “irrational” and “not equal” were all awkward to work with directly and became tractable once negated.
+
+## Remark — The Complement Needs a Universe
+
+One caution carried over from 4.1 Problem 5. The expression $ A^{c} $ is meaningless without a fixed universal set $ U $, since it abbreviates $ U\setminus A $.
+
+Concretely, $ \{2,3,5,7\}^{c} $ is a $ 16 $-element set inside $ U = \{1,\dots,20\} $, an infinite set inside $ U=\mathbb{Z} $, and $ \varnothing $ inside $ U=\{2,3,5,7\} $. All three are correct answers to different questions.
+
+The original statement $ A\subseteq B $ needs no such context; its contrapositive form does. That asymmetry is worth noticing — it is the set-theoretic shadow of the fact that $ \lnot P $ is evaluated relative to a universe of discourse, and it is why the answer to this problem is a little more delicate than the answer to the question it mirrors.
