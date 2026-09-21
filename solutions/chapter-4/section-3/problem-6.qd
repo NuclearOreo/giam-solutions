@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 4.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 6
+
+## Problem
+
+There is a set $ Y $ such that, for all sets $ A $, we have $ Y\,\triangle\,A = \overline{A} $. What is $ Y $?
+
+## Answer
+
+$$$
+\boxed{\;Y = U, \text{ the universal set}\;}
+$$$
+
+Confirmed for every subset of a five-element universe, and it is the only such set.
+
+## Verification
+
+$$$
+\begin{aligned}
+x\in U\,\triangle\,A
+ &\iff \left(x\in U \land x\notin A\right) \lor \left(x\in A \land x\notin U\right) && \triangle \\
+ &\iff \left(\mathbf{t} \land x\notin A\right) \lor \left(x\in A \land \mathbf{c}\right) && \text{everything lies in } U \\
+ &\iff x\notin A && \text{identity laws} \\
+ &\iff x\in\overline{A} && \text{complement}
+\end{aligned}
+$$$
+
+The second disjunct dies because nothing lies outside the universe, and the first collapses to the single condition $ x\notin A $. Equivalently, using the form from 4.3 Problem 3c,
+
+$$$
+U\,\triangle\,A = \left(U\cup A\right)\setminus\left(U\cap A\right) = U\setminus A = \overline{A} . \qquad \blacksquare
+$$$
+
+## Uniqueness
+
+> **Claim.** If $ Y\,\triangle\,A = \overline{A} $ holds for all sets $ A $, then $ Y = U $.
+>
+> **Proof.** The hypothesis holds for every $ A $, so take $ A=\varnothing $. That instance reads
+>
+> $ Y\,\triangle\,\varnothing = \overline{\varnothing} = U . $
+>
+> Since $ \varnothing $ is the identity for $ \triangle $ — that was 4.3 Problem 5 — the left side is simply $ Y $. Hence $ Y = U $. $ \blacksquare $
+
+Exhaustive search over the $ 32 $ subsets returns exactly one $ Y $, namely $ U $, and repeating the search over universes of sizes $ 1 $, $ 3 $ and $ 5 $ returns that universe each time.
+
+## The Picture
+
+The same fact appears below twice, once as regions and once as bits.
+
+!(84%)[Why the universal set turns symmetric difference into complementation](problem-6-complement.svg "A diagram in four parts. The first gives the answer: Y equals U, the universal set, and notes it is the only one, since putting A equal to the empty set makes the condition read Y equals the complement of the empty set, which is U. The second part has two panels. On the left, a rectangle representing U is shaded green with a white oval labelled A inside it, and the shaded region is marked as the complement of A; the caption explains that everything is in U, so the exactly-one-of test keeps a point precisely when it fails to be in A, which is the definition of the complement. On the right, a panel headed that U is the all-ones vector and flips every bit shows three rows of five bit-cells: A as one one zero one zero, U as five ones, and their XOR as zero zero one zero one, labelled as the complement of A; the caption notes that XOR with one flips a bit, so XOR with the all-ones vector flips all of them at once. The third part is a table of translations. Translating by the empty set gives the map sending A to A, the identity map, which was Problem 5. Translating by U gives the map sending A to its complement, which is this problem. Translating by any Y gives the map sending A to Y symmetric-difference A, always a bijection, with 32 distinct maps in all. A green band explains that complement is not a new operation: since the complement of A equals U symmetric-difference A, complementation is just translation by U inside the group of subsets under symmetric difference. It lists three verified identities: the complement of A equals U symmetric-difference A; A union B equals A symmetric-difference B symmetric-difference their intersection; and A minus B equals A symmetric-difference their intersection. So symmetric difference and intersection alone generate every set operation in the book, one more sign that these two are the primitive pair, playing addition and multiplication in the Boolean ring.")
+
+## Remark — Complementation Is Translation by $ U $
+
+Problems 5 and 6 are the same question with different right-hand sides, and together they identify two members of a family. In the group $ \left(\mathcal{P}(U),\ \triangle\right) $ of 4.3 Problem 1, each fixed $ Y $ determines a **translation**
+
+$$$
+\tau_Y : \mathcal{P}(U)\to\mathcal{P}(U), \qquad \tau_Y(A) = Y\,\triangle\,A .
+$$$
+
+Verified: $ \tau_Y $ is a bijection for every one of the $ 32 $ choices of $ Y $, and the $ 32 $ translations are pairwise distinct maps. The two problems pick out its two most familiar instances:
+
+$$$
+\begin{array}{l|l|l}
+Y = \varnothing & \tau_\varnothing(A) = A & \text{the identity map (Problem 5)} \\
+Y = U & \tau_U(A) = \overline{A} & \text{complementation (this problem)}
+\end{array}
+$$$
+
+So complementation is not a separate kind of operation at all — it is what translation by the largest element looks like. Two structural facts follow immediately and were both checked directly:
+
+$$$
+\overline{\overline{A}} = U\,\triangle\,\left(U\,\triangle\,A\right) = A , \qquad A \ne \overline{A} \ \text{ for every } A .
+$$$
+
+The first says complementation is an involution, which in group terms is just $ U\,\triangle\,U=\varnothing $. The second says it has no fixed points, which is the general fact that translation by a non-identity element of a group moves everything.
+
+## Remark — The Answer Depends on the Universe
+
+There is a real difference between this problem and the last. The answer $ \varnothing $ to Problem 5 is absolute: the empty set is the identity for $ \triangle $ no matter what universe one works in. The answer here is not. Complementation only makes sense relative to an ambient universe, and the $ Y $ that produces it is exactly that universe:
+
+$$$
+\begin{array}{l|l}
+\text{universe} & \text{the unique } Y \\ \hline
+\{0\} & \{0\} \\
+\{0,1,2\} & \{0,1,2\} \\
+\{0,1,2,3,4\} & \{0,1,2,3,4\}
+\end{array}
+$$$
+
+all three confirmed by exhaustive search. Strictly speaking “for all sets $ A $” must be read as “for all subsets of $ U $”, since $ \overline{A} $ is undefined without $ U $, and no set of all sets can serve as a universal $ U $ — the Russell argument of 4.1. This is the caveat from the last remark of 4.3 Problem 3: expressions in $ \cup $, $ \cap $ and $ \triangle $ are indifferent to the surrounding universe, while complement is not.
+
+## Remark — Two Operations Suffice
+
+Combining this with 4.3 Problem 3 collapses the whole toolkit: every operation in the chapter can be written using only $ \triangle $ and $ \cap $, all three verified over the $ 32 $ subsets:
+
+$$$
+\begin{aligned}
+\overline{A} &= U\,\triangle\,A , \\
+A\cup B &= A\,\triangle\,B\,\triangle\,\left(A\cap B\right) , \\
+A\setminus B &= A\,\triangle\,\left(A\cap B\right) .
+\end{aligned}
+$$$
+
+The middle line is inclusion–exclusion in Boolean-ring form: the overlap, added twice, is corrected for by adding it back once — that is what characteristic $ 2 $ means.
+
+So singling out $ \left(\mathcal{P}(U),\ \triangle,\ \cap\right) $ as a Boolean ring in 4.3 Problem 1 was not merely aesthetic: it is a **complete** pair of primitives. The reverse fails: every expression in $ \cup $ and $ \cap $ is monotone — enlarging an argument can only enlarge the result, checked directly — while $ \triangle $ is not, since $ \varnothing\subseteq\{0\} $ yet $ \varnothing\,\triangle\,\{0\}=\{0\}\not\subseteq\varnothing=\{0\}\,\triangle\,\{0\} $.

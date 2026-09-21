@@ -1,0 +1,132 @@
+.docname {Solution — GIAM 4.3 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 2
+
+## Problem
+
+In a standard deck of playing cards one can distinguish sets based on face-value and/or suit. Let $ A,\,2,\,\ldots,\,9,\,10,\,J,\,Q $ and $ K $ represent the sets of cards having the various face-values, and let $ \heartsuit,\ \spadesuit,\ \clubsuit $ and $ \diamondsuit $ be the sets of cards having the possible suits. Find the following:
+
+- **a.** $ A\cap\heartsuit $
+- **b.** $ A\cup\heartsuit $
+- **c.** $ J\cap\left(\spadesuit\cup\heartsuit\right) $
+- **d.** $ K\cap\heartsuit $
+- **e.** $ A\cap K $
+- **f.** $ A\cup K $
+
+## Answer
+
+$$$
+\boxed{
+\begin{array}{l l l}
+\textbf{a.} & A\cap\heartsuit = \{\,A\heartsuit\,\} & 1\text{ card} \\[2pt]
+\textbf{b.} & A\cup\heartsuit = \text{all 13 hearts, plus } A\spadesuit,\ A\clubsuit,\ A\diamondsuit & 16\text{ cards} \\[2pt]
+\textbf{c.} & J\cap\left(\spadesuit\cup\heartsuit\right) = \{\,J\spadesuit,\ J\heartsuit\,\} & 2\text{ cards} \\[2pt]
+\textbf{d.} & K\cap\heartsuit = \{\,K\heartsuit\,\} & 1\text{ card} \\[2pt]
+\textbf{e.} & A\cap K = \varnothing & 0\text{ cards} \\[2pt]
+\textbf{f.} & A\cup K = \text{all four aces and all four kings} & 8\text{ cards}
+\end{array}
+}
+$$$
+
+Every set was constructed and counted directly from a $ 52 $-card model.
+
+## Working
+
+Model the deck as the set of pairs
+
+$$$
+\text{Deck} = \{\,A,2,\ldots,10,J,Q,K\,\} \times \{\,\heartsuit,\spadesuit,\clubsuit,\diamondsuit\,\} , \qquad |\text{Deck}| = 13\cdot4 = 52 .
+$$$
+
+A face-value set such as $ A $ fixes the first coordinate and lets the second range freely, so $ |A| = 4 $. A suit set such as $ \heartsuit $ fixes the second and lets the first range, so $ |\heartsuit| = 13 $. With that, each part is immediate.
+
+> **a.** Fixing both coordinates leaves one card, $ A\heartsuit $.
+>
+> **b.** By inclusion–exclusion, $ |A\cup\heartsuit| = 4 + 13 - 1 = 16 $: the thirteen hearts together with the three aces of other suits, the ace of hearts having been counted once already.
+>
+> **c.** Distributing, $ J\cap\left(\spadesuit\cup\heartsuit\right) = \left(J\cap\spadesuit\right)\cup\left(J\cap\heartsuit\right) = \{J\spadesuit\}\cup\{J\heartsuit\} $ — confirmed to give exactly two cards.
+>
+> **d.** Again both coordinates are fixed, leaving $ K\heartsuit $.
+>
+> **e.** A card has exactly one face-value, so no card is both an ace and a king: the intersection is empty.
+>
+> **f.** Being disjoint, the union simply adds: $ |A\cup K| = 4+4 = 8 $.
+
+Parts **c** and **d** have traditional names. The two jacks in part **c** are the **one-eyed jacks**, drawn in profile in the standard Anglo-American pattern so that only one eye shows, and $ K\heartsuit $ in part **d** is the **suicide king**, who appears to be driving a sword into his own head.
+
+## The Picture
+
+!(78%)[The six answers as shaded regions of the thirteen-by-four grid of the deck](problem-2-deck.svg "A diagram in three parts. The first states that the deck is a grid: 52 cards equal 13 face-values times 4 suits, and that each of the six answers is one shaded region of the same 13-by-4 grid, with face-values as columns and suits as rows, so that a card is one cell named by exactly one column and one row. The second part shows six small grids, one per part of the problem, each 13 columns by 4 rows with the answer's cells shaded dark blue. Part a, the ace intersect hearts, shades a single cell, 1 card, the ace of hearts. Part b, the ace union hearts, shades the whole hearts row together with the ace column, 16 cards, all hearts plus the other three aces. Part c, jacks intersect spades union hearts, shades two cells, the one-eyed jacks. Part d, kings intersect hearts, shades one cell, the suicide king. Part e, aces intersect kings, shades nothing at all, 0 cards, the empty set, since no card has two face-values. Part f, aces union kings, shades two full columns, 8 cards, four aces and four kings. A green band explains that two partitions cross each other perfectly: the 13 face-value sets partition the deck into blocks of 4 and the 4 suit sets partition it into blocks of 13, both verified, and every face-value meets every suit in exactly one card, also verified. That single fact decides every part, since two sets of the same kind are disjoint, which is part e, while two of different kinds always meet in one card, which is parts a and d. An orange band gives the unions by inclusion and exclusion: the ace union hearts is 4 plus 13 minus 1, equals 16, and the ace union kings is 4 plus 4 minus 0, equals 8, the correction term being the size of the intersection, one card in the first case and none in the second. Both counts were confirmed by listing the cards, as was the triple union of aces, hearts and kings, 4 plus 13 plus 4 minus 1 minus 0 minus 1 plus 0, equals 19.")
+
+## Remark — Two Partitions That Cross Perfectly
+
+Everything above follows from one structural fact, verified directly:
+
+$$$
+\left|\,F\cap S\,\right| = 1 \quad\text{for every face-value set } F \text{ and every suit set } S .
+$$$
+
+The thirteen face-value sets partition the deck into blocks of four and the four suit sets into blocks of thirteen, so that each block of one meets each block of the other in exactly one card. Both partition claims were checked, as was all $ 13\times4 $ of the crossing condition.
+
+This is precisely what it means to say the deck is a **product**, $ 13\times4 $, rather than merely a set of $ 52 $ things. It gives a clean rule for intersections:
+
+$$$
+\begin{array}{l|l}
+\text{two face-value sets} & \text{disjoint} \\
+\text{two suit sets} & \text{disjoint} \\
+\text{one of each} & \text{exactly one card}
+\end{array}
+$$$
+
+Parts **a**, **d** and **e** are the three rows of that table, and nothing about aces, kings or hearts in particular was needed.
+
+## Remark — Why Part e Is the Interesting One
+
+It is tempting to read $ A\cap K=\varnothing $ as a statement about aces and kings. It is not. It says that **face-value is a function**: every card has exactly one of the thirteen values, so the thirteen sets are pairwise disjoint.
+
+Contrast the near-miss in part **a**. There $ A $ and $ \heartsuit $ also look like “two properties”, yet they intersect, because they constrain different coordinates. So a bare glance at the symbols cannot tell you whether an intersection is empty; you have to know whether the two sets are drawn from the same partition.
+
+That distinction is what makes card games work: a hand can hold two cards of the same suit or the same value, but no single card is both an ace and a king — which is why there are $ \binom{4}{2}=6 $ ways to make a pair of aces.
+
+## Remark — Inclusion–Exclusion, and Why b and f Differ
+
+The two unions look alike but are counted differently:
+
+$$$
+\begin{aligned}
+|A\cup\heartsuit| &= 4 + 13 - 1 = 16, \\
+|A\cup K| &= 4 + 4 - 0 = 8 .
+\end{aligned}
+$$$
+
+Both confirmed by listing. The subtracted term is always $ |X\cap Y| $; in part **f** it vanishes because of the disjointness established in part **e**, so the union is a plain sum. Pushing to three sets,
+
+$$$
+|A\cup\heartsuit\cup K| = 4+13+4 \;-\; 1-0-1 \;+\; 0 = 19 ,
+$$$
+
+also verified by direct count. The final $ +0 $ is the triple intersection, empty here because no card is both an ace and a king.
+
+## Remark — These Seventeen Sets Generate Everything
+
+The problem hands us $ 13 + 4 = 17 $ sets. Because every single card is expressible as
+
+$$$
+\{\,\text{one card}\,\} = F\cap S
+$$$
+
+for a unique face-value $ F $ and suit $ S $ — verified for all $ 52 $ — the smallest collection containing these $ 17 $ sets and closed under $ \cap $, $ \cup $ and complement contains every singleton, hence **every** subset:
+
+$$$
+2^{52} = 4{,}503{,}599{,}627{,}370{,}496 .
+$$$
+
+So seventeen generators reach four and a half quadrillion sets: every description of a group of cards already lies inside the algebra they generate, which is the sense in which naming a card by value and suit is complete. Compare 4.3 Problem 1, where five elements gave only $ 2^5=32 $ sets.

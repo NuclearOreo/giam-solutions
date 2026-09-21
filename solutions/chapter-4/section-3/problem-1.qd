@@ -1,0 +1,157 @@
+.docname {Solution — GIAM 4.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 1
+
+## Problem
+
+Let $ A = \{1,\,2,\,\{1,2\},\,b\} $ and let $ B = \{a,\,b,\,\{1,2\}\} $. Find the following:
+
+- **a.** $ A\cap B $
+- **b.** $ A\cup B $
+- **c.** $ A\setminus B $
+- **d.** $ B\setminus A $
+- **e.** $ A\,\triangle\,B $
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+\textbf{a.}\quad A\cap B &= \{\,b,\ \{1,2\}\,\} \\[2pt]
+\textbf{b.}\quad A\cup B &= \{\,1,\ 2,\ a,\ b,\ \{1,2\}\,\} \\[2pt]
+\textbf{c.}\quad A\setminus B &= \{\,1,\ 2\,\} \\[2pt]
+\textbf{d.}\quad B\setminus A &= \{\,a\,\} \\[2pt]
+\textbf{e.}\quad A\,\triangle\,B &= \{\,1,\ 2,\ a\,\}
+\end{aligned}
+}
+$$$
+
+All five were computed independently and agree.
+
+## Working
+
+There are five distinct objects in play altogether: the numbers $ 1 $ and $ 2 $, the letters $ a $ and $ b $, and the **set** $ \{1,2\} $. Every question below reduces to asking, for each of these five, which of $ A $ and $ B $ it belongs to.
+
+$$$
+\begin{array}{c|c|c}
+\text{object} & \in A? & \in B? \\ \hline
+1 & \text{yes} & \text{no} \\
+2 & \text{yes} & \text{no} \\
+a & \text{no} & \text{yes} \\
+b & \text{yes} & \text{yes} \\
+\{1,2\} & \text{yes} & \text{yes}
+\end{array}
+$$$
+
+Reading the table off gives everything at once. The objects with **yes, yes** form $ A\cap B $; those with at least one yes form $ A\cup B $; **yes, no** gives $ A\setminus B $; **no, yes** gives $ B\setminus A $; and the two mixed rows together give the symmetric difference.
+
+## The Picture
+
+!(84%)[The two sets as a Venn diagram, with the five answers tabulated](problem-1-venn.svg "A diagram in four parts. The first states the two sets: A equals the set containing 1, 2, the set containing 1 and 2, and b; B equals the set containing a, b, and the set containing 1 and 2. A has four elements, B has three, and their union has five, since every membership test asks only whether one whole object appears in the other list. The second part is a Venn diagram of two overlapping ovals, A in blue on the left and B in green on the right. In the left crescent, labelled A minus B, sit the numbers 1 and 2. In the overlap, labelled A intersect B, sit b and the set containing 1 and 2. In the right crescent, labelled B minus A, sits a. A caption notes there are five distinct objects in all, and that the object consisting of the set containing 1 and 2 sits in the overlap while the numbers 1 and 2 do not. The third part is a table of the five answers with their sizes: A intersect B is b and the set containing 1 and 2, of size 2; A union B is 1, 2, a, b and the set containing 1 and 2, of size 5; A minus B is 1 and 2, of size 2; B minus A is a, of size 1; and the symmetric difference is 1, 2 and a, of size 3. A red band below explains the trap, that the set containing 1 and 2 is one object and not two: it belongs to both A and B and so survives the intersection, but 1 and 2 themselves do not belong to B, so they fall out of the intersection and into A minus B, with all four memberships checked directly. It adds that the set containing 1 and 2 is simultaneously an element of A and a subset of A, but only an element of B, since 1 and 2 are missing there, which is exactly the element versus subset distinction of Section 2. A green band at the bottom gives the three-piece partition: A union B equals A minus B, together with A intersect B, together with B minus A, with sizes 5 equals 2 plus 2 plus 1. The three pieces are pairwise disjoint, so parts a, c and d already determine parts b and e, as verified.")
+
+## Remark — The Trap: $ \{1,2\} $ Is One Object, Not Two
+
+The whole point of the exercise is the row $ \{1,2\} $ in the table above. Braces inside a set are not decoration: $ \{1,2\} $ is a single element of $ A $, sitting alongside $ 1 $, $ 2 $ and $ b $, which is why
+
+$$$
+|A| = 4 \quad\text{and not}\quad |A| = 5 .
+$$$
+
+Since that one object is listed in both $ A $ and $ B $, it survives into the intersection. Meanwhile the *numbers* $ 1 $ and $ 2 $ appear nowhere in $ B $ — checked directly: $ 1\notin B $ and $ 2\notin B $ — so they fall out of $ A\cap B $ and into $ A\setminus B $. The set $ \{1,2\} $ and the numbers it contains travel in opposite directions.
+
+A pleasant curiosity sits in the same data. Here
+
+$$$
+\{1,2\} \in A \quad\text{and}\quad \{1,2\}\subseteq A ,
+$$$
+
+both true at once — the first because $ \{1,2\} $ is listed, the second because $ 1 $ and $ 2 $ are also listed. For $ B $ only the first holds, since $ 1\notin B $. So the same pair of symbols behaves differently against the two sets, which is precisely the $ \in $ against $ \subseteq $ distinction drilled in Section 4.2, and $ A $ is an instance of the phenomenon studied in 4.2 Problem 5.
+
+## Remark — The Three-Piece Partition
+
+The five answers are not independent. Any two sets cut their union into three pairwise disjoint pieces:
+
+$$$
+A\cup B \;=\; (A\setminus B)\ \cup\ (A\cap B)\ \cup\ (B\setminus A) ,
+$$$
+
+verified here, with $ (A\setminus B)\cap(B\setminus A)=\varnothing $. Counting the pieces gives
+
+$$$
+5 = 2 + 2 + 1 .
+$$$
+
+So parts **a**, **c** and **d** already determine the rest:
+
+$$$
+\begin{aligned}
+A\cup B &= (A\setminus B)\cup(A\cap B)\cup(B\setminus A), \\
+A\,\triangle\,B &= (A\setminus B)\cup(B\setminus A) = (A\cup B)\setminus(A\cap B) ,
+\end{aligned}
+$$$
+
+both forms of the symmetric difference confirmed to give $ \{1,2,a\} $. Collapsing the partition count yields inclusion–exclusion,
+
+$$$
+|A\cup B| = |A| + |B| - |A\cap B| , \qquad 5 = 4 + 3 - 2 ,
+$$$
+
+the subtraction correcting for the overlap having been counted twice — a quick arithmetic check on any answer of this shape.
+
+## Remark — Everything Above Is Bitwise Arithmetic
+
+List the five objects of $ A\cup B $ in a fixed order and record each set by which slots it occupies:
+
+$$$
+\begin{array}{l|l}
+\text{order} & 1,\ 2,\ a,\ b,\ \{1,2\} \\ \hline
+A & 11011 \\
+B & 00111
+\end{array}
+$$$
+
+The five operations then become the five familiar bitwise ones, all verified to reproduce the answers above:
+
+$$$
+\begin{array}{l|l|l}
+\text{set operation} & \text{bitwise} & \text{result} \\ \hline
+A\cap B & \text{AND} & 00011 \\
+A\cup B & \text{OR} & 11111 \\
+A\setminus B & A \text{ AND NOT } B & 11000 \\
+B\setminus A & B \text{ AND NOT } A & 00100 \\
+A\,\triangle\,B & \text{XOR} & 11100
+\end{array}
+$$$
+
+This is how sets are represented inside a computer, and it is why the symmetric difference — the odd one out in most textbooks — is really the most natural of the five: it is plain XOR.
+
+## Remark — Symmetric Difference Makes the Power Set a Group
+
+Fix the universe $ U = A\cup B $, so $ \mathcal{P}(U) $ has $ 2^5 = 32 $ members. Exhaustive check over all of them — and all $ 32^3 $ triples for associativity — confirms:
+
+$$$
+\begin{aligned}
+X\,\triangle\,\varnothing &= X && \text{(identity)} \\
+X\,\triangle\,X &= \varnothing && \text{(every element is its own inverse)} \\
+(X\,\triangle\,Y)\,\triangle\,Z &= X\,\triangle\,(Y\,\triangle\,Z) && \text{(associativity)} \\
+X\,\triangle\,Y &= Y\,\triangle\,X && \text{(commutativity)}
+\end{aligned}
+$$$
+
+So $ \left(\mathcal{P}(U),\ \triangle\right) $ is an abelian group of order $ 32 $ in which every non-identity element has order $ 2 $ — the elementary abelian group $ \left(\mathbb{Z}/2\mathbb{Z}\right)^{5} $. Neither $ \cup $ nor $ \cap $ manages this, since neither has inverses: there is no $ X $ with $ A\cup X = \varnothing $.
+
+Adding intersection gives more. Distributivity
+
+$$$
+X\cap(Y\,\triangle\,Z) = (X\cap Y)\,\triangle\,(X\cap Z)
+$$$
+
+was verified over all $ 32^3 $ triples, so $ \left(\mathcal{P}(U),\ \triangle,\ \cap\right) $ is a commutative ring with unit $ U $ in which every element is idempotent — a **Boolean ring**, and by Stone's representation theorem every such ring arises from a field of sets in essentially this way.

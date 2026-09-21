@@ -1,0 +1,144 @@
+.docname {Solution — GIAM 4.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 7
+
+## Problem
+
+In proving a set-theoretic identity we are showing that two sets are equal, and one reasonable way to proceed is to show that each is contained in the other. Prove
+
+$$$
+A\cap\left(B\cup C\right) = \left(A\cap B\right)\cup\left(A\cap C\right)
+$$$
+
+by showing both
+
+- $ A\cap\left(B\cup C\right) \subseteq \left(A\cap B\right)\cup\left(A\cap C\right) $
+- $ \left(A\cap B\right)\cup\left(A\cap C\right) \subseteq A\cap\left(B\cup C\right) $
+
+## Strategy
+
+$$$
+\boxed{\;X = Y \iff X\subseteq Y \ \text{ and } \ Y\subseteq X\;}
+$$$
+
+This is extensionality restated: two sets are equal exactly when they have the same elements, which is to say when neither contains an element the other lacks. Each containment is then proved by the element-chasing template of 4.2 Problem 6 — take an arbitrary element of the left side, unpack, repack.
+
+Both containments, and hence the identity, were verified over all $ 32^{3} = 32768 $ triples of subsets of a five-element universe.
+
+## First Containment
+
+> **Claim.** $ A\cap\left(B\cup C\right) \subseteq \left(A\cap B\right)\cup\left(A\cap C\right) $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ A\cap\left(B\cup C\right) $. By the definition of $ \cap $,
+>
+> $ x\in A \quad\text{and}\quad x\in B\cup C , $
+>
+> and by the definition of $ \cup $ the second of these says $ x\in B $ or $ x\in C $. Since this is a disjunction we argue by cases.
+>
+> **Case 1: $ x\in B $.** Together with $ x\in A $ this gives $ x\in A\cap B $, and hence $ x\in\left(A\cap B\right)\cup\left(A\cap C\right) $.
+>
+> **Case 2: $ x\in C $.** Together with $ x\in A $ this gives $ x\in A\cap C $, and hence again $ x\in\left(A\cap B\right)\cup\left(A\cap C\right) $.
+>
+> The cases are exhaustive, so in either event $ x $ lies in the right-hand side. As $ x $ was arbitrary, the containment holds. $ \blacksquare $
+
+Note that $ x\in A $ is carried unchanged through both cases; only the second piece of information splits.
+
+## Second Containment
+
+> **Claim.** $ \left(A\cap B\right)\cup\left(A\cap C\right) \subseteq A\cap\left(B\cup C\right) $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ \left(A\cap B\right)\cup\left(A\cap C\right) $. By the definition of $ \cup $, either $ x\in A\cap B $ or $ x\in A\cap C $, so again we argue by cases.
+>
+> **Case 1: $ x\in A\cap B $.** Then $ x\in A $ and $ x\in B $. From $ x\in B $ we get $ x\in B\cup C $, so $ x\in A\cap\left(B\cup C\right) $.
+>
+> **Case 2: $ x\in A\cap C $.** Then $ x\in A $ and $ x\in C $. From $ x\in C $ we get $ x\in B\cup C $, so again $ x\in A\cap\left(B\cup C\right) $.
+>
+> The cases are exhaustive, so $ x $ lies in the left-hand side in either event. As $ x $ was arbitrary, the containment holds. $ \blacksquare $
+
+Combining the two containments with extensionality gives $ A\cap\left(B\cup C\right) = \left(A\cap B\right)\cup\left(A\cap C\right) $, as required.
+
+## The Picture
+
+The two sides are built differently but shade the same region.
+
+!(80%)[The two sides of the distributive law as shaded regions, with the case structure of each proof](problem-7-distributive.svg "A diagram in four parts. The first announces two containments rather than one chain, states the identity that A intersect the union of B and C equals the union of A-intersect-B with A-intersect-C, and notes that each side is shown to contain the other, verified over all 32768 triples from a five-element universe. The second part shows two three-circle Venn diagrams side by side, each with circles A on top and B and C below. In the left diagram, headed A intersect the union of B and C, the shaded region is the part of A covered by B or C, drawn in a single blue colour, with the caption that B union C is cut down to the part inside A, giving one region shaded in a single colour. In the right diagram, headed the union of A-intersect-B with A-intersect-C, the same region is shaded but as two overlapping lenses, one blue and one green, with the caption that they are two lenses glued together, a different construction but an identical region. A green band shows that both halves of the proof split into the same two cases, listing the subset direction as: take x in A intersect B union C; so x is in A, and x is in B or x is in C; case x in B gives x in A intersect B; case x in C gives x in A intersect C; either way x is in the union. And the superset direction as: take x in the union of A-intersect-B with A-intersect-C; so x is in A intersect B or in A intersect C; case x in A intersect B gives x in A and x in B union C; case x in A intersect C is the same; either way x is in the intersection. The band notes the cases come from the or, which on the left sits inside B union C and on the right between the two lenses. An orange band explains that the dual law also holds, that A union the intersection of B and C equals the intersection of A-union-B with A-union-C, also verified over all 32768 triples, and that this is unusual: arithmetic has only one such law, since multiplication distributes over addition but addition does not distribute over multiplication, so sets are more symmetric than numbers here. It adds that the law is not automatic: for subspaces of the plane, with sum as join, three distinct lines through the origin give A intersect the sum of B and C equal to A, which is one-dimensional, while the sum of A-intersect-B with A-intersect-C is the zero subspace, which is not.")
+
+## Remark — The Same Proof as 4.3 Problem 3, Cut in Half
+
+The two proofs above are not independent. Placed side by side, the first runs down a chain of implications and the second runs back up the same chain:
+
+$$$
+\begin{array}{c|c}
+\subseteq \text{ direction} & \supseteq \text{ direction} \\ \hline
+x\in A \land \left(x\in B \lor x\in C\right) & x\in A \land \left(x\in B \lor x\in C\right) \\
+\Downarrow & \Uparrow \\
+\left(x\in A \land x\in B\right) \lor \left(x\in A \land x\in C\right) & \left(x\in A \land x\in B\right) \lor \left(x\in A \land x\in C\right)
+\end{array}
+$$$
+
+Both halves rest on the single distributive law of propositional logic, $ p\land\left(q\lor r\right)\equiv\left(p\land q\right)\lor\left(p\land r\right) $ — precisely the tautology used in 4.3 Problem 3d, there written with $ \lnot r $ in place of $ p $. So the iff-chain method of that problem and the double-containment method demanded here are the same argument packaged two ways.
+
+When should one use which? If every step is a definition or a logical equivalence, the chain is shorter and less error-prone, since it writes each step once rather than twice. Double containment earns its keep when the two directions genuinely differ — when one needs a construction the other does not, or when one direction is true and the other false. Writing two separate proofs also makes it impossible to commit the error warned about in 4.3 Problem 3: quietly reading a one-way chain as if it ran both ways.
+
+## Remark — Where the Cases Come From
+
+Both halves split into exactly two cases, and in both the split is forced by a disjunction:
+
+$$$
+\begin{array}{l|l}
+\subseteq & \text{the } \lor \text{ hidden inside } x\in B\cup C \\
+\supseteq & \text{the } \lor \text{ hidden inside } x\in \left(A\cap B\right)\cup\left(A\cap C\right)
+\end{array}
+$$$
+
+This is the proof-by-cases technique of Section 3.5 appearing in its most common habitat. A union in a hypothesis is a disjunction, and a disjunction in a hypothesis is a case split; there is nothing to decide. By contrast $ \cap $ in a hypothesis gives a conjunction, which needs no split — it simply hands over two facts at once.
+
+Worth noticing what does **not** happen in either case analysis: neither case is vacuous, neither requires the other, and the two need not be exclusive. An $ x $ in $ A\cap B\cap C $ satisfies both cases of both proofs. Exhaustive cases need not be disjoint, only jointly complete, which is exactly the standard met in 3.5.
+
+## Remark — The Dual Law, and Why Sets Beat Numbers Here
+
+Interchanging $ \cap $ and $ \cup $ turns the identity into
+
+$$$
+A\cup\left(B\cap C\right) = \left(A\cup B\right)\cap\left(A\cup C\right) ,
+$$$
+
+also verified over all $ 32768 $ triples. By the duality noted in 4.3 Problem 3, its proof is the one above read with the symbols swapped, so nothing new is required.
+
+This two-sided distributivity has no analogue in ordinary arithmetic. There $ a\left(b+c\right)=ab+ac $ holds, but $ a+bc \ne \left(a+b\right)\left(a+c\right) $ in general — take $ a=b=c=1 $, giving $ 2 \ne 4 $. Sets are the more symmetric structure, and a lattice in which both distributive laws hold — each implies the other — is called a **distributive lattice**.
+
+The symmetry also has a limit. In the Boolean ring $ \left(\mathcal{P}(U),\ \triangle,\ \cap\right) $ only one direction survives: $ \cap $ distributes over $ \triangle $, verified, but $ \triangle $ does not distribute over $ \cap $. A counterexample found by search is $ A=\{0\} $, $ B=\varnothing $, $ C=\{0\} $, where
+
+$$$
+A\,\triangle\,\left(B\cap C\right) = \{0\} \quad\text{but}\quad \left(A\,\triangle\,B\right)\cap\left(A\,\triangle\,C\right) = \varnothing .
+$$$
+
+So $ \left(\cup,\cap\right) $ is symmetric and $ \left(\triangle,\cap\right) $ is not — which is exactly why the first pair forms a distributive lattice and the second a ring.
+
+## Remark — Distributivity Is a Real Hypothesis, Not a Formality
+
+It is tempting to treat the identity as too obvious to need proof. It is not: the analogous statement fails in closely related structures, so the proof above is doing genuine work.
+
+Take the subspaces of the plane $ \mathbb{R}^{2} $, ordered by inclusion, with meet given by $ \cap $ and join by the sum $ B+C $ — the smallest subspace containing both, since a union of two lines is not a subspace. Let $ A $, $ B $, $ C $ be three **distinct** lines through the origin. Then $ B+C=\mathbb{R}^{2} $, so
+
+$$$
+A\cap\left(B+C\right) = A\cap\mathbb{R}^{2} = A ,
+$$$
+
+a one-dimensional space. But distinct lines meet only at the origin, so $ A\cap B = A\cap C = \{\mathbf{0}\} $ and
+
+$$$
+\left(A\cap B\right) + \left(A\cap C\right) = \{\mathbf{0}\} ,
+$$$
+
+which is zero-dimensional. The two sides differ, so the distributive law fails here.
+
+The reason it holds for sets is that membership is decided pointwise: $ x\in B\cup C $ really does mean $ x\in B $ or $ x\in C $, which is what licenses the case split. For subspaces the join is not pointwise — a vector in $ B+C $ need lie in neither $ B $ nor $ C $ — and the case split is unavailable. Non-distributive lattices of this kind are the reason quantum logic differs from classical logic, and the reason the subgroup lattice of a group carries more information than a Venn diagram can show.

@@ -1,0 +1,121 @@
+.docname {Solution — GIAM 4.3 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 9
+
+## Problem
+
+Prove the set-theoretic versions of De Morgan's laws using the technique of the previous problems, that is, by double containment.
+
+$$$
+\overline{A\cup B} = \overline{A}\cap\overline{B} , \qquad \overline{A\cap B} = \overline{A}\cup\overline{B} .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{Four containments: two per law, each by element-chasing.}\;}
+$$$
+
+Both laws and all four containments were verified over the $ 1024 $ pairs of subsets of a five-element universe.
+
+## Law 1: $ \overline{A\cup B} = \overline{A}\cap\overline{B} $
+
+> **Containment $ \subseteq $.** Let $ x $ be an arbitrary element of $ \overline{A\cup B} $, so $ x\notin A\cup B $.
+>
+> If $ x $ were in $ A $, then $ x $ would be in $ A\cup B $, contrary to assumption; hence $ x\notin A $, that is $ x\in\overline{A} $. The identical argument with $ B $ in place of $ A $ gives $ x\in\overline{B} $. Therefore $ x\in\overline{A}\cap\overline{B} $.
+>
+> **Containment $ \supseteq $.** Let $ x $ be an arbitrary element of $ \overline{A}\cap\overline{B} $, so $ x\notin A $ and $ x\notin B $.
+>
+> Suppose, for contradiction, that $ x\in A\cup B $. Then $ x\in A $ or $ x\in B $. The first contradicts $ x\notin A $ and the second contradicts $ x\notin B $, so both cases are impossible. Hence $ x\notin A\cup B $, that is $ x\in\overline{A\cup B} $.
+>
+> Both containments hold, so the sets are equal. $ \blacksquare $
+
+## Law 2: $ \overline{A\cap B} = \overline{A}\cup\overline{B} $
+
+> **Containment $ \subseteq $.** Let $ x $ be an arbitrary element of $ \overline{A\cap B} $, so $ x\notin A\cap B $. Either $ x\in A $ or $ x\notin A $; these cases are exhaustive by the excluded middle.
+>
+> **Case 1: $ x\notin A $.** Then $ x\in\overline{A} $, hence $ x\in\overline{A}\cup\overline{B} $.
+>
+> **Case 2: $ x\in A $.** If $ x $ were also in $ B $ then $ x $ would lie in $ A\cap B $, contrary to assumption. So $ x\notin B $, giving $ x\in\overline{B} $ and hence $ x\in\overline{A}\cup\overline{B} $.
+>
+> **Containment $ \supseteq $.** Let $ x $ be an arbitrary element of $ \overline{A}\cup\overline{B} $, so $ x\in\overline{A} $ or $ x\in\overline{B} $.
+>
+> **Case 1: $ x\in\overline{A} $.** Then $ x\notin A $, so $ x $ cannot lie in $ A\cap B $, which requires membership in both.
+>
+> **Case 2: $ x\in\overline{B} $.** Then $ x\notin B $, and the same reasoning applies.
+>
+> Either way $ x\notin A\cap B $, that is $ x\in\overline{A\cap B} $. $ \blacksquare $
+
+## The Picture
+
+!(76%)[The four shaded regions, the technique each containment needs, and the one non-constructive direction](problem-9-demorgan.svg "A diagram in four parts. The first states the two laws, that the complement of A union B equals the intersection of the complements and the complement of A intersect B equals the union of the complements, and notes that both laws and all four containments were verified over the 1024 pairs from a five-element universe. The second part shows four Venn panels arranged in two rows. The top row, in blue, shades the region outside both circles, first labelled the complement of A union B and then labelled the intersection of the complements; the two pictures are identical. The bottom row, in green, shades everything except the lens where the circles overlap, first labelled the complement of A intersect B and then labelled the union of the complements; again the two pictures are identical. A line notes that each row shades one region twice, that the pictures coincide, and that the proofs say why. The third part is a table of the four containments with the technique each needs. The complement of A union B inside the intersection of complements uses contraposition twice, since x in A would put x in A union B. The intersection of complements inside the complement of A union B uses cases plus contradiction, since if x were in A union B one of the two cases fails. The complement of A intersect B inside the union of complements splits on whether x is in A or not, using the excluded middle, and is flagged in red. The union of complements inside the complement of A intersect B uses cases, since either missing set already blocks A intersect B. A red band explains that one direction is not constructive, and that it is the one that needed the excluded middle: checked on a Kripke frame with a root below two incomparable worlds, three of the four implications are intuitionistically valid, but the fourth, that not p and q implies not p or not q, fails, with p true only at the first world and q only at the second. That is exactly the containment above that could not be proved without splitting on whether x is in A.")
+
+## Remark — Four Containments, Four Different Techniques
+
+Although the two laws look like mirror images, their four halves call on noticeably different logical moves:
+
+$$$
+\begin{array}{l|l}
+\overline{A\cup B}\subseteq\overline{A}\cap\overline{B} & \text{contraposition, twice} \\
+\overline{A}\cap\overline{B}\subseteq\overline{A\cup B} & \text{proof by cases, inside a contradiction} \\
+\overline{A\cap B}\subseteq\overline{A}\cup\overline{B} & \text{the excluded middle} \\
+\overline{A}\cup\overline{B}\subseteq\overline{A\cap B} & \text{proof by cases}
+\end{array}
+$$$
+
+The pattern is the one met in 4.3 Problems 7 and 8. A union in the hypothesis hands over a disjunction and forces a case split; an intersection hands over a conjunction and forces none. Complements invert this, since $ x\notin A\cup B $ is a *negated* disjunction — which by De Morgan for logic is a conjunction, and so again needs no split.
+
+Only the third row has nothing to split on: its hypothesis $ x\notin A\cap B $ is a negated conjunction, which supplies neither a disjunction to case on nor two facts to use. The proof must manufacture its own dichotomy, and it does so out of thin air with $ x\in A $ or $ x\notin A $. That this is the odd case out is not a presentational accident, as the final remark shows.
+
+## Remark — Either Law Gives the Other
+
+The two laws are not independent results. Apply Law 1 to the sets $ \overline{A} $ and $ \overline{B} $:
+
+$$$
+\overline{\overline{A}\cup\overline{B}} = \overline{\overline{A}}\cap\overline{\overline{B}} = A\cap B ,
+$$$
+
+using $ \overline{\overline{X}}=X $, verified for all $ 32 $ subsets. Taking complements of both ends gives $ \overline{A}\cup\overline{B} = \overline{A\cap B} $, which is Law 2. The substitution was checked directly over all $ 1024 $ pairs.
+
+So proving one law suffices, and the same trick runs in reverse. It is the same phenomenon as the duality of 4.3 Problem 3, but made concrete: instead of an abstract rule saying that swapping $ \cap $ and $ \cup $ preserves truth, here there is an actual map performing the swap.
+
+## Remark — De Morgan Is Why the Duality Principle Works
+
+Complementation is more than a bijection of $ \mathcal{P}(U) $. It **reverses inclusion**:
+
+$$$
+A\subseteq B \iff \overline{B}\subseteq\overline{A} ,
+$$$
+
+verified for all $ 1024 $ pairs. Together with $ \overline{\overline{A}}=A $ this makes $ X\mapsto\overline{X} $ an order-reversing involution — an *anti-automorphism* of the containment order. It carries $ \varnothing $ to $ U $, and De Morgan's laws say precisely that it carries $ \cup $ to $ \cap $ and back.
+
+That is the whole content of the duality principle invoked in Problems 3, 7 and 8. Given any true identity, apply complementation to both sides, push the bars inward with De Morgan, and rename $ \overline{A} $ as $ A $: out comes the dual identity, already proved. The principle is not a meta-mathematical convention but a theorem about a specific map, and this problem is that theorem.
+
+Two small consequences worth recording. Complementation turns the smallest set into the largest, so it exchanges the identity elements found in 4.3 Problems 5 and 6. And it commutes with $ \triangle $ only up to a twist — $ \overline{A}\,\triangle\,\overline{B} = A\,\triangle\,B $ rather than $ \overline{A\,\triangle\,B} $ — which is the algebraic shadow of $ \triangle $ being addition in a ring of characteristic $ 2 $.
+
+## Remark — One of the Four Is Not Constructively Valid
+
+The table above flagged $ \overline{A\cap B}\subseteq\overline{A}\cup\overline{B} $ as the only containment needing the excluded middle. That was not laziness in the write-up: no proof of it can avoid a non-constructive step.
+
+Translating the four containments into propositional implications and testing them on a Kripke frame — a root world below two incomparable worlds, five possible valuations per atom — gives
+
+$$$
+\begin{array}{l|c}
+\lnot\left(p\lor q\right) \to \lnot p\land\lnot q & \text{valid} \\
+\lnot p\land\lnot q \to \lnot\left(p\lor q\right) & \text{valid} \\
+\lnot p\lor\lnot q \to \lnot\left(p\land q\right) & \text{valid} \\
+\lnot\left(p\land q\right) \to \lnot p\lor\lnot q & \textbf{fails}
+\end{array}
+$$$
+
+The failure is witnessed by making $ p $ true only at the first upper world and $ q $ true only at the second. At the root, $ p\land q $ can never become true, so $ \lnot\left(p\land q\right) $ holds there; but neither $ \lnot p $ nor $ \lnot q $ holds at the root, since each atom becomes true somewhere above it. Hence $ \lnot p\lor\lnot q $ fails.
+
+The reading is worth taking seriously. Knowing that $ A $ and $ B $ have no common element does not, by itself, tell you *which* of the two a given $ x $ escapes — and constructively that information has to come from somewhere. Classical logic supplies it free of charge via the excluded middle, which is exactly the step Case 1 and Case 2 of Law 2's first containment rest on. The three other containments never ask which alternative holds, and they survive intact in intuitionistic mathematics.

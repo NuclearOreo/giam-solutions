@@ -1,0 +1,142 @@
+.docname {Solution — GIAM 4.3 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 5
+
+## Problem
+
+There is a set $ X $ such that, for all sets $ A $, we have $ X\,\triangle\,A = A $. What is $ X $?
+
+## Answer
+
+$$$
+\boxed{\;X = \varnothing\;}
+$$$
+
+Confirmed for every subset of a five-element universe, and — as shown below — it is the only set with this property.
+
+## Verification
+
+Recall that $ X\,\triangle\,A $ consists of the elements lying in exactly one of $ X $ and $ A $. Taking $ X=\varnothing $:
+
+$$$
+\begin{aligned}
+x\in\varnothing\,\triangle\,A
+ &\iff \left(x\in\varnothing \land x\notin A\right) \lor \left(x\in A \land x\notin\varnothing\right) && \triangle \\
+ &\iff \mathbf{c} \lor \left(x\in A \land \mathbf{t}\right) && \text{nothing lies in } \varnothing \\
+ &\iff x\in A && \text{identity laws}
+\end{aligned}
+$$$
+
+The first disjunct dies because $ x\in\varnothing $ is false; the clause $ x\notin\varnothing $ in the second is always true and drops out. $ \blacksquare $
+
+Equivalently and more briefly, $ \varnothing\,\triangle\,A = \left(\varnothing\cup A\right)\setminus\left(\varnothing\cap A\right) = A\setminus\varnothing = A $, using the form proved in 4.3 Problem 3c.
+
+## Uniqueness
+
+The problem says “there **is** a set $ X $”, but in fact there is exactly one, and finding it takes a single substitution.
+
+> **Claim.** If $ X\,\triangle\,A = A $ holds for all sets $ A $, then $ X = \varnothing $.
+>
+> **Proof.** The hypothesis holds for *every* $ A $, so in particular for $ A=\varnothing $. That instance reads
+>
+> $ X\,\triangle\,\varnothing = \varnothing . $
+>
+> But $ X\,\triangle\,\varnothing = X $ by the computation above with the roles reversed. Hence $ X = \varnothing $. $ \blacksquare $
+
+Exhaustive search over the $ 32 $ subsets of a five-element universe returns exactly one $ X $ satisfying the condition, namely $ \varnothing $ — matching the proof.
+
+## The Picture
+
+The two panels below give the same fact twice: once as regions, once as bits.
+
+!(84%)[Why the empty set is the identity for symmetric difference](problem-5-identity.svg "A diagram in four parts. The first gives the answer: X equals the empty set, and notes it is the only such set, since putting A equal to the empty set makes the condition read X equals the empty set outright. The second part has two panels. On the left, a small dashed grey circle labelled with the empty-set symbol and annotated no elements sits well apart from a solid blue circle labelled A, with the gap between them marked no overlap; the caption explains that the two sets are disjoint so nothing is cancelled, and the empty set contributes no elements of its own, so what remains is exactly A. On the right, a panel headed that symmetric difference is XOR and the empty set is the zero vector, showing three rows of five bit-cells: A as one one zero one zero, the empty set as five zeros, and their XOR as one one zero one zero again, unchanged; the caption notes that toggling a bit by zero leaves it alone, so the all-zeros vector, the empty set, is the identity. The third part is a table comparing three operations. Union has identity the empty set, no inverses, and the equation X union A equals B is solvable only sometimes, with 781 of 1024 pairs having no solution. Intersection has identity U, no inverses, and the same 781 of 1024 failure count. Symmetric difference has identity the empty set, every element is its own inverse, and the equation is always uniquely solvable with X equal to A symmetric-difference B. A green band explains what the identity element buys: with the empty set as identity and every set its own inverse, the power set under symmetric difference is a group, so equations can be solved. Checked over all 1024 pairs from a five-element universe, X symmetric-difference A equals B has exactly one solution every time, namely X equals A symmetric-difference B, while the same equation with union or intersection has no solution for 781 of those pairs and as many as 32 solutions for one of them.")
+
+## Remark — This Is the Identity Element of a Group
+
+The condition in the problem — an element that leaves everything unchanged — is precisely the definition of an **identity element** for the operation $ \triangle $. The remark at the end of 4.3 Problem 1 observed that $ \left(\mathcal{P}(U),\ \triangle\right) $ is an abelian group; this problem is asking for the identity of that group, and the answer is $ \varnothing $.
+
+The uniqueness argument above is a special case of the standard group-theoretic one. If $ e $ and $ e' $ are both identities then
+
+$$$
+e = e\,\triangle\,e' = e' ,
+$$$
+
+the first equality because $ e' $ is an identity and the second because $ e $ is. So no operation has two identities, and the phrase “**the** identity” is justified in advance of knowing what it is.
+
+The full group data for $ \triangle $, all verified over the $ 32 $ subsets:
+
+$$$
+\begin{array}{l|l}
+\text{identity} & \varnothing \\
+\text{inverse of } A & A \text{ itself, since } A\,\triangle\,A = \varnothing \\
+\text{associative} & \text{yes} \\
+\text{commutative} & \text{yes}
+\end{array}
+$$$
+
+## Remark — Union and Intersection Have Identities Too, but Not Inverses
+
+It is worth noticing that the question could have been asked of $ \cup $ or $ \cap $ and would still have had an answer:
+
+$$$
+\varnothing\cup A = A \quad\text{for all } A , \qquad U\cap A = A \quad\text{for all } A .
+$$$
+
+Both confirmed by exhaustive search, which also returns these as the unique identities. So $ \varnothing $ is the identity for two of the three operations and $ U $ for the third — and note that the answer to this problem would have been $ U $, not $ \varnothing $, had the operation been $ \cap $.
+
+What separates $ \triangle $ from the other two is not the identity but the **inverses**. For $ \cup $, once an element has been added it can never be removed: $ A\cup X \supseteq A $ always, so $ A\cup X=\varnothing $ is impossible unless $ A $ is already empty. Verified: no set other than $ \varnothing $ has a $ \cup $-inverse, and no set other than $ U $ has a $ \cap $-inverse. Union and intersection only ever move in one direction, while $ \triangle $ can undo itself.
+
+## Remark — Why Having an Identity and Inverses Matters
+
+An identity element is not a curiosity; together with inverses it makes **equations solvable**. Consider
+
+$$$
+X\,\triangle\,A = B .
+$$$
+
+Symmetric-differencing both sides by $ A $ and using $ A\,\triangle\,A=\varnothing $ together with $ \varnothing\,\triangle\,X = X $ gives $ X = A\,\triangle\,B $, and this is the unique solution. Exhaustive check over all $ 32\times32 = 1024 $ pairs $ (A,B) $: **every** pair has exactly one solution, always equal to $ A\,\triangle\,B $.
+
+The contrast with the other two operations is stark. For the same $ 1024 $ pairs:
+
+$$$
+\begin{array}{l|r|r|r}
+\text{number of solutions } X & 0 & 1 & \text{more than } 1 \\ \hline
+X\,\triangle\,A = B & 0 & 1024 & 0 \\
+X\cup A = B & 781 & 32 & 211 \\
+X\cap A = B & 781 & 32 & 211
+\end{array}
+$$$
+
+So more than three quarters of the time the equation $ X\cup A = B $ has no solution at all, and when it does have one it may have as many as $ 32 $. Identical figures for $ \cap $, which is no accident — the duality of 4.3 Problem 3 carries each $ \cup $-equation to a $ \cap $-equation.
+
+This is exactly the practical difference between an operation that merely accumulates and one that is reversible, and it is the reason $ \triangle $ rather than $ \cup $ plays the role of addition in the Boolean ring $ \left(\mathcal{P}(U),\ \triangle,\ \cap\right) $.
+
+## Remark — The Bitstring Reading
+
+Fixing an order on $ U $ and recording each set by its membership bits, $ \triangle $ becomes bitwise XOR. In that language the problem asks for the bit vector $ X $ with
+
+$$$
+X \oplus A = A \quad\text{for every } A ,
+$$$
+
+and the answer is the all-zeros vector, which is the empty set:
+
+$$$
+\begin{array}{r|l}
+A & 11010 \\
+\varnothing & 00000 \\ \hline
+A\oplus\varnothing & 11010
+\end{array}
+$$$
+
+The reason is transparent at the level of a single bit: XOR with $ 0 $ leaves a bit alone, and XOR with $ 1 $ flips it. A set therefore acts on $ A $ by toggling exactly the positions it occupies, so the only set that toggles nothing is the one occupying no positions.
+
+This also explains the self-inverse property at a glance — toggling the same positions twice returns to the start — and recovers 4.3 Problem 1's identification of $ \left(\mathcal{P}(U),\triangle\right) $ with $ \left(\mathbb{Z}/2\mathbb{Z}\right)^{|U|} $, where the identity is of course the zero vector.

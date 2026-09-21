@@ -1,0 +1,165 @@
+.docname {Solution — GIAM 4.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 3
+
+## Problem
+
+Do element-chasing proofs — show that an element is in the left-hand side if and only if it is in the right-hand side — to prove each of the following set equalities:
+
+- **a.** $ \overline{A\cap B} = \overline{A}\cup\overline{B} $
+- **b.** $ A\cup B = A\cup\left(\overline{A}\cap B\right) $
+- **c.** $ A\,\triangle\,B = \left(A\cup B\right)\setminus\left(A\cap B\right) $
+- **d.** $ \left(A\cup B\right)\setminus C = \left(A\setminus C\right)\cup\left(B\setminus C\right) $
+
+## The Method
+
+$$$
+\boxed{\;x\in\text{LHS} \iff \cdots \iff x\in\text{RHS}\;}
+$$$
+
+Each proof is a chain of **equivalences**. Because every link runs in both directions, a single chain establishes $ \text{LHS}\subseteq\text{RHS} $ and $ \text{RHS}\subseteq\text{LHS} $ simultaneously, which by extensionality gives equality. The steps themselves are the definitions of $ \cap,\cup,\setminus,\overline{\phantom{A}} $ together with tautologies of propositional logic.
+
+All four identities were additionally checked over every subset of a five-element universe — $ 32\times32 $ pairs for **a**, **b**, **c** and $ 32^{3}=32768 $ triples for **d** — with no exceptions.
+
+## Proof of a
+
+$$$
+\begin{aligned}
+x\in\overline{A\cap B}
+ &\iff \lnot\left(x\in A\cap B\right) && \text{complement} \\
+ &\iff \lnot\left(x\in A \land x\in B\right) && \cap \\
+ &\iff \lnot\left(x\in A\right) \lor \lnot\left(x\in B\right) && \text{De Morgan} \\
+ &\iff x\in\overline{A} \lor x\in\overline{B} && \text{complement} \\
+ &\iff x\in\overline{A}\cup\overline{B} && \cup
+\end{aligned}
+$$$
+
+Every line is an equivalence, so this single chain gives both containments. $ \blacksquare $
+
+## Proof of b
+
+$$$
+\begin{aligned}
+x\in A\cup B
+ &\iff x\in A \lor x\in B && \cup \\
+ &\iff x\in A \lor \left(\lnot\left(x\in A\right) \land x\in B\right) && (\ast) \\
+ &\iff x\in A \lor \left(x\in\overline{A}\cap B\right) && \text{complement},\ \cap \\
+ &\iff x\in A\cup\left(\overline{A}\cap B\right) && \cup
+\end{aligned}
+$$$
+
+$ \blacksquare $ The starred step is the only non-obvious one, and it is a tautology:
+
+$$$
+p\lor\left(\lnot p\land q\right) \;\equiv\; \left(p\lor\lnot p\right)\land\left(p\lor q\right) \;\equiv\; \mathbf{t}\land\left(p\lor q\right) \;\equiv\; p\lor q ,
+$$$
+
+by distributivity, the excluded middle, then the identity law.
+
+## Proof of c
+
+Recall that $ A\,\triangle\,B $ consists of the elements lying in exactly one of $ A $ and $ B $.
+
+$$$
+\begin{aligned}
+x\in A\,\triangle\,B
+ &\iff \left(x\in A \land x\notin B\right) \lor \left(x\in B \land x\notin A\right) && \triangle \\
+ &\iff \left(x\in A \lor x\in B\right) \land \lnot\left(x\in A \land x\in B\right) && (\ast\ast) \\
+ &\iff x\in A\cup B \ \land\ x\notin A\cap B && \cup,\ \cap \\
+ &\iff x\in\left(A\cup B\right)\setminus\left(A\cap B\right) && \setminus
+\end{aligned}
+$$$
+
+$ \blacksquare $ Here $ (\ast\ast) $ is the tautology $ p\oplus q \equiv \left(p\lor q\right)\land\lnot\left(p\land q\right) $: "exactly one" means "at least one, but not both".
+
+## Proof of d
+
+$$$
+\begin{aligned}
+x\in\left(A\cup B\right)\setminus C
+ &\iff x\in A\cup B \ \land\ x\notin C && \setminus \\
+ &\iff \left(x\in A \lor x\in B\right) \land x\notin C && \cup \\
+ &\iff \left(x\in A \land x\notin C\right) \lor \left(x\in B \land x\notin C\right) && \text{distributivity} \\
+ &\iff x\in A\setminus C \ \lor\ x\in B\setminus C && \setminus \\
+ &\iff x\in\left(A\setminus C\right)\cup\left(B\setminus C\right) && \cup
+\end{aligned}
+$$$
+
+Five reversible steps, so the two sides have exactly the same elements. $ \blacksquare $
+
+## The Picture
+
+!(80%)[Venn diagrams of the four identities, with the truth tables that drive them](problem-3-identities.svg "A diagram in four parts. The first says four identities, one method: x is in the left-hand side if and only if dot dot dot if and only if x is in the right-hand side. Every step is an equivalence, so one chain proves both containments at once, and all four identities were also checked over all 32 subsets of a five-element universe, with 32768 triples for part d. The second part shows four Venn diagrams. Part a, the complement of A intersect B equals the complement of A union the complement of B, shades the whole universe rectangle except the lens where the two circles overlap. Part b, A union B equals A union the complement of A intersect B, shades both circles entirely, noted as both circles but split disjointly. Part c, the symmetric difference of A and B equals A union B minus A intersect B, shades both circles with the lens removed. Part d, A union B minus C equals A minus C union B minus C, draws three circles and shades A and B with the circle C carved out in white. A green band shows the truth tables that make each identity a propositional tautology, where p means x is in A and q means x is in B. For part a the columns not p and q, and not p or not q, agree on all four rows. For part b the columns p or q, and p or the conjunction of not p with q, agree on all four rows. For part c the columns p exclusive-or q, and p or q and not p and q, agree on all four rows. The band notes that in each pair of columns the two entries agree on every row, and that this agreement is the element-chasing proof, with part d the same idea using a third variable r and the tautology that p or q and not r is equivalent to p and not r, or q and not r. An orange band explains why part b is worth more than it looks: A and the complement of A intersect B are always disjoint, verified, so part b rewrites any union as a disjoint one, giving the size of A union B equals the size of A plus the size of the complement of A intersect B with no correction term, which is the trick behind inclusion and exclusion and countable additivity.")
+
+## Remark — These Are Logical Tautologies Wearing Set Clothing
+
+Every step above that was not a definition was a law of propositional logic. Writing $ p $ for “$ x\in A $”, $ q $ for “$ x\in B $” and $ r $ for “$ x\in C $”, the four identities are literally
+
+$$$
+\begin{array}{l|l}
+\textbf{a} & \lnot\left(p\land q\right) \equiv \lnot p\lor\lnot q \\
+\textbf{b} & p\lor q \equiv p\lor\left(\lnot p\land q\right) \\
+\textbf{c} & p\oplus q \equiv \left(p\lor q\right)\land\lnot\left(p\land q\right) \\
+\textbf{d} & \left(p\lor q\right)\land\lnot r \equiv \left(p\land\lnot r\right)\lor\left(q\land\lnot r\right)
+\end{array}
+$$$
+
+all four confirmed by truth table. This is the dictionary from Chapter 2 read in the other direction: there, set operations illustrated the connectives; here, the connectives *prove* facts about sets. The reason the translation is exact is that membership is two-valued — $ x $ is in a set or it is not, with no third option — so a set is nothing more than a truth-valued function on the universe.
+
+A practical consequence: any propositional tautology in $ n $ variables yields a set identity in $ n $ sets, and vice versa. There is no need to memorise set identities separately from logical ones — and a proposed identity can be tested by truth table before any attempt is made to prove it.
+
+The dictionary also comes with a free symmetry. Interchanging $ \land $ with $ \lor $ and $ \mathbf{t} $ with $ \mathbf{c} $ turns any tautology into another tautology, so interchanging $ \cap $ with $ \cup $ and $ \varnothing $ with $ U $ turns any set identity into another — its **dual**. Part **a** dualises to $ \overline{A\cup B} = \overline{A}\cap\overline{B} $ and part **b** to $ A\cap B = A\cap\left(\overline{A}\cup B\right) $, both verified, and each is proved by reading the original chain with the symbols swapped. Half of any table of set identities is therefore redundant.
+
+## Remark — Why the Chain Must Run Both Ways
+
+The instruction “show that an element is in the left-hand side if and only if it is in the right-hand side” is doing real work. A chain of one-way implications
+
+$$$
+x\in\text{LHS} \implies \cdots \implies x\in\text{RHS}
+$$$
+
+proves only $ \text{LHS}\subseteq\text{RHS} $, which is strictly weaker. For instance $ x\in A \implies x\in A\cup B $ always holds, but $ A = A\cup B $ holds only when $ B\subseteq A $ — verified for all $ 32\times32 $ pairs. So the one-way chain would “prove” a false statement if its direction were forgotten.
+
+Every step in the four proofs above is reversible because each is either a definition — which is an equivalence by fiat — or a logical equivalence $ \equiv $. When a step is not obviously reversible, the honest thing is to split into two separate containment proofs, which is the pattern used in 4.2 Problem 6.
+
+## Remark — Part b Is the Disjointification Trick
+
+Parts **a**, **c** and **d** are standard rearrangements, but **b** is the useful one in practice. Its right-hand side is a union of two **disjoint** pieces:
+
+$$$
+A \cap \left(\overline{A}\cap B\right) = \varnothing ,
+$$$
+
+verified for all pairs. Since sizes add over disjoint unions,
+
+$$$
+\left|A\cup B\right| = \left|A\right| + \left|\overline{A}\cap B\right| ,
+$$$
+
+also verified — with no correction term, unlike inclusion–exclusion. Part **b** is how one *derives* inclusion–exclusion rather than assuming it: $ \overline{A}\cap B = B\setminus\left(A\cap B\right) $, so the second term is $ |B|-|A\cap B| $.
+
+The same manoeuvre, applied to an infinite sequence, turns $ \bigcup_n E_n $ into a disjoint union by replacing $ E_n $ with $ E_n\setminus\left(E_1\cup\cdots\cup E_{n-1}\right) $. That is exactly the step that makes countable additivity usable in measure theory and probability, and it is nothing more than part **b** applied repeatedly.
+
+## Remark — Part d Says Removing $ C $ Is Structure-Preserving
+
+Part **d** states that the operation $ X\mapsto X\setminus C $ commutes with union. In fact $ X\setminus C = X\cap\overline{C} $, and intersecting with a fixed set preserves everything:
+
+$$$
+\begin{array}{l}
+\left(X\cup Y\right)\setminus C = \left(X\setminus C\right)\cup\left(Y\setminus C\right) \\
+\left(X\cap Y\right)\setminus C = \left(X\setminus C\right)\cap\left(Y\setminus C\right) \\
+\left(X\,\triangle\,Y\right)\setminus C = \left(X\setminus C\right)\,\triangle\,\left(Y\setminus C\right)
+\end{array}
+$$$
+
+all three verified over all $ 32^{3} $ triples. In the language of 4.3 Problem 1, the third line says $ X\mapsto X\setminus C $ is a ring homomorphism from $ \mathcal{P}(U) $ onto $ \mathcal{P}\!\left(\overline{C}\right) $ for the Boolean ring structure $ \left(\triangle,\cap\right) $.
+
+So part **d** is not an isolated curiosity: it is one instance of the general fact that restricting attention to a subuniverse — ignoring everything in $ C $ — cannot change the answer to any question built from $ \cup $, $ \cap $ and $ \triangle $. Note that complement is the exception, since $ \overline{X}\setminus C $ and $ \overline{X\setminus C} $ differ; complementation depends on which universe one is working in.

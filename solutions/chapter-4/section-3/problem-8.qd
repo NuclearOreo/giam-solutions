@@ -1,0 +1,140 @@
+.docname {Solution — GIAM 4.3 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 8
+
+## Problem
+
+Prove
+
+$$$
+A\cup\left(B\cap C\right) = \left(A\cup B\right)\cap\left(A\cup C\right)
+$$$
+
+by showing both
+
+- $ A\cup\left(B\cap C\right) \subseteq \left(A\cup B\right)\cap\left(A\cup C\right) $
+- $ \left(A\cup B\right)\cap\left(A\cup C\right) \subseteq A\cup\left(B\cap C\right) $
+
+## Strategy
+
+$$$
+\boxed{\;X = Y \iff X\subseteq Y \ \text{ and } \ Y\subseteq X\;}
+$$$
+
+Same plan as 4.3 Problem 7, applied to its dual. Each containment takes an arbitrary element of the left side, unpacks the definitions, and repacks them into the right side.
+
+Both containments, and the identity, were verified over all $ 32^{3}=32768 $ triples of subsets of a five-element universe.
+
+## First Containment
+
+> **Claim.** $ A\cup\left(B\cap C\right) \subseteq \left(A\cup B\right)\cap\left(A\cup C\right) $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ A\cup\left(B\cap C\right) $. By the definition of $ \cup $, either $ x\in A $ or $ x\in B\cap C $, so we argue by cases.
+>
+> **Case 1: $ x\in A $.** Then $ x\in A\cup B $ and $ x\in A\cup C $, since a union contains each of its parts. Hence $ x\in\left(A\cup B\right)\cap\left(A\cup C\right) $.
+>
+> **Case 2: $ x\in B\cap C $.** Then $ x\in B $ and $ x\in C $. From $ x\in B $ we get $ x\in A\cup B $, and from $ x\in C $ we get $ x\in A\cup C $. Hence again $ x\in\left(A\cup B\right)\cap\left(A\cup C\right) $.
+>
+> The cases are exhaustive, so $ x $ lies in the right-hand side either way. As $ x $ was arbitrary, the containment holds. $ \blacksquare $
+
+## Second Containment
+
+This direction is the substantial one, and it is worth pausing over where its case split comes from.
+
+> **Claim.** $ \left(A\cup B\right)\cap\left(A\cup C\right) \subseteq A\cup\left(B\cap C\right) $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ \left(A\cup B\right)\cap\left(A\cup C\right) $. By the definition of $ \cap $ we have both
+>
+> $ x\in A\cup B \quad\text{and}\quad x\in A\cup C . $
+>
+> Either $ x\in A $ or $ x\notin A $; these cases are exhaustive by the excluded middle.
+>
+> **Case 1: $ x\in A $.** Then immediately $ x\in A\cup\left(B\cap C\right) $, and nothing further is needed.
+>
+> **Case 2: $ x\notin A $.** From $ x\in A\cup B $ we know $ x\in A $ or $ x\in B $; since the first fails, $ x\in B $. From $ x\in A\cup C $ we know $ x\in A $ or $ x\in C $; since the first fails, $ x\in C $. Hence $ x\in B\cap C $, and so $ x\in A\cup\left(B\cap C\right) $.
+>
+> The cases are exhaustive, so $ x $ lies in the left-hand side either way. As $ x $ was arbitrary, the containment holds. $ \blacksquare $
+
+Together with extensionality the two containments give $ A\cup\left(B\cap C\right) = \left(A\cup B\right)\cap\left(A\cup C\right) $.
+
+## The Picture
+
+!(78%)[The two sides shaded, with all eight kinds of point tabulated](problem-8-dual.svg "A diagram in four parts. The first says this is the dual of Problem 7 proved directly, states the identity that A union the intersection of B and C equals the intersection of A-union-B with A-union-C, and notes it was verified over all 32768 triples from a five-element universe, as were both containments separately. The second part shows two three-circle Venn diagrams side by side, each with circle A on top and circles B and C below. In the left diagram, headed A union the intersection of B and C, the whole of circle A is shaded blue and the lens where B and C overlap is shaded green, captioned as two pieces joined. In the right diagram, headed the intersection of A-union-B with A-union-C, the union of A and B is washed in blue at half strength and the union of A and C is washed in green at half strength, so that the dark region where both washes overlap is the answer; the caption says so. A green band tabulates all eight kinds of point by whether they lie in A, in B and in C, and records for each whether it lies in the intersection of A-union-B with A-union-C and whether it lies in A union the intersection of B and C. The two answer columns agree on every row, and the three rows that fail are exactly those where x is outside A and missing from at least one of B and C. An orange band explains that the superset direction is the interesting half: two unions in the hypothesis give four raw cases, three of which put x in A, and only the fourth does any work, namely x in B from the first union together with x in C from the second, giving x in the intersection of B and C. It adds that splitting instead on whether x is in A or not in A collapses the four cases to two, a use of the excluded middle that Problem 7 never needed.")
+
+## Remark — Why the Second Direction Is Harder Than Anything in Problem 7
+
+In 4.3 Problem 7 both halves split on a disjunction sitting in the hypothesis: a union appeared on the left of a containment, and a union in a hypothesis *is* a case split. Here that pattern works only for the first containment. In the second, the hypothesis is an **intersection**, which yields a conjunction and no split at all. The two disjunctions are buried one level down, inside $ x\in A\cup B $ and $ x\in A\cup C $.
+
+Taking those two disjunctions at face value gives four raw cases, and it is instructive to see what each contributes:
+
+$$$
+\begin{array}{l|l|l}
+\text{from } A\cup B & \text{from } A\cup C & \text{conclusion} \\ \hline
+x\in A & x\in A & x\in A \\
+x\in A & x\in C & x\in A \\
+x\in B & x\in A & x\in A \\
+x\in B & x\in C & x\in B\cap C
+\end{array}
+$$$
+
+Three of the four collapse to the same trivial outcome and only the fourth does any work. Splitting instead on “$ x\in A $ or $ x\notin A $” reorganises these into two cases, at the cost of invoking the **excluded middle** — the one logical principle in this problem that Problem 7 never required. That asymmetry is not an accident of presentation: the dual law genuinely needs to know that failing to be in $ A $ forces the other alternative, which is where the negative information enters.
+
+## Remark — All Eight Kinds of Point
+
+Since the identity involves three sets, every point of the universe is one of $ 2^{3}=8 $ kinds, and the whole theorem is the assertion that two columns of a table agree. Writing $ a $ for “$ x\in A $” and so on:
+
+$$$
+\begin{array}{ccc|c|c}
+a & b & c & \left(a\lor b\right)\land\left(a\lor c\right) & a\lor\left(b\land c\right) \\ \hline
+0&0&0 & 0 & 0 \\
+0&0&1 & 0 & 0 \\
+0&1&0 & 0 & 0 \\
+0&1&1 & 1 & 1 \\
+1&0&0 & 1 & 1 \\
+1&0&1 & 1 & 1 \\
+1&1&0 & 1 & 1 \\
+1&1&1 & 1 & 1
+\end{array}
+$$$
+
+Confirmed row by row. Five of the eight kinds of point lie in the set; the three that do not are exactly those outside $ A $ and missing from at least one of $ B $, $ C $ — which is a readable restatement of the identity in its own right.
+
+This is the truth-table proof of 4.3 Problem 3 rather than the containment proof asked for here. Both are legitimate, but note what the table cannot do: it settles the identity only because three sets generate finitely many cases. The argument by containments never enumerates anything, which is why it survives the passage to infinite families seen in 4.3 Problem 4.
+
+## Remark — The Duality Principle Makes This Free
+
+By the duality of 4.3 Problem 3, interchanging $ \cap $ with $ \cup $ and $ \varnothing $ with $ U $ carries any true set identity to another true one. Problem 7's identity dualises to exactly this problem's, so once one is proved the other follows without work.
+
+Doing it by hand anyway is worth the effort for two reasons. The proof above is not literally the mirror image of Problem 7's, as the previous remark shows — the case structures differ, and the dual argument reaches for the excluded middle. And a lattice-theoretic fact lurks underneath: in **any** lattice, either distributive law implies the other. So the two problems are not merely dual in notation; they are logically equivalent statements, and one may prove whichever is more convenient.
+
+That equivalence is visible in the failures too. In the lattice of subspaces of $ \mathbb{F}_2^{\,2} $, taking $ A,B,C $ to be the three distinct lines through the origin — each of size $ 2 $ — both laws break at once, verified directly:
+
+$$$
+\begin{array}{l|l|l}
+& \text{left side} & \text{right side} \\ \hline
+A\cap\left(B+C\right) & \text{size } 2 & \left(A\cap B\right)+\left(A\cap C\right) \text{ has size } 1 \\
+A+\left(B\cap C\right) & \text{size } 2 & \left(A+B\right)\cap\left(A+C\right) \text{ has size } 4
+\end{array}
+$$$
+
+Neither holds, exactly as the equivalence predicts.
+
+## Remark — How Much Can Three Sets Build?
+
+Since both distributive laws hold, expressions in $ A $, $ B $, $ C $ built from $ \cup $ and $ \cap $ collapse dramatically. Starting from three sets in general position — all eight regions of the Venn diagram non-empty — and closing under $ \cup $ and $ \cap $ produces exactly
+
+$$$
+18 \text{ distinct sets,}
+$$$
+
+found by direct computation. This is the free distributive lattice on three generators, and $ 18 $ is the count with neither $ \varnothing $ nor $ U $ adjoined.
+
+The number is small because distributivity lets every expression be rewritten in a normal form, much as it does for polynomials. Without that law the count would grow without bound, which is one practical reason distributive lattices are pleasant and general ones are not. For comparison, the counts for $ n $ generators are the **Dedekind numbers**, and they explode immediately: the next value is $ 166 $, then $ 7579 $, and the value for $ n=9 $ was only determined in 2023.

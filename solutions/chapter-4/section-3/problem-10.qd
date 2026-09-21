@@ -1,0 +1,122 @@
+.docname {Solution — GIAM 4.3 Problem 10}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 10
+
+## Problem
+
+The double-containment technique produces proofs with a fixed outline: announce $ A\subseteq B $, take $ x\in A $, deduce $ x\in B $; announce $ B\subseteq A $, take $ x\in B $, deduce $ x\in A $; conclude $ A=B $. Formulate a proof, in that shape, that
+
+$$$
+A\,\triangle\,B = \left(A\cup B\right)\setminus\left(A\cap B\right) .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;\text{Two containments, each splitting into two cases.}\;}
+$$$
+
+The identity and both containments were verified over the $ 1024 $ pairs of subsets of a five-element universe.
+
+## The Proof
+
+Throughout, $ A\,\triangle\,B $ is the set of elements lying in **exactly one** of $ A $ and $ B $, so that $ A\,\triangle\,B = \left(A\setminus B\right)\cup\left(B\setminus A\right) $.
+
+> **Proof.** First we will show that $ A\,\triangle\,B \subseteq \left(A\cup B\right)\setminus\left(A\cap B\right) $.
+>
+> Towards that end, suppose $ x\in A\,\triangle\,B $. Then $ x $ lies in exactly one of $ A $ and $ B $, so either $ x\in A $ and $ x\notin B $, or $ x\in B $ and $ x\notin A $.
+>
+> **Case 1: $ x\in A $ and $ x\notin B $.** From $ x\in A $ we get $ x\in A\cup B $. And $ x\notin A\cap B $, since membership there would require $ x\in B $.
+>
+> **Case 2: $ x\in B $ and $ x\notin A $.** From $ x\in B $ we get $ x\in A\cup B $. And $ x\notin A\cap B $, since membership there would require $ x\in A $.
+>
+> In both cases $ x\in A\cup B $ and $ x\notin A\cap B $. Thus $ x\in\left(A\cup B\right)\setminus\left(A\cap B\right) $.
+>
+> Now, we will show that $ \left(A\cup B\right)\setminus\left(A\cap B\right) \subseteq A\,\triangle\,B $.
+>
+> Suppose that $ x\in\left(A\cup B\right)\setminus\left(A\cap B\right) $. By the definition of $ \setminus $ this gives both $ x\in A\cup B $ and $ x\notin A\cap B $. The first is a disjunction, so we argue by cases.
+>
+> **Case 1: $ x\in A $.** Were $ x $ also in $ B $, it would lie in $ A\cap B $, which it does not. Hence $ x\notin B $, and $ x $ lies in exactly one of $ A $ and $ B $.
+>
+> **Case 2: $ x\in B $.** Were $ x $ also in $ A $, it would lie in $ A\cap B $, which it does not. Hence $ x\notin A $, and again $ x $ lies in exactly one of the two.
+>
+> In both cases $ x $ lies in exactly one of $ A $ and $ B $. Thus $ x\in A\,\triangle\,B $.
+>
+> Therefore $ A\,\triangle\,B \subseteq \left(A\cup B\right)\setminus\left(A\cap B\right) $ and $ \left(A\cup B\right)\setminus\left(A\cap B\right) \subseteq A\,\triangle\,B $, so we conclude that $ A\,\triangle\,B = \left(A\cup B\right)\setminus\left(A\cap B\right) $. **Q.E.D.**
+
+## The Picture
+
+!(80%)[The given outline beside the filled-in proof, with the region shaded and the counting consequence](problem-10-template.svg "A diagram in four parts. The first announces a proof poured into the given mould, states the identity that the symmetric difference of A and B equals A union B minus A intersect B, and notes the identity and both containments were verified over the 1024 pairs from a five-element universe. The second part is a two-column table. The left column, in grey italic, repeats the outline given in the problem: Proof, first we will show that A is a subset of B; towards that end suppose x is in A; vertical dots; thus x is in B; now we will show that B is a subset of A; suppose that x is in B; vertical dots; thus x is in A; therefore A is a subset of B and B is a subset of A, so A equals B. The right column fills each line in for this identity: first, the symmetric difference is contained in A union B minus A intersect B; suppose x is in the symmetric difference, so x lies in exactly one of A and B; the case x in A and not in B gives x in A union B and x not in A intersect B; thus x is in A union B minus A intersect B; now the reverse containment; suppose x is in A union B and not in A intersect B; the case x in A forces x not in B, else x would be in A intersect B; thus x is in the symmetric difference; therefore the two sets are equal, Q.E.D. The third part has two panels. On the left, a Venn diagram of two overlapping circles A and B with both circles shaded blue except the lens where they overlap, which is left white and marked out, captioned as everything in exactly one of the two circles. On the right, a green panel headed what the identity buys, giving the count that the size of the symmetric difference equals the size of A union B minus the size of A intersect B, and also equals the size of A plus the size of B minus twice the size of A intersect B, both verified over all 1024 pairs, with a note that the factor of two is the point, since elements of the intersection are counted once in each set and must be removed twice, once from each side. An orange band explains that unlike Problem 9 this identity is fully constructive: both implications were checked on the same Kripke frame that broke a De Morgan direction in Problem 9, and both are intuitionistically valid, because every case split here is handed over by a union already present in the hypothesis, so no step ever asks whether x is in A without being told.")
+
+## Remark — What the Outline Fixes and What It Leaves Free
+
+The template supplies four sentences that never change:
+
+$$$
+\begin{array}{l|l}
+\text{First we will show that } X\subseteq Y. & \text{announce direction 1} \\
+\text{Towards that end, suppose } x\in X. & \text{introduce an arbitrary element} \\
+\text{Thus } x\in Y. & \text{discharge direction 1} \\
+\text{Therefore } \ldots \text{ so } X=Y. & \text{invoke extensionality}
+\end{array}
+$$$
+
+Everything mathematical lives in the vertical dots. This is worth saying plainly because the scaffolding, once written, tells you exactly what must be produced: two arguments, each starting from one unpacked definition and ending at another. A proof that cannot be poured into this mould is a proof that has not yet decided which containment it is establishing.
+
+The template also enforces the discipline of 4.3 Problem 3's warning. Because each half opens with its own “suppose”, there is no way to slide from one direction into the other, and no way to mistake a one-way chain for an equivalence.
+
+## Remark — The Third Proof of the Same Identity
+
+This identity has now been proved three ways in this section, and the comparison is instructive:
+
+$$$
+\begin{array}{l|l}
+\text{4.3 Problem 3c} & \text{a chain of } \iff, \text{ four lines} \\
+\text{4.3 Problem 8's method} & \text{an eight-row membership table} \\
+\text{here} & \text{two containments, four cases} \\
+\end{array}
+$$$
+
+The iff-chain is shortest, but every step must be reversible and the reader must check that. The table is the most mechanical and the least illuminating, and it works only because two sets generate finitely many cases. Double containment is the longest, and the only one that generalises without change to statements where the two directions are not symmetric — which is why the book drills it.
+
+All three establish the same fact, and all three were confirmed against the same exhaustive check over $ 1024 $ pairs.
+
+## Remark — This One Needs No Excluded Middle
+
+4.3 Problem 9 found that one of the four De Morgan containments could not be proved without splitting on “$ x\in A $ or $ x\notin A $”, and that this was forced: the corresponding implication fails intuitionistically. It is natural to ask whether the present identity has the same defect.
+
+It does not. Both implications,
+
+$$$
+\left(p\land\lnot q\right)\lor\left(q\land\lnot p\right) \ \longrightarrow\ \left(p\lor q\right)\land\lnot\left(p\land q\right)
+$$$
+
+and its converse, were tested on the same Kripke frame — a root world below two incomparable worlds — that refuted $ \lnot\left(p\land q\right)\to\lnot p\lor\lnot q $ there. Both come out **valid**.
+
+The structural reason is visible in the proof. Every case split above is handed over by a disjunction already present: in the first containment by the definition of $ \triangle $, in the second by $ x\in A\cup B $. Neither half ever needs to *decide* whether $ x\in A $; it is told. The steps that look like they might need the excluded middle — “were $ x $ also in $ B $, it would lie in $ A\cap B $” — are ordinary negation introductions, which are constructively unproblematic.
+
+## Remark — The Counting Consequence and the Factor of Two
+
+Since the right-hand side removes $ A\cap B $ from $ A\cup B $, and the removed part sits inside the larger one, sizes subtract cleanly:
+
+$$$
+\left|A\,\triangle\,B\right| = \left|A\cup B\right| - \left|A\cap B\right| = \left|A\right| + \left|B\right| - 2\left|A\cap B\right| ,
+$$$
+
+both forms verified over all $ 1024 $ pairs. The second follows from the first by inclusion–exclusion, and the coefficient $ 2 $ is the whole content: an element of $ A\cap B $ is counted once in $ |A| $ and once in $ |B| $, and must be discarded from **both** tallies, since it belongs to neither $ A\setminus B $ nor $ B\setminus A $.
+
+That doubled correction is what distinguishes $ \triangle $ from $ \cup $ in the counting world, just as the existence of inverses distinguished them in 4.3 Problem 5. It also explains the parity behaviour that makes $ \triangle $ addition modulo $ 2 $: reducing the identity mod $ 2 $ kills the $ 2\left|A\cap B\right| $ term entirely, leaving
+
+$$$
+\left|A\,\triangle\,B\right| \equiv \left|A\right| + \left|B\right| \pmod 2 ,
+$$$
+
+so the parity of a symmetric difference never depends on how much the two sets overlap.

@@ -1,0 +1,141 @@
+.docname {Solution — GIAM 4.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.3 Problem 4
+
+## Problem
+
+For each positive integer $ n $, define an interval $ I_n $ by
+
+$$$
+I_n = \left[-n,\ \tfrac{1}{n}\right) .
+$$$
+
+Find the union and the intersection of all the intervals in this infinite family.
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+\bigcup_{n\in\mathbb{N}} I_n &= \left(-\infty,\ 1\right) \\[4pt]
+\bigcap_{n\in\mathbb{N}} I_n &= \left[-1,\ 0\right]
+\end{aligned}
+}
+$$$
+
+Both were checked against a spread of test points — including $ -5000 $, $ \tfrac{1}{10000} $, $ \tfrac{999}{1000} $ and the four endpoints — with the search bound chosen large enough for each point separately.
+
+## The Union
+
+$$$
+x\in\bigcup_{n} I_n \iff \exists\, n\in\mathbb{N}: \ -n \le x \ \text{ and } \ x < \tfrac{1}{n} .
+$$$
+
+> **Containment $ \subseteq $.** If $ x\in I_n $ for some $ n $ then $ x < \tfrac1n \le 1 $, so $ x\in(-\infty,1) $.
+>
+> **Containment $ \supseteq $.** Let $ x < 1 $. If $ x\ge-1 $, then $ x\in I_1 = [-1,1) $ and we are done. If $ x < -1 $, choose any integer $ n\ge -x $; then $ -n\le x $, and since $ x<0<\tfrac1n $ the right condition holds too, so $ x\in I_n $.
+
+Therefore the union is $ (-\infty,1) $. The right endpoint $ 1 $ is never attained, since $ \tfrac1n\le1 $ for every $ n $ and each interval excludes its right endpoint.
+
+## The Intersection
+
+Here it is cleanest to split each interval into two one-sided conditions, $ I_n = [-n,\infty)\cap\left(-\infty,\tfrac1n\right) $, because intersection distributes over intersection:
+
+$$$
+\bigcap_{n} I_n \;=\; \left(\bigcap_{n}\left[-n,\infty\right)\right) \cap \left(\bigcap_{n}\left(-\infty,\tfrac1n\right)\right) .
+$$$
+
+> **Left factor.** $ -n\le x $ for every $ n\ge1 $ is tightest at $ n=1 $, so the condition is just $ x\ge-1 $ and the left factor is $ [-1,\infty) $.
+>
+> **Right factor.** $ x<\tfrac1n $ for every $ n $ holds exactly when $ x\le0 $. Indeed if $ x\le0 $ then $ x\le0<\tfrac1n $ for all $ n $; and if $ x>0 $, choosing $ n>\tfrac1x $ gives $ \tfrac1n< x $, so $ x\notin I_n $. The right factor is $ (-\infty,0] $.
+
+Intersecting, $ \bigcap_n I_n = [-1,\infty)\cap(-\infty,0] = [-1,0] $.
+
+## The Picture
+
+The five smallest intervals are drawn below on a common axis, with the two answers underneath them. Reading down the left endpoints and then down the right endpoints makes both computations visible at once.
+
+!(84%)[The first five intervals on a number line, with the union, the intersection and the limit](problem-4-intervals.svg "A diagram in four parts. The first gives the two answers: the union of the intervals I sub n is the open interval from minus infinity to 1, and the intersection is the closed interval from minus 1 to 0. The left ends run off to minus infinity while the right ends shrink down to 0, and both answers were checked at many points. The second part is a number line from minus 5 to 1 with the first five intervals drawn as blue bars, each with a filled dot at its left endpoint minus n and a hollow dot at its right endpoint one over n, so I one runs from minus 1 to 1, I two from minus 2 to one half, I three from minus 3 to one third, I four from minus 4 to one quarter and I five from minus 5 to one fifth. Below them a red bar with a left arrow and a hollow right dot at 1 marks the union as the interval from minus infinity to 1. Below that a green bar with filled dots at both minus 1 and 0 marks the intersection as the closed interval from minus 1 to 0. Below that a purple bar with a left arrow and a filled dot at 0 marks the limit of the family as the interval from minus infinity to 0 with 0 included. A note explains that a filled dot means the endpoint is included and a hollow dot means it is excluded. A green band explains why 0 survives although every interval is open on the right: zero is less than one over n for every n, so zero belongs to every interval, as verified, and the intersection is therefore closed even though not one of the sets being intersected is. Any x greater than zero is excluded by picking n greater than one over x, and for x equal to one thousandth the first n that drops it is n equal to one thousand, while the left endpoint minus 1 comes from I one alone, the tightest of all the left constraints. An orange band explains that neither answer is the limit of the family: discarding the first N minus 1 intervals, the tails were verified to be the union from n at least N equals the interval from minus infinity to one over N, and the intersection from n at least N equals the closed interval from minus N to 0. Shrinking the first and growing the second both give the interval from minus infinity to 0 with 0 included, so the limit superior equals the limit inferior and the family converges to that set, a third set equal to neither the union nor the intersection.")
+
+## Remark — The Family Is Not Nested, and Both Ends Move
+
+A common expectation is that an indexed family of intervals either grows or shrinks, so that the union is the “largest” member and the intersection the “smallest”. Neither happens here. The two endpoints move in opposite senses:
+
+$$$
+\begin{array}{c|c|c}
+& \text{left endpoint } -n & \text{right endpoint } \tfrac1n \\ \hline
+\text{as } n \text{ grows} & \text{decreases to } -\infty & \text{decreases to } 0 \\
+\text{effect on } I_n & \text{gains ground} & \text{loses ground}
+\end{array}
+$$$
+
+So no two intervals are comparable. Checked directly: $ 0.7\in I_1 $ but $ 0.7\notin I_2 $, while $ -1.5\in I_2 $ but $ -1.5\notin I_1 $, so neither $ I_1\subseteq I_2 $ nor $ I_2\subseteq I_1 $.
+
+The consequence is that neither answer is a member of the family. The union $ (-\infty,1) $ is unbounded and so is no $ I_n $; the intersection $ [-1,0] $ is closed and no $ I_n $ is. Each answer takes the **best left endpoint from one member and the best right endpoint from another**: the union borrows its right end from $ I_1 $, and the intersection borrows its left end from $ I_1 $ as well, while its right end comes from the whole tail at once.
+
+## Remark — How $ 0 $ Survives an Intersection of Half-Open Sets
+
+The most instructive point in the problem is that
+
+$$$
+0 \in \bigcap_{n} I_n
+$$$
+
+even though every $ I_n $ excludes its right endpoint. There is no contradiction: $ 0 $ is never anybody's right endpoint. The right endpoints are $ 1,\tfrac12,\tfrac13,\ldots $, all strictly positive, so $ 0 $ sits comfortably inside each interval — verified for all $ n $ up to five thousand, and in general because $ \tfrac1n>0 $.
+
+What fails is the naive rule “the intersection ends where the endpoints converge, and inherits the open end”. The correct statement is that $ \inf_n \tfrac1n = 0 $ is **not attained**, which is exactly what allows the strict inequality $ x<\tfrac1n $ to survive at $ x=0 $ for every $ n $. Had some interval been $ \left[-n,0\right) $, the point $ 0 $ would have been lost.
+
+This produces a small topological surprise: a countable intersection of sets, none of which is closed, is a closed set. Dually the union $ (-\infty,1) $ is open even though no $ I_n $ is open. Arbitrary unions of open sets are open and arbitrary intersections of closed sets are closed, but the reverse inheritances simply do not hold, and this one family breaks both.
+
+## Remark — The Family Converges, but to Neither Answer
+
+Discarding the first $ N-1 $ intervals gives the tails, verified for several $ N $:
+
+$$$
+\bigcup_{n\ge N} I_n = \left(-\infty,\ \tfrac1N\right) , \qquad \bigcap_{n\ge N} I_n = \left[-N,\ 0\right] .
+$$$
+
+The first shrinks as $ N $ grows and the second grows, and they meet:
+
+$$$
+\begin{aligned}
+\limsup_{n} I_n &= \bigcap_{N}\ \bigcup_{n\ge N} I_n = \bigcap_{N}\left(-\infty,\tfrac1N\right) = \left(-\infty,0\right] , \\
+\liminf_{n} I_n &= \bigcup_{N}\ \bigcap_{n\ge N} I_n = \bigcup_{N}\left[-N,0\right] = \left(-\infty,0\right] .
+\end{aligned}
+$$$
+
+Since the two agree, the set limit exists:
+
+$$$
+\lim_{n\to\infty} I_n = \left(-\infty,\ 0\right] .
+$$$
+
+This is a **third** set, neither the union nor the intersection. Equivalently, the indicator functions converge pointwise, $ \mathbf{1}_{I_n}\to\mathbf{1}_{(-\infty,0]} $ — spot-checked at $ x=-5,-1,0,\tfrac1{100},\tfrac12 $ for $ n $ near $ 900 $, where the first three give $ 1 $ and the last two give $ 0 $.
+
+The distinction matters. The union records everything that happens **ever**, the intersection everything that happens **always**, and the limit everything that happens **eventually**. Only the last is a limit in any analytic sense, and only for it is the point $ 1^{-} $ irrelevant: the numbers just below $ 1 $ belong to $ I_1 $ and to nothing else, so they enter the union but are forgotten by the limit.
+
+## Remark — De Morgan Extends to Infinite Families
+
+The complements behave exactly as the finite laws of 4.3 Problem 3 predict:
+
+$$$
+\overline{\bigcup_{n} I_n} = \bigcap_{n}\overline{I_n} , \qquad \overline{\bigcap_{n} I_n} = \bigcup_{n}\overline{I_n} .
+$$$
+
+Concretely $ \overline{\bigcup_n I_n} = [1,\infty) $, confirmed at every test point, and indeed a real number fails to lie in any $ I_n $ exactly when it is at least $ 1 $.
+
+The reason the finite proof carries over verbatim is that the element-chasing argument never counted anything. Its middle step was
+
+$$$
+\lnot\left(\exists n:\ x\in I_n\right) \iff \forall n:\ \lnot\left(x\in I_n\right) ,
+$$$
+
+the quantifier form of De Morgan's law, which holds for index sets of any size. This is the payoff of having proved 4.3 Problem 3 by equivalences rather than by truth tables: truth tables need finitely many rows, whereas the quantifier argument does not care how many $ n $ there are.
