@@ -1,0 +1,149 @@
+.docname {Solution — GIAM 4.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 1
+
+## Problem
+
+Venn diagrams are usually made using simple closed curves with no further restrictions. Try creating Venn diagrams for $ 3 $, $ 4 $ and $ 5 $ sets (in general position) using rectangular simple closed curves.
+
+## Answer
+
+Taking “rectangular” to mean sides parallel to the axes:
+
+$$$
+\boxed{
+\begin{array}{r|l}
+3 \text{ sets} & \text{possible} \\
+4 \text{ sets} & \text{possible} \\
+5 \text{ sets} & \text{impossible}
+\end{array}
+}
+$$$
+
+Explicit diagrams for $ 3 $ and $ 4 $ are given below, each checked by machine to have all $ 2^n $ regions present **and connected**. The failure at $ 5 $ is proved below and confirmed by exhaustive search.
+
+## Three Sets
+
+$$$
+\begin{aligned}
+A &= [1,6]\times[1,4], \\
+B &= [2,4]\times[2,6], \\
+C &= [3,5]\times[3,5].
+\end{aligned}
+$$$
+
+Sampling the plane on a fine grid finds all $ 8 $ regions, each a single connected piece:
+
+$$$
+\begin{array}{c|c|c|c|c|c|c|c}
+A & B & C & AB & AC & BC & ABC & \text{outside} \\ \hline
+\checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark
+\end{array}
+$$$
+
+## Four Sets
+
+$$$
+\begin{aligned}
+A &= [1,8]\times[1,5], & B &= [2,6]\times[4,6], \\
+C &= [3,5]\times[2,8], & D &= [4,7]\times[3,7].
+\end{aligned}
+$$$
+
+All $ 16 $ regions are present and connected, again verified on a fine grid. This is the case worth pausing on: **four circles cannot do this**, so the familiar three-circle picture is a limitation of circles, not of Venn diagrams.
+
+## The Picture
+
+!(80%)[Rectangular Venn diagrams for three and four sets, and why five is impossible](problem-1-rectangles.svg "A diagram in four parts. The first announces that for rectangles with sides parallel to the axes, three sets and four sets are possible but five sets are impossible, that the first two are drawn below and checked by machine, and that the reason for the third is short. The second part shows two panels. The left panel draws three axis-parallel rectangles A, B and C overlapping so that all eight regions appear, each labelled with the sets it belongs to, and notes each region is present and connected. The right panel draws four axis-parallel rectangles A, B, C and D overlapping so that all sixteen regions appear, each labelled, again all present and connected. A red band explains why five is impossible: a rectangle is an x-interval times a y-interval, so a point lies in rectangle i exactly when i belongs both to the set of x-intervals covering x and to the set of y-intervals covering y, making the region label the intersection of those two sets. To obtain the region missing only set i, both sets must contain everything but i, so that set must occur on the x-axis or the y-axis; but on one axis it is possible only if interval i has the largest left end or the smallest right end, so each axis supplies at most two such regions, at most four in all, while five sets need five. This was confirmed by exhaustive search over all 90, 2520 and 113400 interval sweeps for n equal to 3, 4 and 5, in which no sweep ever yields three. A green band explains why four is the interesting case: circles manage only three, since a fourth circle cannot meet all eight existing regions, whereas rectangles reach four, so the familiar three-overlapping-circles limit is a fact about circles and not about Venn diagrams; and the ceiling keeps moving with the shape, since ellipses reach five and general convex curves reach every n.")
+
+## Remark — An Axis-Parallel Rectangle Is Really a Pair of Intervals
+
+Everything here follows from one observation. An axis-parallel rectangle is a product,
+
+$$$
+R_i = X_i \times Y_i ,
+$$$
+
+so a point $ (x,y) $ lies in $ R_i $ exactly when $ x\in X_i $ **and** $ y\in Y_i $. Writing
+
+$$$
+S(x) = \{\, i : x\in X_i \,\} , \qquad T(y) = \{\, i : y\in Y_i \,\} ,
+$$$
+
+the set of rectangles containing $ (x,y) $ is exactly
+
+$$$
+S(x)\cap T(y) .
+$$$
+
+So the two-dimensional problem collapses into two one-dimensional ones. The diagram is a Venn diagram precisely when every subset of $ \{1,\ldots,n\} $ can be written as $ S\cap T $ for some achievable $ S $ and $ T $ — and the achievable $ S $ are just the states of a left-to-right sweep across the $ 2n $ interval endpoints.
+
+That reduction is what makes the whole question finite. There are only $ 90 $ essentially different interval sweeps for $ n=3 $, $ 2520 $ for $ n=4 $ and $ 113400 $ for $ n=5 $, so each case can be settled by enumeration rather than by drawing.
+
+## Remark — Why Five Is Impossible
+
+Fix $ i $ and consider the region belonging to every set **except** $ R_i $. Its label is $ [n]\setminus\{i\} $, and since labels are intersections,
+
+$$$
+S\cap T = [n]\setminus\{i\}
+$$$
+
+forces both $ S $ and $ T $ to contain every index other than $ i $. Each of $ S,T $ is therefore $ [n] $ or $ [n]\setminus\{i\} $, and they cannot both be $ [n] $. Hence:
+
+> For each $ i $, the set $ [n]\setminus\{i\} $ must occur as $ S(x) $ for some $ x $, or as $ T(y) $ for some $ y $.
+
+Now count how many such sets **one** axis can supply. Writing $ X_j=[a_j,b_j] $, the condition $ S(x) = [n]\setminus\{i\} $ says $ x $ lies in every interval but the $ i $-th, so
+
+$$$
+x\in\bigcap_{j\ne i}X_j = \left[\max_{j\ne i}a_j,\ \min_{j\ne i}b_j\right] \quad\text{while}\quad x\notin[a_i,b_i] .
+$$$
+
+Such an $ x $ exists only if removing $ X_i $ actually widens the intersection — that is, only if $ a_i $ is the **largest** of all the left endpoints, or $ b_i $ is the **smallest** of all the right endpoints. At most one interval can hold each of those two titles, so
+
+$$$
+\text{each axis supplies at most } 2 \text{ of the sets } [n]\setminus\{i\} .
+$$$
+
+Two axes give at most $ 4 $. For $ n=5 $ we need $ 5 $, so no arrangement of five axis-parallel rectangles is a Venn diagram. The same count kills every $ n\ge5 $, and it leaves $ n=4 $ exactly on the boundary — which is why the four-rectangle diagram above has to work as hard as it does.
+
+Exhaustive search agrees: across all $ 90 $, $ 2520 $ and $ 113400 $ sweeps for $ n=3,4,5 $, no single sweep ever produces three distinct sets of size $ n-1 $.
+
+## Remark — The Crossing Count, and Why the Ceiling Depends on the Shape
+
+There is a second, quite different obstruction that explains the familiar limits. In a simple Venn diagram every vertex is a crossing of two curves, so every vertex has degree $ 4 $ and $ E=2V $. With $ F=2^{n} $ faces, Euler's formula $ V-E+F=2 $ gives
+
+$$$
+V = 2^{n}-2 \ \text{ crossings are needed.}
+$$$
+
+How many are available depends only on how badly two curves of the given shape can cross — twice for circles, four times for ellipses, eight times for rectangles:
+
+$$$
+\begin{array}{c|r|r|r|r}
+n & \text{needed} & \text{circles} & \text{ellipses} & \text{rectangles} \\ \hline
+3 & 6 & 6 & 12 & 24 \\
+4 & 14 & 12 & 24 & 48 \\
+5 & 30 & 20 & 40 & 80 \\
+6 & 62 & 30 & 60 & 120
+\end{array}
+$$$
+
+The table reproduces two classical facts at a glance: circles die at $ n=4 $ and ellipses die at $ n=6 $, both because the supply of crossings runs out. Grünbaum's five-ellipse diagram sits at $ 30 $ needed against $ 40 $ available, comfortably inside the bound.
+
+For rectangles the count never binds — $ 80 $ against $ 30 $ at $ n=5 $ — so the obstruction proved in the previous remark is of a completely different kind. It is not that the pieces are too blunt to cut the plane enough times; it is that being a **product** of two intervals is a severe restriction on *which* patterns can appear at all.
+
+## Remark — What Changes If the Rectangles May Be Tilted
+
+The proof above uses “axis-parallel” in an essential way: the moment a rectangle is rotated it stops being $ X\times Y $, the label stops being $ S(x)\cap T(y) $, and the argument collapses. So tilted rectangles are a genuinely different question, and by the table above the crossing count permits them through $ n=5 $ and well beyond.
+
+Searching for one is another matter. Randomised hill-climbing over five tilted rectangles — both in the general $ 25 $-parameter family and in the five-fold symmetric family that works for Grünbaum's ellipses — repeatedly found configurations realising **all $ 32 $ labels**, but never with all regions connected. Every candidate that looked perfect on a coarse grid turned out, at higher resolution, to have some region broken into slivers, which disqualifies it.
+
+So the axis-parallel case is settled here and the tilted case is not. Worth noting that “all $ 2^n $ labels non-empty” and “all $ 2^n $ labels connected” are genuinely different conditions — the first alone defines an *independent family*, and the searches show it is far easier to achieve.

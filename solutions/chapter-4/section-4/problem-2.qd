@@ -1,0 +1,93 @@
+.docname {Solution — GIAM 4.4 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 2
+
+## Problem
+
+Call a curve **rectilinear** if it is made of line segments meeting at right angles. Use rectilinear simple closed curves to create a Venn diagram for $ 5 $ sets.
+
+## Answer
+
+$$$
+\boxed{\;\text{Four rectangles, plus one rectilinear curve that crosses every face exactly once.}\;}
+$$$
+
+Keep the four rectangles of 4.4 Problem 1,
+
+$$$
+\begin{aligned}
+A &= [1,8]\times[1,5], & B &= [2,6]\times[4,6], \\
+C &= [3,5]\times[2,8], & D &= [4,7]\times[3,7],
+\end{aligned}
+$$$
+
+and let $ E $ be the region enclosed by the closed rectilinear curve through the corners
+
+$$$
+\begin{array}{l}
+(7.5,\,6.5)\ (7.5,\,7.5)\ (5.5,\,7.5)\ (5.5,\,8.5)\ (2.5,\,8.5)\ (2.5,\,4.5)\ (1.5,\,4.5)\ (1.5,\,3.5) \\
+(2.5,\,3.5)\ (2.5,\,1.5)\ (4.5,\,1.5)\ (4.5,\,2.5)\ (3.5,\,2.5)\ (3.5,\,3.5)\ (4.5,\,3.5)\ (4.5,\,4.5) \\
+(3.5,\,4.5)\ (3.5,\,6.5)\ (4.5,\,6.5)\ (4.5,\,5.5)\ (5.5,\,5.5)\ (5.5,\,4.5)\ (6.5,\,4.5)\ (6.5,\,6.5)
+\end{array}
+$$$
+
+taken in that cyclic order. Every turn is a right angle, the curve is simple and closed, and it consists of $ 34 $ unit segments meeting at $ 24 $ corners.
+
+Sampling the plane on a grid of spacing $ \tfrac{1}{24} $ finds all $ 32 $ regions present, each a single connected piece.
+
+## The Idea
+
+The four-rectangle diagram already divides the plane into $ 2^{4}=16 $ faces. To turn it into a five-set diagram, every one of those faces must be split into two — a part inside the new set and a part outside — and both parts must be non-empty and connected.
+
+> **Observation.** A single arc crossing a disc cuts it into two discs.
+
+So it suffices that the boundary of $ E $ meet each face in **exactly one arc**. Reading off the order in which the curve meets the faces, this says the faces form a cycle in which consecutive faces share a border — that is, a **Hamiltonian cycle** in the face-adjacency graph.
+
+For the four-rectangle diagram that graph has $ 16 $ vertices with degrees $ 3 $ and $ 4 $, and a Hamiltonian cycle exists. One is
+
+$$$
+\begin{aligned}
+\varnothing &\to B \to AB \to A \to AC \to ACD \to ABCD \to ABC \\
+&\to BC \to C \to CD \to BCD \to BD \to ABD \to AD \to D \to \varnothing .
+\end{aligned}
+$$$
+
+Tracing a rectilinear curve that passes through the faces in this order, and closing it up, produces the curve listed above.
+
+## The Picture
+
+!(78%)[The tour of the sixteen faces, and the resulting five-set diagram](problem-2-rectilinear.svg "A diagram in four parts. The first announces five sets from four by adding one snaking curve, states that a closed curve crossing every face exactly once doubles the number of regions from 16 to 32, and notes the curve has 34 unit segments and 24 right-angle corners with all 32 regions verified present and connected. The second part shows two panels. The left panel, headed step one, draws the four axis-parallel rectangles A, B, C and D with each of the sixteen faces numbered 1 to 16 in purple, and a dashed purple rectilinear route threading through them in that order before closing up; the caption says the dashed route enters each face once then closes up. The right panel, headed step two, draws the same four rectangles with the route now filled in as a solid purple rectilinear region labelled E, and the caption notes four rectangles plus one rectilinear curve give 32 regions. A green band explains why crossing each face once is exactly the right condition: a single arc through a disc cuts it into two discs, so if the boundary of E crosses a face in one arc, that face splits into the part inside E and the part outside, both non-empty and both connected, which is precisely what a Venn diagram needs. Crossing every face exactly once means the faces, in the order the curve meets them, form a Hamiltonian cycle in the graph whose vertices are faces and whose edges join faces sharing a border; for the four-rectangle diagram that graph has 16 vertices with degrees 3 and 4, and a cycle was found by search. An orange band explains why a rectangle could not have done this: a rectangle has only four sides, and a straight side meets a convex region at most twice, so it cannot weave through sixteen faces. Being allowed as many right-angle turns as we like is the whole difference, and it is why Problem 1 stopped at four while this construction keeps going for every n.")
+
+## Remark — What the Extra Corners Buy
+
+4.4 Problem 1 showed that five **rectangles** with sides parallel to the axes cannot work: a rectangle is a product $ X\times Y $, every region label is forced to be $ S(x)\cap T(y) $, and the sets $ [n]\setminus\{i\} $ run out. A rectilinear curve is still made of horizontal and vertical segments, so nothing has changed about the *directions* available — what has changed is that the curve is no longer the boundary of a product.
+
+The concrete difference is the number of times a single curve can cross the rest of the picture. A rectangle has four sides, and a straight segment enters and leaves a convex region at most twice, so a rectangle's boundary simply cannot visit sixteen faces. The curve $ E $ above turns twenty-four times, and each turn is free.
+
+Worth noting what is *not* needed: no curve here is convex, but no curve is especially wild either. $ E $ is an ordinary staircase-like polygon, and the only property used in the proof is that its boundary meets each old face in one arc.
+
+## Remark — The Construction Continues Forever
+
+Nothing in the argument is special to $ n=5 $. Given any Venn diagram for $ n $ sets whose face-adjacency graph has a Hamiltonian cycle, threading a new curve along that cycle produces a Venn diagram for $ n+1 $ sets, with $ 2^{n}\to 2^{n+1} $ regions. Since the new curve may turn as often as it likes, it can always be drawn rectilinearly.
+
+For the diagrams arising this way the face-adjacency graph is Hamiltonian, so the recursion never stalls. That is the standard proof that Venn diagrams exist for **every** $ n $, and it explains the asymmetry with Problem 1: fixing the *shape* of the curves imposes a ceiling, fixing only the *directions* of their edges does not.
+
+The price is drawing complexity, not possibility: each new curve visits twice as many faces, so its corner count roughly doubles. The pictures stop being readable long before they stop existing.
+
+## Remark — How the Construction Was Checked
+
+Two things had to be confirmed, and neither is visible by eye.
+
+First, that the curve really is **simple**: it was built as a cycle of $ 34 $ distinct unit cells, consecutive cells sharing an edge, so it cannot touch or cross itself.
+
+Second, that all $ 32 $ regions are present **and connected**. The plane was sampled on a grid of spacing $ \tfrac{1}{24} $ over $ [-1,10]^{2} $, each point labelled by which of the five sets contain it, and a flood fill run on each label. All $ 32 $ appeared, each a single component, and the smallest occupies a comfortable area rather than a sliver.
+
+That second check is the one that matters. In 4.4 Problem 1, tilted-rectangle searches repeatedly gave all $ 32 $ labels non-empty with several broken into pieces — an *independent family*, not a Venn diagram. Having the labels appear is the easy half.

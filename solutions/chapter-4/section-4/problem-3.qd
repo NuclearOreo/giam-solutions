@@ -1,0 +1,108 @@
+.docname {Solution — GIAM 4.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 3
+
+## Problem
+
+Argue as to why rectilinear curves will suffice to build any Venn diagram.
+
+## Answer
+
+$$$
+\boxed{\;\text{Pixelate: replace each curve by the outline of the grid squares it covers.}\;}
+$$$
+
+Given **any** Venn diagram, lay a square grid over it and declare a grid square to belong to set $ i $ when its centre does. Each set becomes a union of squares, and the boundary of a union of squares is made of horizontal and vertical segments meeting at right angles — a rectilinear curve. Provided the mesh is fine enough and the grid is placed generically, no region is lost or broken, so the new picture is a Venn diagram for the same $ n $.
+
+Since Venn diagrams exist for every $ n $, rectilinear ones do too.
+
+## Why No Region Is Lost
+
+Let $ D $ be a Venn diagram with curves $ C_1,\ldots,C_n $, and let $ R_S $ be its region with label $ S $, for each of the $ 2^{n} $ subsets $ S $.
+
+> Each $ R_S $ is a non-empty **open** set, so it contains a disc. Let $ \rho $ be the smallest of the $ 2^{n} $ radii, and take a grid of mesh $ h < \rho/2 $.
+>
+> Then every $ R_S $ contains a grid square whose centre lies in $ R_S $. That square is assigned exactly the label $ S $, so the pixelated region with label $ S $ is non-empty.
+
+That is the whole of the existence half, and it is why the argument does not care what the original curves looked like: only that each region has some room in it.
+
+Connectivity needs the same kind of remark. A connected open region cannot be split by a fine enough grid, because any two of its points are joined by a path inside it, and that path has some positive clearance from the boundary; once $ h $ is below that clearance the chain of squares along the path stays inside the region and joins the two endpoints.
+
+## What the Grid Must Avoid
+
+There is one genuine obstacle, and it is worth stating because it is easy to miss.
+
+Two squares of the same region may meet **only at a corner**. When that happens the region falls into two pieces, and — just as badly — the outline of the set is no longer a *simple* closed curve, since it passes through that corner twice.
+
+This is not hypothetical. Pixelating the standard three-circle diagram with the grid anchored at the origin:
+
+$$$
+\begin{array}{c|l}
+h = 0.8 & \text{region } AC \text{ is lost} \\
+h = 0.5,\ 0.4,\ 0.3,\ 0.25,\ 0.2 & \text{valid} \\
+h = 0.15 & \text{region } AB \text{ splits into two} \\
+h = 0.1 & \text{valid}
+\end{array}
+$$$
+
+The failure at $ h=0.15 $ is exactly a corner pinch: recounting with diagonal adjacency allowed, the region is connected again, which is the signature of two squares touching at a point. Shifting the grid by $ (0.031,\,0.017) $ — or by any of several other small offsets tried — repairs it.
+
+So the correct statement is “fine enough **and** generically placed”. Only finitely many placements of the grid put a corner exactly where it does damage, so almost every offset works, and the bad ones thin out as $ h $ shrinks: sampling random offsets gave $ 10 $ of $ 12 $ valid at $ h=0.4 $, $ 11 $ of $ 12 $ at $ h=0.15 $, and $ 12 $ of $ 12 $ at $ h=0.1 $.
+
+## The Picture
+
+The left panel below is an ordinary three-circle diagram; the right is the same diagram after pixelation, with every curve replaced by a staircase. The eight regions survive intact.
+
+!(76%)[Pixelating the three-circle diagram, and threading a sixth curve](problem-3-rectilinear-suffice.svg "A diagram in five parts. The first says two arguments answer different questions: pixelating shows any diagram can be redrawn rectilinearly, while threading shows rectilinear diagrams can be built for every n; the first converts what already exists and the second produces them from scratch, and both are checked. The second part shows two panels side by side. The left panel draws the ordinary three-circle Venn diagram with circles A, B and C and its eight regions. The right panel draws the same diagram pixelated on a square grid, so that each circle has become a staircase-shaped region with a rectilinear boundary, and all eight regions survive. A green band explains pixelation: a square belongs to set i when its centre does, so the new boundaries are staircases and therefore rectilinear; every region contains a disc, so once the mesh is smaller than that disc the region keeps a square and no region is lost. It notes that for the three circles, meshes from 0.5 down to 0.1 all worked except one, since at mesh 0.15 two squares of one region met only at a corner and split it, and a tiny shift of the grid repaired it; a small picture beside the text shows two purple squares meeting diagonally at a single point, marked pinch. An orange band explains that fine enough is not quite enough, the grid must also be generic: a corner touch is fatal twice over, since the region falls apart and the outline is no longer a simple curve. Only finitely many grid placements produce one, so almost every offset avoids it, and sampling twelve random offsets gave ten of twelve working at mesh 0.4, eleven of twelve at mesh 0.15 and twelve of twelve at mesh 0.1, so bad placements thin out as the mesh shrinks. A blue band describes threading, the construction of Problem 2 run again: a curve crossing every face once doubles the region count, and applied to the five-set diagram, whose 32 faces form a graph of degrees 3, 4 and 5, a Hamiltonian cycle was found and threading it gave a six-set diagram with 64 regions, all present and all connected, verified at spacing one twenty-eighth. The corners used were 4, 4, 4 and 4 for the rectangles, then 24 for the fifth curve and 52 for the sixth.")
+
+## Remark — Why This Does Not Contradict Problem 1
+
+4.4 Problem 1 proved that five axis-parallel **rectangles** can never form a Venn diagram. Pixelation produces axis-parallel edges too, so the two results sit uncomfortably close together until one notices what is actually being restricted.
+
+$$$
+\begin{array}{l|l}
+\text{a rectangle} & \text{fixes the \textbf{shape}: exactly four sides} \\
+\text{a rectilinear curve} & \text{fixes only the \textbf{directions} of the sides}
+\end{array}
+$$$
+
+A shape restriction is a real constraint: it caps how often one curve can cross the rest of the picture, and Problem 1's five-set count fails for exactly that reason. A direction restriction is not, because nothing limits how many segments a curve may have. Pixelating a curve typically turns four sides into hundreds, and that is the entire content of the argument.
+
+Put another way, rectilinearity is a restriction on the *local* appearance of a curve and carries no *global* information. The pixelated diagram is as complicated as the original was; it has merely been redrawn on graph paper.
+
+## Remark — The Constructive Alternative, and How Far It Was Pushed
+
+Pixelation converts diagrams that already exist. The construction of 4.4 Problem 2 builds them from nothing, and it is worth checking that it keeps going rather than stalling at five.
+
+Recall the step: a new closed curve crossing every face exactly once splits each face in two, doubling $ 2^{n} $ to $ 2^{n+1} $. That requires the faces, in the order the curve meets them, to form a Hamiltonian cycle in the face-adjacency graph.
+
+Running it once more on the five-set diagram of Problem 2:
+
+$$$
+\begin{array}{l|l}
+\text{faces of the 5-set diagram} & 32, \text{ each label a single face} \\
+\text{face-graph degrees} & 3,\ 4 \text{ and } 5 \\
+\text{Hamiltonian cycle} & \text{found by search} \\
+\text{result} & 64 \text{ regions, all present and connected}
+\end{array}
+$$$
+
+verified by sampling at spacing $ \tfrac{1}{28} $. The corner counts of the six curves are $ 4,4,4,4 $, then $ 24 $, then $ 52 $ — roughly doubling each step, as the doubling of faces to visit demands.
+
+The two arguments answer different questions, and it is worth keeping them apart. Pixelation shows rectilinear curves lose no *expressive power*: anything drawable is drawable on graph paper. Threading shows they lose no *reach*: diagrams can be constructed for arbitrarily large $ n $ without ever leaving the grid. Only the second needs Venn diagrams to exist in the first place to be doing any work — and it supplies them itself.
+
+## Remark — The Same Argument Proves Rather More
+
+Nothing in the pixelation argument used the word “Venn”. What was used is only that the picture is a finite family of curves cutting the plane into finitely many open regions, and that one wants those regions preserved.
+
+So the same argument shows that **any** arrangement of finitely many curves can be redrawn rectilinearly with its combinatorial structure intact: the same regions, the same adjacencies, the same containments. A Venn diagram is just the special case in which the regions number $ 2^{n} $ and carry all possible labels.
+
+Two caveats are worth keeping. The curves must be tame enough to pixelate sensibly — polygonal is plenty, and a Venn diagram may always be taken polygonal to begin with. And the conclusion is topological, not metric: the staircase version has the same regions, but it is longer, uglier, and no longer convex even when the original was. Problem 1's four-rectangle diagram is far prettier than anything pixelation would produce — the usual trade between a construction that is guaranteed and one that is good.

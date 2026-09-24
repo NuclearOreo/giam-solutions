@@ -1,0 +1,108 @@
+.docname {Solution — GIAM 4.4 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 4
+
+## Problem
+
+Find the disjunctive normal form of $ A\cap\left(B\cup C\right) $.
+
+## Answer
+
+$$$
+\boxed{\;A\cap\left(B\cup C\right) \;=\; \left(A\cap B\cap C\right)\ \cup\ \left(A\cap B\cap\overline{C}\right)\ \cup\ \left(A\cap\overline{B}\cap C\right)\;}
+$$$
+
+Checked against $ A\cap\left(B\cup C\right) $ for all $ 262144 $ triples of subsets of a six-element universe.
+
+## Working
+
+With three sets the universe splits into $ 2^{3}=8 $ **atoms**, one for each way of choosing $ A $ or $ \overline{A} $, then $ B $ or $ \overline{B} $, then $ C $ or $ \overline{C} $. These are exactly the eight regions of the three-circle Venn diagram, and they partition the universe. The disjunctive normal form of a set is simply the union of the atoms it contains, so the task is to test the eight atoms one at a time.
+
+An atom lies in $ A\cap\left(B\cup C\right) $ when it is inside $ A $ **and** inside at least one of $ B $, $ C $:
+
+$$$
+\begin{array}{c|c|c|c}
+\text{atom} & \subseteq A\,? & \subseteq B\cup C\,? & \text{in } A\cap(B\cup C)\,? \\ \hline
+A\cap B\cap C & \text{yes} & \text{yes} & \textbf{yes} \\
+A\cap B\cap\overline{C} & \text{yes} & \text{yes} & \textbf{yes} \\
+A\cap\overline{B}\cap C & \text{yes} & \text{yes} & \textbf{yes} \\
+A\cap\overline{B}\cap\overline{C} & \text{yes} & \text{no} & \text{no} \\
+\overline{A}\cap B\cap C & \text{no} & \text{yes} & \text{no} \\
+\overline{A}\cap B\cap\overline{C} & \text{no} & \text{yes} & \text{no} \\
+\overline{A}\cap\overline{B}\cap C & \text{no} & \text{yes} & \text{no} \\
+\overline{A}\cap\overline{B}\cap\overline{C} & \text{no} & \text{no} & \text{no}
+\end{array}
+$$$
+
+Three atoms survive, and their union is the answer above. Every atom containing $ \overline{A} $ is killed by the first column, and the single remaining casualty is $ A\cap\overline{B}\cap\overline{C} $ — the part of $ A $ that meets neither $ B $ nor $ C $.
+
+## The Picture
+
+The three shaded regions below are precisely the three terms of the answer.
+
+!(74%)[The eight atoms of the three-circle diagram, with the three belonging to the answer shaded](problem-4-dnf.svg "A diagram in three parts. The first states that the disjunctive normal form is the list of shaded atoms, gives the answer that A intersect B union C equals the union of three atoms, namely A intersect B intersect C, A intersect B intersect the complement of C, and A intersect the complement of B intersect C, and notes this was checked against the original expression for all 262144 triples of subsets of a six-element universe. The second part draws a three-circle Venn diagram with circles A, B and C, all eight regions labelled by which sets they lie in, using an overbar for complement. The three atoms belonging to the answer are shaded purple: the central region where all three meet, the region in A and B but not C, and the region in A and C but not B. The remaining five regions are left unshaded, including the part of A meeting neither B nor C. The third part is a table of the eight atoms recording for each whether it lies in A, whether it lies in B union C, and whether it therefore lies in A intersect B union C; exactly the first three rows answer yes. A green band explains that a sum of products is not yet a normal form: distributivity from 4.3 Problem 7 gives A intersect B union C equal to A intersect B, union A intersect C, which is a union of intersections but not of atoms, and the two pieces overlap. It shows that A intersect B splits into the atoms A B C and A B not-C, while A intersect C splits into A B C and A not-B C, so the atom A B C is listed twice. Splitting into atoms removes the duplicate and leaves three disjoint pieces, so their sizes simply add, as verified, with no inclusion and exclusion correction needed.")
+
+## Remark — Why “Normal Form” Deserves the Name
+
+The eight atoms **partition** the universe, and that single fact is what makes the form canonical. Any set built from $ A $, $ B $, $ C $ using $ \cap $, $ \cup $, $ \setminus $ and complement is a union of atoms; and since the atoms are disjoint, the collection of atoms it contains is determined by the set itself, not by the expression used to write it.
+
+Two consequences follow immediately.
+
+First, **equality becomes mechanical**. To decide whether two expressions describe the same set, reduce both to disjunctive normal form and compare the lists of atoms. No ingenuity is required, and no Venn diagram need be drawn — which is the same service truth tables perform for propositions in Chapter 2, and for the same reason.
+
+Second, **counting becomes easy**. With three sets there are $ 8 $ atoms, so a set is specified by choosing a subset of them:
+
+$$$
+2^{2^{3}} = 256
+$$$
+
+distinct sets can be written using $ A $, $ B $, $ C $ and the Boolean operations. The answer above is one of them, the one whose atom-set has three members.
+
+## Remark — A Sum of Products Is Not Yet a Normal Form
+
+Distributivity, proved in 4.3 Problem 7, already rewrites the expression as a union of intersections:
+
+$$$
+A\cap\left(B\cup C\right) = \left(A\cap B\right)\cup\left(A\cap C\right) .
+$$$
+
+It is tempting to call this the disjunctive normal form, and it is not. The terms $ A\cap B $ and $ A\cap C $ are not atoms — each mentions only two of the three sets, and so each splits further:
+
+$$$
+\begin{aligned}
+A\cap B &= \left(A\cap B\cap C\right)\cup\left(A\cap B\cap\overline{C}\right), \\
+A\cap C &= \left(A\cap B\cap C\right)\cup\left(A\cap\overline{B}\cap C\right).
+\end{aligned}
+$$$
+
+Taking the union and discarding the repeat gives the three atoms of the answer. The repeat is the point: $ A\cap B $ and $ A\cap C $ **overlap**, in $ A\cap B\cap C $, so the distributive form is a union of two pieces that are not disjoint.
+
+The canonical form has no such defect. Its three terms are pairwise disjoint — verified — so sizes add without correction:
+
+$$$
+\left|A\cap\left(B\cup C\right)\right| = \left|A\cap B\cap C\right| + \left|A\cap B\cap\overline{C}\right| + \left|A\cap\overline{B}\cap C\right| ,
+$$$
+
+also verified over all $ 262144 $ triples, whereas counting from $ \left(A\cap B\right)\cup\left(A\cap C\right) $ requires subtracting $ \left|A\cap B\cap C\right| $ by inclusion–exclusion. This is the same advantage that made part **b** of 4.3 Problem 3 worth having: a disjoint decomposition is worth more than a short one.
+
+## Remark — The Same Notion in Logic
+
+Under the dictionary of Chapter 2 the construction is familiar. Writing $ p $ for “$ x\in A $” and so on, the answer reads
+
+$$$
+p\land\left(q\lor r\right) \;\equiv\; \left(p\land q\land r\right)\lor\left(p\land q\land\lnot r\right)\lor\left(p\land\lnot q\land r\right) ,
+$$$
+
+which is the **disjunctive normal form** of a proposition: a disjunction of conjunctions, each conjunction mentioning every variable exactly once, either plain or negated. An atom of the Venn diagram is a row of the truth table, and the disjunctive normal form is the list of rows on which the proposition is true.
+
+Seen that way the existence of the form is obvious: a proposition is determined by the rows where it holds, so listing them reconstructs it. That is precisely why the atoms have to mention **all** the variables — a row of a truth table specifies every variable, and a term mentioning only two of three would cover two rows rather than one.
+
+The dual construction exists as well. Listing the rows where the proposition is *false*, negating each, and taking the intersection gives the **conjunctive** normal form. For this problem the false rows number five, so the conjunctive form has five factors and is the clumsier of the two — a reminder that “normal” means canonical, not short.

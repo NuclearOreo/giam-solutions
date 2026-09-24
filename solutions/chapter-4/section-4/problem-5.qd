@@ -1,0 +1,116 @@
+.docname {Solution — GIAM 4.4 Problem 5}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 5
+
+## Problem
+
+Find the disjunctive normal form of $ \left(A\,\triangle\,B\right)\triangle\,C $.
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+\left(A\,\triangle\,B\right)\triangle\,C \;=\;
+&\left(A\cap B\cap C\right) \ \cup\ \left(A\cap\overline{B}\cap\overline{C}\right) \\
+\cup\ &\left(\overline{A}\cap B\cap\overline{C}\right) \ \cup\ \left(\overline{A}\cap\overline{B}\cap C\right)
+\end{aligned}
+}
+$$$
+
+These are exactly the four atoms lying in an **odd** number of the three sets. Checked against $ \left(A\,\triangle\,B\right)\triangle\,C $ for all $ 262144 $ triples of subsets of a six-element universe.
+
+## Working
+
+As in 4.4 Problem 4, test the eight atoms one at a time. Recall that $ X\,\triangle\,Y $ holds for the elements in exactly one of $ X $, $ Y $, so membership in $ \left(A\,\triangle\,B\right)\triangle\,C $ is computed by applying that rule twice.
+
+$$$
+\begin{array}{c|c|c|c}
+\text{atom} & \text{in } A\,\triangle\,B\,? & \text{in } C\,? & \text{in } \left(A\,\triangle\,B\right)\triangle\,C\,? \\ \hline
+A\cap B\cap C & \text{no} & \text{yes} & \textbf{yes} \\
+A\cap B\cap\overline{C} & \text{no} & \text{no} & \text{no} \\
+A\cap\overline{B}\cap C & \text{yes} & \text{yes} & \text{no} \\
+A\cap\overline{B}\cap\overline{C} & \text{yes} & \text{no} & \textbf{yes} \\
+\overline{A}\cap B\cap C & \text{yes} & \text{yes} & \text{no} \\
+\overline{A}\cap B\cap\overline{C} & \text{yes} & \text{no} & \textbf{yes} \\
+\overline{A}\cap\overline{B}\cap C & \text{no} & \text{yes} & \textbf{yes} \\
+\overline{A}\cap\overline{B}\cap\overline{C} & \text{no} & \text{no} & \text{no}
+\end{array}
+$$$
+
+Reading off the four surviving rows gives the answer. Comparing the first and last columns reveals the pattern: an atom is in exactly when it lies in an **odd number** of $ A $, $ B $, $ C $ — counts $ 3,1,1,1 $ for the four survivors and $ 2,2,2,0 $ for the rest. Verified as a characterisation over all $ 262144 $ triples.
+
+## The Picture
+
+!(74%)[The eight atoms with their membership counts, and the four odd ones shaded](problem-5-parity.svg "A diagram in three parts. The first states that the triple symmetric difference is a parity test, gives the answer as the union of four atoms, namely A intersect B intersect C, A intersect the complements of B and C, the complement of A intersect B intersect the complement of C, and the complements of A and B intersect C, and notes these are exactly the atoms lying in an odd number of the three sets, checked over 262144 triples. The second part draws a three-circle Venn diagram with circles A, B and C labelled outside the circles, with every one of the eight regions marked by its atom name and, beneath it, the number of the three sets it lies in. The four regions with an odd count are shaded purple: the central region where all three meet, counting three, and the three outer crescents belonging to just one circle each, counting one. The four even regions, the three two-circle lenses counting two and the outside region counting zero, are left unshaded. The third part is a table of the eight atoms recording how many of A, B and C each lies in, marked odd or even, and whether it therefore lies in the triple symmetric difference; the four odd rows answer yes. A green band explains that this one cannot be shortened. In Problem 4 the three atoms could be merged, since A intersect B intersect C and A intersect B intersect the complement of C glue into the single term A intersect B. Here nothing glues, because two atoms merge only when they differ in one letter, and flipping one letter changes the parity, so the partner is always an atom that is out. This was checked by enumerating every product of literals for n equal to 3 and 4: each one that fits inside the set covers just a single atom. So the four terms are forced, and for n sets the shortest form needs all two-to-the-n-minus-one odd atoms.")
+
+## Remark — Symmetric Difference Counts Parity
+
+The pattern found in the table is not an accident of three sets. Since $ \triangle $ is associative — verified in 4.3 Problem 1, and re-checked here — the expression may be written without brackets, and
+
+$$$
+A_1\,\triangle\,A_2\,\triangle\,\cdots\,\triangle\,A_n = \left\{\, x \;:\; x \text{ lies in an odd number of the } A_i \,\right\} .
+$$$
+
+The reason is visible one set at a time: forming $ \triangle\,A_{k} $ flips membership for exactly the points of $ A_k $, so after all $ n $ steps a point has been flipped once for each set containing it. Starting from “out”, it ends “in” precisely when the number of flips is odd.
+
+This is the set-theoretic face of the bitstring picture from 4.3 Problem 1: $ \triangle $ is XOR, and the XOR of $ n $ bits is their sum modulo $ 2 $.
+
+Two consequences are worth recording. The disjunctive normal form always contains **exactly half** the atoms,
+
+$$$
+\begin{array}{c|c|c}
+n & \text{atoms} & \text{odd atoms} \\ \hline
+3 & 8 & 4 \\
+4 & 16 & 8 \\
+5 & 32 & 16
+\end{array}
+$$$
+
+since flipping the first letter is a bijection between odd atoms and even ones. And counting the whole set requires signs that grow:
+
+$$$
+\left|A\,\triangle\,B\,\triangle\,C\right| = |A|+|B|+|C| - 2\left(|A\cap B|+|A\cap C|+|B\cap C|\right) + 4\,|A\cap B\cap C| ,
+$$$
+
+verified over all $ 262144 $ triples. The coefficients $ 1,-2,4 $ replace the $ 1,-1,1 $ of ordinary inclusion–exclusion, because an element in $ k $ of the sets must be counted once when $ k $ is odd and zero times when $ k $ is even.
+
+## Remark — Why This Normal Form Cannot Be Shortened
+
+In 4.4 Problem 4 the canonical form was longer than necessary: its first two atoms differ only in the last letter,
+
+$$$
+\left(A\cap B\cap C\right)\cup\left(A\cap B\cap\overline{C}\right) = A\cap B ,
+$$$
+
+so the three-atom form collapses to the two-term $ \left(A\cap B\right)\cup\left(A\cap\overline{B}\cap C\right) $. Nothing of the kind happens here.
+
+> Two atoms merge exactly when they differ in a single letter. But flipping one letter changes the membership count by one, hence changes its parity. So the partner of an odd atom is always an **even** atom, which is not in the set.
+
+Every pair of terms is therefore un-mergeable, and the same obstruction blocks larger merges. Enumerating all $ 3^{n} $ products of literals for $ n=3 $ and $ n=4 $ confirms it: every product that fits inside the set covers exactly **one** atom, never two or more.
+
+So the four terms above are not merely canonical but **minimal**, and in general a symmetric difference of $ n $ sets needs all $ 2^{n-1} $ odd atoms. This is the set-theoretic version of a well-known fact about parity: it is the standard example of a Boolean function whose shortest disjunctive normal form is exponentially long, even though the expression $ A\,\triangle\,B\,\triangle\,C $ that defines it is tiny.
+
+The moral is worth stating plainly. A normal form is canonical, which makes it good for **deciding** equality, and it is often terrible for **writing** things down. Problem 4's expression shrank when put in normal form; this one grew from three symbols to four three-fold intersections, and no cleverness can shrink it back.
+
+## Remark — The Picture Explains the Symmetry
+
+Shading the four odd atoms produces a figure invariant under every permutation of $ A $, $ B $, $ C $ — the centre plus the three outer crescents — and that symmetry is forced, since “lies in an odd number of them” does not care which sets they are.
+
+Contrast 4.4 Problem 4, whose shaded region singled out $ A $ and treated $ B $ and $ C $ alike: its expression $ A\cap\left(B\cup C\right) $ is symmetric in $ B $ and $ C $ only. In general the symmetry group of the expression is visible directly in the shading, and for $ \triangle $ it is the full symmetric group.
+
+One further reading. The four shaded regions are the centre, of count $ 3 $, and three crescents, of count $ 1 $ — so the set is
+
+$$$
+\left(A\cap B\cap C\right)\ \cup\ \left[\text{the part of the picture covered exactly once}\right] ,
+$$$
+
+which is a compact description that generalises: $ \triangle $ of $ n $ sets is the union of the layers $ 1,3,5,\ldots $ of the picture. The layers of even index are precisely what $ \triangle $ throws away, and that is the whole content of the normal form.

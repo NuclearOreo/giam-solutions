@@ -1,0 +1,104 @@
+.docname {Solution — GIAM 4.4 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 7
+
+## Problem
+
+Use Venn diagrams to convince yourself of the validity of
+
+$$$
+\left(A\cap B\right)\cup\left(C\cap D\right) \ \subseteq\ \left(A\cup C\right)\cap\left(B\cup D\right) ,
+$$$
+
+then prove it.
+
+## Answer
+
+$$$
+\boxed{\;\text{Two cases, each using only } X\cap Y\subseteq X \text{ and } X\subseteq X\cup Y.\;}
+$$$
+
+The containment was checked over all $ 32^{4} = 1048576 $ quadruples of subsets of a five-element universe, and it holds every time. The reverse containment fails.
+
+## The Proof
+
+> **Theorem.** $ \left(A\cap B\right)\cup\left(C\cap D\right) \subseteq \left(A\cup C\right)\cap\left(B\cup D\right) $.
+>
+> **Proof.** Let $ x $ be a particular but arbitrarily chosen element of $ \left(A\cap B\right)\cup\left(C\cap D\right) $. By the definition of $ \cup $, either $ x\in A\cap B $ or $ x\in C\cap D $, so we argue by cases.
+>
+> **Case 1: $ x\in A\cap B $.** Then $ x\in A $ and $ x\in B $. From $ x\in A $ we get $ x\in A\cup C $; from $ x\in B $ we get $ x\in B\cup D $. Hence $ x\in\left(A\cup C\right)\cap\left(B\cup D\right) $.
+>
+> **Case 2: $ x\in C\cap D $.** Then $ x\in C $ and $ x\in D $. From $ x\in C $ we get $ x\in A\cup C $; from $ x\in D $ we get $ x\in B\cup D $. Hence again $ x\in\left(A\cup C\right)\cap\left(B\cup D\right) $.
+>
+> The cases are exhaustive, so $ x $ lies in the right-hand side either way. As $ x $ was arbitrary, the containment holds. $ \blacksquare $
+
+Notice how little the proof uses. In each case it takes the two halves of an intersection and feeds each into a union — nothing more.
+
+## The Picture
+
+Four sets need four curves, and circles cannot manage four, so the diagram below is the four-rectangle Venn diagram constructed in 4.4 Problem 1.
+
+!(76%)[The two sides shaded on the four-rectangle Venn diagram](problem-7-containment.svg "A diagram in four parts. The first says four sets need four rectangles since circles cannot do it, states the containment that A intersect B, union C intersect D, is contained in A union C, intersect B union D, and notes the diagram is the one built in 4.4 Problem 1 and the containment was checked over all 1048576 quadruples. The second part shows two panels, each drawing the same four axis-parallel rectangles A, B, C and D. In the left panel the atoms belonging to A intersect B, union C intersect D, are shaded purple, seven of the sixteen atoms. In the right panel the atoms belonging to A union C, intersect B union D, are shaded, being the same seven in purple plus two more highlighted in orange, nine in total. An orange band explains that the gap is exactly the two cross terms: distributivity expands the right-hand side into four products while the left keeps only two, namely A intersect B, C intersect D, and additionally A intersect D and C intersect B. So the containment is strict, and the two orange atoms are A intersect D with B and C absent, and B intersect C with A and D absent, so a point in A and D alone satisfies the right side and fails the left. The smallest counterexample found by search has A and D empty and B and C both equal to the set containing zero, making the right side that set and the left side empty. A green band explains that the proof uses less than you might think: only two facts are needed, that a set contains its intersections and is contained in its unions, with no distributivity, no complements and no counting. As a test, in the lattice of subspaces of the plane over the two-element field the distributive laws of 4.3 Problems 7 and 8 both fail, yet this containment still holds for all 625 quadruples of subspaces, as verified.")
+
+## Remark — The Containment Is Strict, and the Gap Is Named
+
+Expanding the right-hand side with distributivity (4.3 Problem 7) turns it into four products:
+
+$$$
+\left(A\cup C\right)\cap\left(B\cup D\right) = \left(A\cap B\right)\cup\left(A\cap D\right)\cup\left(C\cap B\right)\cup\left(C\cap D\right) ,
+$$$
+
+verified over all $ 1048576 $ quadruples. The left-hand side is the union of the **first and last** of these. So the two sides differ by exactly the two **cross terms**
+
+$$$
+A\cap D \qquad\text{and}\qquad C\cap B ,
+$$$
+
+also verified. Since those need not be empty, the containment is generally strict. Counting atoms of the four-set diagram makes the gap precise:
+
+$$$
+\begin{array}{l|c}
+\left(A\cap B\right)\cup\left(C\cap D\right) & 7 \text{ of the } 16 \text{ atoms} \\
+\left(A\cup C\right)\cap\left(B\cup D\right) & 9 \text{ of the } 16 \text{ atoms}
+\end{array}
+$$$
+
+The two extra atoms are $ A\cap\overline{B}\cap\overline{C}\cap D $ and $ \overline{A}\cap B\cap C\cap\overline{D} $ — a point belonging to $ A $ and $ D $ only, and one belonging to $ B $ and $ C $ only. Either one refutes the reverse containment, and the smallest counterexample found by search is the second: $ A=D=\varnothing $, $ B=C=\{0\} $, where the right-hand side is $ \{0\} $ and the left-hand side is empty.
+
+The pairing is what the notation hides. The left side insists on matching $ A $ with $ B $, or $ C $ with $ D $; the right side is content with any of the four pairings. Losing information about which set supplied which half is precisely what makes the inclusion one-way.
+
+## Remark — The Proof Uses Less Than the Distributive Laws
+
+It is tempting to reach for distributivity, as the previous remark did, but the proof above needs none. Every step is one of
+
+$$$
+X\cap Y\subseteq X , \qquad X\subseteq X\cup Y ,
+$$$
+
+together with the fact that $ \subseteq $ is transitive. Neither complementation nor distributivity nor counting appears anywhere.
+
+That is worth testing rather than merely asserting. In the lattice of subspaces of $ \mathbb{F}_2^{\,2} $ — meet is intersection, join is the sum of subspaces — both distributive laws of 4.3 Problems 7 and 8 **fail**, as shown there. Yet running the statement over all $ 5^{4}=625 $ quadruples of subspaces of that lattice:
+
+$$$
+\left(a\wedge b\right)\vee\left(c\wedge d\right) \ \le\ \left(a\vee c\right)\wedge\left(b\vee d\right)
+$$$
+
+holds every time. Verified. So this containment is a fact about **order alone**, true in any lattice whatever, while the identities of 4.3 Problems 7 and 8 genuinely require distributivity.
+
+This also explains why the statement is a containment rather than an equality. An equality would pin down the two sides exactly, and that needs distributivity to expand the right-hand side; a containment needs only that each piece of the left is small enough to fit.
+
+## Remark — Reading It Off the Diagram
+
+The picture does convince, and it is worth saying what “convince” amounts to here. Shading the left-hand side lights up seven atoms; shading the right-hand side lights up the same seven and two more. Since no atom is lit on the left and dark on the right, the containment holds — and since two are lit only on the right, it is strict.
+
+That is a complete argument, not merely a suggestion, **provided** the diagram really shows all $ 2^{4}=16 $ atoms. This is exactly why 4.4 Problem 1 mattered: with four circles the picture would be missing regions, and a missing region is precisely where a counterexample could hide unnoticed. A Venn diagram is only a proof device when it is a genuine Venn diagram.
+
+For five or more sets the same reasoning still works in principle, using the rectilinear diagrams of 4.4 Problems 2 and 3, but the pictures become unreadable long before they become wrong. At that point the two-case proof above, which never mentions how many atoms there are, is the better tool.

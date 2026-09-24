@@ -1,0 +1,123 @@
+.docname {Solution — GIAM 4.4 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 6
+
+## Problem
+
+The prototypes for *modus ponens* and *modus tollens* are
+
+$$$
+\begin{array}{l|l}
+\text{All men are mortal.} & \text{All men are mortal.} \\
+\text{Socrates is a man.} & \text{Zeus is not mortal.} \\ \hline
+\text{Therefore Socrates is mortal.} & \text{Therefore Zeus is not a man.}
+\end{array}
+$$$
+
+Illustrate these arguments using Venn diagrams.
+
+## Setting Up
+
+Let $ M $ be the set of men and $ D $ the set of mortals. The shared premise says
+
+$$$
+M\subseteq D , \qquad\text{equivalently}\qquad M\cap\overline{D} = \varnothing .
+$$$
+
+The second form is the one to draw. Rather than nesting the circles, keep the ordinary two-circle picture and **hatch out** the region $ M\cap\overline{D} $ to record that it has no members. This is the standard Venn convention for syllogisms: shading means *empty*, and a cross $ \times $ means *something is here*.
+
+$$$
+\boxed{\;\text{Both arguments are the same hatched diagram, read in two directions.}\;}
+$$$
+
+With $ M\cap\overline{D} $ struck out, only three regions can hold anything:
+
+$$$
+M\cap D , \qquad \overline{M}\cap D , \qquad \overline{M}\cap\overline{D} .
+$$$
+
+Each argument places a cross and asks which of the three it can occupy.
+
+## Modus Ponens
+
+Socrates is a man, so his cross goes somewhere in $ M $. But $ M $ has only two parts, and one of them is hatched out:
+
+$$$
+M = \underbrace{\left(M\cap D\right)}_{\text{available}} \ \cup\ \underbrace{\left(M\cap\overline{D}\right)}_{\text{empty}} .
+$$$
+
+So the cross must lie in $ M\cap D $, and in particular in $ D $. **Socrates is mortal.**
+
+## Modus Tollens
+
+Zeus is not mortal, so his cross goes somewhere outside $ D $. The outside of $ D $ also has only two parts, and again one is hatched out:
+
+$$$
+\overline{D} = \underbrace{\left(M\cap\overline{D}\right)}_{\text{empty}} \ \cup\ \underbrace{\left(\overline{M}\cap\overline{D}\right)}_{\text{available}} .
+$$$
+
+So the cross must lie in $ \overline{M}\cap\overline{D} $, and in particular outside $ M $. **Zeus is not a man.**
+
+The two arguments use the same hatched region for the same reason: it is the only region that the premise $ M\subseteq D $ forbids, and each conclusion is just the observation that once it is gone, one option remains.
+
+## The Picture
+
+The same hatched diagram appears twice below. Only the position of the cross differs, and in each case it has exactly one unshaded region to occupy.
+
+!(78%)[The shared hatched diagram, with the cross placed for each argument](problem-6-syllogism.svg "A diagram in four parts. The first says one diagram read in two directions, explains that all men are mortal means the region of men who are not mortal is empty, drawn by hatching that region out, and notes both arguments then ask, given where the cross is, which unshaded region it can possibly occupy. The second part shows two panels. Each panel draws two overlapping circles, M for men on the left in blue and D for mortals on the right in green, with the left crescent, the men who are not mortal, hatched grey and labelled empty. In the left panel, headed modus ponens, a red cross labelled Socrates sits in the lens where M and D overlap, with the note that the only unshaded part of M is M intersect D, so Socrates is mortal. In the right panel, headed modus tollens, a red cross labelled Zeus sits well below and outside both circles, with the note that outside D the only unshaded part is outside M and outside D, so Zeus is not a man. The third part is a table of four premises about the individual, the regions each leaves open, and the verdict. Knowing x is in M, modus ponens, leaves only M intersect D open, so x in D is forced. Knowing x is not in D, modus tollens, leaves only outside-M outside-D open, so x not in M is forced. Knowing x is in D, affirming the consequent, leaves M intersect D or outside-M intersect D, so nothing follows. Knowing x is not in M, denying the antecedent, leaves outside-M intersect D or outside-M outside-D, so nothing follows. A red band notes the same picture exposes the two classic fallacies: a premise settles the matter only when it leaves one region open, and knowing x is in D leaves two, as does knowing x is not in M, so neither yields a conclusion. An exhaustive check over all 2187 configurations with M contained in D and all 7 choices of x found the two valid forms never failing in 5103 instances each, while both fallacies fail already for a mortal who is not a man.")
+
+## Remark — Shading and Crosses Say Different Things
+
+The convention deserves a word, because the two marks on the diagram carry opposite kinds of information.
+
+$$$
+\begin{array}{l|l|l}
+\text{mark} & \text{means} & \text{comes from} \\ \hline
+\text{hatching a region} & \text{this region is empty} & \text{a universal premise} \\
+\text{a cross in a region} & \text{this region has a member} & \text{a particular premise}
+\end{array}
+$$$
+
+“All men are mortal” is universal and contributes only hatching; it says nothing about whether any men exist. “Socrates is a man” is particular and contributes only a cross. A syllogism is valid exactly when the hatching leaves the cross with a single place to go.
+
+This also explains a feature of the drawing that can look like a mistake. The circles are drawn **overlapping in the ordinary way**, not nested, even though the premise says $ M\subseteq D $. Nesting would build the premise into the geometry and make the argument look like a picture rather than a deduction; hatching keeps the premise as a separate, visible assumption that is doing work.
+
+## Remark — The Same Picture Refutes the Two Fallacies
+
+The diagram is at its most useful when an argument is **invalid**, because the failure is visible as a region that is still open.
+
+$$$
+\begin{array}{l|l|l}
+\text{premise about } x & \text{regions left open} & \text{conclusion?} \\ \hline
+x\in M & M\cap D & x\in D \\
+x\notin D & \overline{M}\cap\overline{D} & x\notin M \\
+x\in D & M\cap D,\ \overline{M}\cap D & \text{none} \\
+x\notin M & \overline{M}\cap D,\ \overline{M}\cap\overline{D} & \text{none}
+\end{array}
+$$$
+
+The third row is **affirming the consequent** — “Socrates is mortal, therefore Socrates is a man” — and the fourth is **denying the antecedent** — “Zeus is not a man, therefore Zeus is not mortal”. Each leaves two regions open, so the cross has a choice and no conclusion follows.
+
+Both were checked exhaustively over the $ 2187 $ pairs $ M\subseteq D $ inside a seven-element universe, together with all $ 7 $ choices of the individual. The two valid forms hold in all $ 5103 $ applicable instances each; the two fallacies fail, and the smallest counterexample is the obvious one — a mortal who is not a man, sitting in $ \overline{M}\cap D $.
+
+That region is the whole story. It is non-empty in general, it is what the shading does *not* remove, and it is precisely where the fallacious arguments come to grief.
+
+## Remark — The Connection to Section 4.3
+
+Read as set theory rather than as pictures, both arguments are one-line consequences of transitivity of containment and its contrapositive:
+
+$$$
+\{s\}\subseteq M\subseteq D \implies \{s\}\subseteq D , \qquad M\subseteq D \implies \overline{D}\subseteq\overline{M} .
+$$$
+
+The second is the inclusion-reversing property of complementation, proved in 4.3 Problem 9 and identified there as the engine behind the duality principle. So *modus tollens* is not a separate rule at all: it is *modus ponens* applied to the complemented containment, which is why the same hatched region serves both.
+
+Worth noting which direction the two arguments travel through the diagram. *Modus ponens* pushes a point **inward** along the containment, from the smaller set to the larger; *modus tollens* pushes a point **outward** along the reversed containment, from outside the larger to outside the smaller. Hatching one region blocks both of the wrong-way journeys at once.

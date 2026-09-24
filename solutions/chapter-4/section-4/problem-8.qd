@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 4.4 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.4 Problem 8
+
+## Problem
+
+Use Venn diagrams to show that the following set equivalence is **false**:
+
+$$$
+\left(A\cup B\right)\cap\left(C\cup D\right) = \left(A\cup C\right)\cap\left(B\cup D\right) .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;A = B = \{0\},\quad C = D = \varnothing \;\Longrightarrow\; \text{LHS} = \varnothing, \ \text{RHS} = \{0\}\;}
+$$$
+
+One counterexample settles it, and a Venn diagram shows why. Shading both sides on the four-rectangle diagram of 4.4 Problem 1 reveals that **four** of the sixteen atoms disagree — and they disagree in both directions, so neither side even contains the other.
+
+## Reading It Off the Diagram
+
+Each side is a union of atoms, so the two are equal exactly when they shade the same atoms. Testing the sixteen:
+
+$$$
+\begin{array}{c|c|c|l}
+\text{atom} & \left(A\cup B\right)\cap\left(C\cup D\right) & \left(A\cup C\right)\cap\left(B\cup D\right) & \\ \hline
+A\cap\overline{B}\cap C\cap\overline{D} & \text{yes} & \text{no} & \text{left only} \\
+\overline{A}\cap B\cap\overline{C}\cap D & \text{yes} & \text{no} & \text{left only} \\
+A\cap B\cap\overline{C}\cap\overline{D} & \text{no} & \text{yes} & \text{right only} \\
+\overline{A}\cap\overline{B}\cap C\cap D & \text{no} & \text{yes} & \text{right only} \\
+\text{the other twelve} & \text{agree} & \text{agree} &
+\end{array}
+$$$
+
+Any one of the four disagreeing atoms is a counterexample. The cleanest to state is the third: a point belonging to $ A $ and $ B $ and to neither $ C $ nor $ D $. It lies in $ A\cup C $ and in $ B\cup D $, so it is in the right-hand side; but it lies in $ A\cup B $ and **not** in $ C\cup D $, so it is not in the left-hand side.
+
+Turning that atom into sets gives the boxed counterexample:
+
+$$$
+\begin{aligned}
+\left(A\cup B\right)\cap\left(C\cup D\right) &= \{0\}\cap\varnothing = \varnothing , \\
+\left(A\cup C\right)\cap\left(B\cup D\right) &= \{0\}\cap\{0\} = \{0\} .
+\end{aligned}
+$$$
+
+Swapping the roles of $ B $ and $ C $ — that is, $ A=C=\{0\} $ and $ B=D=\varnothing $ — reverses the failure, giving $ \text{LHS}=\{0\} $ and $ \text{RHS}=\varnothing $.
+
+## The Picture
+
+!(76%)[Both sides shaded on the four-rectangle diagram, with the disagreeing atoms in red](problem-8-false.svg "A diagram in four parts. The first says the equivalence is false and fails in both directions at once, states that A union B intersect C union D is not equal to A union C intersect B union D, and notes four of the sixteen atoms disagree, two lying in the left side only and two in the right side only. The second part shows two panels, each drawing the same four axis-parallel rectangles A, B, C and D from 4.4 Problem 1. The left panel shades the atoms of A union B intersect C union D in purple, with the two atoms belonging to that side alone picked out in red. The right panel shades the atoms of A union C intersect B union D in purple, with its own two exclusive atoms in red. An orange band lists the four disagreeing atoms: in the left side only are A intersect C with B and D absent, and B intersect D with A and C absent; in the right side only are A intersect B with C and D absent, and C intersect D with A and B absent. It gives the smallest counterexamples: A and B equal to the set containing zero with C and D empty makes the left side empty and the right side that set, while A and C equal to the set containing zero with B and D empty reverses it. Of the 65536 quadruples from a four-element universe, 27120 break each containment, so failure is typical rather than rare. A green band explains why: the expression X union Y intersect Z union W expands to the four cross products XZ, XW, YZ and YW, keeping every pair that crosses the two blocks and dropping the two pairs inside a block, so a different pairing gives a different set. The pairing AB versus CD drops AB and CD, AC versus BD drops AC and BD, and AD versus BC drops AD and BC. All three pairings give pairwise different sets, as verified, while their union is the set of points in at least two of the four and their intersection the points in at least three, both symmetric again and also verified.")
+
+## Remark — The Failure Goes Both Ways
+
+4.4 Problem 7 produced a genuine containment, strict but one-directional. This is a different kind of failure: **neither** side contains the other.
+
+$$$
+\begin{array}{l|c|c}
+& \subseteq \text{ holds?} & \supseteq \text{ holds?} \\ \hline
+\text{4.4 Problem 7} & \text{always} & \text{sometimes fails} \\
+\text{here} & \text{sometimes fails} & \text{sometimes fails}
+\end{array}
+$$$
+
+Nor is the failure delicate. Among the $ 65536 $ quadruples of subsets of a four-element universe, exactly $ 27120 $ break each of the two containments — over forty per cent in each direction. An equivalence this badly false could have been spotted by trying almost any random example, which is worth remembering before reaching for a proof.
+
+## Remark — Why It Fails: the Expression Depends on the Pairing
+
+Distributivity explains the whole phenomenon. For any four sets,
+
+$$$
+\left(X\cup Y\right)\cap\left(Z\cup W\right) = \left(X\cap Z\right)\cup\left(X\cap W\right)\cup\left(Y\cap Z\right)\cup\left(Y\cap W\right) ,
+$$$
+
+so the expression keeps precisely the four pairwise intersections that **cross** the two blocks $ \{X,Y\} $ and $ \{Z,W\} $, and drops the two that lie **inside** a block. Splitting $ \{A,B,C,D\} $ into two pairs can be done in three ways, and each drops a different couple of pairs:
+
+$$$
+\begin{array}{l|l}
+AB\,|\,CD & \text{drops } A\cap B \text{ and } C\cap D \\
+AC\,|\,BD & \text{drops } A\cap C \text{ and } B\cap D \\
+AD\,|\,BC & \text{drops } A\cap D \text{ and } B\cap C
+\end{array}
+$$$
+
+All three resulting sets are pairwise different — verified over all $ 65536 $ quadruples. The problem's two sides are the first two rows, so they differ in exactly the four atoms listed above: the ones sitting in a dropped pair and nothing else.
+
+That is also why the false statement looks so plausible. The two expressions use the same four letters, the same two unions and the same intersection; only the **grouping** differs, and grouping is invisible in the shape of the formula.
+
+## Remark — What Is Symmetric Survives
+
+The three pairings are not equal, but combining all three restores symmetry, and in a pleasing way. Writing $ P_1,P_2,P_3 $ for the three expressions:
+
+$$$
+\begin{aligned}
+P_1\cup P_2\cup P_3 &= \left\{\,x : x \text{ lies in at least } 2 \text{ of } A,B,C,D \,\right\} , \\
+P_1\cap P_2\cap P_3 &= \left\{\,x : x \text{ lies in at least } 3 \text{ of } A,B,C,D \,\right\} ,
+\end{aligned}
+$$$
+
+both verified over all $ 65536 $ quadruples. The union recovers every pairwise intersection — each pair is dropped by exactly one of the three pairings and kept by the other two — while the intersection keeps only what survives all three droppings.
+
+The moral is the one that 4.4 Problem 5 made for symmetric difference, read in reverse. An expression whose value does not depend on how the letters are labelled must have a description that never mentions the labels, and “in at least $ k $ of them” is such a description. The problem's expression has no such description, which is exactly why relabelling breaks it.
+
+A quick test for statements of this kind, then: check whether the two sides have the same symmetry group. Here the left side is unchanged by swapping $ A\leftrightarrow B $ or $ C\leftrightarrow D $, the right side by swapping $ A\leftrightarrow C $ or $ B\leftrightarrow D $. Different groups, so the sets cannot be equal in general — and no diagram is needed to see it.
