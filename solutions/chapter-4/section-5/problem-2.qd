@@ -1,0 +1,98 @@
+.docname {Solution — GIAM 4.5 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.5 Problem 2
+
+## Problem
+
+One way out of Russell's paradox is to declare that the collection of sets that do not contain themselves as elements is not a set itself. Explain how this circumvents the paradox.
+
+## Answer
+
+$$$
+\boxed{\;\text{The paradox needs to substitute } x = R \text{ into a rule quantified over \textbf{sets}.}\;}
+$$$
+
+Writing $ R $ for the collection of all sets that are not elements of themselves, its defining property is
+
+$$$
+\text{for every set } x : \qquad x\in R \iff x\notin x .
+$$$
+
+The contradiction is obtained by putting $ x = R $. That substitution is legitimate only if $ R $ is one of the things $ x $ ranges over — that is, only if $ R $ is a set. Declaring $ R $ not to be a set removes it from that range, and the single step that produced the contradiction is no longer available. Nothing else in the argument changes.
+
+## Where Exactly the Argument Breaks
+
+Set the two versions side by side.
+
+> **If $ R $ is a set.** The rule applies to every set, $ R $ included, so we may put $ x=R $ and obtain
+>
+> $ R\in R \iff R\notin R , $
+>
+> which is a contradiction by 4.5 Problem 1.
+>
+> **If $ R $ is not a set.** The rule still reads “for every set $ x $”, and $ R $ is not a set, so $ x=R $ is not a permitted instance. The biconditional at $ R $ is never derived, and no contradiction appears.
+
+A collection of this kind — one with members, but not itself eligible to be a member — is called a **proper class**. The move is not a trick played on the definition of $ R $; the definition is untouched. What changes is the supply of objects that may be substituted into a universally quantified statement about sets.
+
+## The Picture
+
+!(78%)[The same derivation with and without R admitted as a set](problem-2-russell.svg "A diagram in four parts. The first says the paradox needs one substitution and that is what is denied, notes the rule quantified over sets can only be applied to sets, and explains that declaring R to be no set removes R from the range of x while nothing else about the argument changes. The second part shows two panels. The left panel, headed if R is a set and tinted red, lists the chain: R is the collection of x with x not an element of x; for every set x, x is in R if and only if x is not in x, the defining property; put x equal to R, which is legitimate since R is a set; therefore R is in R if and only if R is not in R; verdict, contradiction. The right panel, headed if R is not a set and tinted green, lists the same chain with R declared a proper class and the defining property unchanged, but the step putting x equal to R is greyed out and marked blocked because R is not a set, the following line is empty, and a red bar strikes through the blocked step; verdict, no contradiction. An orange band asks which half of the definition survives. Writing A for R is an element of R, the paradox of 4.5 Problem 1 needs both conditionals: A implies not A, that everything in R fails to contain itself, which survives; and not A implies A, that everything failing to contain itself is in R, which needs R to be a set. Keeping only the first is satisfiable and forces not A, so R is not an element of R, harmlessly, because R was never eligible to be an element of anything. A green band reports the finite-model check and Zermelo's alternative: modelling membership as a directed graph and searching every graph on up to four nodes for a node R with an edge from x to R exactly when x has no edge to itself yields no solution at any size, whereas placing R outside the graph makes all 65536 graphs on four nodes consistent, since R's members are simply read off. Zermelo's separation axiom gets the same effect by allowing only the set of x in A with x not in x to be formed, and the old argument then proves a theorem instead, that this set is never an element of A, so no set holds all sets.")
+
+## Remark — Exactly One Half of the Definition Is Lost
+
+4.5 Problem 1 showed that the contradiction is the conjunction of two conditionals. Writing $ A $ for “$ R\in R $”, the definition of $ R $ supplies both:
+
+$$$
+\begin{array}{l|l|l}
+A\implies\lnot A & \text{everything in } R \text{ fails to contain itself} & \text{survives} \\
+\lnot A\implies A & \text{everything failing to contain itself is in } R & \text{lost}
+\end{array}
+$$$
+
+The first direction only inspects things that are already elements of $ R $, and everything in $ R $ is a set by construction, so it is unaffected. The second direction is the one that must place $ R $ itself into $ R $, and that requires $ R $ to be a set.
+
+By Problem 1, a single conditional is not a contradiction: $ A\implies\lnot A $ is equivalent to $ \lnot A $. So what remains is simply
+
+$$$
+R\notin R ,
+$$$
+
+which is not only harmless but obviously true — a proper class is not an element of anything, let alone of itself. The paradox has been converted into an unremarkable fact.
+
+## Remark — A Finite Model Makes the Point Concrete
+
+Model membership as a directed graph: the nodes are the sets, and an edge $ x\to y $ means $ x\in y $.
+
+Searching **every** such graph on up to four nodes for a node $ R $ with $ x\to R $ exactly when $ x\not\to x $ returns nothing at any size. The obstruction is visible: taking $ x=R $ demands an edge $ R\to R $ precisely when there is none.
+
+Now let $ R $ live outside the graph, with edges into it but no capacity to be a target. The condition becomes a definition rather than a constraint — $ R $'s members are read off from the loops — and **all** $ 65536 $ graphs on four nodes are consistent.
+
+The asymmetry is the whole content of the resolution. Being a *container* costs nothing; being *containable* is what carries the risk.
+
+## Remark — Zermelo's Version, Which Turns the Paradox into a Theorem
+
+Declaring $ R $ a proper class is the von Neumann–Bernays–Gödel approach, where classes exist but only sets may be elements. Zermelo's earlier route reaches the same place by restricting how collections may be formed at all.
+
+Unrestricted comprehension is replaced by **separation**: one may only carve a subset out of a set already in hand,
+
+$$$
+R_A = \left\{\, x\in A \;:\; x\notin x \,\right\} .
+$$$
+
+Now run Russell's argument. Suppose $ R_A\in A $. Then
+
+$$$
+R_A\in R_A \iff \left(R_A\in A \ \land\ R_A\notin R_A\right) \iff R_A\notin R_A ,
+$$$
+
+a contradiction. So the assumption fails and $ R_A\notin A $ — for **every** set $ A $.
+
+That is not a paradox but a theorem, and a useful one: since $ R_A $ is a set not in $ A $, no set contains all sets — the universe of sets is itself a proper class, the same conclusion the first approach reached directly. The pattern is worth noticing: the paradoxical argument was never wrong. It is a good proof by contradiction whose conclusion had been mislaid — it refutes any candidate for “the set of all sets”.

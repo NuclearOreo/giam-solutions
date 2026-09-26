@@ -1,0 +1,110 @@
+.docname {Solution — GIAM 4.5 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 4.5 Problem 1
+
+## Problem
+
+Verify that $ \left(A\implies\lnot A\right)\land\left(\lnot A\implies A\right) $ is a logical contradiction in two ways: by filling out a truth table, and by using the laws of logical equivalence.
+
+## Answer
+
+$$$
+\boxed{\;\left(A\implies\lnot A\right)\land\left(\lnot A\implies A\right) \;\equiv\; \mathbf{c}\;}
+$$$
+
+Both routes below were checked mechanically, step by step.
+
+## Route 1: The Truth Table
+
+One variable means two rows. Recall that $ p\implies q $ is false only when $ p $ is true and $ q $ is false.
+
+$$$
+\begin{array}{c|c|c|c|c}
+A & \lnot A & A\implies\lnot A & \lnot A\implies A & \left(A\implies\lnot A\right)\land\left(\lnot A\implies A\right) \\ \hline
+\mathbf{T} & \mathbf{F} & \mathbf{F} & \mathbf{T} & \mathbf{F} \\
+\mathbf{F} & \mathbf{T} & \mathbf{T} & \mathbf{F} & \mathbf{F}
+\end{array}
+$$$
+
+The final column is false in every row, so the statement is a contradiction.
+
+Notice how the two middle columns are mirror images: exactly one conditional fails in each row, and a conjunction needs both. That is the whole mechanism, and it is what the algebra below makes explicit.
+
+## Route 2: The Laws of Logical Equivalence
+
+$$$
+\begin{aligned}
+\left(A\implies\lnot A\right)\land\left(\lnot A\implies A\right)
+&\equiv \left(\lnot A\lor\lnot A\right)\land\left(\lnot\lnot A\lor A\right) && \text{conditional as disjunction} \\
+&\equiv \left(\lnot A\lor\lnot A\right)\land\left(A\lor A\right) && \text{double negation} \\
+&\equiv \lnot A\land A && \text{idempotence, twice} \\
+&\equiv \mathbf{c} && \text{contradiction law}
+\end{aligned}
+$$$
+
+Each line was evaluated on both rows and agrees with the one above it.
+
+The rewriting $ p\implies q \equiv \lnot p\lor q $ does all the work. Once both conditionals are disjunctions, each collapses by idempotence to a single literal, and the two literals are negations of one another.
+
+## The Picture
+
+!(78%)[The truth table and the chain of equivalences side by side](problem-1-contradiction.svg "A diagram in four parts. The first says two routes to the same verdict, states that the conjunction of A implies not A with not A implies A is equivalent to the contradiction, and notes the table checks the two cases while the algebra explains what the statement is really saying. The second part shows two panels. The left panel, headed route one, the truth table, gives the two-row table with columns for A, not A, A implies not A, not A implies A, and their conjunction; the first row reads true, false, false, true, false and the second reads false, true, true, false, false, with the final column boxed in red and captioned both rows false, noting there are only two rows to check since there is one variable. The right panel, headed route two, the laws of equivalence, shows the chain: the original expression is equivalent to not A or not A, and not not A or A, by conditional as disjunction; then to not A or not A, and A or A, by double negation; then to not A and A, by idempotence twice; then to the contradiction, by the contradiction law. It notes every step was checked on both rows. A red band explains what the statement actually says: a conditional each way is a biconditional, so the whole expression is nothing but A if and only if not A, a statement equivalent to its own negation, as verified. That is the shape of the liar sentence and of Russell's paradox from 4.1, where the set R of all sets not containing themselves satisfies R is in R if and only if R is not in R, which is why no such R can exist. A green band explains that neither half is a contradiction on its own: A implies not A simplifies to just not A, and not A implies A simplifies to just A, so each is satisfiable and it is conjoining them that asks for A and not A at once. Those two simplifications are the engines of proof by contradiction, since if assuming A yields not A then not A holds, and if assuming not A yields A then A holds, both confirmed to be tautologies, the second being the classical consequentia mirabilis.")
+
+## Remark — The Statement Is Just $ A\iff\lnot A $
+
+A conditional in each direction is a biconditional, so the expression is not really two statements at all:
+
+$$$
+\left(A\implies\lnot A\right)\land\left(\lnot A\implies A\right) \;\equiv\; \left(A\iff\lnot A\right) ,
+$$$
+
+confirmed on both rows. Read that way the verdict needs no calculation: a statement cannot have the same truth value as its own negation, because the two differ by definition.
+
+This shape is where paradoxes live. The liar sentence “this sentence is false” asserts exactly $ A\iff\lnot A $, and Russell's paradox from 4.1 produces the same thing: if $ R = \left\{\,x : x\notin x\,\right\} $ existed, then
+
+$$$
+R\in R \iff R\notin R ,
+$$$
+
+which by this problem is a contradiction — so no such $ R $ exists. The problem is therefore the engine of that argument, isolated from the set theory.
+
+## Remark — Neither Half Is a Contradiction
+
+It is tempting to read $ A\implies\lnot A $ as already absurd, on the grounds that nothing should imply its own negation. It is not. The derivation above shows
+
+$$$
+A\implies\lnot A \;\equiv\; \lnot A , \qquad \lnot A\implies A \;\equiv\; A ,
+$$$
+
+so each conjunct is perfectly satisfiable — the first whenever $ A $ is false, the second whenever $ A $ is true. Only together do they demand $ A $ and $ \lnot A $ at once.
+
+Those two equivalences are the two standard forms of **proof by contradiction** from Chapter 3: to get $ \lnot A $, assume $ A $ and derive $ \lnot A $; to get $ A $, assume $ \lnot A $ and derive $ A $. Both
+
+$$$
+\left(A\implies\lnot A\right)\implies\lnot A \qquad\text{and}\qquad \left(\lnot A\implies A\right)\implies A
+$$$
+
+are tautologies, verified. The second is the classical *consequentia mirabilis*.
+
+So “$ A $ implies not $ A $” does not say $ A $ is incoherent — it says $ A $ is **false**. The incoherence comes only from insisting on the converse too.
+
+## Remark — Why Two Methods Are Worth the Trouble
+
+The two routes do genuinely different jobs, and the problem is well designed to show it.
+
+$$$
+\begin{array}{l|l}
+\text{truth table} & \text{decides the question, mechanically and with certainty} \\
+\text{laws of equivalence} & \text{explains the answer, and survives more variables}
+\end{array}
+$$$
+
+The table is complete and requires no ingenuity, but it says nothing about *why*, and it scales badly: $ n $ variables give $ 2^{n} $ rows. The algebra stays short because no step inspected the structure of $ A $, so the same four lines work with $ A $ replaced by any compound statement. Taking $ A $ to be $ p\land\left(q\lor r\right) $ turns the table from $ 2 $ rows into $ 8 $ and leaves the derivation untouched: a truth table *decides*, an identity *generalises*.
