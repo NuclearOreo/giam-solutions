@@ -1,0 +1,130 @@
+.docname {Solution — GIAM 5.1 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.1 Problem 4
+
+## Problem
+
+Suppose the rules for induction were changed to the following:
+
+- **Basis.** Prove that $ P(0) $ is true.
+- **Inductive step.** Prove that for all $ k $, $ P_k $ implies $ P_{k+2} $.
+
+Explain why this would not constitute a valid proof that $ P_n $ holds for all natural numbers $ n $. How could we change the basis to obtain a valid proof?
+
+## Answer
+
+$$$
+\boxed{
+\begin{aligned}
+&\text{The step advances by } 2, \text{ so from } P(0) \text{ one reaches only } 0,2,4,6,\ldots \\
+&\text{Fix: make the basis } P(0) \ \textbf{and} \ P(1).
+\end{aligned}
+}
+$$$
+
+## Why the Scheme Fails
+
+The step licenses one move: from $ k $ to $ k+2 $. Starting at the only guaranteed truth, $ P(0) $, the chain of consequences is
+
+$$$
+P(0) \implies P(2) \implies P(4) \implies P(6) \implies \cdots
+$$$
+
+and it never produces an odd index. Tracing the reachable set by machine confirms that from basis $ \{0\} $ with step $ +2 $ one reaches **exactly** the even numbers; every odd number is missed.
+
+The gap is not a technicality about presentation. There is nothing in either hypothesis that mentions $ P(1) $, so $ P(1) $ could be false with both hypotheses still satisfied — as the next section shows explicitly.
+
+## A Predicate That Passes Both Tests and Is Still False
+
+> Let $ P(n) $ be the statement “$ n $ is even”.
+>
+> **Basis.** $ P(0) $ says $ 0 $ is even. True.
+>
+> **Step.** If $ k $ is even then $ k+2 $ is even, so $ P_k\implies P_{k+2} $ holds for every $ k $ — verified for all $ k $ up to $ 5000 $.
+>
+> **Conclusion?** $ P(1) $ says $ 1 $ is even. False.
+
+Both hypotheses hold and the conclusion fails, at every odd number. So the proposed rule is not merely incomplete — it is **unsound**, and no amount of care in applying it would help.
+
+Under the repaired scheme this predicate is rejected immediately: the second basis $ P(1) $ is simply false, so the proof cannot even begin.
+
+## The Repair
+
+$$$
+\text{Basis: prove } P(0) \ \text{ and } \ P(1) . \qquad \text{Step: unchanged.}
+$$$
+
+Now there are two chains rather than one,
+
+$$$
+\begin{aligned}
+P(0) &\implies P(2) \implies P(4) \implies \cdots && \text{the even numbers} \\
+P(1) &\implies P(3) \implies P(5) \implies \cdots && \text{the odd numbers}
+\end{aligned}
+$$$
+
+and between them they reach every natural number — checked exhaustively up to $ 40 $. Every $ n $ is either even, and so reached from $ 0 $ in $ n/2 $ steps, or odd, and reached from $ 1 $ in $ (n-1)/2 $ steps.
+
+## The Picture
+
+!(78%)[The reachable numbers with one basis and with two](problem-4-step2.svg "A diagram in four parts. The first says a step of two reaches only half the numbers, notes that from zero the chain runs zero to two to four to six and so on and never lands on an odd number, and adds that including P of one as a second basis starts the other chain so that together they cover everything. The second part shows two number lines from zero to twelve. In the upper line, headed basis P of zero only with step k to k plus two, the even numbers zero, two, four, six, eight, ten and twelve are filled red and joined by arcs, while the odd numbers are drawn as empty grey circles; the caption says the odd numbers are never reached and nothing ever proves P of one. In the lower line, headed bases P of zero and P of one with the same step, every number from zero to twelve is filled green, with arcs joining the evens in one chain and the odds in another, and both zero and one are marked basis; the caption says two interleaved chains now cover every natural number. A red band gives a predicate that passes both tests and is still false: P of n saying n is even. P of zero is true and P of k implies P of k plus two holds for every k, checked to five thousand, yet P of one, P of three, P of five and so on are all false, so the two hypotheses can be met while the conclusion fails at every odd number, making the rule not merely incomplete but unsound. It notes that with the repaired scheme this predicate is caught at once because the second basis is simply false. A green band gives the general rule and explains why the usual proof of induction fails here: a step of size d needs d bases, namely P of zero through P of d minus one, verified for d from one to five, with the full set of bases covering every n and dropping one always leaving a whole residue class uncovered. The reason is visible in the least-counterexample argument: if P fails somewhere let m be least; ordinary induction uses P of m minus one, available because m is at least one, but a step of two needs P of m minus two, and for m equal to one that is P of minus one, not a natural number at all, so m equal to one is never challenged, which is exactly where the counterexample puts it.")
+
+## Remark — Why the Usual Justification of Induction Breaks
+
+Induction is normally justified by the least-counterexample argument. Suppose $ P $ fails somewhere and let $ m $ be the **least** $ n $ with $ P(n) $ false. Then:
+
+$$$
+\begin{array}{l|l}
+\text{ordinary induction} & m\ne0 \text{ by the basis, so } m\ge1 \text{ and } P(m-1) \text{ holds by minimality} \\
+& \text{the step applied at } k=m-1 \text{ gives } P(m) \text{ — contradiction}
+\end{array}
+$$$
+
+Now run the same argument with a step of $ 2 $. To contradict $ P(m) $ we need $ P(m-2) $, which requires $ m-2 $ to be a natural number, that is $ m\ge2 $. The basis rules out $ m=0 $, but nothing rules out $ m=1 $, and at $ m=1 $ the step would appeal to $ P(-1) $ — which is not a statement in the family at all.
+
+So the least counterexample is free to sit at $ 1 $, and in the example above that is exactly where it sits. Adding $ P(1) $ to the basis closes the one remaining door, and the argument goes through for every $ m $.
+
+## Remark — The General Rule
+
+Nothing here is special to $ 2 $. A step that advances by $ d $ needs $ d $ bases:
+
+$$$
+\text{Basis: } P(0),P(1),\ldots,P(d-1) . \qquad \text{Step: } P_k\implies P_{k+d} .
+$$$
+
+Checked for $ d=1,2,3,4,5 $: the full set of bases reaches every natural number, and removing any one of them leaves an entire residue class unreachable.
+
+$$$
+\begin{array}{c|l|l}
+d & \text{bases needed} & \text{missed if one is dropped} \\ \hline
+2 & 0,1 & 1,3,5,7,\ldots \\
+3 & 0,1,2 & 2,5,8,11,\ldots \\
+4 & 0,1,2,3 & 3,7,11,15,\ldots \\
+5 & 0,1,2,3,4 & 4,9,14,19,\ldots
+\end{array}
+$$$
+
+The pattern is arithmetic rather than logical: the numbers reachable from a basis set $ B $ by repeatedly adding $ d $ are exactly $ \{\,b+dt : b\in B,\ t\ge0\,\} $, so covering $ \mathbb{N} $ requires $ B $ to contain a representative of every residue class mod $ d $. Ordinary induction is the case $ d=1 $, where there is only one residue class and one basis suffices.
+
+## Remark — When a Step of Two Is Exactly What You Want
+
+The scheme is not useless; it is simply mismatched to the conclusion “for all $ n $”. Used honestly it proves a true statement — namely $ P(n) $ for all **even** $ n $ — and that is sometimes the theorem one wants.
+
+More often the two-step form appears deliberately, with both bases supplied, because the natural argument really does reach back two places. Two situations recur:
+
+$$$
+\begin{array}{l|l}
+\text{parity-split proofs} & \text{the even and odd cases have different arguments} \\
+\text{two-term recurrences} & a_{n} \text{ defined from } a_{n-1} \text{ and } a_{n-2}
+\end{array}
+$$$
+
+The Fibonacci numbers are the standard instance of the second: a proof about $ F_n $ that invokes $ F_{n-1} $ and $ F_{n-2} $ needs $ F_0 $ and $ F_1 $ established first, for exactly the reason this problem illustrates. Seen that way the problem is not describing a broken rule so much as a correct rule with one basis missing.

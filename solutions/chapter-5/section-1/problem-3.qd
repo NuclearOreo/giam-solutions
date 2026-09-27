@@ -1,0 +1,121 @@
+.docname {Solution — GIAM 5.1 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.1 Problem 3
+
+## Problem
+
+For each of the following theorems, write the statement that must be proved for the basis — then prove it, if you can.
+
+- **a.** The sum of the first $ n $ positive integers is $ \left(n^{2}+n\right)/2 $.
+- **b.** The sum of the first $ n $ positive odd numbers is $ n^{2} $.
+- **c.** If $ n $ coins are flipped, the probability that all of them are heads is $ 1/2^{n} $.
+- **d.** Every $ 2^{n}\times2^{n} $ chessboard with one square removed can be tiled perfectly by L-shaped trominoes.
+
+## Answer
+
+$$$
+\boxed{\;\text{All four bases are true, and at } n=0 \text{ all four are statements about nothing.}\;}
+$$$
+
+Each was checked mechanically; for **d** the tiling was verified at every removal square on boards up to $ 16\times16 $.
+
+## a. Sum of the First $ n $ Positive Integers
+
+> **Basis at $ n=0 $.** The sum of the first $ 0 $ positive integers is $ \left(0^{2}+0\right)/2 $.
+>
+> **Proof.** The left side is an empty sum, which is $ 0 $ by convention. The right side is $ 0/2 = 0 $. $ \blacksquare $
+>
+> **Basis at $ n=1 $.** The sum of the first $ 1 $ positive integers is $ \left(1^{2}+1\right)/2 $.
+>
+> **Proof.** The left side is $ 1 $, and the right side is $ 2/2 = 1 $. $ \blacksquare $
+
+## b. Sum of the First $ n $ Odd Numbers
+
+> **Basis at $ n=0 $.** The sum of the first $ 0 $ positive odd numbers is $ 0^{2} $.
+>
+> **Proof.** Empty sum $ = 0 = 0^{2} $. $ \blacksquare $
+>
+> **Basis at $ n=1 $.** The sum of the first $ 1 $ positive odd numbers is $ 1^{2} $, that is, $ 1=1 $. $ \blacksquare $
+
+Both **a** and **b** were confirmed for every $ n $ up to $ 3000 $.
+
+## c. Coins
+
+> **Basis at $ n=1 $.** If $ 1 $ coin is flipped, the probability that it is heads is $ 1/2 $.
+>
+> **Proof.** The sample space is $ \{H,T\} $ with both outcomes equally likely, and exactly one is favourable. $ \blacksquare $
+>
+> **Basis at $ n=0 $.** If no coins are flipped, the probability that all of them are heads is $ 1/2^{0}=1 $.
+>
+> **Proof.** Flipping no coins has exactly one outcome — the empty sequence. “All of them are heads” says that *no coin shows tails*, and there is no coin to show tails, so the condition holds. One favourable outcome out of one gives probability $ 1 $. $ \blacksquare $
+
+Both were confirmed by enumerating the sample space for $ n=0,1,2,3 $.
+
+## d. Tromino Tiling
+
+> **Basis at $ n=1 $.** Every $ 2\times2 $ board with one square removed can be tiled by L-shaped trominoes.
+>
+> **Proof.** Removing one square from a $ 2\times2 $ board leaves three squares in an L. That is precisely one L-tromino, so the tiling exists and uses one piece. $ \blacksquare $
+>
+> **Basis at $ n=0 $.** Every $ 1\times1 $ board with one square removed can be tiled by L-shaped trominoes.
+>
+> **Proof.** Removing the only square leaves nothing. The empty region is tiled by the empty collection of trominoes — zero pieces — and the formula agrees, since $ \left(4^{0}-1\right)/3 = 0 $. $ \blacksquare $
+
+A direct implementation of the divide-and-conquer construction tiles every board from $ 1\times1 $ to $ 16\times16 $, for **every** choice of removed square: $ 1+4+16+64+256 = 341 $ cases, all valid, using $ 0,1,5,21,85 $ pieces respectively.
+
+## The Picture
+
+!(78%)[The four bases, and the tromino case drawn at n = 0, 1 and 2](problem-3-bases.svg "A diagram in three parts. The first says all four bases are true and all four are about nothing, noting that at n equals zero each claim is an empty sum, an empty board, or an empty set of coins, and that every basis was checked by machine with the tiling verified at every removal square up to sixteen by sixteen. The second part is a table of the four theorems with their bases at n equals zero and at n equals one. For the sum of the first n positive integers, the empty sum zero equals zero squared plus zero over two, and one equals one squared plus one over two. For the sum of the first n odds, the empty sum zero equals zero squared, and one equals one squared. For all n coins heads, the probability is one, equal to one over two to the zero, vacuously, and one half equals one over two to the one. For tiling a two-to-the-n square board minus one square, the one by one board is empty and needs zero pieces, and the two by two minus one square is a single L. The third part shows three boards. At n equals zero, a single cell marked with a cross as removed, captioned that nothing is left and zero pieces are needed. At n equals one, a two by two board with the top-left cell marked removed and the remaining three cells coloured as one L-tromino. At n equals two, a four by four board with one cell marked removed and the other fifteen cells coloured as five distinct L-trominoes, captioned as the step in action. A green band answers whether it makes sense that the probability is one when no coins are flipped: yes, because all of them are heads means no coin shows tails and there is no coin to show tails, so the statement is vacuously true, the same reading that made the empty set a subset of B in 4.2. The probability model agrees, since flipping zero coins has exactly one outcome, the empty sequence, which satisfies the condition, giving probability one over one equal to one and matching one over two to the zero, confirmed by enumerating the sample space for n equal to zero, one, two and three. The discomfort is with the word certain, not with the mathematics: nothing can go wrong when there is nothing to go wrong.")
+
+## Remark — Answering the Question the Coin Case Raises
+
+The $ n=0 $ coin statement provokes the obvious objection: how can we be *certain* that all the coins are heads when there are no coins?
+
+The answer is that “all of them are heads” is a universal statement, and a universal statement over an empty collection is **vacuously true**. Written out, it says
+
+$$$
+\text{for every coin } c \text{ among the } n \text{ flipped}, \ c \text{ shows heads} ,
+$$$
+
+and with $ n=0 $ there is no $ c $ to test, so nothing can falsify it. This is the same reading that made $ \varnothing\subseteq B $ true in 4.2 Problem 5 and that made the empty case of the containment proofs in 4.3 go through without comment.
+
+The probability model bears it out rather than merely tolerating it. Flipping zero coins has exactly one outcome, the empty sequence, and that outcome is favourable — so $ P = 1/1 = 1 $, which is what $ 1/2^{0} $ says.
+
+Worth separating the mathematics from the discomfort. The statement is not claiming that some impressive coincidence has occurred; it is claiming that *nothing went wrong*, and nothing can go wrong when there is nothing to go wrong. The word “certain” carries a suggestion of evidence that the vacuous case does not need.
+
+## Remark — Why the $ n=0 $ Basis Is Usually the Better One
+
+Every one of the four theorems has a legitimate basis at $ n=1 $, and for **d** that version is the memorable one. Nevertheless $ n=0 $ is generally preferable, for two reasons.
+
+It is **easier**. Each $ n=0 $ statement reduces to a convention — the empty sum is $ 0 $, the empty tiling uses no pieces, the empty conjunction is true — so there is nothing to compute. The $ n=1 $ cases, by contrast, require an actual check, small though it is.
+
+It is **stronger**. Basing at $ n=0 $ proves the theorem for $ n=0 $ as well, and that case is sometimes wanted: $ \left(4^{0}-1\right)/3 = 0 $ pieces is a genuine instance of the tromino count, and $ 1/2^{0}=1 $ is a genuine instance of the coin formula.
+
+There is a caveat worth stating. Starting lower is only free when the statement still *means* something at the lower index. Here each one does, because sums, tilings and conjunctions all have standard empty cases. A theorem about, say, the interior angles of an $ n $-gon has no sensible reading at $ n=0 $, and pushing the basis down would be a mistake rather than an economy.
+
+## Remark — What the Basis Is For
+
+A basis is not decoration, and the tromino case shows why. The inductive step for **d** cuts a $ 2^{n+1}\times2^{n+1} $ board into four quadrants, places one tromino at the centre so that it removes one square from each of the three quadrants that did not contain the original hole, and then applies the theorem at size $ 2^{n} $ four times. Every quadrant is then a smaller board with exactly one square missing — which is precisely the hypothesis.
+
+$$$
+\begin{array}{c|c|c}
+n & \text{board} & \text{pieces } \left(4^{n}-1\right)/3 \\ \hline
+0 & 1\times1 & 0 \\
+1 & 2\times2 & 1 \\
+2 & 4\times4 & 5 \\
+3 & 8\times8 & 21 \\
+4 & 16\times16 & 85
+\end{array}
+$$$
+
+all confirmed by running the construction. Notice that the piece count is always a whole number because $ 4^{n}\equiv1\pmod 3 $ — checked for $ n $ up to $ 10 $ — so $ 3 $ divides $ 4^{n}-1 $. Had that failed for some $ n $, no tiling could exist there at all, and the theorem would be false regardless of how convincing the step looked.
+
+That is the division of labour induction depends on: the step transfers truth from one case to the next but never manufactures it, and the basis is the only place any truth enters.

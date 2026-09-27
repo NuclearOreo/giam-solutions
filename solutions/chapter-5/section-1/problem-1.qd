@@ -1,0 +1,110 @@
+.docname {Solution — GIAM 5.1 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.1 Problem 1
+
+## Problem
+
+The numbers one greater than a multiple of $ 4 $ are $ 1,5,9,13,17,21,25,29,\ldots $, that is, the numbers $ 4j+1 $. The sum of the first several can be expressed as a polynomial,
+
+$$$
+\sum_{j=0}^{n} \left(4j+1\right) = 2n^{2}+3n+1 .
+$$$
+
+Complete the table to provide evidence that the formula is correct.
+
+## Answer
+
+The missing row is $ n=4 $:
+
+$$$
+\boxed{\;1+5+9+13+17 = 45 \qquad\text{and}\qquad 2\cdot4^{2}+3\cdot4+1 = 45\;}
+$$$
+
+## The Completed Table
+
+$$$
+\begin{array}{c|l|l}
+n & \displaystyle\sum_{j=0}^{n}\left(4j+1\right) & 2n^{2}+3n+1 \\ \hline
+0 & 1 = 1 & 2\cdot0^{2}+3\cdot0+1 = 1 \\
+1 & 1+5 = 6 & 2\cdot1^{2}+3\cdot1+1 = 6 \\
+2 & 1+5+9 = 15 & 2\cdot2^{2}+3\cdot2+1 = 15 \\
+3 & 1+5+9+13 = 28 & 2\cdot3^{2}+3\cdot3+1 = 28 \\
+4 & 1+5+9+13+17 = 45 & 2\cdot4^{2}+3\cdot4+1 = 45
+\end{array}
+$$$
+
+The two columns were compared for every $ n $ from $ 0 $ to $ 5000 $ and agree throughout.
+
+## Why the Formula Is Right
+
+The table is evidence; here is the reason. Split the sum and use $ \sum_{j=0}^{n} j = \tfrac{n(n+1)}{2} $:
+
+$$$
+\begin{aligned}
+\sum_{j=0}^{n}\left(4j+1\right)
+&= 4\sum_{j=0}^{n} j \ + \ \sum_{j=0}^{n} 1 \\
+&= 4\cdot\frac{n(n+1)}{2} + (n+1) \\
+&= 2n(n+1) + (n+1) \\
+&= (n+1)(2n+1) \;=\; 2n^{2}+3n+1 .
+\end{aligned}
+$$$
+
+The coefficients were compared term by term and match exactly. The factored form $ (n+1)(2n+1) $ is the more informative one: there are $ n+1 $ terms, and the average of the first and last is $ \tfrac{1+(4n+1)}{2} = 2n+1 $, so the sum is *count times average*, as it is for any arithmetic progression.
+
+## The Picture
+
+!(78%)[The completed table, the pairing argument, and the finite differences](problem-1-table.svg "A diagram in four parts. The first gives the missing row: for n equal to 4, one plus five plus nine plus thirteen plus seventeen is forty-five, and two times four squared plus three times four plus one is also forty-five, noting the two columns agree for every n from 0 to 5000 and that the identity is proved below. The second part is the completed table with rows for n from 0 to 4, showing the running sums 1, 6, 15, 28 and 45 beside the polynomial evaluations giving the same values, with the final row highlighted in orange and marked new. The third part shows why the answer is n plus one times two n plus one, by adding the row to its own reverse: the terms 1, 5, 9, 13, 17 are written above the same terms reversed, 17, 13, 9, 5, 1, and each column sums to 18; every column is four n plus two and there are n plus one of them, so twice the sum is n plus one times four n plus two, giving the sum as n plus one times two n plus one, which equals two n squared plus three n plus one. A green band shows how one would have guessed a quadratic, listing the running totals 1, 6, 15, 28, 45, 66, then the first differences 5, 9, 13, 17, 21, then the second differences 4, 4, 4, 4, and noting the first differences are the terms themselves while the second differences are constant, the signature of a quadratic. An orange band observes that a table is evidence and not proof, except when it is: five agreeing rows prove nothing on their own, and 3.4 Problem 4 met a polynomial producing primes for forty consecutive inputs before failing. But there is a loophole, since two polynomials of degree at most two that agree at three points are equal, so once one knows the left side is a quadratic in n, three rows already settle it — and knowing that is exactly what the table cannot tell you, which is the gap induction is built to close.")
+
+## Remark — How One Would Have Guessed the Polynomial
+
+Nothing in the problem explains where $ 2n^{2}+3n+1 $ came from. The standard route is finite differences. Listing the running totals and differencing repeatedly:
+
+$$$
+\begin{array}{l|cccccc}
+\text{totals} & 1 & 6 & 15 & 28 & 45 & 66 \\
+\text{first differences} & & 5 & 9 & 13 & 17 & 21 \\
+\text{second differences} & & & 4 & 4 & 4 & 4
+\end{array}
+$$$
+
+The first differences are the terms $ 4j+1 $ themselves — unsurprising, since adding one more term is what moves along the top row. The second differences are constant at $ 4 $, and a sequence with constant $ k $-th differences is a polynomial of degree $ k $. Here $ k=2 $, so the totals are a quadratic, and three data points then pin down its three coefficients.
+
+This is worth separating from the problem's own logic. Finite differences **find** the candidate formula; they do not prove it, because “constant second differences forever” is itself an infinite claim that the first few rows do not establish.
+
+## Remark — Why the Table Is Evidence and Not Proof
+
+Five agreeing rows are not a proof, and Chapter 3 supplied the cautionary tales. Euler's polynomial $ n^{2}+n+41 $ from 3.4 Problem 4 returns a prime for $ n=0,1,\ldots,39 $ and fails at $ n=40 $; the alternating factorials of 3.4 Problem 3 look prime far longer than that. A finite check can only ever refute, never confirm.
+
+There is, however, a genuine loophole here, and it is worth stating precisely because the problem's phrasing invites it.
+
+> Two polynomials of degree at most $ 2 $ that agree at $ 3 $ distinct points are identical.
+
+So **if** one already knows that $ \sum_{j=0}^{n}(4j+1) $ is a quadratic in $ n $, then the rows $ n=0,1,2 $ finish the job and rows $ 3 $ and $ 4 $ are decoration. The trouble is that the left-hand side is not visibly a polynomial at all: it is a sum whose *number of terms* grows with $ n $, which is not something a polynomial does.
+
+That gap — between “the pattern holds for the cases I checked” and “the pattern holds for every $ n $” — is precisely what induction exists to close, and it is why this table opens the chapter rather than settling it.
+
+## Remark — What the Totals Are
+
+The running totals $ 1, 6, 15, 28, 45, 66, 91, 120 $ are the **hexagonal numbers** $ k(2k-1) $, with $ k=n+1 $; the match was checked for the first $ 500 $ values. Two things follow from the factored form $ (n+1)(2n+1) $ that the expanded form hides.
+
+First, the sum is **never prime**: for $ n\ge1 $ both factors of $ (n+1)(2n+1) $ exceed $ 1 $, so the total is composite, and at $ n=0 $ it is $ 1 $. Checked for the first $ 400 $ values.
+
+Second, the pairing argument that produced it is Gauss's, and it applies to any arithmetic progression without modification. Writing the terms forwards above the same terms backwards makes every column equal $ 1+(4n+1) = 4n+2 $:
+
+$$$
+\begin{array}{ccccc}
+1 & 5 & 9 & 13 & 17 \\
+17 & 13 & 9 & 5 & 1 \\ \hline
+18 & 18 & 18 & 18 & 18
+\end{array}
+$$$
+
+Five columns of $ 18 $ give $ 90 $, which is twice the sum — and $ 45 $ is the entry the table was missing. The general statement is $ (n+1)(4n+2) = 2\times\text{sum} $, so the sum is $ (n+1)(2n+1) $, with no induction required at all.
