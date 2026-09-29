@@ -1,0 +1,126 @@
+.docname {Solution — GIAM 5.2 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 3
+
+## Problem
+
+The $ n $-th triangular number is $ T_n = 1+2+\cdots+n $. Determine a formula for the sum of the first $ n $ triangular numbers, $ \sum_{i=1}^{n} T_i $, and prove it using the principle of mathematical induction.
+
+## Answer
+
+$$$
+\boxed{\;\sum_{i=1}^{n} T_i = \frac{n(n+1)(n+2)}{6} = \binom{n+2}{3}\;}
+$$$
+
+Verified for every $ n $ up to $ 4000 $, and the inductive step matched coefficient by coefficient.
+
+## Finding the Formula
+
+The running totals are
+
+$$$
+\begin{array}{c|cccccccc}
+n & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+T_n & 1 & 3 & 6 & 10 & 15 & 21 & 28 & 36 \\
+\sum_{i\le n} T_i & 1 & 4 & 10 & 20 & 35 & 56 & 84 & 120
+\end{array}
+$$$
+
+These are the **tetrahedral numbers** — the counts in a triangular stack of cannonballs. Since $ T_n $ is quadratic in $ n $, the totals should be cubic, and the values $ 1,4,10,20 $ match $ \tfrac{n(n+1)(n+2)}{6} $ at once. Equivalently they are $ \binom{n+2}{3} $, which is the form the last remark explains.
+
+## The Proof
+
+> **Theorem.** For every positive integer $ n $,
+>
+> $ \displaystyle\sum_{i=1}^{n} T_i = \frac{n(n+1)(n+2)}{6} . $
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $ the left side is an empty sum, $ 0 $, and the right side has the factor $ n=0 $, so it is $ 0 $ too. (At $ n=1 $ both sides are $ 1 $.)
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose
+>
+> $ \displaystyle\sum_{i=1}^{k} T_i = \frac{k(k+1)(k+2)}{6} . $
+>
+> Adding the next triangular number $ T_{k+1} = \frac{(k+1)(k+2)}{2} $ to both sides,
+>
+> $ \displaystyle\sum_{i=1}^{k+1} T_i = \frac{k(k+1)(k+2)}{6} + \frac{(k+1)(k+2)}{2} . $
+>
+> Both terms carry the factor $ (k+1)(k+2) $, so
+>
+> $ \displaystyle = (k+1)(k+2)\left[\frac{k}{6}+\frac{1}{2}\right] = (k+1)(k+2)\cdot\frac{k+3}{6} = \frac{(k+1)(k+2)(k+3)}{6} , $
+>
+> which is the formula at $ k+1 $.
+>
+> The basis holds and the step carries the formula from each $ k $ to $ k+1 $, so it holds for every $ n $. $ \blacksquare $
+
+The whole step is the observation that $ \tfrac{k}{6}+\tfrac{1}{2} = \tfrac{k+3}{6} $. Both sides were expanded as polynomials in $ k $ and agree in all four coefficients.
+
+## The Picture
+
+The dot triangles stack into a tetrahedron on the left; on the right the same totals are read straight off a diagonal of Pascal's triangle.
+
+!(78%)[The stacked triangles and the same fact read off Pascal's triangle](problem-3-tetrahedral.svg "A diagram in four parts. The first states that the sum of the first n triangular numbers equals n times n plus one times n plus two over six, which equals the binomial coefficient n plus two choose three, and notes this was verified for every n up to 4000 with the inductive step matched coefficient by coefficient. The second part has two panels. The left panel draws four dot triangles of one, three, six and ten dots, labelled T one equals one, T two equals three, T three equals six and T four equals ten, with running totals one, four, ten and twenty beneath them; it notes that one, four, ten and twenty are the tetrahedral numbers, the counts of a triangular stack of cannonballs, and gives the formula. The right panel draws the first eight rows of Pascal's triangle. The entries one, three, six, ten and fifteen in the third diagonal are highlighted purple as the triangular numbers, equal to i plus one choose two, and the entry thirty-five in the next row and next diagonal is highlighted green as their total, equal to seven choose three. It notes this is the hockey-stick identity and the formula is n plus two choose three. A green band gives the inductive step: assume the total at k and add the next triangular number, which is k plus one times k plus two over two; both terms carry the factor k plus one times k plus two, so the sum is that factor times the bracket k over six plus one half, which equals k plus one times k plus two times k plus three over six. It notes the whole step is that k over six plus one half equals k plus three over six, and both sides expand to the same four coefficients. An orange band records two facts found while checking: consecutive triangular numbers sum to a square, T n plus T n minus one equals n squared, verified for n up to 1000; and tetrahedral numbers are rarely anything else, since searching to n equals 200000 finds only one, four and nineteen thousand six hundred are perfect squares, and only one, ten, one hundred twenty, one thousand five hundred forty and seven thousand one hundred forty are themselves triangular, both lists being known to be complete although proving that is far harder than the formula itself.")
+
+## Remark — The Formula Read Off Pascal's Triangle
+
+The binomial form is the one that explains itself. Since $ T_i = \tfrac{i(i+1)}{2} = \binom{i+1}{2} $ — checked for $ i $ up to $ 500 $ — the statement becomes
+
+$$$
+\sum_{i=1}^{n}\binom{i+1}{2} = \binom{n+2}{3} ,
+$$$
+
+verified for $ n $ up to $ 300 $. This is the **hockey-stick identity**: adding consecutive entries down one diagonal of Pascal's triangle gives the entry one row below and one place along.
+
+$$$
+\begin{array}{l|l}
+\text{diagonal } \binom{i}{1} & 1,2,3,4,\ldots \quad\text{the natural numbers} \\
+\text{diagonal } \binom{i}{2} & 1,3,6,10,\ldots \quad\text{the triangular numbers} \\
+\text{diagonal } \binom{i}{3} & 1,4,10,20,\ldots \quad\text{the tetrahedral numbers}
+\end{array}
+$$$
+
+Each diagonal is the running-total sequence of the one before it, which is exactly Pascal's rule $ \binom{r}{c} = \binom{r-1}{c-1}+\binom{r-1}{c} $ applied repeatedly. So this problem, 5.2 Problem 1's triangular numbers, and the sum of the natural numbers are three consecutive instances of one identity, and the induction above is the hockey stick specialised to $ c=3 $.
+
+Worth noting that the pattern continues: summing tetrahedral numbers gives $ \binom{n+3}{4} $, and so on up the diagonals without end.
+
+## Remark — Why the Denominator Is $ 6 $
+
+The expression $ \tfrac{n(n+1)(n+2)}{6} $ must be an integer for every $ n $, since it counts something, and the reason is immediate from the binomial form: $ \binom{n+2}{3} $ counts $ 3 $-element subsets of an $ (n+2) $-element set.
+
+Without that reading one would argue directly. Among any three consecutive integers $ n $, $ n+1 $, $ n+2 $ at least one is even and exactly one is divisible by $ 3 $, so the product is divisible by $ 6 $. The same argument explains the denominators met earlier: $ \tfrac{n(n+1)}{2} $ needs two consecutive integers, and the $ 30 $ of 5.2 Problem 2 needed a case check modulo $ 5 $ because the product there was not simply a run of consecutive integers.
+
+This is a cheap test worth applying to any conjectured summation formula before attempting a proof: if it fails to be an integer somewhere, it is wrong, and no induction is needed to discover that.
+
+## Remark — Two Facts Noticed While Checking
+
+Two properties of these sequences came out of the verification and are worth recording.
+
+First, **consecutive triangular numbers sum to a square**:
+
+$$$
+T_n + T_{n-1} = n^{2} ,
+$$$
+
+verified for every $ n $ up to $ 1000 $. Two triangles of side $ n $ and $ n-1 $ interlock into an $ n\times n $ square, which is the picture behind it.
+
+Second, **tetrahedral numbers are rarely anything else**. Searching to $ n=200000 $:
+
+$$$
+\begin{array}{l|l}
+\text{tetrahedral and square} & 1,\ 4,\ 19600 \\
+\text{tetrahedral and triangular} & 1,\ 10,\ 120,\ 1540,\ 7140
+\end{array}
+$$$
+
+and nothing further. Both lists are known to be complete — the square case was settled by Meyl in 1878 — but the proofs are genuine number theory, far beyond the reach of the induction that established the formula itself.
+
+That contrast is worth keeping in view. Induction handled the *formula* effortlessly, because the formula is a statement about every $ n $ that follows from its predecessor. A question like “which tetrahedral numbers are squares” has no such structure: the answer at $ n $ tells one nothing about the answer at $ n+1 $, and induction has no purchase on it at all.

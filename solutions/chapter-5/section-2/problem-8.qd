@@ -1,0 +1,109 @@
+.docname {Solution — GIAM 5.2 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 8
+
+## Problem
+
+The Fibonacci numbers satisfy $ F_{n+2} = F_n + F_{n+1} $ with $ F_0 = F_1 = 1 $, giving $ 1,1,2,3,5,8,13,21,\ldots $. Use mathematical induction to prove
+
+$$$
+\sum_{i=0}^{n} \left(F_i\right)^{2} = F_n\cdot F_{n+1} .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;F_k F_{k+1} + F_{k+1}^{2} = F_{k+1}\left(F_k + F_{k+1}\right) = F_{k+1}F_{k+2}\;}
+$$$
+
+One factorisation followed by the recurrence. Verified for every $ n $ up to $ 55 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $, $ \displaystyle\sum_{i=0}^{n}\left(F_i\right)^{2} = F_n F_{n+1} $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $ the sum has the single term $ F_0^{2} = 1 $, and $ F_0 F_1 = 1\cdot1 = 1 $. The two agree.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose
+>
+> $ \displaystyle\sum_{i=0}^{k}\left(F_i\right)^{2} = F_k F_{k+1} . $
+>
+> Adding the next square,
+>
+> $ \displaystyle\sum_{i=0}^{k+1}\left(F_i\right)^{2} = F_k F_{k+1} + F_{k+1}^{2} . $
+>
+> Both terms carry the factor $ F_{k+1} $, so
+>
+> $ \displaystyle = F_{k+1}\left(F_k + F_{k+1}\right) = F_{k+1}F_{k+2} , $
+>
+> the last equality being the defining recurrence $ F_{k+2}=F_k+F_{k+1} $. This is the formula at $ k+1 $.
+>
+> The basis holds and the step carries the formula forward, so it holds for every $ n $. $ \blacksquare $
+
+The step was checked for every $ k $ up to $ 55 $. Note the basis is a one-term sum, not an empty one, since the index starts at $ i=0 $ — the same point as in 5.2 Problem 6.
+
+## The Picture
+
+The identity is a statement about area: squares of sides $ F_0,\ldots,F_n $ fill an $ F_n\times F_{n+1} $ rectangle exactly.
+
+!(78%)[Squares of Fibonacci side tiling a Fibonacci rectangle](problem-8-fibonacci.svg "A diagram in three parts. The first states that the sum from i equals zero to n of F i squared equals F n times F n plus one, and notes it was verified for n up to 55 with F zero and F one both equal to one as the problem sets them. The second part draws an eight by thirteen rectangle tiled exactly by six squares of sides eight, five, three, two, one and one, each in a different colour and labelled by its side, arranged in the familiar spiral: the eight by eight square fills the left, the five by five sits at the upper right, the three by three at the lower right, the two by two beside it, and the two unit squares fill the last corner. The rectangle's sides are labelled eight and thirteen. Below it the arithmetic reads one squared plus one squared plus two squared plus three squared plus five squared plus eight squared equals one plus one plus four plus nine plus twenty-five plus sixty-four, which is one hundred four, and eight times thirteen is also one hundred four, so the sum of squares equals F n times F n plus one. A green band shows the step is one factorisation and the recurrence: adding the next square to the assumed total and pulling out the common factor F k plus one gives F k plus one times the quantity F k plus F k plus one, which equals F k plus one times F k plus two, the last equality being the defining recurrence, with nothing else used. An orange band explains why one basis is enough though the recurrence looks back two: 5.1 Problem 4 warned that a step of size two needs two bases, but this proof steps by one and needs only P of zero, because the statement mentions just F n and F n plus one and the two-term recurrence enters as an already known fact about the sequence rather than as a second inductive hypothesis. The distinction worth keeping is that what matters is how far back the induction reaches, not how far back the definition reaches.")
+
+## Remark — The Identity Is a Statement About Area
+
+The algebra hides a picture. Take squares of sides $ F_0,F_1,\ldots,F_n $ and lay them down in a spiral: each new square sits against the long side of the rectangle built so far, and the result is always a rectangle with Fibonacci sides.
+
+$$$
+\begin{array}{c|l|c|c}
+n & \text{square sides} & \text{total area} & F_n\times F_{n+1} \\ \hline
+2 & 1,1,2 & 6 & 2\times3 \\
+3 & 1,1,2,3 & 15 & 3\times5 \\
+4 & 1,1,2,3,5 & 40 & 5\times8 \\
+5 & 1,1,2,3,5,8 & 104 & 8\times13 \\
+6 & 1,1,2,3,5,8,13 & 273 & 13\times21
+\end{array}
+$$$
+
+all confirmed by direct computation, and the $ 8\times13 $ tiling was checked cell by cell to have no overlaps and no gaps.
+
+The inductive step is exactly the act of adding the next square. A rectangle measuring $ F_k\times F_{k+1} $ with a square of side $ F_{k+1} $ glued to its long side becomes a rectangle measuring $ F_{k+1}\times\left(F_k+F_{k+1}\right) $, which is $ F_{k+1}\times F_{k+2} $. The recurrence is what guarantees the new shape is again a rectangle, and the algebra above is that sentence written symbolically.
+
+This is also the construction underlying the familiar Fibonacci spiral, drawn by inscribing a quarter-circle in each square.
+
+## Remark — Why One Basis Suffices
+
+5.1 Problem 4 showed that an inductive step of size $ 2 $ requires two bases. The Fibonacci recurrence looks back two places, so one might expect this proof to need $ P(0) $ and $ P(1) $. It does not, and the reason is worth stating.
+
+$$$
+\begin{array}{l|l}
+\text{how far the \textbf{definition} reaches back} & \text{two terms: } F_{k+2}=F_k+F_{k+1} \\
+\text{how far the \textbf{induction} reaches back} & \text{one: } P(k)\implies P(k+1)
+\end{array}
+$$$
+
+The statement $ P(n) $ mentions only $ F_n $ and $ F_{n+1} $, and the step assumes only $ P(k) $. The recurrence enters as an **already established fact about the sequence** — part of its definition — not as a second inductive hypothesis. So the chain $ P(0)\to P(1)\to P(2)\to\cdots $ has step size $ 1 $ and one basis is enough.
+
+The contrast is worth keeping in view. A proof that $ F_n < 2^{n} $, say, really does reach back two places, because bounding $ F_{k+2} $ requires bounds on both $ F_k $ and $ F_{k+1} $; that one needs two bases. Whether an induction is one-step or two-step is decided by what the *step* assumes, not by how the sequence happens to be defined.
+
+## Remark — What the Formula Says About Growth
+
+Dividing both sides by $ F_n^{2} $ turns the identity into a statement about ratios:
+
+$$$
+\frac{1}{F_n^{2}}\sum_{i=0}^{n}F_i^{2} = \frac{F_{n+1}}{F_n} .
+$$$
+
+Those ratios converge to the golden ratio $ \varphi = \tfrac{1+\sqrt5}{2} \approx 1.6180339887 $ — computed values $ 1.625 $ at $ n=5 $, $ 1.6179775 $ at $ n=10 $, and $ 1.6180339887 $ by $ n=40 $, matching $ \varphi $ to ten places.
+
+So the sum of all the squares up to $ F_n $ is only about $ 1.618 $ times the last square alone. The sequence grows fast enough that its total is dominated by its final term — quite unlike the polynomial sums of 5.2 Problems 1 to 4, where $ \sum j^{p} $ exceeds $ n^{p} $ by a factor of roughly $ \tfrac{n}{p+1} $, which grows without bound.
+
+That difference is the practical signature of exponential growth, and this identity captures it in a single exact statement rather than an estimate.

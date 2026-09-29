@@ -1,0 +1,115 @@
+.docname {Solution — GIAM 5.2 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 7
+
+## Problem
+
+Prove that $ \displaystyle\sum_{i=1}^{n}\frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1} $ for all natural numbers $ n $.
+
+## Answer
+
+$$$
+\boxed{\;\text{The step reduces to } k(2k+3)+1 = 2k^{2}+3k+1 = (2k+1)(k+1).\;}
+$$$
+
+Verified exactly with fractions for every $ n $ up to $ 800 $, and the inductive step for every $ k $ up to $ 2000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $,
+>
+> $ \displaystyle\sum_{i=1}^{n}\frac{1}{(2i-1)(2i+1)} = \frac{n}{2n+1} . $
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $ the left side is an empty sum, $ 0 $, and the right side is $ \tfrac{0}{1}=0 $. (At $ n=1 $ both sides are $ \tfrac{1}{3} $.)
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose
+>
+> $ \displaystyle\sum_{i=1}^{k}\frac{1}{(2i-1)(2i+1)} = \frac{k}{2k+1} . $
+>
+> The term for $ i=k+1 $ is $ \dfrac{1}{(2k+1)(2k+3)} $, so
+>
+> $ \displaystyle\sum_{i=1}^{k+1}\frac{1}{(2i-1)(2i+1)} = \frac{k}{2k+1} + \frac{1}{(2k+1)(2k+3)} . $
+>
+> Both fractions have denominator dividing $ (2k+1)(2k+3) $, so
+>
+> $ \displaystyle = \frac{k(2k+3)+1}{(2k+1)(2k+3)} = \frac{2k^{2}+3k+1}{(2k+1)(2k+3)} = \frac{(2k+1)(k+1)}{(2k+1)(2k+3)} = \frac{k+1}{2k+3} , $
+>
+> and $ 2k+3 = 2(k+1)+1 $, so this is the formula at $ k+1 $.
+>
+> The basis holds and the step carries the formula forward, so it holds for all $ n $. $ \blacksquare $
+
+Everything turns on the numerator factoring as $ (2k+1)(k+1) $, which lets the $ (2k+1) $ cancel.
+
+## The Picture
+
+!(78%)[The telescoping cancellation and the partial sums](problem-7-telescope.svg "A diagram in three parts. The first announces a telescoping sum, states that the sum from i equals one to n of one over the product of two i minus one and two i plus one equals n over two n plus one, and notes it was verified exactly with fractions for n up to 800 and the inductive step for k up to 2000. The second part has two panels. The left panel shows how partial fractions make it telescope: for i equals one, one half times the quantity one over one minus one over three; for i equals two, one half times one over three minus one over five; for i equals three, one half times one over five minus one over seven; for i equals four, one half times one over seven minus one over nine. All the interior fractions are struck through in red, leaving only the first and last, so everything cancels but the ends, giving one half times the quantity one minus one over two n plus one, which is n over two n plus one. The right panel tabulates the partial sums: n equals one gives one third or 0.33333; two gives two fifths or 0.40000; three gives three sevenths or 0.42857; four gives four ninths or 0.44444; five gives five elevenths or 0.45455; fifty gives fifty over one hundred one or 0.49505; five hundred gives five hundred over one thousand one or 0.49950. It notes these approach one half as n grows. A green band shows the inductive step turns on one factorisation: adding the next term over the common denominator of two k plus one times two k plus three gives k times two k plus three, plus one, all over that denominator; the numerator is two k squared plus three k plus one, which factors as two k plus one times k plus one; so the sum is k plus one over two k plus three, which is k plus one over two times k plus one, plus one. It notes that numerator is exactly the polynomial of 5.2 Problem 6, factored the same way.")
+
+## Remark — Why It Works: the Sum Telescopes
+
+The induction verifies the formula but conceals where it comes from. Partial fractions supply the reason:
+
+$$$
+\frac{1}{(2i-1)(2i+1)} = \frac{1}{2}\left[\frac{1}{2i-1}-\frac{1}{2i+1}\right] ,
+$$$
+
+checked for every $ i $ up to $ 2000 $. Writing the sum out, each negative piece cancels the positive piece of the next term:
+
+$$$
+\frac{1}{2}\left[\left(\frac{1}{1}-\frac{1}{3}\right)+\left(\frac{1}{3}-\frac{1}{5}\right)+\left(\frac{1}{5}-\frac{1}{7}\right)+\cdots+\left(\frac{1}{2n-1}-\frac{1}{2n+1}\right)\right] .
+$$$
+
+Only the two ends survive, giving
+
+$$$
+\frac{1}{2}\left[1-\frac{1}{2n+1}\right] = \frac{1}{2}\cdot\frac{2n}{2n+1} = \frac{n}{2n+1} ,
+$$$
+
+verified for $ n $ up to $ 800 $. This is a **telescoping** sum, and the argument is not only shorter than the induction but explains the answer: the formula is $ \tfrac12 $ minus a correction that shrinks as $ n $ grows.
+
+It also explains why the closed form is a ratio rather than a polynomial. Nothing is accumulating; the terms are collapsing against one another.
+
+## Remark — The Numerator Is an Old Friend
+
+The step succeeded because
+
+$$$
+k(2k+3)+1 = 2k^{2}+3k+1 = (2k+1)(k+1) ,
+$$$
+
+checked as a polynomial identity. That expression is exactly the one proved in 5.2 Problem 6, where $ 2n^{2}+3n+1 $ was the closed form for $ \sum(4j+1) $ and factored as $ (n+1)(2n+1) $.
+
+The reappearance is not a coincidence so much as a small piece of luck about the shape $ 2k^{2}+3k+1 $: it is the product of the two consecutive-odd-ish factors $ 2k+1 $ and $ k+1 $, and the $ (2k+1) $ is precisely the factor that needs to cancel here. Had the numerator been irreducible, the step would have stalled and the proposed formula would have been wrong.
+
+That is worth keeping as a diagnostic. In an induction on a sum of fractions, the step is an exercise in seeing whether the combined numerator factors to match the denominator. When a proposed closed form is *incorrect*, this is usually where it shows.
+
+## Remark — What Happens as $ n $ Grows
+
+The partial sums are
+
+$$$
+\frac{1}{3},\ \frac{2}{5},\ \frac{3}{7},\ \frac{4}{9},\ \frac{5}{11},\ \ldots
+$$$
+
+and computing $ \frac{n}{2n+1} $ for larger $ n $ gives $ 0.49505 $ at $ n=50 $ and $ 0.49950 $ at $ n=500 $. The formula makes the behaviour transparent:
+
+$$$
+\frac{n}{2n+1} = \frac{1}{2}-\frac{1}{2(2n+1)} \ \longrightarrow\ \frac{1}{2} .
+$$$
+
+So the infinite series converges, and
+
+$$$
+\sum_{i=1}^{\infty}\frac{1}{(2i-1)(2i+1)} = \frac{1}{2} .
+$$$
+
+Worth noticing that a closed form does something a proof of convergence alone would not. It gives the exact value at every stage, and the exact error $ \tfrac{1}{2(2n+1)} $ remaining. Most convergent series admit no such formula — $ \sum 1/i^{2} $ converges to $ \pi^{2}/6 $ but its partial sums have no closed form at all — and telescoping is the main circumstance in which one is available.

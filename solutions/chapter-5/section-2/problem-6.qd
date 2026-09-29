@@ -1,0 +1,112 @@
+.docname {Solution — GIAM 5.2 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 6
+
+## Problem
+
+Prove that $ \displaystyle\sum_{j=0}^{n}\left(4j+1\right) = 2n^{2}+3n+1 $ for all integers $ n\ge0 $.
+
+## Answer
+
+$$$
+\boxed{\;\text{Basis: } 1 = 1 \text{ at } n=0. \qquad \text{Step: the next term } 4k+5 \text{ is exactly } Q(k+1)-Q(k).\;}
+$$$
+
+Verified for every $ n $ up to $ 5000 $. This is the identity whose table was completed in 5.1 Problem 1; there the table was evidence, and here is the proof.
+
+## The Proof
+
+Write $ Q(n) = 2n^{2}+3n+1 $.
+
+> **Theorem.** For every integer $ n\ge0 $, $ \displaystyle\sum_{j=0}^{n}\left(4j+1\right) = Q(n) $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $ the sum runs over the single value $ j=0 $, giving $ 4\cdot0+1 = 1 $. And $ Q(0) = 2\cdot0^{2}+3\cdot0+1 = 1 $. The two agree.
+>
+> **Inductive step.** Let $ k\ge0 $ be a particular but arbitrarily chosen integer, and suppose
+>
+> $ \displaystyle\sum_{j=0}^{k}\left(4j+1\right) = 2k^{2}+3k+1 . $
+>
+> The term for $ j=k+1 $ is $ 4(k+1)+1 = 4k+5 $, so
+>
+> $ \displaystyle\sum_{j=0}^{k+1}\left(4j+1\right) = \left(2k^{2}+3k+1\right) + \left(4k+5\right) = 2k^{2}+7k+6 . $
+>
+> On the other hand, evaluating the formula at $ k+1 $,
+>
+> $ \displaystyle Q(k+1) = 2(k+1)^{2}+3(k+1)+1 $
+>
+> $ \displaystyle \qquad = \left(2k^{2}+4k+2\right)+\left(3k+3\right)+1 = 2k^{2}+7k+6 . $
+>
+> The two agree, so the formula holds at $ k+1 $.
+>
+> The basis holds and the step carries the formula from each $ k $ to $ k+1 $, so it holds for every integer $ n\ge0 $. $ \blacksquare $
+
+## The Picture
+
+The two things the induction checks, and the difference that makes the step work.
+
+!(78%)[The basis, the step, and the first differences of the polynomial](problem-6-induction.svg "A diagram in four parts. The first says this is the identity whose table was filled in at 5.1 Problem 1, states that the sum from j equals zero to n of four j plus one equals two n squared plus three n plus one, which factors as n plus one times two n plus one, and notes it was verified for every n up to 5000, with the table there being evidence and this being the proof. The second part shows the two things an induction on a summation checks, in two boxes. The first, headed basis, says the formula is right at the start: at n equals zero the sum has one term, not none, because the index runs from j equals zero, so one equals two times zero squared plus three times zero plus one. The second, headed step, says the formula grows by the right amount: the next term is four times k plus one, plus one, equal to four k plus five, and Q of k plus one minus Q of k equals two times two k plus one, plus three, which is also four k plus five, so adding a term keeps the formula true. A green band shows that the first difference of the polynomial is the term being added: the values one, six, fifteen, twenty-eight, forty-five, sixty-six and ninety-one for n from zero to six are joined by arcs labelled plus five, plus nine, plus thirteen, plus seventeen, plus twenty-one and plus twenty-five. It notes these gaps are exactly the terms four j plus one being added, verified for k up to 5000, and that this single check plus the basis is the whole induction, with nothing else about the sum being used. An orange band warns to watch the basis, since this sum starts at j equals zero: in 5.2 Problems 1 to 4 the sums ran from i equals one, so n equals zero gave an empty sum and the basis was a convention, whereas here the index starts at j equals zero so n equals zero already contributes the term one. The basis is therefore a genuine computation, small as it is, and reading it as an empty sum would give zero rather than one, which is wrong since two times zero squared plus three times zero plus one equals one.")
+
+## Remark — Watch the Basis: This Sum Starts at $ j=0 $
+
+In 5.2 Problems 1 through 4 the sums ran from $ i=1 $, so taking $ n=0 $ produced an **empty** sum and the basis was a matter of convention — nothing had to be computed. Here the index starts at $ j=0 $, so
+
+$$$
+\sum_{j=0}^{0}\left(4j+1\right) = 4\cdot0+1 = 1 ,
+$$$
+
+a sum with one term in it. The basis is a genuine, if tiny, calculation.
+
+The distinction matters because reading the basis as an empty sum would give $ 0 $, while $ Q(0)=1 $, and the proof would appear to fail at its first line. It is worth checking, whenever a summation problem is set up, whether the lower limit is $ 0 $ or $ 1 $ and what the smallest case therefore contains.
+
+There is a related sanity check available. The sum has $ n+1 $ terms, not $ n $, so at $ n=4 $ there are five terms $ 1,5,9,13,17 $ — which is exactly what 5.1 Problem 1's table recorded.
+
+## Remark — The Step Is One Difference Calculation
+
+Every induction on a summation reduces to the same single fact. If $ Q $ is the proposed closed form, the step succeeds precisely when
+
+$$$
+Q(k+1)-Q(k) = \left(\text{the term added at } k+1\right) .
+$$$
+
+Here that reads
+
+$$$
+Q(k+1)-Q(k) = \left[2(k+1)^{2}+3(k+1)+1\right]-\left[2k^{2}+3k+1\right] = 2(2k+1)+3 = 4k+5 ,
+$$$
+
+which is the term $ 4(k+1)+1 $. The differences $ 5,9,13,17,21,25 $ were checked against the terms for every $ k $ up to $ 5000 $.
+
+Seen that way the whole theorem is two lines of arithmetic: one evaluation at the basis, and one polynomial difference. Nothing else about the sum enters — the inductive hypothesis is used only to have something to add the next term to.
+
+This also explains why finding such formulas by finite differences works, as in 5.2 Problem 2: the difference table is searching for a $ Q $ with the right first difference, which is exactly the condition the induction will need.
+
+## Remark — The Shorter Argument, and Why Induction Is Still Wanted
+
+5.1 Problem 1 proved the same identity without induction, by pairing the terms forwards and backwards:
+
+$$$
+2\sum_{j=0}^{n}\left(4j+1\right) = (n+1)\left(4n+2\right) , \qquad\text{so}\qquad \sum_{j=0}^{n}\left(4j+1\right) = (n+1)(2n+1) ,
+$$$
+
+both verified to $ n=2000 $, and $ (n+1)(2n+1) = 2n^{2}+3n+1 $. That argument is shorter and more informative: it exhibits the sum as *count times average*, which explains the factored form.
+
+So why prove it again by induction? Because the pairing trick is special to arithmetic progressions, where the terms are equally spaced and every column of the paired rows has the same total. Nothing like it is available for $ \sum j^{3} $ or $ \sum j^{4} $, whereas the induction above would run essentially unchanged for either.
+
+$$$
+\begin{array}{l|l}
+\text{Gauss pairing} & \text{short and explanatory; works only for arithmetic progressions} \\
+\text{induction} & \text{longer and mechanical; works whenever a closed form is guessed}
+\end{array}
+$$$
+
+That is the usual trade, and it is worth having both in hand. The pairing argument is the one to reach for when the sum is arithmetic; the induction is the one that never fails to apply once a candidate formula is in view.

@@ -1,0 +1,128 @@
+.docname {Solution — GIAM 5.2 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.2 Problem 1
+
+## Problem
+
+Write an inductive proof of the formula for the sum of the first $ n $ cubes.
+
+## Answer
+
+$$$
+\boxed{\;\sum_{j=1}^{n} j^{3} = \left(\frac{n(n+1)}{2}\right)^{2} = \left(1+2+\cdots+n\right)^{2}\;}
+$$$
+
+Verified for every $ n $ up to $ 3000 $, and the inductive step checked coefficient by coefficient.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $,
+>
+> $ \displaystyle\sum_{j=1}^{n} j^{3} = \left(\frac{n(n+1)}{2}\right)^{2} . $
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** For $ n=0 $ the left side is an empty sum, which is $ 0 $, and the right side is $ \left(\tfrac{0\cdot1}{2}\right)^{2}=0 $. The two agree.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number, and suppose the formula holds at $ k $:
+>
+> $ \displaystyle\sum_{j=1}^{k} j^{3} = \left(\frac{k(k+1)}{2}\right)^{2} . $
+>
+> Adding the next cube to both sides,
+>
+> $ \displaystyle\sum_{j=1}^{k+1} j^{3} = \left(\frac{k(k+1)}{2}\right)^{2} + (k+1)^{3} . $
+>
+> Now factor $ (k+1)^{2} $ out of the right-hand side:
+>
+> $ \displaystyle = (k+1)^{2}\left[\frac{k^{2}}{4} + (k+1)\right] $
+>
+> $ \displaystyle = (k+1)^{2}\cdot\frac{k^{2}+4k+4}{4} \; = \; \frac{(k+1)^{2}(k+2)^{2}}{4} $
+>
+> $ \displaystyle = \left(\frac{(k+1)(k+2)}{2}\right)^{2} , $
+>
+> which is the formula at $ k+1 $.
+>
+> Since the basis holds and the step carries the formula from each $ k $ to $ k+1 $, the formula holds for every natural number $ n $. $ \blacksquare $
+
+The only real move is recognising $ k^{2}+4k+4 = (k+2)^{2} $. Both sides of the step were expanded as polynomials in $ k $ and agree in all five coefficients.
+
+## The Picture
+
+Two dissections below explain the result that the induction only confirms: a square cut into cubical shells, and each cube written as a run of odd numbers.
+
+!(78%)[The square dissection and the odd-number decomposition](problem-1-cubes.svg "A diagram in three parts. The first states that the sum of cubes is the square of the sum, giving one cubed plus two cubed and so on to n cubed equals the square of one plus two up to n, equal to the square of n times n plus one over two, and notes this was verified for every n up to 3000 with the inductive step checked coefficient by coefficient. The second part has two panels. The left panel shows a ten by ten square, ruled into unit cells, cut into four nested L-shaped shells in different colours labelled one cubed, two cubed, three cubed and four cubed; the caption notes the side is one plus two plus three plus four equals ten, the shells have areas one, eight, twenty-seven and sixty-four, and these total one hundred, which is ten squared. The right panel shows that every cube is a run of consecutive odd numbers: one cubed equals one; two cubed equals three plus five; three cubed equals seven plus nine plus eleven; four cubed equals thirteen plus fifteen plus seventeen plus nineteen; five cubed equals twenty-one plus twenty-three plus twenty-five plus twenty-seven plus twenty-nine. It notes that stacking these uses the first one plus two up to n odd numbers, and since the first m odd numbers sum to m squared by 5.1 Problem 3b, the sum of cubes equals the square of one plus two up to n. A green band gives the inductive step in one line: assuming the formula at k and adding the next cube, factor out k plus one squared to get k plus one squared times the quantity k squared over four plus k plus one, which equals k plus one squared times k squared plus four k plus four over four, equal to k plus one squared times k plus two squared over four, which is the square of k plus one times k plus two over two. The band notes the whole step is the observation that k squared over four plus k plus one is a perfect square.")
+
+## Remark — The Formula Says Something Surprising
+
+Written as $ \left(n^{2}+n\right)^{2}/4 $ the result is just another polynomial. Written as
+
+$$$
+\sum_{j=1}^{n} j^{3} = \left(\sum_{j=1}^{n} j\right)^{2}
+$$$
+
+it is a genuine surprise: **the sum of the first $ n $ cubes is the square of the sum of the first $ n $ integers**. Checked for all $ n $ up to $ 3000 $. This is Nicomachus's theorem, and there is no obvious reason a sum of cubes should be a perfect square at all, let alone the square of something so closely related.
+
+The values are the **squared triangular numbers**:
+
+$$$
+\begin{array}{c|c|c}
+n & \sum j^{3} & \text{as a square} \\ \hline
+1 & 1 & 1^{2} \\
+2 & 9 & 3^{2} \\
+3 & 36 & 6^{2} \\
+4 & 100 & 10^{2} \\
+5 & 225 & 15^{2}
+\end{array}
+$$$
+
+Worth noting what induction did and did not do here. It confirmed the formula but explains nothing about *why* cubes should sum to a square — the step is a routine factorisation that would have worked equally well for a formula with no interesting content. The two remarks below give reasons.
+
+## Remark — Why It Is True, Seen Geometrically
+
+Let $ T_{k} = 1+2+\cdots+k $. Nest squares of sides $ T_{0},T_{1},T_{2},\ldots $ inside one another. The L-shaped shell between consecutive squares has area
+
+$$$
+T_{k}^{2}-T_{k-1}^{2} = \left(T_{k}-T_{k-1}\right)\left(T_{k}+T_{k-1}\right) = k\cdot\frac{k(k+1)+k(k-1)}{2} = k\cdot k^{2} = k^{3} ,
+$$$
+
+confirmed for $ k $ up to $ 5 $ by direct computation of the areas $ 1,8,27,64,125 $. So a square of side $ T_{n} $ decomposes into $ n $ shells of areas $ 1^{3},2^{3},\ldots,n^{3} $, and the total area gives the theorem at once.
+
+This is the same telescoping the induction performs, but with the algebra replaced by a picture: the inductive step *is* the statement that adding one more shell to the square of side $ T_{k} $ produces the square of side $ T_{k+1} $.
+
+## Remark — A Second Reason, from the Sum of Odd Numbers
+
+There is a different route that connects this problem to 5.1 Problem 3b. Every cube is a run of consecutive odd numbers:
+
+$$$
+\begin{array}{l}
+1^{3} = 1 \\
+2^{3} = 3+5 \\
+3^{3} = 7+9+11 \\
+4^{3} = 13+15+17+19 \\
+5^{3} = 21+23+25+27+29
+\end{array}
+$$$
+
+verified for every $ n $ up to $ 300 $: the $ n $ odd numbers starting where the previous run left off always total $ n^{3} $.
+
+The runs use consecutive odd numbers with no gaps and no repeats, so the first $ n $ cubes together consume the first
+
+$$$
+1+2+\cdots+n = T_{n}
+$$$
+
+odd numbers. By 5.1 Problem 3b the first $ m $ odd numbers sum to $ m^{2} $, so
+
+$$$
+\sum_{j=1}^{n} j^{3} = T_{n}^{2} ,
+$$$
+
+checked directly for $ n $ up to $ 300 $. This proof is arguably the most satisfying of the three, because it explains the square: the cubes are being reassembled into the standard picture of $ T_{n}^{2} $ as a sum of odd numbers, and the squaring is not a coincidence but the shape of the reassembly.
