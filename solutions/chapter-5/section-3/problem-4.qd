@@ -1,0 +1,103 @@
+.docname {Solution — GIAM 5.3 Problem 4}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 4
+
+## Problem
+
+Give an inductive proof that $ \forall n\in\mathbb{N} $, $ 3\mid4^{n}-1 $.
+
+## Answer
+
+$$$
+\boxed{\;4^{k+1}-1 = 4\left(4^{k}-1\right)+3\;}
+$$$
+
+Both terms on the right are multiples of $ 3 $ once the first is. Verified for every $ n $ up to $ 3000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $, $ 3 $ divides $ 4^{n}-1 $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $, $ 4^{0}-1 = 0 $, and $ 3\mid0 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ 4^{k}-1 = 3m $ for some integer $ m $. Then
+>
+> $ 4^{k+1}-1 = 4\cdot4^{k}-1 = 4\left(4^{k}-1\right)+4-1 = 4\left(4^{k}-1\right)+3 . $
+>
+> Substituting the hypothesis,
+>
+> $ 4^{k+1}-1 = 4\cdot3m+3 = 3\left(4m+1\right) , $
+>
+> and $ 4m+1 $ is an integer, so $ 3\mid4^{k+1}-1 $.
+>
+> Basis and step together give the result for every $ n $. $ \blacksquare $
+
+The trick is the same “add and subtract” move used in 3.2 Problem 8's product rule: writing $ 4\cdot4^{k}-1 $ as $ 4\left(4^{k}-1\right)+3 $ creates a copy of the hypothesis inside the next case.
+
+## The Picture
+
+The quotients $ \left(4^{n}-1\right)/3 $ have two pleasant descriptions, shown below.
+
+!(78%)[The quotient as a geometric series, and the same fact in binary](problem-4-powers.svg "A diagram in four parts. The top band states the step identity: four to the k plus one, minus one, equals four times (four to the k minus one) plus three. Below it, a table lists four to the n minus one for n from zero to five with quotients 0, 1, 5, 21, 85, 341, each a geometric series in powers of four and equal to the tromino counts of 5.1 Problem 3d; beside it, the same numbers in binary: 2n ones equal eleven times 0101 to 01. A green band gives the general fact that a minus one divides a to the n minus one, and an orange band notes that 3 is the best constant, while 15 divides four to the n minus one exactly when n is even.")
+
+## Remark — The General Fact Behind It
+
+The identity used here is one instance of
+
+$$$
+a^{n}-1 = (a-1)\left(a^{n-1}+a^{n-2}+\cdots+a+1\right) ,
+$$$
+
+checked for every base $ a $ from $ 2 $ to $ 29 $ and every $ n $ up to $ 39 $. So $ a-1 $ always divides $ a^{n}-1 $; the problem is the case $ a=4 $, and the quotient is the geometric series
+
+$$$
+\frac{4^{n}-1}{3} = 1+4+16+\cdots+4^{n-1} ,
+$$$
+
+verified for $ n $ up to $ 300 $. With $ a=10 $ the same fact says $ 9 $ divides $ 9,99,999,\ldots $, which is exactly why a number and its digit sum leave the same remainder modulo $ 9 $.
+
+In the language of congruences the proof is one line: $ 4\equiv1\pmod3 $, hence $ 4^{n}\equiv1^{n}=1 $. The induction above is that line unpacked into the chapter's idiom.
+
+## Remark — An Old Acquaintance: the Tromino Count
+
+The quotients $ 0,1,5,21,85,341,\ldots $ appeared before, in 5.1 Problem 3d, as the number of L-trominoes needed to tile a $ 2^{n}\times2^{n} $ board with one square removed. There the count $ \left(4^{n}-1\right)/3 $ had to be a whole number for the theorem to have any chance, and this problem is precisely the statement that it always is.
+
+The two problems fit together neatly. The board has $ 4^{n} $ squares; removing one leaves $ 4^{n}-1 $; each tromino covers $ 3 $. Divisibility is the necessary arithmetic condition, and the tiling construction shows it is also sufficient.
+
+The quotients also have a striking binary form. Since $ 4^{n}-1 $ is a string of $ 2n $ ones in base $ 2 $, and $ 3 = 11_{2} $, the quotient is $ 0101\ldots01 $:
+
+$$$
+\begin{array}{c|r|r}
+n & 4^{n}-1 \text{ in binary} & \text{quotient in binary} \\ \hline
+1 & 11 & 1 \\
+2 & 1111 & 101 \\
+3 & 111111 & 10101 \\
+4 & 11111111 & 1010101
+\end{array}
+$$$
+
+— one block $ 11 $ for each pair of ones.
+
+## Remark — Is $ 3 $ the Best Divisor?
+
+As a constant valid for every $ n $, yes: at $ n=1 $ the value is $ 3 $ itself, and the greatest common divisor of $ 4^{n}-1 $ over $ n=1,\ldots,60 $ is $ 3 $. This is the situation of 5.3 Problem 3 rather than Problems 1 and 2, where a larger constant turned up.
+
+But more is true along a subsequence. For even $ n=2m $,
+
+$$$
+4^{n}-1 = 16^{m}-1 ,
+$$$
+
+which by the general fact is divisible by $ 15 $. Checking to $ n=400 $ confirms that $ 15\mid4^{n}-1 $ exactly when $ n $ is even — in particular $ 5\mid4^{n}-1 $ precisely for even $ n $.
+
+Rewriting $ 4^{n}=2^{2n} $ gives the companion statement: $ 3\mid2^{m}-1 $ exactly when $ m $ is even, verified to $ m=500 $. So the problem is really a fact about $ 2 $ having order $ 2 $ modulo $ 3 $, seen through the even exponents only — a first glimpse of the multiplicative orders that govern all such divisibility patterns.

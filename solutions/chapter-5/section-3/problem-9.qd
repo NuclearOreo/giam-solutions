@@ -1,0 +1,99 @@
+.docname {Solution — GIAM 5.3 Problem 9}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 9
+
+## Problem
+
+Give an inductive proof that $ \forall n\in\mathbb{N} $, $ 6\mid2n^{3}-2n-14 $.
+
+## Answer
+
+$$$
+\boxed{\;\text{False: } 2n^{3}-2n-14 \equiv 4 \pmod6 \text{ for every } n\in\mathbb{N}\;}
+$$$
+
+The statement cannot be proved because it fails at every $ n $. The smallest counterexample is $ n=0 $, where the value is $ -14 $. The inductive step is perfectly valid; it is the basis that fails, and the step then carries the failure to every $ n $. No value is divisible by $ 6 $, checked for $ \lvert n\rvert $ up to $ 5000 $.
+
+## The Disproof
+
+To refute a universal statement one instance is enough. Write $ f(n) = 2n^{3}-2n-14 $. At $ n=0 $,
+
+$$$
+f(0) = -14 = 6\cdot(-3)+4 ,
+$$$
+
+so $ 6\nmid f(0) $, and the claim $ \forall n\in\mathbb{N},\ 6\mid f(n) $ is false. The same happens at $ n=1 $, where $ f(1)=-14 $ again, and at $ n=2 $, where $ f(2)=-2 $.
+
+Induction does prove the correct statement, which shows the failure is total.
+
+> **Theorem.** For every natural number $ n $, $ f(n) \equiv 4 \pmod6 $, so $ f(n)-4 $ is a multiple of $ 6 $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $, $ f(0)-4 = -18 = 6\cdot(-3) $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ f(k)-4 = 6m $ for some integer $ m $. Then
+>
+> $ \begin{aligned} f(k+1) &= 2\left(k^{3}+3k^{2}+3k+1\right)-2(k+1)-14 \\ &= \left(2k^{3}-2k-14\right)+6k^{2}+6k \\ &= f(k)+6k(k+1) , \end{aligned} $
+>
+> so $ f(k+1)-4 = 6m+6k(k+1) = 6\left(m+k^{2}+k\right) $, and $ m+k^{2}+k $ is an integer.
+>
+> Basis and step together give the result for every $ n $. $ \blacksquare $
+
+Since every value leaves remainder $ 4 $, none leaves remainder $ 0 $: the original statement is false for *every* natural number, not just for $ n=0 $.
+
+## The Picture
+
+The step links every value to the next, but the first link is never set off.
+
+!(78%)[Every value is 4 mod 6; the step holds but the basis fails](problem-9-basis.svg "A diagram in four parts. A red band states that two n cubed minus two n minus fourteen is congruent to four mod six for every natural n, with counterexample n equal to zero. The left panel tabulates f of n for n from zero to six, each with remainder four mod six and ten mod twelve. The right panel draws dominoes P of zero to P of six joined by valid step arrows, with a crossed-out push before the first, since f of zero is minus fourteen. A green band states that f of n is congruent to ten mod twelve; an orange band notes that six divides two n cubed minus two n plus c for every n exactly when six divides c.")
+
+## Where an Attempted Proof Goes Wrong
+
+Someone attempting the requested proof would find that the inductive step works:
+
+$$$
+6\mid f(k) \implies 6\mid f(k)+6k(k+1) = f(k+1) .
+$$$
+
+That implication is genuinely valid for every $ k $; the algebra is correct. (Its premise also happens never to hold, so it is vacuously true as well.) But without a valid basis there is nothing for the step to act on. This is the lesson of 5.1 Problem 4 in its starkest form: there a missing basis left half the numbers unproved, while here the basis is false and so nothing is proved at all.
+
+## Remark — The Step Carries Falsity Too
+
+The identity $ f(k+1) = f(k)+6k(k+1) $ says more than “divisibility is passed along”. It says $ f(k+1) $ and $ f(k) $ always leave the *same* remainder on division by $ 6 $. So all the values share one remainder, and only the basis decides which. If one value were a multiple of $ 6 $, all of them would be; since $ f(0) $ is not, none is.
+
+This is why checking the basis is not a formality. An inductive step on its own shows only that the property is *hereditary*: it is either true from the basis onward or, as here, never established at all. In this case the step works just as well with “$ 6\nmid f(k) $” as the hypothesis.
+
+## Remark — What Is True Modulo $ 12 $
+
+Factoring the cubic part,
+
+$$$
+2n^{3}-2n = 2(n-1)\,n\,(n+1) = 12\binom{n+1}{3} ,
+$$$
+
+checked for $ n $ up to $ 2000 $. A product of three consecutive integers is divisible by $ 6 $ (as in 5.3 Problem 1's sharper remark), so $ 2n^{3}-2n $ is a multiple of $ 12 $, and
+
+$$$
+f(n) \equiv -14 \equiv 10 \pmod{12} .
+$$$
+
+So every value is even, and no value is divisible by $ 3 $. That also holds for negative $ n $, all checked for $ \lvert n\rvert $ up to $ 5000 $. Indeed the step adds $ 6k(k+1) $, which is a multiple of $ 12 $ because $ k(k+1) $ is even.
+
+## Remark — The Constant Decides Everything
+
+Since $ 2n^{3}-2n $ is always a multiple of $ 6 $,
+
+$$$
+6\mid2n^{3}-2n+c \text{ for every } n \iff 6\mid c ,
+$$$
+
+and a search over $ c $ from $ -30 $ to $ 30 $ finds exactly the multiples of $ 6 $. With $ -12 $ or $ -18 $ in place of $ -14 $ the statement would be true, and the inductive step above would prove it unchanged, with only the basis checked differently. With $ -14 $, the basis is exactly where the attempt fails, and there is no way to repair it.

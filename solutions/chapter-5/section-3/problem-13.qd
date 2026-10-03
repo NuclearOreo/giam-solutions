@@ -1,0 +1,75 @@
+.docname {Solution — GIAM 5.3 Problem 13}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 13
+
+## Problem
+
+Give an inductive proof that $ \forall x\ge4 \in\mathbb{N} $, $ x^{2}2^{x} \le 4^{x} $.
+
+## Answer
+
+$$$
+\boxed{\;(k+1)^{2}\,2^{k+1} \;\le\; 2k^{2}\cdot2^{k+1} \;=\; 4\cdot k^{2}2^{k} \;\le\; 4\cdot4^{k} = 4^{k+1}\;}
+$$$
+
+The first inequality is the lemma $ (k+1)^{2}\le2k^{2} $, valid for $ k\ge3 $; the second is the inductive hypothesis times $ 4 $. The basis $ x=4 $ is an equality, $ 16\cdot16 = 256 = 4^{4} $, and the inequality is strict for every $ x\ge5 $. Verified for every $ x $ from $ 4 $ to $ 3000 $.
+
+## The Proof
+
+> **Lemma.** For every natural number $ k\ge3 $, $ (k+1)^{2} < 2k^{2} $.
+>
+> **Proof.** $ 2k^{2}-(k+1)^{2} = k^{2}-2k-1 = k(k-2)-1 $. For $ k\ge3 $, $ k(k-2)\ge3 $, so this is at least $ 2 > 0 $. $ \blacksquare $
+>
+> **Theorem.** For every natural number $ x\ge4 $, $ x^{2}2^{x}\le4^{x} $.
+>
+> **Proof.** By induction on $ x $, starting at $ 4 $.
+>
+> **Basis.** At $ x=4 $, $ 4^{2}\cdot2^{4} = 16\cdot16 = 256 $ and $ 4^{4} = 256 $, so $ 256\le256 $.
+>
+> **Inductive step.** Let $ k\ge4 $ be a particular but arbitrarily chosen natural number and suppose $ k^{2}2^{k}\le4^{k} $. By the lemma,
+>
+> $ (k+1)^{2}\,2^{k+1} < 2k^{2}\cdot2^{k+1} = 4\cdot k^{2}2^{k} . $
+>
+> By the hypothesis, $ 4\cdot k^{2}2^{k} \le 4\cdot4^{k} = 4^{k+1} $. Chaining the two, $ (k+1)^{2}2^{k+1} < 4^{k+1} $, which in particular gives $ \le $.
+>
+> Basis and step together give the result for every $ x\ge4 $. $ \blacksquare $
+
+The step actually delivers strict inequality, so the theorem holds with $ < $ from $ x=5 $ on, and only the basis is an equality. That is why the problem uses $ \le $: with $ < $, the claim would fail at $ x=4 $.
+
+Nor can the basis be moved earlier. The claim is false at $ x=3 $ ($ 72 > 64 $), and the lemma fails at $ k=2 $ ($ 9 > 8 $), so the step cannot cross from $ 2 $ to $ 3 $ either. The true cases $ x=0,1,2 $ are cut off from the rest, and starting at $ 4 $, an equality, is the only way to reach the infinite tail.
+
+## The Picture
+
+Dividing by $ 2^{x} $ reduces the claim to $ x^{2}\le2^{x} $, whose two curves are drawn on the right.
+
+!(78%)[x squared 2 to the x against 4 to the x](problem-13-squares.svg "A diagram in four parts. The top band gives the step chain, using the lemma k plus one squared at most two k squared for k at least three. The left panel tabulates both sides for x from zero to seven: the inequality holds everywhere except x equal to three, with equality at two and four. The right panel graphs x squared and two to the x, crossing at about minus 0.767, two and four, with x squared larger on the shaded interval from two to four. Two bands link the exception at three to Problem 11 and give the lemma's threshold, the silver ratio.")
+
+## Remark — Really a Comparison of Squares and Powers of Two
+
+Since $ 4^{x} = 2^{x}\cdot2^{x} $, dividing by $ 2^{x} > 0 $ gives
+
+$$$
+x^{2}2^{x}\le4^{x} \iff x^{2}\le2^{x} .
+$$$
+
+So the problem is the classic comparison of $ x^{2} $ and $ 2^{x} $ in disguise, and the lemma $ (k+1)^{2} < 2k^{2} $ is exactly the ratio condition for it: one step multiplies $ 2^{x} $ by $ 2 $ but $ x^{2} $ only by $ (1+1/x)^{2} $. The lemma holds precisely when $ k^{2}-2k-1\ge0 $, that is, $ k\ge1+\sqrt2\approx2.414 $. The number $ 1+\sqrt2 $ is the *silver ratio*, the companion of the golden ratio of Problem 12.
+
+Over the reals, $ x^{2} = 2^{x} $ at $ x\approx-0.767 $, $ x=2 $ and $ x=4 $, and $ x^{2} > 2^{x} $ exactly on $ (2,4) $ among positive $ x $. Since $ 3 $ is the only integer strictly between $ 2 $ and $ 4 $, it is the only natural number where the inequality fails: $ 9 > 8 $. Every natural number other than $ 3 $ satisfies it, checked for $ x $ from $ 0 $ to $ 199 $.
+
+## Remark — The Same Exceptional $ 3 $ as Problem 11
+
+Taking $ x $-th roots, $ x^{2}\le2^{x} $ becomes $ x^{1/x}\le2^{1/2} $. In Problem 11 we saw that $ x^{1/x} $ rises to a peak at $ x=e $ and then falls. Near the peak, the integers $ 2 $, $ 3 $ and $ 4 $ give
+
+$$$
+2^{1/2} = 4^{1/4} \approx 1.4142 , \qquad 3^{1/3} \approx 1.4422 .
+$$$
+
+The equality $ 2^{1/2} = 4^{1/4} $ is just $ 2^{4} = 4^{2} = 16 $, the famous coincidence behind the two equality cases. Only $ 3^{1/3} $ is larger, so $ x=3 $ is the lone failure, exactly as it was the lone failure of $ n^{3} < 3^{n} $. Both problems are reading off the same fact: among natural numbers, $ n^{1/n} $ is largest at $ n=3 $.

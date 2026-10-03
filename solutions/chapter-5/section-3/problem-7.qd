@@ -1,0 +1,97 @@
+.docname {Solution — GIAM 5.3 Problem 7}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 7
+
+## Problem
+
+Give an inductive proof that $ \forall n\in\mathbb{N} $, $ 4\mid13^{n}+4n-1 $.
+
+## Answer
+
+$$$
+\boxed{\;f(k+1) = f(k) + 4\left(3\cdot13^{k}+1\right)\;}
+$$$
+
+Here $ f(n) = 13^{n}+4n-1 $. The step adds a multiple of $ 4 $, so divisibility passes from $ k $ to $ k+1 $. Verified for every $ n $ up to $ 3000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $, $ 4 $ divides $ f(n) = 13^{n}+4n-1 $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $, $ f(0) = 1+0-1 = 0 $, and $ 4\mid0 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ f(k) = 4m $ for some integer $ m $. Then
+>
+> $ \begin{aligned} f(k+1) &= 13\cdot13^{k}+4(k+1)-1 \\ &= \left(13^{k}+4k-1\right) + 12\cdot13^{k} + 4 \\ &= f(k) + 4\left(3\cdot13^{k}+1\right) . \end{aligned} $
+>
+> Substituting the hypothesis,
+>
+> $ f(k+1) = 4\left(m+3\cdot13^{k}+1\right) , $
+>
+> and the bracket is an integer, so $ 4\mid f(k+1) $.
+>
+> Basis and step together give the result for every $ n $. $ \blacksquare $
+
+The key move is splitting $ 13\cdot13^{k} $ as $ 13^{k}+12\cdot13^{k} $, which puts a copy of $ f(k) $ inside $ f(k+1) $. Another route multiplies the hypothesis by $ 13 $ instead, giving $ f(k+1) = 13f(k)-16(3k-1) $; that works too, and its $ 16 $ is a first hint of the second remark below.
+
+## The Picture
+
+The values turn out to be multiples of $ 16 $, and the residues modulo $ 16 $ show why.
+
+!(78%)[The values are multiples of 16, and residues mod 16 cancel in pairs](problem-7-residues.svg "A diagram in four parts. The top band states the step identity f of k plus one equals f of k plus four times the quantity three times thirteen to the k plus one, where f of n is thirteen to the n plus four n minus one. The left panel tabulates, for n from zero to six, thirteen to the n, four n minus one, and f of n, namely 0, 16, 176, 2208, 28576, 371312, 4826832, together with f of n over sixteen: 0, 1, 11, 138, 1786, 23207, 301677. The right panel lists, for n from zero to seven, thirteen to the n mod sixteen (1, 13, 9, 5 repeating) and four n minus one mod sixteen (15, 3, 7, 11 repeating), whose sums are all zero mod sixteen. A green band gives the one-line proof from thirteen congruent to one mod four. An orange band states that thirteen to the n is congruent to one plus twelve n mod 144, so f of n is congruent to sixteen n mod 144, and that the coefficient four is exactly what makes sixteen divide.")
+
+## Remark — The One-Line Congruence Proof
+
+Since $ 13\equiv1\pmod4 $, every power of $ 13 $ is also $ \equiv1 $, and so
+
+$$$
+f(n) = 13^{n}+4n-1 \equiv 1+0-1 = 0 \pmod4 .
+$$$
+
+This is 5.3 Problem 4's fact $ a-1\mid a^{n}-1 $ with $ a=13 $, which gives $ 12\mid13^{n}-1 $ and therefore $ 4\mid13^{n}-1 $, with the harmless multiple $ 4n $ added on. For divisibility by $ 4 $ alone the linear term is irrelevant: a search over residues finds that $ 13^{n}+bn+c $ is always divisible by $ 4 $ exactly when $ b\equiv0 $ and $ c\equiv3\pmod4 $. So why $ 4n $? The next remark answers that.
+
+## Remark — The Hidden $ 16 $
+
+The table shows every value is a multiple of $ 16 $, and the gcd of $ f(1),\ldots,f(299) $ is exactly $ 16 $ (it cannot be more, since $ f(1)=16 $). The binomial theorem explains it. Writing $ 13 = 1+12 $,
+
+$$$
+13^{n} = (1+12)^{n} = 1 + 12n + \binom{n}{2}12^{2} + \binom{n}{3}12^{3} + \cdots ,
+$$$
+
+and every term after the second is a multiple of $ 144 = 12^{2} $. So $ 13^{n}\equiv1+12n\pmod{144} $, checked to $ n=3000 $, and hence
+
+$$$
+f(n) \equiv 1+12n+4n-1 = 16n \pmod{144} .
+$$$
+
+This one congruence gives a lot. Since $ 16\mid144 $, it shows $ 16\mid f(n) $ for every $ n $. It also shows $ 48\mid f(n) $ exactly when $ 3\mid n $ and $ 144\mid f(n) $ exactly when $ 9\mid n $, both checked to $ n=3000 $.
+
+Now the role of $ 4n $ is clear. Modulo $ 16 $, $ 13^{n}-1\equiv12n $, so
+
+$$$
+16\mid13^{n}+bn-1 \text{ for every } n \iff b\equiv4\pmod{16} ,
+$$$
+
+and a search over $ b $ from $ 0 $ to $ 39 $ finds exactly $ 4,20,36 $. The $ 4n $ is precisely the term that cancels $ 12n $ modulo $ 16 $. The problem asks for $ 4 $, but it was built for $ 16 $.
+
+## Remark — The General Pattern Behind the $ 4n $
+
+The congruence used above is one case of
+
+$$$
+(1+d)^{n} \equiv 1+dn \pmod{d^{2}} ,
+$$$
+
+which holds for every integer $ d $ by the same binomial expansion; it was checked for $ d $ from $ 2 $ to $ 30 $ and $ n $ up to $ 200 $. It is the discrete shadow of the approximation $ (1+x)^{n}\approx1+nx $ for small $ x $, with $ d^{2} $ playing the role of the negligible $ x^{2} $ terms.
+
+Applied to 5.3 Problem 4 with $ 4 = 1+3 $, it gives $ 4^{n}\equiv1+3n\pmod9 $, so $ 9\mid4^{n}-3n-1 $ for every $ n $ (checked to $ n=500 $). That is a companion exercise of exactly this problem's shape: a power, a linear correction, and a constant, with the correction chosen to cancel the $ dn $ term.

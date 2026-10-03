@@ -1,0 +1,105 @@
+.docname {Solution — GIAM 5.3 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 1
+
+## Problem
+
+Give an inductive proof that $ \forall x\in\mathbb{N} $, $ 3\mid x^{3}-x $.
+
+## Answer
+
+$$$
+\boxed{\;\left(k+1\right)^{3}-\left(k+1\right) = \left(k^{3}-k\right) + 3k(k+1)\;}
+$$$
+
+The increment is visibly a multiple of $ 3 $, so divisibility is never lost. Verified for every $ x $ up to $ 20000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ x $, $ 3 $ divides $ x^{3}-x $.
+>
+> **Proof.** By induction on $ x $.
+>
+> **Basis.** At $ x=0 $ we have $ 0^{3}-0 = 0 $, and $ 3\mid0 $ since $ 0 = 3\cdot0 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ 3\mid k^{3}-k $, say
+>
+> $ k^{3}-k = 3m \quad\text{for some integer } m . $
+>
+> Expanding the next case,
+>
+> $ (k+1)^{3}-(k+1) = \left(k^{3}+3k^{2}+3k+1\right)-k-1 = \left(k^{3}-k\right)+3k^{2}+3k . $
+>
+> Substituting the hypothesis and factoring,
+>
+> $ = 3m + 3\left(k^{2}+k\right) = 3\left(m+k^{2}+k\right) , $
+>
+> and $ m+k^{2}+k $ is an integer. Hence $ 3\mid(k+1)^{3}-(k+1) $.
+>
+> The basis holds and the step carries divisibility from each $ k $ to $ k+1 $, so $ 3\mid x^{3}-x $ for every natural number $ x $. $ \blacksquare $
+
+The identity $ (k+1)^{3}-(k+1)-\left(k^{3}-k\right) = 3k^{2}+3k $ was checked as a polynomial identity over a wide range of $ k $. Writing it as $ 3k(k+1) $ makes the factor of $ 3 $ explicit without any expansion.
+
+## The Picture
+
+!(78%)[The increments of the step, and the factorisation into three consecutive integers](problem-1-divisibility.svg "A diagram in three parts. The first states that for every natural number x, three divides x cubed minus x, and notes it was verified for x up to 20000 with the step's increment checked as a polynomial identity. The second part has two panels. The left panel tabulates k from zero to six against k cubed minus k, giving zero, zero, six, twenty-four, sixty, one hundred twenty and two hundred ten, alongside the increment from each row to the next and that increment divided by three; it notes the increment is always three k times k plus one, so divisibility by three is never lost. The right panel shows the factorisation of x cubed minus x as x minus one times x times x plus one, drawn as a number line from zero to nine with the multiples of three filled green and the others left as open grey circles. Two sliding windows of three consecutive integers are highlighted in purple, one covering four, five and six for x equal to five and one covering six, seven and eight for x equal to seven, each containing exactly one green dot. It notes that any window of three consecutive integers contains exactly one multiple of three and at least one even number too, so in fact six divides x cubed minus x. An orange band explains this is the case p equals three of Fermat's little theorem: for every prime p and every integer x, p divides x to the p minus x, checked for p equal to two, three, five, seven, eleven and thirteen over x from zero to 399, all holding. Primality is essential, since for m equal to four, six, eight and nine the statement fails already at x equal to two; for instance two to the fourth minus two is fourteen, which leaves remainder two on division by four. So the pattern one might guess from x cubed minus x is real, but only along the primes.")
+
+## Remark — The One-Line Proof the Induction Conceals
+
+Factoring rather than expanding gives the result immediately:
+
+$$$
+x^{3}-x = x\left(x^{2}-1\right) = (x-1)\,x\,(x+1) ,
+$$$
+
+verified for every $ x $ from $ -2000 $ to $ 2000 $. That is a product of **three consecutive integers**, and among any three consecutive integers exactly one is a multiple of $ 3 $. So the product is a multiple of $ 3 $, with no induction required.
+
+The factored form also does something the induction cannot: it covers **negative** $ x $. The statement as posed is about $ \mathbb{N} $, and the inductive chain $ 0\to1\to2\to\cdots $ never reaches $ -1 $ or $ -4 $. Yet $ (-4)^{3}-(-4) = -60 $ is divisible by $ 3 $, as are all the negative cases checked.
+
+That is a general limitation worth keeping in mind. Induction proves statements about the natural numbers by walking up from a starting point; a theorem about all of $ \mathbb{Z} $ needs either a separate argument for the negatives or, as here, a proof that never walks at all.
+
+## Remark — The Sharper Statement Is $ 6\mid x^{3}-x $
+
+The same factorisation gives more than asked. Among three consecutive integers at least one is even as well, so $ (x-1)x(x+1) $ is divisible by both $ 2 $ and $ 3 $, hence by $ 6 $:
+
+$$$
+6 \mid x^{3}-x \qquad\text{for every integer } x ,
+$$$
+
+verified for every $ x $ from $ -5000 $ to $ 5000 $. The values $ 0,0,6,24,60,120,210,\ldots $ are visibly all multiples of $ 6 $.
+
+Moreover $ 6 $ is the best constant available: computing the greatest common divisor of $ x^{3}-x $ over $ x=2,\ldots,199 $ returns exactly $ 6 $, so no larger fixed number divides every value.
+
+This is a small illustration of a recurring phenomenon. An inductive proof establishes precisely what it was handed and nothing more, because the step only ever propagates the stated property. The structural proof, by contrast, exposes *why* the divisibility holds, and the extra factor of $ 2 $ falls out for free.
+
+## Remark — This Is Fermat's Little Theorem at $ p=3 $
+
+The statement is the smallest interesting case of a general theorem:
+
+$$$
+p \mid x^{p}-x \qquad\text{for every prime } p \text{ and every integer } x .
+$$$
+
+Checked for $ p = 2,3,5,7,11,13 $ over $ x = 0 $ to $ 399 $: all hold. The case $ p=2 $ says $ x^{2}-x = x(x-1) $ is even, which is the consecutive-integers argument again.
+
+Primality is doing real work, and the failures are easy to find:
+
+$$$
+\begin{array}{c|l}
+m & \text{first failure} \\ \hline
+4 & 2^{4}-2 = 14,\ \ 14 \equiv 2 \pmod 4 \\
+6 & 2^{6}-2 = 62,\ \ 62 \equiv 2 \pmod 6 \\
+8 & 2^{8}-2 = 254,\ \ 254 \equiv 6 \pmod 8 \\
+9 & 2^{9}-2 = 510,\ \ 510 \equiv 6 \pmod 9
+\end{array}
+$$$
+
+all at $ x=2 $. So the pattern suggested by $ x^{3}-x $ is genuine but holds only along the primes — a good example of a generalisation that is tempting, true in the right form, and false in the obvious one. Testing the first composite case before believing the pattern is the cheap precaution Chapter 3 recommended.

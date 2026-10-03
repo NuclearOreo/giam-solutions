@@ -1,0 +1,87 @@
+.docname {Solution — GIAM 5.3 Problem 8}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 8
+
+## Problem
+
+Give an inductive proof that $ \forall n\in\mathbb{N} $, $ 7\mid8^{n}+6 $.
+
+## Answer
+
+$$$
+\boxed{\;8^{k+1}+6 = 8\left(8^{k}+6\right)-42\;}
+$$$
+
+Both terms on the right are multiples of $ 7 $ once $ 8^{k}+6 $ is, since $ 42 = 7\cdot6 $. Verified for every $ n $ up to $ 3000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $, $ 7 $ divides $ 8^{n}+6 $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $, $ 8^{0}+6 = 7 $, and $ 7\mid7 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ 8^{k}+6 = 7m $ for some integer $ m $. Then
+>
+> $ \begin{aligned} 8^{k+1}+6 &= 8\cdot8^{k}+48-42 \\ &= 8\left(8^{k}+6\right)-42 \\ &= 8\cdot7m-7\cdot6 \\ &= 7\left(8m-6\right) . \end{aligned} $
+>
+> Since $ 8m-6 $ is an integer, $ 7\mid8^{k+1}+6 $.
+>
+> Basis and step together give the result for every $ n $. $ \blacksquare $
+
+The move is the reverse of 5.3 Problem 7's. There we split $ 13\cdot13^{k} $ to find $ f(k) $ inside $ f(k+1) $; here we multiply the whole hypothesis by $ 8 $ and correct the constant, adding $ 48-42 $ in place of $ 6 $. The additive route works equally well: $ \left(8^{k+1}+6\right)-\left(8^{k}+6\right) = 7\cdot8^{k} $.
+
+## The Picture
+
+Base $ 8 $ makes the divisibility visible at a glance.
+
+!(86%)[The values, their quotients, and their base-8 digits](problem-8-octal.svg "A diagram in four parts. The top band states the step identity eight to the k plus one, plus six, equals eight times the quantity eight to the k plus six, minus forty-two. The left panel tabulates, for n from zero to six, eight to the n plus six: 7, 14, 70, 518, 4102, 32774, 262150, and the quotients by seven: 1, 2, 10, 74, 586, 4682, 37450, each equal to one plus the geometric series one plus eight up to eight to the n minus one. The right panel writes eight to the n plus six in base eight for n from one to five, as 16, 106, 1006, 10006, 100006, whose digits always sum to seven. A green band gives the one-line proof from eight congruent to one mod seven. An orange band notes that seven is the best constant, fourteen divides from n equal to one on, and forty-nine divides exactly when n is congruent to six mod seven.")
+
+## Remark — The One-Line Congruence Proof
+
+Since $ 8\equiv1\pmod7 $, every power of $ 8 $ is $ \equiv1 $, and
+
+$$$
+8^{n}+6 \equiv 1+6 = 7 \equiv 0 \pmod7 .
+$$$
+
+Put another way, $ 8^{n}+6 = \left(8^{n}-1\right)+7 $, and $ 7 = 8-1 $ divides $ 8^{n}-1 $ by the general fact $ a-1\mid a^{n}-1 $ from 5.3 Problem 4. The quotient is
+
+$$$
+\frac{8^{n}+6}{7} = \left(1+8+8^{2}+\cdots+8^{n-1}\right)+1 ,
+$$$
+
+verified for $ n $ up to $ 500 $. The constant $ 6 $ was the only choice that works, up to multiples of $ 7 $: a search over $ c $ from $ 0 $ to $ 13 $ finds that $ 7\mid8^{n}+c $ for every $ n $ only for $ c = 6 $ and $ c = 13 $.
+
+## Remark — Casting Out Sevens in Octal
+
+In base $ 10 $, $ 10\equiv1\pmod9 $ gives the familiar test: a number and its digit sum leave the same remainder modulo $ 9 $. In base $ 8 $, $ 8\equiv1\pmod7 $ gives the same test for $ 7 $; it was checked for every number below $ 20000 $. Since
+
+$$$
+8^{n}+6 = 10\cdots06_{8} \qquad (n\ge1) ,
+$$$
+
+a $ 1 $ followed by $ n-1 $ zeros and a $ 6 $, its digit sum is $ 1+6=7 $, and divisibility by $ 7 $ is immediate. The problem is the octal version of noticing that $ 10^{n}+8 $ is always divisible by $ 9 $.
+
+The quotients have the matching form $ 11\cdots12_{8} $: for instance $ 4682 = 11112_{8} $, which is $ 11111_{8} = 1+8+8^{2}+8^{3}+8^{4} $ plus $ 1 $.
+
+## Remark — Is $ 7 $ the Best Divisor?
+
+As a constant valid for every $ n $, yes, since $ 8^{0}+6 = 7 $. But the basis is the only obstacle to more: for $ n\ge1 $ every value is even, so $ 14\mid8^{n}+6 $, and the gcd of the values for $ n=1,\ldots,299 $ is $ 14 $.
+
+Higher powers of $ 7 $ follow the pattern of 5.3 Problem 7. Writing $ 8 = 1+7 $, the binomial theorem gives $ 8^{n}\equiv1+7n\pmod{49} $, so
+
+$$$
+8^{n}+6 \equiv 7+7n = 7(n+1) \pmod{49} .
+$$$
+
+Hence $ 49\mid8^{n}+6 $ exactly when $ n\equiv6\pmod7 $; then $ 98 $ divides as well, since such $ n $ are at least $ 6 $. Both were checked to $ n=3000 $. The first instance is $ 8^{6}+6 = 262150 = 98\cdot2675 $.

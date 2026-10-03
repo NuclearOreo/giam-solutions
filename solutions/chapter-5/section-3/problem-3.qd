@@ -1,0 +1,125 @@
+.docname {Solution — GIAM 5.3 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 3
+
+## Problem
+
+Give an inductive proof that $ \forall x\in\mathbb{N} $, $ 11\mid x^{11}+10x $.
+
+## Answer
+
+$$$
+\boxed{\;(k+1)^{11}+10(k+1) = \left(k^{11}+10k\right) + \sum_{j=1}^{10}\binom{11}{j}k^{j} + 11\;}
+$$$
+
+Every term after the bracket is a multiple of $ 11 $, because $ 11 $ is prime. Verified for every $ x $ from $ -5000 $ to $ 20000 $.
+
+## The Key Fact
+
+The proof rests on one property of the eleventh row of Pascal's triangle:
+
+$$$
+11 \mid \binom{11}{j} \qquad\text{for } j = 1,2,\ldots,10 .
+$$$
+
+Indeed $ \binom{11}{j} = \dfrac{11!}{j!\,(11-j)!} $; the prime $ 11 $ appears in the numerator, while every factor in the denominator is smaller than $ 11 $ and so cannot cancel it. Concretely the middle entries are
+
+$$$
+11,\ 55,\ 165,\ 330,\ 462,\ 462,\ 330,\ 165,\ 55,\ 11 ,
+$$$
+
+which are $ 11 $ times $ 1,5,15,30,42,42,30,15,5,1 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ x $, $ 11 $ divides $ x^{11}+10x $.
+>
+> **Proof.** By induction on $ x $.
+>
+> **Basis.** At $ x=0 $ the expression is $ 0 $, and $ 11\mid0 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ k^{11}+10k = 11m $ for some integer $ m $. By the binomial theorem,
+>
+> $ \displaystyle (k+1)^{11} = k^{11} + \sum_{j=1}^{10}\binom{11}{j}k^{j} + 1 , $
+>
+> so
+>
+> $ \displaystyle (k+1)^{11}+10(k+1) = \left(k^{11}+10k\right) + \sum_{j=1}^{10}\binom{11}{j}k^{j} + 11 . $
+>
+> The bracket equals $ 11m $ by hypothesis; each $ \binom{11}{j} $ with $ 1\le j\le10 $ is a multiple of $ 11 $ by the key fact; and the final $ 11 $ is a multiple of $ 11 $. A sum of multiples of $ 11 $ is a multiple of $ 11 $, so $ 11\mid(k+1)^{11}+10(k+1) $.
+>
+> Basis and step together give the result for every natural number $ x $. $ \blacksquare $
+
+The step identity was checked as a polynomial identity over a wide range of $ k $.
+
+## The Picture
+
+Row 11 of Pascal's triangle is set against row 9 below: in the prime row every middle entry is a multiple of the row number, and in the composite row that fails.
+
+!(78%)[Row 11 of Pascal's triangle against row 9, and the decomposition](problem-3-fermat.svg "A diagram in four parts. The first announces Fermat's little theorem at p equals eleven proved by induction, giving the step identity that k plus one to the eleventh plus ten times k plus one equals k to the eleventh plus ten k, plus the sum over j from one to ten of eleven choose j times k to the j, plus eleven, and notes the claim was verified for x from minus 5000 to 20000 with the step identity checked as a polynomial. The second part explains that the step works because eleven is prime: row eleven of Pascal's triangle is drawn as one, eleven, fifty-five, one hundred sixty-five, three hundred thirty, four hundred sixty-two, four hundred sixty-two, three hundred thirty, one hundred sixty-five, fifty-five, eleven, one, with all ten middle entries boxed in green as multiples of eleven, each being eleven times one, five, fifteen, thirty, forty-two, forty-two, thirty, fifteen, five and one. Below it row nine is drawn as one, nine, thirty-six, eighty-four, one hundred twenty-six, one hundred twenty-six, eighty-four, thirty-six, nine, one, with the two entries eighty-four boxed in red because they are not multiples of nine, so the same step would break for the composite nine. The reason given is that p choose j equals p factorial over j factorial times p minus j factorial; the prime p sits in the numerator and for j strictly between zero and p nothing in the denominator can cancel it, since every factor there is smaller than p, checked for p up to seventeen. A green band notes the same shape as Problems 1 and 2: x to the eleventh plus ten x equals x to the eleventh minus x, plus eleven x; the bracket is divisible by eleven by Fermat's little theorem and eleven x obviously is. In general p divides x to the p plus p minus one times x for every prime p, checked for p equal to two, three, five, seven, eleven and thirteen, with Problem 1's x cubed plus two x variant being p equals three and this problem p equals eleven. An orange band notes that this time no larger divisor exists: Problems 1 and 2 were both divisible by six, but here x equals one gives exactly eleven, so no constant bigger than eleven can divide every value, and the gcd of the values for x from one to 300 is eleven. Curiously the bracket x to the eleventh minus x on its own is divisible by sixty-six, two times three times eleven, but adding eleven x keeps the eleven and destroys the two and the three, since at x equals one the sum is odd and not a multiple of three.")
+
+## Remark — This Is the Standard Proof of Fermat's Little Theorem
+
+Since $ x^{11}+10x = \left(x^{11}-x\right)+11x $, the problem is equivalent to
+
+$$$
+11 \mid x^{11}-x ,
+$$$
+
+which is Fermat's little theorem for the prime $ 11 $. And the induction above is, word for word, the classical proof of that theorem: replace $ 11 $ by any prime $ p $, and the step reads
+
+$$$
+(k+1)^{p}-(k+1) = \left(k^{p}-k\right) + \sum_{j=1}^{p-1}\binom{p}{j}k^{j} ,
+$$$
+
+with every binomial coefficient on the right a multiple of $ p $. Nothing else is used.
+
+So the three problems of this section so far are one theorem seen three times. Problem 1 was $ p=3 $; Problem 2 was $ p=3 $ with an extra multiple of $ 3 $ added; this is $ p=11 $. The general statement
+
+$$$
+p \mid x^{p}+(p-1)x \qquad\text{for every prime } p
+$$$
+
+was checked for $ p=2,3,5,7,11,13 $.
+
+## Remark — Where Primality Enters
+
+The only place the argument uses that $ 11 $ is prime is the key fact, and that fact genuinely fails for composites:
+
+$$$
+\begin{array}{c|l}
+n & \text{a middle coefficient not divisible by } n \\ \hline
+4 & \binom{4}{2} = 6 \\
+6 & \binom{6}{2} = 15 \\
+8 & \binom{8}{2} = 28 \\
+9 & \binom{9}{3} = 84 \\
+10 & \binom{10}{2} = 45 \\
+12 & \binom{12}{2} = 66
+\end{array}
+$$$
+
+For a composite $ n = ab $ with $ 1 < a < n $, the factor $ n $ in the numerator can be partly cancelled by factors of $ a $ appearing in $ j! $, and the divisibility is lost. For a prime there is nothing below $ p $ that shares a factor with it.
+
+This is also why the obvious generalisation $ n\mid x^{n}-x $ fails for composite $ n $, as 5.3 Problem 1 found with $ 2^{4}-2 = 14 $. The induction would break precisely at the binomial coefficient step.
+
+## Remark — No Larger Divisor This Time
+
+Problems 1 and 2 both turned out to be divisible by $ 6 $, more than the stated $ 3 $. Here the stated divisor is already the best possible: at $ x=1 $,
+
+$$$
+1^{11}+10\cdot1 = 11 ,
+$$$
+
+so no constant larger than $ 11 $ divides every value. The greatest common divisor of the values for $ x=1,\ldots,300 $ is exactly $ 11 $.
+
+The contrast is instructive. The bracket $ x^{11}-x $ alone is divisible by $ 66 = 2\cdot3\cdot11 $ for every integer $ x $ — its greatest common divisor over $ x=2,\ldots,299 $ is $ 66 $ — because $ x^{11}\equiv x $ modulo $ 2 $ and modulo $ 3 $ as well. Adding $ 11x $ preserves the factor $ 11 $ but destroys the $ 2 $ and the $ 3 $, since $ 11x $ is divisible by neither. At $ x=1 $ the total $ 11 $ is odd and not a multiple of $ 3 $, which settles it.
+
+So the choice of $ 10x $ rather than $ -x $ in the problem costs information: the form $ x^{p}+(p-1)x $ is tidy, but $ x^{p}-x $ is the one that carries all the divisibility there is.

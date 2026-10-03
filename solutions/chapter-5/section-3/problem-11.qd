@@ -1,0 +1,75 @@
+.docname {Solution — GIAM 5.3 Problem 11}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 11
+
+## Problem
+
+Give an inductive proof that $ \forall n > 3 \in\mathbb{N} $, $ n^{3} < 3^{n} $.
+
+## Answer
+
+$$$
+\boxed{\;(k+1)^{3} \;<\; 3k^{3} \;<\; 3\cdot3^{k} = 3^{k+1}\;}
+$$$
+
+The first inequality is exactly 5.3 Problem 10, valid for $ k\ge3 $; the second is the inductive hypothesis multiplied by $ 3 $. With the basis $ 4^{3} = 64 < 81 = 3^{4} $ this proves the claim for every $ n\ge4 $. Verified for every $ n $ from $ 4 $ to $ 3000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n > 3 $, $ n^{3} < 3^{n} $.
+>
+> **Proof.** By induction on $ n $, starting at $ 4 $.
+>
+> **Basis.** At $ n=4 $, $ 4^{3} = 64 $ and $ 3^{4} = 81 $, and $ 64 < 81 $.
+>
+> **Inductive step.** Let $ k\ge4 $ be a particular but arbitrarily chosen natural number and suppose $ k^{3} < 3^{k} $. By 5.3 Problem 10, since $ k\ge3 $,
+>
+> $ 3k^{2}+3k+1 < 2k^{3} . $
+>
+> Adding $ k^{3} $ to both sides,
+>
+> $ (k+1)^{3} = k^{3}+3k^{2}+3k+1 < 3k^{3} . $
+>
+> Multiplying the hypothesis by $ 3 $ gives $ 3k^{3} < 3\cdot3^{k} = 3^{k+1} $, and chaining the two,
+>
+> $ (k+1)^{3} < 3k^{3} < 3^{k+1} . $
+>
+> Basis and step together give the result for every $ n\ge4 $. $ \blacksquare $
+
+If Problem 10 is not to hand, the step also follows directly: for $ k\ge4 $, $ (k+1)^{3}/k^{3} = (1+1/k)^{3} \le (5/4)^{3} = 125/64 < 3 $.
+
+## The Picture
+
+The table shows where the inequality holds; the curve shows why $ n=3 $ is the lone exception.
+
+!(78%)[n cubed against 3 to the n](problem-11-exponential.svg "A diagram in four parts. The top band gives the step chain, whose first inequality is Problem 10. The left panel tabulates n cubed and three to the n for n from zero to seven; only n equal to three fails, where both are twenty-seven. The right panel graphs x to the power one over x, peaking at e, with only n equal to three reaching the dashed line at the cube root of three. A green band explains the step as a ratio comparison: the factor by which n cubed grows, one plus one over n cubed, drops below three from n equal to three on. An orange band notes the real crossings at about 2.4781 and at 3.")
+
+## Remark — Problem 10 Was the Lemma
+
+Problem 10's inequality $ 3n^{2}+3n+1 < 2n^{3} $ looked like an isolated exercise, but it is exactly what this step needs. Since $ 3n^{2}+3n+1 = (n+1)^{3}-n^{3} $, it says $ (n+1)^{3} < 3n^{3} $: moving from $ n $ to $ n+1 $ multiplies $ n^{3} $ by less than $ 3 $.
+
+That is the general shape of “exponential beats polynomial” proofs. Going from $ n $ to $ n+1 $ multiplies $ 3^{n} $ by $ 3 $, but it multiplies $ n^{3} $ only by the factor $ (1+1/n)^{3} $; for $ n=1,2,3,4 $ that factor is $ 8 $, $ 3.375 $, $ 2.370 $ and $ 1.953 $. Once that factor is below $ 3 $, which happens from $ n=3 $ on, the exponential's lead can only grow. The basis supplies the lead; the ratio comparison keeps it.
+
+## Remark — Only $ n = 3 $ Fails
+
+The inequality also holds at $ n=0,1,2 $: $ 0 < 1 $, $ 1 < 3 $, $ 8 < 9 $. It fails at $ n=3 $ alone, where $ 3^{3} = 27 = 3^{3} $ exactly. Among $ n $ from $ 0 $ to $ 99 $, $ 3 $ is the only failure. Over the reals, $ x^{3} = 3^{x} $ at $ x\approx2.4781 $ and at $ x=3 $, with $ x^{3} > 3^{x} $ strictly between them.
+
+Taking $ n $-th roots explains the exception. For $ n\ge1 $,
+
+$$$
+n^{3} < 3^{n} \iff n^{1/n} < 3^{1/3} .
+$$$
+
+The function $ x^{1/x} $ increases up to $ x=e $ and decreases after it, because $ \ln\left(x^{1/x}\right) = (\ln x)/x $ has derivative $ (1-\ln x)/x^{2} $. So among integers the largest value of $ n^{1/n} $ is at $ n=2 $ or $ n=3 $, and $ 3^{1/3}\approx1.4422 $ beats $ 2^{1/2}\approx1.4142 $ because $ 3^{2} = 9 > 8 = 2^{3} $. Every $ n\ne3 $ therefore has $ n^{1/n} < 3^{1/3} $ and satisfies the inequality, and $ n=3 $ gives equality. The hypothesis $ n>3 $ in the problem steps past that single point, and starting at $ 4 $ also keeps the step within reach of Problem 10.
+
+## Remark — Exponentials Beat Every Polynomial
+
+The same argument works for any power $ n^{d} $ and any base $ a > 1 $. The ratio $ (1+1/n)^{d} $ tends to $ 1 $, so it eventually drops below $ a $, and from then on $ a^{n} $ gains on $ n^{d} $ at every step. What changes is how long the polynomial stays ahead. By exhaustive check, $ n^{3} < 3^{n} $ holds for all $ n\ge4 $, $ n^{3} < 2^{n} $ for all $ n\ge10 $, and $ n^{10} < 2^{n} $ for all $ n\ge59 $. Each has the same induction as above: a basis at the threshold, and a step that needs $ (1+1/k)^{d} < a $.

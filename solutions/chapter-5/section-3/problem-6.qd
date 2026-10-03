@@ -1,0 +1,97 @@
+.docname {Solution — GIAM 5.3 Problem 6}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.3 Problem 6
+
+## Problem
+
+Give an inductive proof that $ \forall n\in\mathbb{N} $, $ 5\mid n^{5}-5n^{3}+14n $.
+
+## Answer
+
+$$$
+\boxed{\;f(k+1) = f(k) + 5\left(k^{4}+2k^{3}-k^{2}-2k+2\right)\;}
+$$$
+
+Here $ f(n) = n^{5}-5n^{3}+14n $. The step adds a multiple of $ 5 $, so divisibility passes from $ k $ to $ k+1 $. Verified for every $ n $ up to $ 5000 $.
+
+## The Proof
+
+> **Theorem.** For every natural number $ n $, $ 5 $ divides $ f(n) = n^{5}-5n^{3}+14n $.
+>
+> **Proof.** By induction on $ n $.
+>
+> **Basis.** At $ n=0 $, $ f(0) = 0 $, and $ 5\mid0 $.
+>
+> **Inductive step.** Let $ k $ be a particular but arbitrarily chosen natural number and suppose $ f(k) = 5m $ for some integer $ m $. Expanding with the binomial theorem,
+>
+> $ \begin{aligned} f(k+1) &= (k+1)^{5}-5(k+1)^{3}+14(k+1) \\ &= f(k) + \left(5k^{4}+10k^{3}+10k^{2}+5k+1\right) - \left(15k^{2}+15k+5\right) + 14 \\ &= f(k) + 5\left(k^{4}+2k^{3}-k^{2}-2k+2\right) . \end{aligned} $
+>
+> Substituting the hypothesis,
+>
+> $ f(k+1) = 5\left(m+k^{4}+2k^{3}-k^{2}-2k+2\right) , $
+>
+> and the bracket is an integer, so $ 5\mid f(k+1) $.
+>
+> Basis and step together give the result for every $ n $. $ \blacksquare $
+
+As in 5.3 Problem 3, every binomial coefficient $ \binom{5}{j} $ with $ 0 < j < 5 $ is a multiple of $ 5 $. That is why the $ k^{4},\ldots,k $ terms of $ (k+1)^{5} $ fall into line, and the leftover constants $ 1-5+14 = 10 $ happen to be a multiple of $ 5 $ too.
+
+## The Picture
+
+The polynomial hides a product of five consecutive integers, drawn below.
+
+!(80%)[Five consecutive integers plus 10n](problem-6-consecutive.svg "A diagram in four parts. The top band states the step identity. The left panel tabulates, for n from zero to six, the product of the five consecutive integers n minus two through n plus two (0, 0, 0, 120, 720, 2520, 6720), plus ten n, giving f of n and f of n over five. The right panel shows windows of five consecutive integers for n from three to eight, each containing a highlighted multiple of five. A green band gives the one-line Fermat proof, and an orange band notes that ten is the best constant, with 20, 30, 40 and 120 dividing f of n exactly when n is a multiple of 2, 3, 4 and 12.")
+
+## Remark — Fermat's Little Theorem Does It in One Line
+
+In 5.3 Problem 3 we proved $ 11\mid x^{11}+10x $, which says $ x^{11}\equiv x\pmod{11} $, by exactly this kind of induction. The same argument with $ 5 $ in place of $ 11 $ gives $ n^{5}\equiv n\pmod5 $ for every $ n $, and then, working modulo $ 5 $,
+
+$$$
+f(n) = n^{5}-5n^{3}+14n \equiv n-0+14n = 15n \equiv 0 \pmod5 .
+$$$
+
+This also shows what made the coefficient $ 14 $ work. The polynomial $ n^{5}-5n^{3}+cn $ is divisible by $ 5 $ for every $ n $ exactly when $ 1+c\equiv0 $, that is, $ c\equiv4\pmod5 $. A search over $ c $ from $ -10 $ to $ 29 $ found exactly $ -6,-1,4,9,14,19,24,29 $. The middle term $ -5n^{3} $ plays no part modulo $ 5 $.
+
+## Remark — Five Consecutive Integers in Disguise
+
+The quartic in the step factors neatly:
+
+$$$
+k^{4}+2k^{3}-k^{2}-2k = (k-1)\,k\,(k+1)\,(k+2) .
+$$$
+
+That is a product of four consecutive integers. It suggests looking at $ f $ itself the same way, and indeed
+
+$$$
+f(n) = (n-2)(n-1)\,n\,(n+1)(n+2) + 10n ,
+$$$
+
+verified for $ \lvert n\rvert $ up to $ 3000 $. Among any five consecutive integers one is a multiple of $ 5 $, one of $ 4 $, one of $ 3 $, and another is even, and in fact their product is $ 120\binom{n+2}{5} $, a multiple of $ 5! = 120 $. So $ f(n) $ is a multiple of $ 120 $ plus $ 10n $, which gives a direct proof without induction.
+
+The step identity becomes a small instance of a familiar pattern. Writing $ P(n) $ for the product of five consecutive integers centred at $ n $,
+
+$$$
+P(k+1)-P(k) = 5\,(k-1)\,k\,(k+1)\,(k+2) ,
+$$$
+
+the discrete counterpart of $ \tfrac{d}{dx}x^{5} = 5x^{4} $. Dividing by $ 120 $, it is Pascal's rule $ \binom{k+3}{5}-\binom{k+2}{5} = \binom{k+2}{4} $, the identity behind the hockey-stick sums of 5.2. Adding the $ 10 $ from the $ 10n $ term gives exactly the boxed increment.
+
+## Remark — Is $ 5 $ the Best Divisor?
+
+No. Since $ 120 $ divides $ P(n) $, $ f(n)\equiv10n\pmod{120} $, so $ 10 $ divides every value. That is sharp, because $ f(1) = 10 $, and the gcd of $ f(0),\ldots,f(299) $ is $ 10 $.
+
+The congruence also settles every divisor of $ 120 $ at once: $ d\mid f(n) $ exactly when $ d\mid10n $. In particular
+
+$$$
+\begin{aligned} 20\mid f(n) &\iff 2\mid n, & 30\mid f(n) &\iff 3\mid n, \\ 40\mid f(n) &\iff 4\mid n, & 120\mid f(n) &\iff 12\mid n ,\end{aligned}
+$$$
+
+all checked for $ \lvert n\rvert $ up to $ 3000 $. This is the pattern of 5.3 Problems 1 and 2, where the stated divisor understated the truth, rather than Problems 3 and 5, where it was sharp. Since $ f $ is an odd function, $ f(-n) = -f(n) $, everything here holds for negative integers as well.
