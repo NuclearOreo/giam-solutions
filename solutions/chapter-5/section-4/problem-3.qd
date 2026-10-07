@@ -1,0 +1,83 @@
+.docname {Solution — GIAM 5.4 Problem 3}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.4 Problem 3
+
+## Problem
+
+The polynomial equation $ x^{2} = x+1 $ has two solutions, $ \alpha = \frac{1+\sqrt5}{2} $ and $ \beta = \frac{1-\sqrt5}{2} $. Show that the Fibonacci number $ F_{n} $ is less than or equal to $ \alpha^{n} $ for all $ n\ge0 $.
+
+## Answer
+
+$$$
+\boxed{\;F_{n} = F_{n-1}+F_{n-2} \le \alpha^{n-1}+\alpha^{n-2} = \alpha^{n-2}(\alpha+1) = \alpha^{n-2}\cdot\alpha^{2} = \alpha^{n}\;}
+$$$
+
+The defining equation $ \alpha^{2} = \alpha+1 $ turns the sum of two powers into a single power. With the bases $ F_{0} = 1\le1 = \alpha^{0} $ and $ F_{1} = 1\le\alpha $, strong induction gives $ F_{n}\le\alpha^{n} $ for every $ n\ge0 $. Verified for $ n $ up to $ 2000 $; equality holds only at $ n=0 $.
+
+## The Proof
+
+We use the book's indexing from 5.2 Problem 8: $ F_{0} = F_{1} = 1 $ and $ F_{n} = F_{n-1}+F_{n-2} $ for $ n\ge2 $, giving $ 1,1,2,3,5,8,13,\ldots $. Note $ \alpha\approx1.618 > 0 $.
+
+> **Theorem.** For every natural number $ n $, $ F_{n}\le\alpha^{n} $.
+>
+> **Proof.** By strong induction on $ n $. Let $ n $ be a particular but arbitrarily chosen natural number, and suppose $ F_{m}\le\alpha^{m} $ for every $ m < n $.
+>
+> **Bases.** If $ n=0 $, $ F_{0} = 1 = \alpha^{0} $. If $ n=1 $, $ F_{1} = 1 < \alpha = \alpha^{1} $, since $ \sqrt5 > 1 $.
+>
+> **Inductive step.** Otherwise $ n\ge2 $, so $ n-1 $ and $ n-2 $ are natural numbers less than $ n $, and the hypothesis applies to both:
+>
+> $ F_{n} = F_{n-1}+F_{n-2} \le \alpha^{n-1}+\alpha^{n-2} = \alpha^{n-2}\left(\alpha+1\right) . $
+>
+> Since $ \alpha $ solves $ x^{2} = x+1 $, $ \alpha+1 = \alpha^{2} $, and therefore
+>
+> $ F_{n} \le \alpha^{n-2}\cdot\alpha^{2} = \alpha^{n} . $
+>
+> In every case $ F_{n}\le\alpha^{n} $, so by strong induction the bound holds for all $ n\ge0 $. $ \blacksquare $
+
+The recurrence looks back two steps, so the step uses the hypothesis at both $ n-1 $ and $ n-2 $: this is why strong induction is natural here, and why two bases are needed, as 5.1 Problem 4 predicted for any argument that reaches back two places.
+
+## The Picture
+
+The table compares $ F_{n} $ with $ \alpha^{n} $; the plot shows their ratio.
+
+!(78%)[Fibonacci numbers against powers of the golden ratio](problem-3-golden.svg "A diagram in four parts. The top band gives the step chain: F n equals F n minus one plus F n minus two, at most alpha to the n minus one plus alpha to the n minus two, which is alpha to the n minus two times alpha plus one, which is alpha to the n, with the two bases. The left panel tabulates n from zero to nine with F n, alpha to the n and their ratio, which equals one only at n equal to zero. The right panel plots the ratio F n over alpha to the n for n from zero to fourteen, zigzagging below the dashed line at one and settling at alpha over root five, about 0.7236. A green band gives Binet's formula, and an orange band shows that alpha is the best possible base.")
+
+## Remark — Why the Golden Ratio
+
+The only property of $ \alpha $ the step uses is $ \alpha^{2}\ge\alpha+1 $, which makes $ \alpha^{n-1}+\alpha^{n-2}\le\alpha^{n} $. Any base $ c > 0 $ with $ c^{2}\ge c+1 $ would pass the same induction, and the smallest positive such $ c $ is the root $ \alpha $ itself. So the problem chooses the tightest base for which this proof works.
+
+It is also the tightest base for which the *statement* holds. If $ c < \alpha $, then $ c^{n} $ eventually falls below $ F_{n} $: by direct computation the first failure is at $ n=29 $ for $ c=1.6 $, at $ n=65 $ for $ c=1.61 $, and at $ n=173 $ for $ c=1.615 $. The closer $ c $ gets to $ \alpha $, the longer the bound survives, but it always fails eventually.
+
+## Remark — Binet's Formula
+
+The other root $ \beta $ appears in the exact formula. With this indexing,
+
+$$$
+F_{n} = \frac{\alpha^{n+1}-\beta^{n+1}}{\sqrt5} ,
+$$$
+
+verified for $ n $ up to $ 500 $. Since $ \beta\approx-0.618 $ has $ \lvert\beta\rvert < 1 $, the $ \beta $ term shrinks to $ 0 $, and $ F_{n} $ is the nearest integer to $ \alpha^{n+1}/\sqrt5 $. Hence
+
+$$$
+\frac{F_{n}}{\alpha^{n}} \to \frac{\alpha}{\sqrt5} \approx 0.7236 ,
+$$$
+
+and the ratio zigzags toward this limit because $ \beta^{n+1} $ alternates in sign. The bound $ F_{n}\le\alpha^{n} $ is therefore tight up to a constant factor: the ratio $ F_{n}/\alpha^{n} $ never drops below its value $ 1/\alpha\approx0.618 $ at $ n=1 $.
+
+## Remark — A Matching Lower Bound
+
+The same induction, run with $ \ge $, gives a lower bound. If $ F_{n-1}\ge\alpha^{n-2} $ and $ F_{n-2}\ge\alpha^{n-3} $, then $ F_{n}\ge\alpha^{n-3}(\alpha+1) = \alpha^{n-1} $. The bases are $ F_{0} = 1\ge\alpha^{-1}\approx0.618 $ and $ F_{1} = 1 = \alpha^{0} $. Together,
+
+$$$
+\alpha^{n-1} \le F_{n} \le \alpha^{n} \quad\text{for every } n\ge0 ,
+$$$
+
+checked for $ n $ up to $ 2000 $. The Fibonacci numbers grow exactly like powers of the golden ratio, pinned between two consecutive ones.

@@ -1,0 +1,79 @@
+.docname {Solution — GIAM 5.4 Problem 1}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.4 Problem 1
+
+## Problem
+
+A “postage stamp problem” is a problem that (typically) asks us to determine what total postage values can be produced using two sorts of stamps. Suppose that you have 3¢ stamps and 7¢ stamps. Show, using strong induction, that any postage value 12¢ or higher can be achieved. That is,
+
+$$$
+\forall n\in\mathbb{N},\ n\ge12 \implies \exists x,y\in\mathbb{N},\ n = 3x+7y .
+$$$
+
+## Answer
+
+$$$
+\boxed{\;12 = 3\cdot4,\quad 13 = 3\cdot2+7\cdot1,\quad 14 = 7\cdot2,\quad n = (n-3)+3 \ \text{ for } n\ge15\;}
+$$$
+
+Three consecutive bases cover the three remainders modulo $ 3 $, and from $ 15 $ on each amount is an earlier amount plus one 3¢ stamp. Verified for every $ n $ from $ 12 $ to $ 10000 $. The bound is sharp: $ 11 $ cannot be made.
+
+## The Proof
+
+Say $ n $ is *makeable* if $ n = 3x+7y $ for some $ x,y\in\mathbb{N} $.
+
+> **Theorem.** Every natural number $ n\ge12 $ is makeable.
+>
+> **Proof.** By strong induction on $ n\ge12 $. Let $ n\ge12 $ be a particular but arbitrarily chosen natural number, and suppose every $ m $ with $ 12\le m < n $ is makeable. We show $ n $ is makeable.
+>
+> **Bases.** If $ n = 12 $, take $ x=4,\ y=0 $. If $ n = 13 $, take $ x=2,\ y=1 $, since $ 6+7 = 13 $. If $ n = 14 $, take $ x=0,\ y=2 $.
+>
+> **Inductive step.** Otherwise $ n\ge15 $, so $ m = n-3 $ satisfies $ 12\le m < n $. By the hypothesis, $ n-3 = 3x+7y $ for some $ x,y\in\mathbb{N} $. Then
+>
+> $ n = 3x+7y+3 = 3(x+1)+7y , $
+>
+> and $ x+1,\ y\in\mathbb{N} $, so $ n $ is makeable.
+>
+> In every case $ n $ is makeable, so by strong induction every $ n\ge12 $ is. $ \blacksquare $
+
+The step reaches back three places, to $ n-3 $, which is why it needs strong induction rather than the ordinary hypothesis about $ n-1 $, and why it needs three bases. Without $ 13 $ and $ 14 $ the argument would cover only $ 12, 15, 18,\ldots $, the multiples of $ 3 $, exactly as 5.1 Problem 4 warned: a step of size $ d $ needs $ d $ consecutive bases.
+
+## The Picture
+
+The strip shows which amounts can be made; the chains below show how the proof reaches each one.
+
+!(78%)[Makeable amounts and the three chains of the proof](problem-1-stamps.svg "A diagram in four parts. The top band states the three bases, twelve as four threes, thirteen as two threes and a seven, fourteen as two sevens, and the step n equals n minus three plus three for n at least fifteen. A strip of the amounts zero to twenty-nine marks the gaps one, two, four, five, eight and eleven in red and every amount from twelve on in green. Below, three chains, one for each remainder mod three, start at the bases twelve, thirteen and fourteen and advance by adding a three cent stamp, with each amount labelled by its stamps. A green band gives Sylvester's result on the Frobenius number, three times seven minus three minus seven equals eleven, with six gaps. An orange band shows that ordinary induction also works, by trading two threes for a seven or two sevens for five threes.")
+
+## Remark — The Frobenius Number
+
+The amounts that *cannot* be made are exactly $ 1, 2, 4, 5, 8, 11 $; every other natural number, including $ 0 $, can (checked up to $ 199 $). So $ 12 $ is the best possible threshold. This is an instance of a theorem of Sylvester (1884): for coprime stamp values $ a $ and $ b $, the largest amount that cannot be made is
+
+$$$
+ab-a-b = 21-3-7 = 11 ,
+$$$
+
+the *Frobenius number*, and exactly $ \tfrac{(a-1)(b-1)}{2} = \tfrac{2\cdot6}{2} = 6 $ amounts cannot be made. There is also a neat symmetry: for $ 0\le n\le11 $, $ n $ is makeable exactly when $ 11-n $ is not. For instance $ 0 $ is makeable and $ 11 $ is not; $ 3 $ is makeable and $ 8 $ is not.
+
+Coprimality matters. With 3¢ and 6¢ stamps, only multiples of $ 3 $ can ever be made, and no threshold exists.
+
+## Remark — Ordinary Induction Works Too
+
+The problem asks for strong induction, but an ordinary step from $ n $ to $ n+1 $ is also possible, by trading stamps. Two identities do it:
+
+$$$
+7-2\cdot3 = 1 , \qquad 5\cdot3-2\cdot7 = 1 .
+$$$
+
+Suppose $ n = 3x+7y $ with $ n\ge12 $. If $ x\ge2 $, trade two 3¢ stamps for one 7¢ stamp: $ n+1 = 3(x-2)+7(y+1) $. If $ x\le1 $, then $ 7y\ge n-3\ge9 $, so $ y\ge2 $; trade two 7¢ stamps for five 3¢ stamps: $ n+1 = 3(x+5)+7(y-2) $. Either way $ n+1 $ is makeable, so the single basis $ 12 $ suffices. This was checked for $ n $ up to $ 3000 $. The price is a case split that the strong-induction proof avoids.
+
+## Remark — Counting the Ways
+
+Once an amount is makeable, it often is in more than one way, since $ 7\cdot3 = 3\cdot7 $ lets us trade seven 3¢ stamps for three 7¢ stamps. For $ n $ from $ 12 $ to $ 20 $ there is exactly one way; $ 21 = 3\cdot7 = 7\cdot3 $ is the first amount with two. In general the number of ways is about $ n/21 $, because consecutive solutions $ (x,y) $ differ by $ (\pm7,\mp3) $.

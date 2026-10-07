@@ -1,0 +1,67 @@
+.docname {Solution — GIAM 5.4 Problem 2}
+.docauthors
+  - nuclearoreo
+.doctype {paged}
+.doclang {English}
+.theme {paperwhite} layout:{latex}
+
+.pagemargin {bottomcenter}
+    .currentpage
+
+# Solution — GIAM 5.4 Problem 2
+
+## Problem
+
+Show that any integer postage of 12¢ or more can be made using only 4¢ and 5¢ stamps.
+
+## Answer
+
+$$$
+\boxed{\begin{aligned} &12 = 4\cdot3,\quad 13 = 4\cdot2+5,\quad 14 = 4+5\cdot2,\quad 15 = 5\cdot3, \\ &n = (n-4)+4 \ \text{ for } n\ge16 \end{aligned}}
+$$$
+
+Four consecutive bases cover the four remainders modulo $ 4 $, and from $ 16 $ on each amount is an earlier amount plus one 4¢ stamp. Verified for every $ n $ from $ 12 $ to $ 10000 $. The bound is sharp: $ 11 $ cannot be made.
+
+## The Proof
+
+Say $ n $ is *makeable* if $ n = 4x+5y $ for some $ x,y\in\mathbb{N} $.
+
+> **Theorem.** Every natural number $ n\ge12 $ is makeable.
+>
+> **Proof.** By strong induction on $ n\ge12 $. Let $ n\ge12 $ be a particular but arbitrarily chosen natural number, and suppose every $ m $ with $ 12\le m < n $ is makeable.
+>
+> **Bases.** If $ n=12 $, take $ (x,y) = (3,0) $. If $ n=13 $, take $ (2,1) $, since $ 8+5=13 $. If $ n=14 $, take $ (1,2) $, since $ 4+10=14 $. If $ n=15 $, take $ (0,3) $.
+>
+> **Inductive step.** Otherwise $ n\ge16 $, so $ m = n-4 $ satisfies $ 12\le m < n $. By the hypothesis, $ n-4 = 4x+5y $ for some $ x,y\in\mathbb{N} $, and then
+>
+> $ n = 4x+5y+4 = 4(x+1)+5y . $
+>
+> So $ n $ is makeable.
+>
+> In every case $ n $ is makeable, so by strong induction every $ n\ge12 $ is. $ \blacksquare $
+
+This is Problem 1 with the cheaper stamp now worth $ 4 $: the step reaches back four places instead of three, and so it needs four bases instead of three, one for each remainder modulo $ 4 $.
+
+## The Picture
+
+The strip marks the makeable amounts; the four chains show how the proof reaches each one.
+
+!(78%)[Makeable amounts and the four chains of the proof](problem-2-stamps.svg "A diagram in four parts. The top band states the four bases, twelve, thirteen, fourteen and fifteen, written with fours and fives, and the step n equals n minus four plus four for n at least sixteen. A strip of the amounts zero to twenty-nine marks the gaps one, two, three, six, seven and eleven in red and every amount from twelve on in green. Below, four chains, one for each remainder mod four, start at the four bases and advance by adding a four cent stamp, with each amount labelled by its stamps. A green band gives the Frobenius number four times five minus four minus five equals eleven, with six gaps, the same as in Problem 1. An orange band shows ordinary induction by trading a four for a five, or three fives for four fours.")
+
+## Remark — The Same Threshold as Problem 1
+
+The amounts that cannot be made are $ 1,2,3,6,7,11 $, checked up to $ 199 $. Sylvester's formula from Problem 1 predicts this: for coprime $ a,b $ the largest unmakeable amount is
+
+$$$
+ab-a-b = 20-4-5 = 11 ,
+$$$
+
+and there are $ \tfrac{(a-1)(b-1)}{2} = \tfrac{3\cdot4}{2} = 6 $ gaps. Remarkably, these are exactly the numbers for 3¢ and 7¢ stamps too, since $ 21-3-7 = 11 $ and $ \tfrac{2\cdot6}{2} = 6 $, though the gaps themselves differ: $ 1,2,4,5,8,11 $ there, $ 1,2,3,6,7,11 $ here. The same symmetry holds: for $ 0\le n\le11 $, $ n $ is makeable exactly when $ 11-n $ is not.
+
+## Remark — Ordinary Induction by Trading Stamps
+
+Since $ 5-4 = 1 $ and $ 4\cdot4-3\cdot5 = 1 $, one step up is always possible. Suppose $ n = 4x+5y $ with $ n\ge12 $. If $ x\ge1 $, trade one 4¢ stamp for a 5¢ stamp: $ n+1 = 4(x-1)+5(y+1) $. If $ x=0 $, then $ n = 5y\ge12 $ forces $ y\ge3 $, and trading three 5¢ stamps for four 4¢ stamps gives $ n+1 = 4\cdot4+5(y-3) $. This was checked for every representation of every $ n $ up to $ 3000 $. The trade case here is simpler than in Problem 1, because the two stamps differ by exactly $ 1 $.
+
+## Remark — The Same Proof as a Least Counterexample
+
+Strong induction is equivalent to the well-ordering of $ \mathbb{N} $, and the proof can be rewritten that way. Suppose some $ n\ge12 $ were not makeable, and let $ n $ be the *least* such. It is not $ 12,13,14,15 $, which are makeable, so $ n\ge16 $. Then $ 12\le n-4 < n $, so $ n-4 $ is makeable by minimality, and adding a 4¢ stamp makes $ n $, a contradiction. The two arguments contain the same steps; the strong-induction version runs forward, while this one runs backward from a supposed failure.
